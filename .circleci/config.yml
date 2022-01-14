@@ -19,9 +19,11 @@ jobs:
             DJANGO_SETTINGS_MODULE: core.settings.production
           command: |
             . venv/bin/activate
+            pip install coverage
             cd app
             python3 manage.py collectstatic
-            python3 manage.py test
+            coverage run manage.py test
+            coverage report --rcfile=../.coveragerc
 workflows:
   version: 2
   test-application:

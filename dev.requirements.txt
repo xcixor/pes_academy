@@ -5,3 +5,4 @@ pylint-django==2.5.0
 pylint==2.12.2
 pylint-django==2.5.0
 pylint-plugin-utils==0.7
+coverage==6.2
