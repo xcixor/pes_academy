@@ -1,0 +1,7 @@
+flake8==4.0.1
+pycodestyle==2.8.0
+autopep8==1.6.0
+pylint-django==2.5.0
+pylint==2.12.2
+pylint-django==2.5.0
+pylint-plugin-utils==0.7
