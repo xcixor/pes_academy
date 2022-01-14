@@ -27,6 +27,10 @@ add-package-prod:
 add-package-dev:
 	pip install $(package) ; pip freeze | grep $(package) >> dev.requirements.txt
 
+## Create development virtual environment and activate; assumes you have python3 and python3-venv installed
+install-deps-all:
+	pip install -r prod.requirements.txt; pip install -r dev.requirements.txt
+
 
 ifeq (test,$(firstword $(MAKECMDGOALS)))
   TAG_ARGS := $(word 2, $(MAKECMDGOALS))

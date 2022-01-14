@@ -36,7 +36,22 @@ The Makefile is special file, that contains shell commands. The utility will hel
 make help
 ```
 
-## Adding packages
+## Dependencies
+The app depends on several packages to run such as django. Packages that are essential to run the app are found in the *prod.requirements.txt*.
+To install prod dependencies, run:
+```
+pip install -r prod.requirements.txt
+```
+Packages that are only required for development such as code styling package **pylint** are found in the *dev.requirements.txt* file.
+To install dev dependencies, run:
+```
+pip install -r dev.requirements.txt
+```
+The following utility can, however, help you install both during development
+```
+make install-deps-all
+```
+### Adding packages
 This project intends to keep development and production packages separate
 
 To install a dev package, run the following command:
