@@ -1,0 +1,29 @@
+version: 2.1
+jobs:
+  test:
+    working_directory: ~/PrivateEquity-Support
+    docker:
+      - image: circleci/python:3.9-buster-browsers-legacy
+    steps:
+      - checkout
+      - run:
+          name: Set up environment
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r prod.requirements.txt
+      - run:
+          name: Run Tests
+          environment:
+            SECRET_KEY: 'secret-key'
+            DJANGO_SETTINGS_MODULE: core.settings.production
+          command: |
+            . venv/bin/activate
+            cd app
+            python3 manage.py collectstatic
+            python3 manage.py test
+workflows:
+  version: 2
+  test-application:
+    jobs:
+      - test
