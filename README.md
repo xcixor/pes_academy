@@ -30,4 +30,18 @@ Activate the virtualenv with the following command
 source venv/bin/activate
 ```
 
+## Adding packages
+This project intends to keep development and production packages separate
+
+To install a dev package, run the following command:
+```
+make add-package-dev package=package_name
+```
+for example, to install pylint, you would run;  ```make add-package-dev package=pylint```
+
+Similarly, to install production packages, run the following
+```
+make add-package-prod package=package_name
+```
+
 Happy coding!
