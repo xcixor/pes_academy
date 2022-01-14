@@ -31,6 +31,10 @@ add-package-dev:
 install-deps-all:
 	pip install -r prod.requirements.txt; pip install -r dev.requirements.txt
 
+## Run tests with coverage
+test-with-coverage:
+	cd app; coverage erase --rcfile=.coveragerc; coverage run manage.py test; coverage report --rcfile=../.coveragerc
+
 
 ifeq (test,$(firstword $(MAKECMDGOALS)))
   TAG_ARGS := $(word 2, $(MAKECMDGOALS))

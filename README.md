@@ -65,4 +65,11 @@ Similarly, to install production packages, run the following
 make add-package-prod package=package_name
 ```
 
+## Testing
+This project aims to achieve at least 96% code coverage. When developing new features, ensure you code is well tested and takes care of edge cases.
+To find out the coverage, you can run the following command:
+```
+make test-with-coverage
+```
+
 Happy coding!
