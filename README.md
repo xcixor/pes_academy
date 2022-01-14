@@ -30,6 +30,12 @@ Activate the virtualenv with the following command
 source venv/bin/activate
 ```
 
+## The *Makefile*
+The Makefile is special file, that contains shell commands. The utility will help developers to automate commonly run commands and also decrease complexity of certain commands. You can use [this resource](https://makefiletutorial.com/) to learn more. To see what commands are available and how to use them run
+```
+make help
+```
+
 ## Adding packages
 This project intends to keep development and production packages separate
 
