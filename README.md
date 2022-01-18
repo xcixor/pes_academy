@@ -6,9 +6,10 @@ PRIVATE EQUITY SUPPORT (PES) is an enterprise  support advisory consulting firm,
 The following guidelines assume you are using a linux distro.
 ### Prerequisites
 Ensure you have the following installed
- - Python
+ - Python3
  - Pip
  - virtualenv
+ - docker
 
 
 ### Clone the repository
@@ -29,6 +30,13 @@ Activate the virtualenv with the following command
 ```
 source venv/bin/activate
 ```
+### Add environment variables
+This project requires certain variables to run. Create a .env file at the roo of your project and add the following variables
+```
+export SECRET_KEY='a-very-secret-key'
+export DJANGO_SETTINGS_MODULE='core.settings.development'
+```
+export the variables at once using the command. ```source .env```. Ensure you are at the root of the project for this command to work.
 
 ## The *Makefile*
 The Makefile is special file, that contains shell commands. The utility will help developers to automate commonly run commands and also decrease complexity of certain commands. You can use [this resource](https://makefiletutorial.com/) to learn more. To see what commands are available and how to use them run
@@ -71,5 +79,13 @@ To find out the coverage, you can run the following command:
 ```
 make test-with-coverage
 ```
+
+## Docker
+This project uses docker to separate the application from underlying infrastructure to ease development on any platform. To start a development container, run the following command
+```
+make dev
+```
+
+Navigate to [localhost port 8000](0.0.0.0:8000) to view your app.
 
 Happy coding!

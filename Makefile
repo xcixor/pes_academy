@@ -35,6 +35,13 @@ install-deps-all:
 test-with-coverage:
 	cd app; coverage erase --rcfile=.coveragerc; coverage run manage.py test; coverage report --rcfile=../.coveragerc
 
+## create container for development
+dev:
+	docker-compose up --build --force-recreate --remove-orphans --detach
+
+## remove container
+tear-dev:
+	docker-compose down -v
 
 ifeq (test,$(firstword $(MAKECMDGOALS)))
   TAG_ARGS := $(word 2, $(MAKECMDGOALS))
