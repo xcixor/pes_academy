@@ -49,6 +49,46 @@ class ApplicationModelTestCase(SMETestCase):
             f'/media/applications/{self.application.slug}/',
             self.application.image.url)
 
+    def test_deadline_field_properties(self):
+        field = self.application._meta.get_field('deadline')
+        self.assertIsInstance(field, models.DateTimeField)
+        self.assertFalse(field.null)
+        self.assertFalse(field.blank)
+        self.assertEqual(
+            field.help_text, 'The application\'s deadline.')
+
+    def test_created_field_properties(self):
+        field = self.application._meta.get_field('created')
+        self.assertIsInstance(field, models.DateTimeField)
+        self.assertFalse(field.null)
+        self.assertTrue(field.auto_now_add)
+        self.assertEqual(
+            field.help_text, 'The date the application was created.')
+
+    def test_updated_field_properties(self):
+        field = self.application._meta.get_field('updated')
+        self.assertIsInstance(field, models.DateTimeField)
+        self.assertFalse(field.null)
+        self.assertTrue(field.auto_now)
+        self.assertEqual(
+            field.help_text, 'The date the application was updated.')
+
+    def test_available_for_applications_field_properties(self):
+        field = self.application._meta.get_field('available_for_applications')
+        self.assertIsInstance(field, models.BooleanField)
+        self.assertFalse(field.null)
+        self.assertFalse(field.default)
+        help_text = (
+            'Designates whether applications can be made '
+            'for this application. If checked it and is within the deadline, '
+            'applicants can view it on the application page.'
+        )
+        self.assertEqual(
+            field.help_text, help_text)
+
+    def test_defines_a_human_readable_name(self):
+        self.assertEqual(str(self.application), 'Call For Application 1')
+
     def tearDown(self):
         self.delete_test_images(
             f'/media/applications/{self.application.slug}/')

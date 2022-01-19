@@ -17,3 +17,15 @@ class Application(models.Model):
     slug = models.SlugField(
         max_length=255, unique=True,
         help_text='Unique text to append to the address for the application.')
+    deadline = models.DateTimeField(help_text='The application\'s deadline.')
+    created = models.DateTimeField(
+        auto_now_add=True, help_text='The date the application was created.')
+    updated = models.DateTimeField(
+        auto_now=True, help_text='The date the application was updated.')
+    available_for_applications = models.BooleanField(
+        default=False, help_text='Designates whether applications can be made '
+        'for this application. If checked it and is within the deadline, '
+        'applicants can view it on the application page.')
+
+    def __str__(self):
+        return self.tagline
