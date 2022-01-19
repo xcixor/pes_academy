@@ -18,7 +18,7 @@ class BaseTestCase(TestCase):
                     os.remove(str(BASE_DIR) + path + entry)
 
     def get_image(self):
-        image_path = str(BASE_DIR)[:-4] + "/media/tests/test_image.jpg"
+        image_path = str(BASE_DIR) + "/media/tests/test_image.jpg"
         mock_image = SimpleUploadedFile(
             name="test_image.jpg", content=open(image_path, 'rb').read(),
             content_type='image/jpg'
