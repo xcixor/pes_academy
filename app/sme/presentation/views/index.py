@@ -1,5 +1,9 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from sme.models import Application
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
+
     template_name = "index/index.html"
+    model = Application
+    context_object_name = 'applications'
