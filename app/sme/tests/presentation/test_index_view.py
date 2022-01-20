@@ -28,4 +28,4 @@ class IndexViewTestCase(SMETestCase):
     def test_image_rendered_in_page(self):
         response = self.client.get('/')
         self.assertTrue(
-            self.application.image.url in response.content.decode())
+            str(self.application.image) in response.content.decode())
