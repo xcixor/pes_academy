@@ -46,7 +46,7 @@ class ApplicationModelTestCase(SMETestCase):
 
     def test_material_field_upload_folder(self):
         self.assertIn(
-            f'/media/applications/{self.application.slug}/',
+            f'/applications/{self.application.slug}/',
             self.application.image.url)
 
     def test_deadline_field_properties(self):
