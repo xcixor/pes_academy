@@ -1,3 +1,4 @@
+import os
 from django.views.generic import ListView
 from sme.presentation.views import IndexView
 from sme.models import Application
@@ -26,6 +27,8 @@ class IndexViewTestCase(SMETestCase):
         self.assertInHTML(self.application.tagline, response.content.decode())
 
     def test_image_rendered_in_page(self):
+        filename = os.path.basename(self.application.image.name)
+        filename = os.path.splitext(
+            filename)[0] + os.path.splitext(filename)[1]
         response = self.client.get('/')
-        self.assertTrue(
-            str(self.application.image) in response.content.decode())
+        self.assertTrue(filename in response.content.decode())
