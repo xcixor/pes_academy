@@ -23,8 +23,8 @@ jobs:
             DJANGO_SETTINGS_MODULE: core.settings.production
             POSTGRES_IP: 127.0.0.1
             PGUSER: pes
-            DATABASE_NAME: pes-db
-            USER: pes
+            POSTGRES_DB: pes-db
+            POSTGRES_USER: pes
           command: |
             . venv/bin/activate
             pip install coverage
