@@ -11,3 +11,22 @@ services:
     environment:
       SECRET_KEY: 'secret-key'
       DJANGO_SETTINGS_MODULE: core.settings.development
+      POSTGRES_DB: pes-db-name
+      POSTGRES_USER: pes-db-user
+      POSTGRES_PASSWORD: pes-db-pwd
+      POSTGRES_IP: db
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
+    image: postgres:12.1
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_PASSWORD: pes-db-pwd
+      POSTGRES_USER: pes-db-user
+      POSTGRES_DB: pes-db-name
+
+volumes:
+  postgres_data:

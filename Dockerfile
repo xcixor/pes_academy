@@ -16,6 +16,10 @@ COPY ./dev.requirements.txt .
 RUN pip install --upgrade pip -r prod.requirements.txt
 RUN pip install --upgrade pip -r dev.requirements.txt
 
+# run a postgres healthcheck
+COPY ./scripts/postgres-healthcheck.py /usr/local/bin/postgres-healthcheck
+RUN chmod u+x /usr/local/bin/postgres-healthcheck
+
 # copy project
 COPY ./app .
 

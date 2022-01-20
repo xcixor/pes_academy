@@ -43,6 +43,10 @@ dev:
 tear-dev:
 	docker-compose down -v
 
+## create superuser in container
+createsuperuser:
+	docker exec -it privateequity-support_pes_1 python manage.py createsuperuser
+
 ifeq (test,$(firstword $(MAKECMDGOALS)))
   TAG_ARGS := $(word 2, $(MAKECMDGOALS))
   $(eval $(TAG_ARGS):;@:)
