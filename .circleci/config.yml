@@ -4,6 +4,10 @@ jobs:
     working_directory: ~/PrivateEquity-Support
     docker:
       - image: circleci/python:3.9-buster-browsers-legacy
+      - image: circleci/postgres:12-alpine-postgis-ram
+        environment:
+            POSTGRES_USER: pes
+            POSTGRES_DB: pes-db
     steps:
       - checkout
       - run:
@@ -17,6 +21,10 @@ jobs:
           environment:
             SECRET_KEY: 'secret-key'
             DJANGO_SETTINGS_MODULE: core.settings.production
+            POSTGRES_IP: 127.0.0.1
+            PGUSER: pes
+            DATABASE_NAME: pes-db
+            USER: pes
           command: |
             . venv/bin/activate
             pip install coverage
