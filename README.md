@@ -90,11 +90,11 @@ make dev
  This project is using pipelines and review apps.A pipeline is a group of Heroku apps that share the same codebase.. Each app in a pipeline represents one of the following stages in a continuous delivery workflow:
  ```
                     - Development
-                    ```
+                   
                     -  Review
-                    ```
+                   
                     -  Staging
-                    ```
+                   
                     -  Production
                     ```
 
