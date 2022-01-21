@@ -22,7 +22,8 @@ help:
 
 ## Add a production package to the application. e.g make add-package-prod package=package_name
 add-package-prod:
-	pip install $(package) ; pip freeze | grep $(package) >> prod.requirements.txt
+	pip install $(package) ; pip freeze | grep $(package) >> prod.requirements.txt ; pip freeze | grep $(package) >> requirements.txt
+
 ## Add a development package to the application. e.g make add-package-dev package=package_name
 add-package-dev:
 	pip install $(package) ; pip freeze | grep $(package) >> dev.requirements.txt
