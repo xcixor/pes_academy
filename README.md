@@ -86,6 +86,23 @@ This project uses docker to separate the application from underlying infrastruct
 make dev
 ```
 
+## Pipelines and Review Apps
+ This project is using pipelines and review apps.A pipeline is a group of Heroku apps that share the same codebase.. Each app in a pipeline represents one of the following stages in a continuous delivery workflow:
+                    - Development
+                    -  Review
+                    -  Staging
+                    -  Production
+
+A common pipeline workflow has the following steps:
+1.A developer creates a pull request to make a change to the codebase.
+2.Heroku automatically creates a review app for the pull request, allowing developers to test the change.
+3.When the change is ready, it’s merged into the codebase’s master branch.
+4.The master branch is automatically deployed to the pipeline’s staging app for further testing.
+5.When the change is ready, a developer promotes the staging app to production, making it available to the app’s end users.
+
+You can use [this resource](https://devcenter.heroku.com/articles/pipelines/) to learn more.
+
+
 Navigate to [localhost port 8000](0.0.0.0:8000) to view your app.
 
 Happy coding!
