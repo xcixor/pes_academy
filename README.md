@@ -96,7 +96,7 @@ make dev
                     -  Staging
                    
                     -  Production
-                    ```
+                    
 
 A common pipeline workflow has the following steps:
 1.A developer creates a pull request to make a change to the codebase.
