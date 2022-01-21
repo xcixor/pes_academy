@@ -29,7 +29,6 @@ jobs:
             . venv/bin/activate
             pip install coverage
             cd app
-            python3 manage.py collectstatic --no-input
             coverage run manage.py test
             coverage report --rcfile=../.coveragerc
 workflows:
