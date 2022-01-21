@@ -105,7 +105,7 @@ A common pipeline workflow has the following steps:
 4.The master branch is automatically deployed to the pipeline’s staging app for further testing.
 5.When the change is ready, a developer promotes the staging app to production, making it available to the app’s end users.
 
-You can use [this resource](https://devcenter.heroku.com/articles/pipelines/) to learn more.
+You can use [this resource](https://devcenter.heroku.com/articles/pipelines/) to learn more.```
 
 
 Navigate to [localhost port 8000](0.0.0.0:8000) to view your app.
