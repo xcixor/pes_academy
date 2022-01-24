@@ -24,7 +24,7 @@ class IndexViewTestCase(SMETestCase):
 
     def test_tagline_rendered_in_page(self):
         response = self.client.get('/')
-        self.assertInHTML(self.application.tagline, response.content.decode())
+        self.assertIn(self.application.tagline, response.content.decode())
 
     def test_image_rendered_in_page(self):
         filename = os.path.basename(self.application.image.name)
