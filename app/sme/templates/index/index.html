@@ -1,84 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class=" container emailPic">
-
-    <div class="Call1">
-      <h2> Call For Applications </h2>
-    </div>
-
-    <div class="row">
-          {% for application in applications %}
-          <div class="col-md-4 grid">
-              <div class="card">
-                <img class="card-img" src="{{application.image.url}}" alt="{{application.tagline}}" />
-                <div class="card-content">
-                  <h1 class="card-header">{{application.tagline}}</h1>
-                  <p class="card-text">
-                      Applications Ongoing.<span> {{application.deadline}}</span>.
-                  </p>
-                  <a href="/apply/{{application.slug}}/" type="button" class="card-btn">Apply <span>&rarr;</span></a>
-                </div>
-              </div>
-          </div>
-          {% endfor %}
-    </div>
-
-         <hr>
-         <div class="Call1">
-         <h2 > Previous Training </h2>
+<section id="services" class="container">
+  <h3 class="display-4 text-center mt-5 mb-3">Call For Applications</h3>
+  
+  <div class="row text-center">
+      {% for application in applications %}
+     <div class="col-md-4 mb-4">
+        <div class="card h-100">
+           <img class="card-img-top" src="{{application.image.url}}" alt="{{application.tagline}}" />
+           <div class="card-body">
+              <h4 class="card-title">{{application.tagline}}</h4>
+              <p class="card-text"> Applications Ongoing.<span> {{application.deadline}}</span>.</p>
+           </div>
+           <div class="card-footer py-4">
+              <a href="/apply/{{application.slug}}/" class="btn btn-secondary">Apply &raquo;</a>
+           </div>
         </div>
-         <hr>
-         <div class="row ">
-            <div class="col-md-4">
-              <div class="card">
-                <img class="card-img" src="/static/images/train1.jpeg" alt="Rome" />
-                <div class="card-content">
-                  <h1 class="card-header">Covid Planning for SMEs</h1>
-                  <!-- <p class="card-text">
-                    Applications Ongoing.
-                  </p>
-                  <p class="card-footer"> Ends 25/1/2022</p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img
-                  class="card-img"
-                  src="/static/images/train2.jpeg"
-                  alt="Grand Canyon"
-                />
-                <div class="card-content">
-                  <h6 class="card-header">SME Readiness</h6>
-                  <!-- <p class="card-text">
-                      Applications Ongoing
-                  </p>
-                  <p class="card-footer">
-                      Ends 25/3/2022
-                  </p> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <img class="card-img" src="/static/images/train3.jpeg" alt="Maldives" />
-                <div class="card-content">
-                  <h1 class="card-header">SME Financial Literacy</h1>
-                  <!-- <p class="card-text">
-                      Applications Ongoing.
-                  </p>
-                  <p class="card-footer"> Ends 25/4/2022</p> -->
-
-                </div>
-              </div>
-           </div>
-           </div>
-
-</div>
-
-
-
-
+     </div>
+     {% endfor %}
+  </div>
+</section>
+<footer class="py-3 bg-light">
+    <div class="container">
+       <p class="text-center">Copyright &copy;PrivateEquity-Support 2020</p>
+    </div>
+ </footer>
 {% endblock %}
