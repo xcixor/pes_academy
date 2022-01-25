@@ -1,0 +1,212 @@
+{% extends 'acc_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6">
+            <a ><img src="{% static 'images/clientlog.JPG' %}"></a>    
+    </div>
+    <div class="col-md-6">
+<form action="#" class="form">
+    <!-- progress bar -->
+<div class="progressbar">
+    <div class="progress" id="progress"></div>
+
+    <div class="progress-step progress-step-active" data-title="Personal Info"></div>
+    <div class="progress-step"data-title="Personal Info"></div>
+    <div class="progress-step"data-title="Business Info"></div>
+    <div class="progress-step"data-title="Business Info"></div>
+    <div class="progress-step"data-title="Business Info"></div>
+</div>
+
+    <!-- steps -->
+    <h4 class="text-center"> Call For Application </h4>
+    <div class="form-step form-step-active">
+        <div class="input-group">
+            <label  for="email">Email</label>
+            <input type="email" placeholder="info@example.com" required >
+        </div>
+
+       <strong> <p>Kindly select your preferred language</p></strong>
+        <div class="input-group">
+            <input type="radio" id="english" name="user_language" value="English" required>
+              <label for="english">English</label><br>
+              <input type="radio" id="french" name="user_language" value="French" required>
+              <label for="french">French</label><br>
+              <input type="radio" id="portugese" name="user_language" value="Portugese" required>
+              <label for="portugese">Portugese</label>
+        </div>
+
+        <div class="input-group">
+                <label for="name">Participant Name</label>
+                <input type="text" placeholder="full_Name" required>
+            </div>
+
+            <div class="input-group">
+                    <label for="age">Kindly confirm your age</label>
+                    <input type="number" placeholder="your_age" required>
+                </div>
+
+
+        <div class="">
+            <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+        </div>
+    </div>
+
+    <div class="form-step">
+            <div class="input-group">
+                    <p>Gender</p>
+                    <input type="radio" id="female" name="gender" value="Female">
+                      <label for="female">Female</label><br>
+
+                      <input type="radio" id="male" name="gender" value="Male">
+                      <label for="male">Male</label><br>
+
+                      <input type="radio" id="prefer_none" name="gender" value="Prefer_none">
+                      <label for="prefer not to say">Prefer not to say</label><br>
+
+                    <input type="radio" name="gender" id="other">
+                        <label for="other">Other</label>
+                </div>
+
+            <div class="input-group">
+                <label for="email"> Preferred Email-Address</label>
+                <input type="text" name="email" id="email" required>
+            </div>
+
+            <div class="input-group">
+                    <p>Preferred language of engagement</p>
+                    <input type="radio" id="english" name="user_language" value="English">
+                      <label for="english">English</label><br>
+                      <input type="radio" id="french" name="user_language" value="French">
+                      <label for="french">French</label><br>
+                      <input type="radio" id="portugese" name="user_language" value="Portugese">
+                      <label for="portugese">Portugese</label>
+                </div>
+        
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev ">Previous</a>
+                <a href="#" class="btn btn-next ">Next</a>
+            </div>
+        </div>
+
+        <div class="form-step">
+                <div class="input-group">
+                    <label for="Your answer">Organisation Name and social media presence.(Include any links to your organisation website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label>
+                    <input type="text" name="Organisation" id="Organisation">
+                </div>
+
+                <div class="input-group">
+                    <p>Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies * </p>
+                        <input type="radio" id="farming" name="farming" value="farming">
+                        <label for="farming"> Primary production (farming)</label><br>
+                        <input type="radio" id="supplier" name="supplier" value="supplier">
+                        <label for="supplier"> Input supplier</label><br>
+                        <input type="radio" id="processor" name="processor" value="processor">
+                        <label for="processor"> Processor (value addition)</label>
+                        <input type="radio" id="aggregator" name="aggregator" value="aggregator">
+                        <label for="aggregator"> Aggregator</label><br>
+                        <input type="radio" id="distributor" name="distributor" value="distributor">
+                        <label for="distributor"> Distributor</label><br>
+                        <input type="radio" id="retailer" name="retailer" value="retailer">
+                        <label for="retailer"> Retailer</label>
+                        <input type="radio" id="service_provider" name="service_provider" value="service_provider">
+                        <label for="Service_provider"> Service provider</label>
+                        <input type="radio" id="other" name="other" value="other">
+                        <label for="Other"> Other</label>
+                </div>
+
+                <div class="btns-group">
+                    <a href="#" class="btn btn-prev ">Previous</a>
+                    <a href="#" class="btn btn-next ">Next</a>
+                </div>
+            </div>
+
+            <div class="form-step">
+                       
+                    <div class="input-group">
+                        <p>How long has the business been in formal existence for? *
+                                Kindly select one option. Formal existence means from when the company was registered and started operating </p>
+                                
+                            <input type="radio" id="" name="" value="">
+                            <label for=""> Below 1 year</label><br>
+                            <input type="radio" id="" name="" value="">
+                            <label for=""> More than 1 year but less than 2 years</label><br>
+                            <input type="radio" id="" name="" value="">
+                            <label for=""> Between 2 to 5 years</label>
+                            <input type="radio" id="" name="" value="">
+                            <label for=""> Over 5 years</label><br>
+                            <input type="radio" id="" name="" value="">
+                            <label for=""> Other</label><br>
+                            
+                    </div>
+                    <div class="input-group">
+                            <p>Which one sentence best describes the stage where your business is at? *
+                                    Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product </p>
+                                    
+                                <input type="radio" id="" name="" value="">
+                                <label for=""> Product or service is still being developed</label><br>
+                                <input type="radio" id="" name="" value="">
+                                <label for="">Product or service is at MVP stage. Currently piloting with target users</label><br>
+                                <input type="radio" id="" name="" value="">
+                                <label for=""> Product or service has been availed in the market. There are no sales or revenues as yet</label>
+                                <input type="radio" id="" name="" value="">
+                                <label for=""> Product or service is in the market. There are sales/revenues</label><br>
+                                <!-- <input type="radio" id="" name="" value=""> -->
+                                <label for=""> Other</label><br>
+                                <input type="text" name="" id="">
+                                
+                        </div>
+    
+                    <div class="btns-group">
+                        <a href="#" class="btn btn-prev ">Previous</a>
+                        <a href="#" class="btn btn-next ">Next</a>
+                    </div>
+                </div>
+
+            <div class="form-step">
+                    <div class="input-group">
+                            <p>What are the 3 key business milestones to be achieved in the short term (1-2 years)? *
+                                    Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</p>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Revenue growth (Increase sales)</label><br>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Improve costs ( reduce the costs of production, operations)</label><br>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Grow new markets (New towns, Regions, Countries)</label>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Diversify client segments (New types of clients - institutional or retail)</label><br>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Diversify products/services (Introduce new products/services)</label><br>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Increase production or output capacity (Produce more of the product or service)</label>
+                                <input type="checkbox" id="" name="" value="service_provider">
+                                <label for=""> Grow the team (Increase numbers, Improve skill sets)</label>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Improve internal business processes (Operational aspects)</label>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Raise Capital</label>
+                                <input type="checkbox" id="" name="" value="">
+                                <label for=""> Attain certifications</label>
+                                
+                                <label for=""> Other</label>
+                                <input type="text" name="" id="">
+                        </div>
+        
+                    <div class="input-group">
+                        <label for="Your answer">How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects *
+                                Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="btns-group">
+                        <a href="#" class="btn btn-prev ">Previous</a>
+                        <input type="submit" value="Submit" class="btn">
+                    </div>
+                </div>
+
+</form>
+</div>
+</div>
+</div>
+{% endblock%}
