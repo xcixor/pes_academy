@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import DetailView
+from sme.models import Application
 
 
-class ApplicationView(TemplateView):
+class ApplicationView(DetailView):
+
     template_name = "application_form.html"
+    model = Application
+    context_object_name = 'application'

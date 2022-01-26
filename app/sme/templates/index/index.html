@@ -3,7 +3,7 @@
 {% block content %}
 <section id="services" class="container">
   <h3 class="display-4 text-center mt-5 mb-3">Call For Applications</h3>
-  
+
   <div class="row text-center">
       {% for application in applications %}
      <div class="col-md-4 mb-4">
@@ -14,8 +14,7 @@
               <p class="card-text"> Applications Ongoing.<span> {{application.deadline}}</span>.</p>
            </div>
            <div class="card-footer py-4">
-              <!-- <a href="/apply/{{application.slug}}/" class="btn btn-secondary">Apply &raquo;</a> -->
-              <a href="{% url 'accounts' %}" class="btn btn-secondary">Apply &raquo;</a> 
+              <a href="/accounts/applications/{{application.slug}}/" class="btn btn-secondary">Apply &raquo;</a>
            </div>
         </div>
      </div>
