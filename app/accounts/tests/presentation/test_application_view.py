@@ -1,5 +1,5 @@
 from django.views.generic import DetailView
-from accounts.presentation.views import ApplicationView
+from accounts.presentation.views.application import ApplicationView
 from sme.models import Application
 from sme.tests.common import SMETestCase
 
