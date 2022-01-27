@@ -44,8 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    is_transcriber = models.BooleanField(
-        default=False, help_text='Designate whether user is a transcriber.')
     native_language = models.CharField(max_length=40, choices=LANGUAGE_CHOICES)
     age = models.PositiveSmallIntegerField(null=True)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
