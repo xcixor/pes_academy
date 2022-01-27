@@ -46,4 +46,32 @@ function updateProgressbar() {
     ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
 
-       
+
+const max = 3;
+
+document.addEventListener('change', function(e) {
+  if (e.target.tagName == 'INPUT') {
+    if (document.querySelectorAll(".mil input[type='checkbox']:checked").length > max) {
+      e.target.checked = false;
+      console.log(`${max} You can only choose a maximum of 3!`);
+    }
+  }
+});
+
+document.getElementById("check").onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll("[required]").forEach(function(i) {
+    if (!allAreFilled) return;
+    if (!i.value) allAreFilled = false;
+    // if (i.type === "radio") {
+    //   let radioValueCheck = false;
+    //   document.getElementById("myForm").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+    //     if (r.checked) radioValueCheck = true;
+    //   })
+    //   allAreFilled = radioValueCheck;
+    // }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
