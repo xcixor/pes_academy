@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from sme.tests.common import SMETestCase
-from accounts.models import BusinessOrganization, Milestone
+from accounts.models import BusinessOrganization, Milestone, CovidImpact
 
 
 User = get_user_model()
