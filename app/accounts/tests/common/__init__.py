@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from sme.tests.common import SMETestCase
-# from accounts.models import BusinessOrganization, Milestone, CovidImpact
+from accounts.models import BusinessOrganization
 
 
 User = get_user_model()
@@ -29,7 +29,7 @@ class AccountsBaseTestCase(SMETestCase):
             name='Caravan Tech',
             facebook_link='https://faceme.com',
             twitter_link='https://twitterme.com',
-            whatsapp_business='https://whatsapp.com',
+            whatsapp_business_link='https://whatsapp.com',
             instagram_link='https://instagram.com',
             value_chain='chain_one',
             existence_period='period_one',
