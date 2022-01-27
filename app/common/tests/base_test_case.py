@@ -1,10 +1,9 @@
 """Sets up the testing environment."""
-from shutil import rmtree
 import os
 import re
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
-
 from core.settings.base import BASE_DIR
 
 
@@ -24,3 +23,9 @@ class BaseTestCase(TestCase):
             content_type='image/jpg'
         )
         return mock_image
+
+    def create_logged_in_admin(self):
+        admin = get_user_model().objects.create_superuser(
+            'admin@admin.com', 'pass1234')
+        self.client.login(username=admin.email_address, password='pass1234')
+        return admin

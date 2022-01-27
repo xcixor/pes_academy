@@ -40,30 +40,35 @@ class BusinessModelTestCase(AccountsBaseTestCase):
         self.assertIsInstance(field, models.URLField)
         self.assertEqual(field.max_length, 200)
         self.assertTrue(field.null)
+        self.assertTrue(field.blank)
 
     def test_twitter_link_properties(self):
         field = self.business._meta.get_field('twitter_link')
         self.assertIsInstance(field, models.URLField)
         self.assertEqual(field.max_length, 200)
         self.assertTrue(field.null)
+        self.assertTrue(field.blank)
 
     def test_linkedin_link_properties(self):
         field = self.business._meta.get_field('linkedin_link')
         self.assertIsInstance(field, models.URLField)
         self.assertEqual(field.max_length, 200)
         self.assertTrue(field.null)
+        self.assertTrue(field.blank)
 
     def test_instagram_link_properties(self):
         field = self.business._meta.get_field('instagram_link')
         self.assertIsInstance(field, models.URLField)
         self.assertEqual(field.max_length, 200)
         self.assertTrue(field.null)
+        self.assertTrue(field.blank)
 
     def test_whatsapp_business_link_properties(self):
         field = self.business._meta.get_field('instagram_link')
         self.assertIsInstance(field, models.URLField)
         self.assertEqual(field.max_length, 200)
         self.assertTrue(field.null)
+        self.assertTrue(field.blank)
 
     def test_value_chain_properties(self):
         field = self.business._meta.get_field('value_chain')

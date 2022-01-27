@@ -29,11 +29,11 @@ class BusinessOrganization(models.Model):
     owner = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='business')
     name = models.CharField(max_length=255)
-    facebook_link = models.URLField(null=True)
-    twitter_link = models.URLField(null=True)
-    instagram_link = models.URLField(null=True)
-    linkedin_link = models.URLField(null=True)
-    whatsapp_business_link = models.URLField(null=True)
+    facebook_link = models.URLField(null=True, blank=True)
+    twitter_link = models.URLField(null=True, blank=True)
+    instagram_link = models.URLField(null=True, blank=True)
+    linkedin_link = models.URLField(null=True, blank=True)
+    whatsapp_business_link = models.URLField(null=True, blank=True)
     value_chain = models.CharField(max_length=255, choices=VALUE_CHAIN_CHOICES)
     existence_period = models.CharField(
         max_length=255, choices=EXISTENCE_PERIOD_CHOICES)

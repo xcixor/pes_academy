@@ -1,6 +1,37 @@
 from django.contrib import admin
-from accounts.models import User
+from accounts.models import User, BusinessOrganization, Milestone, CovidImpact
 
-admin.site.register(User)
 
-# Register your models here.
+class BusinessOrganizationInline(admin.TabularInline):
+
+    model = BusinessOrganization
+    extra = 0
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+
+    list_display = ['full_name', 'email_address', 'date_joined']
+    inlines = [BusinessOrganizationInline]
+
+
+class CovidImpactInline(admin.TabularInline):
+
+    model = CovidImpact
+    extra = 0
+
+
+class MilestoneInline(admin.TabularInline):
+
+    model = Milestone
+    extra = 0
+
+
+@admin.register(BusinessOrganization)
+class BusinessOrganizationAdmin(admin.ModelAdmin):
+
+    list_display = ['name', 'owner']
+    inlines = [CovidImpactInline, MilestoneInline]
+
+
+admin.site.register(Milestone)

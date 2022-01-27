@@ -7,3 +7,6 @@ class Milestone(models.Model):
         BusinessOrganization, on_delete=models.CASCADE,
         related_name='milestones')
     milestone = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.milestone
