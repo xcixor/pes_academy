@@ -1,0 +1,65 @@
+from django.db import models
+from django.contrib.auth import get_user_model
+from accounts.tests.common import AccountsBaseTestCase
+
+
+User = get_user_model()
+
+
+class UserModelTestCase(AccountsBaseTestCase):
+
+    def setUp(self):
+        super(UserModelTestCase, self).setUp()
+        self.user = self.create_user()
+
+    def test_email_address_properties(self):
+        field = self.user._meta.get_field('email_address')
+        self.assertEqual(field.max_length, 255)
+        self.assertTrue(field.unique)
+        self.assertIsInstance(field, models.EmailField)
+
+    def test_native_language_properties(self):
+        field = self.user._meta.get_field('native_language')
+        self.assertEqual(field.max_length, 40)
+        self.assertIsInstance(field, models.CharField)
+        CHOICES = [('english', 'English'), ('french', 'French'),
+                   ('portuguese', 'Portuguese')]
+        self.assertEqual(field.choices, CHOICES)
+
+    def test_age_properties(self):
+        field = self.user._meta.get_field('age')
+        self.assertIsInstance(field, models.PositiveSmallIntegerField)
+        self.assertTrue(field.null)
+
+    def test_full_name_properties(self):
+        field = self.user._meta.get_field('full_name')
+        self.assertIsInstance(field, models.CharField)
+        self.assertEqual(field.max_length, 255)
+
+    def test_gender_properties(self):
+        field = self.user._meta.get_field('gender')
+        self.assertEqual(field.max_length, 20)
+        self.assertIsInstance(field, models.CharField)
+        CHOICES = [('male', 'Male'), ('femail', 'Female'),
+                   ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
+        self.assertEqual(field.choices, CHOICES)
+
+    def test_preferred_language_properties(self):
+        field = self.user._meta.get_field('preferred_language')
+        self.assertEqual(field.max_length, 40)
+        self.assertIsInstance(field, models.CharField)
+        CHOICES = [('english', 'English'), ('french', 'French'),
+                   ('portuguese', 'Portuguese')]
+        self.assertEqual(field.choices, CHOICES)
+
+    def test_has_date_joined_field(self):
+        field = self.user._meta.get_field('date_joined')
+        self.assertIsInstance(field, models.DateField)
+        self.assertTrue(field.auto_now)
+
+    def test_can_create_superuser(self):
+        user = User.objects.create_superuser('admin@admin.com', 'pass1234')
+        self.assertEqual(user.email_address, 'admin@admin.com')
+
+    def test_defines_user_readable_name(self):
+        self.assertEqual(str(self.user), 'Jim jones')
