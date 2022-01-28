@@ -28,8 +28,13 @@ class UserModelTestCase(AccountsBaseTestCase):
 
     def test_age_properties(self):
         field = self.user._meta.get_field('age')
-        self.assertIsInstance(field, models.PositiveSmallIntegerField)
+        AGE_CHOICES = [
+            ('range_one', '20-29'), ('range_two', '30-39'),
+            ('range_three', '40-49'), {'range_four', 'Above 50'}]
+        self.assertIsInstance(field, models.CharField)
         self.assertTrue(field.null)
+        self.assertEqual(field.max_length, 20)
+        self.assertEqual(field.choices, AGE_CHOICES)
 
     def test_full_name_properties(self):
         field = self.user._meta.get_field('full_name')

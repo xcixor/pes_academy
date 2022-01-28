@@ -37,6 +37,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('portuguese', 'Portuguese')]
     GENDER_CHOICES = [('male', 'Male'), ('femail', 'Female'),
                       ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
+    AGE_CHOICES = [
+        ('range_one', '20-29'), ('range_two', '30-39'),
+        ('range_three', '40-49'), {'range_four', 'Above 50'}]
 
     email_address = models.EmailField(
         verbose_name='Primary Email Address', max_length=255, unique=True)
@@ -45,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     native_language = models.CharField(max_length=40, choices=LANGUAGE_CHOICES)
-    age = models.PositiveSmallIntegerField(null=True)
+    age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     preferred_language = models.CharField(
         max_length=40, choices=LANGUAGE_CHOICES)
