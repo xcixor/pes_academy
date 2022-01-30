@@ -108,4 +108,3 @@ Navigate to [localhost port 8000](0.0.0.0:8000) to view your app.
 
 Happy coding!
 
-   

@@ -8,9 +8,15 @@ let formStepsNum = 0;
 
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    formStepsNum++;
-    updateFormSteps();
-    updateProgressbar();
+    let allAreFilled = checkRequiredFields($(btn).attr("data-title"));
+    console.log(allAreFilled)
+    if (!allAreFilled){
+      return;
+    }else if(allAreFilled){
+      formStepsNum++;
+      updateFormSteps();
+      updateProgressbar();
+    }
   });
 });
 
@@ -58,20 +64,20 @@ document.addEventListener('change', function(e) {
   }
 });
 
-document.getElementById("check").onclick = function() {
+function checkRequiredFields(data_title) {
   let allAreFilled = true;
-  document.getElementById("myForm").querySelectorAll("[required]").forEach(function(i) {
+  let formSection = $(`.${data_title}`)[0];
+  formSection.querySelectorAll("[required]").forEach(function(i) {
     if (!allAreFilled) return;
     if (!i.value) allAreFilled = false;
-    // if (i.type === "radio") {
-    //   let radioValueCheck = false;
-    //   document.getElementById("myForm").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
-    //     if (r.checked) radioValueCheck = true;
-    //   })
-    //   allAreFilled = radioValueCheck;
-    // }
-  })
-  if (!allAreFilled) {
-    alert('Fill all the fields');
-  }
-};
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+     formSection.querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+    }
+  });
+  return allAreFilled;
+
+}

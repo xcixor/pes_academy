@@ -1,14 +1,23 @@
-img {
-    max-width: 100%;
-    min-height: 100vh;
-    /* height: auto; */
+.navbar{
+  background-color: #73071c;
+  color: #f3f3f3;
+}
+.app{
+  margin-top:60px;
+}
+.app_img img{
+  padding-top:50px;
+  max-width: 100%;
+    height: auto;
   }
+  
   
   body {
     font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     /* margin: 0; */
     display: grid;
     height: auto;
+   
     /* place-items: center; */
     /* min-height: 100vh; */
   }
@@ -22,7 +31,9 @@ img {
     border-radius: 0.35rem; */
     padding: 0.5rem;
   }
-  
+  input.invalid {
+    background-color:red;
+  }
   .form-step {
     display: none;
     transform-origin: top;
@@ -147,8 +158,8 @@ img {
     padding: 10px;
     display: block;
     text-decoration: none;
-    background-color: #860909 ;
-    color: #092086;
+    background-color: #10075e;
+    color: rgb(232, 233, 241);
     text-align: center;
     border-radius: 0.25rem;
     cursor: pointer;
