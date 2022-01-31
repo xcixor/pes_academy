@@ -18,14 +18,6 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertTrue(field.unique)
         self.assertIsInstance(field, models.EmailField)
 
-    def test_native_language_properties(self):
-        field = self.user._meta.get_field('native_language')
-        self.assertEqual(field.max_length, 40)
-        self.assertIsInstance(field, models.CharField)
-        CHOICES = [('english', 'English'), ('french', 'French'),
-                   ('portuguese', 'Portuguese')]
-        self.assertEqual(field.choices, CHOICES)
-
     def test_age_properties(self):
         field = self.user._meta.get_field('age')
         AGE_CHOICES = [
@@ -45,7 +37,7 @@ class UserModelTestCase(AccountsBaseTestCase):
         field = self.user._meta.get_field('gender')
         self.assertEqual(field.max_length, 20)
         self.assertIsInstance(field, models.CharField)
-        CHOICES = [('male', 'Male'), ('femail', 'Female'),
+        CHOICES = [('male', 'Male'), ('female', 'Female'),
                    ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
         self.assertEqual(field.choices, CHOICES)
 

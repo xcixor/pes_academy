@@ -35,6 +35,24 @@ class DraftUserDataViewTestCase(TestCase):
             self.client.session['application_form_draft']['age'],
             str(self.data['age']))
 
+    def test_sets_updates_draft_user_data_if_new_data(self):
+        response = self.send_successful_ajax_post(self.data)
+        self.assertEqual(response.status_code, 201)
+        new_data = {
+            'full_name': 'Jane Doe'
+        }
+        response = self.send_successful_ajax_post(new_data)
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(
+            self.client.session['application_form_draft']['email_address'],
+            self.data['email_address'])
+        self.assertEqual(
+            self.client.session['application_form_draft']['age'],
+            str(self.data['age']))
+        self.assertEqual(
+            self.client.session['application_form_draft']['full_name'],
+            'Jane Doe')
+
     def tests_returns_404_if_request_not_ajax(self):
         response = self.client.post(
             '/accounts/application/draft/',

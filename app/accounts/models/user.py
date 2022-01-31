@@ -35,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     LANGUAGE_CHOICES = [
         ('english', 'English'), ('french', 'French'),
         ('portuguese', 'Portuguese')]
-    GENDER_CHOICES = [('male', 'Male'), ('femail', 'Female'),
+    GENDER_CHOICES = [('male', 'Male'), ('female', 'Female'),
                       ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
     AGE_CHOICES = [
         ('range_one', '20-29'), ('range_two', '30-39'),
@@ -47,13 +47,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    native_language = models.CharField(max_length=40, choices=LANGUAGE_CHOICES)
     age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     preferred_language = models.CharField(
         max_length=40, choices=LANGUAGE_CHOICES)
-    preferred_email_address = models.EmailField(
-        verbose_name='Preferred Email Address', max_length=255, unique=True)
 
     objects = UserManager()
 
