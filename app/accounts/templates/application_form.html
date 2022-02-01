@@ -5,16 +5,16 @@
 <div class="container-fluid app">
     <div class="row">
     <div class="col-md-4 app_img">
-            <a ><img src="{% static 'images/clientlog.JPG' %}"></a>           
+            <a ><img src="{% static 'images/clientlog.JPG' %}"></a>
     </div>
 
 
     <div class="col-md-8">
     <form action="#" class="form"  name="form" id="myForm">
+        {% csrf_token %}
         <!-- progress bar -->
     <div class="progressbar">
         <div class="progress" id="progress"></div>
-
         <div class="progress-step progress-step-active" data-title="Personal Info"></div>
         <div class="progress-step"data-title="Personal Info"></div>
         <div class="progress-step"data-title="Personal Info"></div>
@@ -27,77 +27,107 @@
         <!-- steps -->
         <!-- step1 -->
         <strong><h5 class="text-center"><em> NB: Check and Fill all the Fields before you click Next.</em></h5></strong>
-        <strong><h4 class="text-center"> Call For Application </h4></strong>    
+        <strong><h4 class="text-center"> Call For Application </h4></strong>
         <div class="form-step form-step-active step-1-form tab" >
             <div class="input-group">
                 <strong><label  for="email">Email</label></strong>
-                <input type="email" class="text" placeholder="info@example.com" required >
+                {% if request.session.application_form_draft.email_address %}
+                <input type="email" class="text draftable" name="email_address" value="{{request.session.application_form_draft.email_address}}" required >
+                {% else %}
+                <input type="email" class="text draftable" name="email_address" placeholder="info@example.com" required >
+                {% endif %}
             </div>
 
-        <strong> <p>Kindly select your preferred language</p></strong>
+        <strong><p>Kindly select your preferred language</p></strong>
         <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="eng" required>
-                <label class="form-check-label" for="eng">
-                        English
-                </label>
-                
-              </div>
+            {% if request.session.application_form_draft.preferred_language == 'english' %}
+            <input class="form-check-input" type="radio" name="preferred_language" id="english" required checked>
+            {% else %}
+            <input class="form-check-input" type="radio" name="preferred_language" id="english" required>
+            {% endif %}
+            <label class="form-check-label" for="english">English</label>
+        </div>
               <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="french" required>
-                    <label class="form-check-label" for="french">
-                      French
-                    </label>
+                {% if request.session.application_form_draft.preferred_language == 'french' %}
+                <input class="form-check-input" type="radio" name="preferred_language" id="french" required checked>
+                {% else %}
+                <input class="form-check-input" type="radio" name="preferred_language" id="french" required>
+                {% endif %}
+                <label class="form-check-label" for="french">
+                    French
+                </label>
                   </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="port" required>
-                <label class="form-check-label" for="port">
-                  Portugese
+                {% if request.session.application_form_draft.preferred_language == 'portuguese' %}
+                <input class="form-check-input" type="radio" name="preferred_language" id="portuguese" required checked>
+                {% else %}
+                <input class="form-check-input" type="radio" name="preferred_language" id="portuguese" required>
+                {% endif %}
+                <label class="form-check-label" for="portuguese">
+                  Portuguese
                 </label>
               </div>
-          
-              <div class="input-group">
+
+                <div class="input-group">
                     <strong><label for="name">Participant Name</label></strong>
-                    <input type="text" class="text" placeholder="full_Name" required>
+                    {{request.session.application_form_draft.full_name}}
+                    {% if request.session.application_form_draft.full_name %}
+                    <input type="text" class="text draftable" placeholder="Full Name" name="full_name" required value="{{request.session.application_form_draft.full_name}}">
+                    {% else %}
+                    <input type="text" class="text draftable" placeholder="Full Name" name="full_name" required>
+                    {% endif %}
                 </div>
-                      
-        
-
                 <div class="">
-
                     <a href="#" class="btn btn-next width-50 ml-auto " id="check" data-title="step-1-form">Next</a>
                 </div>
             </div>
 
               <!-- step2 -->
                 <div class="form-step  step-2-form tab">
-                 
+
                         <strong><label for="age">Kindly confirm your age</label></strong>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="range1" required>
-                            <label class="form-check-label" for="range1">
-                                    18-29
+                            {% if request.session.application_form_draft.age == 'range_one' %}
+                            <input class="form-check-input" type="radio" name="age" id="range_one" required checked>
+                            {% else %}
+                            <input class="form-check-input" type="radio" name="age" id="range_one" required>
+                            {% endif %}
+                            <label class="form-check-label" for="range_one">
+                                    20 - 29
                             </label>
                           </div>
                           <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="range1" required>
-                                <label class="form-check-label" for="range2">
-                                  30-40
+                                {% if request.session.application_form_draft.age == 'range_two' %}
+                                <input class="form-check-input" type="radio" name="age" id="range_two" required checked>
+                                {% else %}
+                                <input class="form-check-input" type="radio" name="age" id="range_two" required>
+                                {% endif %}
+                                <label class="form-check-label" for="range_two">
+                                  30 - 39
                                 </label>
                               </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="range3" required>
-                            <label class="form-check-label" for="range3">
-                              41-50
-                            </label>
+                                {% if request.session.application_form_draft.age == 'range_three' %}
+                                <input class="form-check-input" type="radio" name="age" id="range_three" required checked>
+                                {% else %}
+                                <input class="form-check-input" type="radio" name="age" id="range_three" required>
+                                {% endif %}
+                                <label class="form-check-label" for="range_three">
+                                40 - 49
+                                </label>
                           </div>
                           <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="range4" required>
-                                <label class="form-check-label" for="range4">
-                                  50-65
+                                {% if request.session.application_form_draft.age == 'range_four' %}
+                                <input class="form-check-input" type="radio" name="age" id="range_four" required checked>
+                                {% else %}
+                                <input class="form-check-input" type="radio" name="age" id="range_four" required>
+                                {% endif %}
+                                <label class="form-check-label" for="range_four">
+                                  Above 50
                                 </label>
                               </div>
-                        <!-- <input type="number" class="text" placeholder="your_age" required> -->
-                    
+                        <!-- <input type="number" class="text draftable" placeholder="your_age" required> -->
+
                         <div class="btns-group">
                             <a href="#" class="btn btn-prev ">Previous</a>
                             <a href="#" class="btn btn-next" data-title="step-2-form" >Next</a>
@@ -105,36 +135,52 @@
                     </div>
 
                     <!-- step 3  -->
-       
+
                     <div class="form-step  step-3-form tab">
-                     
+
                         <strong><label for="age">Gender</label></strong>
                 <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="female" required>
+                    {% if request.session.application_form_draft.gender == 'female' %}
+                    <input class="form-check-input" type="radio" name="gender" id="female" required checked>
+                    {% else %}
+                    <input class="form-check-input" type="radio" name="gender" id="female" required>
+                    {% endif %}
                         <label class="form-check-label" for="female">
                                 Female
                         </label>
                       </div>
                       <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="male" required>
+                            {% if request.session.application_form_draft.gender == 'male' %}
+                            <input class="form-check-input" type="radio" name="gender" id="male" required checked>
+                            {% else %}
+                            <input class="form-check-input" type="radio" name="gender" id="male" required>
+                            {% endif %}
                             <label class="form-check-label" for="male">
                               Male
                             </label>
                           </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="prefer_none" required>
+                          {% if request.session.application_form_draft.gender == 'undisclosed' %}
+                            <input class="form-check-input" type="radio" name="gender" id="undisclosed" required checked>
+                            {% else %}
+                            <input class="form-check-input" type="radio" name="gender" id="undisclosed" required>
+                            {% endif %}
                         <label class="form-check-label" for="prefer_none">
                           Prefer not to say
                         </label>
                       </div>
                       <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="other" required>
+                          {% if request.session.application_form_draft.gender == 'other' %}
+                            <input class="form-check-input" type="radio" name="gender" id="other" required checked>
+                            {% else %}
+                            <input class="form-check-input" type="radio" name="gender" id="other" required>
+                            {% endif %}
                             <label class="form-check-label" for="other">
                               Other
                             </label>
                           </div>
-                
-               
+
+
                       <br>
                 <div class="btns-group">
                     <a href="#" class="btn btn-prev ">Previous</a>
@@ -145,61 +191,116 @@
 
             <div class="form-step step-4-form">
                     <div class="input-group">
-                        <strong><label for="Your answer">Organisation Name and social media presence.(Include any links to your organisation website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label></strong>
-                        <input type="text" class="text" name="Organisation" id="Organisation" required>
+                        <strong><label for="Your answer">organization_name Name and social media presence.(Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label></strong>
+                        {% if request.session.application_form_draft.organization_name %}
+                        <input type="text" class="text draftable" name="organization_name" id="organization_name" required value="{{request.session.application_form_draft.organization_name}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="organization_name" id="organization_name" placeholder="Organization Name" required>
+                        {% endif %}
+
+                        {% if request.session.application_form_draft.facebook_link %}
+                        <input type="text" class="text draftable" name="facebook_link" id="facebook_link" value="{{request.session.application_form_draft.facebook_link}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="facebook_link" id="facebook_link" placeholder="Facebook Link">
+                        {% endif %}
+
+                        {% if request.session.application_form_draft.twitter_link %}
+                        <input type="text" class="text draftable" name="twitter_link" id="twitter_link" value="{{request.session.application_form_draft.twitter_link}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="twitter_link" id="twitter_link" placeholder="Twitter Link">
+                        {% endif %}
+
+                        {% if request.session.application_form_draft.instagram_link %}
+                        <input type="text" class="text draftable" name="instagram_link" id="instagram_link" value="{{request.session.application_form_draft.instagram_link}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="instagram_link" id="instagram_link" placeholder="Instagram Link">
+                        {% endif %}
+
+                        {% if request.session.application_form_draft.linkedin_link %}
+                        <input type="text" class="text draftable" name="instagram_link" id="linkedin_link" value="{{request.session.application_form_draft.linkedin_link}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="instagram_link" id="linkedin_link" placeholder="LinkedIn Link">
+                        {% endif %}
+
+                        {% if request.session.application_form_draft.whatsapp_business_link %}
+                        <input type="text" class="text draftable" name="instagram_link" id="whatsapp_business_link" value="{{request.session.application_form_draft.whatsapp_business_link}}">
+                        {% else %}
+                        <input type="text" class="text draftable" name="instagram_link" id="whatsapp_business_link" placeholder="WhatsApp Business Link">
+                        {% endif %}
                     </div>
 
-                    
+
                     <strong><p>Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies * </p></strong>
-                   
                     <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="farming" required>
+                        {% if request.session.application_form_draft.value_chain == 'chain_one' %}
+                            <input class="form-check-input" type="radio" name="value_chain" id="chain_one" required checked>
+                        {% else %}
+                            <input class="form-check-input" type="radio" name="value_chain" id="chain_one" required>
+                        {% endif %}
                             <label class="form-check-label" for="farming">
                                 Primary production (farming)
                             </label>
                           </div>
                           <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="supplier" required>
+                                {% if request.session.application_form_draft.value_chain == 'chain_two' %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_two" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="value_chain" id="chain_two" required>
+                                {% endif %}
                                 <label class="form-check-label" for="supplier">
                                     Input supplier
                                 </label>
                               </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="processor" required>
+                            {% if request.session.application_form_draft.value_chain == 'chain_three' %}
+                            <input class="form-check-input" type="radio" name="value_chain" id="chain_three" required checked>
+                            {% else %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_three" required>
+                            {% endif %}
                             <label class="form-check-label" for="processor">
                                 Processor (value addition)
                             </label>
                           </div>
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="aggregator" required>
-                              <label class="form-check-label" for="aggregator">
-                                  Aggregator
-                            </div>
+                            {% if request.session.application_form_draft.value_chain == 'chain_four' %}
+                            <input class="form-check-input" type="radio" name="value_chain" id="chain_four" required checked>
+                            {% else %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_four" required>
+                            {% endif %}
+                            <label class="form-check-label" for="aggregator">
+                                Aggregator
+                            </label>
+                          </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="distributor" required>
+                                {% if request.session.application_form_draft.value_chain == 'chain_five' %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_five" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="value_chain" id="chain_five" required>
+                                {% endif %}
                                 <label class="form-check-label" for="distributor">
                                     Distributor
                                 </label>
                               </div>
                           <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="retailer" required>
+                                {% if request.session.application_form_draft.value_chain == 'chain_six' %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_six" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="value_chain" id="chain_six" required>
+                                {% endif %}
                                 <label class="form-check-label" for="retailer">
                                     Retailer
                                 </label>
                               </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="provider" required>
-                                  <label class="form-check-label" for="provider">
-                                      Service provider
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="other" required>
-                                    <label class="form-check-label" for="other">
-                                        Other
-                                    </label>
-                                  </div>
-
+                            <div class="form-check">
+                                {% if request.session.application_form_draft.value_chain == 'chain_seven' %}
+                                <input class="form-check-input" type="radio" name="value_chain" id="chain_seven" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="value_chain" id="chain_seven" required>
+                                {% endif %}
+                                <label class="form-check-label" for="provider">
+                                    Service provider
+                                </label>
+                            </div>
                                   <br>
 
                     <div class="btns-group">
@@ -210,35 +311,56 @@
 
                 <!-- step 5 -->
 
-                <div class="form-step step-5-form">  
+                <div class="form-step step-5-form">
                         <strong><p>How long has the business been in formal existence for? *
                                 Kindly select one option. Formal existence means from when the company was registered and started operating </p></strong>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="year1" required>
-                            <label class="form-check-label" for="year1">
+                            {% if request.session.application_form_draft.existence_period == 'period_one' %}
+                            <input class="form-check-input" type="radio" name="existence_period" id="period_one" required checked>
+                            {% else %}
+                                <input class="form-check-input" type="radio" name="existence_period" id="period_one" required>
+                            {% endif %}
+                            <label class="form-check-label" for="period_one">
                                 Below 1 year
                             </label>
                           </div>
                           <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="year2" required>
-                                <label class="form-check-label" for="year2">
+                                {% if request.session.application_form_draft.existence_period == 'period_two' %}
+                                <input class="form-check-input" type="radio" name="existence_period" id="period_two" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="existence_period" id="period_two" required>
+                                {% endif %}
+                                <label class="form-check-label" for="period_two">
                                     More than 1 year but less than 2 years
                                 </label>
                               </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="year3" required>
-                            <label class="form-check-label" for="year3">
+                            {% if request.session.application_form_draft.existence_period == 'period_three' %}
+                                <input class="form-check-input" type="radio" name="existence_period" id="period_three" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="existence_period" id="period_three" required>
+                                {% endif %}
+                            <label class="form-check-label" for="period_three">
                                 Between 2 to 5 years
                             </label>
                           </div>
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="year4" required>
-                              <label class="form-check-label" for="year4">
+                                {% if request.session.application_form_draft.existence_period == 'period_four' %}
+                                <input class="form-check-input" type="radio" name="existence_period" id="period_four" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="existence_period" id="period_four" required>
+                                {% endif %}
+                              <label class="form-check-label" for="period_four">
                                   Over 5 years
+                                  </label>
                             </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="other" required>
-                                    <label class="form-check-label" for="other">
+                                {% if request.session.application_form_draft.existence_period == 'period_five' %}
+                                <input class="form-check-input" type="radio" name="existence_period" id="period_five" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="existence_period" id="period_five" required>
+                                {% endif %}
+                                    <label class="form-check-label" for="period_five">
                                         Other
                                     </label>
                                   </div>
@@ -250,42 +372,62 @@
                                 </div>
                             </div>
 <!-- step 6 -->
-                            <div class="form-step step-6-form"> 
+                            <div class="form-step step-6-form">
                        <strong><p>Which one sentence best describes the stage where your business is at? *
                                 Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product </p></strong>
-                       
+
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="stage1" required>
-                                <label class="form-check-label" for="stage1">
+                                {% if request.session.application_form_draft.stage == 'stage_one' %}
+                                <input class="form-check-input" type="radio" name="stage" id="stage_one" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="stage" id="stage_one" required>
+                                {% endif %}
+                                <label class="form-check-label" for="stage_one">
                                     Product or service is still being developed
                                 </label>
                               </div>
                               <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="stage2" required>
+                                    {% if request.session.application_form_draft.stage == 'stage_two' %}
+                                    <input class="form-check-input" type="radio" name="stage" id="stage_two" required checked>
+                                    {% else %}
+                                        <input class="form-check-input" type="radio" name="stage" id="stage_two" required>
+                                    {% endif %}
                                     <label class="form-check-label" for="stage2">
                                         Product or service is at MVP stage. Currently piloting with target users
                                     </label>
                                   </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="stage3" required>
+                                {% if request.session.application_form_draft.stage == 'stage_three' %}
+                                <input class="form-check-input" type="radio" name="stage" id="stage_three" required checked>
+                                {% else %}
+                                    <input class="form-check-input" type="radio" name="stage" id="stage_three" required>
+                                {% endif %}
                                 <label class="form-check-label" for="stage3">
                                     Product or service has been availed in the market. There are no sales or revenues as yet
                                 </label>
                               </div>
                               <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="stage4" required>
+                                    {% if request.session.application_form_draft.stage == 'stage_four' %}
+                                    <input class="form-check-input" type="radio" name="stage" id="stage_four" required checked>
+                                    {% else %}
+                                        <input class="form-check-input" type="radio" name="stage" id="stage_four" required>
+                                    {% endif %}
                                   <label class="form-check-label" for="stage4">
                                       Product or service is in the market. There are sales/revenues
                                 </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="other" required>
+                                        {% if request.session.application_form_draft.stage == 'stage_five' %}
+                                        <input class="form-check-input" type="radio" name="stage" id="stage_five" required checked>
+                                        {% else %}
+                                            <input class="form-check-input" type="radio" name="stage" id="stage_five" required>
+                                        {% endif %}
                                         <label class="form-check-label" for="other">
                                         Other
                                         </label>
                                       </div>
 
                                       <br>
-        
+
                         <div class="btns-group">
                             <a href="#" class="btn btn-prev ">Previous</a>
                             <a href="#" class="btn btn-next" data-title="step-6-form" >Next</a>
@@ -296,60 +438,107 @@
                 <div class="mil form-step">
                         <strong><p>What are the 3 key business milestones to be achieved in the short term (1-2 years)? *
                                 Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</p></strong>
-                                
+
                                 <div class="form-check">
-                               
-                                    <input class="form-check-input" type="checkbox" id="mil1" name="growth" value="">
+                                    {% if request.session.application_form_draft.milestone_one_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_one_id" name="milestone_one_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_one_id" name="milestone_one_id" value="">
+                                    {% endif %}
                                     <label class="form-check-label" for="mil1"> Revenue growth (Increase sales)</label><br>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil2" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_two_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_two_id" name="milestone_two_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_two_id" name="milestone_two_id" value="">
+                                    {% endif %}
                                     <label for="mil2"> Improve costs ( reduce the costs of production, operations)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil3" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_three_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_three_id" name="milestone_three_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_three_id" name="milestone_three_id" value="">
+                                    {% endif %}
                                     <label for="mil3"> Grow new markets (New towns, Regions, Countries)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil4" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_four_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_four_id" name="milestone_four_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_four_id" name="milestone_four_id" value="">
+                                    {% endif %}
                                     <label for="mil4"> Diversify client segments (New types of clients - institutional or retail)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil5" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_five_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_five_id" name="milestone_five_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_five_id" name="milestone_five_id" value="">
+                                    {% endif %}
                                     <label for="mil5"> Diversify products/services (Introduce new products/services)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil6" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_six_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_six_id" name="milestone_six_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_six_id" name="milestone_six_id" value="">
+                                    {% endif %}
                                     <label for="mil6"> Increase production or output capacity (Produce more of the product or service)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil7" name="growth" value="service_provider" >
+                                    {% if request.session.application_form_draft.milestone_seven_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_seven_id" name="milestone_seven_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_seven_id" name="milestone_seven_id" value="">
+                                    {% endif %}
                                     <label for="mil7"> Grow the team (Increase numbers, Improve skill sets)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil8" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_eight_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_eight_id" name="milestone_eight_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_eight_id" name="milestone_eight_id" value="">
+                                    {% endif %}
                                     <label for="mil8"> Improve internal business processes (Operational aspects)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mil9" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_nine_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_nine_id" name="milestone_nine_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_nine_id" name="milestone_nine_id" value="">
+                                    {% endif %}
                                     <label for="mil9"> Raise Capital</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input"  type="checkbox" id="mil10" name="growth" value="" >
+                                    {% if request.session.application_form_draft.milestone_ten_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_ten_id" name="milestone_ten_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_ten_id" name="milestone_ten_id" value="">
+                                    {% endif %}
                                     <label for="mil10"> Attain certifications</label>
                                 </div>
-                                    
+
                                 <div class=" form-check">
                                     <label for="mil11"> Other</label>
-                                    <input   type="text" name="growth" id="mil11" >
+                                    {% if request.session.application_form_draft.milestone_eleven_id %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_eleven_id" name="milestone_eleven_id" value="" checked>
+                                    {% else %}
+                                    <input class="form-check-input" type="checkbox" id="milestone_eleven_id" name="milestone_eleven_id" value="">
+                                    {% endif %}
                             </div>
 
                             <br>
-            
+
                         <div class="input-group">
                             <strong><label for="Your answer">How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects *
                                     Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</label></strong>
-                            <input type="text" class="text" name="" id="" required>
+                            {% if request.session.application_form_draft.covid_impact %}
+                            <input type="text" class="text draftable" name="covid_impact" value="{{request.session.application_form_draft.covid_impact}}" id="" required>
+                            {% else %}
+                            <input type="text" class="text draftable" name="covid_impact" id="" required>
+                            {% endif %}
                         </div>
                         <div class="btns-group">
                             <a href="#" class="btn btn-prev ">Previous</a>

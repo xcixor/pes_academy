@@ -26,9 +26,9 @@ class BusinessOrganization(models.Model):
         ('stage_three', 'Product or service has been availed in the market. There are no sales or revenues as yet'),
         ('stage_four', 'Product or service is in the market. There are sales/revenues')]
 
-    owner = models.OneToOneField(
+    organization_owner = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='business')
-    name = models.CharField(max_length=255)
+    organization_name = models.CharField(max_length=255)
     facebook_link = models.URLField(null=True, blank=True)
     twitter_link = models.URLField(null=True, blank=True)
     instagram_link = models.URLField(null=True, blank=True)
@@ -40,4 +40,4 @@ class BusinessOrganization(models.Model):
     stage = models.CharField(max_length=255, choices=STAGE_CHOICES)
 
     def __str__(self) -> str:
-        return self.name
+        return self.organization_name

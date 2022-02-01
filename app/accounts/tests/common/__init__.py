@@ -23,8 +23,8 @@ class AccountsBaseTestCase(SMETestCase):
 
     def create_business(self):
         link = BusinessOrganization.objects.create(
-            owner=self.create_user(),
-            name='Caravan Tech',
+            organization_owner=self.create_user(),
+            organization_name='Caravan Tech',
             facebook_link='https://faceme.com',
             twitter_link='https://twitterme.com',
             whatsapp_business_link='https://whatsapp.com',
@@ -37,7 +37,6 @@ class AccountsBaseTestCase(SMETestCase):
 
     def create_milestone(self):
         milestone = Milestone.objects.create(
-            business=self.create_business(),
             milestone='Revenue Growth'
         )
         return milestone

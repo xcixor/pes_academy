@@ -30,8 +30,8 @@ class MilestoneInline(admin.TabularInline):
 @admin.register(BusinessOrganization)
 class BusinessOrganizationAdmin(admin.ModelAdmin):
 
-    list_display = ['name', 'owner']
-    inlines = [CovidImpactInline, MilestoneInline]
+    list_display = ['organization_name', 'organization_owner']
+    inlines = [CovidImpactInline]
 
 
 admin.site.register(Milestone)

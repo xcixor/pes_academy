@@ -13,25 +13,25 @@ class BusinessModelTestCase(AccountsBaseTestCase):
         self.business = self.create_business()
 
     def test_has_relation_to_user_model(self):
-        model = self.business._meta.get_field('owner').related_model
+        model = self.business._meta.get_field('organization_owner').related_model
         self.assertEqual(model, User)
 
     def test_user_fk_related_name(self):
         related = self.business._meta.get_field(
-            'owner').remote_field.related_name
+            'organization_owner').remote_field.related_name
         self.assertEqual(related, 'business')
 
     def test_relation_to_user_model_is_one_to_one(self):
-        relation = self.business._meta.get_field('owner')
+        relation = self.business._meta.get_field('organization_owner')
         self.assertEqual(type(relation), models.OneToOneField)
 
     def test_user_relationship_on_delete_cascades(self):
         on_delete = self.business._meta.get_field(
-            'owner').remote_field.on_delete
+            'organization_owner').remote_field.on_delete
         self.assertEqual(on_delete, models.CASCADE)
 
     def test_name_properties(self):
-        field = self.business._meta.get_field('name')
+        field = self.business._meta.get_field('organization_name')
         self.assertIsInstance(field, models.CharField)
         self.assertEqual(field.max_length, 255)
 

@@ -51,8 +51,8 @@ class BusinessOrganizationAdminTestCase(AccountsBaseTestCase):
 
     def test_inline_properties(self):
         self.assertEqual(self.model_admin.model, BusinessOrganization)
-        list_display = ['name', 'owner']
-        inlines = [CovidImpactInline, MilestoneInline]
+        list_display = ['organization_name', 'organization_owner']
+        inlines = [CovidImpactInline]
         self.assertEqual(self.model_admin.list_display, list_display)
         self.assertEqual(self.model_admin.inlines, inlines)
 
@@ -60,6 +60,3 @@ class BusinessOrganizationAdminTestCase(AccountsBaseTestCase):
         inline = self.model_admin.inlines[0]
         self.assertEqual(inline.model, CovidImpact)
         self.assertEqual(inline.extra, 0)
-        inline_two = self.model_admin.inlines[1]
-        self.assertEqual(inline_two.model, Milestone)
-        self.assertEqual(inline_two.extra, 0)
