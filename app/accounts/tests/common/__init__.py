@@ -13,7 +13,7 @@ class AccountsBaseTestCase(SMETestCase):
 
     def create_user(self):
         user = User.objects.create(
-            email_address='test@gmail.com',
+            email='test@gmail.com',
             age=26,
             gender='male',
             preferred_language='Portuguese',

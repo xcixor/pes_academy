@@ -12,8 +12,8 @@ class UserModelTestCase(AccountsBaseTestCase):
         super(UserModelTestCase, self).setUp()
         self.user = self.create_user()
 
-    def test_email_address_properties(self):
-        field = self.user._meta.get_field('email_address')
+    def test_email_properties(self):
+        field = self.user._meta.get_field('email')
         self.assertEqual(field.max_length, 255)
         self.assertTrue(field.unique)
         self.assertIsInstance(field, models.EmailField)
@@ -56,7 +56,7 @@ class UserModelTestCase(AccountsBaseTestCase):
 
     def test_can_create_superuser(self):
         user = User.objects.create_superuser('admin@admin.com', 'pass1234')
-        self.assertEqual(user.email_address, 'admin@admin.com')
+        self.assertEqual(user.email, 'admin@admin.com')
 
     def test_defines_user_readable_name(self):
         self.assertEqual(str(self.user), 'Jim jones')

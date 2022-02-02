@@ -11,7 +11,7 @@ class BusinessOrganizationInline(admin.TabularInline):
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
 
-    list_display = ['full_name', 'email_address', 'date_joined']
+    list_display = ['full_name', 'email', 'date_joined']
     inlines = [BusinessOrganizationInline]
 
 

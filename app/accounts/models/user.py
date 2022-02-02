@@ -6,19 +6,19 @@ from django.contrib.auth.models import PermissionsMixin
 
 class UserManager(BaseUserManager):
 
-    def _create_user(self, email_address, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         """
-        Creates and saves a User with the given email_address, and password.
+        Creates and saves a User with the given email, and password.
         """
-        if not email_address:
+        if not email:
             raise ValueError('Please provide an email address')
-        email_address = self.normalize_email(email_address)
-        user = self.model(email_address=email_address, **extra_fields)
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email_address, password=None, **extra_fields):
+    def create_superuser(self, email, password=None, **extra_fields):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -27,7 +27,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_active', True)
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(email_address, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('range_one', '20-29'), ('range_two', '30-39'),
         ('range_three', '40-49'), {'range_four', 'Above 50'}]
 
-    email_address = models.EmailField(
+    email = models.EmailField(
         verbose_name='Primary Email Address', max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
     date_joined = models.DateField(auto_now=True)
@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email_address'
+    USERNAME_FIELD = 'email'
 
     def __str__(self) -> str:
         return self.full_name
