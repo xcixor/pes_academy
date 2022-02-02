@@ -27,10 +27,11 @@
         <!-- steps -->
         <!-- step1 -->
         <strong><h5 class="text-center"><em> NB: Check and Fill all the Fields before you click Next.</em></h5></strong>
+        <br>
         <strong><h4 class="text-center"> Call For Application </h4></strong>
         <div class="form-step form-step-active step-1-form tab" >
             <div class="input-group">
-                <strong><label  for="email">Email</label></strong>
+                <strong><label class="required" for="email">Email</label></strong>
                 {% if request.session.application_form_draft.email_address %}
                 <input type="email" class="text draftable" name="email_address" value="{{request.session.application_form_draft.email_address}}" required >
                 {% else %}
@@ -38,7 +39,7 @@
                 {% endif %}
             </div>
 
-        <strong><p>Kindly select your preferred language</p></strong>
+        <strong><label class="required">Kindly select your preferred language</label></strong>
         <div class="form-check">
             {% if request.session.application_form_draft.preferred_language == 'english' %}
             <input class="form-check-input" type="radio" name="preferred_language" id="english" required checked>
@@ -69,8 +70,8 @@
               </div>
 
                 <div class="input-group">
-                    <strong><label for="name">Participant Name</label></strong>
-                    {{request.session.application_form_draft.full_name}}
+                    <strong><label class="required" for="name">Participant Name</label></strong>
+                    
                     {% if request.session.application_form_draft.full_name %}
                     <input type="text" class="text draftable" placeholder="Full Name" name="full_name" required value="{{request.session.application_form_draft.full_name}}">
                     {% else %}
@@ -85,7 +86,7 @@
               <!-- step2 -->
                 <div class="form-step  step-2-form tab">
 
-                        <strong><label for="age">Kindly confirm your age</label></strong>
+                        <strong><label class="required" for="age">Kindly confirm your age</label></strong>
                         <div class="form-check">
                             {% if request.session.application_form_draft.age == 'range_one' %}
                             <input class="form-check-input" type="radio" name="age" id="range_one" required checked>
@@ -138,7 +139,7 @@
 
                     <div class="form-step  step-3-form tab">
 
-                        <strong><label for="age">Gender</label></strong>
+                        <strong><label class="required" for="age">Gender</label></strong>
                 <div class="form-check">
                     {% if request.session.application_form_draft.gender == 'female' %}
                     <input class="form-check-input" type="radio" name="gender" id="female" required checked>
@@ -191,7 +192,7 @@
 
             <div class="form-step step-4-form">
                     <div class="input-group">
-                        <strong><label for="Your answer">organization_name Name and social media presence.(Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label></strong>
+                        <strong><label class="required" for="Your answer">organization_name Name and social media presence.(Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label></strong>
                         {% if request.session.application_form_draft.organization_name %}
                         <input type="text" class="text draftable" name="organization_name" id="organization_name" required value="{{request.session.application_form_draft.organization_name}}">
                         {% else %}
@@ -230,7 +231,7 @@
                     </div>
 
 
-                    <strong><p>Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies * </p></strong>
+                    <strong><label class="required">Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies.</label></strong>
                     <div class="form-check">
                         {% if request.session.application_form_draft.value_chain == 'chain_one' %}
                             <input class="form-check-input" type="radio" name="value_chain" id="chain_one" required checked>
@@ -312,8 +313,7 @@
                 <!-- step 5 -->
 
                 <div class="form-step step-5-form">
-                        <strong><p>How long has the business been in formal existence for? *
-                                Kindly select one option. Formal existence means from when the company was registered and started operating </p></strong>
+                        <strong><label class="required">How long has the business been in formal existence for?  Kindly select one option. Formal existence means from when the company was registered and started operating </label></strong>
                         <div class="form-check">
                             {% if request.session.application_form_draft.existence_period == 'period_one' %}
                             <input class="form-check-input" type="radio" name="existence_period" id="period_one" required checked>
@@ -373,8 +373,7 @@
                             </div>
 <!-- step 6 -->
                             <div class="form-step step-6-form">
-                       <strong><p>Which one sentence best describes the stage where your business is at? *
-                                Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product </p></strong>
+                       <strong><label class="required">Which one sentence best describes the stage where your business is at? Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product </label></strong>
 
                             <div class="form-check">
                                 {% if request.session.application_form_draft.stage == 'stage_one' %}
@@ -436,8 +435,7 @@
 
                     <!-- step 7 -->
                 <div class="mil form-step">
-                        <strong><p>What are the 3 key business milestones to be achieved in the short term (1-2 years)? *
-                                Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</p></strong>
+                        <strong><label class="required">What are the 3 key business milestones to be achieved in the short term (1-2 years)? Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</label></strong>
 
                                 <div class="form-check">
                                     {% if request.session.application_form_draft.milestone_one_id %}
@@ -532,7 +530,7 @@
                             <br>
 
                         <div class="input-group">
-                            <strong><label for="Your answer">How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects *
+                            <strong><label class="required" for="Your answer">How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects *
                                     Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</label></strong>
                             {% if request.session.application_form_draft.covid_impact %}
                             <input type="text" class="text draftable" name="covid_impact" value="{{request.session.application_form_draft.covid_impact}}" id="" required>

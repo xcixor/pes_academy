@@ -31,9 +31,14 @@
     border-radius: 0.35rem; */
     padding: 0.5rem;
   }
-  input.invalid {
+  /* input.invalid {
     background-color:red;
+  } */
+  .required:after {
+    content:" *";
+    color: red;
   }
+  
   .form-step {
     display: none;
     transform-origin: top;
