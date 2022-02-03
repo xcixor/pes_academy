@@ -41,10 +41,15 @@ class AccountsBaseTestCase(SMETestCase):
         )
         return milestone
 
+    def create_another_milestone(self):
+        milestone = Milestone.objects.create(
+            milestone='Market Segmentation'
+        )
+        return milestone
+
     def create_covid_impact(self):
         impact = CovidImpact.objects.create(
             business=self.create_business(),
-            impact_one='Loss of Customers',
-            impact_two='Loss of Revenue'
+            impact='Loss of Customers',
         )
         return impact
