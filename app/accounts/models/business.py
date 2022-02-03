@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from sme.models.application import Application
+
 
 User = get_user_model()
 
@@ -38,6 +40,9 @@ class BusinessOrganization(models.Model):
     existence_period = models.CharField(
         max_length=255, choices=EXISTENCE_PERIOD_CHOICES)
     stage = models.CharField(max_length=255, choices=STAGE_CHOICES)
+    application = models.ForeignKey(
+        Application, on_delete=models.SET_NULL, related_name='businesses',
+        null=True, blank=True)
 
     def __str__(self) -> str:
         return self.organization_name

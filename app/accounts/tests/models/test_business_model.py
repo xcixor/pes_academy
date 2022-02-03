@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.tests.common import AccountsBaseTestCase
+from sme.models.application import Application
 
 
 User = get_user_model()
@@ -13,7 +14,8 @@ class BusinessModelTestCase(AccountsBaseTestCase):
         self.business = self.create_business()
 
     def test_has_relation_to_user_model(self):
-        model = self.business._meta.get_field('organization_owner').related_model
+        model = self.business._meta.get_field(
+            'organization_owner').related_model
         self.assertEqual(model, User)
 
     def test_user_fk_related_name(self):
@@ -21,7 +23,7 @@ class BusinessModelTestCase(AccountsBaseTestCase):
             'organization_owner').remote_field.related_name
         self.assertEqual(related, 'businesses')
 
-    def test_relation_to_user_model_is_one_to_one(self):
+    def test_relation_to_user_model_is_many_to_one(self):
         relation = self.business._meta.get_field('organization_owner')
         self.assertEqual(type(relation), models.ForeignKey)
 
@@ -103,3 +105,27 @@ class BusinessModelTestCase(AccountsBaseTestCase):
 
     def test_returns_useful_name(self):
         self.assertEqual(str(self.business), 'Caravan Tech')
+
+    def test_has_relation_to_application_model(self):
+        model = self.business._meta.get_field(
+            'application').related_model
+        self.assertEqual(model, Application)
+
+    def test_application_fk_related_name(self):
+        related = self.business._meta.get_field(
+            'application').remote_field.related_name
+        self.assertEqual(related, 'businesses')
+
+    def test_relation_to_application_model_is_many_to_one(self):
+        relation = self.business._meta.get_field('application')
+        self.assertEqual(type(relation), models.ForeignKey)
+
+    def test_application_relationship_on_delete_sets_null(self):
+        on_delete = self.business._meta.get_field(
+            'application').remote_field.on_delete
+        self.assertEqual(on_delete, models.SET_NULL)
+
+    def test_relation_to_application_model_can_be_null_and_blank(self):
+        relation = self.business._meta.get_field('application')
+        self.assertTrue(relation.null)
+        self.assertTrue(relation.blank)
