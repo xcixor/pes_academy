@@ -26,8 +26,8 @@ class BusinessOrganization(models.Model):
         ('stage_three', 'Product or service has been availed in the market. There are no sales or revenues as yet'),
         ('stage_four', 'Product or service is in the market. There are sales/revenues')]
 
-    organization_owner = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='business')
+    organization_owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='businesses')
     organization_name = models.CharField(max_length=255)
     facebook_link = models.URLField(null=True, blank=True)
     twitter_link = models.URLField(null=True, blank=True)

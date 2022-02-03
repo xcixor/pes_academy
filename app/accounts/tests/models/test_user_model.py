@@ -22,7 +22,7 @@ class UserModelTestCase(AccountsBaseTestCase):
         field = self.user._meta.get_field('age')
         AGE_CHOICES = [
             ('range_one', '20-29'), ('range_two', '30-39'),
-            ('range_three', '40-49'), {'range_four', 'Above 50'}]
+            ('range_three', '40-49'), ('range_four', 'Above 50')]
         self.assertIsInstance(field, models.CharField)
         self.assertTrue(field.null)
         self.assertEqual(field.max_length, 20)

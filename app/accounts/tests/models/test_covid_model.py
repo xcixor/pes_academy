@@ -28,10 +28,5 @@ class CovidImpactTestCase(AccountsBaseTestCase):
         self.assertEqual(on_delete, models.CASCADE)
 
     def test_impact_one_properties(self):
-        field = self.impact._meta.get_field('impact_one')
+        field = self.impact._meta.get_field('impact')
         self.assertIsInstance(field, models.TextField)
-
-    def test_impact_two_properties(self):
-        field = self.impact._meta.get_field('impact_two')
-        self.assertIsInstance(field, models.TextField)
-        self.assertTrue(field.null)
