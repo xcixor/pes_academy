@@ -1,6 +1,7 @@
 from django.views.generic import DetailView,TemplateView
 from django.views import View
 from django.views.generic import DetailView, FormView
+from django.views.generic.detail import SingleObjectMixin
 from sme.models import Application
 from accounts.forms import ApplicationForm
 
@@ -29,18 +30,26 @@ class LoginView(TemplateView):
         return context
 
 
-class PostApplicationView(FormView):
+class PostApplicationView(SingleObjectMixin, FormView):
 
     template_name = "application_form.html"
     form_class = ApplicationForm
     success_url = '/'
+    model = Application
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.save_user()[0]
         business = form.save_business(user)[0]
+        business.application = self.object
+        business.save()
         form.save_covid_impact(business)
         form.save_milestone(business)
         return super().form_valid(form)
+
 
 class ApplicationView(View):
 

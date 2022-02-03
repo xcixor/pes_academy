@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, FormView
+from django.views.generic.detail import SingleObjectMixin
 from accounts.presentation.views import (
     GetApplicationView, PostApplicationView)
 from accounts.forms.application_form import ApplicationForm
@@ -38,6 +39,8 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def test_post_application_view_properties(self):
         self.assertTrue(issubclass(PostApplicationView, FormView))
+        self.assertTrue(issubclass(PostApplicationView, SingleObjectMixin))
+        self.assertEqual(PostApplicationView.model, Application)
         self.assertEqual(PostApplicationView.form_class, ApplicationForm)
         self.assertEqual(
             PostApplicationView.template_name, 'application_form.html')
@@ -68,3 +71,11 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             f'/accounts/applications/{self.application.slug}/',
             self.form_data, follow=True)
         self.assertRedirects(response, '/', 302)
+
+    def test_updates_application_applied_for_by_the_business(self):
+        self.assertEqual(self.application.businesses.count(), 0)
+        self.client.post(
+            f'/accounts/applications/{self.application.slug}/', self.form_data)
+        self.assertEqual(
+            BusinessOrganization.objects.first().application, self.application)
+        self.assertEqual(self.application.businesses.count(), 1)
