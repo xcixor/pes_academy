@@ -6,5 +6,4 @@ class CovidImpact(models.Model):
     business = models.OneToOneField(
         BusinessOrganization, on_delete=models.CASCADE,
         related_name='covid_impact')
-    impact_one = models.TextField()
-    impact_two = models.TextField(null=True)
+    impact = models.TextField()

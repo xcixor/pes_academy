@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                       ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
     AGE_CHOICES = [
         ('range_one', '20-29'), ('range_two', '30-39'),
-        ('range_three', '40-49'), {'range_four', 'Above 50'}]
+        ('range_three', '40-49'), ('range_four', 'Above 50')]
 
     email = models.EmailField(
         verbose_name='Primary Email Address', max_length=255, unique=True)
