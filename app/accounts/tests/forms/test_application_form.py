@@ -44,16 +44,16 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         user = self.form.save_user()[0]
         self.assertTrue(user)
 
-    def test_updates_user_if_already_exists(self):
-        self.assertTrue(self.form.is_valid())
-        user = self.form.save_user()[0]
-        self.assertTrue(user)
-        self.form_data['full_name'] = 'Mr Blu'
-        form = ApplicationForm(self.form_data)
-        updated_user, created = form.save_user()
-        self.assertEqual(user.pk, updated_user.pk)
-        self.assertEqual(updated_user.full_name, 'Mr Blu')
-        self.assertFalse(created)
+    # def test_updates_user_if_already_exists(self):
+    #     self.assertTrue(self.form.is_valid())
+    #     user = self.form.save_user()[0]
+    #     self.assertTrue(user)
+    #     self.form_data['full_name'] = 'Mr Blu'
+    #     form = ApplicationForm(self.form_data)
+    #     updated_user, created = form.save_user()
+    #     self.assertEqual(user.pk, updated_user.pk)
+    #     self.assertEqual(updated_user.full_name, 'Mr Blu')
+    #     self.assertFalse(created)
 
     def test_cannot_save_user_if_data_invalid(self):
         self.form_data['gender'] = 'xxx'

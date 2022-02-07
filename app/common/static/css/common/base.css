@@ -1,0 +1,31 @@
+body {
+  margin-top: 50px;
+}
+
+.alert-container {
+
+}
+
+.alert {
+  margin-top: 50px !important;
+  -webkit-box-shadow: 0px 0px 8px -2px #c6e39f;
+  box-shadow: 0px 0px 8px -2px #c6e39f;
+  margin: 50px;
+  width: 80%;
+}
+
+.error, .alert-error {
+    color: red;
+}
+
+.alert-success {
+  color: green;
+}
+
+i {
+  cursor: pointer;
+}
+
+/* .hidden {
+  display: none !important;
+} */

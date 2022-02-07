@@ -4,8 +4,10 @@ from accounts.models import User, BusinessOrganization, Milestone, CovidImpact
 
 class ApplicationForm(forms.Form):
 
-    email = forms.EmailField(max_length=255)
-    full_name = forms.CharField(max_length=255)
+    email = forms.EmailField(
+        max_length=255, widget=forms.EmailInput(attrs={'class': 'text draftable'}))
+    full_name = forms.CharField(max_length=255, widget=forms.TextInput(
+        attrs={'class': 'text draftable'}))
     age = forms.ChoiceField(
         choices=User.AGE_CHOICES, widget=forms.RadioSelect)
     gender = forms.ChoiceField(
@@ -13,12 +15,18 @@ class ApplicationForm(forms.Form):
         widget=forms.RadioSelect)
     preferred_language = forms.ChoiceField(
         widget=forms.RadioSelect, choices=User.LANGUAGE_CHOICES)
-    organization_name = forms.CharField(max_length=255)
-    facebook_link = forms.URLField(required=False)
-    twitter_link = forms.URLField(required=False)
-    instagram_link = forms.URLField(required=False)
-    linkedin_link = forms.URLField(required=False)
-    whatsapp_business_link = forms.URLField(required=False)
+    organization_name = forms.CharField(max_length=255, widget=forms.TextInput(
+        attrs={'class': 'text draftable'}))
+    facebook_link = forms.URLField(required=False, widget=forms.URLInput(
+        attrs={'class': 'text draftable'}))
+    twitter_link = forms.URLField(required=False, widget=forms.URLInput(
+        attrs={'class': 'text draftable'}))
+    instagram_link = forms.URLField(required=False, widget=forms.URLInput(
+        attrs={'class': 'text draftable'}))
+    linkedin_link = forms.URLField(required=False, widget=forms.URLInput(
+        attrs={'class': 'text draftable'}))
+    whatsapp_business_link = forms.URLField(required=False, widget=forms.URLInput(
+        attrs={'class': 'text draftable'}))
     value_chain = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.VALUE_CHAIN_CHOICES)
@@ -28,7 +36,8 @@ class ApplicationForm(forms.Form):
     stage = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.STAGE_CHOICES)
-    impact = forms.CharField(widget=forms.Textarea)
+    impact = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'text draftable'}))
     milestones = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
     )
@@ -89,10 +98,38 @@ class ApplicationForm(forms.Form):
                 milestone.businesses.add(business)
             return True
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, request=None, *args, **kwargs):
+        super(ApplicationForm, self).__init__(*args, **kwargs)
         MILESTONES = [
             (milestone.id, milestone.milestone)
             for milestone in Milestone.objects.all()
         ]
-        super(ApplicationForm, self).__init__(*args, **kwargs)
         self.fields['milestones'].choices = MILESTONES
+        if request:
+            data = request.session.get('application_form_draft', {})
+            self.fields['age'].initial = data.get('age', None)
+            self.fields['email'].initial = data.get('email', None)
+            self.fields['full_name'].initial = data.get('full_name', None)
+            self.fields['preferred_language'].initial = data.get(
+                'preferred_language', None)
+            self.fields['gender'].initial = data.get('gender', None)
+            self.fields['organization_name'].initial = data.get(
+                'organization_name', None)
+            self.fields['facebook_link'].initial = data.get(
+                'facebook_link', None)
+            self.fields['twitter_link'].initial = data.get(
+                'twitter_link', None)
+            self.fields['instagram_link'].initial = data.get(
+                'instagram_link', None)
+            self.fields['linkedin_link'].initial = data.get(
+                'linkedin_link', None)
+            self.fields['whatsapp_business_link'].initial = data.get(
+                'whatsapp_business_link', None)
+            self.fields['value_chain'].initial = data.get(
+                'value_chain', None)
+            self.fields['existence_period'].initial = data.get(
+                'existence_period', None)
+            self.fields['stage'].initial = data.get(
+                'stage', None)
+            self.fields['impact'].initial = data.get(
+                'impact', None)

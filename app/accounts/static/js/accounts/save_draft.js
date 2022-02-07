@@ -3,17 +3,15 @@ $('.draftable').on('change', function(){
 });
 
 $('input:radio').change(function() {
-    let radioId = this.id;
-    saveDraft(this.name, radioId);
+    saveDraft(this.name, this.value);
 });
 
 $('input:checkbox').change(function() {
-    saveDraft(this.name, $(`#${this.id}`).is(":checked"));
+    saveDraft(this.name, this.value);
 });
 
 
 function saveDraft(field, value) {
-    console.log(field, value);
   var url = '/accounts/application/draft/';
   var CSRFToken = $('input[name=csrfmiddlewaretoken]').val();
 
@@ -27,7 +25,6 @@ function saveDraft(field, value) {
   xhr.addEventListener('readystatechange', function(e) {
     if (xhr.readyState === 4 && xhr.status == 201) {
       var response = JSON.parse(xhr.response);
-      console.log(response);
     }
     else if (xhr.readyState === 4 && xhr.status != 200) {
       var errors = JSON.parse(xhr.response);

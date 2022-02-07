@@ -1,4 +1,5 @@
 from django.views.generic import DetailView,TemplateView
+from django.contrib import messages
 from django.views import View
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
@@ -26,7 +27,7 @@ class LoginView(TemplateView):
     template_name = "login.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = ApplicationForm
+        context['form'] = ApplicationForm(request=self.request)
         return context
 
 
@@ -49,6 +50,22 @@ class PostApplicationView(SingleObjectMixin, FormView):
         form.save_covid_impact(business)
         form.save_milestone(business)
         return super().form_valid(form)
+
+    def get_success_url(self):
+        success_message = (
+            'Great, you application has been received. '
+            'We will get back in touch with you.')
+        messages.add_message(
+            self.request, messages.SUCCESS, success_message)
+        return super().get_success_url()
+
+    def form_invalid(self, form):
+        success_message = (
+            'An error occurred while validating your form. '
+            'Please check that all fields are correct. Thank you.')
+        messages.add_message(
+            self.request, messages.ERROR, success_message)
+        return super().form_invalid(form)
 
 
 class ApplicationView(View):

@@ -79,3 +79,26 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(
             BusinessOrganization.objects.first().application, self.application)
         self.assertEqual(self.application.businesses.count(), 1)
+
+    def test_sets_success_message_on_successful_post(self):
+        response = self.client.post(
+            f'/accounts/applications/{self.application.slug}/',
+            self.form_data, follow=True)
+        message = list(response.context.get('messages'))[0]
+        expected_message = (
+            'Great, you application has been received. '
+            'We will get back in touch with you.')
+        self.assertEqual(message.tags, 'success')
+        self.assertEqual(message.message, expected_message)
+
+    def test_sets_error_message_on_post_form_error(self):
+        self.form_data['email'] = 'nan'
+        response = self.client.post(
+            f'/accounts/applications/{self.application.slug}/',
+            self.form_data, follow=True)
+        message = list(response.context.get('messages'))[0]
+        expected_message = (
+            'An error occurred while validating your form. Please check that '
+            'all fields are correct. Thank you.')
+        self.assertEqual(message.tags, 'error')
+        self.assertEqual(message.message, expected_message)
