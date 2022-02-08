@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<form action="/accounts/register/?next={{request.path}}" method="post">
+<form action="/accounts/register/" method="post">
   {% csrf_token %}
     <div class="container">
       <h1>Register</h1>
