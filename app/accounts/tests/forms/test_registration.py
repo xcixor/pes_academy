@@ -26,13 +26,10 @@ class RegistrationFormTestCase(TestCase):
     def test_password_1_properties(self):
         self.assertIsInstance(
             self.form.fields['password1'].widget, forms.PasswordInput)
-        self.assertEqual(self.form.fields['password1'].label, 'Password')
 
     def test_password_2_properties(self):
         self.assertIsInstance(
             self.form.fields['password2'].widget, forms.PasswordInput)
-        self.assertEqual(
-            self.form.fields['password2'].label, 'Confirm Password')
 
     def test_cleans_password(self):
         self.data['password2'] = 'NotTheSame'

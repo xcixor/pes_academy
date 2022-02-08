@@ -8,16 +8,12 @@ User = get_user_model()
 
 class RegistrationForm(forms.ModelForm):
 
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label="Confirm Password", widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = ['username', 'email']
-        widgets = {
-            'address': forms.Textarea()
-        }
 
     def clean_password1(self):
         password = self.cleaned_data['password1']
