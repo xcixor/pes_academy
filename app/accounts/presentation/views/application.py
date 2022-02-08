@@ -20,8 +20,6 @@ class SubmitView(TemplateView):
 class HelpView(TemplateView):
     template_name = "help.html"
 
-class RegisterView(TemplateView):
-    template_name = "register.html"
 
 class LoginView(TemplateView):
     template_name = "login.html"
