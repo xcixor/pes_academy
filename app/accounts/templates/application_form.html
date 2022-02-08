@@ -16,18 +16,18 @@
     <div class="progressbar">
         <div class="progress" id="progress"></div>
         <div class="progress-step progress-step-active" data-title="Personal Info"></div>
-        <div class="progress-step"data-title="Personal Info"></div>
-        <div class="progress-step"data-title="Personal Info"></div>
-        <div class="progress-step"data-title="Business Info"></div>
-        <div class="progress-step"data-title="Business Info"></div>
-        <div class="progress-step"data-title="Business Info"></div>
-        <div class="progress-step"data-title="Business Info"></div>
+        <div class="progress-step" data-title="Personal Info"></div>
+        <div class="progress-step" data-title="Personal Info"></div>
+        <div class="progress-step" data-title="Business Info"></div>
+        <div class="progress-step" data-title="Business Info"></div>
+        <div class="progress-step" data-title="Business Info"></div>
+        <div class="progress-step" data-title="Business Info"></div>
     </div>
 
         <!-- steps -->
         <!-- step1 -->
-        <strong><h5 class="text-center"><em> NB: Check and Fill all the Fields before you click Next.</em></h5></strong>
-        <br>
+        <!-- <strong><h5 class="text-center"><em> NB: Check and Fill all the Fields before you click Next.</em></h5></strong> -->
+        
         <strong><h4 class="text-center"> Call For Application </h4></strong>
         <div class="form-step form-step-active step-1-form tab" >
             <div class="input-group">
@@ -540,7 +540,7 @@
                         </div>
                         <div class="btns-group">
                             <a href="#" class="btn btn-prev ">Previous</a>
-                            <input type="submit" value="Submit" id="check" class="btn">
+                            <a href="{% url 'submit' %}"><input type="submit" value="Submit" id="check" class="btn"></a>
                         </div>
                     </div>
 

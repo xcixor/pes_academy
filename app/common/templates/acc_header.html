@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg  fixed-top">
-  <div class="container">
+  <div class="container-fluid">
       <a class="navbar-brand" href="#">
           <img src="{% static 'images/PES logo.png' %}" height="60" class="d-inline-block align-top"
             alt="PES logo">
@@ -22,7 +22,11 @@
                       <span class="sr-only">(current)</span>
                   </a>
               </li> -->
+              
           </ul>
+      </div>
+      <div class="help">
+        <p><a href="{% url 'help' %}"> <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png"/> Help</a></p>
       </div>
   </div>
 </nav>

@@ -1,28 +1,27 @@
-.navbar{
-  background-color: #73071c;
-  color: #f3f3f3;
-}
-.app{
-  margin-top:60px;
-}
-.app_img img{
-  padding-top:50px;
-  max-width: 100%;
-    height: auto;
-  }
-  
-  
+    
   body {
     font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     /* margin: 0; */
     display: grid;
     height: auto;
-   
-    /* place-items: center; */
-    /* min-height: 100vh; */
   }
-  /* Global Stylings */
 
+
+
+  .navbar{
+    background-color: #73071c;
+    color: #f3f3f3;
+  }
+  .app{
+    margin-top:60px;
+  }
+  .app_img img{
+    padding-top:50px;
+    max-width: 100%;
+      height: auto;
+    }
+
+   
    /* Form */
    .form {
     width: clamp(500px, 75%, 800px);
@@ -131,7 +130,7 @@
     position: absolute;
     top: calc(100% + 0.5rem);
     font-size: 0.85rem;
-    color: #666;
+    color: rgb(14, 11, 11);
   }
   
   .progress-step-active {
@@ -171,3 +170,86 @@
     transition: 0.3s;
   }
   
+  .container {
+    margin-top:100px;
+    width: 50%;
+    background-color: white;
+  }
+  .input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Full-width input fields */
+  input[type=text], input[type=password] {
+    width: 100%;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Overwrite default styles of hr */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  /* Set a style for the submit button */
+  .registerbtn {
+    background-color:  #10075e;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+
+  
+  /* Set a grey background color and center the text of the "sign in" section */
+  .signin {
+    background-color: #f1f1f1;
+    /* text-align: center; */
+  }
+
+  span.psw {
+    float: right;
+    /* padding-top: 16px; */
+  }
+
+  .input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border: 2px solid dodgerblue;
+  }

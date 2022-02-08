@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <form action=" ">
+    <div class="container">
+      <h1 class="text-center">Help</h1>
+      <div class="input-container">
+        <!-- <i class="fa fa-user icon"></i> -->
+        <input class="input-field" type="text" placeholder="Firstname" name="firstnm" required>
+      </div>
+
+      <div class="input-container">
+        <!-- <i class="fa fa-user icon"></i> -->
+        <input class="input-field" type="text" placeholder="Lastname" name="lastnm" required>
+      </div>
+
+      <div class="input-container">
+        <!-- <i class="fa fa-envelope icon"></i> -->
+        <input class="input-field" type="text" placeholder="Email" name="email" required>
+      </div>
+    
+      <div class="input-container">
+        <!-- <i class="fa fa-key icon"></i> -->
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+  
+      <button type="submit" class="registerbtn">Submit</button>
+    </div>
+    
+    
+  </form>
+  
+
+
+
+{% endblock%}
