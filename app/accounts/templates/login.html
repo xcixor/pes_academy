@@ -1,4 +1,4 @@
-{% extends 'acc_base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -24,15 +24,15 @@
       </label>
 
       <span class="psw">Forgot <a href="#">password?</a></span>
-           
+
       <div class="signin">
         <p>Don't have an account yet? <a href="{% url 'register' %}">Sign Up</a>.</p>
-      
+
       </div>
     </div>
-    
-    
+
+
   </form>
-  
+
 
 {% endblock %}
