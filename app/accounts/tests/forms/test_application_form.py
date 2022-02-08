@@ -1,3 +1,5 @@
+from django.test import RequestFactory
+from django.test.client import Client
 from accounts.tests.common import AccountsBaseTestCase
 from accounts.forms import ApplicationForm
 from accounts.models.milestone import Milestone
@@ -23,7 +25,10 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
             'impact': 'We beat it',
             'milestones': [mileston_one.id, mileston_two.id]
         }
-        self.form = ApplicationForm(self.form_data)
+        self.client = Client()
+        self.factory = RequestFactory()
+        self.request = self.factory.get("/")
+        self.form = ApplicationForm(self.request, self.form_data)
 
     def test_validates_form(self):
         self.assertTrue(self.form.is_valid())
@@ -33,7 +38,7 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         Milestone.objects.create(milestone='Yet another milestone')
         milestones = [milestone.id for milestone in Milestone.objects.all()]
         self.form_data['milestones'] = milestones
-        form = ApplicationForm(self.form_data)
+        form = ApplicationForm(self.request, self.form_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(
             form.errors['milestones'][0],
@@ -62,7 +67,8 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         self.assertIsNone(user)
 
     def test_saves_business(self):
-        self.assertTrue(self.form.is_valid())
+        is_valid = self.form.is_valid()
+        self.assertTrue(is_valid)
         user = self.form.save_user()[0]
         business = self.form.save_business(user)
         self.assertTrue(business)
@@ -117,7 +123,7 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         self.assertEqual(impact.impact, 'We beat it')
         self.assertTrue(created)
         self.form_data['impact'] = 'We lost Revenue'
-        form = ApplicationForm(self.form_data)
+        form = ApplicationForm(self.request, self.form_data)
         impact, created = form.save_covid_impact(business)
         self.assertFalse(created)
         self.assertEqual(impact.impact, 'We lost Revenue')

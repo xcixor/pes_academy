@@ -105,7 +105,7 @@ class ApplicationForm(forms.Form):
             for milestone in Milestone.objects.all()
         ]
         self.fields['milestones'].choices = MILESTONES
-        if request:
+        if request and 'session' in request:
             data = request.session.get('application_form_draft', {})
             self.fields['age'].initial = data.get('age', None)
             self.fields['email'].initial = data.get('email', None)
