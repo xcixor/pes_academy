@@ -6,19 +6,21 @@ from django.contrib.auth.models import PermissionsMixin
 
 class UserManager(BaseUserManager):
 
-    def _create_user(self, email, password, **extra_fields):
+    def _create_user(self, username, email, password, **extra_fields):
         """
         Creates and saves a User with the given email, and password.
         """
+        if not username:
+            raise ValueError('A User must have a username')
         if not email:
-            raise ValueError('Please provide an email address')
+            raise ValueError('A User must have an email address')
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None, **extra_fields):
+    def create_superuser(self, username, email, password=None, **extra_fields):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -27,7 +29,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_active', True)
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(username, email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -41,6 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('range_one', '20-29'), ('range_two', '30-39'),
         ('range_three', '40-49'), ('range_four', 'Above 50')]
 
+    username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
         verbose_name='Primary Email Address', max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
@@ -54,7 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
 
     def __str__(self) -> str:
         return self.full_name

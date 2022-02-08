@@ -33,6 +33,12 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertIsInstance(field, models.CharField)
         self.assertEqual(field.max_length, 255)
 
+    def test_username_properties(self):
+        field = self.user._meta.get_field('username')
+        self.assertIsInstance(field, models.CharField)
+        self.assertEqual(field.max_length, 40)
+        self.assertTrue(field.unique)
+
     def test_gender_properties(self):
         field = self.user._meta.get_field('gender')
         self.assertEqual(field.max_length, 20)
@@ -55,7 +61,7 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertTrue(field.auto_now)
 
     def test_can_create_superuser(self):
-        user = User.objects.create_superuser('admin@admin.com', 'pass1234')
+        user = User.objects.create_superuser('admin', 'admin@admin.com', 'pass1234')
         self.assertEqual(user.email, 'admin@admin.com')
 
     def test_defines_user_readable_name(self):
