@@ -18,7 +18,7 @@ class LoginTestCase(TestCase):
 
     def test_view_properties(self):
         self.assertTrue(issubclass(UserLoginView, LoginView))
-        self.assertEqual(UserLoginView.template_name, 'login.html')
+        self.assertEqual(UserLoginView.template_name, 'registration/login.html')
     def test_login_redirects_to_the_next_page(self):
         response = self.client.post(
             '/accounts/login/?next=/', self.form, follow=True)
