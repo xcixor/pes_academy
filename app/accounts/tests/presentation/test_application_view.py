@@ -102,3 +102,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             'all fields are correct. Thank you.')
         self.assertEqual(message.tags, 'error')
         self.assertEqual(message.message, expected_message)
+
+
+    
