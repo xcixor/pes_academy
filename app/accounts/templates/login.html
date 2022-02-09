@@ -4,17 +4,36 @@
 {% block content %}
 
 
-<form action=" ">
+<form action="/accounts/login/?next={{request.path}}" method="post">
+  {% csrf_token %}
     <div class="container">
       <h1>Login</h1>
+        <div class="error-container">
+        {% if form.errors %}
+        <p class="error"><strong>Please correct the errors in the form below.</strong></p>
+        {% endif %}
+        {% for error in form.non_field_errors %}
+        <p class="error">{{ error|escape }}</p>
+        {% endfor %}
+      </div>
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="Username" name="usrnm" required>
+        <input class="input-field" type="text" placeholder="Username" name="username" required>
+        <div class="error-container">
+          {% for error in form.username.errors %}
+          <p class="error">{{ error|escape }}</p>
+          {% endfor %}
+        </div>
       </div>
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="Enter Password" name="psw" id="psw" required>
+        <input class="input-field" type="password" placeholder="Enter Password" name="password" id="psw" required>
+          <div class="error-container">
+            {% for error in form.password.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+        </div>
       </div>
 
       <button type="submit" class="registerbtn">Login</button>
