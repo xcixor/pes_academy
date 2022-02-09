@@ -61,8 +61,8 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertTrue(field.auto_now)
 
     def test_can_create_superuser(self):
-        user = User.objects.create_superuser('admin', 'admin@admin.com', 'pass1234')
-        self.assertEqual(user.email, 'admin@admin.com')
+        user = User.objects.create_superuser('admin', 'pass1234')
+        self.assertEqual(user.username, 'admin')
 
     def test_defines_user_readable_name(self):
         self.assertEqual(str(self.user), 'Jim jones')
