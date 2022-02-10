@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from accounts.presentation.views import (
@@ -53,6 +54,11 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'application_form.html')
 
+    def test_adds_application_form_to_context(self):
+        response = self.client.get(
+            f'/accounts/applications/{self.application.slug}/')
+        self.assertTrue(response.context['form'])
+
     def test_on_post_relevant_objects_created(self):
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(BusinessOrganization.objects.count(), 0)
@@ -104,4 +110,4 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(message.message, expected_message)
 
 
-    
+

@@ -13,6 +13,11 @@ class GetApplicationView(DetailView):
     model = Application
     context_object_name = 'application'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ApplicationForm(self.request)
+        return context
+
 
 class SubmitView(TemplateView):
     template_name = "submit.html"
