@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
-from sme.tests.common import SMETestCase
-from accounts.models import BusinessOrganization, Milestone, CovidImpact
+from application.tests.common import ApplicationBaseTestCase
+from application.models import BusinessOrganization, Milestone, CovidImpact
 
 
 User = get_user_model()
 
 
-class AccountsBaseTestCase(SMETestCase):
+class AccountsBaseTestCase(ApplicationBaseTestCase):
 
     def setUp(self):
         super(AccountsBaseTestCase, self).setUp()

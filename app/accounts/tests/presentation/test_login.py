@@ -21,12 +21,12 @@ class LoginTestCase(TestCase):
         self.assertEqual(UserLoginView.template_name, 'registration/login.html')
     def test_login_redirects_to_the_next_page(self):
         response = self.client.post(
-            '/accounts/login/?next=/', self.form, follow=True)
-        self.assertRedirects(response, '/', 302)
+            '/accounts/login/?next=/applications/', self.form, follow=True)
+        self.assertRedirects(response, '/applications/', 302)
 
     def test_adds_success_message(self):
         response = self.client.post(
-            '/accounts/login/?next=/', self.form, follow=True)
+            '/accounts/login/?next=/applications/', self.form, follow=True)
         message = list(response.context.get('messages'))[0]
         expected_message = (
             'Welcome back test!')

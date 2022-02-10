@@ -29,7 +29,7 @@ class RegistrationViewTestCase(TestCase):
         self.assertEqual(
             PostRegistrationView.template_name,
             'registration/registration.html')
-        self.assertEqual(PostRegistrationView.success_url, '/accounts/submit/')
+        self.assertEqual(PostRegistrationView.success_url, '/applications/submit/')
 
     def test_get_registration_view(self):
         self.assertEqual(
@@ -43,7 +43,7 @@ class RegistrationViewTestCase(TestCase):
     def test_redirects_on_successful_registration(self):
         registration_request = self.client.post(
             '/accounts/register/', self.form, follow=True)
-        self.assertRedirects(registration_request, '/accounts/submit/', 302)
+        self.assertRedirects(registration_request, '/applications/submit/', 302)
 
     def test_user_saved_on_successful_registration(self):
         self.client.post(

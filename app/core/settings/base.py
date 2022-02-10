@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'sme',
     'common',
     'accounts',
+    'application'
 ]
 
 MIDDLEWARE = [

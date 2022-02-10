@@ -20,7 +20,7 @@ class PostRegistrationView(FormView):
 
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
-    success_url = '/accounts/submit/'
+    success_url = '/applications/submit/'
 
 
     def form_valid(self, form):

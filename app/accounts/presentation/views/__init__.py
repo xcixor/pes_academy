@@ -1,5 +1,3 @@
-from .application import ApplicationView, SubmitView, HelpView
-from .application import ApplicationView, GetApplicationView, PostApplicationView
-from .draft_data import DraftUserDataView
+from .help import HelpView
 from .registration import GetRegistrationView, PostRegistrationView, RegistrationView
 from .login import UserLoginView

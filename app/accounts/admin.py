@@ -1,5 +1,6 @@
 from django.contrib import admin
-from accounts.models import User, BusinessOrganization, Milestone, CovidImpact
+from accounts.models import User
+from application.models import BusinessOrganization, Milestone, CovidImpact
 
 
 class BusinessOrganizationInline(admin.TabularInline):

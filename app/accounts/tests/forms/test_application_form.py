@@ -1,8 +1,8 @@
 from django.test import RequestFactory
 from django.test.client import Client
 from accounts.tests.common import AccountsBaseTestCase
-from accounts.forms import ApplicationForm
-from accounts.models.milestone import Milestone
+from application.forms import ApplicationForm
+from application.models import Milestone
 
 
 class ApplicationFormTestCase(AccountsBaseTestCase):
