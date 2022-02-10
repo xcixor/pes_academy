@@ -117,7 +117,7 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def test_sets_error_message_on_post_form_error(self):
         self.login_user()
-        self.form_data['email'] = 'nan'
+        self.form_data['age'] = 'nan'
         response = self.client.post(
             f'/applications/{self.application.slug}/',
             self.form_data, follow=True)

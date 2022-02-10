@@ -32,7 +32,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
-        user = form.save_user()[0]
+        user = form.save_user(self.request.user.email)[0]
         business = form.save_business(user)[0]
         business.application = self.object
         business.save()

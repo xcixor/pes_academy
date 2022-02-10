@@ -31,15 +31,6 @@
             <strong><h5 class="text-center"><em> NB: Check and Fill all the Fields before you click Next.</em></h5></strong>
             <strong><h4 class="text-center"> Call For Application </h4></strong>
             <div class="form-step form-step-active step-1-form tab" >
-                <div class="input-group">
-                    {{ form.email.label }}
-                    {{ form.email }}
-                    {% for error in form.email.errors %}
-                    <div class="error">
-                        {{error|escape}}
-                    </div>
-                    {% endfor %}
-                </div>
                 <strong><p>Kindly select your preferred language</p></strong>
                 <div class="form-check">
                     {{ form.preferred_language }}

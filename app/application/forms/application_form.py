@@ -4,8 +4,6 @@ from accounts.models import User
 
 class ApplicationForm(forms.Form):
 
-    email = forms.EmailField(
-        max_length=255, widget=forms.EmailInput(attrs={'class': 'text draftable'}))
     full_name = forms.CharField(max_length=255, widget=forms.TextInput(
         attrs={'class': 'text draftable'}))
     age = forms.ChoiceField(
@@ -48,10 +46,10 @@ class ApplicationForm(forms.Form):
             raise forms.ValidationError('You cannot select more than 3 items.')
         return milestones
 
-    def save_user(self):
+    def save_user(self, email):
         if self.is_valid():
             user, created = User.objects.update_or_create(
-                email=self.cleaned_data['email'],
+                email=email,
                 defaults={
                     'full_name': self.cleaned_data['full_name'],
                     'age': self.cleaned_data['age'],
