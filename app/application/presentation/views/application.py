@@ -1,4 +1,5 @@
-from django.views.generic import DetailView,TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView
 from django.contrib import messages
 from django.views import View
 from django.views.generic import DetailView, FormView
@@ -17,10 +18,6 @@ class GetApplicationView(DetailView):
         context = super().get_context_data(**kwargs)
         context['form'] = ApplicationForm(self.request)
         return context
-
-
-class SubmitView(TemplateView):
-    template_name = "submit.html"
 
 
 class PostApplicationView(SingleObjectMixin, FormView):
@@ -60,7 +57,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().form_invalid(form)
 
 
-class ApplicationView(View):
+class ApplicationView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         view = GetApplicationView.as_view()

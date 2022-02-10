@@ -17,6 +17,7 @@ class UserLoginView(LoginView):
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         next_url = self.request.GET.get("next", None)
+        print(next_url)
         if next_url is None:
             return settings.LOGIN_REDIRECT_URL
         return next_url

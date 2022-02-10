@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<form action="/accounts/login/?next={{request.path}}" method="post">
+<form action="/accounts/login/?next={{request.GET.next}}" method="post">
   {% csrf_token %}
     <div class="container">
       <h1>Login</h1>

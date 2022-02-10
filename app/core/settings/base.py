@@ -150,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/applications/'
 
 LOGGING = {
     'version': 1,
@@ -165,5 +165,3 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
-
-LOGIN_REDIRECT_URL = '/'

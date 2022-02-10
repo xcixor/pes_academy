@@ -19,6 +19,8 @@ class AccountsBaseTestCase(ApplicationBaseTestCase):
             preferred_language='Portuguese',
             full_name='Jim jones'
         )
+        user.set_password('@mozzart12')
+        user.save()
         return user
 
     def create_business(self):
