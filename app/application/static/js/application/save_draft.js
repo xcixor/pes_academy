@@ -12,7 +12,7 @@ $('input:checkbox').change(function() {
 
 
 function saveDraft(field, value) {
-  var url = '/accounts/application/draft/';
+  var url = '/applications/application/draft/';
   var CSRFToken = $('input[name=csrfmiddlewaretoken]').val();
 
   var xhr = new XMLHttpRequest();
