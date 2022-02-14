@@ -1,5 +1,8 @@
 from django.test import TestCase
 from django import forms
+from django.core import mail
+from django.test import RequestFactory
+from django.test.client import Client
 from accounts.forms import RegistrationForm
 from accounts.models import User
 
@@ -14,6 +17,9 @@ class RegistrationFormTestCase(TestCase):
             'username': 'pish_dush'
         }
         self.form = RegistrationForm(self.data)
+        self.client = Client()
+        self.factory = RequestFactory()
+        self.request = self.factory.get("/")
 
     def test_specifies_model(self):
         self.assertIsInstance(self.form.Meta.model(), User)
@@ -108,3 +114,22 @@ class RegistrationFormTestCase(TestCase):
         self.assertEqual(
             form.errors['password1'][0],
             'Your password should have at least one number.')
+
+    def test_can_send_account_activation_email(self):
+        self.assertTrue(self.form.is_valid())
+        user = self.form.save()
+        self.form.send_email(user, self.request)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, 'Account Activation')
+        to_email = self.data['email']
+        self.assertEqual(mail.outbox[0].to[0], to_email)
+
+    def test_account_activation_email_sent_contains_appropriate_content(self):
+        self.form.is_valid()
+        user = self.form.save()
+        self.form.send_email(user, self.request)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
+        self.assertIn('Account Activation', mail.outbox[0].alternatives[0][0])
+        self.assertIn('http', mail.outbox[0].alternatives[0][0])
+        self.assertIn('testserver', mail.outbox[0].alternatives[0][0])

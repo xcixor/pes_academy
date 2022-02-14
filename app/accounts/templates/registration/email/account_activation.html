@@ -1,0 +1,11 @@
+{% extends 'common/email/base.html' %}
+
+{% block message %}
+Thank you for your interest in registering with us.
+Please verify your email address by clicking the activation link below: <br><br>
+
+<button style="color: green; padding: 20px 10px; border-radius: 5px;">
+<a href="{{protocol}}://{{domain}}{% url 'accounts:activate' uidb64=uid token=token %}">ACTIVATE</a>
+</button>
+
+{% endblock %}
