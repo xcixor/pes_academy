@@ -1,6 +1,5 @@
 from django.views import View
 from django.views.generic import TemplateView, FormView
-from django.contrib.auth import login
 from accounts.forms import RegistrationForm
 
 
@@ -18,13 +17,13 @@ class PostRegistrationView(FormView):
 
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
-    success_url = '/accounts/login/'
+    success_url = '/accounts/activation-email-sent/'
 
 
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
-        authenticated_user = form.save()
-        login(self.request, authenticated_user)
+        inactive_user = form.save()
+        form.send_email(inactive_user, self.request)
         return super().form_valid(form)
 
     def form_invalid(self, form):

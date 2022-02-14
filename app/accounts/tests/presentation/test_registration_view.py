@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.views import View
 from django.views.generic import TemplateView, FormView
+from django.core import mail
 from accounts.presentation.views import (
     GetRegistrationView, PostRegistrationView, RegistrationView)
 from accounts.forms import RegistrationForm
@@ -29,7 +30,9 @@ class RegistrationViewTestCase(TestCase):
         self.assertEqual(
             PostRegistrationView.template_name,
             'registration/registration.html')
-        self.assertEqual(PostRegistrationView.success_url, '/accounts/login/')
+        self.assertEqual(
+            PostRegistrationView.success_url,
+            '/accounts/activation-email-sent/')
 
     def test_get_registration_view(self):
         self.assertEqual(
@@ -43,7 +46,9 @@ class RegistrationViewTestCase(TestCase):
     def test_redirects_on_successful_registration(self):
         registration_request = self.client.post(
             '/accounts/register/', self.form, follow=True)
-        self.assertRedirects(registration_request, '/accounts/login/', 302)
+        self.assertRedirects(
+            registration_request,
+            '/accounts/activation-email-sent/', 302)
 
     def test_user_saved_on_successful_registration(self):
         self.client.post(
@@ -101,3 +106,12 @@ class RegistrationViewTestCase(TestCase):
         self.client.post(
             '/accounts/register/', self.form)
         self.assertFalse(self.client.session.get('registration_details'))
+
+    def test_sends_account_activation_email(self):
+        self.client.post(
+            '/accounts/register/', self.form, follow=True)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
+        self.assertIn('Account Activation', mail.outbox[0].alternatives[0][0])
+        self.assertIn('http', mail.outbox[0].alternatives[0][0])
+        self.assertIn('testserver', mail.outbox[0].alternatives[0][0])

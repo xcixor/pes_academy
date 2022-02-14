@@ -1,0 +1,43 @@
+.message-container {
+    border-radius: 5px;
+}
+
+.message {
+    margin-bottom: 15%;
+    border-top: 0.05em solid #D8D8D8;
+}
+
+.message ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.message ul li a{
+    text-decoration: none;
+    color: green;
+}
+
+.message ul li a:hover{
+    color: blue;
+}
+
+/* ipad only */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .message-container {
+        padding: 0 10%;
+    }
+}
+
+/* mobile only */
+@media only screen and (max-width: 480px){
+    .message-container {
+        padding: 0 5%;
+        border-radius: unset;
+    }
+    .content .wrapper {
+        padding: 0;
+    }
+    .message {
+        font-size: 0.8rem;
+    }
+}
