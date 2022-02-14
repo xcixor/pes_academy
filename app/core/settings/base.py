@@ -165,3 +165,11 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
+
+# email creds
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+VERIFIED_EMAIL_USER = os.getenv('VERIFIED_EMAIL_USER')
