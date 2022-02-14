@@ -20,7 +20,11 @@ class PostRegistrationView(FormView):
 
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
+<<<<<<< HEAD
     success_url = '/applications/submit/'
+=======
+    success_url = '/accounts/login/'
+>>>>>>> Fix: solved merge conflicts
 
 
     def form_valid(self, form):
