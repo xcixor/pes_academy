@@ -9,7 +9,7 @@ class LoginTestCase(TestCase):
     def setUp(self):
         user_model = get_user_model()
         user = user_model.objects._create_user(
-            'test', 'mozzart1800@')
+            'test', 'mozzart1800@', is_active=True)
         self.user = user
         self.form = {
             'username': 'test',

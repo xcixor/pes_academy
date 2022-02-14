@@ -18,7 +18,8 @@ class AccountsBaseTestCase(ApplicationBaseTestCase):
             gender='male',
             preferred_language='Portuguese',
             full_name='Jim jones',
-            username='jim_jones'
+            username='jim_jones',
+            is_active=True
         )
         user.set_password('@mozzart12')
         user.save()

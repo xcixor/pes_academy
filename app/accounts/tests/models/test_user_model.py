@@ -60,6 +60,11 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertIsInstance(field, models.DateField)
         self.assertTrue(field.auto_now)
 
+    def test_has_is_active(self):
+        field = self.user._meta.get_field('is_active')
+        self.assertIsInstance(field, models.BooleanField)
+        self.assertFalse(field.default)
+
     def test_can_create_superuser(self):
         user = User.objects.create_superuser('admin', 'pass1234')
         self.assertEqual(user.username, 'admin')

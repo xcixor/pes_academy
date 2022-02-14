@@ -45,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Primary Email Address', max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
     date_joined = models.DateField(auto_now=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
