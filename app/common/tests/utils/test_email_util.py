@@ -31,4 +31,4 @@ class HtmlEmailMixinTestCase(TestCase):
     def test_adds_logo_to_email_sent(self):
         self.send_email()
         sent_content = mail.outbox[0].alternatives[0][0]
-        self.assertIn('cid:logo.webp', sent_content)
+        self.assertIn('cid:pes_logo.png', sent_content)
