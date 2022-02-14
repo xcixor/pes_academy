@@ -1,8 +1,6 @@
 from django.views import View
 from django.views.generic import TemplateView, FormView
 from django.contrib.auth import login
-from django.utils.http import is_safe_url
-from django.conf import settings
 from accounts.forms import RegistrationForm
 
 
