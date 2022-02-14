@@ -50,6 +50,7 @@ class ApplicationForm(forms.Form):
         if self.is_valid():
             user, created = User.objects.update_or_create(
                 email=email,
+                username='test_user01',
                 defaults={
                     'full_name': self.cleaned_data['full_name'],
                     'age': self.cleaned_data['age'],

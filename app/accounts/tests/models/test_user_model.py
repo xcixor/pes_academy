@@ -65,4 +65,4 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertEqual(user.username, 'admin')
 
     def test_defines_user_readable_name(self):
-        self.assertEqual(str(self.user), 'Jim jones')
+        self.assertEqual(str(self.user), 'jim_jones')
