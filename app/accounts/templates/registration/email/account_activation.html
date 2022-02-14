@@ -2,10 +2,13 @@
 
 {% block message %}
 Thank you for your interest in registering with us.
-Please verify your email address by clicking the activation link below: <br><br>
-
-<button style="color: green; padding: 20px 10px; border-radius: 5px;">
-<a href="{{protocol}}://{{domain}}{% url 'accounts:activate' uidb64=uid token=token %}">ACTIVATE</a>
-</button>
+Please verify your email address by clicking the activation link below: <br>
+<div style="margin: 20px 0;">
+    <a
+        style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
+        href="{{protocol}}://{{domain}}{% url 'accounts:activate' uidb64=uid token=token %}">
+        ACTIVATE
+    </a>
+</div><br>
 
 {% endblock %}
