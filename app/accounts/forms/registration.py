@@ -46,7 +46,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
                 "Please make sure your passwords match.")
         return password2
 
-    def send_email(self, user, request):
+    def send_account_activation_email(self, user, request):
         to_email = user.email
         subject = "Account Activation"
         from_email = settings.VERIFIED_EMAIL_USER

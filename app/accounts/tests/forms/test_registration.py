@@ -118,7 +118,7 @@ class RegistrationFormTestCase(TestCase):
     def test_can_send_account_activation_email(self):
         self.assertTrue(self.form.is_valid())
         user = self.form.save()
-        self.form.send_email(user, self.request)
+        self.form.send_account_activation_email(user, self.request)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Account Activation')
         to_email = self.data['email']
@@ -127,7 +127,7 @@ class RegistrationFormTestCase(TestCase):
     def test_account_activation_email_sent_contains_appropriate_content(self):
         self.form.is_valid()
         user = self.form.save()
-        self.form.send_email(user, self.request)
+        self.form.send_account_activation_email(user, self.request)
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
         self.assertIn('Account Activation', mail.outbox[0].alternatives[0][0])

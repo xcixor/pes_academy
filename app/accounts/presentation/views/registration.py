@@ -23,7 +23,7 @@ class PostRegistrationView(FormView):
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
         inactive_user = form.save()
-        form.send_email(inactive_user, self.request)
+        form.send_account_activation_email(inactive_user, self.request)
         return super().form_valid(form)
 
     def form_invalid(self, form):
