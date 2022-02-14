@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 from accounts.presentation.views import (
-    HelpView, UserLoginView, RegistrationView)
+    HelpView, UserLoginView, RegistrationView, ActivationEmailSentView)
 
 app_name = 'accounts'
 
@@ -10,4 +10,6 @@ urlpatterns = [
     path('register/', RegistrationView.as_view(),name='register'),
     path('login/', UserLoginView.as_view(),name='login'),
     path('logout/', LogoutView.as_view(next_page='/applications/')),
+    path('activation-email-sent/', ActivationEmailSentView.as_view(),
+          name='activation_email_sent')
 ]
