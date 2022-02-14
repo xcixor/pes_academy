@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from accounts.tokens import account_activation_token
 from accounts.tests.common import AccountsBaseTestCase
-from django.utils.http import urlsafe_base64_decode
 
 
 class AccountActivationTokenTestCase(AccountsBaseTestCase):

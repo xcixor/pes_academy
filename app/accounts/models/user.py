@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.utils.http import urlsafe_base64_decode
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class UserManager(BaseUserManager):
@@ -27,6 +29,17 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         return self._create_user(username, password, **extra_fields)
+
+    def get_user_by_uid(self, uidb64):
+        """
+        Return a user object based on the user's id encoded in base 64.
+        """
+        try:
+            uid = urlsafe_base64_decode(uidb64)
+            user = self.get_queryset().get(pk=uid)
+        except(TypeError, ValueError, OverflowError, ObjectDoesNotExist):
+            user = None
+        return user
 
 
 class User(AbstractBaseUser, PermissionsMixin):

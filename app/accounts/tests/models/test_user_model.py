@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 from accounts.tests.common import AccountsBaseTestCase
 
 
@@ -71,3 +73,14 @@ class UserModelTestCase(AccountsBaseTestCase):
 
     def test_defines_user_readable_name(self):
         self.assertEqual(str(self.user), 'jim_jones')
+
+    def test_can_get_user_by_uid(self):
+        uid = urlsafe_base64_encode(force_bytes(self.user.pk))
+        retrieved_user = User.objects.get_user_by_uid(uid)
+        self.assertTrue(retrieved_user)
+        self.assertEqual(self.user.email, retrieved_user.email)
+
+    def test_returns_None_if_get_user_by_uid_fails(self):
+        uid = 'None'
+        self.assertEqual(
+            User.objects.get_user_by_uid(uid), None)
