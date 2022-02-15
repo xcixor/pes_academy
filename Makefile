@@ -36,6 +36,13 @@ install-deps-all:
 test-with-coverage:
 	cd app; coverage erase --rcfile=.coveragerc; coverage run manage.py test; coverage report --rcfile=../.coveragerc
 
+## Run CI tests.
+ci-test:
+	docker-compose up --build --force-recreate --remove-orphans --detach
+	docker-compose run pes coverage erase --rcfile=.coveragerc
+	docker-compose run pes coverage run --rcfile=.coveragerc manage.py test
+	docker-compose run pes coverage report --rcfile=.coveragerc
+
 ## create container for development
 dev:
 	docker-compose up --build --force-recreate --remove-orphans --detach

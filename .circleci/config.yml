@@ -1,39 +1,32 @@
 version: 2.1
+
+orbs:
+  cloudrun: circleci/gcp-cloud-run@1.0.2
+
+commands:
+  setup_env_file:
+    steps:
+      - run:
+          name: setup_env_file
+          command: |
+            bash scripts/create_env_file.sh
+
 jobs:
-  test:
+  test_pes:
+    machine:
+      image: ubuntu-1604:201903-01
     working_directory: ~/PrivateEquity-Support
-    docker:
-      - image: circleci/python:3.9-buster-browsers-legacy
-      - image: circleci/postgres:12-alpine-postgis-ram
-        environment:
-            POSTGRES_USER: pes
-            POSTGRES_DB: pes-db
     steps:
       - checkout
-      - run:
-          name: Set up environment
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r prod.requirements.txt
+      - setup_env_file
       - run:
           name: Run Tests
-          environment:
-            SECRET_KEY: 'secret-key'
-            DJANGO_SETTINGS_MODULE: core.settings.production
-            POSTGRES_IP: 127.0.0.1
-            PGUSER: pes
-            POSTGRES_DB: pes-db
-            POSTGRES_USER: pes
           command: |
-            . venv/bin/activate
-            pip install coverage
-            cd app
-            python3 manage.py collectstatic --no-input
-            coverage run manage.py test
-            coverage report --rcfile=../.coveragerc
+            make ci-test
+
 workflows:
   version: 2
-  test-application:
+  rapid:
     jobs:
-      - test
+      - test_pes
+
