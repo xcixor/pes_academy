@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'sme',
     'common',
     'accounts',
-    'application'
+    'application',
+    'organization_subscription'
 ]
 
 MIDDLEWARE = [
