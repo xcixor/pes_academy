@@ -1,13 +1,12 @@
 from django.test import TestCase
 from django import forms
 from django.core import mail
-from django.test import RequestFactory
-from django.test.client import Client
 from accounts.forms import RegistrationForm
 from accounts.models import User
+from common.utils.tests import RequestFactoryMixin
 
 
-class RegistrationFormTestCase(TestCase):
+class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
 
     def setUp(self):
         self.data = {
@@ -17,9 +16,7 @@ class RegistrationFormTestCase(TestCase):
             'username': 'pish_dush'
         }
         self.form = RegistrationForm(self.data)
-        self.client = Client()
-        self.factory = RequestFactory()
-        self.request = self.factory.get("/")
+        self.request = self.generate_request()
 
     def test_specifies_model(self):
         self.assertIsInstance(self.form.Meta.model(), User)
