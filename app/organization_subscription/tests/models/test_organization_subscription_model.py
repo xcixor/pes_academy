@@ -28,7 +28,8 @@ class OrganizationSubscriptionTestCase(OrganizationSubscriptionBaseTestCase):
 
     def test_has_subscriber_field(self):
         field = self.subscription._meta.get_field('organization_subscriber')
-        self.assertEqual(field.remote_field.related_name, 'organization_subscribers')
+        self.assertEqual(field.remote_field.related_name,
+                         'organization_subscribers')
         self.assertIsInstance(field, models.ForeignKey)
         self.assertTrue(field.blank)
         self.assertTrue(field.null)
