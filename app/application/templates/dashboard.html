@@ -3,86 +3,120 @@
 
 {% block content %}
 
-<div class="sidebar topa">
-    <div class="sidebar-brand">
-        <h1><span class="lab la-accusoft"></span>PES-SME Online</h1>
+<body class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+            
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Academy</span></a></li>
+                        <li><a href="{% url 'accounts:login' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Applications</span></a></li>
+                        <li><a href="{% url 'accounts:login' %}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Team</span></a></li>
+                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row">
+                    <header>
+                        <div class="col-md-7">
+                            <div class="search hidden-xs hidden-sm">
+                                <input type="text" placeholder="Search" id="search">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Invite TeamMember</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" alt="user">
+                                            <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="navbar-content">
+                                                    <span>Jane Doe</span>
+                                                    <p class="text-muted small">
+                                                        janedoe@gmail.com
+                                                    </p>
+                                                    <div class="divider">
+                                                    </div>
+                                                    <a href="#" class="view btn-sm active">Log Out</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <div class="user-dashboard">
+                    <h1>Hello, Jane Doe</h1>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+
+                            <div class=" row sales">
+                                <h2>Your Team Members</h2>
+                                <div class="col-md-6">
+                                    <p>Jane Doe</p>
+                                    <p>John Doe</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Delete</p>
+                                    <p>Delete</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+
+                            <div class=" row sales ">
+                                <h2>Ongoing Applications</h2>
+                                <div class="col-md-12">
+                                    <button><a href=""></a>Your Application</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+
+                            <div class="sales">
+                                <button><a href=""></a>Join PES Academy</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="sidebar-menu">
-        <ul>
-            <li><a href=""><span class="las la-igloo"></span>
-                <span>Dashboard</span></a>
-            </li>
-            <li><a href=""><span class="las la-users"></span>
-                <span>Team</span></a>
-            </li>
-            <li><a href=""><span class="las la-clipboard-list"></span>
-                <span>Applications</span></a>
-            </li>
-            <li><a href=""><span class="las la-receipt"></span>
-                <span>Academy</span></a>
-            </li>
-            <li><a href=""><span class="las la-user-circle"></span>
-                <span>Accounts</span></a>
-            </li>
-        </ul>
+
+
+    <!-- Modal -->
+    <div id="add_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                            <input type="text" placeholder="Full Name" name="name">
+                            <input type="text" placeholder="Email" name="mail">
+                            <textarea placeholder="Short Invite Message"></textarea>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Send</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<div class="main-content topa">
-    <header>
-       <h2>
-        <label for=""></label>
-        <span class="las la-bars"></span>
-        Dashboard
-       </h2>
-
-       <div class="search-wrapper">
-        <span class="las la-search"></span>
-        <input type="search" placeholder="Search Here">
-       </div>
-
-       <div class="user-wrapper">
-           <img src="{% static 'images/PES logo.png' %}" width="40px" height="40px" alt="">
-           <div>
-               <h4>Jane Doe</h4>
-               <small>Super Admin</small>
-           </div>
-       </div>
-    </header>
-    <main>
-        <div class="cards">
-            <div class="card-single">
-                <div>
-                    <h1>5</h1>
-                    <span >Team Members</span>
-                </div>
-                <div>
-                    <spa class="las la-users"></spa>
-                </div>
-            </div>
-            <div class="card-single">
-                <div>
-                    <h1>2</h1>
-                    <span >Recent Applications</span>
-                </div>
-                <div>
-                    <spa class="las la-clipboard-list"></spa>
-                </div>
-            </div>
-            <div class="card-single">
-                <div>
-                    <h1>2</h1>
-                    <span >PES Academy</span>
-                </div>
-                <div>
-                    <spa class="las la-receipt"></spa>
-                </div>
-            </div>
-            </div>
-        
-    </main>
-</div>
+</body>
 
 
 
