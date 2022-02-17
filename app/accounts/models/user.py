@@ -19,6 +19,11 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def create_temporal_user(self, email, **extra_fields):
+        user = self.model(email=email, **extra_fields)
+        user.save(using=self._db)
+        return user
+
     def create_superuser(self, username, password=None, **extra_fields):
         """
         Creates and saves a superuser with the given email and password.

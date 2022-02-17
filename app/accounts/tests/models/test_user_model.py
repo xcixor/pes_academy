@@ -84,3 +84,8 @@ class UserModelTestCase(AccountsBaseTestCase):
         uid = 'None'
         self.assertEqual(
             User.objects.get_user_by_uid(uid), None)
+
+    def test_can_create_temporal_user_with_email_only(self):
+        user = User.objects.create_temporal_user(email='temp@gmail.com')
+        self.assertEqual(user.email, 'temp@gmail.com')
+        self.assertTrue(user)
