@@ -297,7 +297,7 @@ header {
     margin: 5px 0;
     padding: 14px 10px;
     width: 100%;
-    color: #8492af;
+    /* color: #8492af; */
 }
 .modal-body textarea {
     border: 1px solid #d4d9e3;
@@ -307,7 +307,7 @@ header {
     margin-top: 5px;
     padding: 9px 10px;
     width: 100%;
-    color: #8492af;
+    /* color: #8492af; */
 }
 .modal-header.login-header h4 {
     color: #ffffff;
@@ -355,9 +355,6 @@ header {
     border-top-right-radius: 5px;
 /*Main CSS*/
 }
-
-
-
 
 
 @media only screen and (max-device-width: 767px) {

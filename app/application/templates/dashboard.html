@@ -10,11 +10,22 @@
             
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Academy</span></a></li>
-                        <li><a href="{% url 'accounts:login' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Applications</span></a></li>
-                        <li><a href="{% url 'accounts:login' %}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Team</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</span>
+                            
+                        <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('Academy')" >Academy</span>
+
+                        <li class="tablink" onclick="openPage('App')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('App')" >Applications</span>
+
+                        <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('Team')" >Team</span>
+                           
+                        <li class="tablink" onclick="openPage('Setting')"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('Setting')">Setting</span>
+                           
+                        
                     </ul>
                 </div>
             </div>
@@ -53,7 +64,8 @@
                         </div>
                     </header>
                 </div>
-                <div class="user-dashboard">
+
+                <div class="user-dashboard tabcontent"  id="Home">
                     <h1>Hello, Jane Doe</h1>
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-xs-12 gutter">
@@ -89,6 +101,55 @@
                         </div>
                     </div>
                 </div>
+                <div id="Academy" class="tabcontent">
+                    <div class="card">
+                        <h5 class="card-header">PES Academy</h5>
+                        <div class="card-body">
+                          <!-- <h5 class="card-title">Special title treatment</h5> -->
+                          <p class="card-text">Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business. </p>
+                          <a href="#" class="btn btn-primary">Join the PES Academy</a>
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div id="App" class="tabcontent">
+                    <div class="card">
+                        <div class="card-header">
+                          Applications
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">Ongoing Applications</h5>
+                          <p class="card-text">Click on the link below to resume to your applications.</p>
+                          <a href="#" class="btn btn-primary">Continue</a>
+                        </div>
+                      </div>
+                  </div>
+                  
+                  <div id="Team" class="tabcontent container">
+                    <div class="row">
+                        <h2>Your Team Members</h2>
+                        <div class="col-md-6">
+                            <p>Jane Doe</p>
+                            <p>John Doe</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Delete</p>
+                            <p>Delete</p>
+                        </div>
+
+                    </div>
+                  </div>
+                  <div id="Setting" class="tabcontent">
+                    <h3>Name: <span> Jane Doe</span></h3>
+                    <br>
+                    <br>
+                    <h4> Email: <span>janedoe@gmail.com</span></h4>
+                    <br>
+                    <br>
+                    <button class="btn btn-primary">Log out</button>
+                    
+                  </div>
+
             </div>
         </div>
 
