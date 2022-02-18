@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<body class="home">
+<div class="home">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
@@ -22,8 +22,8 @@
                         <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
                             <span class="tablink" onclick="openPage('Team')" >Team</span>
                            
-                        <li class="tablink" onclick="openPage('Setting')"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Setting')">Setting</span>
+                        <li ><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>
+                            <span >Log Out</span>
                            
                         
                     </ul>
@@ -34,9 +34,9 @@
                 <div class="row">
                     <header>
                         <div class="col-md-7">
-                            <div class="search hidden-xs hidden-sm">
+                            <!-- <div class="search hidden-xs hidden-sm">
                                 <input type="text" placeholder="Search" id="search">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-md-5">
                             <div class="header-rightside">
@@ -68,22 +68,22 @@
                 <div class="user-dashboard tabcontent"  id="Home">
                     <h1>Hello, Jane Doe</h1>
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+                        <div class="col-md-6 col-sm-4 col-xs-12 gutter">
 
                             <div class=" row sales">
                                 <h2>Your Team Members</h2>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <p>Jane Doe</p>
                                     <p>John Doe</p>
                                 </div>
-                                <div class="col-md-6">
-                                    <p>Delete</p>
-                                    <p>Delete</p>
+                                <div class="col-md-4">
+                                    <button class="btn-danger">Delete</button>
+                                    <button class="btn-danger">Delete</button>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+                        <div class="col-md-3 col-sm-4 col-xs-12 gutter">
 
                             <div class=" row sales ">
                                 <h2>Ongoing Applications</h2>
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 gutter">
+                        <div class="col-md-3 col-sm-4 col-xs-12 gutter">
 
                             <div class="sales">
                                 <button><a href=""></a>Join PES Academy</button>
@@ -113,7 +113,7 @@
                   </div>
                   
                   <div id="App" class="tabcontent">
-                    <div class="card">
+                    <div class=" col-md-6 card">
                         <div class="card-header">
                           Applications
                         </div>
@@ -125,21 +125,26 @@
                       </div>
                   </div>
                   
-                  <div id="Team" class="tabcontent container">
-                    <div class="row">
+                  <div id="Team" class="tabcontent">
                         <h2>Your Team Members</h2>
-                        <div class="col-md-6">
+                    <div class="row">
+                        
+                        <div class="col-md-4 gutter">
                             <p>Jane Doe</p>
                             <p>John Doe</p>
                         </div>
-                        <div class="col-md-6">
-                            <p>Delete</p>
-                            <p>Delete</p>
+                        <div class="col-md-4 gutter">
+                                <p>janedoe@gmail.com</p>
+                                <p>Johndoe@gmail.com</p>
+                            </div>
+                        <div class="col-md-4 gutter">
+                            <p><button class="btn-danger">Delete</button></p>
+                            <p><button class="btn-danger">Delete</button></p>
                         </div>
 
                     </div>
                   </div>
-                  <div id="Setting" class="tabcontent">
+                  <!-- <div id="Setting" class="tabcontent">
                     <h3>Name: <span> Jane Doe</span></h3>
                     <br>
                     <br>
@@ -148,7 +153,7 @@
                     <br>
                     <button class="btn btn-primary">Log out</button>
                     
-                  </div>
+                  </div> -->
 
             </div>
         </div>
@@ -177,7 +182,7 @@
         </div>
     </div>
 
-</body>
+</div>
 
 
 

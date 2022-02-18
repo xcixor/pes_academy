@@ -1,9 +1,8 @@
 
 
-body {
-  /* padding-top: 30px; */
+/* body {
   margin-top: 50px;
-}
+} */
 
 .navbar{
   background-color: #73071c;
@@ -12,8 +11,8 @@ body {
 
 
 .card{
-  width: 75%;
-  margin: 15%;
+  /* width: 50%; */
+  margin: 20px;
   
 }
 
@@ -55,10 +54,10 @@ input[type=submit]:hover {
   opacity: 0.9;
 }
 
-.container {
+/* .container {
   width: 50%;
   background-color: white;
-}
+} */
 .input-container {
   display: flex;
   width: 100%;
