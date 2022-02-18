@@ -21,7 +21,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.presentation.urls', namespace='accounts')),
-    path('applications/', include('application.presentation.urls', namespace='applications')),
+    path('applications/', include('application.presentation.urls',
+         namespace='applications')),
+    path('organization-subscription/',
+         include(
+             'organization_subscription.presentation.urls',
+             namespace='organization_subscription')),
 ]
 
 if settings.DEBUG:

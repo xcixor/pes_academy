@@ -6,7 +6,6 @@ from django.contrib import messages
 from accounts.tokens import account_activation_token
 
 
-
 class AccountActivationView(View):
 
     def get(self, request, *args, **kwargs):
@@ -21,11 +20,11 @@ class AccountActivationView(View):
                 f'Congratulations {user}, your account is now active. '
                 'Please login to continue!')
             messages.add_message(
-            request, messages.SUCCESS, success_message)
+                request, messages.SUCCESS, success_message)
             return redirect('/accounts/login/')
         error_message = ('Uh oh! something went wrong.')
         messages.add_message(
-        request, messages.SUCCESS, error_message)
+            request, messages.SUCCESS, error_message)
         return render(request, 'registration/account_activation_invalid.html')
 
 
