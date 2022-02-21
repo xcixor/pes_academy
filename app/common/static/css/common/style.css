@@ -54,10 +54,10 @@ input[type=submit]:hover {
   opacity: 0.9;
 }
 
-/* .container {
+.rgst {
   width: 50%;
   background-color: white;
-} */
+}
 .input-container {
   display: flex;
   width: 100%;
