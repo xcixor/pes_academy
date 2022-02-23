@@ -19,7 +19,6 @@ class PostRegistrationView(FormView):
     template_name = 'registration/registration.html'
     success_url = '/accounts/activation-email-sent/'
 
-
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
         inactive_user = form.save()

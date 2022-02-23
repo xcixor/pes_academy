@@ -46,18 +46,13 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         self.assertTrue(self.form.is_valid())
 
     def test_saves_user(self):
+        self.assertTrue(self.form.is_valid())
         self.form.save()
         saved_user = User.objects.get(email=self.data['email'])
         self.assertEqual(saved_user.username, self.data['username'])
 
-    def test_can_save_transcriber_user(self):
-        self.data['is_transcriber'] = True
-        form = RegistrationForm(self.data)
-        form.save()
-        saved_user = User.objects.get(email=self.data['email'])
-        self.assertEqual(saved_user.username, self.data['username'])
-
     def test_saves_user_with_password(self):
+        self.assertTrue(self.form.is_valid())
         self.form.save()
         saved_user = User.objects.get(email=self.data['email'])
         self.assertTrue(saved_user.password)

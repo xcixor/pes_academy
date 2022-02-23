@@ -10,10 +10,9 @@ class AccountActivationTestCase(AccountsBaseTestCase):
         super(AccountActivationTestCase, self).setUp()
 
     def test_successful_activation_redirects_to_login(self):
-        user = self.create_user()
-        token = account_activation_token.make_token(user)
+        token = account_activation_token.make_token(self.user)
         self.assertTrue(token)
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        uid = urlsafe_base64_encode(force_bytes(self.user.pk))
         self.assertTrue(uid)
         activation_request = self.client.get(
             '/accounts/activate/{}/{}/'.format(uid, token))
