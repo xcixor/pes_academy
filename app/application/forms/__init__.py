@@ -1,2 +1,2 @@
-from .model_forms import ApplicationAdminForm
+from .model_forms import CallToActionAdminForm
 from .application_form import ApplicationForm
