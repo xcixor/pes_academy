@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 def image_directory_path(instance, filename):
@@ -6,6 +10,12 @@ def image_directory_path(instance, filename):
 
 
 class Application(models.Model):
+
+    STATUS_CHOICES = (
+        ('step_one', 'Application Data Not Submitted'),
+        ('step_two', 'Documents in review'),
+        ('step_three', 'Approved')
+    )
 
     image = models.ImageField(
         upload_to=image_directory_path,
@@ -26,6 +36,11 @@ class Application(models.Model):
         default=False, help_text='Designates whether applications can be made '
         'for this application. If checked it and is within the deadline, '
         'applicants can view it on the application page.')
+    status = models.CharField(
+        choices=STATUS_CHOICES,
+        default='step_one',
+        max_length=100
+    )
 
     def __str__(self):
         return self.tagline

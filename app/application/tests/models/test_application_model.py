@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.tests.common import User
 from application.tests.common import ApplicationBaseTestCase
 
 
@@ -85,6 +86,11 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         )
         self.assertEqual(
             field.help_text, help_text)
+
+    def test_status_field_properties(self):
+        field = self.application._meta.get_field('status')
+        self.assertEqual(field.default, 'step_one')
+        self.assertEqual(field.max_length, 100)
 
     def test_defines_a_human_readable_name(self):
         self.assertEqual(str(self.application), 'Call For Application 1')

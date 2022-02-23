@@ -5,3 +5,4 @@ venv
 *media*
 *.sqlite3*
 .coverage
+.txt
