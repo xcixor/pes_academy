@@ -34,3 +34,6 @@ class CallToAction(models.Model):
 
     def __str__(self):
         return self.tagline
+
+    class Meta:
+        verbose_name_plural = 'Calls to Action'

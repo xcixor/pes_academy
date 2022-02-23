@@ -1,9 +1,9 @@
 from django import forms
 from application.tests.common import ApplicationBaseTestCase
-from application.forms import ApplicationAdminForm
+from application.forms import CallToActionAdminForm
 
 
-class ApplicationAdminFormTestCase(ApplicationBaseTestCase):
+class CallToActionAdminFormTestCase(ApplicationBaseTestCase):
 
     def setUp(self):
         self.data = {
@@ -13,7 +13,7 @@ class ApplicationAdminFormTestCase(ApplicationBaseTestCase):
             'slug': 'call-for-application-1',
             'deadline': '2022-01-10 14:38:50.813404+00:00'
         }
-        self.form = ApplicationAdminForm(self.data)
+        self.form = CallToActionAdminForm(self.data)
 
     def test_defines_fields(self):
         fields = [
