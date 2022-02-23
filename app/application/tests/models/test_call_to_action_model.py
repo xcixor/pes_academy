@@ -16,7 +16,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.blank)
         self.assertEqual(field.max_length, 255)
         self.assertEqual(
-            field.help_text, 'A title for the application.')
+            field.help_text, 'A title for the call to action.')
 
     def test_slug_properties(self):
         field = self.application._meta.get_field('slug')
@@ -27,7 +27,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertTrue(field.unique)
         self.assertEqual(
             field.help_text,
-            'Unique text to append to the address for the application.')
+            'Unique text to append to the address for the call to action.')
 
     def test_description_properties(self):
         field = self.application._meta.get_field('description')
@@ -35,7 +35,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.null)
         self.assertFalse(field.blank)
         self.assertEqual(
-            field.help_text, 'A description of what the application is about.')
+            field.help_text, 'A description of what the call to action is about.')
 
     def test_image_properties(self):
         field = self.application._meta.get_field('image')
@@ -43,7 +43,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.null)
         self.assertFalse(field.blank)
         self.assertEqual(
-            field.help_text, 'An image to display in the applications page.')
+            field.help_text, 'An image to display in the call to action page.')
 
     def test_material_field_upload_folder(self):
         self.assertIn(
@@ -56,7 +56,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.null)
         self.assertFalse(field.blank)
         self.assertEqual(
-            field.help_text, 'The application\'s deadline.')
+            field.help_text, 'The call to action\'s deadline.')
 
     def test_created_field_properties(self):
         field = self.application._meta.get_field('created')
@@ -64,7 +64,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.null)
         self.assertTrue(field.auto_now_add)
         self.assertEqual(
-            field.help_text, 'The date the application was created.')
+            field.help_text, 'The date the call to action was created.')
 
     def test_updated_field_properties(self):
         field = self.application._meta.get_field('updated')
@@ -72,7 +72,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.null)
         self.assertTrue(field.auto_now)
         self.assertEqual(
-            field.help_text, 'The date the application was updated.')
+            field.help_text, 'The date the call to action was updated.')
 
     def test_available_for_applications_field_properties(self):
         field = self.application._meta.get_field('available_for_applications')
@@ -81,7 +81,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertFalse(field.default)
         help_text = (
             'Designates whether applications can be made '
-            'for this application. If checked it and is within the deadline, '
+            'for this call to action. If checked it and is within the deadline, '
             'applicants can view it on the application page.'
         )
         self.assertEqual(

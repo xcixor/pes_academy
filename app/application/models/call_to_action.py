@@ -9,7 +9,7 @@ def image_directory_path(instance, filename):
     return (f'applications/{instance.slug}/{filename}')
 
 
-class Application(models.Model):
+class CallToAction(models.Model):
 
     STATUS_CHOICES = (
         ('step_one', 'Application Data Not Submitted'),
@@ -19,22 +19,23 @@ class Application(models.Model):
 
     image = models.ImageField(
         upload_to=image_directory_path,
-        help_text='An image to display in the applications page.')
+        help_text='An image to display in the call to action page.')
     tagline = models.CharField(
-        max_length=255, help_text='A title for the application.')
+        max_length=255, help_text='A title for the call to action.')
     description = models.TextField(
-        help_text='A description of what the application is about.')
+        help_text='A description of what the call to action is about.')
     slug = models.SlugField(
         max_length=255, unique=True,
-        help_text='Unique text to append to the address for the application.')
-    deadline = models.DateTimeField(help_text='The application\'s deadline.')
+        help_text='Unique text to append to the address for the call to action.')
+    deadline = models.DateTimeField(
+        help_text='The call to action\'s deadline.')
     created = models.DateTimeField(
-        auto_now_add=True, help_text='The date the application was created.')
+        auto_now_add=True, help_text='The date the call to action was created.')
     updated = models.DateTimeField(
-        auto_now=True, help_text='The date the application was updated.')
+        auto_now=True, help_text='The date the call to action was updated.')
     available_for_applications = models.BooleanField(
         default=False, help_text='Designates whether applications can be made '
-        'for this application. If checked it and is within the deadline, '
+        'for this call to action. If checked it and is within the deadline, '
         'applicants can view it on the application page.')
     status = models.CharField(
         choices=STATUS_CHOICES,
