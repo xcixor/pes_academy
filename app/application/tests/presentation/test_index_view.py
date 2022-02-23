@@ -1,7 +1,7 @@
 import os
 from django.views.generic import ListView
+from application.models.call_to_action import CallToAction
 from application.presentation.views import IndexView
-from application.models import Application
 from application.tests.common import ApplicationBaseTestCase
 
 
@@ -14,8 +14,8 @@ class IndexViewTestCase(ApplicationBaseTestCase):
     def test_view_properties(self):
         self.assertEqual(IndexView.template_name, 'index/index.html')
         self.assertTrue(issubclass(IndexView, ListView))
-        self.assertEqual(IndexView.context_object_name, 'applications')
-        self.assertEqual(IndexView.model, Application)
+        self.assertEqual(IndexView.context_object_name, 'calls_to_action')
+        self.assertEqual(IndexView.model, CallToAction)
 
     def test_successfully_gets_index_page(self):
         response = self.client.get('/applications/')
