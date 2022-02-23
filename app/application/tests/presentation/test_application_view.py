@@ -3,7 +3,7 @@ from django.views.generic.detail import SingleObjectMixin
 from application.presentation.views import (
     GetApplicationView, PostApplicationView)
 from application.forms import ApplicationForm
-from application.models import Application
+from application.models import CallToAction
 from application.models import (
     BusinessOrganization, Milestone, CovidImpact)
 from accounts.tests.common import AccountsBaseTestCase, User
@@ -13,9 +13,8 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def setUp(self):
         super(ApplicationViewTestCase, self).setUp()
-        self.application = self.create_application_instance()
+        self.application = self.create_call_to_action_instance()
         milestone = self.create_milestone()
-        self.user = self.create_user()
         self.form_data = {
             'email': 'test@gmail.com',
             'full_name': 'Test Name',
@@ -33,11 +32,11 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def login_user(self):
         self.client.login(
-            username=self.user.username, password='@mozzart12')
+            username=self.user.username, password='socrates123@')
 
     def test_get_application_view_properties(self):
         self.assertTrue(issubclass(GetApplicationView, DetailView))
-        self.assertEqual(GetApplicationView.model, Application)
+        self.assertEqual(GetApplicationView.model, CallToAction)
         self.assertEqual(GetApplicationView.context_object_name, 'application')
         self.assertEqual(
             GetApplicationView.template_name, 'application/application_form.html')
@@ -45,7 +44,7 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
     def test_post_application_view_properties(self):
         self.assertTrue(issubclass(PostApplicationView, FormView))
         self.assertTrue(issubclass(PostApplicationView, SingleObjectMixin))
-        self.assertEqual(PostApplicationView.model, Application)
+        self.assertEqual(PostApplicationView.model, CallToAction)
         self.assertEqual(PostApplicationView.form_class, ApplicationForm)
         self.assertEqual(
             PostApplicationView.template_name, 'application/application_form.html')
@@ -94,15 +93,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             self.form_data, follow=True)
         self.assertRedirects(response, '/applications/', 302)
 
-    def test_updates_application_applied_for_by_the_business(self):
-        self.login_user()
-        self.assertEqual(self.application.businesses.count(), 0)
-        self.client.post(
-            f'/applications/{self.application.slug}/', self.form_data)
-        self.assertEqual(
-            BusinessOrganization.objects.first().application, self.application)
-        self.assertEqual(self.application.businesses.count(), 1)
-
     def test_sets_success_message_on_successful_post(self):
         self.login_user()
         response = self.client.post(
@@ -127,6 +117,3 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             'all fields are correct. Thank you.')
         self.assertEqual(message.tags, 'error')
         self.assertEqual(message.message, expected_message)
-
-
-
