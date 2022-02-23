@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.tests.common import AccountsBaseTestCase
-from application.models.application import Application
+from application.models import Application
 
 
 User = get_user_model()
@@ -105,27 +105,3 @@ class BusinessModelTestCase(AccountsBaseTestCase):
 
     def test_returns_useful_name(self):
         self.assertEqual(str(self.business), 'Caravan Tech')
-
-    def test_has_relation_to_application_model(self):
-        model = self.business._meta.get_field(
-            'application').related_model
-        self.assertEqual(model, Application)
-
-    def test_application_fk_related_name(self):
-        related = self.business._meta.get_field(
-            'application').remote_field.related_name
-        self.assertEqual(related, 'businesses')
-
-    def test_relation_to_application_model_is_many_to_one(self):
-        relation = self.business._meta.get_field('application')
-        self.assertEqual(type(relation), models.ForeignKey)
-
-    def test_application_relationship_on_delete_sets_null(self):
-        on_delete = self.business._meta.get_field(
-            'application').remote_field.on_delete
-        self.assertEqual(on_delete, models.SET_NULL)
-
-    def test_relation_to_application_model_can_be_null_and_blank(self):
-        relation = self.business._meta.get_field('application')
-        self.assertTrue(relation.null)
-        self.assertTrue(relation.blank)
