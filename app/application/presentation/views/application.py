@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.views import View
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
-from application.models import Application
+from application.models import CallToAction
 from application.forms import ApplicationForm
 
 
 class GetApplicationView(DetailView):
 
     template_name = "application/application_form.html"
-    model = Application
+    model = CallToAction
     context_object_name = 'application'
 
     def get_context_data(self, **kwargs):
@@ -25,7 +25,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
     template_name = "application/application_form.html"
     form_class = ApplicationForm
     success_url = '/applications/'
-    model = Application
+    model = CallToAction
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -33,8 +33,6 @@ class PostApplicationView(SingleObjectMixin, FormView):
 
     def form_valid(self, form):
         business = form.save_business(self.request.user)[0]
-        business.application = self.object
-        business.save()
         form.save_covid_impact(business)
         form.save_milestone(business)
         return super().form_valid(form)
