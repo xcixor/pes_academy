@@ -8,7 +8,6 @@ class UserLoginView(LoginView):
     template_name = "registration/login.html"
 
     def form_invalid(self, form):
-        print(form.errors)
         return super().form_invalid(form)
 
     def get_success_url(self):
@@ -16,8 +15,15 @@ class UserLoginView(LoginView):
             f'Welcome back {self.request.user.username}!')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
+        user = self.request.user
+        try:
+            application = user.application
+        except AttributeError:
+            application = user.subscription.subscription_creator.application
+        if application.status == 'step_one':
+            next_url = f'/applications/{application.call_to_action.slug}/'
+            return next_url
         next_url = self.request.GET.get("next", None)
-        print(next_url)
-        if next_url is None:
-            return settings.LOGIN_REDIRECT_URL
-        return next_url
+        if next_url:
+            return next_url
+        return settings.LOGIN_REDIRECT_URL
