@@ -9,9 +9,20 @@ User = get_user_model()
 
 class Application(models.Model):
 
+    STATUS_CHOICES = (
+        ('step_one', 'Application Data Not Submitted'),
+        ('step_two', 'Documents in review'),
+        ('step_three', 'Approved')
+    )
+
     application_creator = models.OneToOneField(
         User, related_name='application', on_delete=models.CASCADE)
     call_to_action = models.ForeignKey(
         CallToAction, related_name='applications',
         on_delete=models.SET_NULL,
         null=True)
+    status = models.CharField(
+        choices=STATUS_CHOICES,
+        default='step_one',
+        max_length=100
+    )

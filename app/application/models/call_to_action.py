@@ -11,12 +11,6 @@ def image_directory_path(instance, filename):
 
 class CallToAction(models.Model):
 
-    STATUS_CHOICES = (
-        ('step_one', 'Application Data Not Submitted'),
-        ('step_two', 'Documents in review'),
-        ('step_three', 'Approved')
-    )
-
     image = models.ImageField(
         upload_to=image_directory_path,
         help_text='An image to display in the call to action page.')
@@ -37,11 +31,6 @@ class CallToAction(models.Model):
         default=False, help_text='Designates whether applications can be made '
         'for this call to action. If checked it and is within the deadline, '
         'applicants can view it on the application page.')
-    status = models.CharField(
-        choices=STATUS_CHOICES,
-        default='step_one',
-        max_length=100
-    )
 
     def __str__(self):
         return self.tagline

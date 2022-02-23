@@ -74,7 +74,8 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
             field.help_text, 'The date the call to action was updated.')
 
     def test_available_for_applications_field_properties(self):
-        field = self.call_to_action._meta.get_field('available_for_applications')
+        field = self.call_to_action._meta.get_field(
+            'available_for_applications')
         self.assertIsInstance(field, models.BooleanField)
         self.assertFalse(field.null)
         self.assertFalse(field.default)
@@ -85,11 +86,6 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         )
         self.assertEqual(
             field.help_text, help_text)
-
-    def test_status_field_properties(self):
-        field = self.call_to_action._meta.get_field('status')
-        self.assertEqual(field.default, 'step_one')
-        self.assertEqual(field.max_length, 100)
 
     def test_defines_a_human_readable_name(self):
         self.assertEqual(str(self.call_to_action), 'Call For Application 1')
