@@ -29,3 +29,8 @@ class BaseTestCase(TestCase):
             'admin@admin.com', 'pass1234')
         self.client.login(username=admin.email, password='pass1234')
         return admin
+
+    def create_normal_user(self):
+        user = get_user_model().objects._create_user(
+            'normal_user', 'socrates123@')
+        return user
