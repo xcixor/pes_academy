@@ -13,13 +13,6 @@ class OrganizationSubscription(models.Model):
         on_delete=models.CASCADE,
         related_name='organization_admin')
 
-    organization_subscriber = models.OneToOneField(
-        User,
-        on_delete=models.SET_NULL,
-        related_name='organization_subscribers',
-        null=True,
-        blank=True)
-
     organization = models.OneToOneField(
         BusinessOrganization,
         on_delete=models.SET_NULL,

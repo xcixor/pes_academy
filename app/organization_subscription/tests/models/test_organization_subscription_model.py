@@ -26,19 +26,6 @@ class OrganizationSubscriptionTestCase(OrganizationSubscriptionBaseTestCase):
             'subscription_creator').remote_field.on_delete
         self.assertEqual(on_delete, models.CASCADE)
 
-    def test_has_subscriber_field(self):
-        field = self.subscription._meta.get_field('organization_subscriber')
-        self.assertEqual(field.remote_field.related_name,
-                         'organization_subscribers')
-        self.assertIsInstance(field, models.ForeignKey)
-        self.assertTrue(field.blank)
-        self.assertTrue(field.null)
-
-    def test_subscriber_relationship_on_delete_sets_null(self):
-        on_delete = self.subscription._meta.get_field(
-            'organization_subscriber').remote_field.on_delete
-        self.assertEqual(on_delete, models.SET_NULL)
-
     def test_has_organization_field(self):
         field = self.subscription._meta.get_field('organization')
         self.assertEqual(field.remote_field.related_name, 'organization')
