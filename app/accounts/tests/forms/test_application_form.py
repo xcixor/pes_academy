@@ -29,7 +29,6 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         self.factory = RequestFactory()
         self.request = self.factory.get("/")
         self.form = ApplicationForm(self.request, self.form_data)
-        self.user = self.create_user()
 
     def test_validates_form(self):
         self.assertTrue(self.form.is_valid())
