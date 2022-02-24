@@ -12,6 +12,7 @@ class SubscriptionTestCase(OrganizationSubscriptionBaseTestCase):
     def test_subscriber_email_properties(self):
         field = self.subscription._meta.get_field('subscriber_email')
         self.assertTrue(isinstance(field, models.EmailField))
+        self.assertTrue(field.unique)
 
     def test_subscription_properties(self):
         field = self.subscription._meta.get_field('subscription')

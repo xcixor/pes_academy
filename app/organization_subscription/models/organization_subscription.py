@@ -30,7 +30,7 @@ class OrganizationSubscription(models.Model):
 
 class Subscription(models.Model):
 
-    subscriber_email = models.EmailField()
+    subscriber_email = models.EmailField(unique=True)
     subscription = models.ForeignKey(
         OrganizationSubscription,
         related_name='subscriptions',

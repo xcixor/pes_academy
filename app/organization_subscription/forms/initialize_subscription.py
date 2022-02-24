@@ -11,18 +11,20 @@ class InitiateSubscriptionForm(forms.Form, HtmlEmailMixin):
 
     def subscribe_user(self, organization_subscription):
         email = self.cleaned_data['subscriber_email']
-        try:
-            subscription = Subscription.objects.get(subscriber_email=email)
-            if subscription:
-                raise forms.ValidationError(
-                    'This user is already subscribed to your organization')
-        except Subscription.DoesNotExist:
-            subscription = Subscription.objects.create(
-                subscriber_email=email, subscription=organization_subscription)
+        subscription = Subscription.objects.create(
+            subscriber_email=email, subscription=organization_subscription)
         return subscription
 
+    def clean_subscriber_email(self):
+        subscriber_email = self.cleaned_data['subscriber_email']
+        subscription = Subscription.objects.filter(
+            subscriber_email=subscriber_email).first()
+        if subscription:
+            raise forms.ValidationError(
+                'This user is already subscribed to your organization')
+        return subscriber_email
+
     def send_subscription_email(self, to_email, request):
-        print('sending')
         subject = "Join Our Organization Channel"
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)

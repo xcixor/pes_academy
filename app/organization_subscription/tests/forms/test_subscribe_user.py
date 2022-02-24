@@ -4,6 +4,7 @@ from organization_subscription.forms import InitiateSubscriptionForm
 from organization_subscription.tests.common import (
     OrganizationSubscriptionBaseTestCase)
 from common.utils.tests import RequestFactoryMixin
+from organization_subscription.models import Subscription
 
 
 class EditJobFormTestCase(OrganizationSubscriptionBaseTestCase, RequestFactoryMixin):
@@ -46,5 +47,5 @@ class EditJobFormTestCase(OrganizationSubscriptionBaseTestCase, RequestFactoryMi
         self.assertTrue(self.form.is_valid())
         organization_subscription = self.create_organization_subscription()
         self.form.subscribe_user(organization_subscription)
-        with self.assertRaises(forms.ValidationError) as ve:
-            self.form.subscribe_user(organization_subscription)
+        form = InitiateSubscriptionForm(self.data)
+        self.assertFalse(form.is_valid())
