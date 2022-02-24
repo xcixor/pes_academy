@@ -35,3 +35,6 @@ class Subscription(models.Model):
         OrganizationSubscription,
         related_name='subscriptions',
         on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.subscriber_email

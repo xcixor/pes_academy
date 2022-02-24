@@ -1,18 +1,17 @@
 from django.contrib import admin
-from organization_subscription.models import OrganizationSubscription
-from accounts.models import User
+from organization_subscription.models import OrganizationSubscription, Subscription
 
 
 class SubscribersInline(admin.TabularInline):
 
-    model = User
+    model = Subscription
     extra = 0
 
 
-# @admin.register(OrganizationSubscription)
-# class OrganizationSubscriptionAdmin(admin.ModelAdmin):
+@admin.register(OrganizationSubscription)
+class OrganizationSubscriptionAdmin(admin.ModelAdmin):
 
-#     inlines = [SubscribersInline]
+    inlines = [SubscribersInline]
 
-admin.site.register(OrganizationSubscription)
 
+admin.site.register(Subscription)
