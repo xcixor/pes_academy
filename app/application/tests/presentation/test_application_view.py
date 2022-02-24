@@ -114,7 +114,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(BusinessOrganization.objects.count(), 0)
         self.assertEqual(CovidImpact.objects.count(), 0)
-        self.assertEqual(Application.objects.count(), 0)
         self.assertIsNone(Milestone.objects.first().businesses.first())
         self.client.post(
             f'/applications/{self.call_to_action.slug}/', self.form_data)
@@ -123,7 +122,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(CovidImpact.objects.count(), 1)
         self.assertEqual(Milestone.objects.first(
         ).businesses.first().organization_name, 'Big Tech')
-        self.assertEqual(Application.objects.count(), 1)
 
     def test_redirects_on_successful_post(self):
         self.login_user()

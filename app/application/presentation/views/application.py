@@ -24,6 +24,7 @@ class GetApplicationView(DetailView):
         except AttributeError as ae:
             print(ae)
         if not application:
+            subscription = None
             try:
                 subscription = Subscription.objects.get(
                     subscriber_email=user.email)
@@ -51,7 +52,6 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save_application(self.request.user, self.request.object)
         business = form.save_business(self.request.user)[0]
         form.save_covid_impact(business)
         form.save_milestone(business)
