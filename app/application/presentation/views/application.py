@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView
 from django.contrib import messages
 from django.views import View
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
-from application.models import CallToAction
+from application.models import CallToAction, Application
 from application.forms import ApplicationForm
+from organization_subscription.models import Subscription
 
 
 class GetApplicationView(DetailView):
@@ -17,6 +17,25 @@ class GetApplicationView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ApplicationForm(self.request)
+        user = self.request.user
+        application = None
+        try:
+            application = user.application
+        except AttributeError as ae:
+            print(ae)
+        if not application:
+            try:
+                subscription = Subscription.objects.get(
+                    subscriber_email=user.email)
+            except Subscription.DoesNotExist as sd:
+                print(sd)
+            if subscription:
+                application = subscription.subscription.subscription_creator.application
+        if not application:
+            Application.objects.create(
+                application_creator=user,
+                call_to_action=self.get_object()
+            )
         return context
 
 
@@ -32,6 +51,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
+        form.save_application(self.request.user, self.request.object)
         business = form.save_business(self.request.user)[0]
         form.save_covid_impact(business)
         form.save_milestone(business)

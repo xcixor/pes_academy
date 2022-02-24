@@ -2,6 +2,7 @@ from django import forms
 from application.models import BusinessOrganization, Milestone, CovidImpact
 from accounts.models import User
 
+
 class ApplicationForm(forms.Form):
 
     full_name = forms.CharField(max_length=255, widget=forms.TextInput(
