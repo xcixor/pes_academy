@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.contrib import messages
+from organization_subscription.models import Subscription
 
 
 class UserLoginView(LoginView):
@@ -18,8 +19,16 @@ class UserLoginView(LoginView):
         user = self.request.user
         try:
             application = user.application
-        except AttributeError:
-            application = user.subscription.subscription_creator.application
+        except AttributeError as ae:
+            print(ae)
+        if not application:
+            try:
+                subscription = Subscription.objects.get(
+                    subscriber_email=user.email)
+            except Subscription.DoesNotExist as sd:
+                print(sd)
+            if subscription:
+                application = subscription.subscription.subscription_creator.application
         if application.status == 'step_one':
             next_url = f'/applications/{application.call_to_action.slug}/'
             return next_url
