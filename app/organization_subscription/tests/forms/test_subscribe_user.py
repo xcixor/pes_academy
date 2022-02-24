@@ -29,7 +29,7 @@ class EditJobFormTestCase(OrganizationSubscriptionBaseTestCase, RequestFactoryMi
 
     def test_can_send_email_to_join_organization_channel(self):
         self.assertTrue(self.form.is_valid())
-        self.form.send_subscription_email(self.user, self.request)
+        self.form.send_subscription_email(self.user.email, self.request)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
                          'Join Our Organization Channel')
