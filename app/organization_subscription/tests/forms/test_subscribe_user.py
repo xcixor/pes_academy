@@ -1,4 +1,5 @@
 from django.core import mail
+from django import forms
 from organization_subscription.forms import InitiateSubscriptionForm
 from organization_subscription.tests.common import (
     OrganizationSubscriptionBaseTestCase)
@@ -28,9 +29,22 @@ class EditJobFormTestCase(OrganizationSubscriptionBaseTestCase, RequestFactoryMi
 
     def test_can_send_email_to_join_organization_channel(self):
         self.assertTrue(self.form.is_valid())
-        user = self.create_user()
-        self.form.send_subscription_email(user, self.request)
+        self.form.send_subscription_email(self.user, self.request)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Join Our Organization Channel')
+        self.assertEqual(mail.outbox[0].subject,
+                         'Join Our Organization Channel')
         to_email = self.data['subscriber_email']
         self.assertEqual(mail.outbox[0].to[0], to_email)
+
+    def test_can_create_subscription(self):
+        self.assertTrue(self.form.is_valid())
+        organization_subscription = self.create_organization_subscription()
+        subscription = self.form.subscribe_user(organization_subscription)
+        self.assertTrue(subscription)
+
+    def test_raises_error_if_subscription_exists(self):
+        self.assertTrue(self.form.is_valid())
+        organization_subscription = self.create_organization_subscription()
+        self.form.subscribe_user(organization_subscription)
+        with self.assertRaises(forms.ValidationError) as ve:
+            self.form.subscribe_user(organization_subscription)
