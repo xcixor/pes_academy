@@ -12,7 +12,6 @@ class UserModelTestCase(AccountsBaseTestCase):
 
     def setUp(self):
         super(UserModelTestCase, self).setUp()
-        self.user = self.create_user()
 
     def test_email_properties(self):
         field = self.user._meta.get_field('email')
@@ -72,7 +71,7 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertEqual(user.username, 'admin')
 
     def test_defines_user_readable_name(self):
-        self.assertEqual(str(self.user), 'jim_jones')
+        self.assertEqual(str(self.user), 'normal_user')
 
     def test_can_get_user_by_uid(self):
         uid = urlsafe_base64_encode(force_bytes(self.user.pk))

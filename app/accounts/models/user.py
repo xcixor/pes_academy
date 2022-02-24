@@ -60,7 +60,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
-        verbose_name='Primary Email Address', max_length=255, unique=False)
+        verbose_name='Primary Email Address', max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=False)
