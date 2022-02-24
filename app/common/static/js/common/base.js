@@ -6,11 +6,11 @@ $('#closeMessagesContainer').on('click', function(){
     // $('.alert').css({'display': 'none !important'});
 });
 
-$(document).ready(function(){
-    $('[data-toggle="offcanvas"]').click(function(){
-        $("#navigation").toggleClass("hidden-xs");
-    });
- });
+// $(document).ready(function(){
+//     $('[data-toggle="offcanvas"]').click(function(){
+//         $("#navigation").toggleClass("hidden-xs");
+//     });
+//  });
 
  function openPage(pageName,elmnt,color) {
     var i, tabcontent, tablinks;
@@ -29,3 +29,11 @@ $(document).ready(function(){
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
   
+
+document.querySelector("#show-form").addEventListener("click", function(){
+  document.querySelector(".popup").classList.add("active");
+});
+
+document.querySelector(".popup .close-btn").addEventListener("click",function(){
+  document.querySelector(".popup").classList.remove("active");
+});

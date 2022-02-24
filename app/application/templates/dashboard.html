@@ -30,18 +30,15 @@
                 </div>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                 <div class="row">
                     <header>
                         <div class="col-md-7">
-                            <!-- <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
-                            </div> -->
                         </div>
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Invite TeamMember</a></li>
+                                    
+                                    <button id="show-form">Invite</button>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" alt="user">
                                             <b class="caret"></b></a>
@@ -64,6 +61,8 @@
                         </div>
                     </header>
                 </div>
+
+
 
                 <div class="user-dashboard tabcontent"  id="Home">
                     <h1>Hello, Jane Doe</h1>
@@ -159,31 +158,21 @@
         </div>
 
     </div>
-
-
-
-    <!-- Modal -->
-    <div id="add_project" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                            <input type="text" placeholder="Full Name" name="name">
-                            <input type="text" placeholder="Email" name="mail">
-                            <textarea placeholder="Short Invite Message"></textarea>
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Send</button>
-                </div>
-            </div>
-
-        </div>
     </div>
 
-</div>
-
-
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Invite Collaborator</h2>
+            <div class="form-element">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email">
+            </div>
+        
+        <div class="form-element">
+            <button>Send</button>
+        </div>
+    </div>
+    </div>
 
 {% endblock %}
