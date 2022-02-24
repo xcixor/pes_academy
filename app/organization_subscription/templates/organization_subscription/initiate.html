@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <form method="post">
+      {% csrf_token %}
+    <div class="container">
+      <h1 class="text-center">Invite People to Your Org</h1>
+      <div class="input-container">
+        <input class="input-field" type="text" placeholder="Email" name="subscriber_email" required>
+      </div>
+      <button type="submit" class="registerbtn">INVITE</button>
+    </div>
+  </form>
+
+{% endblock%}

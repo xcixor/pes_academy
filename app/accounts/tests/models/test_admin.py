@@ -16,7 +16,7 @@ class UserAdminTestCase(AccountsBaseTestCase):
             admin_site=AdminSite
         )
         self.model_admin.save_model(
-            obj=self.create_user(),
+            obj=self.user,
             request=self.create_logged_in_admin(),
             form=None,
             change=None

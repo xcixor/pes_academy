@@ -17,11 +17,13 @@ class UserLoginView(LoginView):
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         user = self.request.user
+        application = None
         try:
             application = user.application
         except AttributeError as ae:
             print(ae)
         if not application:
+            subscription = None
             try:
                 subscription = Subscription.objects.get(
                     subscriber_email=user.email)
