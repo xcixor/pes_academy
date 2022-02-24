@@ -26,3 +26,12 @@ class OrganizationSubscription(models.Model):
 
     def __str__(self) -> str:
         return self.organization_subscription_id
+
+
+class Subscription(models.Model):
+
+    subscriber_email = models.EmailField()
+    subscription = models.ForeignKey(
+        OrganizationSubscription,
+        related_name='subscriptions',
+        on_delete=models.CASCADE)

@@ -1,1 +1,1 @@
-from .organization_subscription import OrganizationSubscription
+from .organization_subscription import OrganizationSubscription, Subscription

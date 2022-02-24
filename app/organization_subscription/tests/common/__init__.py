@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from accounts.tests.common import AccountsBaseTestCase
-from organization_subscription.models import OrganizationSubscription
+from organization_subscription.models import (
+    OrganizationSubscription, Subscription)
 
 
 User = get_user_model()
@@ -13,8 +14,7 @@ class OrganizationSubscriptionBaseTestCase(AccountsBaseTestCase):
 
     def create_organization_subscription(self):
         subscription = OrganizationSubscription.objects.create(
-            subscription_creator=self.create_user(),
-            organization_subscriber=self.create_subscriber()
+            subscription_creator=self.user
         )
         return subscription
 
@@ -29,3 +29,10 @@ class OrganizationSubscriptionBaseTestCase(AccountsBaseTestCase):
             is_active=True
         )
         return subscriber
+
+    def create_subscription(self):
+        subscription = Subscription.objects.create(
+            subscriber_email='badi@gmail.com',
+            subscription=self.create_organization_subscription()
+        )
+        return subscription
