@@ -26,3 +26,6 @@ class Application(models.Model):
         default='step_one',
         max_length=100
     )
+
+    def __str__(self) -> str:
+        return f'{self.call_to_action} - {self.application_creator}'

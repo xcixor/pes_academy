@@ -1,5 +1,5 @@
 from django.contrib import admin
-from application.models import CallToAction
+from application.models import CallToAction, Application
 from application.forms import CallToActionAdminForm
 
 
@@ -8,3 +8,6 @@ class CallToActionAdmin(admin.ModelAdmin):
     form = CallToActionAdminForm
     list_display = ['tagline', 'deadline', 'available_for_applications']
     prepopulated_fields = {'slug': ('tagline',)}
+
+
+admin.site.register(Application)
