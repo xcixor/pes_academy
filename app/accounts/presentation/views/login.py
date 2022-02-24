@@ -30,10 +30,13 @@ class UserLoginView(LoginView):
             except Subscription.DoesNotExist as sd:
                 print(sd)
             if subscription:
-                application = subscription.subscription.subscription_creator.application
-        if application.status == 'step_one':
-            next_url = f'/applications/{application.call_to_action.slug}/'
-            return next_url
+                try:
+                    application = subscription.subscription.subscription_creator.application
+                    if application.status == 'step_one':
+                        next_url = f'/applications/{application.call_to_action.slug}/'
+                        return next_url
+                except AttributeError as ae:
+                    print(ae)
         next_url = self.request.GET.get("next", None)
         if next_url:
             return next_url
