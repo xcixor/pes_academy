@@ -48,9 +48,6 @@
       <div class="input-container">
         <i class="fa fa-key icon"></i>
         <input class="input-field" type="password" placeholder="Repeat Password" name="password2" id="psw-repeat" required>
-        {% for error in form.password2.errors %}
-        <div class="error">{{ error|escape }}</div>
-        {% endfor %}
       </div>
       <div class="input-container">
         {% for error in form.password2.errors %}
