@@ -1,5 +1,7 @@
 from django import template
 from accounts.models import User
+from organization_subscription.models import Subscription
+
 
 register = template.Library()
 
@@ -23,3 +25,23 @@ def get_profile(email):
     except User.DoesNotExist as udne:
         print(udne)
     return profile
+
+
+@register.filter('get_application_url')
+def get_application_url(email):
+    """Returns the users's application url
+
+    Args:
+        email (string): user's email
+
+    Returns:
+        url: url to for the application
+    usage:
+        email|get_application_url
+    """
+    url = None
+    subscription = Subscription.objects.filter(subscriber_email=email).first()
+    if subscription:
+        application = subscription.subscription.subscription_creator.application
+        url = f'/applications/{application.call_to_action.slug}/'
+    return url
