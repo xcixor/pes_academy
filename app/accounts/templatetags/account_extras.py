@@ -58,6 +58,11 @@ def get_organization_members(email):
     Returns:
         list: a list of organization members
     """
+    members = []
     subscription = Subscription.objects.get(subscriber_email=email)
-    members = Subscription.objects.filter(subscription=subscription.subscription)
+    members_in_db = Subscription.objects.filter(
+        subscription=subscription.subscription)
+    for member in members_in_db:
+        members.append(member)
+    members.append(subscription.subscription.subscription_creator.email)
     return members
