@@ -25,7 +25,7 @@ class InitiateOrganizationSubscriptionViewTestCase(OrganizationSubscriptionBaseT
     def test_get_initiate_organization_subscription_view_properties(self):
         self.assertEqual(
             GetInitiateOrganizationSubscriptionView.template_name,
-            'organization_subscription/initiate.html')
+            'profile/dashboard.html')
 
     def test_get_view_returns_200_OK(self):
         self.login_user()
@@ -40,10 +40,10 @@ class InitiateOrganizationSubscriptionViewTestCase(OrganizationSubscriptionBaseT
     def test_post_initiate_organization_subscription_view_properties(self):
         self.assertEqual(
             PostInitiateOrganizationSubscriptionView.template_name,
-            'organization_subscription/initiate.html')
+            'profile/dashboard.html')
         self.assertEqual(
             PostInitiateOrganizationSubscriptionView.success_url,
-            '/organization-subscription/initiate/')
+            '/accounts/dashboard/')
         self.assertEqual(
             PostInitiateOrganizationSubscriptionView.form_class,
             InitiateSubscriptionForm)

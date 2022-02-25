@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load account_extras %}
 
 {% block content %}
 
@@ -7,12 +8,12 @@
     <div class="container-fluid display-table">
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-            
+
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
                             <span class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</span>
-                            
+
                         <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
                             <span class="tablink" onclick="openPage('Academy')" >Academy</span>
 
@@ -21,11 +22,11 @@
 
                         <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
                             <span class="tablink" onclick="openPage('Team')" >Team</span>
-                           
-                        <li ><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>
+
+                        <li ><a href="/accounts/logout/"><i class="fa fa-cog" aria-hidden="true"></i>
                             <span >Log Out</span>
-                           
-                        
+
+
                     </ul>
                 </div>
             </div>
@@ -37,21 +38,21 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    
+
                                     <button id="show-form">Invite</button>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" alt="user">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" alt="{{user}}">
                                             <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="navbar-content">
-                                                    <span>Jane Doe</span>
+                                                    <span>{{user.full_name}}</span>
                                                     <p class="text-muted small">
-                                                        janedoe@gmail.com
+                                                        {{user.email}}
                                                     </p>
                                                     <div class="divider">
                                                     </div>
-                                                    <a href="#" class="view btn-sm active">Log Out</a>
+                                                    <a href="/accounts/logout/" class="view btn-sm active">Log Out</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -65,15 +66,26 @@
 
 
                 <div class="user-dashboard tabcontent"  id="Home">
-                    <h1>Hello, Jane Doe</h1>
+                    <h1>Hello, {{user}}</h1>
                     <div class="row">
                         <div class="col-md-6 col-sm-4 col-xs-12 gutter">
 
                             <div class=" row sales">
                                 <h2>Your Team Members</h2>
                                 <div class="col-md-8">
-                                    <p>Jane Doe</p>
-                                    <p>John Doe</p>
+                                    {% if user.organization_admin %}
+                                    {% for member in user.organization_admin.subscriptions.all %}
+                                    <p>{{member}}</p>
+                                    {% endfor %}
+                                    {% else %}
+                                    {% with members=user.email|get_organization_members %}
+                                    {% for member in members %}
+                                    <p>
+                                        {{member}}
+                                    </p>
+                                    {% endfor %}
+                                    {% endwith %}
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4">
                                     <button class="btn-danger">Delete</button>
@@ -87,7 +99,11 @@
                             <div class=" row sales ">
                                 <h2>Ongoing Applications</h2>
                                 <div class="col-md-12">
-                                    <button><a href=""></a>Your Application</button>
+                                    {% if user.application %}
+                                    <a href="/applications/{{user.application.call_to_action.slug}}/">Your Application</a>
+                                    {% else %}
+                                    <a href="{{user.email|get_application_url}}">Your Application</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -110,7 +126,7 @@
                         </div>
                       </div>
                   </div>
-                  
+
                   <div id="App" class="tabcontent">
                     <div class=" col-md-6 card">
                         <div class="card-header">
@@ -119,23 +135,55 @@
                         <div class="card-body">
                           <h5 class="card-title">Ongoing Applications</h5>
                           <p class="card-text">Click on the link below to resume to your applications.</p>
-                          <a href="#" class="btn btn-primary">Continue</a>
+                          {% if user.application %}
+                          <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">Continue</a>
+                          {% else %}
+                          <a href="{{user.email|get_application_url}}" class="btn btn-primary">Continue</a>
+                          {% endif %}
                         </div>
                       </div>
                   </div>
-                  
+
                   <div id="Team" class="tabcontent">
                         <h2>Your Team Members</h2>
                     <div class="row">
-                        
+
                         <div class="col-md-4 gutter">
-                            <p>Jane Doe</p>
-                            <p>John Doe</p>
+                            {% if user.organization_admin %}
+                            {% for member in user.organization_admin.subscriptions.all %}
+                            <p>
+                                {% with user=member|get_profile %}
+                                {{user.full_name}}
+                                {% endwith %}
+                            </p>
+                            {% endfor %}
+                            {% else %}
+                            {% with members=user.email|get_organization_members %}
+                            {% for member in members %}
+                            <p>
+                                {% with user=member|get_profile %}
+                                {{user.full_name}}
+                                {% endwith %}
+                            </p>
+                            {% endfor %}
+                            {% endwith %}
+                            {% endif %}
                         </div>
                         <div class="col-md-4 gutter">
-                                <p>janedoe@gmail.com</p>
-                                <p>Johndoe@gmail.com</p>
-                            </div>
+                            {% if user.organization_admin %}
+                            {% for member in user.organization_admin.subscriptions.all %}
+                            <p>{{member}}</p>
+                            {% endfor %}
+                            {% else %}
+                            {% with members=user.email|get_organization_members %}
+                            {% for member in members %}
+                            <p>
+                                {{member}}
+                            </p>
+                            {% endfor %}
+                            {% endwith %}
+                            {% endif %}
+                        </div>
                         <div class="col-md-4 gutter">
                             <p><button class="btn-danger">Delete</button></p>
                             <p><button class="btn-danger">Delete</button></p>
@@ -151,7 +199,7 @@
                     <br>
                     <br>
                     <button class="btn btn-primary">Log out</button>
-                    
+
                   </div> -->
 
             </div>
@@ -162,17 +210,23 @@
 
     <div class="popup">
         <div class="close-btn">&times;</div>
-        <div class="form">
+        <form class="form" action="/organization-subscription/initiate/" method="post">
+            {% csrf_token %}
             <h2>Invite Collaborator</h2>
             <div class="form-element">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter email">
+                <input type="email" id="email" placeholder="Enter email" name="subscriber_email">
             </div>
-        
+            <div class="row col">
+                {% for error in form.subscriber_email.errors %}
+                <div class="error">{{ error|escape }}</div>
+                {% endfor %}
+            </div>
+
         <div class="form-element">
-            <button>Send</button>
+            <button type="submit">Send</button>
         </div>
-    </div>
+    </form>
     </div>
 
 

@@ -42,8 +42,11 @@ def get_application_url(email):
     url = None
     subscription = Subscription.objects.filter(subscriber_email=email).first()
     if subscription:
-        application = subscription.subscription.subscription_creator.application
-        url = f'/applications/{application.call_to_action.slug}/'
+        try:
+            application = subscription.subscription.subscription_creator.application
+            url = f'/applications/{application.call_to_action.slug}/'
+        except AttributeError as ae:
+            print(ae)
     return url
 
 
@@ -59,10 +62,13 @@ def get_organization_members(email):
         list: a list of organization members
     """
     members = []
-    subscription = Subscription.objects.get(subscriber_email=email)
-    members_in_db = Subscription.objects.filter(
-        subscription=subscription.subscription)
-    for member in members_in_db:
-        members.append(member)
-    members.append(subscription.subscription.subscription_creator.email)
+    try:
+        subscription = Subscription.objects.get(subscriber_email=email)
+        members_in_db = Subscription.objects.filter(
+            subscription=subscription.subscription)
+        for member in members_in_db:
+            members.append(member)
+        members.append(subscription.subscription.subscription_creator.email)
+    except Subscription.DoesNotExist as sdne:
+        print(sdne)
     return members
