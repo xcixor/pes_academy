@@ -45,3 +45,19 @@ def get_application_url(email):
         application = subscription.subscription.subscription_creator.application
         url = f'/applications/{application.call_to_action.slug}/'
     return url
+
+
+@register.filter('get_organization_members')
+def get_organization_members(email):
+    """Fetches members of the same organization as users
+
+    Args:
+        email (string): the email to fetch for the user's organization
+    usage:
+        email|get_organization_members
+    Returns:
+        list: a list of organization members
+    """
+    subscription = Subscription.objects.get(subscriber_email=email)
+    members = Subscription.objects.filter(subscription=subscription.subscription)
+    return members

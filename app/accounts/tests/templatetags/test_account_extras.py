@@ -1,6 +1,6 @@
 from accounts.tests.common import AccountsBaseTestCase
 from accounts.templatetags.account_extras import (
-    get_profile, get_application_url)
+    get_profile, get_application_url, get_organization_members)
 from organization_subscription.models import (
     Subscription, OrganizationSubscription)
 
@@ -20,3 +20,10 @@ class AccountExtrasTestCase(AccountsBaseTestCase):
         Subscription.objects.create(
             subscriber_email=self.user.email, subscription=subscription)
         self.assertTrue(get_application_url(self.user.email))
+
+    def test_can_get_organization_members(self):
+        subscription = OrganizationSubscription.objects.create(
+            subscription_creator=self.user)
+        Subscription.objects.create(
+            subscriber_email=self.user.email, subscription=subscription)
+        self.assertTrue(get_organization_members(self.user.email))
