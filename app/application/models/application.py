@@ -26,6 +26,9 @@ class Application(models.Model):
         default='step_one',
         max_length=100
     )
+    slug = models.SlugField(
+        max_length=255, unique=True,
+        help_text='Unique text to append to the address for the application.')
 
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'

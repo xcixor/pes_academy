@@ -29,3 +29,14 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         field = self.application._meta.get_field('status')
         self.assertEqual(field.default, 'step_one')
         self.assertEqual(field.max_length, 100)
+
+    def test_slug_properties(self):
+        field = self.application._meta.get_field('slug')
+        self.assertIsInstance(field, models.SlugField)
+        self.assertFalse(field.null)
+        self.assertFalse(field.blank)
+        self.assertEqual(field.max_length, 255)
+        self.assertTrue(field.unique)
+        self.assertEqual(
+            field.help_text,
+            'Unique text to append to the address for the application.')
