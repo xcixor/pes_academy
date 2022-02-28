@@ -38,7 +38,7 @@ class PostInitiateOrganizationSubscriptionView(FormView):
         success_message = (
             f'Great. {email} has been invited to your organization.')
         messages.add_message(
-            self.request, messages.ERROR, success_message)
+            self.request, messages.SUCCESS, success_message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
