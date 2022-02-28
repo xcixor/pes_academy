@@ -8,6 +8,7 @@
 .txt
 *virtual*
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.rdb*
 *staticfiles*
 *gcloud-service-key.json*
@@ -24,3 +25,5 @@ nov_29_12_41.json
 nov_29_17_41.json
 =======
 >>>>>>> 01066e2 (chore(git): remove virtual environment)
+=======
+>>>>>>> 01066e26 (chore(git): remove virtual environment)
