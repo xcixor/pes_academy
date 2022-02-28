@@ -21,9 +21,11 @@ class AccountsBaseTestCase(ApplicationBaseTestCase):
         return user
 
     def create_application(self):
+        call_to_action = self.create_call_to_action_instance()
         application = Application.objects.create(
             application_creator=self.user,
-            call_to_action=self.create_call_to_action_instance()
+            call_to_action=call_to_action,
+            slug=call_to_action.slug
         )
         return application
 
