@@ -14,7 +14,8 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def setUp(self):
         super(ApplicationViewTestCase, self).setUp()
-        self.call_to_action = self.create_call_to_action_instance()
+        self.application = self.create_application()
+        self.call_to_action = self.application.call_to_action
         milestone = self.create_milestone()
         self.form_data = {
             'email': 'test@gmail.com',
@@ -60,10 +61,13 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertTemplateUsed(response, 'application/application_form.html')
 
     def test_creates_application_if_user_does_not_have_one_or_a_subscription(self):
+        self.application.delete()
+        self.application.call_to_action.delete()
+        call_to_action = self.create_call_to_action_instance()
         self.assertEqual(Application.objects.count(), 0)
         self.login_user()
         self.client.get(
-            f'/applications/{self.call_to_action.slug}/')
+            f'/applications/{call_to_action.slug}/')
         self.assertEqual(Application.objects.count(), 1)
 
     def test_does_not_create_application_if_user_has_one(self):
@@ -82,10 +86,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         Subscription.objects.create(
             subscriber_email=self.user.email,
             subscription=organization_subscription
-        )
-        Application.objects.create(
-            application_creator=self.user,
-            call_to_action=self.call_to_action
         )
         self.login_user()
         self.client.get(
@@ -129,6 +129,16 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             f'/applications/{self.call_to_action.slug}/',
             self.form_data, follow=True)
         self.assertRedirects(response, '/applications/', 302)
+
+    def test_on_successful_post_application_status_is_updated(self):
+        application = Application.objects.get(id=self.user.application.id)
+        self.assertEqual(application.status, 'step_one')
+        self.login_user()
+        self.client.post(
+            f'/applications/{self.call_to_action.slug}/',
+            self.form_data, follow=True)
+        application = Application.objects.get(id=self.user.application.id)
+        self.assertEqual(application.status, 'step_two')
 
     def test_sets_success_message_on_successful_post(self):
         self.login_user()

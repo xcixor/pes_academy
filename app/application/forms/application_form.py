@@ -1,6 +1,7 @@
 from django import forms
 from application.models import BusinessOrganization, Milestone, CovidImpact
 from accounts.models import User
+from organization_subscription.models import Subscription
 
 
 class ApplicationForm(forms.Form):
@@ -97,6 +98,27 @@ class ApplicationForm(forms.Form):
             for milestone in milestone_objects:
                 milestone.businesses.add(business)
             return True
+
+    def update_application(self, user):
+        application = None
+        try:
+            application = user.application
+        except AttributeError as ae:
+            print(ae)
+        if not application:
+            subscription = None
+            try:
+                subscription = Subscription.objects.get(
+                    subscriber_email=user.email)
+            except Subscription.DoesNotExist as sd:
+                print(sd)
+            if subscription:
+                try:
+                    application = subscription.subscription.subscription_creator.application
+                except AttributeError as ae:
+                    print(ae)
+        application.status = 'step_two'
+        application.save()
 
     def __init__(self, request=None, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)

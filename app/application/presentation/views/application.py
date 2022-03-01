@@ -55,6 +55,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         business = form.save_business(self.request.user)[0]
         form.save_covid_impact(business)
         form.save_milestone(business)
+        form.update_application(self.request.user)
         return super().form_valid(form)
 
     def get_success_url(self):
