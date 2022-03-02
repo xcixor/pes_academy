@@ -13,6 +13,7 @@ class DraftUserDataView(View):
         for key, value in request.POST.items():
             request.session['application_form_draft'][key] = value
         request.session.modified = True
+        print(request.session['application_form_draft'])
         if is_ajax:
             return JsonResponse(
                 request.session['application_form_draft'], status=201)
