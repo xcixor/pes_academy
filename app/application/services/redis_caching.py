@@ -31,7 +31,8 @@ def get_draft_application_data_to_redis_cache(application_id):
 
     conn = get_redis_connection()
     data = conn.get(application_id)
-    return json.loads(data)
+    if data:
+        return json.loads(data)
 
 
 def delete_draft_application_data_from_redis_cache(application_id):
