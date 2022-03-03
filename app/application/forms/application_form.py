@@ -10,7 +10,7 @@ from common.utils.common_queries import get_application
 class ApplicationForm(forms.Form):
 
     full_name = forms.CharField(max_length=255, widget=forms.TextInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Full Name'}))
     age = forms.ChoiceField(
         choices=User.AGE_CHOICES, widget=forms.RadioSelect)
     gender = forms.ChoiceField(
@@ -19,17 +19,17 @@ class ApplicationForm(forms.Form):
     preferred_language = forms.ChoiceField(
         widget=forms.RadioSelect, choices=User.LANGUAGE_CHOICES)
     organization_name = forms.CharField(max_length=255, widget=forms.TextInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Organization Name'}))
     facebook_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Facebook Page Link'}))
     twitter_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Twitter Link'}))
     instagram_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Instagram Page'}))
     linkedin_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'LinkedIn Page'}))
     whatsapp_business_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Whatsapp Business Link'}))
     value_chain = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.VALUE_CHAIN_CHOICES)
@@ -40,7 +40,7 @@ class ApplicationForm(forms.Form):
         widget=forms.RadioSelect,
         choices=BusinessOrganization.STAGE_CHOICES)
     impact = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'text draftable'}))
+        attrs={'class': 'text draftable', 'placeholder': 'Covid 19 Impact'}))
     milestones = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
     )
