@@ -40,3 +40,7 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertEqual(
             field.help_text,
             'Unique text to append to the address for the application.')
+
+    def test_sets_slug_on_save(self):
+        print(self.application.slug)
+        self.assertTrue(self.application.slug)

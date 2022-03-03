@@ -1,6 +1,7 @@
+import itertools
+from django.utils.text import slugify
 from django.db import models
 from django.contrib.auth import get_user_model
-
 from application.models.call_to_action import CallToAction
 
 
@@ -29,6 +30,21 @@ class Application(models.Model):
     slug = models.SlugField(
         max_length=255, unique=True,
         help_text='Unique text to append to the address for the application.')
+
+    def _generate_slug(self):
+        value = self.call_to_action.tagline
+        slug_candidate = slug_original = slugify(value, allow_unicode=True)
+        for i in itertools.count(1):
+            if not Application.objects.filter(slug=slug_candidate).exists():
+                break
+            slug_candidate = '{}-{}'.format(slug_original, i)
+
+        self.slug = slug_candidate
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self._generate_slug()
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'
