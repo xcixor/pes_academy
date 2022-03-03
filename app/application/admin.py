@@ -1,5 +1,6 @@
 from django.contrib import admin
-from application.models import CallToAction, Application
+from application.models import (
+    CallToAction, Application, ApplicationDocument)
 from application.forms import CallToActionAdminForm
 
 
@@ -10,4 +11,13 @@ class CallToActionAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('tagline',)}
 
 
-admin.site.register(Application)
+class ApplicationDocumentInline(admin.TabularInline):
+
+    model = ApplicationDocument
+    extra = 1
+
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+
+    inlines = [ApplicationDocumentInline]
