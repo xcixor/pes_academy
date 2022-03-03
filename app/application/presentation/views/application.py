@@ -6,6 +6,7 @@ from django.views.generic.detail import SingleObjectMixin
 from application.models import CallToAction, Application
 from application.forms import ApplicationForm
 from organization_subscription.models import Subscription
+from common.utils.common_queries import get_application
 
 
 class GetApplicationView(DetailView):
@@ -18,20 +19,7 @@ class GetApplicationView(DetailView):
         context = super().get_context_data(**kwargs)
         context['form'] = ApplicationForm(self.request)
         user = self.request.user
-        application = None
-        try:
-            application = user.application
-        except AttributeError as ae:
-            print(ae)
-        if not application:
-            subscription = None
-            try:
-                subscription = Subscription.objects.get(
-                    subscriber_email=user.email)
-            except Subscription.DoesNotExist as sd:
-                print(sd)
-            if subscription:
-                application = subscription.subscription.subscription_creator.application
+        application, msg = get_application(user)
         if not application:
             Application.objects.create(
                 application_creator=user,
