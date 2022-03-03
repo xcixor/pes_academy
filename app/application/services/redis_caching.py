@@ -22,7 +22,7 @@ def set_draft_application_data_to_redis_cache(application_id, data):
     return conn.set(application_id, json.dumps(application_data))
 
 
-def get_draft_application_data_to_redis_cache(application_id):
+def get_draft_application_data_from_redis_cache(application_id):
     """Retrieves the application data from redis cache
 
     Args:
@@ -33,6 +33,7 @@ def get_draft_application_data_to_redis_cache(application_id):
     data = conn.get(application_id)
     if data:
         return json.loads(data)
+    return {}
 
 
 def delete_draft_application_data_from_redis_cache(application_id):

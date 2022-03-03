@@ -4,7 +4,7 @@ from django_redis import get_redis_connection
 from accounts.tests.common import AccountsBaseTestCase
 from application.presentation.views import (
     DraftUserDataView)
-from application.services import get_draft_application_data_to_redis_cache
+from application.services import get_draft_application_data_from_redis_cache
 
 
 class DraftUserDataViewTestCase(AccountsBaseTestCase):
@@ -84,5 +84,5 @@ class DraftUserDataViewTestCase(AccountsBaseTestCase):
             'full_name': 'Jane Doe'
         }
         self.send_successful_ajax_post(new_data)
-        data = get_draft_application_data_to_redis_cache(self.application.id)
+        data = get_draft_application_data_from_redis_cache(self.application.id)
         self.assertEqual(data['full_name'], 'Jane Doe')

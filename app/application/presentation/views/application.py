@@ -5,7 +5,6 @@ from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from application.models import CallToAction, Application
 from application.forms import ApplicationForm
-from organization_subscription.models import Subscription
 from common.utils.common_queries import get_application
 
 
@@ -61,6 +60,20 @@ class PostApplicationView(SingleObjectMixin, FormView):
         messages.add_message(
             self.request, messages.ERROR, success_message)
         return super().form_invalid(form)
+
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = {
+            'initial': self.get_initial(),
+            'prefix': self.get_prefix(),
+            'request': self.request
+        }
+        if self.request.method in ('POST', 'PUT'):
+            kwargs.update({
+                'data': self.request.POST,
+                'files': self.request.FILES,
+            })
+        return kwargs
 
 
 class ApplicationView(LoginRequiredMixin, View):

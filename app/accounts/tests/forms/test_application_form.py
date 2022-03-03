@@ -28,6 +28,7 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
         self.client = Client()
         self.factory = RequestFactory()
         self.request = self.factory.get("/")
+        self.request.user = self.user
         self.form = ApplicationForm(self.request, self.form_data)
 
     def test_validates_form(self):
@@ -69,7 +70,7 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
     def test_cannot_save_business_if_data_invalid(self):
         self.assertTrue(self.form.is_valid())
         self.form_data['facebook_link'] = 'https//www.facebook/smalltech'
-        form = ApplicationForm(self.form_data)
+        form = ApplicationForm(self.request, self.form_data)
         business = form.save_business(self.user)
         self.assertFalse(business)
 

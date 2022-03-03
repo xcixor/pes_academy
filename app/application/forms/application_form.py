@@ -2,6 +2,9 @@ from django import forms
 from application.models import BusinessOrganization, Milestone, CovidImpact
 from accounts.models import User
 from organization_subscription.models import Subscription
+from application.services.redis_caching import (
+    get_draft_application_data_from_redis_cache)
+from common.utils.common_queries import get_application
 
 
 class ApplicationForm(forms.Form):
@@ -127,3 +130,31 @@ class ApplicationForm(forms.Form):
             for milestone in Milestone.objects.all()
         ]
         self.fields['milestones'].choices = MILESTONES
+        application, msg = get_application(request.user)
+        if application:
+            data = get_draft_application_data_from_redis_cache(application.pk)
+            self.fields['age'].initial = data.get('age', None)
+            self.fields['full_name'].initial = data.get('full_name', None)
+            self.fields['preferred_language'].initial = data.get(
+                'preferred_language', None)
+            self.fields['gender'].initial = data.get('gender', None)
+            self.fields['organization_name'].initial = data.get(
+                'organization_name', None)
+            self.fields['facebook_link'].initial = data.get(
+                'facebook_link', None)
+            self.fields['twitter_link'].initial = data.get(
+                'twitter_link', None)
+            self.fields['instagram_link'].initial = data.get(
+                'instagram_link', None)
+            self.fields['linkedin_link'].initial = data.get(
+                'linkedin_link', None)
+            self.fields['whatsapp_business_link'].initial = data.get(
+                'whatsapp_business_link', None)
+            self.fields['value_chain'].initial = data.get(
+                'value_chain', None)
+            self.fields['existence_period'].initial = data.get(
+                'existence_period', None)
+            self.fields['stage'].initial = data.get(
+                'stage', None)
+            self.fields['impact'].initial = data.get(
+                'impact', None)
