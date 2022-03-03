@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from common.tests.base_test_case import BaseTestCase
-from application.models import CallToAction, Application
+from application.models import (
+    CallToAction, Application, ApplicationDocument)
 
 
 class ApplicationBaseTestCase(BaseTestCase):
@@ -24,3 +25,12 @@ class ApplicationBaseTestCase(BaseTestCase):
             call_to_action=self.create_call_to_action_instance()
         )
         return application
+
+    def create_application_document(self):
+        application = self.create_application_instance()
+        document = ApplicationDocument.objects.create(
+            document_name='KRA Pin',
+            document=self.get_image(),
+            application=application
+        )
+        return document
