@@ -103,23 +103,7 @@ class ApplicationForm(forms.Form):
             return True
 
     def update_application(self, user):
-        application = None
-        try:
-            application = user.application
-        except AttributeError as ae:
-            print(ae)
-        if not application:
-            subscription = None
-            try:
-                subscription = Subscription.objects.get(
-                    subscriber_email=user.email)
-            except Subscription.DoesNotExist as sd:
-                print(sd)
-            if subscription:
-                try:
-                    application = subscription.subscription.subscription_creator.application
-                except AttributeError as ae:
-                    print(ae)
+        application, msg = get_application(user)
         application.status = 'step_two'
         application.save()
 
