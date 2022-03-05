@@ -12,7 +12,6 @@ class GetApplicationView(DetailView):
 
     template_name = "application/application_form.html"
     model = CallToAction
-    context_object_name = 'application'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,6 +23,7 @@ class GetApplicationView(DetailView):
                 application_creator=user,
                 call_to_action=self.get_object()
             )
+        context['application'] = application
         return context
 
 

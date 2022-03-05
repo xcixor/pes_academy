@@ -39,9 +39,9 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
     def test_get_application_view_properties(self):
         self.assertTrue(issubclass(GetApplicationView, DetailView))
         self.assertEqual(GetApplicationView.model, CallToAction)
-        self.assertEqual(GetApplicationView.context_object_name, 'application')
         self.assertEqual(
-            GetApplicationView.template_name, 'application/application_form.html')
+            GetApplicationView.template_name,
+            'application/application_form.html')
 
     def test_post_application_view_properties(self):
         self.assertTrue(issubclass(PostApplicationView, FormView))
