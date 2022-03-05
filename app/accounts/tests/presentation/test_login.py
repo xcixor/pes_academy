@@ -22,7 +22,7 @@ class LoginTestCase(AccountsBaseTestCase):
         response = self.client.post(
             '/accounts/login/?next=/applications/', self.form, follow=True)
         self.assertRedirects(
-            response, '/applications/', 302)
+            response, f'/applications/{self.user.application.call_to_action.slug}/', 302)
 
     def test_adds_success_message(self):
         response = self.client.post(

@@ -246,9 +246,24 @@
                 </p>
             </strong>
             <div class="form-check">
-                <p> KRA PIN<input type="file" id="myFile" name="KRA Pin"></p>
-                <p> ID Card<input type="file" id="myFile" name="ID card"></p>
-                <p>Work Licence<input type="file" id="myFile" name="Licence"></p>
+                <div class="row">
+                    <div class="col">
+                        <p>KRA PIN</p>
+                        <input type="file" name="kra_pin" onchange="saveDocument(event, 'KRA Pin', '{{application.pk}}')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>ID Card</p>
+                        <input type="file" name="id_card" onchange="saveDocument(event, 'ID Card', '{{application.pk}}')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Work Licence</p>
+                        <input type="file" name="licence" onchange="saveDocument(event, 'Licence', '{{application.pk}}')">
+                    </div>
+                </div>
                 </div>
                 <div class="btns-group">
                     <a href="#" class="btn btn-prev ">Previous</a>
@@ -264,4 +279,5 @@
 {% block scripts %}
 {{ block.super }}
 <script src="{% static 'js/application/save_draft.js' %}"></script>
+<script src="{% static 'js/application/save_document.js' %}"></script>
 {% endblock %}

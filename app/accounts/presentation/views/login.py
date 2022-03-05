@@ -19,7 +19,6 @@ class UserLoginView(LoginView):
             self.request, messages.SUCCESS, success_message)
         user = self.request.user
         application, msg = get_application(user)
-        print(application.pk)
         if application.status == 'step_one':
             next_url = f'/applications/{application.call_to_action.slug}/'
             return next_url
