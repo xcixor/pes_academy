@@ -23,7 +23,8 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
             'existence_period': 'period_two',
             'stage': 'stage_one',
             'impact': 'We beat it',
-            'milestones': [mileston_one.id, mileston_two.id]
+            'milestones': [mileston_one.id, mileston_two.id],
+            'kra_pin': self.get_image(),
         }
         self.client = Client()
         self.factory = RequestFactory()
