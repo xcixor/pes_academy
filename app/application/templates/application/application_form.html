@@ -9,6 +9,11 @@
 {% block content %}
 <div class="container-fluid app">
     <div class="row">
+        <div class="col d-flex justify-content-end">
+            <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn" download>Download Application Form</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4 app_img">
             <a ><img src="{% static 'images/clientlog.JPG' %}"></a>
         </div>

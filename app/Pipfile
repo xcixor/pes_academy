@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 django-redis = "==5.2.0"
+weasyprint = "==54.2"
 
 [dev-packages]
 

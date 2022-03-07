@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application for {{application}}</title>
+</head>
+<style>
+    body {
+        font-family: 'Google Sans', Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    }
+    .row {
+        margin-top: 50px;
+    }
+    input {
+        border-bottom: 1px solid;
+    }
+    .provided {
+        font-weight: bold;
+        font-style: italic;
+        margin: 20px 0;
+    }
+    ul {
+        list-style: none;
+    }
+    :checked {
+        border: none;
+    }
+    input:checked::after {
+        content: "✓";
+        color: red;
+    }
+</style>
+<body>
+    <section>
+        <h3>PERSONAL INFO</h3>
+        <div class="row">
+            <strong><p>Kindly select your preferred language</p></strong>
+            {{ form.preferred_language }}
+        </div>
+        <div class="row">
+            <strong><label for="name">Participant Name</label></strong><br><br>
+            {% if data.full_name %}
+            <p class="provided">{{data.full_name}}</p>
+            {% else %}
+            _________________________________________________
+            {% endif %}
+        </div>
+        <div class="row">
+            <strong>
+            {{ form.age.label }}
+            </strong><br> <br>
+            {{ form.age }}
+        </div>
+        <div class="row">
+            <strong>
+            {{ form.gender.label }}
+            </strong><br> <br>
+            {{ form.gender }}
+        </div>
+    </section>
+    <section>
+        <h3>BUSINESS INFO</h3>
+        <div class="row">
+            <strong><label for="Your answer">Organization name and social media presence.(Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))</label></strong>
+            {{ form.organization_name }}
+            <br> <br>
+            <span>
+                {{ form.organization_name.label }}:
+                {% if data.organization_name %}
+                <strong>{{data.organization_name}}</strong>
+                {% else %}
+                __________________________________________________
+                {% endif %}
+            </span>
+        </div>
+        <div class="row">
+            <h3>Socials</h3> <br>
+            <span>
+                Facebook Page Link:
+                {% if data.facebook_link %}
+                <strong>{{data.facebook_link}}</strong>
+                {% else %}
+                __________________________________________________
+                {% endif %}
+            </span><br><br>
+
+            <span>
+                Twitter Link:
+                {% if data.twitter_link %}
+                <strong>{{data.twitter_link}}</strong>
+                {% else %}
+                __________________________________________________
+                {% endif %}
+            </span><br><br>
+            <span>
+                Instagram Link:
+                {% if data.instagram_link %}
+                <strong>{{data.instagram_link}}</strong>
+                {% else %}
+                __________________________________________________
+                {% endif %}
+            </span><br><br>
+            <span>
+                LinkedIn Link:
+                {% if data.linked_link %}
+                <strong>{{data.linked_link}}</strong>
+                {% else %}
+                __________________________________________________
+                {% endif %}
+            </span><br><br>
+            <span>
+                Whatsapp Business Link:
+                {% if data.whatsapp_business_link %}
+                <strong>{{data.whatsapp_business_link}}</strong>
+                {% else %}
+                _______________________________________________
+                {% endif %}
+            </span><br><br>
+        </div>
+        <div class="row">
+            <strong><p>Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies * </p></strong>
+            {{ form.value_chain }}
+        </div>
+        <div class="row">
+            <p>
+                <strong>
+                    How long has the business been in formal existence for? * Kindly select one option.
+                    Formal existence means from when the company was registered and started operating
+                </strong>
+            </p>
+            {{ form.existence_period }}
+        </div>
+        <div class="row">
+            <p>
+                <strong>
+                    Which one sentence best describes the stage where your business is at? *
+                    Kindly select one option only that best describes where you are at in the business development stage.
+                    MVP means minimum viable product
+                </strong>
+            </p>
+            {{ form.stage }}
+        </div>
+        <div class="row">
+            <strong>
+                <p>
+                    What are the 3 key business milestones to be achieved in the short term (1-2 years)? *
+                    Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.
+                </p>
+            </strong>
+            {{ form.milestones }}
+        </div>
+        <div class="row">
+           <p>
+                <strong>
+                    How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects *
+                    Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)
+                </strong>
+            </p>
+            {{ form.impact }} <br> 
+            {% if data.impact %}
+            <strong>{{data.impact}}</strong>
+            {% else %}
+            _______________________________________________
+            __________________________________________________
+            __________________________________________________
+            {% endif %}
+
+        </div>
+        <div class="row">
+            <p>
+                <strong>
+                  Kindly upload the relevant documents as described below.
+                </strong>
+            </p>
+            <p>KRA PIN</p>
+            <p>ID Card</p>
+            <p>Work Licence</p>
+        </div>
+    </section>
+</body>
+</html>

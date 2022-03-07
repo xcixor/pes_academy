@@ -1,7 +1,6 @@
 from django import forms
 from application.models import BusinessOrganization, Milestone, CovidImpact
 from accounts.models import User
-from organization_subscription.models import Subscription
 from application.services.redis_caching import (
     get_draft_application_data_from_redis_cache)
 from common.utils.common_queries import get_application

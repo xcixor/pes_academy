@@ -1,7 +1,7 @@
 from django.urls import path
 from application.presentation.views import (
     IndexView, DraftUserDataView, ApplicationView, SubmitView,
-    PostApplicationDocumentFormView)
+    PostApplicationDocumentFormView, ApplicationPDFView)
 
 app_name = 'application'
 
@@ -12,4 +12,6 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('<slug:slug>/', ApplicationView.as_view()),
     path('application/draft/', DraftUserDataView.as_view(), name='draft'),
+    path('application/pdf/',
+         ApplicationPDFView.as_view(), name='application_pdf')
 ]
