@@ -32,3 +32,10 @@ class LoginTestCase(AccountsBaseTestCase):
             'Welcome back normal_user!')
         self.assertEqual(message.tags, 'success')
         self.assertEqual(message.message, expected_message)
+
+    def test_redirects_to_next_if_no_application(self):
+        self.user.application.delete()
+        response = self.client.post(
+            '/accounts/login/?next=/applications/', self.form, follow=True)
+        self.assertRedirects(
+            response, '/applications/', 302)
