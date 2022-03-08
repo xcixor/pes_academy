@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, FormView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from application.presentation.views import (
     GetApplicationFormView, PostApplicationView)
@@ -7,7 +7,8 @@ from application.models import CallToAction, Application
 from application.models import (
     BusinessOrganization, Milestone, CovidImpact)
 from accounts.tests.common import AccountsBaseTestCase, User
-from organization_subscription.models import OrganizationSubscription, Subscription
+from organization_subscription.models import (
+    OrganizationSubscription, Subscription)
 
 
 class ApplicationViewTestCase(AccountsBaseTestCase):
@@ -37,8 +38,7 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             username=self.user.username, password='socrates123@')
 
     def test_get_application_view_properties(self):
-        self.assertTrue(issubclass(GetApplicationFormView, DetailView))
-        self.assertEqual(GetApplicationFormView.model, CallToAction)
+        self.assertTrue(issubclass(GetApplicationFormView, TemplateView))
         self.assertEqual(
             GetApplicationFormView.template_name,
             'application/application_form.html')

@@ -9,7 +9,8 @@
 {% block content %}
 <div class="container-fluid app">
     <div class="row">
-        <div class="col d-flex justify-content-end">
+        <div class="col d-flex justify-content-between">
+            <h3>Application for {{application.call_to_action.tagline}}</h3>
             <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn" download>Download Application Form</a>
         </div>
     </div>

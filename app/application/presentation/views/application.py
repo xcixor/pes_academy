@@ -1,19 +1,20 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views import View
-from django.views.generic import DetailView, FormView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from application.models import CallToAction, Application
 from application.forms import ApplicationForm
 from common.utils.common_queries import get_application
 
 
-class GetApplicationFormView(DetailView):
+class GetApplicationFormView(TemplateView):
 
     template_name = "application/application_form.html"
-    model = CallToAction
 
     def get_context_data(self, **kwargs):
+        call_to_action_slug = kwargs.get('slug')
+        call_to_action = CallToAction.objects.get(slug=call_to_action_slug)
         context = super().get_context_data(**kwargs)
         context['form'] = ApplicationForm(self.request)
         user = self.request.user
@@ -21,7 +22,7 @@ class GetApplicationFormView(DetailView):
         if not application:
             Application.objects.create(
                 application_creator=user,
-                call_to_action=self.get_object()
+                call_to_action=call_to_action
             )
         context['application'] = application
         return context
