@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from application.presentation.views import (
-    GetApplicationView, PostApplicationView)
+    GetApplicationFormView, PostApplicationView)
 from application.forms import ApplicationForm
 from application.models import CallToAction, Application
 from application.models import (
@@ -37,10 +37,10 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
             username=self.user.username, password='socrates123@')
 
     def test_get_application_view_properties(self):
-        self.assertTrue(issubclass(GetApplicationView, DetailView))
-        self.assertEqual(GetApplicationView.model, CallToAction)
+        self.assertTrue(issubclass(GetApplicationFormView, DetailView))
+        self.assertEqual(GetApplicationFormView.model, CallToAction)
         self.assertEqual(
-            GetApplicationView.template_name,
+            GetApplicationFormView.template_name,
             'application/application_form.html')
 
     def test_post_application_view_properties(self):

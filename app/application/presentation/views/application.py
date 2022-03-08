@@ -8,7 +8,7 @@ from application.forms import ApplicationForm
 from common.utils.common_queries import get_application
 
 
-class GetApplicationView(DetailView):
+class GetApplicationFormView(DetailView):
 
     template_name = "application/application_form.html"
     model = CallToAction
@@ -79,7 +79,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
 class ApplicationView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
-        view = GetApplicationView.as_view()
+        view = GetApplicationFormView.as_view()
         return view(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
