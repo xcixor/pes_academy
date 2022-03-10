@@ -19,16 +19,27 @@ class ApplicationForm(forms.Form):
         widget=forms.RadioSelect, choices=User.LANGUAGE_CHOICES)
     organization_name = forms.CharField(max_length=255, widget=forms.TextInput(
         attrs={'class': 'text draftable', 'placeholder': 'Organization Name'}))
-    facebook_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Facebook Page Link'}))
-    twitter_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Twitter Link'}))
-    instagram_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Instagram Page'}))
-    linkedin_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable', 'placeholder': 'LinkedIn Page'}))
-    whatsapp_business_link = forms.URLField(required=False, widget=forms.URLInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Whatsapp Business Link'}))
+    facebook_link = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'Facebook Page: e.g https://www.facebook.com/my_page/'})
+    )
+    twitter_link = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'Twitter Link: e.g https://www.twitter.com/my_page/'}))
+    instagram_link = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'Instagram Page: e.g https://www.instagram.com/my_page/'}))
+    linkedin_link = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'LinkedIn Page: e.g https://www.linkedin.com/company/my_page/'}))
+    whatsapp_business_link = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'Whatsapp Business Link: e.g https://web.whatsapp.com/my_page/'}))
     value_chain = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.VALUE_CHAIN_CHOICES)

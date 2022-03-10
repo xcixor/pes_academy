@@ -19,7 +19,7 @@
             <a ><img src="{% static 'images/clientlog.JPG' %}"></a>
         </div>
         <div class="col-md-8">
-        <form class="form"  name="form" id="myForm" method="post" action="/applications/{{application.slug}}/">
+        <form class="form"  name="form" id="myForm" method="post" action="/applications/{{application.call_to_action.slug}}/">
         {% csrf_token %}
         <!-- progress bar -->
             <div class="progressbar">

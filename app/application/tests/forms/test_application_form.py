@@ -70,7 +70,7 @@ class ApplicationFormTestCase(AccountsBaseTestCase):
 
     def test_cannot_save_business_if_data_invalid(self):
         self.assertTrue(self.form.is_valid())
-        self.form_data['facebook_link'] = 'https//www.facebook/smalltech'
+        self.form_data.pop('age')
         form = ApplicationForm(self.request, self.form_data)
         business = form.save_business(self.user)
         self.assertFalse(business)
