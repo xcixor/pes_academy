@@ -73,6 +73,7 @@ class ApplicationForm(forms.Form):
                 organization_name=self.cleaned_data['organization_name'],
                 defaults={
                     'value_chain': self.cleaned_data['value_chain'],
+                    'stage': self.cleaned_data['stage'],
                     'existence_period': self.cleaned_data['existence_period'],
                     'facebook_link': self.cleaned_data['facebook_link'],
                     'twitter_link': self.cleaned_data['facebook_link'],
