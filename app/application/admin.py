@@ -20,4 +20,6 @@ class ApplicationDocumentInline(admin.TabularInline):
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
 
+    list_display = ['special_id', 'application_creator']
+
     inlines = [ApplicationDocumentInline]

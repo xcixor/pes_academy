@@ -46,5 +46,9 @@ class Application(models.Model):
             self._generate_slug()
         super().save(*args, **kwargs)
 
+    @property
+    def special_id(self):
+        return f'PES - {self.slug} - {self.id}'
+
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'
