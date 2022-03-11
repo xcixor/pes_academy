@@ -1,7 +1,7 @@
 
 #navigation {
     background: #0e1a35;
-    height: 100vh;
+    height:80vh;
 }
 
 #navigation {
@@ -11,8 +11,8 @@
 .display-table {
     display: table;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
 }
 
 .display-table-row {
@@ -278,37 +278,6 @@ header {
     display: none;
 }
 
-
-
-@media only screen and (min-device-width: 767px) and (max-device-width: 998px){
-      .user-dashboard .header-top {
-        padding-top: 5px;
-}
-    .user-dashboard .header-rightside {
-        display: inline-block;
-        /* float: left; */
-        width: 100%;
-}
-    .user-dashboard .header-rightside .header-top img {
-        max-width: 41px !important;
-} 
-    .user-dashboard .sales button {
-    font-size: 10px;
-}
-    .user-dashboard .btn.btn-secondary.btn-lg.dropdown-toggle > span {
-    font-size: 12px;
-}
-    .user-dashboard .sales h2 {
-    font-size: 15px;
-}
-}
-@media only screen and (min-device-width:998px) and (max-device-width: 1350px){
-        #navigation .logo img {
-    max-width: 130px;
-    padding: 16px 0 17px;
-    width: 100%;
-}
-}
 
 .popup{
     position: absolute;

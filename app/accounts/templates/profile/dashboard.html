@@ -7,24 +7,24 @@
 <div class="home">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
-            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+            <div class="col-md-2 col-sm-1  display-table-cell v-align box" id="navigation">
 
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</span>
+                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</span></a></li>
 
                         <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Academy')" >Academy</span>
+                            <span class="tablink" onclick="openPage('Academy')" >Academy</span></a></li>
 
                         <li class="tablink" onclick="openPage('App')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('App')" >Applications</span>
+                            <span class="tablink" onclick="openPage('App')" >Applications</span></a></li>
 
                         <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Team')" >Team</span>
+                            <span class="tablink" onclick="openPage('Team')" >Team</span></a></li>
 
                         <li ><a href="/accounts/logout/"><i class="fa fa-cog" aria-hidden="true"></i>
-                            <span >Log Out</span>
+                            <span >Log Out</span></a></li>
 
 
                     </ul>
@@ -38,25 +38,9 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
+                                    <button class="btn btn-primary" id="show-form">Invite</button>
 
-                                    <button id="show-form">Invite</button>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" alt="{{user}}">
-                                            <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="navbar-content">
-                                                    <span>{{user.full_name}}</span>
-                                                    <p class="text-muted small">
-                                                        {{user.email}}
-                                                    </p>
-                                                    <div class="divider">
-                                                    </div>
-                                                    <a href="/accounts/logout/" class="view btn-sm active">Log Out</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <!-- <button class="btn btn-primary" id="show-form">Invite</button> -->
                                 </ul>
                             </div>
                         </div>
@@ -72,7 +56,7 @@
 
                             <div class=" row sales">
                                 <h2>Your Team Members</h2>
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     {% if user.organization_admin %}
                                     {% for member in user.organization_admin.subscriptions.all %}
                                     <p>{{member}}</p>
@@ -87,33 +71,32 @@
                                     {% endwith %}
                                     {% endif %}
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <button class="btn-danger">Delete</button>
                                     <button class="btn-danger">Delete</button>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-4 col-xs-12 gutter">
-
+                        <div class="col-md-6 col-sm-4 col-xs-12 gutter">
+                            
                             <div class=" row sales ">
-                                <h2>Ongoing Applications</h2>
+                                <h2> Ongoing Applications</h2>
                                 <div class="col-md-12">
                                     {% if user.application %}
-                                    <a href="/applications/{{user.application.call_to_action.slug}}/">Your Application</a>
+                                    <button><a href="/applications/{{user.application.call_to_action.slug}}/">Your Application</a></button>
                                     {% else %}
-                                    <a href="{{user.email|get_application_url}}">Your Application</a>
+                                    <button><a href="{{user.email|get_application_url}}">Your Application</a></button>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-4 col-xs-12 gutter">
-
-                            <div class="sales">
+                        <!-- <div class="col-md-6 col-sm-4 col-xs-12 gutter">
+                                <div class="sales">
                                 <button><a href=""></a>Join PES Academy</button>
 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div id="Academy" class="tabcontent">
@@ -128,7 +111,8 @@
                   </div>
 
                   <div id="App" class="tabcontent">
-                    <div class=" col-md-6 card">
+                 <div class="row">
+                    <div class="col-md-6 card">
                         <div class="card-header">
                           Applications
                         </div>
@@ -142,6 +126,22 @@
                           {% endif %}
                         </div>
                       </div>
+
+                      <div class=" col-md-6 card">
+                        <div class="card-header">
+                          Upload Further Documents
+                        </div>
+                        <div class="card-body">
+                         <form action="/accounts/dashboard/" method="post">
+                             {% csrf_token %}
+                            <input name="document_name" type="text">
+                            <input name="document" type="file">
+                            <input name="application" type="hidden"  value="{{application.pk}}">        
+                            <input type="submit" value="Save"> 
+                        </form>                        
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div id="Team" class="tabcontent">
@@ -177,31 +177,20 @@
                             {% else %}
                             {% with members=user.email|get_organization_members %}
                             {% for member in members %}
-                            <p>
+                            <p><button class="btn-info">
                                 {{member}}
-                            </p>
+                            </button></p>
                             {% endfor %}
                             {% endwith %}
                             {% endif %}
                         </div>
-                        <div class="col-md-4 gutter">
+                        <!-- <div class="col-md-4 gutter">
                             <p><button class="btn-danger">Delete</button></p>
                             <p><button class="btn-danger">Delete</button></p>
-                        </div>
+                        </div> -->
 
                     </div>
                   </div>
-                  <!-- <div id="Setting" class="tabcontent">
-                    <h3>Name: <span> Jane Doe</span></h3>
-                    <br>
-                    <br>
-                    <h4> Email: <span>janedoe@gmail.com</span></h4>
-                    <br>
-                    <br>
-                    <button class="btn btn-primary">Log out</button>
-
-                  </div> -->
-
             </div>
         </div>
 
@@ -210,7 +199,7 @@
 
     <div class="popup">
         <div class="close-btn">&times;</div>
-        <form class="form" action="/organization-subscription/initiate/" method="post">
+        <div><form class="form" action="/organization-subscription/initiate/" method="post">
             {% csrf_token %}
             <h2>Invite Collaborator</h2>
             <div class="form-element">
@@ -226,9 +215,8 @@
         <div class="form-element">
             <button type="submit">Send</button>
         </div>
-    </form>
+    </form></div>
     </div>
-
 
 </div>
 {% endblock %}
