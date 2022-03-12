@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'application',
     'organization_subscription',
-    'eligibility'
+    'eligibility',
+    'pes_admin',
 ]
 
 MIDDLEWARE = [
