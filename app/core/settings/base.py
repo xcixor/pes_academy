@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'common',
     'accounts',
     'application',
-    'organization_subscription'
+    'organization_subscription',
+    'eligibility'
 ]
 
 MIDDLEWARE = [
