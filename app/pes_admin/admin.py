@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib import admin
-from pes_admin.presentation.views import AdvancedAdminDashboardView
+from pes_admin.presentation.views import (
+    AdvancedAdminDashboardView, InviteReviewerView)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -9,6 +10,8 @@ class CustomAdmin(admin.AdminSite):
         return [
             path('',
                  admin.site.admin_view(AdvancedAdminDashboardView.as_view())),
+            path('invite/reviewer/',
+                 admin.site.admin_view(InviteReviewerView.as_view())),
         ]
 
 
