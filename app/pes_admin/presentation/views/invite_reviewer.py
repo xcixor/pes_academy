@@ -1,10 +1,7 @@
 from django.views import View
-from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView, FormView
 from django.contrib import messages
 from pes_admin.forms import InviteSubscriberForm
-
-User = get_user_model()
 
 
 class GetInviteReviewerView(TemplateView):
