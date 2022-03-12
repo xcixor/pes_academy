@@ -1,7 +1,6 @@
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.contrib import messages
-from organization_subscription.models import Subscription
 from common.utils.common_queries import get_application
 
 
