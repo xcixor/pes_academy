@@ -27,6 +27,9 @@ urlpatterns = [
          include(
              'organization_subscription.presentation.urls',
              namespace='organization_subscription')),
+    path(
+        'eligibility/',
+        include('eligibility.presentation.urls', namespace='eligibility')),
 ]
 
 if settings.DEBUG:

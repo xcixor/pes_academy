@@ -26,7 +26,7 @@ class BaseTestCase(TestCase):
 
     def create_logged_in_admin(self):
         admin = get_user_model().objects.create_superuser(
-            'admin@admin.com', 'pass1234')
+            'admin', 'pass1234', email='admin@admin.com')
         self.client.login(username=admin.email, password='pass1234')
         return admin
 

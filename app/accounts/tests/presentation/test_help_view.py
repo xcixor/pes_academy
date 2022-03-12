@@ -1,13 +1,12 @@
 from django.views.generic import TemplateView
-from accounts.presentation.views  import HelpView
+from accounts.presentation.views import HelpView
 from django.test import TestCase
-from django.views import View
+
 
 class HelpViewTestCase(TestCase):
 
     def setUp(self):
         super(HelpViewTestCase, self).setUp()
-        
 
     def test_view_properties(self):
         self.assertEqual(HelpView.template_name, 'help.html')
