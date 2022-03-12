@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from pes_admin import admin as custom_admin
 
 urlpatterns = [
+    path('admin/advanced/', include(custom_admin.custom_urls)),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.presentation.urls', namespace='accounts')),
     path('applications/', include('application.presentation.urls',
