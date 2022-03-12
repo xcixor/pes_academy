@@ -6,8 +6,6 @@
             alt="PES logo">
         </a>
       <!-- <a class="navbar-brand" href="#">PrivateEquity-Support</a> -->
-
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
 
@@ -22,9 +20,13 @@
                       <span class="sr-only">(current)</span>
                   </a>
               </li> -->
-
           </ul>
       </div>
+      {% if user.is_superuser %}
+      <div>
+          <h2>Welcome Admin</h2>
+      </div>
+      {% else %}
       <div class="help">
         <p><a href="{% url 'accounts:help' %}"> <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png"/> Help</a></p>
       </div>
@@ -32,5 +34,6 @@
       <div class="help">
         <p><a href="{% url 'accounts:dashboard' %}"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/68/000000/external-users-internet-of-things-smashingstocks-mixed-smashing-stocks.png"/>Account </a></p>
       </div>
+      {% endif %}
   </div>
 </nav>

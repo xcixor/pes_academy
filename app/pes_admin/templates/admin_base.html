@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/pes_admin/admin_base.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container-fluid d-flex justify-content-between align-items-start">
+    <aside class="">
+        <ul>
+            <li class="pl-5 active"><a class="py-5 aside-link" href="#">Add Application Reviewers</a></li>
+            <li class="pl-5"><a class="py-5 aside-link" href="#">Another Action</a></li>
+        </ul>
+    </aside>
+    <section class="content p-5">
+        {% block admin_content %}
+        <h1>Hello Admin</h1>
+        <p>Manage applications and more</p>
+        {% endblock %}
+    </section>
+</div>
+{% endblock %}

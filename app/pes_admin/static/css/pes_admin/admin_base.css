@@ -1,0 +1,24 @@
+aside {
+    flex-basis: 30%;
+    background-color: #D7E9F7;
+}
+
+.content {
+    flex-basis: 65%;
+    background-color: whitesmoke;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.active {
+    background-color: #e3f0f9;
+}
+
+.aside-link {
+    display: block;
+    height: 100%;
+}
