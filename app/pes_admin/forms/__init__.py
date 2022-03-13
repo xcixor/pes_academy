@@ -1,1 +1,2 @@
 from .invite_reviewer import InviteSubscriberForm
+from .assign_reviewers import AssignReviewersForm

@@ -5,9 +5,9 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Reviewer's Email address</label>
     <input type="email" class="form-control" name="email" placeholder="Enter email">
-            {% for error in form.email.errors %}
-            <p class="error">{{ error|escape }}</p>
-            {% endfor %}
+    {% for error in form.email.errors %}
+    <p class="error">{{ error|escape }}</p>
+    {% endfor %}
   </div>
   <button type="submit" class="btn btn-primary">Invite</button>
 </form>
