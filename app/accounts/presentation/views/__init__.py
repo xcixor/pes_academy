@@ -5,3 +5,4 @@ from .registration import (
 from .login import UserLoginView
 from .activate_account import ActivationEmailSentView, AccountActivationView
 from .dashboard import DashboardView
+from .staff.applications import ApplicationsToReviewView

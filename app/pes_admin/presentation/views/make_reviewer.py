@@ -29,8 +29,8 @@ class MakeStaffReviewerView(View):
             name='reviewers')
         content_type = ContentType.objects.get_for_model(Application)
         permission, created = Permission.objects.get_or_create(
-            codename='can_view_project',
-            name='Can view project',
+            codename='can_view_application',
+            name='Can view application',
             content_type=content_type)
         reviewers_group.permissions.add(permission)
         user.groups.add(reviewers_group)

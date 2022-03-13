@@ -11,7 +11,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
     def get_template_names(self):
         if self.request.user.is_staff:
-            return "profile/staff_dashboard.html"
+            return "profile/staff/dashboard.html"
         return super().get_template_names()
 
     def get_context_data(self, **kwargs):

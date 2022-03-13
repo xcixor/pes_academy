@@ -2,7 +2,8 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from accounts.presentation.views import (
     HelpView, UserLoginView, RegistrationView, ActivationEmailSentView,
-    AccountActivationView, DashboardView, ReviewerRegistrationView)
+    AccountActivationView, DashboardView, ReviewerRegistrationView,
+    ApplicationsToReviewView)
 
 app_name = 'accounts'
 
@@ -18,4 +19,6 @@ urlpatterns = [
     path('activate/<str:uidb64>/<str:token>/',
          AccountActivationView.as_view(), name='activate'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('reviewer/applications/',
+         ApplicationsToReviewView.as_view(), name='applications_to_review'),
 ]

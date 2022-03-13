@@ -7,5 +7,9 @@ User = get_user_model()
 
 class ApplicationReview(models.Model):
 
-    application = models.ForeignKey(Application, on_delete=models.CASCADE)
-    reviewer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    application = models.ForeignKey(
+        Application, on_delete=models.CASCADE,
+        related_name='reviewers')
+    reviewer = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True,
+        related_name='applications')
