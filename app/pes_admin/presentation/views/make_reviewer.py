@@ -37,7 +37,7 @@ class MakeStaffReviewerView(View):
         user.is_reviewer = True
         user.save()
         success_message = (
-            f'Great, staff member {user} is now a reviewer.')
+            f'Great, staff member {user} can now review applications.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return redirect('/admin/advanced/view/staff/')

@@ -16,4 +16,4 @@ class EligibilityViewTestCase(StaffBaseTestCase):
         self.assertTrue(issubclass(EligibilityView, TemplateView))
         self.assertTrue(issubclass(EligibilityView, PermissionRequiredMixin))
         self.assertEqual(EligibilityView.permission_required,
-                         ('application.view_application', ))
+                         ('application.can_view_application', ))
