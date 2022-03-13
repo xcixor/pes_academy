@@ -40,7 +40,7 @@ class PostReviewerRegistrationView(FormView):
 
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
-    success_url = '/accounts/login/'
+    success_url = '/accounts/profile/'
 
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
