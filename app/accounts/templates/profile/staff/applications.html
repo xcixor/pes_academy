@@ -1,6 +1,6 @@
 {% extends 'staff_base.html' %}
 {% block admin_content %}
-{% if user.applications %}
+{% if user.applications.all %}
 <div class="row">
     <div class="col-md-4"><b>Application</b></div>
     <div class="col-md-4"><b>Owner</b></div>
