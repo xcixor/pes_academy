@@ -55,11 +55,11 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().get_success_url()
 
     def form_invalid(self, form):
-        success_message = (
+        error_message = (
             'An error occurred while validating your form. '
             'Please check that all fields are correct. Thank you.')
         messages.add_message(
-            self.request, messages.ERROR, success_message)
+            self.request, messages.ERROR, error_message)
         return super().form_invalid(form)
 
     def get_form_kwargs(self):

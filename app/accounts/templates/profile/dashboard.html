@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-4 col-xs-12 gutter">
-                            
+
                             <div class=" row sales ">
                                 <h2> Ongoing Applications</h2>
                                 <div class="col-md-12">
@@ -132,13 +132,23 @@
                           Upload Further Documents
                         </div>
                         <div class="card-body">
-                         <form action="/accounts/dashboard/" method="post">
+                         <form action="{% url 'application:extra_documents' %}" method="post" enctype="multipart/form-data">
                              {% csrf_token %}
-                            <input name="document_name" type="text">
-                            <input name="document" type="file">
-                            <input name="application" type="hidden"  value="{{application.pk}}">        
-                            <input type="submit" value="Save"> 
-                        </form>                        
+                             <div class="form-group">
+                                <input name="document_name" type="text">
+                                {% for error in form.document_name.errors %}
+                                <div class="error">{{ error|escape }}</div>
+                                {% endfor %}
+                             </div>
+                             <div class="form-group">
+                                <input name="document" type="file">
+                                {% for error in form.document.errors %}
+                                <div class="error">{{ error|escape }}</div>
+                                {% endfor %}
+                             </div>
+                            <input name="application" type="hidden"  value="{{application.pk}}">
+                            <input type="submit" value="Save">
+                        </form>
                         </div>
                       </div>
                     </div>
