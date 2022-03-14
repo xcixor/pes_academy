@@ -31,6 +31,5 @@ class ApplicationPDFView(View):
         response['Content-Disposition'] = (
             f'filename=application_{application}.pdf')
         weasyprint.HTML(string=html).write_pdf(
-            response,
-            stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + '/css/application_pdf.css')])
+            response)
         return response
