@@ -18,7 +18,14 @@ class DraftUserDataView(LoginRequiredMixin, View):
         request.session.modified = True
         data = request.session['application_form_draft']
         application, msg = get_application(request.user)
-        set_draft_application_data_to_redis_cache(application.id, data)
+        try:
+            set_draft_application_data_to_redis_cache(application.id, data)
+        except Exception as e:
+            print(e)
+            if is_ajax:
+                return JsonResponse(
+                    {}, status=400)
+            return HttpResponseNotFound('Not found')
         if is_ajax:
             return JsonResponse(
                 data, status=201)

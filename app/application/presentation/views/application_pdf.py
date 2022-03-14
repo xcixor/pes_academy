@@ -15,7 +15,11 @@ class ApplicationPDFView(View):
         user = self.request.user
         application, msg = get_application(user)
         form = ApplicationForm(request)
-        data = get_draft_application_data_from_redis_cache(application.pk)
+        data = {}
+        try:
+            data = get_draft_application_data_from_redis_cache(application.pk)
+        except Exception as ce:
+            print(ce)
         context = {
             'form': form,
             'application': application,
