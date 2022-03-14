@@ -127,7 +127,11 @@ class ApplicationForm(forms.Form):
         self.fields['milestones'].choices = MILESTONES
         application, msg = get_application(request.user)
         if application:
-            data = get_draft_application_data_from_redis_cache(application.pk)
+            data = {}
+            try:
+                data = get_draft_application_data_from_redis_cache(application.pk)
+            except Exception as ce:
+                print(ce)
             self.fields['age'].initial = data.get('age', None)
             self.fields['full_name'].initial = data.get('full_name', None)
             self.fields['preferred_language'].initial = data.get(
