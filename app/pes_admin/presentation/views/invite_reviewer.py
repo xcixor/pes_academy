@@ -24,7 +24,7 @@ class PostInviteReviewerView(FormView):
         email = form.cleaned_data['email']
         form.send_invitation_email(self.request)
         success_message = (
-            f'Great. {email} asked to create an account.')
+            f'Great. {email} has been asked to create an account.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return super().form_valid(form)

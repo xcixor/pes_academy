@@ -33,6 +33,8 @@ class Application(models.Model):
         help_text='Unique text to append to the address for the application.')
     is_in_review = models.BooleanField(default=False)
     eligibility = models.BooleanField(default=False)
+    to_advance = models.BooleanField(
+        default=False, help_text='Whether to advance or avoid the application')
 
     def _generate_slug(self):
         value = self.call_to_action.tagline
