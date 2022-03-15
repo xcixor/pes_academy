@@ -8,10 +8,9 @@ class ApplicationDocumentTestCase(ApplicationBaseTestCase):
     def setUp(self):
         super(ApplicationDocumentTestCase, self).setUp()
         self.application = self.create_application_instance()
-        document = {'document': self.get_image()}
+        document = {'document': self.get_pdf()}
         self.form_data = {
             'document_name': 'KRA Pin',
-            'document': self.get_image(),
             'application': self.application.pk
         }
         self.form = ApplicationDocumentForm(self.form_data, document)

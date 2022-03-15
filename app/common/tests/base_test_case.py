@@ -24,6 +24,14 @@ class BaseTestCase(TestCase):
         )
         return mock_image
 
+    def get_pdf(self):
+        image_path = str(BASE_DIR) + "/media/tests/test_pdf.pdf"
+        mock_image = SimpleUploadedFile(
+            name="test_pdf.pdf", content=open(image_path, 'rb').read(),
+            content_type='pdf'
+        )
+        return mock_image
+
     def create_logged_in_admin(self):
         admin = get_user_model().objects.create_superuser(
             'admin', 'pass1234', email='admin@admin.com')

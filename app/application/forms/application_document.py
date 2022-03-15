@@ -1,3 +1,4 @@
+import os
 from django import forms
 from application.models import ApplicationDocument
 
@@ -16,4 +17,13 @@ class ApplicationDocumentForm(forms.ModelForm):
                 'application': self.cleaned_data['application']
             }
         )
+        return document
+
+    def clean_document(self):
+        document = self.cleaned_data['document']
+        extension = os.path.splitext(document.name)[1]
+        valid_extensions = ['.pdf', '.doc', '.docx']
+        if extension not in valid_extensions:
+            raise forms.ValidationError(
+                'Please Upload PDF files only!')
         return document

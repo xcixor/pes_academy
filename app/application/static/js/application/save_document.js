@@ -8,12 +8,15 @@ function saveDocument(event, document_name, application){
     xhr.addEventListener('readystatechange', function(e) {
         if (xhr.readyState === 4 && xhr.status == 201) {
             var message = JSON.parse(xhr.response);
-            console.log(message);
+            console.log(message.message);
+            $(`#${event.target.name}_message`).addClass('success').text(message.message);
         }
         else if (xhr.readyState === 4 && xhr.status != 200) {
             var errors = JSON.parse(xhr.response);
             Object.values(errors).forEach(val => {
             console.error(val);
+            console.log(event.target.name)
+            $(`#${event.target.name}_message`).addClass('error').text(val);
             });
         }
     });

@@ -15,7 +15,7 @@ class PostApplicationDocumentFormViewTestCase(ApplicationBaseTestCase):
         self.user = self.application.application_creator
         self.data = {
             'document_name': 'KRA Pin',
-            'document': self.get_image(),
+            'document': self.get_pdf(),
             'application': self.application.pk
         }
 

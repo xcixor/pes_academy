@@ -15,8 +15,7 @@ class JsonableResponseMixin:
             'HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
         if is_ajax:
             return JsonResponse(form.errors, status=400)
-        response = super().form_invalid(form)
-        return response
+        return JsonResponse({'errors': form.errors}, status=201)
 
     def form_valid(self, form):
         is_ajax = self.request.META.get(
@@ -25,7 +24,7 @@ class JsonableResponseMixin:
         self.application = form.cleaned_data['application']
         if is_ajax:
             data = {
-                'message': f'success {document} has been saved!',
+                'message': f'Success {document} has been saved!',
             }
             return JsonResponse(data, status=201)
         return super().form_valid(form)

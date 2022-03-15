@@ -1,12 +1,13 @@
 from django.views.generic import CreateView
 from django.contrib import messages
 from application.models import ApplicationDocument
+from application.forms import ApplicationDocumentForm
 
 
 class UploadExtraDocuments(CreateView):
 
     model = ApplicationDocument
-    fields = '__all__'
+    form_class = ApplicationDocumentForm
     success_url = '/accounts/dashboard/'
     template_name = "profile/dashboard.html"
 

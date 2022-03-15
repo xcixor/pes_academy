@@ -255,19 +255,22 @@
                 <div class="row">
                     <div class="col">
                         <p>KRA PIN</p>
-                        <input type="file" name="kra_pin" onchange="saveDocument(event, 'KRA Pin', '{{application.pk}}')">
+                        <input type="file" name="kra_pin" onchange="saveDocument(event, 'KRA PIN', '{{application.pk}}')">
+                        <p id="kra_pin_message" class=""></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <p>ID Card</p>
                         <input type="file" name="id_card" onchange="saveDocument(event, 'ID Card', '{{application.pk}}')">
+                        <p id="id_card_message" class=""></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <p>Work Licence</p>
                         <input type="file" name="licence" onchange="saveDocument(event, 'Licence', '{{application.pk}}')">
+                        <p id="licence_message" class=""></p>
                     </div>
                 </div>
                 </div>
