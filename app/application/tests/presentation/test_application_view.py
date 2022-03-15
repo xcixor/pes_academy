@@ -132,13 +132,13 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
 
     def test_on_successful_post_application_status_is_updated(self):
         application = Application.objects.get(id=self.user.application.id)
-        self.assertEqual(application.status, 'step_one')
+        self.assertEqual(application.stage, 'step_one')
         self.login_user()
         self.client.post(
             f'/applications/{self.call_to_action.slug}/',
             self.form_data, follow=True)
         application = Application.objects.get(id=self.user.application.id)
-        self.assertEqual(application.status, 'step_two')
+        self.assertEqual(application.stage, 'step_two')
 
     def test_sets_success_message_on_successful_post(self):
         self.login_user()

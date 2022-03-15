@@ -115,7 +115,7 @@ class ApplicationForm(forms.Form):
 
     def update_application(self, user):
         application, msg = get_application(user)
-        application.status = 'step_two'
+        application.stage = 'step_two'
         application.save()
 
     def __init__(self, request=None, *args, **kwargs):
@@ -129,7 +129,8 @@ class ApplicationForm(forms.Form):
         if application:
             data = {}
             try:
-                data = get_draft_application_data_from_redis_cache(application.pk)
+                data = get_draft_application_data_from_redis_cache(
+                    application.pk)
             except Exception as ce:
                 print(ce)
             self.fields['age'].initial = data.get('age', None)

@@ -25,8 +25,8 @@ class ApplicationModelTestCase(ApplicationBaseTestCase):
         self.assertEqual(field.related_model, CallToAction)
         self.assertTrue(field.null)
 
-    def test_status_field_properties(self):
-        field = self.application._meta.get_field('status')
+    def test_stage_field_properties(self):
+        field = self.application._meta.get_field('stage')
         self.assertEqual(field.default, 'step_one')
         self.assertEqual(field.max_length, 100)
 

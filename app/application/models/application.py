@@ -10,10 +10,11 @@ User = get_user_model()
 
 class Application(models.Model):
 
-    STATUS_CHOICES = (
+    STAGE_CHOICES = (
         ('step_one', 'Application Data Not Submitted'),
+        ('step_two', 'Data Submitted'),
         ('step_two', 'Documents in review'),
-        ('step_three', 'Approved')
+        ('step_three', 'verdict Passed')
     )
 
     application_creator = models.OneToOneField(
@@ -22,8 +23,8 @@ class Application(models.Model):
         CallToAction, related_name='applications',
         on_delete=models.SET_NULL,
         null=True)
-    status = models.CharField(
-        choices=STATUS_CHOICES,
+    stage = models.CharField(
+        choices=STAGE_CHOICES,
         default='step_one',
         max_length=100
     )
