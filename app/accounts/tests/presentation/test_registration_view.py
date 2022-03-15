@@ -111,7 +111,7 @@ class RegistrationViewTestCase(TestCase):
         self.client.post(
             '/accounts/register/', self.form, follow=True)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertIn('cid:pes_logo.png', mail.outbox[0].alternatives[0][0])
+        self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
         self.assertIn('Account Activation', mail.outbox[0].alternatives[0][0])
         self.assertIn('http', mail.outbox[0].alternatives[0][0])
         self.assertIn('testserver', mail.outbox[0].alternatives[0][0])

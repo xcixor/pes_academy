@@ -21,11 +21,11 @@ class BusinessModelTestCase(AccountsBaseTestCase):
     def test_user_fk_related_name(self):
         related = self.business._meta.get_field(
             'organization_owner').remote_field.related_name
-        self.assertEqual(related, 'businesses')
+        self.assertEqual(related, 'business')
 
     def test_relation_to_user_model_is_many_to_one(self):
         relation = self.business._meta.get_field('organization_owner')
-        self.assertEqual(type(relation), models.ForeignKey)
+        self.assertEqual(type(relation), models.OneToOneField)
 
     def test_user_relationship_on_delete_cascades(self):
         on_delete = self.business._meta.get_field(

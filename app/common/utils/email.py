@@ -14,7 +14,7 @@ class HtmlEmailMixin(object):
         subject, body, from_email, to_emails = args
         root_dir = str(settings.BASE_DIR)[:-4]
         img_dir = root_dir + 'common/static/common/images/'
-        image = 'pes_logo.png'
+        image = 'logo.webp'
         file_path = os.path.join(img_dir, image)
         with open(file_path, 'rb') as f:
             img = MIMEImage(f.read())
@@ -25,7 +25,8 @@ class HtmlEmailMixin(object):
             subject, body, from_email, to_emails
         )
         html_content = render_to_string(
-            kwargs.get('template', 'common/email/base.html'), kwargs.get('context', None)
+            kwargs.get(
+                'template', 'common/email/base.html'), kwargs.get('context', None)
         )
         email_message.attach_alternative(html_content, 'text/html')
         email_message.attach(img)

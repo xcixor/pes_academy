@@ -17,6 +17,8 @@ class Application(models.Model):
         ('step_three', 'verdict Passed')
     )
 
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     application_creator = models.OneToOneField(
         User, related_name='application', on_delete=models.CASCADE)
     call_to_action = models.ForeignKey(
