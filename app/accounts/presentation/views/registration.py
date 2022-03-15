@@ -8,6 +8,12 @@ class GetRegistrationView(TemplateView):
 
     template_name = 'registration/registration.html'
 
+    def get_template_names(self):
+        request_origin = self.request.resolver_match.view_name
+        if request_origin == 'accounts:reviewer_registration':
+            return 'registration/staff_registration.html'
+        return super().get_template_names()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = RegistrationForm
@@ -39,8 +45,8 @@ class PostRegistrationView(FormView):
 class PostReviewerRegistrationView(FormView):
 
     form_class = RegistrationForm
-    template_name = 'registration/registration.html'
-    success_url = '/accounts/profile/'
+    template_name = 'registration/staff_registration.html'
+    success_url = '/accounts/dashboard/'
 
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
