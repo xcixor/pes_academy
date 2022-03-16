@@ -13,3 +13,6 @@ class ApplicationReview(models.Model):
     reviewer = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True,
         related_name='applications')
+
+    def __str__(self):
+        return f'{self.reviewer.username} - {self.application.special_id}'

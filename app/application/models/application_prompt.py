@@ -12,3 +12,6 @@ class ApplicationPrompt(models.Model):
         User, on_delete=models.SET_NULL, null=True)
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'Message for {self.application.special_id} by {self.reviewer}'

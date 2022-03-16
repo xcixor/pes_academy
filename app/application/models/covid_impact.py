@@ -7,3 +7,6 @@ class CovidImpact(models.Model):
         BusinessOrganization, on_delete=models.CASCADE,
         related_name='covid_impact')
     impact = models.TextField()
+
+    def __str__(self) -> str:
+        return self.impact
