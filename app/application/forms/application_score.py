@@ -2,15 +2,19 @@ from django import forms
 from application.models import ApplicationScore
 
 
-class ApplicationScoreForm(forms.Media):
+class ApplicationScoreForm(forms.ModelForm):
 
     class Meta:
         model = ApplicationScore
         fields = ['score', 'prompt', 'application']
 
-    def save(self, reviewer, commit=True):
-        score = super(ApplicationScoreForm, self).save(commit=False)
-        score.reviewer = reviewer
-        if commit:
-            score.save()
+    def save(self, reviewer):
+        score, created = ApplicationScore.objects.update_or_create(
+            prompt=self.cleaned_data['prompt'],
+            defaults={
+                'score': self.cleaned_data['score'],
+                'application': self.cleaned_data['application'],
+                'reviewer': reviewer
+            }
+        )
         return score

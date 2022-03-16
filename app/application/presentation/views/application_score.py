@@ -1,18 +1,17 @@
 from django.contrib import messages
-from django.views.generic import CreateView
+from django.views.generic import FormView
 from application.models import ApplicationScore
+from application.forms import ApplicationScoreForm
 
 
-class ApplicationScore(CreateView):
+class ApplicationScore(FormView):
 
     template_name = 'eligibility/eligibility.html'
-    fields = ['score', 'prompt', 'application']
+    form_class = ApplicationScoreForm
     model = ApplicationScore
 
     def form_valid(self, form):
-        self.score = form.save()
-        self.score.reviewer = self.request.user
-        self.score.save()
+        self.score = form.save(self.request.user)
         return super().form_valid(form)
 
     def get_success_url(self):
