@@ -1,6 +1,7 @@
 from django.contrib import admin
 from application.models import (
-    CallToAction, Application, ApplicationDocument, ApplicationReview)
+    CallToAction, Application, ApplicationDocument, ApplicationReview,
+    ApplicationScore)
 from application.forms import CallToActionAdminForm
 
 
@@ -22,6 +23,12 @@ class ApplicationDocumentInline(admin.TabularInline):
     extra = 1
 
 
+class ApplicationScoreInline(admin.TabularInline):
+
+    model = ApplicationScore
+    extra = 1
+
+
 class ApplicationReviewInline(admin.TabularInline):
 
     model = ApplicationReview
@@ -33,4 +40,6 @@ class ApplicationAdmin(admin.ModelAdmin):
 
     list_display = ['special_id', 'application_creator']
 
-    inlines = [ApplicationDocumentInline, ApplicationReviewInline]
+    inlines = [
+        ApplicationDocumentInline, ApplicationReviewInline,
+        ApplicationScoreInline]
