@@ -20,7 +20,7 @@ class ApplicationReviewAdmin(admin.ModelAdmin):
 class ApplicationDocumentInline(admin.TabularInline):
 
     model = ApplicationDocument
-    extra = 1
+    extra = 0
 
 
 class ApplicationPromptInline(admin.TabularInline):
@@ -38,7 +38,7 @@ class ApplicationScoreInline(admin.TabularInline):
 class ApplicationReviewInline(admin.TabularInline):
 
     model = ApplicationReview
-    extra = 1
+    extra = 0
 
 
 @admin.register(Application)
@@ -49,3 +49,15 @@ class ApplicationAdmin(admin.ModelAdmin):
     inlines = [
         ApplicationDocumentInline, ApplicationReviewInline,
         ApplicationScoreInline, ApplicationPromptInline]
+
+
+@admin.register(ApplicationScore)
+class ApplicationScoreAdmin(admin.ModelAdmin):
+
+    list_display = ['score', 'application', 'reviewer']
+
+
+@admin.register(ApplicationPrompt)
+class ApplicationPromptAdmin(admin.ModelAdmin):
+
+    list_display = ['reviewer', 'message']
