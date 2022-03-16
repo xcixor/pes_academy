@@ -2,7 +2,8 @@ from django.urls import path
 from django.contrib import admin
 from pes_admin.presentation.views import (
     AdvancedAdminDashboardView, InviteReviewerView, DisplayStaffView,
-    MakeStaffReviewerView, ApplicationsView, AssignReviewersView)
+    MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
+    ApplicationDetails)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -21,6 +22,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(ApplicationsView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
+            path('view/<slug:slug>/',
+                 admin.site.admin_view(ApplicationDetails.as_view())),
         ]
 
 

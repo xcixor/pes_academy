@@ -55,7 +55,12 @@ class Application(models.Model):
 
     @property
     def special_id(self):
-        return f'PES - {self.slug} - {self.id}'
+        filled_id = f'{self.id}'.zfill(3)
+        return f'PES - {self.slug} - {filled_id}'
+
+    @property
+    def total_score(self):
+        return sum(item.score for item in self.scores.all())
 
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'
