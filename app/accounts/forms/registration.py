@@ -8,7 +8,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.conf import settings
-from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()

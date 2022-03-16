@@ -2,12 +2,13 @@ from django.urls import path
 from application.presentation.views import (
     IndexView, DraftUserDataView, ApplicationView, SubmitView,
     PostApplicationDocumentFormView, ApplicationPDFView,
-    UploadExtraDocuments)
+    UploadExtraDocuments, ApplicationPrompt)
 
 app_name = 'application'
 
 urlpatterns = [
     path('submit/', SubmitView.as_view(), name='submit'),
+    path('prompt/', ApplicationPrompt.as_view(), name='prompt'),
     path('extra-documents/',
          UploadExtraDocuments.as_view(), name='extra_documents'),
     path('document/', PostApplicationDocumentFormView.as_view(),

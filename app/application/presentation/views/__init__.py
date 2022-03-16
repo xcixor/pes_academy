@@ -6,3 +6,4 @@ from .submit import SubmitView
 from .save_document import PostApplicationDocumentFormView, JsonableResponseMixin
 from .application_pdf import ApplicationPDFView
 from .extra_docs import UploadExtraDocuments
+from .application_prompt import ApplicationPrompt
