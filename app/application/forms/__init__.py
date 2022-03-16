@@ -2,3 +2,4 @@ from .model_forms import CallToActionAdminForm
 from .application_form import ApplicationForm
 from .application_document import ApplicationDocumentForm
 from .application_prompt import ApplicationPromptForm
+from .application_score import ApplicationScoreForm
