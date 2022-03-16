@@ -7,3 +7,4 @@ from .save_document import PostApplicationDocumentFormView, JsonableResponseMixi
 from .application_pdf import ApplicationPDFView
 from .extra_docs import UploadExtraDocuments
 from .application_prompt import ApplicationPrompt
+from .application_score import ApplicationScore
