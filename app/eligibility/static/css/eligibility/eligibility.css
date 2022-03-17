@@ -2,11 +2,15 @@
     border-bottom: 0.2em solid #B8B8B8;
 }
 .screen-1 {
-    background-color: #F5F5F5;
+    background-color: #F0F0F0;
 }
 
-.screen-2 {
+.screen-2.odd {
     background-color: #F8F8F8;
+}
+
+.screen-2.even {
+    background-color: #F5F5F5;
 }
 
 .action-color {
@@ -15,8 +19,5 @@
 
 .custom-select-lg {
     height: calc(1.5em + 1rem + 10px) !important;
-    /* padding-top: 0.5rem; */
-    /* padding-bottom: 0.5rem; */
-    /* padding-left: 1rem; */
     font-size: 1.5rem;
 }

@@ -46,6 +46,7 @@
                         handles where applicable (LinkedIn, Facebook, Instagram, Twitter,
                         WhatsApp Business accounts)
                     </b></p>
+                    <p>Organization Name: <i>{{application.application_creator.business}}</i></p>
                     <p>Facebook: <i>{% if application.application_creator.business.facebook_link %}{{application.application_creator.business.facebook_link}}{%else%}Not Provided{%endif%}</i></p>
                     <p>Twitter: <i>{% if application.application_creator.business.twitter_link %}{{application.application_creator.business.twitter_link}}{%else%}Not Provided{%endif%}</i></p>
                     <p>Instagram: <i>{% if application.application_creator.business.instagram_link %}{{application.application_creator.business.instagram_link}}{%else%}Not Provided{%endif%}</i></p>
@@ -54,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 p-5 screen-2">
+        <div class="col-md-6 p-5 screen-2 odd">
             <div class="row">
                 <div class="col-md-8 offset-md-1">
                     <details class="mb-5">
@@ -66,14 +67,14 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="id_subject">Subject</label>
-                                <input type="text" id="id_subject" class="form-control" name="subject" required>
+                                <input type="text" class="form-control" name="subject" required>
                                 {% for error in form.subject.errors %}
                                 <p class="error">{{ error|escape }}</p>
                                 {% endfor %}
                             </div>
                             <div class="form-group">
                                 <label for="id_message">Message</label>
-                                <textarea class="form-control" name="message" id="id_message" rows="3" required></textarea>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
                                 {% for error in form.message.errors %}
                                 <p class="error">{{ error|escape }}</p>
                                 {% endfor %}
@@ -100,6 +101,400 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>2. Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *</b></p>
+                    <p>Stage: <i>{{application.application_creator.business.get_stage_display}}</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 even">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="2. Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>3. How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating</b></p>
+                    <p>Existence Period: <i>{{application.application_creator.business.get_existence_period_display}}</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 odd">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="3. How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product</b></p>
+                    <p>Stage: <i>{{application.application_creator.business.get_stage_display}}</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 even">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>4. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</b></p>
+                    <p>Milestones: <i>{{application.application_creator.business.milestones}}</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 odd">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>5. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</b></p>
+                    <p>Stage: <i>{{application.application_creator.business.covid_impact}}</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 even">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="5. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p><b>6. Documents</b></p>
+                    <ul>
+                    {% for document in application.documents.all %}
+                    <li><a href="{{document.document.url}}" target="_blank">{{document.document_name}}</a></li>
+                    {% empty %}
+                    No documents submitted
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2 odd">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-md-6 p-5 screen-1">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <p>ques</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5 screen-2">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
+                    <details class="mb-5">
+                        <summary class="text-bg-secondary flex action-color">
+                            <i class="fa-solid fa-angle-right mr-2"></i>
+                            Ask Applicant for more details about this prompt
+                        </summary>
+                        <form action="/applications/prompt/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_subject">Subject</label>
+                                <input type="text" class="form-control" name="subject" required>
+                                {% for error in form.subject.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                <label for="id_message">Message</label>
+                                <textarea class="form-control" name="message" rows="3" required></textarea>
+                                {% for error in form.message.errors %}
+                                <p class="error">{{ error|escape }}</p>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="application" value="{{application.pk}}">
+                            <button type="submit" class="btn btn-primary">Send Query</button>
+                        </form>
+                    </details>
+                    <form action="/applications/score/" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center">
+                            <select name="score" class="custom-select custom-select-lg mr-4">
+                                <option selected>Prompt Score</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </div>
 {% endblock %}
 {% block scripts %}
