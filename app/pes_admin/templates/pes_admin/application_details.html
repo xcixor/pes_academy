@@ -33,7 +33,7 @@
                         <div class="col-md-10 border p-3 m-4">
                             <p><b>Reviewer:</b> {{review.reviewer}}</p>
                             <p><b>Reviewer Total Score:</b> {{review.reviewer|get_reviewer_scores_for_application:application}} </p>
-                            <details>
+                            <details class="mb-2">
                                 <summary>
                                     <i class="fa-solid fa-angle-right mr-2"></i>
                                     <b>Messages sent to the application by {{review.reviewer}}</b>
@@ -44,7 +44,28 @@
                                     {% endfor %}
                                 </ul>
                             </details>
-                            <p class="mt-2"><b>General comments on the application</b></p>
+                            <details class="mb-2">
+                                <summary>
+                                    <i class="fa-solid fa-angle-right mr-2"></i>
+                                    <b>General comments on the application by {{review.reviewer}}</b>
+                                </summary>
+                                <ul style="list-style-type: circle;" class="p-2 m-4">
+                                    {% for comment in review.reviewer|get_comments:application %}
+                                    <li>{{comment.comment}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </details>
+                            <details class="mb-2">
+                                <summary>
+                                    <i class="fa-solid fa-angle-right mr-2"></i>
+                                    <b>Score per question by {{review.reviewer}}</b>
+                                </summary>
+                                <ul style="list-style-type: circle;" class="p-2 m-4">
+                                    {% for question in review.reviewer|get_question_scores_for_application:application %}
+                                    <li>{{question.prompt}} <b>Score {{question.score}}</b></li>
+                                    {% endfor %}
+                                </ul>
+                            </details>
                         </div>
                     </div>
                     {% empty %}
