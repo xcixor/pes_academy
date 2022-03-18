@@ -6,7 +6,7 @@ class ApplicationScoreForm(forms.ModelForm):
 
     class Meta:
         model = ApplicationScore
-        fields = ['score', 'prompt', 'application']
+        fields = ['score', 'prompt', 'application', 'question_position']
 
     def save(self, reviewer):
         score, created = ApplicationScore.objects.update_or_create(
@@ -14,7 +14,8 @@ class ApplicationScoreForm(forms.ModelForm):
             defaults={
                 'score': self.cleaned_data['score'],
                 'application': self.cleaned_data['application'],
-                'reviewer': reviewer
+                'reviewer': reviewer,
+                'question_position': self.cleaned_data['question_position']
             }
         )
         return score

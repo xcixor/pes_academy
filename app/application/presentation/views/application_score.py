@@ -1,14 +1,12 @@
 from django.contrib import messages
 from django.views.generic import FormView
-from application.models import ApplicationScore
 from application.forms import ApplicationScoreForm
 
 
-class ApplicationScore(FormView):
+class ApplicationScoreView(FormView):
 
     template_name = 'eligibility/eligibility.html'
     form_class = ApplicationScoreForm
-    model = ApplicationScore
 
     def form_valid(self, form):
         self.score = form.save(self.request.user)
@@ -22,7 +20,6 @@ class ApplicationScore(FormView):
         return f'/eligibility/{self.score.application.slug}/'
 
     def form_invalid(self, form):
-        print(form.errors)
         error_message = (
             'Hmm, that didn\'t work please try again.')
         messages.add_message(

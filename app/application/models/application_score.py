@@ -21,6 +21,8 @@ class ApplicationScore(models.Model):
         Application, on_delete=models.CASCADE, related_name='scores')
     reviewer = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name='scores')
+    question_position = models.IntegerField(
+        help_text='The position of the question in the form')
 
     def __str__(self):
         return f'{self.get_score_display()} score for {self.prompt} for {self.application.special_id}'

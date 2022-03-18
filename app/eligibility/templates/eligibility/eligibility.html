@@ -86,16 +86,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
                         <input type="hidden" name="prompt" value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="1">
                     </form>
                 </div>
             </div>
@@ -141,16 +147,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
                         <input type="hidden" name="prompt" value="2. Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="2">
                     </form>
                 </div>
             </div>
@@ -196,16 +208,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
                         <input type="hidden" name="prompt" value="3. How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="3">
                     </form>
                 </div>
             </div>
@@ -251,16 +269,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
                         <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="4">
                     </form>
                 </div>
             </div>
@@ -270,7 +294,7 @@
         <div class="col-md-6 p-5 screen-1">
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <p><b>4. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</b></p>
+                    <p><b>5. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.</b></p>
                     <p>Milestones: <i>{{application.application_creator.business.milestones}}</i></p>
                 </div>
             </div>
@@ -306,16 +330,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
-                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="prompt" value="5. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="5">
                     </form>
                 </div>
             </div>
@@ -327,7 +357,7 @@
         <div class="col-md-6 p-5 screen-1">
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <p><b>5. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</b></p>
+                    <p><b>6. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)</b></p>
                     <p>Stage: <i>{{application.application_creator.business.covid_impact}}</i></p>
                 </div>
             </div>
@@ -363,16 +393,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
-                        <input type="hidden" name="prompt" value="5. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)">
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="prompt" value="6. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="6">
                     </form>
                 </div>
             </div>
@@ -383,7 +419,7 @@
         <div class="col-md-6 p-5 screen-1">
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <p><b>6. Documents</b></p>
+                    <p><b>7. Documents</b></p>
                     <ul>
                     {% for document in application.documents.all %}
                     <li><a href="{{document.document.url}}" target="_blank">{{document.document_name}}</a></li>
@@ -425,16 +461,22 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
                         </div>
-                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="prompt" value="7. Documents">
                         <input type="hidden" name="application" value="{{application.pk}}">
+                        <input type="hidden" name="question_position" value="7">
                     </form>
                 </div>
             </div>
@@ -480,13 +522,18 @@
                     <form action="/applications/score/" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4">
-                                <option selected>Prompt Score</option>
+                            <select name="score" class="custom-select custom-select-lg mr-4" required>
+                                <option selected disabled value="">Prompt Score</option>
                                 <option value="1">Low</option>
                                 <option value="2">Medium</option>
                                 <option value="3">High</option>
                             </select>
                             <button type="submit" class="btn btn-primary">Submit Score</button>
+                        </div>
+                        <div>
+                            {% for error in form.score.errors %}
+                            <p class="error">{{ error | escape }} </p>
+                            {% endfor %}
                         </div>
                         <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
                         <input type="hidden" name="application" value="{{application.pk}}">

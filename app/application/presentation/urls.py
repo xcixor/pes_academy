@@ -2,7 +2,7 @@ from django.urls import path
 from application.presentation.views import (
     IndexView, DraftUserDataView, ApplicationView, SubmitView,
     PostApplicationDocumentFormView, ApplicationPDFView,
-    UploadExtraDocuments, ApplicationPrompt, ApplicationScore,
+    UploadExtraDocuments, ApplicationPrompt, ApplicationScoreView,
     ApplicationComment)
 
 app_name = 'application'
@@ -10,7 +10,7 @@ app_name = 'application'
 urlpatterns = [
     path('submit/', SubmitView.as_view(), name='submit'),
     path('prompt/', ApplicationPrompt.as_view(), name='prompt'),
-    path('score/', ApplicationScore.as_view(), name='score'),
+    path('score/', ApplicationScoreView.as_view(), name='score'),
     path('comment/', ApplicationComment.as_view(), name='comment'),
     path('extra-documents/',
          UploadExtraDocuments.as_view(), name='extra_documents'),
