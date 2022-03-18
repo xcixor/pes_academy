@@ -83,7 +83,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -144,7 +144,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -205,7 +205,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -266,7 +266,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -327,7 +327,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -390,7 +390,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -458,7 +458,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
@@ -519,7 +519,7 @@
                             <button type="submit" class="btn btn-primary">Send Query</button>
                         </form>
                     </details>
-                    <form action="/applications/score/" method="post">
+                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center">
                             <select name="score" class="custom-select custom-select-lg mr-4" required>
