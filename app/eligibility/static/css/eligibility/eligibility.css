@@ -5,13 +5,14 @@
     background-color: #F0F0F0;
 }
 
-.screen-2.odd {
+.dark-bg {
+    background-color: #F0F0F0;
+}
+
+.screen-2 {
     background-color: #F8F8F8;
 }
 
-.screen-2.even {
-    background-color: #F5F5F5;
-}
 
 .action-color {
     color: #1976d2;
