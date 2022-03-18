@@ -3,3 +3,4 @@ from .application_form import ApplicationForm
 from .application_document import ApplicationDocumentForm
 from .application_prompt import ApplicationPromptForm
 from .application_score import ApplicationScoreForm
+from .application_comment import ApplicationCommentForm

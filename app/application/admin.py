@@ -1,7 +1,7 @@
 from django.contrib import admin
 from application.models import (
     CallToAction, Application, ApplicationDocument, ApplicationReview,
-    ApplicationScore, ApplicationPrompt)
+    ApplicationScore, ApplicationPrompt, ApplicationComment)
 from application.forms import CallToActionAdminForm
 
 
@@ -41,6 +41,12 @@ class ApplicationReviewInline(admin.TabularInline):
     extra = 0
 
 
+class ApplicationCommentInline(admin.TabularInline):
+
+    model = ApplicationComment
+    extra = 0
+
+
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
 
@@ -48,7 +54,8 @@ class ApplicationAdmin(admin.ModelAdmin):
 
     inlines = [
         ApplicationDocumentInline, ApplicationReviewInline,
-        ApplicationScoreInline, ApplicationPromptInline]
+        ApplicationScoreInline, ApplicationPromptInline,
+        ApplicationCommentInline]
 
 
 @admin.register(ApplicationScore)

@@ -499,9 +499,10 @@
 <div class="container-fluid py-5 dark-bg">
     <div class="row">
         <div class="col-md-12">
-            <form action="/application/comment/" method="post">
+            <form action="{% url 'application:comment' %}" method="post">
+                {% csrf_token %}
                 <div class="form-group">
-                    <textarea class="form-control" name="comment" id="id_comment" rows="10" placeholder="Please provide some general comments in this application"></textarea>
+                    <textarea class="form-control" name="comment" id="id_comment" rows="10" placeholder="Please provide some general comments in this application" required></textarea>
                 </div>
                 <input type="hidden" name="application" value="{{application.pk}}">
                 <button type="submit" class="btn btn-primary">Save Comment</button>
