@@ -4,7 +4,7 @@ from application.models import ApplicationDocument
 from application.forms import ApplicationDocumentForm
 
 
-class UploadExtraDocuments(CreateView):
+class UploadExtraDocumentsView(CreateView):
 
     model = ApplicationDocument
     form_class = ApplicationDocumentForm

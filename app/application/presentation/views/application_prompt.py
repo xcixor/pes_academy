@@ -3,7 +3,7 @@ from django.views.generic import FormView
 from application.forms import ApplicationPromptForm
 
 
-class ApplicationPrompt(FormView):
+class ApplicationPromptView(FormView):
 
     form_class = ApplicationPromptForm
     template_name = 'eligibility/eligibility.html'

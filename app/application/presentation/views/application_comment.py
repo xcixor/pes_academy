@@ -4,7 +4,7 @@ from application.models import ApplicationComment
 from application.forms import ApplicationCommentForm
 
 
-class ApplicationComment(FormView):
+class ApplicationCommentView(FormView):
 
     template_name = 'eligibility/eligibility.html'
     form_class = ApplicationCommentForm

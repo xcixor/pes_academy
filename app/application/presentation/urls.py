@@ -2,18 +2,18 @@ from django.urls import path
 from application.presentation.views import (
     IndexView, DraftUserDataView, ApplicationView, SubmitView,
     PostApplicationDocumentFormView, ApplicationPDFView,
-    UploadExtraDocuments, ApplicationPrompt, ApplicationScoreView,
-    ApplicationComment)
+    UploadExtraDocumentsView, ApplicationPromptView, ApplicationScoreView,
+    ApplicationCommentView)
 
 app_name = 'application'
 
 urlpatterns = [
     path('submit/', SubmitView.as_view(), name='submit'),
-    path('prompt/', ApplicationPrompt.as_view(), name='prompt'),
+    path('prompt/', ApplicationPromptView.as_view(), name='prompt'),
     path('score/<slug:slug>/', ApplicationScoreView.as_view(), name='score'),
-    path('comment/', ApplicationComment.as_view(), name='comment'),
+    path('comment/', ApplicationCommentView.as_view(), name='comment'),
     path('extra-documents/',
-         UploadExtraDocuments.as_view(), name='extra_documents'),
+         UploadExtraDocumentsView.as_view(), name='extra_documents'),
     path('document/', PostApplicationDocumentFormView.as_view(),
          name='document'),
     path('', IndexView.as_view(), name='index'),
