@@ -16,3 +16,12 @@ class EligibilityView(PermissionRequiredMixin, DetailView):
         'please contact your admin.')
     model = Application
     context_object_name = 'application'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        scores = self.object.scores.all()
+        scores_to_dict = {}
+        for score in scores:
+            scores_to_dict[score.question_position] = score.score
+        context['scores'] = scores_to_dict
+        return context

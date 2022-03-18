@@ -26,3 +26,8 @@ def get_comments(reviewer, application):
 @register.filter('get_question_scores_for_application')
 def get_question_scores_for_application(reviewer, application):
     return reviewer.scores.filter(application=application)
+
+
+@register.filter('get_from_scores')
+def get_from_scores(dictionary, key):
+    return dictionary.get(key, None)
