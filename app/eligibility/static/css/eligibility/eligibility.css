@@ -22,3 +22,7 @@
     height: calc(1.5em + 1rem + 10px) !important;
     font-size: 1.5rem;
 }
+
+.card {
+    background-color: inherit;
+}
