@@ -38,6 +38,7 @@ class Application(models.Model):
     to_advance = models.BooleanField(
         default=False, help_text='Whether to advance or avoid the application')
     milestones = models.TextField()
+    expected_max_score = models.IntegerField(default=0)
 
     def _generate_slug(self):
         value = self.call_to_action.tagline
