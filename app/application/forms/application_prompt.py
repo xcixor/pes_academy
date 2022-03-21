@@ -10,7 +10,7 @@ class ApplicationPromptForm(forms.ModelForm, HtmlEmailMixin):
 
     class Meta:
         model = ApplicationPrompt
-        fields = ['message', 'application']
+        fields = ['message', 'application', 'question_position']
 
     def send_prompt(self, to_email):
         from_email = settings.VERIFIED_EMAIL_USER

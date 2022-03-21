@@ -31,3 +31,11 @@ def get_question_scores_for_application(reviewer, application):
 @register.filter('get_from_scores')
 def get_from_scores(dictionary, key):
     return dictionary.get(key, None)
+
+
+@register.filter('check_in_queryset')
+def check_in_queryset(queryset, key):
+    for prompt in queryset:
+        if prompt.question_position == key:
+            return True
+    return False

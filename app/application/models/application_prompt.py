@@ -12,6 +12,8 @@ class ApplicationPrompt(models.Model):
         User, on_delete=models.SET_NULL, null=True, related_name='prompts')
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE, related_name='prompts')
+    question_position = models.IntegerField(
+        help_text='The position of the question in the form')
 
     def __str__(self) -> str:
         return f'Message for {self.application.special_id} by {self.reviewer}'
