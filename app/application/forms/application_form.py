@@ -49,9 +49,9 @@ class ApplicationForm(forms.Form):
     stage = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.STAGE_CHOICES)
-    impact = forms.CharField(widget=forms.TextInput(
+    impact = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'text draftable', 'placeholder': 'Covid 19 Impact'}))
-    milestones = forms.CharField(required=False, widget=forms.TextInput(
+    milestones = forms.CharField(required=False, widget=forms.Textarea(
         attrs={
             'class': 'text draftable',
             'placeholder': 'Please provide atleast 3 milestones your '
