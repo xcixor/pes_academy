@@ -51,9 +51,11 @@ class ApplicationForm(forms.Form):
         choices=BusinessOrganization.STAGE_CHOICES)
     impact = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'text draftable', 'placeholder': 'Covid 19 Impact'}))
-    milestones = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-    )
+    milestones = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text draftable',
+            'placeholder': 'Please provide atleast 3 milestones your '
+            'business intends to achieve'}))
 
     def clean_milestones(self):
         milestones = self.cleaned_data['milestones']
@@ -120,11 +122,6 @@ class ApplicationForm(forms.Form):
 
     def __init__(self, request=None, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
-        MILESTONES = [
-            (milestone.id, milestone.milestone)
-            for milestone in Milestone.objects.all()
-        ]
-        self.fields['milestones'].choices = MILESTONES
         application, msg = get_application(request.user)
         if application:
             data = {}
