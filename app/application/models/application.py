@@ -14,7 +14,7 @@ class Application(models.Model):
         ('step_one', 'Application Data Not Submitted'),
         ('step_two', 'Data Submitted'),
         ('step_three', 'Documents in review'),
-        ('step_four', 'verdict Passed')
+        ('step_four', 'Verdict Passed')
     )
 
     created = models.DateTimeField(auto_now_add=True)

@@ -7,18 +7,22 @@
             <div class="card shadow-lg rounded">
                 <div class="card-body">
                     <h4 class="card-title"><b>Application Summary</b></h4>
+                    <p><b>Stage:</b> {{application.get_stage_display}}</p>
                     <p class="card-text">
                         <b>ID:</b> {{application.special_id}}
                     </p>
                     <p><b>Reviewers</b></p>
+                    <ul class="px-2">
                     {% for reviewer in application.reviewers.all %}
-                    <p class="card-text">
+                    <li class="card-text">
                         {{reviewer.reviewer}}
-                    </p>
+                    </li>
                     {% empty %}
                     There are no reviewers for this application yet.
                     {% endfor %}
-                    <h3>Total Score: {{application.total_score}}</h3>
+                    </ul>
+                    <p><b>Total Score:</b> {{application.total_score}}</p>
+                    <p><b>Will Advance</b> {% if application.to_advance %}<i class="fa-solid fa-check"></i>{% else %}<i class="fa-solid fa-xmark"></i>{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -79,8 +83,18 @@
         <div class="col-md-8 offset-md-2">
             <div class="card shadow-lg rounded">
                 <div class="d-flex justify-content-between p-5">
-                    <a href="#" class="btn">ADVANCE <i class="fa-solid fa-check"></i></a>
-                    <a href="#" class="btn">AVOID <i class="fa-solid fa-xmark"></i></a>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn">ADVANCE <i class="fa-solid fa-check"></i></button>
+                        <input type="checkbox" name="to_advance" checked hidden>
+                        <input type="text" name="stage" value="step_four" hidden>
+                    </form>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn">AVOID <i class="fa-solid fa-xmark"></i></button>
+                        <input type="checkbox" name="to_advance" hidden>
+                        <input type="text" name="stage" value="step_four" hidden>
+                    </form>
                 </div>
             </div>
         </div>
