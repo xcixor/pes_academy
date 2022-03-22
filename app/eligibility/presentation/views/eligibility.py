@@ -20,11 +20,10 @@ class EligibilityView(PermissionRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         scores_to_dict = {}
-        prompts_to_dict = {}
-        for score in self.object.scores.all():
+        reviewer_scores = self.object.scores.filter(reviewer=self.request.user)
+        for score in reviewer_scores:
             scores_to_dict[score.question_position] = score.score
-        for prompt in self.object.prompts.all():
-            prompts_to_dict[prompt.question_position] = prompt.message
         context['scores'] = scores_to_dict
-        context['prompts'] = self.object.prompts.all()
+        context['prompts'] = self.object.prompts.filter(
+            reviewer=self.request.user)
         return context

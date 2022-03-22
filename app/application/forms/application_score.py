@@ -11,10 +11,10 @@ class ApplicationScoreForm(forms.ModelForm):
     def save(self, reviewer):
         score, created = ApplicationScore.objects.update_or_create(
             prompt=self.cleaned_data['prompt'],
+            reviewer=reviewer,
             defaults={
                 'score': self.cleaned_data['score'],
                 'application': self.cleaned_data['application'],
-                'reviewer': reviewer,
                 'question_position': self.cleaned_data['question_position']
             }
         )
