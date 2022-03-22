@@ -13,8 +13,8 @@ class Application(models.Model):
     STAGE_CHOICES = (
         ('step_one', 'Application Data Not Submitted'),
         ('step_two', 'Data Submitted'),
-        ('step_two', 'Documents in review'),
-        ('step_three', 'verdict Passed')
+        ('step_three', 'Documents in review'),
+        ('step_four', 'verdict Passed')
     )
 
     created = models.DateTimeField(auto_now_add=True)
