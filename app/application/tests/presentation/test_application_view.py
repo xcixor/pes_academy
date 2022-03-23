@@ -120,8 +120,6 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(BusinessOrganization.objects.count(), 1)
         self.assertEqual(CovidImpact.objects.count(), 1)
-        self.assertEqual(Milestone.objects.first(
-        ).businesses.first().organization_name, 'Big Tech')
 
     def test_redirects_on_successful_post(self):
         self.login_user()

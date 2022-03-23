@@ -51,17 +51,11 @@ class ApplicationForm(forms.Form):
         choices=BusinessOrganization.STAGE_CHOICES)
     impact = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'text draftable', 'placeholder': 'Covid 19 Impact'}))
-    milestones = forms.CharField(required=False, widget=forms.Textarea(
+    milestones = forms.CharField(required=True, widget=forms.Textarea(
         attrs={
             'class': 'text draftable',
             'placeholder': 'Please provide atleast 3 milestones your '
             'business intends to achieve'}))
-
-    def clean_milestones(self):
-        milestones = self.cleaned_data['milestones']
-        if len(milestones) > 3:
-            raise forms.ValidationError('You cannot select more than 3 items.')
-        return milestones
 
     def save_user(self, email):
         if self.is_valid():
