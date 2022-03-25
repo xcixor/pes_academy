@@ -1,0 +1,47 @@
+# pull base image
+FROM python:3.9.0
+
+# set work directory
+WORKDIR /usr/src/app
+
+# create directory for the app user
+RUN mkdir -p /home/app
+
+# create the appropriate directories
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/pes
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+# copy entrypoint-prod.sh
+COPY ./scripts/entrypoint.prod.sh $APP_HOME
+
+RUN chmod u+x $APP_HOME/entrypoint.prod.sh
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+
+# install dependencies
+COPY ./prod.requirements.txt .
+COPY ./dev.requirements.txt .
+
+RUN pip install --upgrade pip -r prod.requirements.txt
+RUN pip install --upgrade pip -r dev.requirements.txt
+
+# run a postgres healthcheck
+COPY ./scripts/postgres-healthcheck.py /usr/local/bin/postgres-healthcheck
+RUN chmod u+x /usr/local/bin/postgres-healthcheck
+
+# copy project
+COPY ./app .
+
+# copy service account
+COPY ./keys/gcloud-service-key.json /tmp/gcloud-service-key.json
+
+ARG DJANGO_SETTINGS_MODULE
+
+ARG SECRET_KEY
+
+ENTRYPOINT ["/home/app/pes/entrypoint.prod.sh"]
