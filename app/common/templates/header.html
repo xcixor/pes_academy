@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg  fixed-top">
   <div class="container-fluid">
       <a class="navbar-brand" href="#">
-          <img src="{% static 'images/PES logo.png' %}" height="60" class="d-inline-block align-top"
+          <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top"
             alt="PES logo">
         </a>
       <!-- <a class="navbar-brand" href="#">PrivateEquity-Support</a> -->
@@ -15,25 +15,24 @@
               <li class="nav-item">
                   <p class="nav-link" href="#">Email: info@privateequity-support</p>
               </li>
-              <!-- <li class="nav-item active">
-                  <a class="nav-link" href="https://www.privateequity-support.com/">Home
-                      <span class="sr-only">(current)</span>
-                  </a>
-              </li> -->
           </ul>
       </div>
+
       {% if user.is_superuser %}
       <div>
           <h2>Welcome Admin</h2>
       </div>
       {% else %}
-      <div class="help">
+
+      <div class="help dash">
+        <p><a href="{% url 'accounts:dashboard' %}"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/50/ffffff/external-users-internet-of-things-smashingstocks-mixed-smashing-stocks.png"/>Account </a></p>
+      </div> 
+
+      <div class="help h_icon">
         <p><a href="{% url 'accounts:help' %}"> <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png"/> Help</a></p>
       </div>
 
-      <div class="help">
-        <p><a href="{% url 'accounts:dashboard' %}"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/68/000000/external-users-internet-of-things-smashingstocks-mixed-smashing-stocks.png"/>Account </a></p>
-      </div>
+     
       {% endif %}
   </div>
 </nav>

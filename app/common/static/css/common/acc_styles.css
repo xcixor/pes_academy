@@ -3,28 +3,89 @@
     font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     height: auto;
+    
   }
   
   .navbar{
-    background-color: #73071c;
+    background-color: #910521;
     color: #f3f3f3;
   }
 
+  .nav-item{
+    font-size: 20px;
+    padding-right: 20px;
+  }
+
+  .dash{
+    padding-right: 40px;
+    font-size: 20px;
+  }
+
+  .h_icon{
+    padding-right: 20px;
+    font-size: 20px;
+
+  }
   .app_img img{
     padding-top:30px;
     max-width: 100%;
     height: auto;
     }
 
+.textover{
+    position: relative;
+  }
+
+
+
+.textover img{
+  max-width:100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-size: cover; */
+  }
+
+
+ .bottom-left {
+  position: absolute;
+  font-size: 30px;
+  color: #f1f1f1;
+  top:25%;
+  left:10%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+} 
+
+  /* .landing_img img{
+    max-width: 100%;
+    height: 75vh;
+  } */
+
+  .app_head{
+    font-size:30px;
+    font-weight: 600;
+  }
+
+  .required:after {
+     content:"*"; 
+     color: red;
+    }
+
    /* Form */
+
+   .form_name{
+    font-size:30px;
+    font-weight: 600;
+   }
+
    .form {
     width: 100%;
   }
 
-  .required:after {
-    content:" *";
-    color: red;
-  }
+ .error-msg{
+   color: red;
+ }
 
   .form-step {
     display: none;
@@ -143,6 +204,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
+.button{
+  padding: 5px;
+  display: block;
+  text-decoration: none;
+  background-color: #e20b0b;
+  color: rgb(232, 233, 241);
+  text-align: center;
+  border-radius: 50px;
+}
 
   .btn {
     padding: 10px;

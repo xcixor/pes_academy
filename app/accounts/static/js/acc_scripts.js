@@ -9,8 +9,8 @@ let formStepsNum = 0;
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     let allAreFilled = checkRequiredFields($(btn).attr("data-title"));
-    console.log(allAreFilled)
     if (!allAreFilled){
+      showErrorMessage($(btn).attr("data-title"));
       return;
     }else if(allAreFilled){
       formStepsNum++;
@@ -19,6 +19,19 @@ nextBtns.forEach((btn) => {
     }
   });
 });
+
+function showErrorMessage(data_title){
+  $(`#error-${data_title}`).html("Please fill all the required fields")
+  let formSection = $(`.${data_title}`)[0];
+  formSection.querySelectorAll("[required]").forEach(function(i){
+    if (i.type === "radio" && i.checked === false )  {
+      $(`#${data_title}-${i.name}`).css("color","red");
+    } 
+    if (i.type === "text" && i.checked === false )  {
+      $(`#${data_title}-${i.name}`).css("color","red");
+    } 
+  })
+}
 
 prevBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -31,9 +44,9 @@ prevBtns.forEach((btn) => {
 function updateFormSteps() {
   formSteps.forEach((formStep) => {
     formStep.classList.contains("form-step-active") &&
-      formStep.classList.remove("form-step-active");
+    formStep.classList.remove("form-step-active");
   });
-
+  
   formSteps[formStepsNum].classList.add("form-step-active");
 }
 
@@ -45,7 +58,7 @@ function updateProgressbar() {
       progressStep.classList.remove("progress-step-active");
     }
   });
-
+  
   const progressActive = document.querySelectorAll(".progress-step-active");
 
   progress.style.width =
@@ -73,11 +86,11 @@ function checkRequiredFields(data_title) {
     if (i.type === "radio") {
       let radioValueCheck = false;
      formSection.querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
-        if (r.checked) radioValueCheck = true;
+       if (r.checked) radioValueCheck = true;
       })
       allAreFilled = radioValueCheck;
     }
   });
   return allAreFilled;
-
+  
 }

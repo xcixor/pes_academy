@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<section id="services" class="container-fluid">
-  <h3 class="display-4 text-center mt-5 mb-3">Call For Applications</h3>
+<!-- <section id="services"> -->
+  <!-- <h3 class="display-4 text-center">Call For Applications</h3> -->
 
-  <div class="row text-center">
-      {% for application in calls_to_action %}
-     <div class="col-md-4 mb-4">
-        <div class="card h-100">
-           <img class="card-img-top" src="{{application.image.url}}" alt="{{application.tagline}}" />
-           <div class="card-body">
-              <h4 class="card-title">{{application.tagline}}</h4>
-              <p class="card-text"> Applications Ongoing.<span> {{application.deadline}}</span>.</p>
-           </div>
-           <div class="card-footer py-4">
-              <a href="/applications/{{application.slug}}/" class="btn btn-secondary">Apply &raquo;</a>
-           </div>
-        </div>
-     </div>
+     <div class="container-fluid ">
+   {% for application in calls_to_action %}
+   <div class="textover">
+           <img class="call_img" src="{{application.image.url}}" alt="{{application.tagline}}"/>
+           
+           <div class="bottom-left">
+                <h1>Call For Applications</h1>
+
+              <h2 >{{application.tagline}}</h2>
+              <h3 > Applications Ongoing.</h3>
+                <h4> {{application.deadline}}</h4>
+                    
+              <a href="/applications/{{application.slug}}/" class="button btn-danger">Apply &raquo;</a>
+            </div>
+          
+          </div>
+           
      {% endfor %}
   </div>
-</section>
+
+
+
+<!-- </section> -->
 
 {% endblock %}

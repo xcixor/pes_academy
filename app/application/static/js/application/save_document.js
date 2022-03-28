@@ -26,3 +26,4 @@ function saveDocument(event, document_name, application){
     formData.append('application', application);
     xhr.send(formData);
 }
+
