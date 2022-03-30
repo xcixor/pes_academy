@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from application.models import BusinessOrganization, Milestone, CovidImpact
 from accounts.models import User
 from application.services.redis_caching import (
@@ -8,54 +9,70 @@ from common.utils.common_queries import get_application
 
 class ApplicationForm(forms.Form):
 
-    full_name = forms.CharField(max_length=255, widget=forms.TextInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Full Name'}))
+    full_name = forms.CharField(
+        label=_('Participant Name'),
+        max_length=255,
+        widget=forms.TextInput(
+            attrs={'class': 'text draftable', 'placeholder': _('Full Name')}))
     age = forms.ChoiceField(
+        label=_('Age'),
         choices=User.AGE_CHOICES, widget=forms.RadioSelect)
     gender = forms.ChoiceField(
+        label=_('Gender'),
         choices=User.GENDER_CHOICES,
         widget=forms.RadioSelect)
     preferred_language = forms.ChoiceField(
+        label=_('Prefferred Language'),
         widget=forms.RadioSelect, choices=User.LANGUAGE_CHOICES)
-    organization_name = forms.CharField(max_length=255, widget=forms.TextInput(
-        attrs={'class': 'text draftable', 'placeholder': 'Organization Name'}))
-    facebook_link = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={
-            'class': 'text draftable',
-            'placeholder': 'Facebook Page: e.g https://www.facebook.com/my_page/'})
+    organization_name = forms.CharField(
+        label='Organization Name',
+        max_length=255, widget=forms.TextInput(
+            attrs={'class': 'text draftable',
+                   'placeholder': _('Organization Name')})
+    )
+    facebook_link = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'text draftable',
+                'placeholder': _('Facebook Page: e.g https://www.facebook.com/my_page/')})
     )
     twitter_link = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class': 'text draftable',
-            'placeholder': 'Twitter Link: e.g https://www.twitter.com/my_page/'}))
+            'placeholder': _('Twitter Link: e.g https://www.twitter.com/my_page/')}))
     instagram_link = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class': 'text draftable',
-            'placeholder': 'Instagram Page: e.g https://www.instagram.com/my_page/'}))
+            'placeholder': _('Instagram Page: e.g https://www.instagram.com/my_page/')}))
     linkedin_link = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class': 'text draftable',
-            'placeholder': 'LinkedIn Page: e.g https://www.linkedin.com/company/my_page/'}))
+            'placeholder': _('LinkedIn Page: e.g https://www.linkedin.com/company/my_page/')}))
     whatsapp_business_link = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class': 'text draftable',
-            'placeholder': 'Whatsapp Business Link: e.g https://web.whatsapp.com/my_page/'}))
+            'placeholder': _('Whatsapp Business Link: e.g https://web.whatsapp.com/my_page/')}))
     value_chain = forms.ChoiceField(
         widget=forms.RadioSelect,
         choices=BusinessOrganization.VALUE_CHAIN_CHOICES)
     existence_period = forms.ChoiceField(
+        label='Existence Period',
         widget=forms.RadioSelect,
         choices=BusinessOrganization.EXISTENCE_PERIOD_CHOICES)
     stage = forms.ChoiceField(
+        label='Existence Period',
         widget=forms.RadioSelect,
         choices=BusinessOrganization.STAGE_CHOICES)
-    impact = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'text draftable', 'placeholder': 'Covid 19 Impact'}))
-    milestones = forms.CharField(required=True, widget=forms.Textarea(
-        attrs={
-            'class': 'text draftable',
-            'placeholder': 'Please provide atleast 3 milestones your '
-            'business intends to achieve'}))
+    impact = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'class': 'text draftable', 'placeholder': _('Covid 19 Impact')}))
+    milestones = forms.CharField(
+        required=True,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'text draftable',
+                'placeholder': _('Please provide atleast 3 milestones your business intends to achieve')}))
 
     def save_user(self, email):
         if self.is_valid():
@@ -100,14 +117,6 @@ class ApplicationForm(forms.Form):
             )
             return impact, created
         return None
-
-    def save_milestone(self, business):
-        if self.is_valid():
-            milestones = self.cleaned_data['milestones']
-            milestone_objects = Milestone.objects.filter(id__in=milestones)
-            for milestone in milestone_objects:
-                milestone.businesses.add(business)
-            return True
 
     def update_application(self, user):
         application, msg = get_application(user)

@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-30 14:47+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models/user.py:17
+msgid "A User must have a username"
+msgstr "Un utilisateur doit avoir un nom d'utilisateur"
+
+#: models/user.py:36
+msgid "Superuser must have is_superuser=True."
+msgstr "Le superutilisateur doit avoir is_superuser=True."
+
+#: models/user.py:54
+msgid "English"
+msgstr "Anglais"
+
+#: models/user.py:55
+msgid "French"
+msgstr "français"
+
+#: models/user.py:56
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: models/user.py:58
+msgid "Male"
+msgstr "Mâle"
+
+#: models/user.py:59
+msgid "Female"
+msgstr "Femme"
+
+#: models/user.py:60
+msgid "Prefer not to say"
+msgstr "Je préfère ne pas le dire"
+
+#: models/user.py:61
+msgid "Other"
+msgstr "Autre"
+
+#: models/user.py:63
+msgid "20-29"
+msgstr "20-29"
+
+#: models/user.py:64
+msgid "30-39"
+msgstr "30-39"
+
+#: models/user.py:65
+msgid "40-49"
+msgstr "40-49"
+
+#: models/user.py:66
+msgid "Above 50"
+msgstr "Au-dessus de 50"
+
+#: models/user.py:70
+msgid "Primary Email Address"
+msgstr "Adresse e-mail principale"

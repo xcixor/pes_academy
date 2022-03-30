@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 
 User = get_user_model()
@@ -8,23 +9,27 @@ User = get_user_model()
 class BusinessOrganization(models.Model):
 
     VALUE_CHAIN_CHOICES = [
-        ('chain_one', 'Primary production (farming)'),
-        ('chain_two', 'Input supplier'),
-        ('chain_three', 'Processor (value addition)'),
-        ('chain_four', 'Aggregator'), ('chain_five', 'Distributor'),
-        ('chain_six', 'Retailer'), ('chain_seven', 'Service provider')]
+        ('chain_one', _('Primary production (farming)')),
+        ('chain_two', _('Input supplier')),
+        ('chain_three', _('Processor (value addition)')),
+        ('chain_four', _('Aggregator')),
+        ('chain_five', _('Distributor')),
+        ('chain_six', _('Retailer')),
+        ('chain_seven', _('Service provider'))]
 
     EXISTENCE_PERIOD_CHOICES = [
-        ('period_one', 'Below 1 year'),
-        ('period_two', 'More than 1 year but less than 2 years'),
-        ('period_three', 'Between 2 to 5 years'),
-        ('period_four', 'Over 5 years')]
+        ('period_one', _('Below 1 year')),
+        ('period_two', _('More than 1 year but less than 2 years')),
+        ('period_three', _('Between 2 to 5 years')),
+        ('period_four', _('Over 5 years'))]
 
     STAGE_CHOICES = [
-        ('stage_one', 'Product or service is still being developed'),
-        ('stage_two', 'Product or service is at MVP stage. Currently piloting with target users'),
-        ('stage_three', 'Product or service has been availed in the market. There are no sales or revenues as yet'),
-        ('stage_four', 'Product or service is in the market. There are sales/revenues')]
+        ('stage_one', _('Product or service is still being developed')),
+        ('stage_two', _(
+            'Product or service is at MVP stage. Currently piloting with target users')),
+        ('stage_three', _(
+            'Product or service has been availed in the market. There are no sales or revenues as yet')),
+        ('stage_four', _('Product or service is in the market. There are sales/revenues'))]
 
     organization_owner = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='business')

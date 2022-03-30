@@ -1,0 +1,382 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-30 15:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forms/application_form.py:13
+msgid "Participant Name"
+msgstr "Nom du participant"
+
+#: forms/application_form.py:16
+msgid "Full Name"
+msgstr ""
+
+#: forms/application_form.py:18
+msgid "Age"
+msgstr "Âge"
+
+#: forms/application_form.py:21
+msgid "Gender"
+msgstr "Le sexe"
+
+#: forms/application_form.py:25
+msgid "Prefferred Language"
+msgstr "Langue préférée"
+
+#: forms/application_form.py:31
+msgid "Organization Name"
+msgstr "nom de l'organisation"
+
+#: forms/application_form.py:38
+msgid "Facebook Page: e.g https://www.facebook.com/my_page/"
+msgstr "Page Facebook : par exemple https://www.facebook.com/my_page/"
+
+#: forms/application_form.py:43
+msgid "Twitter Link: e.g https://www.twitter.com/my_page/"
+msgstr "Lien Twitter : par exemple https://www.twitter.com/my_page/"
+
+#: forms/application_form.py:47
+msgid "Instagram Page: e.g https://www.instagram.com/my_page/"
+msgstr "Page Instagram : par exemple https://www.instagram.com/my_page/"
+
+#: forms/application_form.py:51
+msgid "LinkedIn Page: e.g https://www.linkedin.com/company/my_page/"
+msgstr "Page Linkedin : par exemple https ://www.linkedin.com/company/my_page/"
+
+#: forms/application_form.py:55
+msgid "Whatsapp Business Link: e.g https://web.whatsapp.com/my_page/"
+msgstr "Whatsapp Business Link : par exemple https://web.whatsapp.com/my_page/"
+
+#: forms/application_form.py:69
+msgid "Covid 19 Impact"
+msgstr "Impact du Covid 19"
+
+#: forms/application_form.py:75
+msgid "Please provide atleast 3 milestones your business intends to achieve"
+msgstr ""
+"Veuillez fournir au moins 3 étapes que votre entreprise a l'intention "
+"d'atteindre"
+
+#: models/application.py:15
+msgid "Application Data Not Submitted"
+msgstr "Données de candidature non soumises"
+
+#: models/application.py:16
+msgid "Data Submitted"
+msgstr "Données soumises"
+
+#: models/application.py:17
+msgid "Documents in review"
+msgstr "Documents en cours d'examen"
+
+#: models/application.py:18
+msgid "Verdict Passed"
+msgstr "Verdict passé"
+
+#: models/application.py:22
+msgid "Date Created"
+msgstr "date créée"
+
+#: models/application.py:24
+msgid "Date Updated"
+msgstr "Date de mise à jour"
+
+#: models/application.py:27
+#, fuzzy
+#| msgid "Application for"
+msgid "Application Creator"
+msgstr "Application pour"
+
+#: models/application.py:28
+#, fuzzy
+#| msgid "Application for"
+msgid "application"
+msgstr "Application pour"
+
+#: models/application.py:31
+#, fuzzy
+#| msgid "Application for"
+msgid "Call To Action"
+msgstr "Appel à candidatures"
+
+#: models/application.py:32
+#, fuzzy
+#| msgid "Application for"
+msgid "applications"
+msgstr "Application pour"
+
+#: models/application.py:36
+msgid "Stage"
+msgstr "Étape"
+
+#: models/application.py:43
+msgid "Unique text to append to the address for the application."
+msgstr "Texte unique à ajouter à l'adresse de l'application."
+
+#: models/application.py:45
+msgid "In Review"
+msgstr "En revue"
+
+#: models/application.py:47
+msgid "Eligibility"
+msgstr "Admissibilité"
+
+#: models/application.py:49
+msgid "Whether to Advance"
+msgstr "Que ce soit pour avancer"
+
+#: models/application.py:51
+msgid "Whether to advance or avoid the application"
+msgstr "Que ce soit pour avancer ou éviter l'application"
+
+#: models/application.py:52
+msgid "Milestones"
+msgstr "Que ce soit pour avancer ou éviter l'application"
+
+#: models/application.py:54
+msgid "Expected Max Score"
+msgstr "Score maximum attendu"
+
+#: models/application.py:84
+#, fuzzy
+#| msgid "Application for"
+msgid "User Applications"
+msgstr "Applications utilisateur"
+
+#: models/business.py:12
+msgid "Primary production (farming)"
+msgstr "Production primaire (agriculture)"
+
+#: models/business.py:13
+msgid "Input supplier"
+msgstr "Fournisseur d'intrants"
+
+#: models/business.py:14
+msgid "Processor (value addition)"
+msgstr "Processeur (valeur ajoutée)"
+
+#: models/business.py:15
+msgid "Aggregator"
+msgstr "Agrégateur"
+
+#: models/business.py:16
+msgid "Distributor"
+msgstr "Distributeur"
+
+#: models/business.py:17
+msgid "Retailer"
+msgstr "Détaillant"
+
+#: models/business.py:18
+msgid "Service provider"
+msgstr "Fournisseur de services"
+
+#: models/business.py:21
+msgid "Below 1 year"
+msgstr "Moins de 1 an"
+
+#: models/business.py:22
+msgid "More than 1 year but less than 2 years"
+msgstr "Plus d'un an mais moins de 2 ans"
+
+#: models/business.py:23
+msgid "Between 2 to 5 years"
+msgstr "Entre 2 et 5 ans"
+
+#: models/business.py:24
+msgid "Over 5 years"
+msgstr "Plus de 5 ans"
+
+#: models/business.py:27
+msgid "Product or service is still being developed"
+msgstr "Le produit ou le service est encore en cours de développement"
+
+#: models/business.py:29
+msgid ""
+"Product or service is at MVP stage. Currently piloting with target users"
+msgstr ""
+"Le produit ou le service est au stade MVP. Actuellement en phase pilote avec "
+"des utilisateurs cibles"
+
+#: models/business.py:31
+msgid ""
+"Product or service has been availed in the market. There are no sales or "
+"revenues as yet"
+msgstr ""
+"Le produit ou le service a été utilisé sur le marché. Il n'y a pas de ventes "
+"ou encore des revenus"
+
+#: models/business.py:32
+msgid "Product or service is in the market. There are sales/revenues"
+msgstr "Le produit ou le service est sur le marché. Il y a des ventes/revenus"
+
+#: templates/application/application_form.html:14
+msgid "Application for"
+msgstr "Application pour"
+
+#: templates/application/application_form.html:15
+#, fuzzy
+#| msgid "Application for"
+msgid "Download Application Form"
+msgstr "Télécharger le formulaire de candidature"
+
+#: templates/application/application_form.html:28
+#: templates/application/application_form.html:29
+#: templates/application/application_form.html:30
+msgid "Personal Info"
+msgstr "Informations personnelles"
+
+#: templates/application/application_form.html:31
+#: templates/application/application_form.html:32
+#: templates/application/application_form.html:33
+#: templates/application/application_form.html:34
+#: templates/application/application_form.html:35
+msgid "Business Info"
+msgstr "Informations sur l'entreprise"
+
+#: templates/application/application_form.html:39
+msgid "NB: Check and Fill all the Fields before you click Next."
+msgstr ""
+"NB : Vérifiez et remplissez tous les champs avant de cliquer sur Suivant."
+
+#: templates/application/application_form.html:40
+#, fuzzy
+#| msgid "Application for"
+msgid "Call For Application"
+msgstr "Appel à candidatures"
+
+#: templates/application/application_form.html:61
+#: templates/application/application_form.html:75
+#: templates/application/application_form.html:92
+#: templates/application/application_form.html:163
+#: templates/application/application_form.html:183
+#: templates/application/application_form.html:202
+#: templates/application/application_form.html:242
+msgid "Next"
+msgstr "Suivant"
+
+#: templates/application/application_form.html:74
+#: templates/application/application_form.html:91
+#: templates/application/application_form.html:162
+#: templates/application/application_form.html:182
+#: templates/application/application_form.html:201
+#: templates/application/application_form.html:241
+#: templates/application/application_form.html:276
+msgid "Previous"
+msgstr "Précédent"
+
+#: templates/application/application_form.html:100
+#, fuzzy
+#| msgid ""
+#| "                        Organization name and social media presence.\n"
+#| "                        (Include any links to your organization_name "
+#| "website and/or social media handles where applicable\n"
+#| "                        (LinkedIn, Facebook, Instagram, Twitter, WhatsApp "
+#| "Business accounts))\n"
+#| "                        "
+msgid ""
+"Organization name and social media presence. (Include any links to your "
+"organization_name website and/or social media handles where applicable "
+"(LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))"
+msgstr ""
+"Nom de l'organisation et présence sur les réseaux sociaux. (Incluez tous les "
+"liens vers le site Web de votre organisation_name et/ou des pseudos de "
+"médias sociaux, le cas échéant (LinkedIn, Facebook, Instagram, Twitter, "
+"Whatsapp Comptes professionnels))"
+
+#: templates/application/application_form.html:152
+msgid ""
+"Kindly indicate which part of the value chain you operate in. Kindly select "
+"only 1 option which most applies *"
+msgstr ""
+"Veuillez indiquer dans quelle partie de la chaîne de valeur vous opérez. "
+"Veuillez sélectionner 1 seule option qui s'applique le plus *"
+
+#: templates/application/application_form.html:170
+msgid ""
+"How long has the business been in formal existence for? * Kindly select one "
+"option. Formal existence means from when the company was registered and "
+"started operating."
+msgstr ""
+"Depuis combien de temps l'entreprise existe-t-elle formellement ? * Veuillez "
+"en sélectionner un option. L'existence formelle signifie à partir du moment "
+"où la société a été enregistrée et commencé à fonctionner."
+
+#: templates/application/application_form.html:189
+msgid ""
+"Which one sentence best describes the stage where your business is at? * "
+"Kindly select one option only that best describes where you are at in the "
+"business development stage. MVP means minimum viable product"
+msgstr ""
+"Quelle phrase décrit le mieux le stade où se trouve votre entreprise ? * "
+"Veuillez sélectionner une seule option qui décrit le mieux où vous en êtes "
+"dans le stade de développement des affaires. MVP signifie produit minimum "
+"viable"
+
+#: templates/application/application_form.html:210
+#: templates/application/application_form.html:214
+msgid ""
+"What are the 3 key business milestones to be achieved in the short term (1-2 "
+"years)? * Kindly choose the top 3 milestones that are your priorities over "
+"the next 1 to 2 years."
+msgstr ""
+"Quels sont les 3 jalons commerciaux clés à atteindre à court terme "
+"(1-2années)? * Veuillez choisir les 3 principaux jalons qui sont vos "
+"priorités les 1 à 2 prochaines années."
+
+#: templates/application/application_form.html:230
+msgid ""
+"How has the COVID 19 pandemic affected your business? Kindly mention 2 key "
+"aspects * Give a short description on how the COVID Pandemic has impacted "
+"your business. (negative and/or positive effect)"
+msgstr ""
+"Comment la pandémie de COVID 19 a-t-elle affecté votre entreprise ? Veuillez "
+"mentionner 2 clés aspects * Donnez une brève description de l'impact de la "
+"pandémie de COVID votre entreprise. (effet négatif et/ou positif)"
+
+#: templates/application/application_form.html:249
+msgid "Kindly upload the relevant documents as described below."
+msgstr "Veuillez télécharger les documents pertinents comme décrit ci-dessous."
+
+#: templates/application/application_form.html:255
+msgid "KRA PIN"
+msgstr "KRA PIN"
+
+#: templates/application/application_form.html:262
+msgid "ID Card"
+msgstr "ID Card"
+
+#: templates/application/application_form.html:269
+msgid "Work Licence"
+msgstr "Work Licence"
+
+#: templates/index/index.html:6
+#, fuzzy
+#| msgid "Application for"
+msgid "Call For Applications"
+msgstr "Appel à candidatures"
+
+#: templates/index/index.html:15
+#, fuzzy
+#| msgid "Application for"
+msgid "Applications Ongoing."
+msgstr "Candidatures en cours."
+
+#: templates/index/index.html:18
+msgid "Apply"
+msgstr "Appliquer"

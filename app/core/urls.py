@@ -32,6 +32,7 @@ urlpatterns = [
     path(
         'eligibility/',
         include('eligibility.presentation.urls', namespace='eligibility')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:

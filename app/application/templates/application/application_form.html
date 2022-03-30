@@ -3,6 +3,7 @@
 {% block styles %}
 {{ block.super }}
 {% load static %}
+{% load i18n %}
 <link rel="stylesheet" href="{% static 'css/accounts/form_inputs.css' %}">
 {% endblock %}
 
@@ -24,24 +25,21 @@
         <!-- progress bar -->
             <div class="progressbar">
                 <div class="progress" id="progress"></div>
-                <div class="progress-step progress-step-active" data-title="Personal Info"></div>
-                <div class="progress-step" data-title="Personal Info"></div>
-                <div class="progress-step" data-title="Personal Info"></div>
-                <div class="progress-step" data-title="Business Info"></div>
-                <div class="progress-step" data-title="Business Info"></div>
-                <div class="progress-step" data-title="Business Info"></div>
-                <div class="progress-step" data-title="Business Info"></div>
-                <div class="progress-step" data-title="Business Info"></div>
+                <div class="progress-step progress-step-active" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
             </div>
             <!-- steps -->
-
-            <!-- step1-->
-            <strong><h4  class="app_head">Call For Application </h4></strong>
-            <div class="form-step form-step-active step-1-form tab"  >
-                <span class="error-msg" id="error-step-1-form"></span>
-                <br>
-                <strong><label class="required" id="step-1-form-preferred_language">Kindly select your preferred language </label></strong>
-
+            <!-- step1 -->
+            <strong><h5 class="text-center"><em> {% trans "NB: Check and Fill all the Fields before you click Next." %}</em></h5></strong>
+            <strong><h4 class="text-center"> {% trans "Call For Application" %} </h4></strong>
+            <div class="form-step form-step-active step-1-form tab" >
+                <strong><p>{{ form.preferred_language.label }}</p></strong>
                 <div class="form-check">
                     {{ form.preferred_language }}
                     {% for error in form.preferred_language.errors %}
@@ -51,7 +49,7 @@
                     {% endfor %}
                 </div>
                 <div class="input-group">
-                    <strong><label class="required"  id="step-1-form-participant_name">Participant Name </label></strong>
+                    <strong><label for="name">{{form.full_name.label}}</label></strong>
                     {{ form.full_name }}
                     {% for error in form.full_name.errors %}
                     <div class="error">
@@ -60,7 +58,7 @@
                     {% endfor %}
                 </div>
                 <div class="">
-                    <a href="#" class="btn btn-next width-50 ml-auto " id="check" data-title="step-1-form" >Next</a>
+                    <a href="#" class="btn btn-next width-50 ml-auto " id="check" data-title="step-1-form">{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step2 -->
@@ -68,15 +66,15 @@
             <span class="error-msg" id="error-step-2-form"></span>
 
                 <p class="required" id="step-2-form-age"> {{ form.age.label }}  </p>
-                 {{ form.age }} 
+                 {{ form.age }}
                 {% for error in form.age.errors %}
                 <div class="error">
                     {{error|escape}}
                 </div>
                 {% endfor %}
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">Previous</a>
-                    <a href="#" class="btn btn-next" data-title="step-2-form" >Next</a>
+                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-next" data-title="step-2-form" >{% trans "Next" %}</a>
                 </div>
             </div>
 
@@ -94,15 +92,19 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">Previous</a>
-                    <a href="#" class="btn btn-next" data-title="step-3-form" >Next</a>
+                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-next" data-title="step-3-form" >{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step 4 -->
             <div class="form-step step-4-form">
             <span class="error-msg" id="error-step-4-form"></span>
                 <div>
-                    <strong><label class="required" id="step-4-form-social_links" for="Your answer">Organisation Name and social media presence. Include any links to your organisation website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts) </label></strong>
+                    <strong>
+                        <label for="Your answer">
+                        {% trans  "Organization name and social media presence. (Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))" %}
+                        </label>
+                    </strong>
                     <div class="row">
                         {{ form.organization_name }}
                         {% for error in form.organization_name.errors %}
@@ -152,7 +154,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <strong><p class="required" id="step-4-form-value_chain">Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies  </p></strong>
+                <strong><p>{% trans "Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *" %} </p></strong>
                 <div class="form-check">
                     {{ form.value_chain }}
                     {% for error in form.value_chain.errors %}
@@ -162,8 +164,8 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">Previous</a>
-                    <a href="#" class="btn btn-next" data-title="step-4-form" >Next</a>
+                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-next" data-title="step-4-form" >{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step 5 -->
@@ -171,9 +173,8 @@
             <span class="error-msg" id="error-step-5-form"></span>
 
                 <strong>
-                    <p class="required" id="step-5-form-existence_period">
-                        How long has the business been in formal existence for?  Kindly select one option.
-                        Formal existence means from when the company was registered and started operating.
+                    <p>
+                        {% trans "How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating." %}
                     </p>
                 </strong>
                 <div class="form-check">
@@ -185,8 +186,8 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">Previous</a>
-                    <a href="#" class="btn btn-next"  data-title="step-5-form" >Next</a>
+                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-next"  data-title="step-5-form" >{% trans "Next" %}</a>
                 </div>
             </div>
         <!-- step 6 -->
@@ -194,10 +195,7 @@
             <span class="error-msg" id="error-step-6-form"></span>
 
             <strong>
-                <p class="required" id="step-6-form-stage">
-                    Which one sentence best describes the stage where your business is at? 
-                    Kindly select one option only that best describes where you are at in the business development stage.
-                    MVP means minimum viable product
+                <p>{% trans "Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product" %}
                 </p>
             </strong>
             <div class="form-check">
@@ -209,8 +207,8 @@
                     {% endfor %}
                 </div>
             <div class="btns-group">
-                <a href="#" class="btn btn-prev ">Previous</a>
-                <a href="#" class="btn btn-next" data-title="step-6-form" >Next</a>
+                <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                <a href="#" class="btn btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
             </div>
         </div>
         <!-- step 7 -->
@@ -219,12 +217,12 @@
 
             <strong>
                 {% if form.milestones.errors %}
-                <p class="required" class="error">
-                    What are the 3 key business milestones to be achieved in the short term (1-2 years)? Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.*
+                <p class="error">
+                    {% trans "What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years." %}
                 </p>
                 {% else %}
-                <p id="step-7-form-milestones">
-                    What are the 3 key business milestones to be achieved in the short term (1-2 years)?Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.*
+                <p>
+                    {% trans "What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years." %}
                 </p>
                 {% endif %}
             </strong>
@@ -240,8 +238,7 @@
             <div class="input-group">
                 <strong>
                     <label for="Your answer">
-                        How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects 
-                        Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)
+                        {% trans "How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business. (negative and/or positive effect)" %}
                     </label>
                 </strong>
                 {{ form.impact }}
@@ -252,8 +249,8 @@
                 {% endfor %}
             </div>
             <div class="btns-group">
-                <a href="#" class="btn btn-prev ">Previous</a>
-                <a href="#" class="btn btn-next" data-title="step-7-form" >Next</a>
+                <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
+                <a href="#" class="btn btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
             </div>
         </div>
         <!-- step 8 -->
@@ -262,34 +259,34 @@
 
             <strong>
                 <p>
-                  Kindly upload the relevant documents as described below.
+                  {% trans "Kindly upload the relevant documents as described below." %}
                 </p>
             </strong>
             <div class="form-check">
                 <div class="row">
                     <div class="col">
-                        <p>KRA PIN</p>
+                        <p>{% trans "KRA PIN" %}</p>
                         <input type="file" name="kra_pin" onchange="saveDocument(event, 'KRA PIN', '{{application.pk}}')">
                         <p id="kra_pin_message" class=""></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p>ID Card</p>
+                        <p>{% trans "ID Card" %}</p>
                         <input type="file" name="id_card" onchange="saveDocument(event, 'ID Card', '{{application.pk}}')">
                         <p id="id_card_message" class=""></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p>Work Licence</p>
+                        <p>{% trans "Work Licence" %}</p>
                         <input type="file" name="licence" onchange="saveDocument(event, 'Licence', '{{application.pk}}')">
                         <p id="licence_message" class=""></p>
                     </div>
                 </div>
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">Previous</a>
+                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
                     <input type="submit" value="Submit" id="check" class="btn">
                 </div>
         </div>

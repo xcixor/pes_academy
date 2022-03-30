@@ -1,3 +1,9 @@
+$('#languageSelect').on('change', function (){
+  console.log('submitted');
+  $('#languageForm').submit();
+});
+
+
 $('#closeMessagesContainer').on('click', function(){
     console.log('close');
     // setTimeout(function() {
@@ -25,10 +31,10 @@ $('#closeMessagesContainer').on('click', function(){
     document.getElementById(pageName).style.display = "block";
     elmnt.style.backgroundColor = color;
   }
-  
+
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
-  
+
 
 document.querySelector("#show-form").addEventListener("click", function(){
   document.querySelector(".popup").classList.add("active");
@@ -37,4 +43,3 @@ document.querySelector("#show-form").addEventListener("click", function(){
 document.querySelector(".popup .close-btn").addEventListener("click",function(){
   document.querySelector(".popup").classList.remove("active");
 });
-

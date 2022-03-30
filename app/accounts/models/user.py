@@ -4,6 +4,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.http import urlsafe_base64_decode
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -13,7 +14,7 @@ class UserManager(BaseUserManager):
         Creates and saves a User with the given email, and password.
         """
         if not username:
-            raise ValueError('A User must have a username')
+            raise ValueError(_('A User must have a username'))
         user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -32,7 +33,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_active', True)
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
+            raise ValueError(_('Superuser must have is_superuser=True.'))
         return self._create_user(username, password, **extra_fields)
 
     def get_user_by_uid(self, uidb64):
@@ -50,17 +51,23 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     LANGUAGE_CHOICES = [
-        ('english', 'English'), ('french', 'French'),
-        ('portuguese', 'Portuguese')]
-    GENDER_CHOICES = [('male', 'Male'), ('female', 'Female'),
-                      ('undisclosed', 'Prefer not to say'), ('other', 'Other')]
+        ('english', _('English')),
+        ('french', _('French')),
+        ('portuguese', _('Portuguese'))]
+    GENDER_CHOICES = [
+        ('male', _('Male')),
+        ('female', _('Female')),
+        ('undisclosed', _('Prefer not to say')),
+        ('other', _('Other'))]
     AGE_CHOICES = [
-        ('range_one', '20-29'), ('range_two', '30-39'),
-        ('range_three', '40-49'), ('range_four', 'Above 50')]
+        ('range_one', _('20-29')),
+        ('range_two', _('30-39')),
+        ('range_three', _('40-49')),
+        ('range_four', _('Above 50'))]
 
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
-        verbose_name='Primary Email Address', max_length=255, unique=True)
+        verbose_name=_('Primary Email Address'), max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=False)

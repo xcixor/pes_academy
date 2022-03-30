@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <nav class="navbar navbar-expand-lg  fixed-top">
   <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -10,29 +11,41 @@
           <ul class="navbar-nav ml-auto">
 
               <li class="nav-item">
-                  <p class="nav-link" href="#">Call: +254 20 36 73711</p>
+                  <p class="nav-link" href="#">{% trans "Call:" %} +254 20 36 73711</p>
               </li>
               <li class="nav-item">
-                  <p class="nav-link" href="#">Email: info@privateequity-support</p>
+                  <p class="nav-link" href="#">{% trans "Email:" %} info@privateequity-support</p>
               </li>
           </ul>
       </div>
 
       {% if user.is_superuser %}
       <div>
-          <h2>Welcome Admin</h2>
+          <h2>{% trans "Welcome Admin" %}</h2>
       </div>
       {% else %}
-
-      <div class="help dash">
-        <p><a href="{% url 'accounts:dashboard' %}"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/50/ffffff/external-users-internet-of-things-smashingstocks-mixed-smashing-stocks.png"/>Account </a></p>
-      </div> 
-
-      <div class="help h_icon">
-        <p><a href="{% url 'accounts:help' %}"> <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png"/> Help</a></p>
+      <div class="help">
+        <p><a href="{% url 'accounts:help' %}"> <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png"/>{% trans "Help" %}</a></p>
       </div>
 
-     
+      <div class="help">
+        <p><a href="{% url 'accounts:dashboard' %}"> <img src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/68/000000/external-users-internet-of-things-smashingstocks-mixed-smashing-stocks.png"/>{% trans "Account" %}</a></p>
+      </div>
       {% endif %}
+    <div class="d-flex language-div pl-5">
+        <form action="{% url 'set_language' %}" method="post" id="languageForm">
+            {% csrf_token %}
+            <select name="language" id="languageSelect" class="form-control">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
   </div>
 </nav>

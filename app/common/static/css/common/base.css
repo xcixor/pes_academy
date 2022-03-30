@@ -16,3 +16,8 @@
 i {
   cursor: pointer;
 }
+
+
+select.form-control {
+  padding: 3px 6px;
+}
