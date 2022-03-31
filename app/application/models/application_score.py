@@ -7,15 +7,17 @@ User = get_user_model()
 
 
 class ScoreWeight(models.IntegerChoices):
-    LOW = 1, 'Low'
-    MEDIUM = 2, 'Medium'
-    HIGH = 3, 'High'
+    STRONGLY_DISAGREE = 1, 'Strongly Disagree'
+    DISAGREE = 2, 'Disagree'
+    NEUTRAL = 3, 'Neutral'
+    AGREE = 4, 'Agree'
+    STRONGLY_AGREE = 5, 'Strongly Agree'
 
 
 class ApplicationScore(models.Model):
 
     score = models.IntegerField(
-        default=ScoreWeight.LOW, choices=ScoreWeight.choices)
+        default=ScoreWeight.STRONGLY_DISAGREE, choices=ScoreWeight.choices)
     prompt = models.TextField()
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE, related_name='scores')
