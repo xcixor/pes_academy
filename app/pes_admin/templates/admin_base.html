@@ -10,7 +10,14 @@
         <ul>
             <li class="pl-5 active"><a class="py-5 aside-link" href="/admin/advanced/invite/reviewer/">Invite Application Reviewers</a></li>
             <li class="pl-5"><a class="py-5 aside-link" href="/admin/advanced/view/staff/">View Staff</a></li>
-            <li class="pl-5"><a class="py-5 aside-link" href="/admin/advanced/view/applications/">View Applications</a></li>
+            <li class="pl-5" id="applicationsDropdown">
+                Applications <i class="fas fa-angle-down" id="menuIdentifier"></i>
+                <ul class="hidden" id="hiddenApplicationActions">
+                    <li class="px-4 py-2"><a href="/admin/advanced/view/applications/">All</a></li>
+                    <li class="px-4 py-2"><a href="/admin/advanced/applications/in-review/">In Review</a></li>
+                    <li class="px-4 py-2"><a href="/admin/advanced/applications/unassigned/">Unassigned</a></li>
+                </ul>
+            </li>
             <li class="pl-5"><a class="py-5 aside-link" href="/admin/">Basic Admin</a></li>
         </ul>
     </aside>
@@ -21,4 +28,8 @@
         {% endblock %}
     </section>
 </div>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
 {% endblock %}

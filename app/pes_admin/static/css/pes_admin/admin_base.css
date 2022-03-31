@@ -22,3 +22,8 @@ li.active {
     display: block;
     height: 100%;
 }
+
+#applicationsDropdown {
+    color: #428bca;
+    cursor: pointer;
+}

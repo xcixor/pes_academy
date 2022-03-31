@@ -5,3 +5,5 @@ from .make_reviewer import MakeStaffReviewerView
 from .view_applications import ApplicationsView
 from .assign_reviewers import AssignReviewersView
 from .application_more import ApplicationDetails
+from .unassigned_applications import UnassignedApplicationsView
+from .in_review import InReviewApplicationsView
