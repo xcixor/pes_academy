@@ -39,3 +39,8 @@ def check_in_queryset(queryset, key):
         if prompt.question_position == key:
             return True
     return False
+
+
+@register.filter('get_average_score')
+def get_average_score(score, reviewers):
+    return round(score/reviewers)

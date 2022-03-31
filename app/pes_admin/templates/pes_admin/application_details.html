@@ -21,7 +21,7 @@
                     There are no reviewers for this application yet.
                     {% endfor %}
                     </ul>
-                    <p><b>Total Score:</b> {{application.total_score}}</p>
+                    <p><b>Total Score:</b> {{application.total_score|get_average_score:application.reviewers.count}}</p>
                     <p><b>Will Advance</b> {% if application.to_advance %}<i class="fa-solid fa-check"></i>{% else %}<i class="fa-solid fa-xmark"></i>{% endif %}</p>
                 </div>
             </div>
