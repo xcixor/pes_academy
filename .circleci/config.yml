@@ -80,10 +80,10 @@ workflows:
   version: 2
   pes:
     jobs:
-      # - test_pes
+      - test_pes
       - push_service_image:
-          # requires:
-          #   - test_pes
+          requires:
+            - test_pes
           filters:
             branches:
               only:
