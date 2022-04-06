@@ -27,12 +27,15 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://pes-staging-pbei2z7ylq-ue.a.run.app',
+    'https://*.privateequity-support.com']
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    # 'core.apps.CustomAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
