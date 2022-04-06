@@ -43,4 +43,9 @@ def check_in_queryset(queryset, key):
 
 @register.filter('get_average_score')
 def get_average_score(score, reviewers):
-    return round(score/reviewers)
+    average_score = score
+    try:
+        average_score = round(score/reviewers)
+    except ZeroDivisionError:
+        print('Error division by zero')
+    return average_score
