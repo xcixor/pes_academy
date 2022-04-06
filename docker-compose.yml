@@ -10,7 +10,8 @@ services:
       - ./app/:/usr/src/app/
     ports:
       - 8000:8000
-      - 6379:6379
+      # - 6379:6379
+      - 6380:6380
     environment:
       SECRET_KEY: 'secret-key'
       DJANGO_SETTINGS_MODULE: core.settings.development
@@ -19,6 +20,7 @@ services:
       POSTGRES_PASSWORD: pes-db-pwd
       POSTGRES_IP: db
       REDIS_HOST: redis
+      REDIS_PORT: 6380
     env_file:
       - .env
     depends_on:

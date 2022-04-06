@@ -46,10 +46,15 @@ ci-test:
 ## create container for development
 dev:
 	docker-compose up --build --force-recreate --remove-orphans --detach
-
-## remove container
+## remove dev container
 tear-dev:
 	docker-compose down -v
+## Start the prod environment
+prod:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build --force-recreate --remove-orphans --detach
+## remove prod container
+tear-prod:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
 
 ## create superuser in container
 createsuperuser:

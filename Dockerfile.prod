@@ -1,6 +1,14 @@
 # pull base image
 FROM python:3.9.0
 
+# install redis
+RUN apt-get update && \
+    apt-get install redis-server -y && \
+    apt-get clean
+
+EXPOSE 6380
+EXPOSE 6379
+
 # set work directory
 WORKDIR /usr/src/app
 
@@ -39,6 +47,8 @@ COPY ./app .
 
 # copy service account
 COPY ./keys/gcloud-service-key.json /tmp/gcloud-service-key.json
+
+RUN ls /tmp
 
 ARG DJANGO_SETTINGS_MODULE
 

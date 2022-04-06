@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  pes:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: pes
+    networks:
+      - pes_prod_network
+    image: pes-production:latest
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+      # - 6379:6379
+      - 6380:6380
+    environment:
+      DJANGO_SETTINGS_MODULE: core.settings.production
+      SECRET_KEY: 'secret-key'
+      GS_BUCKET_URL: https://console.cloud.google.com/storage/browser/pes_online/
+      GS_LOCATION: pes/testing/
+      GS_BUCKET_NAME: pes_online
+      REDIS_HOST: localhost
+      REDIS_PORT: 6380
+    env_file:
+      - .env
+networks:
+  pes_prod_network:
+    name: pes_prod_network

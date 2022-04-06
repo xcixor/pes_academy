@@ -9,3 +9,4 @@
 *virtual*
 *.rdb*
 *staticfiles*
+*gcloud-service-key.json*
