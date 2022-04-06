@@ -10,7 +10,8 @@ from pes_admin.presentation.views import (
 class CustomAdmin(admin.AdminSite):
 
     def get_urls(self):
-        return [
+        urls = super(CustomAdmin, self).get_urls()
+        custom_urls = [
             path('',
                  admin.site.admin_view(AdvancedAdminDashboardView.as_view())),
             path('invite/reviewer/',
@@ -29,7 +30,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AssignReviewersView.as_view())),
             path('view/<slug:slug>/',
                  admin.site.admin_view(ApplicationDetails.as_view())),
-        ]
+        ] + urls
+        return custom_urls
 
 
-custom_urls = CustomAdmin().get_urls()
+custom_pes_admin_site = CustomAdmin(name='Custom PES')
