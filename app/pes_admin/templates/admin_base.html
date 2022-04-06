@@ -8,6 +8,8 @@
 <div class="container-fluid d-flex justify-content-between align-items-start">
     <aside>
         <ul>
+            <p class="pl-5 pt-5">My Actions</p>
+            {% if user.is_superuser %}
             <li class="pl-5 active"><a class="py-5 aside-link" href="/admin/advanced/invite/reviewer/">Invite Application Reviewers</a></li>
             <li class="pl-5"><a class="py-5 aside-link" href="/admin/advanced/view/staff/">View Staff</a></li>
             <li class="pl-5" id="applicationsDropdown">
@@ -19,14 +21,23 @@
                 </ul>
             </li>
             <li class="pl-5"><a class="py-5 aside-link" href="/admin/">Basic Admin</a></li>
+            {% else %}
+            <p class="pl-5">None available</p>
+            {% endif %}
         </ul>
     </aside>
+    {% if user.is_superuser %}
     <section class="content p-5">
         {% block admin_content %}
         <h1>Hello Admin</h1>
         <p>Manage applications and more</p>
         {% endblock %}
     </section>
+    {% else %}
+    <section class="content p-5">
+        <p>You don’t have permission to view or edit anything.</p>
+    </section>
+    {% endif %}
 </div>
 {% endblock %}
 {% block scripts %}
