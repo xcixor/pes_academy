@@ -13,8 +13,7 @@ services:
       - ./app/:/usr/src/app/
     ports:
       - 8000:8000
-      # - 6379:6379
-      - 6380:6380
+      - 6379:6379
     environment:
       DJANGO_SETTINGS_MODULE: core.settings.production
       SECRET_KEY: 'secret-key'
@@ -22,7 +21,7 @@ services:
       GS_LOCATION: pes/testing/
       GS_BUCKET_NAME: pes_online
       REDIS_HOST: localhost
-      REDIS_PORT: 6380
+      REDIS_PORT: 6379
     env_file:
       - .env
 networks:
