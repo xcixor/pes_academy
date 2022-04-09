@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-30 15:04+0300\n"
+"POT-Creation-Date: 2022-04-09 12:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -261,26 +261,26 @@ msgid "Call For Application"
 msgstr "Appel à candidatures"
 
 #: templates/application/application_form.html:61
-#: templates/application/application_form.html:75
-#: templates/application/application_form.html:92
-#: templates/application/application_form.html:163
-#: templates/application/application_form.html:183
-#: templates/application/application_form.html:202
-#: templates/application/application_form.html:242
+#: templates/application/application_form.html:77
+#: templates/application/application_form.html:96
+#: templates/application/application_form.html:168
+#: templates/application/application_form.html:190
+#: templates/application/application_form.html:211
+#: templates/application/application_form.html:253
 msgid "Next"
 msgstr "Suivant"
 
-#: templates/application/application_form.html:74
-#: templates/application/application_form.html:91
-#: templates/application/application_form.html:162
-#: templates/application/application_form.html:182
-#: templates/application/application_form.html:201
-#: templates/application/application_form.html:241
-#: templates/application/application_form.html:276
+#: templates/application/application_form.html:76
+#: templates/application/application_form.html:95
+#: templates/application/application_form.html:167
+#: templates/application/application_form.html:189
+#: templates/application/application_form.html:210
+#: templates/application/application_form.html:252
+#: templates/application/application_form.html:289
 msgid "Previous"
 msgstr "Précédent"
 
-#: templates/application/application_form.html:100
+#: templates/application/application_form.html:105
 #, fuzzy
 #| msgid ""
 #| "                        Organization name and social media presence.\n"
@@ -299,7 +299,7 @@ msgstr ""
 "médias sociaux, le cas échéant (LinkedIn, Facebook, Instagram, Twitter, "
 "Whatsapp Comptes professionnels))"
 
-#: templates/application/application_form.html:152
+#: templates/application/application_form.html:157
 msgid ""
 "Kindly indicate which part of the value chain you operate in. Kindly select "
 "only 1 option which most applies *"
@@ -307,7 +307,7 @@ msgstr ""
 "Veuillez indiquer dans quelle partie de la chaîne de valeur vous opérez. "
 "Veuillez sélectionner 1 seule option qui s'applique le plus *"
 
-#: templates/application/application_form.html:170
+#: templates/application/application_form.html:177
 msgid ""
 "How long has the business been in formal existence for? * Kindly select one "
 "option. Formal existence means from when the company was registered and "
@@ -317,7 +317,7 @@ msgstr ""
 "en sélectionner un option. L'existence formelle signifie à partir du moment "
 "où la société a été enregistrée et commencé à fonctionner."
 
-#: templates/application/application_form.html:189
+#: templates/application/application_form.html:198
 msgid ""
 "Which one sentence best describes the stage where your business is at? * "
 "Kindly select one option only that best describes where you are at in the "
@@ -328,8 +328,8 @@ msgstr ""
 "dans le stade de développement des affaires. MVP signifie produit minimum "
 "viable"
 
-#: templates/application/application_form.html:210
-#: templates/application/application_form.html:214
+#: templates/application/application_form.html:221
+#: templates/application/application_form.html:225
 msgid ""
 "What are the 3 key business milestones to be achieved in the short term (1-2 "
 "years)? * Kindly choose the top 3 milestones that are your priorities over "
@@ -339,7 +339,7 @@ msgstr ""
 "(1-2années)? * Veuillez choisir les 3 principaux jalons qui sont vos "
 "priorités les 1 à 2 prochaines années."
 
-#: templates/application/application_form.html:230
+#: templates/application/application_form.html:241
 msgid ""
 "How has the COVID 19 pandemic affected your business? Kindly mention 2 key "
 "aspects * Give a short description on how the COVID Pandemic has impacted "
@@ -349,19 +349,19 @@ msgstr ""
 "mentionner 2 clés aspects * Donnez une brève description de l'impact de la "
 "pandémie de COVID votre entreprise. (effet négatif et/ou positif)"
 
-#: templates/application/application_form.html:249
+#: templates/application/application_form.html:262
 msgid "Kindly upload the relevant documents as described below."
 msgstr "Veuillez télécharger les documents pertinents comme décrit ci-dessous."
 
-#: templates/application/application_form.html:255
+#: templates/application/application_form.html:268
 msgid "KRA PIN"
 msgstr "KRA PIN"
 
-#: templates/application/application_form.html:262
+#: templates/application/application_form.html:275
 msgid "ID Card"
 msgstr "ID Card"
 
-#: templates/application/application_form.html:269
+#: templates/application/application_form.html:282
 msgid "Work Licence"
 msgstr "Work Licence"
 

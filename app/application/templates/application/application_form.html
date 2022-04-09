@@ -11,8 +11,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <h3 class="form_name">Application for {{application.call_to_action.tagline}}</h3>
-            <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn" download>Download Application Form</a>
+            <h3 class="form_name">{% trans "Application for" %} {{application.call_to_action.tagline}}</h3>
+            <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn" download>{% trans "Download Application Form" %}</a>
         </div>
     </div>
     <div class="row">
