@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% load account_extras %}
 
 {% block content %}
@@ -12,19 +13,19 @@
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</span></a></li>
+                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">{% trans "Home" %}</span></a></li>
 
                         <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Academy')" >Academy</span></a></li>
+                            <span class="tablink" onclick="openPage('Academy')" >{% trans "Academy" %}</span></a></li>
 
                         <li class="tablink" onclick="openPage('App')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('App')" >Applications</span></a></li>
+                            <span class="tablink" onclick="openPage('App')" >{% trans "Applications" %}</span></a></li>
 
                         <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Team')" >Team</span></a></li>
+                            <span class="tablink" onclick="openPage('Team')" >{% trans "Team" %}</span></a></li>
 
                         <li ><a href="/accounts/logout/"><i class="fa fa-cog" aria-hidden="true"></i>
-                            <span >Log Out</span></a></li>
+                            <span >{% trans "Log Out" %}</span></a></li>
 
 
                     </ul>
@@ -38,7 +39,7 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <button class="btn btn-primary" id="show-form">Invite</button>
+                                    <button class="btn btn-primary" id="show-form">{% trans "Invite" %}</button>
 
                                     <!-- <button class="btn btn-primary" id="show-form">Invite</button> -->
                                 </ul>
@@ -50,12 +51,12 @@
 
 
                 <div class="user-dashboard tabcontent"  id="Home">
-                    <h1>Hello, {{user}}</h1>
+                    <h1>{% trans "Hello" %}, {{user}}</h1>
                     <div class="row">
                         <div class="col-md-6 col-sm-4 col-xs-12 gutter">
 
                             <div class=" row sales">
-                                <h2>Your Team Members</h2>
+                                <h2>{% trans "Your Team Members" %}</h2>
                                 <div class="col-md-12">
                                     {% if user.organization_admin %}
                                     {% for member in user.organization_admin.subscriptions.all %}
@@ -81,12 +82,12 @@
                         <div class="col-md-6 col-sm-4 col-xs-12 gutter">
 
                             <div class=" row sales ">
-                                <h2> Ongoing Applications</h2>
+                                <h2>{% trans "Ongoing Applications" %}</h2>
                                 <div class="col-md-12">
                                     {% if user.application %}
-                                    <button><a href="/applications/{{user.application.call_to_action.slug}}/">Your Application</a></button>
+                                    <button><a href="/applications/{{user.application.call_to_action.slug}}/">{% trans "Your Application" %}</a></button>
                                     {% else %}
-                                    <button><a href="{{user.email|get_application_url}}">Your Application</a></button>
+                                    <button><a href="{{user.email|get_application_url}}">{% trans "Your Application" %}</a></button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -101,11 +102,11 @@
                 </div>
                 <div id="Academy" class="tabcontent">
                     <div class="card">
-                        <h5 class="card-header">PES Academy</h5>
+                        <h5 class="card-header">{% trans "PES Academy" %}</h5>
                         <div class="card-body">
                           <!-- <h5 class="card-title">Special title treatment</h5> -->
-                          <p class="card-text">Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business. </p>
-                          <a href=" https://privateequity-support.thinkific.com/users/sign_in"  target='_blank' class="btn btn-primary">Join the PES Academy</a>
+                          <p class="card-text">{% trans "Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business." %}</p>
+                          <a href=" https://privateequity-support.thinkific.com/users/sign_in"  target='_blank' class="btn btn-primary">{% trans "Join the PES Academy" %}</a>
                         </div>
                       </div>
                   </div>
@@ -114,22 +115,22 @@
                  <div class="row">
                     <div class="col-md-6 col-sm-4 col-xs-12 gutter card">
                         <div class="card-header">
-                          Applications
+                          {% trans "Applications" %}
                         </div>
                         <div class="card-body">
-                          <h5 class="card-title">Ongoing Applications</h5>
-                          <p class="card-text">Click on the link below to resume to your applications.</p>
+                          <h5 class="card-title">{% trans "Ongoing Applications" %}</h5>
+                          <p class="card-text">{% trans "Click on the link below to resume to your applications." %}</p>
                           {% if user.application %}
-                          <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">Continue</a>
+                          <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
                           {% else %}
-                          <a href="{{user.email|get_application_url}}" class="btn btn-primary">Continue</a>
+                          <a href="{{user.email|get_application_url}}" class="btn btn-primary">{% trans "Continue" %}</a>
                           {% endif %}
                         </div>
                       </div>
 
                       <div class="col-md-6 col-sm-4 col-xs-12 gutter card">
                         <div class="card-header">
-                          Upload Further Documents
+                          {% trans "Upload Further Documents" %}
                         </div>
                         <div class="card-body">
                          <form action="{% url 'application:extra_documents' %}" method="post" enctype="multipart/form-data">
@@ -147,7 +148,7 @@
                                 {% endfor %}
                              </div>
                             <input name="application" type="hidden"  value="{{application.pk}}">
-                            <input type="submit" value="Save">
+                            <button type="submit">{% trans "Save" %}</button>
                         </form>
                         </div>
                       </div>
@@ -155,7 +156,7 @@
                   </div>
 
                   <div id="Team" class="tabcontent">
-                        <h2>Your Team Members</h2>
+                        <h2>{% trans "Your Team Members" %}</h2>
                     <div class="row">
 
                         <div class="col-md-4 gutter">
@@ -194,7 +195,7 @@
                             {% endwith %}
                             {% endif %}
                         </div>
-                    
+
                     </div>
                   </div>
             </div>
@@ -207,9 +208,9 @@
         <div class="close-btn">&times;</div>
         <div><form class="form" action="/organization-subscription/initiate/" method="post">
             {% csrf_token %}
-            <h2>Invite Collaborator</h2>
+            <h2>{% trans "Invite Collaborator" %}</h2>
             <div class="form-element">
-                <label for="email">Email</label>
+                <label for="email">{% trans "Email" %}</label>
                 <input type="email" id="email" placeholder="Enter email" name="subscriber_email">
             </div>
             <div class="row col">
@@ -219,10 +220,9 @@
             </div>
 
         <div class="form-element">
-            <button type="submit">Send</button>
+            <button type="submit">{% trans "Send" %}</button>
         </div>
     </form></div>
     </div>
 
-</div>
 {% endblock %}
