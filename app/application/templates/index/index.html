@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
+{% block body_id %}cfa{% endblock %}
 {% load i18n %}
 {% block content %}
+<section id="cfa" class="container-fluid"></section>
+  <h2 class="font-weight-bold mb-5 mt-5 text-center h1">CALL FOR APPLICATIONS</h2>
+  <br>
+  
 
-<section id="services" class="container-fluid">
-  <h3 class="display-4 text-center mt-5 mb-3">{% trans "Call For Applications" %}</h3>
-
-  <div class="row text-center">
+  <div class="row pb-5 mb-3">
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
+      <!-- Card-->
       {% for application in calls_to_action %}
-     <div class="col-md-4 mb-4">
-        <div class="card h-100">
-           <img class="card-img-top" src="{{application.image.url}}" alt="{{application.tagline}}" />
-           <div class="card-body">
-              <h4 class="card-title">{{application.tagline}}</h4>
-              <p class="card-text">{% trans "Applications Ongoing." %}<span> {{application.deadline}}</span>.</p>
-           </div>
-           <div class="card-footer py-4">
-              <a href="/applications/{{application.slug}}/" class="btn btn-secondary">{% trans "Apply" %} &raquo;</a>
-           </div>
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4"><img src="{{application.image.url}}" alt="{{application.tagline}}" class="img-fluid d-block mx-auto mb-3" style="width: auto;">
+          <h5 class="text-center"> <a href="#" class="text-white">{{application.tagline}}</a></h5>
+          <h5 class="text-center"> <a href="#" class="text-white">{{application.description}}</a></h5>
+          <p class="small text-white font-italic text-center">{% trans "Applications Ongoing. Ends " %}<span> {{application.deadline}}</span></p>
+          <div class="col text-center">
+             <a href="/applications/{{application.slug}}/" class="btn btn-primary">{% trans "Apply" %} &raquo;</a>
+			</div>
         </div>
-     </div>
-     {% endfor %}
-  </div>
+      </div>
+      {% endfor %}
+    </div>
+    
 
-
-
-<!-- </section> -->
+</section>
 
 {% endblock %}

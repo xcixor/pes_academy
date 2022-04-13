@@ -1,0 +1,49 @@
+#cfa{
+  background-image:url("../../common/images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-blend-mode: soft-light;
+}
+
+#error-page{
+  background-image:url("images/agri3.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-blend-mode: soft-light;
+}
+
+.h1 {
+  color: #a91917;
+}
+
+#second-nav {
+  background-color: #a91917;
+  color: #ffffff;
+}
+
+.card {
+  background-color: #a91917;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  /* margin-bottom: 20px; */
+  /* padding: 20px; */
+}
+
+.btn-primary {
+  background-color: #4b6386;
+  border-radius: 10px;
+}
+
+.jumbotron {
+  background-color: #a91917;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  /* margin-bottom: 20px;
+  padding: 20px; */
+}

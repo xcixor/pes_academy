@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'css/common/style.css' %}">
     <!-- dashboard css -->
     <link rel="stylesheet" href="{% static 'css/common/dashboard.css' %}">
+    <!-- CFA Styles -->
+    <link rel="stylesheet" href="{% static 'css/common/cfa_styles.css' %}">
     {% endblock %}
 </head>
 {% block messages %}
@@ -34,7 +36,7 @@
 {% endif %}
 
 
-<body>
+<body id="{% block body_id %}{% endblock %}">
     {% include 'header.html' %}
 
     {% block content %}
