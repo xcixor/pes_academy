@@ -1,8 +1,24 @@
-$('#applicationsDropdown').on('click', function(){
-    $('#hiddenApplicationActions').toggleClass('hidden ');
-    $('#menuIdentifier').toggleClass('fa-angle-down fa-angle-up')
-});
-
-$('#applicationsDropdown li').click(function(e){
-    e.stopPropagation();
-});
+$(document).ready(()=>{
+  
+    $('#open-sidebar').click(()=>{
+       
+        // add class active on #sidebar
+        $('#sidebar').addClass('active');
+        
+        // show sidebar overlay
+        $('#sidebar-overlay').removeClass('d-none');
+      
+     });
+    
+    
+     $('#sidebar-overlay').click(function(){
+       
+        // add class active on #sidebar
+        $('#sidebar').removeClass('active');
+        
+        // show sidebar overlay
+        $(this).addClass('d-none');
+      
+     });
+    
+  });
