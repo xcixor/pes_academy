@@ -1,8 +1,9 @@
 from django import forms
-from common.utils.email import HtmlEmailMixin
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from organization_subscription.models import Subscription
+from common.utils.email import HtmlEmailMixin
 
 
 class InitiateSubscriptionForm(forms.Form, HtmlEmailMixin):
@@ -19,13 +20,13 @@ class InitiateSubscriptionForm(forms.Form, HtmlEmailMixin):
         subscriber_email = self.cleaned_data['subscriber_email']
         subscription = Subscription.objects.filter(
             subscriber_email=subscriber_email).first()
+        error_msg = _('This user is already subscribed to your organization')
         if subscription:
-            raise forms.ValidationError(
-                'This user is already subscribed to your organization')
+            raise forms.ValidationError(error_msg)
         return subscriber_email
 
     def send_subscription_email(self, to_email, request):
-        subject = "Join Our Organization Channel"
+        subject = _("Join Our Organization Channel")
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {

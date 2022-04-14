@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -10,13 +11,13 @@
         {% if form.errors %}
         <span class="d-inline-flex align-items-center">
           <i class="fas fa-info error mr-2"></i>
-          <p class="error m-0">Please correct the errors in the form below</p>
+          <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
         </span>
         {% endif %}
       </div>
 
     <div class="container">
-      <h1 class="text-center">Invite People to Your Org</h1>
+      <h1 class="text-center">{% trans "Invite People to Your Org" %}</h1>
       <div class="input-container">
         <input class="input-field" type="text" placeholder="Email" name="subscriber_email" required>
       </div>
@@ -25,7 +26,7 @@
         <div class="error">{{ error|escape }}</div>
         {% endfor %}
       </div>
-      <button type="submit" class="registerbtn">INVITE</button>
+      <button type="submit" class="registerbtn">{% trans "INVITE" %}</button>
     </div>
   </form>
 

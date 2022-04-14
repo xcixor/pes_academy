@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView, FormView
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from organization_subscription.forms import InitiateSubscriptionForm
 from organization_subscription.models import OrganizationSubscription
 
@@ -35,14 +36,14 @@ class PostInitiateOrganizationSubscriptionView(FormView):
             }
         )
         form.subscribe_user(organization_subscription)
-        success_message = (
-            f'Great. {email} has been invited to your organization.')
+        success_message = _('Great.') + email + \
+            _(' has been invited to your organization.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        error_message = (
+        error_message = _(
             'Hmm..That didn\'t work please try again.')
         messages.add_message(
             self.request, messages.ERROR, error_message)

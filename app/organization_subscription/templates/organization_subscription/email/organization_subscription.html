@@ -1,13 +1,14 @@
 {% extends 'common/email/base.html' %}
+{% load i18n %}
 
 {% block message %}
-Please join your organization's channel at Private Equity Support through the link below.
-Please verify your email address by clicking the activation link below: <br>
+{% trans "Please join your organization's channel at Private Equity Support through the link below." %}
+{% trans "Please verify your email address by clicking the activation link below:" %} <br>
 <div style="margin: 20px 0;">
     <a
         style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
         href="{{protocol}}://{{domain}}{% url 'organization_subscription:activate' %}">
-        ACTIVATE
+        {% trans "ACTIVATE" %}
     </a>
 </div><br>
 
