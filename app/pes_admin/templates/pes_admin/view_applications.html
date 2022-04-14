@@ -5,24 +5,32 @@
 <link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
 {% endblock %}
 {% block admin_content %}
-<div class="row pb-4">
-    <div class="col-md-3 px-2 d-flex align-items-center"><b>ID</b></div>
-    <div class="col-md-3 px-2 d-flex align-items-center"><b>Creator</b></div>
-    <div class="col-md-3 px-2 d-flex align-items-center"><b>Stage</b></div>
-    <div class="col-md-3 px-2 d-flex align-items-center"><b>In Review</b></div>
-</div>
-{% for application in applications %}
-<div class="row pb-4">
-    <div class="col-md-3 px-2 d-flex align-items-center">{{application.special_id}}</div>
-    <div class="col-md-3 px-2 d-flex align-items-center">{{application.application_creator}}</div>
-    <div class="col-md-3 px-2 d-flex align-items-center">{{application.get_stage_display}}</div>
-    <div class="col-md-3 px-2 d-flex align-items-center">
-        {% if application.is_in_review %}
-        <i class="fa-solid fa-circle-check"></i>
-        {% else %}
-        <i class="fa-solid fa-xmark"></i>
-        {% endif %}
+
+<div class="card card-admin">
+    <div class="card-header ">
+    </div>
+    <div class="card-body">
+        
+        <div class="row pb-4">
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>ID</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>Creator</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>Stage</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>In Review</b></div>
+        </div>
+        {% for application in applications %}
+        <div class="row pb-4">
+            <div class="col-md-3 px-2 d-flex align-items-center">{{application.special_id}}</div>
+            <div class="col-md-3 px-2 d-flex align-items-center">{{application.application_creator}}</div>
+            <div class="col-md-3 px-2 d-flex align-items-center">{{application.get_stage_display}}</div>
+            <div class="col-md-3 px-2 d-flex align-items-center">
+                {% if application.is_in_review %}
+                <i class="fa-solid fa-circle-check"></i>
+                {% else %}
+                <i class="fa-solid fa-xmark"></i>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endblock %}
     </div>
 </div>
-{% endfor %}
-{% endblock %}
