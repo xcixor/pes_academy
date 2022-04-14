@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block body_id %}agri-window{% endblock %}
 {% block styles %}
 {{ block.super }}
 {% load static %}
@@ -8,18 +8,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid p-5">
     <div class="row">
-        <div class="col d-flex justify-content-between">
+        <div class="col">
             <h3 class="form_name">{% trans "Application for" %} {{application.call_to_action.tagline}}</h3>
-            <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn" download>{% trans "Download Application Form" %}</a>
+            <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn btn-primary" download>{% trans "Download Application Form" %}</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 app_img">
-            <a ><img src="{% static 'images/clientlog.JPG' %}"></a>
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
         <form class="form"  name="form" id="myForm" method="post" action="/applications/{{application.call_to_action.slug}}/">
         {% csrf_token %}
         <!-- progress bar -->
@@ -58,7 +55,7 @@
                     {% endfor %}
                 </div>
                 <div class="">
-                    <a href="#" class="btn btn-next width-50 ml-auto " id="check" data-title="step-1-form">{% trans "Next" %}</a>
+                    <a href="#" class="btn btn-primary btn-next width-50 ml-auto " id="check" data-title="step-1-form">{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step2 -->
@@ -73,8 +70,8 @@
                 </div>
                 {% endfor %}
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                    <a href="#" class="btn btn-next" data-title="step-2-form" >{% trans "Next" %}</a>
+                    <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-primary btn-next" data-title="step-2-form" >{% trans "Next" %}</a>
                 </div>
             </div>
 
@@ -92,8 +89,8 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                    <a href="#" class="btn btn-next" data-title="step-3-form" >{% trans "Next" %}</a>
+                    <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-primary btn-next" data-title="step-3-form" >{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step 4 -->
@@ -164,8 +161,8 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                    <a href="#" class="btn btn-next" data-title="step-4-form" >{% trans "Next" %}</a>
+                    <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-primary btn-next" data-title="step-4-form" >{% trans "Next" %}</a>
                 </div>
             </div>
             <!-- step 5 -->
@@ -186,8 +183,8 @@
                     {% endfor %}
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                    <a href="#" class="btn btn-next"  data-title="step-5-form" >{% trans "Next" %}</a>
+                    <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                    <a href="#" class="btn btn-primary btn-next"  data-title="step-5-form" >{% trans "Next" %}</a>
                 </div>
             </div>
         <!-- step 6 -->
@@ -207,8 +204,8 @@
                     {% endfor %}
                 </div>
             <div class="btns-group">
-                <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                <a href="#" class="btn btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
+                <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                <a href="#" class="btn btn-primary btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
             </div>
         </div>
         <!-- step 7 -->
@@ -249,8 +246,8 @@
                 {% endfor %}
             </div>
             <div class="btns-group">
-                <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                <a href="#" class="btn btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
+                <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                <a href="#" class="btn btn-primary btn-next" data-title="step-6-form" >{% trans "Next" %}</a>
             </div>
         </div>
         <!-- step 8 -->
@@ -286,8 +283,8 @@
                 </div>
                 </div>
                 <div class="btns-group">
-                    <a href="#" class="btn btn-prev ">{% trans "Previous" %}</a>
-                    <input type="submit" value="Submit" id="check" class="btn">
+                    <a href="#" class="btn btn-primary btn-prev ">{% trans "Previous" %}</a>
+                    <input type="submit" value="Submit" id="check" class="btn btn-primary">
                 </div>
         </div>
 
