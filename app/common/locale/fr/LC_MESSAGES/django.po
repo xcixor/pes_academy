@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-30 14:55+0300\n"
+"POT-Creation-Date: 2022-04-14 15:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: templates/common/email/base.html:26
+msgid "The"
+msgstr "Le"
+
+#: templates/common/email/base.html:26
+msgid "Team"
+msgstr "Équipe"
+
 #: templates/header.html:14
 msgid "Call:"
 msgstr "Appel:"
@@ -26,14 +34,14 @@ msgstr "Appel:"
 msgid "Email:"
 msgstr "E-mail:"
 
-#: templates/header.html:28
+#: templates/header.html:24
 msgid "Welcome Admin"
 msgstr "Bienvenue administrateur"
 
-#: templates/header.html:32
+#: templates/header.html:28
 msgid "Help"
 msgstr "Aider"
 
-#: templates/header.html:36
+#: templates/header.html:32
 msgid "Account"
 msgstr "Compte"

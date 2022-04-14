@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from application.models import Application
 
 
@@ -7,11 +8,11 @@ User = get_user_model()
 
 
 class ScoreWeight(models.IntegerChoices):
-    STRONGLY_DISAGREE = 1, 'Strongly Disagree'
-    DISAGREE = 2, 'Disagree'
-    NEUTRAL = 3, 'Neutral'
-    AGREE = 4, 'Agree'
-    STRONGLY_AGREE = 5, 'Strongly Agree'
+    STRONGLY_DISAGREE = 1, _('Strongly Disagree')
+    DISAGREE = 2, _('Disagree')
+    NEUTRAL = 3, _('Neutral')
+    AGREE = 4, _('Agree')
+    STRONGLY_AGREE = 5, _('Strongly Agree')
 
 
 class ApplicationScore(models.Model):
@@ -24,7 +25,9 @@ class ApplicationScore(models.Model):
     reviewer = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name='scores')
     question_position = models.IntegerField(
-        help_text='The position of the question in the form')
+        help_text=_('The position of the question in the form'))
 
     def __str__(self):
-        return f'{self.get_score_display()} score for {self.prompt} for {self.application.special_id}'
+        return self.get_score_display() + \
+            _('score for') + self.prompt + \
+            _(' for') + self.application.special_id

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRIVATE EQUITY SUPPORT</title>
 </head>
+{% load i18n %}
 <body style="padding: 2% 10%; background-color: whitesmoke; font-family: 'Google Sans', Roboto,RobotoDraft,Helvetica,Arial,sans-serif;">
     <div style="background-color: white; padding: 5%; border-radius: 20px;">
         <div style="vertical-align: top; width: 100%">
@@ -21,8 +22,8 @@
             {{context}}
             {% endblock %}
         </div>
-        <p style="margin: 0;">Thank you.</p>
-        <p style="margin: 0;"><i>The Private Equity Support Team</i></p>
+        <p style="margin: 0;">{% Thank you. %}</p>
+        <p style="margin: 0;"><i>{% trans "The" %} Private Equity Support {% trans "Team" %}</i></p>
     </div>
 </body>
 </html>

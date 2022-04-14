@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from application.models import Application
 
 
@@ -15,4 +16,5 @@ class ApplicationComment(models.Model):
         Application, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self) -> str:
-        return f'Comment for {self.application.special_id} by {self.reviewer}'
+        return _('Comment for ') + self.application.special_id + \
+            _(' by') + self.reviewer

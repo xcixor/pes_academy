@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 14:54+0300\n"
+"POT-Creation-Date: 2022-04-14 15:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,6 +162,46 @@ msgstr "Score maximum attendu"
 msgid "User Applications"
 msgstr "Applications utilisateur"
 
+#: models/application_prompt.py:17 models/application_score.py:28
+msgid "The position of the question in the form"
+msgstr "La position de la question dans le formulaire"
+
+#: models/application_prompt.py:20
+msgid "Message for"
+msgstr "Message pour"
+
+#: models/application_prompt.py:21 models/comment.py:20
+msgid " by"
+msgstr " par"
+
+#: models/application_score.py:11
+msgid "Strongly Disagree"
+msgstr "Pas du tout d'accord"
+
+#: models/application_score.py:12
+msgid "Disagree"
+msgstr "Être en désaccord"
+
+#: models/application_score.py:13
+msgid "Neutral"
+msgstr "Neutre"
+
+#: models/application_score.py:14
+msgid "Agree"
+msgstr "Se mettre d'accord"
+
+#: models/application_score.py:15
+msgid "Strongly Agree"
+msgstr "Tout à fait d'accord"
+
+#: models/application_score.py:32
+msgid "score for"
+msgstr "score pour"
+
+#: models/application_score.py:33
+msgid " for"
+msgstr "pour"
+
 #: models/business.py:12
 msgid "Primary production (farming)"
 msgstr "Production primaire (agriculture)"
@@ -229,19 +269,24 @@ msgstr ""
 msgid "Product or service is in the market. There are sales/revenues"
 msgstr "Le produit ou le service est sur le marché. Il y a des ventes/revenus"
 
+#: models/comment.py:19
+#, fuzzy
+#| msgid "Comment for"
+msgid "Comment for "
+msgstr "Commentaire pour "
+
 #: presentation/views/application.py:51
 msgid ""
 "Great, you application has been received. We will get back in touch with you."
-msgstr ""
-"Bravo, votre candidature a bien été reçue. Nous vous recontacterons."
+msgstr "Bravo, votre candidature a bien été reçue. Nous vous recontacterons."
 
 #: presentation/views/application.py:59
 msgid ""
 "An error occurred while validating your form. Please check that all fields "
 "are correct. Thank you."
 msgstr ""
-"Une erreur s'est produite lors de la validation de votre formulaire. Veuillez vérifier que tous les champs "
-"sont corrects. Merci."
+"Une erreur s'est produite lors de la validation de votre formulaire. "
+"Veuillez vérifier que tous les champs sont corrects. Merci."
 
 #: presentation/views/application_comment.py:19
 msgid "Great, your comment has been saved."
@@ -275,7 +320,9 @@ msgstr " a été téléchargé avec succès."
 
 #: presentation/views/extra_docs.py:27
 msgid "Hmm something went wrong please check the errors in the form below."
-msgstr "Hmm quelque chose s'est mal passé, veuillez vérifier les erreurs dans le formulaire ci-dessous."
+msgstr ""
+"Hmm quelque chose s'est mal passé, veuillez vérifier les erreurs dans le "
+"formulaire ci-dessous."
 
 #: presentation/views/save_document.py:28
 msgid "Success"
