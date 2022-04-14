@@ -1,12 +1,13 @@
 {% extends 'common/email/base.html' %}
+{% load i18n %}
 
 {% block message %}
-Please register as a reviewer by clicking the registration link below: <br>
+{% trans "Please register as a reviewer by clicking the registration link below:" %} <br>
 <div style="margin: 20px 0;">
     <a
         style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
         href="{{protocol}}://{{domain}}{% url 'accounts:reviewer_registration' %}">
-        REGISTER/LOGIN
+        {% trans "REGISTER/LOGIN" %}
     </a>
 </div><br>
 

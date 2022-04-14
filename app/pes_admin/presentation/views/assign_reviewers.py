@@ -1,6 +1,7 @@
 from django.views.generic import DetailView, FormView, View
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from application.models import Application
 from pes_admin.forms import AssignReviewersForm
 
@@ -35,8 +36,8 @@ class PostAssignReviewers(SingleObjectMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        success_message = (
-            f'Great, application {self.object} is now in review.')
+        success_message = _('Great, application ') + \
+            self.object + _(' is now in review.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return super().get_success_url()

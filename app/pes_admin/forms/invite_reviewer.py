@@ -1,7 +1,8 @@
 from django import forms
-from common.utils.email import HtmlEmailMixin
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
+from common.utils.email import HtmlEmailMixin
 
 
 class InviteSubscriberForm(forms.Form, HtmlEmailMixin):
@@ -10,7 +11,7 @@ class InviteSubscriberForm(forms.Form, HtmlEmailMixin):
 
     def send_invitation_email(self, request):
         to_email = self.cleaned_data['email']
-        subject = (
+        subject = _(
             'Create an account or login to your account to '
             'be able to review applications')
         from_email = settings.VERIFIED_EMAIL_USER

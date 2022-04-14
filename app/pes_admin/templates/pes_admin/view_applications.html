@@ -1,5 +1,6 @@
 {% extends 'admin_base.html' %}
 {% load static %}
+{% load i18n %}
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
@@ -10,7 +11,7 @@
     <div class="card-header ">
     </div>
     <div class="card-body">
-        
+
         <div class="row pb-4">
             <div class="col-md-3 px-2 d-flex align-items-center"><b>ID</b></div>
             <div class="col-md-3 px-2 d-flex align-items-center"><b>Creator</b></div>

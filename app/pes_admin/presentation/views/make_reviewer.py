@@ -5,6 +5,7 @@ from django.views import View
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from application.models import Application
 
 
@@ -20,7 +21,7 @@ class MakeStaffReviewerView(View):
         user_id = self.kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
         if not user:
-            error_message = (
+            error_message = _(
                 'user not found.')
             messages.add_message(
                 self.request, messages.ERROR, error_message)
@@ -36,8 +37,8 @@ class MakeStaffReviewerView(View):
         user.groups.add(reviewers_group)
         user.is_reviewer = True
         user.save()
-        success_message = (
-            f'Great, staff member {user} can now review applications.')
+        success_message = _('Great, staff member ') + \
+            user + _('can now review applications.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return redirect('/admin/advanced/view/staff/')

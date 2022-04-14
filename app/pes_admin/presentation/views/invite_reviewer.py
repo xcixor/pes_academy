@@ -1,6 +1,7 @@
 from django.views import View
 from django.views.generic import TemplateView, FormView
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from pes_admin.forms import InviteSubscriberForm
 
 
@@ -23,14 +24,14 @@ class PostInviteReviewerView(FormView):
     def form_valid(self, form):
         email = form.cleaned_data['email']
         form.send_invitation_email(self.request)
-        success_message = (
-            f'Great. {email} has been asked to create an account.')
+        success_message = _('Great. ') + email + \
+            _(' has been asked to create an account.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        error_message = (
+        error_message = _(
             'Hmm..That didn\'t work please try again.')
         messages.add_message(
             self.request, messages.ERROR, error_message)

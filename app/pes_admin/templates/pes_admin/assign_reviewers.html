@@ -1,8 +1,9 @@
 {% extends 'admin_base.html' %}
 {% block admin_content %}
+{% load i18n %}
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <h3>Assign reviewers to {{application}}</h3>
+        <h3>{% trans "Assign reviewers to" %} {{application}}</h3>
     </div>
 </div>
 <div class="row">
@@ -15,7 +16,7 @@
             <p class="error">{{ error|escape }}</p>
             {% endfor %}
             </div>
-            <button type="submit" class="btn btn-primary">Assign</button>
+            <button type="submit" class="btn btn-primary">{% trans "Assign" %}</button>
         </form>
     </div>
 </div>
