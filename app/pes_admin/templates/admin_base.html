@@ -1,46 +1,164 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 {% load static %}
-{% block styles %}
-{{ block.super }}
-<link rel="stylesheet" href="{% static 'css/pes_admin/admin_base.css' %}">
-{% endblock %}
-{% block content %}
-<div class="container-fluid d-flex justify-content-between align-items-start">
-    <aside>
-        <ul>
-            <h2 class="pl-5 pt-5">My Actions</h2>
-            {% if user.is_superuser %}
-            <li class="pl-5 active"><a class="py-5 aside-link" href="/admin/advanced/invite/reviewer/">Invite Application Reviewers</a></li>
-            <li class="pl-5"><a class="py-5 aside-link" href="/admin/advanced/view/staff/">View Staff</a></li>
-            <li class="pl-5" id="applicationsDropdown">
-                Applications <i class="fas fa-angle-down" id="menuIdentifier"></i>
-                <ul class="hidden" id="hiddenApplicationActions">
-                    <li class="px-4 py-2"><a href="/admin/advanced/view/applications/">All</a></li>
-                    <li class="px-4 py-2"><a href="/admin/advanced/applications/in-review/">In Review</a></li>
-                    <li class="px-4 py-2"><a href="/admin/advanced/applications/unassigned/">Unassigned</a></li>
-                </ul>
-            </li>
-            <li class="pl-5"><a class="py-5 aside-link" href="/admin/">Basic Admin</a></li>
-            {% else %}
+{% include 'admin-head.html' %}
+{% block messages %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert-container d-flex flex-row align-items-center justify-content-center">
+        <div class="alert alert-{{ message.tags }} d-flex flex-row align-items-center justify-content-between">
+            <p style="margin: 0;">{{message}}</p>
+            <i class="fas fa-times-circle" id="closeMessagesContainer"></i>
+        </div>
+    </div>
+    {% endfor%}
+{% endif %}
+
+
+<body id="admin">
+    {% include 'admin-header.html' %}
+    <div class="container-fluid">
+        <div class="row">
+          <!-- sidebar -->
+          <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
+            <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center"></h1>
+            <div class="list-group rounded-0">
+                {% if user.is_superuser %}
+              <a href="/admin/advanced/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+                <span class="bi bi-border-all"></span>
+                <span class="ml-2">Dashboard</span>
+              </a>
+              <a href="/admin/advanced/invite/reviewer/" class="list-group-item list-group-item-action border-0 align-items-center">
+                <span class="bi bi-person-plus"></span>
+                <span class="ml-2">Invite Application Reviewers</span>
+              </a>
+              <a href="/admin/advanced/view/staff/" class="list-group-item list-group-item-action border-0 align-items-center">
+                <span class="bi bi-people"></span>
+                <span class="ml-2">View Staff</span>
+              </a>
+      
+              <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#sale-collapse">
+                <div>
+                  <span class="bi bi-app"></span>
+                  <span class="ml-2">Applications</span>
+                </div>
+                <span class="bi bi-chevron-down small"></span>
+              </button>
+              <div class="collapse" id="sale-collapse" data-parent="#sidebar">
+                <div class="list-group">
+                  <a href="/admin/advanced/view/applications/" class="list-group-item list-group-item-action border-0 pl-5">All</a>
+                  <a href="/admin/advanced/applications/in-review/" class="list-group-item list-group-item-action border-0 pl-5">In Review</a>
+                  <a href="/admin/advanced/applications/unassigned/" class="list-group-item list-group-item-action border-0 pl-5">Unassigned</a>
+                </div>
+              </div>
+      
+              <a href="/admin/" class="list-group-item list-group-item-action border-0 align-items-center">
+                <span class="bi bi-person"></span>
+                <span class="ml-2">Basic Admin</span>
+              </a>
+              {% else %}
             <p class="pl-5">None available</p>
             {% endif %}
-        </ul>
-    </aside>
-    {% if user.is_superuser %}
-    <section class="content p-5">
-        {% block admin_content %}
-        <h1>Hello Admin</h1>
-        <p>Manage applications and more</p>
-        {% endblock %}
-    </section>
-    {% else %}
-    <section class="content p-5">
-        <p>You don’t have permission to view or edit anything.</p>
-    </section>
-    {% endif %}
-</div>
-{% endblock %}
-{% block scripts %}
-{{ block.super }}
-<script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
-{% endblock %}
+            </div>
+          </div>
+          <!-- overlay to close sidebar on small screens -->
+          <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
+          <!-- note: in the layout margin auto is the key as sidebar is fixed -->
+          <div class="col-md-9 col-lg-10 ml-md-auto px-0">
+            <!-- top nav -->
+            <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
+              <!-- close sidebar -->
+              <button class="btn py-0 d-lg-none" id="open-sidebar">
+                <span class="bi bi-list text-primary h3"></span>
+              </button>
+              <div class="dropdown ml-auto">
+                <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
+                  <span class="bi bi-person text-primary h4"></span>
+                  <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
+                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </div>
+              </div>
+            </nav>
+            <!-- main content -->
+            <main class="container-fluid">
+                <div class="jumbotron jumbotron-fluid jumbotron-admin rounded border-0 shadow-sm border-left px-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                        {% if user.is_superuser %}
+                    <section class="content p-5">
+                        {% block admin_content %}
+                         <div class="card card-admin">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Application Summary</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <h6>Stage:</h6>
+                                    <h6>ID:</h6>
+                                    <h6>Reviewers:</h6>
+                                    <h6>Total Score:</h6>
+                                    <h6>Will Advance:</h6>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                              <div class="col-md-12">
+                                  <div class="card card-admin">
+                                      <div class="card-header ">
+                                          <h4 class="card-title">Review Breakdown</h4>
+                                      </div>
+                                      <div class="card-body ">
+                                          <h6>Reviewer:</h6>
+                                          <h6>Reviewer Total Score:</h6>
+                                          <h6>Reviewers:</h6>
+                                          <h6>Total Score:</h6>
+                                          <h6>Will Advance:</h6>
+                                      </div>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-admin">
+                                    <div class="card-header ">
+                                        <div class="col text-center">
+                                            <a href="#" class="btn btn-success mr-5">Advance</a>
+                                            <a href="#" class="btn btn-primary ml-5">Quit</a>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endblock %}
+                    </section>
+                    {% else %}
+                    <section class="content p-5">
+                        <p>You don’t have permission to view or edit anything.</p>
+                    </section>
+                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    {% block content %}
+
+    {% endblock %}
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
+   
+    {% endblock %}
+</body>
+</html>
+
+
+
