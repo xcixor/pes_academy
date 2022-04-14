@@ -5,7 +5,7 @@
 } */
 
 .navbar{
-  background-color: #73071c;
+  background-color: #a91917;
   color: #f3f3f3;
 }
 
@@ -30,7 +30,7 @@ label {
 }
 
 input[type=submit] {
-  background-color: #10075e;
+  background-color: #4b6386;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -40,11 +40,11 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #73071c;
+  background-color: #a91917;
 }
 
 .registerbtn {
-  background-color:  #10075e;
+  background-color:  #4b6386;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;

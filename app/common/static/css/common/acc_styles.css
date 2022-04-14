@@ -154,7 +154,7 @@
   }
 
   .progress {
-    background-color: #10075e;
+    background-color: #4b6386;
     width: 0%;
     transition: 0.3s;
   }
@@ -183,7 +183,7 @@
   }
 
   .progress-step-active {
-    background-color: #10075e;
+    background-color: #4b6386;
     color: #f3f3f3;
   }
 
@@ -219,7 +219,7 @@
     padding: 10px;
     display: block;
     text-decoration: none;
-    background-color: #10075e;
+    background-color: #4b6386;
     color: rgb(232, 233, 241);
     text-align: center;
     border-radius: 0.25rem;
@@ -258,7 +258,7 @@
 
   /* Set a style for the submit button */
   .registerbtn {
-    background-color:  #10075e;
+    background-color:  #4b6386;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
