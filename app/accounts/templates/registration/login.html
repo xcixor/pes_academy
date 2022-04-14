@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
       <h1>Login</h1>
         <div class="error-container">
         {% if form.errors %}
-        <p class="error"><strong>Please correct the errors in the form below.</strong></p>
+        <p class="error"><strong>{% block trans "Please correct the errors in the form below." %}</strong></p>
         {% endif %}
         {% for error in form.non_field_errors %}
         <p class="error">{{ error|escape }}</p>
@@ -18,7 +19,7 @@
       </div>
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="Username" name="username" required>
+        <input class="input-field" type="text" placeholder="{% trans "Username" %}" name="username" required>
         <div class="error-container">
           {% for error in form.username.errors %}
           <p class="error">{{ error|escape }}</p>
@@ -28,7 +29,7 @@
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="Enter Password" name="password" id="psw" required>
+        <input class="input-field" type="password" placeholder="{% trans "Enter Password" %}" name="password" id="psw" required>
           <div class="error-container">
             {% for error in form.password.errors %}
             <p class="error">{{ error|escape }}</p>
@@ -36,16 +37,16 @@
         </div>
       </div>
 
-      <button type="submit" class="registerbtn">Login</button>
+      <button type="submit" class="registerbtn">{% trans "Login" %}</button>
 
       <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
+        <input type="checkbox" checked="checked" name="remember"> {% trans "Remember me" %}
       </label>
 
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      <span class="psw">{% trans "Forgot" %} <a href="#">{% trans "password" %}?</a></span>
 
       <div class="signin">
-        <p>Don't have an account yet? <a href="{% url 'accounts:register' %}">Sign Up</a>.</p>
+        <p>{% trans "Don't have an account yet" %}? <a href="{% url 'accounts:register' %}">{% trans "Sign Up" %}</a>.</p>
 
       </div>
     </div>

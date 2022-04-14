@@ -1,6 +1,7 @@
 import re
 from django.contrib.auth import get_user_model
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.password_validation import validate_password
 from common.utils.email import HtmlEmailMixin
 from accounts.tokens import account_activation_token
@@ -32,10 +33,10 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
         regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
         if not regex.search(password):
             raise forms.ValidationError(
-                "Your password should have a special character.")
+                _("Your password should have a special character."))
         if not any(i.isdigit() for i in password):
             raise forms.ValidationError(
-                "Your password should have at least one number.")
+                _("Your password should have at least one number."))
         return password
 
     def clean_password2(self):
@@ -43,12 +44,12 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError(
-                "Please make sure your passwords match.")
+                _("Please make sure your passwords match."))
         return password2
 
     def send_account_activation_email(self, user, request):
         to_email = user.email
-        subject = "Account Activation"
+        subject = _("Account Activation")
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {

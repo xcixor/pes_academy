@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 
 
 <form action="/accounts/register/" method="post">
   {% csrf_token %}
     <div class="container rgst">
-      <h1>Register</h1>
+      <h1>{% trans "Register" %}</h1>
       {% if form.errors %}
       <span class="d-inline-flex align-items-center">
         <i class="fas fa-info error mr-2"></i>
-        <p class="error m-0">Please correct the errors in the form below</p>
+        <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
       </span>
       {% endif %}
       <div class="input-container">
         <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="Username" name="username" required>
+        <input class="input-field" type="text" placeholder="{% trans "Username" %}" name="username" required>
       </div>
       <div class="error-container">
         {% for error in form.username.errors %}
@@ -36,7 +36,7 @@
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="Enter Password" name="password1" id="psw" required>
+        <input class="input-field" type="password" placeholder="{% trans "Enter Password" %}" name="password1" id="psw" required>
 
       </div>
       <div class="error-container">
@@ -47,7 +47,7 @@
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="Repeat Password" name="password2" id="psw-repeat" required>
+        <input class="input-field" type="password" placeholder="{% trans "Repeat Password" %}" name="password2" id="psw-repeat" required>
       </div>
       <div class="input-container">
         {% for error in form.password2.errors %}
@@ -55,24 +55,24 @@
         {% endfor %}
       </div>
       <details>
-        <summary>Password Policy</summary>
+        <summary>{% trans "Password Policy" %}</summary>
             <ul>
-                <li> Your password must contain at least 8 characters.</li>
-                <li> Your password should not be entirely numeric.</li>
-                <li> Your password should have a special character.</li>
-                <li> Your password should have at least one number.</li>
-                <li> Your password should not be too similar to your personal details eg username.</li>
-                <li> Your passwords should match.</li>
+                <li> {% trans "Your password must contain at least 8 characters." %}</li>
+                <li> {% trans "Your password should not be entirely numeric." %}</li>
+                <li> {% trans "Your password should have a special character." %}</li>
+                <li> {% trans "Your password should have at least one number." %}</li>
+                <li> {% trans "Your password should not be too similar to your personal details eg username." %}</li>
+                <li> {% trans "Your passwords should match." %}</li>
             </ul>
     </details>
 
       <hr>
-      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      <p>{% trans "By creating an account you agree to our" %} <a href="#">{% trans "Terms & Privacy" %}</a>.</p>
 
-      <button type="submit" class="registerbtn"> Register</button>
+      <button type="submit" class="registerbtn"> {% trans "Register" %}</button>
 
       <div class="signin">
-        <p>Already have an account? <a href="{% url 'accounts:login' %}">Sign in</a>.</p>
+        <p>{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}">{% trans "Sign in" %}</a>.</p>
       </div>
     </div>
 

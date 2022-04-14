@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from common.utils.common_queries import get_application
 
 
@@ -12,8 +13,7 @@ class UserLoginView(LoginView):
         return super().form_invalid(form)
 
     def get_success_url(self):
-        success_message = (
-            f'Welcome back {self.request.user.username}!')
+        success_message = _('Welcome back ') + self.request.user.username
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         user = self.request.user

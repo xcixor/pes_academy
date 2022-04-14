@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 
 {% block content %}
 <h3>Activate your account</h3>
 <p>
+    {% blocktrans %}
     Thank you for registration.
     We have sent an activation email to your inbox.
     Click on the link to continue.
+    {% endblocktrans %}
 </p>
 {% endblock %}

@@ -2,19 +2,19 @@
 {% block admin_content %}
 {% if user.applications.all %}
 <div class="row">
-    <div class="col-md-4"><b>Application</b></div>
-    <div class="col-md-4"><b>Owner</b></div>
+    <div class="col-md-4"><b>{% trans "Application" %}</b></div>
+    <div class="col-md-4"><b>{% trans "Owner" %}</b></div>
 </div>
 {% for review in user.applications.all %}
 <div class="row">
     <div class="col-md-4"><b>{{review.application.special_id}}</b></div>
     <div class="col-md-4"><b>{{review.application.application_creator.email}}</b></div>
     <div class="col-md-4">
-        <a href="/eligibility/{{review.application.slug}}/">Review</a>
+        <a href="/eligibility/{{review.application.slug}}/">{% trans "Review" %}</a>
     </div>
 </div>
 {% endfor %}
 {% else %}
-<p>You do not have any applications to review at the moment</p>
+<p>{% trans "You do not have any applications to review at the moment" %}</p>
 {% endif %}
 {% endblock %}
