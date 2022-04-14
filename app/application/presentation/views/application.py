@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views import View
 from django.views.generic import TemplateView, FormView
+from django.utils.translation import gettext_lazy as _
 from django.views.generic.detail import SingleObjectMixin
 from application.models import CallToAction, Application
 from application.forms import ApplicationForm
@@ -46,7 +47,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        success_message = (
+        success_message = _(
             'Great, you application has been received. '
             'We will get back in touch with you.')
         messages.add_message(
@@ -54,7 +55,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
         return super().get_success_url()
 
     def form_invalid(self, form):
-        error_message = (
+        error_message = _(
             'An error occurred while validating your form. '
             'Please check that all fields are correct. Thank you.')
         messages.add_message(

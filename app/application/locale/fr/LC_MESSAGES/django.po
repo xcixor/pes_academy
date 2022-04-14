@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-09 12:18+0300\n"
+"POT-Creation-Date: 2022-04-14 14:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: forms/application_document.py:29
+msgid "Please Upload PDF files only!"
+msgstr "Veuillez télécharger uniquement des fichiers PDF !"
+
 #: forms/application_form.py:13
 msgid "Participant Name"
 msgstr "Nom du participant"
 
 #: forms/application_form.py:16
 msgid "Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: forms/application_form.py:18
 msgid "Age"
@@ -224,6 +228,62 @@ msgstr ""
 #: models/business.py:32
 msgid "Product or service is in the market. There are sales/revenues"
 msgstr "Le produit ou le service est sur le marché. Il y a des ventes/revenus"
+
+#: presentation/views/application.py:51
+msgid ""
+"Great, you application has been received. We will get back in touch with you."
+msgstr ""
+"Bravo, votre candidature a bien été reçue. Nous vous recontacterons."
+
+#: presentation/views/application.py:59
+msgid ""
+"An error occurred while validating your form. Please check that all fields "
+"are correct. Thank you."
+msgstr ""
+"Une erreur s'est produite lors de la validation de votre formulaire. Veuillez vérifier que tous les champs "
+"sont corrects. Merci."
+
+#: presentation/views/application_comment.py:19
+msgid "Great, your comment has been saved."
+msgstr "Parfait, votre commentaire a été enregistré."
+
+#: presentation/views/application_comment.py:26
+#: presentation/views/application_prompt.py:25
+#: presentation/views/application_score.py:31
+msgid "Hmm, that didn't work please try again."
+msgstr "Hmm, cela n'a pas fonctionné, veuillez réessayer."
+
+#: presentation/views/application_prompt.py:19
+msgid "Great, your prompt has been sent."
+msgstr "Parfait, votre invite a été envoyée."
+
+#: presentation/views/application_score.py:25
+msgid "Great, your score has been saved."
+msgstr "Parfait, votre score a été enregistré."
+
+#: presentation/views/draft_data.py:22
+msgid "Not found"
+msgstr "Pas trouvé"
+
+#: presentation/views/extra_docs.py:16
+msgid "Great, "
+msgstr "Génial, "
+
+#: presentation/views/extra_docs.py:17
+msgid " has been successfully uploaded."
+msgstr " a été téléchargé avec succès."
+
+#: presentation/views/extra_docs.py:27
+msgid "Hmm something went wrong please check the errors in the form below."
+msgstr "Hmm quelque chose s'est mal passé, veuillez vérifier les erreurs dans le formulaire ci-dessous."
+
+#: presentation/views/save_document.py:28
+msgid "Success"
+msgstr "Succès"
+
+#: presentation/views/save_document.py:28
+msgid " has been saved!"
+msgstr " a été sauvegardé!"
 
 #: templates/application/application_form.html:14
 msgid "Application for"

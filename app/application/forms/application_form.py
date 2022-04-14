@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from application.models import BusinessOrganization, Milestone, CovidImpact
+from application.models import BusinessOrganization, CovidImpact
 from accounts.models import User
 from application.services.redis_caching import (
     get_draft_application_data_from_redis_cache)

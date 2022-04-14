@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.views.generic import FormView
 from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
 from application.forms import ApplicationScoreForm
 from django.views.generic.detail import SingleObjectMixin
 from application.models import Application
@@ -21,15 +22,13 @@ class ApplicationScoreView(SingleObjectMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        success_message = (
-            'Great, your score has been saved.')
+        success_message = _('Great, your score has been saved.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return f'/eligibility/{self.score.application.slug}/'
 
     def form_invalid(self, form):
-        error_message = (
-            'Hmm, that didn\'t work please try again.')
+        error_message = _('Hmm, that didn\'t work please try again.')
         messages.add_message(
             self.request, messages.ERROR, error_message)
         return redirect(f'/eligibility/{self.object.slug}/')

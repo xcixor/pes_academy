@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.http import JsonResponse, HttpResponseNotFound
+from django.utils.translation import gettext_lazy as _
 from common.utils.common_queries import get_application
 from application.services import set_draft_application_data_to_redis_cache
 
@@ -18,6 +19,7 @@ class DraftUserDataView(LoginRequiredMixin, View):
         request.session.modified = True
         data = request.session['application_form_draft']
         application, msg = get_application(request.user)
+        not_found_msg = _('Not found')
         try:
             set_draft_application_data_to_redis_cache(application.id, data)
         except Exception as e:
@@ -25,8 +27,8 @@ class DraftUserDataView(LoginRequiredMixin, View):
             if is_ajax:
                 return JsonResponse(
                     {}, status=400)
-            return HttpResponseNotFound('Not found')
+            return HttpResponseNotFound(not_found_msg)
         if is_ajax:
             return JsonResponse(
                 data, status=201)
-        return HttpResponseNotFound('Not found')
+        return HttpResponseNotFound(not_found_msg)

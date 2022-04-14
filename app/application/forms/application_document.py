@@ -1,5 +1,6 @@
 import os
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from application.models import ApplicationDocument
 
 
@@ -25,5 +26,5 @@ class ApplicationDocumentForm(forms.ModelForm):
         valid_extensions = ['.pdf', '.doc', '.docx']
         if extension not in valid_extensions:
             raise forms.ValidationError(
-                'Please Upload PDF files only!')
+                _('Please Upload PDF files only!'))
         return document

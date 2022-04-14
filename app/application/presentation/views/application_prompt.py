@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.views.generic import FormView
+from django.utils.translation import gettext_lazy as _
 from application.forms import ApplicationPromptForm
 
 
@@ -15,15 +16,13 @@ class ApplicationPromptView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        success_message = (
-            'Great, your prompt has been sent.')
+        success_message = _('Great, your prompt has been sent.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return f'/eligibility/{self.prompt.application.slug}/'
 
     def form_invalid(self, form):
-        error_message = (
-            'Hmm, that didn\'t work please try again.')
+        error_message = _('Hmm, that didn\'t work please try again.')
         messages.add_message(
             self.request, messages.ERROR, error_message)
         return super().form_invalid(form)
