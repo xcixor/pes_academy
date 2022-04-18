@@ -25,7 +25,7 @@ class JsonableResponseMixin:
         self.application = form.cleaned_data['application']
         if is_ajax:
             data = {
-                'message': _('Success') + document + _(' has been saved!')
+                'message': _('Success') + document.document_name + _(' has been saved!')
             }
             return JsonResponse(data, status=201)
         return super().form_valid(form)

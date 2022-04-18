@@ -29,7 +29,7 @@ class LoginTestCase(AccountsBaseTestCase):
             '/accounts/login/?next=/applications/', self.form, follow=True)
         message = list(response.context.get('messages'))[0]
         expected_message = (
-            'Welcome back normal_user!')
+            'Welcome back normal_user')
         self.assertEqual(message.tags, 'success')
         self.assertEqual(message.message, expected_message)
 
