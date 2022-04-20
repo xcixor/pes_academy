@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-20 13:48+0300\n"
+"POT-Creation-Date: 2022-04-20 19:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,13 +45,18 @@ msgstr " a été invité à créer un compte."
 msgid "Hmm..That didn't work please try again."
 msgstr "Hmm.. Cela n'a pas fonctionné, veuillez réessayer."
 
-#: presentation/views/make_reviewer.py:25
-msgid "user not found."
-msgstr "utilisateur non trouvé."
-
+#: presentation/views/make_moderator.py:17
 #: presentation/views/make_reviewer.py:40
 msgid "Great, staff member "
 msgstr "Super, membre du personnel "
+
+#: presentation/views/make_moderator.py:18
+msgid " is now a moderator."
+msgstr " est désormais modérateur."
+
+#: presentation/views/make_reviewer.py:25
+msgid "user not found."
+msgstr "utilisateur non trouvé."
 
 #: presentation/views/make_reviewer.py:41
 msgid "can now review applications."
@@ -280,6 +285,12 @@ msgstr "Attribuer des réviseurs"
 msgid "Full Name"
 msgstr "Nom complet"
 
+#: templates/pes_admin/view_staff.html:9
+#, fuzzy
+#| msgid "Email"
+msgid "Email"
+msgstr "E-mail:"
+
 #: templates/pes_admin/view_staff.html:10
 msgid "Role"
 msgstr "Rôle"
@@ -288,17 +299,25 @@ msgstr "Rôle"
 msgid "Is Reviewer"
 msgstr "Est l'examinateur"
 
-#: templates/pes_admin/view_staff.html:22
+#: templates/pes_admin/view_staff.html:12
+msgid "Is Moderator"
+msgstr "Est modérateur"
+
+#: templates/pes_admin/view_staff.html:23
 msgid "Admin"
 msgstr "Administrateur"
 
-#: templates/pes_admin/view_staff.html:24
+#: templates/pes_admin/view_staff.html:25
 msgid "Staff"
 msgstr "Personnel"
 
-#: templates/pes_admin/view_staff.html:31
+#: templates/pes_admin/view_staff.html:32
 msgid "Make Reviewer"
 msgstr "Faire un réviseur"
+
+#: templates/pes_admin/view_staff.html:42
+msgid "Make Moderator"
+msgstr "Faire modérateur"
 
 #: templates/staff_base.html:12
 msgid "Home"

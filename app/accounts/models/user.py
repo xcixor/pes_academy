@@ -72,6 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_moderator = models.BooleanField(default=False)
     is_reviewer = models.BooleanField(default=False)
     age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)

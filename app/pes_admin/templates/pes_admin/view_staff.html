@@ -6,9 +6,10 @@
     <div class="card-header ">
         <div class="row pb-4">
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Full Name" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{ trans "Email" }</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Role" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Is Reviewer" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
+            <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Role" %}</b></div>
+            <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Is Reviewer" %}</b></div>
+            <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Is Moderator" %}</b></div>
         </div>
     </div>
     <div class="card-body">
@@ -16,7 +17,7 @@
         <div class="row pb-4">
         <div class="col-md-3 px-2 d-flex align-items-center">{{employee.full_name}}</div>
         <div class="col-md-3 px-2 d-flex align-items-center">{{employee.email}}</div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
+        <div class="col-md-2 px-2 d-flex align-items-center">
             Role
             {% if employee.is_superuser %}
             {% trans "Admin" %}:
@@ -24,11 +25,22 @@
             {% trans "Staff" %}
             {% endif %}
         </div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
+        <div class="col-md-2 px-2 d-flex align-items-center">
             {% if employee.is_reviewer %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
             <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn">{% trans "Make Reviewer" %}</a>
+            {% endif %}
+        </div>
+        <div class="col-md-2 px-2 d-flex align-items-center">
+            {% if employee.is_moderator %}
+            <i class="fa-solid fa-circle-check"></i>
+            {% else %}
+            <form action="/admin/advanced/make/{{employee.pk}}/moderator/" method="post">
+                {% csrf_token %}
+                <input type="checkbox" name="is_moderator" checked hidden>
+                <button type="submit" class="btn btn-primary">{% trans "Make Moderator" %}</button>
+            </form>
             {% endif %}
         </div>
         </div>

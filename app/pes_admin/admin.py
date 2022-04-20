@@ -4,7 +4,7 @@ from pes_admin.presentation.views import (
     AdvancedAdminDashboardView, InviteReviewerView, DisplayStaffView,
     MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
     ApplicationDetails, UnassignedApplicationsView,
-    InReviewApplicationsView)
+    InReviewApplicationsView, CreateModerator)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -30,6 +30,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AssignReviewersView.as_view())),
             path('view/<slug:slug>/',
                  admin.site.admin_view(ApplicationDetails.as_view())),
+            path('make/<int:pk>/moderator/',
+                 admin.site.admin_view(CreateModerator.as_view())),
         ] + urls
         return custom_urls
 
