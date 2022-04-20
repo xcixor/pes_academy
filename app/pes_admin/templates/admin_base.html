@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load i18n %}
 {% include 'admin-head.html' %}
 {% block messages %}
 {% if messages %}
@@ -26,38 +27,38 @@
                 {% if user.is_superuser %}
               <a href="/admin/advanced/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
                 <span class="bi bi-border-all"></span>
-                <span class="ml-2">Dashboard</span>
+                <span class="ml-2">{% trans "Dashboard" %}</span>
               </a>
               <a href="/admin/advanced/invite/reviewer/" class="list-group-item list-group-item-action border-0 align-items-center">
                 <span class="bi bi-person-plus"></span>
-                <span class="ml-2">Invite Application Reviewers</span>
+                <span class="ml-2">{% trans "Invite Application Reviewers" %}</span>
               </a>
               <a href="/admin/advanced/view/staff/" class="list-group-item list-group-item-action border-0 align-items-center">
                 <span class="bi bi-people"></span>
-                <span class="ml-2">View Staff</span>
+                <span class="ml-2">{% trans "View Staff" %}</span>
               </a>
 
               <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#sale-collapse">
                 <div>
                   <span class="bi bi-app"></span>
-                  <span class="ml-2">Applications</span>
+                  <span class="ml-2">{% trans "Applications" %}</span>
                 </div>
                 <span class="bi bi-chevron-down small"></span>
               </button>
               <div class="collapse" id="sale-collapse" data-parent="#sidebar">
                 <div class="list-group">
-                  <a href="/admin/advanced/view/applications/" class="list-group-item list-group-item-action border-0 pl-5">All</a>
-                  <a href="/admin/advanced/applications/in-review/" class="list-group-item list-group-item-action border-0 pl-5">In Review</a>
-                  <a href="/admin/advanced/applications/unassigned/" class="list-group-item list-group-item-action border-0 pl-5">Unassigned</a>
+                  <a href="/admin/advanced/view/applications/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
+                  <a href="/admin/advanced/applications/in-review/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "In Review" %}</a>
+                  <a href="/admin/advanced/applications/unassigned/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "Unassigned" %}</a>
                 </div>
               </div>
 
               <a href="/admin/" class="list-group-item list-group-item-action border-0 align-items-center">
                 <span class="bi bi-person"></span>
-                <span class="ml-2">Basic Admin</span>
+                <span class="ml-2">{% trans "Basic Admin" %}</span>
               </a>
               {% else %}
-            <p class="pl-5">None available</p>
+            <p class="pl-5">{% trans "None available" %}</p>
             {% endif %}
             </div>
           </div>
@@ -77,8 +78,8 @@
                   <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-                  <a class="dropdown-item" href="#">Logout</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
+                  <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
                 </div>
               </div>
             </nav>
@@ -93,28 +94,28 @@
                         {% block admin_content %}
                          <div class="card card-admin">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Application Summary</h4>
+                                    <h4 class="card-title">{% trans "Application Summary" %}</h4>
                                 </div>
                                 <div class="card-body ">
-                                    <h6>Stage:</h6>
-                                    <h6>ID:</h6>
-                                    <h6>Reviewers:</h6>
-                                    <h6>Total Score:</h6>
-                                    <h6>Will Advance:</h6>
+                                    <h6>{% trans "Stage" %}:</h6>
+                                    <h6>{% trans "ID" %}:</h6>
+                                    <h6>{% trans "Reviewers" %}:</h6>
+                                    <h6>{% trans "Total Score" %}:</h6>
+                                    <h6>{% trans "Will Advance" %}:</h6>
                                 </div>
                             </div>
                             <div class="row my-4">
                               <div class="col-md-12">
                                   <div class="card card-admin">
                                       <div class="card-header ">
-                                          <h4 class="card-title">Review Breakdown</h4>
+                                          <h4 class="card-title">{% trans "Review Breakdown" %}</h4>
                                       </div>
                                       <div class="card-body ">
-                                          <h6>Reviewer:</h6>
-                                          <h6>Reviewer Total Score:</h6>
-                                          <h6>Reviewers:</h6>
-                                          <h6>Total Score:</h6>
-                                          <h6>Will Advance:</h6>
+                                          <h6>{% trans "Reviewer" %}:</h6>
+                                          <h6>{% trans "Reviewer Total Score" %}:</h6>
+                                          <h6>{% trans "Reviewers" %}:</h6>
+                                          <h6>{% trans "Total Score" %}:</h6>
+                                          <h6>{% trans "Will Advance" %}:</h6>
                                       </div>
 
                                   </div>
@@ -125,8 +126,8 @@
                                 <div class="card card-admin">
                                     <div class="card-header ">
                                         <div class="col text-center">
-                                            <a href="#" class="btn btn-success mr-5">Advance</a>
-                                            <a href="#" class="btn btn-primary ml-5">Quit</a>
+                                            <a href="#" class="btn btn-success mr-5">{% trans "Advance" %}</a>
+                                            <a href="#" class="btn btn-primary ml-5">{% trans "Quit" %}</a>
                                           </div>
                                     </div>
                                 </div>
@@ -136,7 +137,7 @@
                     </section>
                     {% else %}
                     <section class="content p-5">
-                        <p>You don’t have permission to view or edit anything.</p>
+                        <p>{% trans "You don't have permission to view or edit anything" %}.</p>
                     </section>
                     {% endif %}
                             </div>

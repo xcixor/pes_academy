@@ -1,13 +1,14 @@
 {% extends 'admin_base.html' %}
 {% load static %}
+{% load i18n %}
 {% block admin_content %}
 <div class="card card-admin">
     <div class="card-header ">
         <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Full Name</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Email</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Role</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Is Reviewer</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Full Name" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{ trans "Email" }</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Role" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Is Reviewer" %}</b></div>
         </div>
     </div>
     <div class="card-body">
@@ -18,16 +19,16 @@
         <div class="col-md-3 px-2 d-flex align-items-center">
             Role
             {% if employee.is_superuser %}
-            Admin:
+            {% trans "Admin" %}:
             {% else %}
-            Staff
+            {% trans "Staff" %}
             {% endif %}
         </div>
         <div class="col-md-3 px-2 d-flex align-items-center">
             {% if employee.is_reviewer %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
-            <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn">Make Reviewer</a>
+            <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn">{% trans "Make Reviewer" %}</a>
             {% endif %}
         </div>
         </div>

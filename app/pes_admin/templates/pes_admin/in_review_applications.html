@@ -10,10 +10,10 @@
 <div class="card card-admin">
     <div class="card-header ">
         <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>ID</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Creator</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Stage</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Action</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "ID" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Creator" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Stage" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
         </div>
     </div>
     <div class="card-body">
@@ -25,7 +25,7 @@
             {{application.get_stage_display}}
         </div>
         <div class="col-md-3 px-2 d-flex align-items-center">
-            <a href="/admin/advanced/view/{{application.slug}}/" class="btn btn-primary">View More</a>
+            <a href="/admin/advanced/view/{{application.slug}}/" class="btn btn-primary">{% trans "View More" %}</a>
         </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 17:36+0300\n"
+"POT-Creation-Date: 2022-04-20 13:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 msgid ""
 "Create an account or login to your account to be able to review applications"
 msgstr ""
-"Créez un compte ou connectez-vous à votre compte pour pouvoir examiner les candidatures"
+"Créez un compte ou connectez-vous à votre compte pour pouvoir examiner les "
+"candidatures"
 
 #: presentation/views/assign_reviewers.py:39
 msgid "Great, application "
@@ -56,69 +57,144 @@ msgstr "Super, membre du personnel "
 msgid "can now review applications."
 msgstr "peut désormais examiner les candidatures."
 
-#: templates/admin_base.html:12
-msgid "My Actions"
-msgstr "Mes actions"
+#: templates/admin-header.html:15
+#, fuzzy
+#| msgid "Hello Admin"
+msgid "Welcome Admin"
+msgstr "Bonjour administrateur"
 
-#: templates/admin_base.html:14
+#: templates/admin-header.html:19
+msgid "Help"
+msgstr "Aider"
+
+#: templates/admin-header.html:23
+msgid "Account"
+msgstr "Compte"
+
+#: templates/admin-header.html:38
+msgid "Call:"
+msgstr "Appel:"
+
+#: templates/admin-header.html:41
+#, fuzzy
+#| msgid "Email"
+msgid "Email:"
+msgstr "E-mail:"
+
+#: templates/admin_base.html:30
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/admin_base.html:34
 msgid "Invite Application Reviewers"
 msgstr "Inviter des examinateurs de candidature"
 
-#: templates/admin_base.html:15
+#: templates/admin_base.html:38
 msgid "View Staff"
 msgstr "Voir le personnel"
 
-#: templates/admin_base.html:17
+#: templates/admin_base.html:44
 msgid "Applications"
 msgstr "Applications"
 
-#: templates/admin_base.html:19
+#: templates/admin_base.html:50
 msgid "All"
 msgstr "Tout"
 
-#: templates/admin_base.html:20 templates/pes_admin/view_applications.html:13
+#: templates/admin_base.html:51
 msgid "In Review"
 msgstr "En revue"
 
-#: templates/admin_base.html:21
+#: templates/admin_base.html:52
 msgid "Unassigned"
 msgstr "Non attribué"
 
-#: templates/admin_base.html:24
+#: templates/admin_base.html:58
 msgid "Basic Admin"
 msgstr "Administrateur de base"
 
-#: templates/admin_base.html:26
+#: templates/admin_base.html:61
 msgid "None available"
 msgstr "Aucun disponible"
 
-#: templates/admin_base.html:33
-msgid "Hello Admin"
-msgstr "Bonjour administrateur"
+#: templates/admin_base.html:81 templates/staff_base.html:14
+msgid "Logout"
+msgstr "Se déconnecter"
 
-#: templates/admin_base.html:34
-msgid "Manage applications and more"
-msgstr "Gérer les applications et plus encore"
+#: templates/admin_base.html:82
+msgid "Settings"
+msgstr "Réglages"
 
-#: templates/admin_base.html:39
-msgid "You don’t have permission to view or edit anything."
-msgstr "Vous n'êtes pas autorisé à afficher ou à modifier quoi que ce soit."
-
-#: templates/pes_admin/application_details.html:10
+#: templates/admin_base.html:97 templates/pes_admin/application_details.html:10
 msgid "Application Summary"
 msgstr "Résumé de la demande"
 
+#: templates/admin_base.html:100
+#: templates/pes_admin/in_review_applications.html:15
+#: templates/pes_admin/unassigned_applications.html:14
+msgid "Stage"
+msgstr "Organiser"
+
+#: templates/admin_base.html:101
+#: templates/pes_admin/in_review_applications.html:13
+#: templates/pes_admin/unassigned_applications.html:12
+msgid "ID"
+msgstr "IDENTIFIANT"
+
+#: templates/admin_base.html:102 templates/admin_base.html:116
+#: templates/pes_admin/application_details.html:15
+msgid "Reviewers"
+msgstr "Réviseurs"
+
+#: templates/admin_base.html:103 templates/admin_base.html:117
+#, fuzzy
+#| msgid "Total Score:"
+msgid "Total Score"
+msgstr "Score total:"
+
+#: templates/admin_base.html:104 templates/admin_base.html:118
+#: templates/pes_admin/application_details.html:26
+msgid "Will Advance"
+msgstr "Avancera"
+
+#: templates/admin_base.html:111
+#: templates/pes_admin/application_details.html:35
+msgid "Review Breakdown"
+msgstr "Répartition des avis"
+
+#: templates/admin_base.html:114
+#: templates/pes_admin/application_details.html:39
+msgid "Reviewer"
+msgstr "Critique"
+
+#: templates/admin_base.html:115
+#: templates/pes_admin/application_details.html:40
+msgid "Reviewer Total Score"
+msgstr "Note totale de l'examinateur"
+
+#: templates/admin_base.html:129
+#, fuzzy
+#| msgid "Will Advance"
+msgid "Advance"
+msgstr "Avancera"
+
+#: templates/admin_base.html:130
+msgid "Quit"
+msgstr "Arrêter"
+
+#: templates/admin_base.html:140
+#, fuzzy
+#| msgid "You don’t have permission to view or edit anything."
+msgid "You don't have permission to view or edit anything"
+msgstr "Vous n'êtes pas autorisé à afficher ou à modifier quoi que ce soit."
+
 #: templates/pes_admin/application_details.html:11
 msgid "Stage:"
-msgstr "Organiser"
+msgstr "Organiser:"
 
 #: templates/pes_admin/application_details.html:13
 msgid "ID:"
 msgstr "IDENTIFIANT"
-
-#: templates/pes_admin/application_details.html:15
-msgid "Reviewers"
-msgstr "Réviseurs"
 
 #: templates/pes_admin/application_details.html:22
 #: templates/pes_admin/application_details.html:77
@@ -128,22 +204,6 @@ msgstr "Il n'y a pas encore d'évaluateurs pour cette application."
 #: templates/pes_admin/application_details.html:25
 msgid "Total Score:"
 msgstr "Score total:"
-
-#: templates/pes_admin/application_details.html:26
-msgid "Will Advance"
-msgstr "Avancera"
-
-#: templates/pes_admin/application_details.html:35
-msgid "Review Breakdown"
-msgstr "Répartition des avis"
-
-#: templates/pes_admin/application_details.html:39
-msgid "Reviewer"
-msgstr "Critique"
-
-#: templates/pes_admin/application_details.html:40
-msgid "Reviewer Total Score"
-msgstr "Note totale de l'examinateur"
 
 #: templates/pes_admin/application_details.html:44
 msgid "Messages sent to the application by"
@@ -175,72 +235,56 @@ msgstr "Attribuer"
 
 #: templates/pes_admin/email/reviewer_invitation.html:5
 msgid "Please register as a reviewer by clicking the registration link below:"
-msgstr "Veuillez vous inscrire en tant qu'examinateur en cliquant sur le lien d'inscription ci-dessous :"
+msgstr ""
+"Veuillez vous inscrire en tant qu'examinateur en cliquant sur le lien "
+"d'inscription ci-dessous :"
 
 #: templates/pes_admin/email/reviewer_invitation.html:10
 msgid "REGISTER/LOGIN"
 msgstr "ENREGISTREMENT/CONNEXION"
 
-#: templates/pes_admin/in_review_applications.html:10
-#: templates/pes_admin/unassigned_applications.html:10
-#: templates/pes_admin/view_applications.html:10
-msgid "ID"
-msgstr "IDENTIFIANT"
-
-#: templates/pes_admin/in_review_applications.html:11
-#: templates/pes_admin/view_applications.html:11
+#: templates/pes_admin/in_review_applications.html:14
 msgid "Creator"
 msgstr "Créateur"
 
-#: templates/pes_admin/in_review_applications.html:12
-#: templates/pes_admin/unassigned_applications.html:12
-#: templates/pes_admin/view_applications.html:12
-msgid "Stage"
-msgstr "Organiser"
-
-#: templates/pes_admin/in_review_applications.html:13
-#: templates/pes_admin/unassigned_applications.html:13
+#: templates/pes_admin/in_review_applications.html:16
+#: templates/pes_admin/unassigned_applications.html:15
 msgid "Action"
 msgstr "Action"
 
-#: templates/pes_admin/in_review_applications.html:21
+#: templates/pes_admin/in_review_applications.html:28
 msgid "View More"
 msgstr "Voir plus"
 
-#: templates/pes_admin/invite_reviewer.html:9
+#: templates/pes_admin/invite_reviewer.html:10
 msgid "Reviewer's Email address"
 msgstr "Adresse e-mail de l'évaluateur"
 
-#: templates/pes_admin/invite_reviewer.html:10
+#: templates/pes_admin/invite_reviewer.html:15
 msgid "Enter email"
 msgstr "Entrez l'e-mail"
 
-#: templates/pes_admin/invite_reviewer.html:15
+#: templates/pes_admin/invite_reviewer.html:20
 msgid "Invite"
 msgstr "Inviter"
 
-#: templates/pes_admin/unassigned_applications.html:11
+#: templates/pes_admin/unassigned_applications.html:13
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: templates/pes_admin/unassigned_applications.html:21
+#: templates/pes_admin/unassigned_applications.html:27
 msgid "Assign Reviewers"
 msgstr "Attribuer des réviseurs"
 
-#: templates/pes_admin/view_staff.html:10
+#: templates/pes_admin/view_staff.html:8
 msgid "Full Name"
 msgstr "Nom complet"
 
-#: templates/pes_admin/view_staff.html:11
-msgid "Email"
-msgstr "E-mail"
-
-#: templates/pes_admin/view_staff.html:12
-#: templates/pes_admin/view_staff.html:20
+#: templates/pes_admin/view_staff.html:10
 msgid "Role"
 msgstr "Rôle"
 
-#: templates/pes_admin/view_staff.html:13
+#: templates/pes_admin/view_staff.html:11
 msgid "Is Reviewer"
 msgstr "Est l'examinateur"
 
@@ -264,10 +308,6 @@ msgstr "Domicile"
 msgid "Applications to Review"
 msgstr "Demandes à examiner"
 
-#: templates/staff_base.html:14
-msgid "Logout"
-msgstr "Se déconnecter"
-
 #: templates/staff_base.html:19
 msgid "Hello"
 msgstr "Bonjour"
@@ -275,3 +315,9 @@ msgstr "Bonjour"
 #: templates/staff_base.html:20
 msgid "Manage your organization's applications and more"
 msgstr "Gérez les applications de votre organisation et plus encore"
+
+#~ msgid "My Actions"
+#~ msgstr "Mes actions"
+
+#~ msgid "Manage applications and more"
+#~ msgstr "Gérer les applications et plus encore"
