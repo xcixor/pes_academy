@@ -1,4 +1,5 @@
 from django import template
+from django.db.models import Avg
 from application.models import ApplicationScore
 
 register = template.Library()
@@ -42,10 +43,14 @@ def check_in_queryset(queryset, key):
 
 
 @register.filter('get_average_score')
-def get_average_score(score, reviewers):
-    average_score = score
-    try:
-        average_score = round(score/reviewers)
-    except ZeroDivisionError:
-        print('Error division by zero')
-    return average_score
+def get_average_score(application):
+    average_score = application.scores.exclude(
+        reviewer__is_moderator=True).aggregate(Avg('score'))
+    return average_score['score__avg']
+
+
+@register.filter('get_moderation_score')
+def get_moderation_score(application):
+    moderation_score = application.scores.exclude(
+        reviewer__is_reviewer=True).aggregate(Avg('score'))
+    return moderation_score['score__avg']

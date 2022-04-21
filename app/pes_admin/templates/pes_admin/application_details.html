@@ -22,7 +22,7 @@
                     {% trans "There are no reviewers for this application yet." %}
                     {% endfor %}
                     </ul>
-                    <p><b>{% trans "Total Score:" %}</b> {{application.total_score|get_average_score:application.reviewers.count}}</p>
+                    <p><b>{% trans "Total Score:" %}</b> {{application|get_average_score}}</p>
                     <p><b>{% trans "Will Advance" %}</b> {% if application.to_advance %}<i class="fa-solid fa-check"></i>{% else %}<i class="fa-solid fa-xmark"></i>{% endif %}</p>
                 </div>
             </div>
@@ -38,6 +38,7 @@
                         <div class="col-md-10 border p-3 m-4">
                             <p><b>{% trans "Reviewer" %}:</b> {{review.reviewer}}</p>
                             <p><b>{% trans "Reviewer Total Score" %}:</b> {{review.reviewer|get_reviewer_scores_for_application:application}} </p>
+                            <p><b>{% trans "Moderation Score" %}</b> {{application|get_moderation_score}}</p>
                             <details class="mb-2">
                                 <summary>
                                     <i class="fa-solid fa-angle-right mr-2"></i>
