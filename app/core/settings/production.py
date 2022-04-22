@@ -3,8 +3,10 @@ from google.oauth2 import service_account
 
 
 DEBUG = False
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# static files settings
+STATIC_ROOT = os.environ.get('GS_BUCKET_URL') + 'static/'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 
 # media files config
