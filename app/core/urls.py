@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/advanced/', custom_pes_admin_site.urls),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.presentation.urls', namespace='accounts')),
-    path('applications/', include('application.presentation.urls',
+    path('', include('application.presentation.urls',
          namespace='applications')),
     path('organization-subscription/',
          include(

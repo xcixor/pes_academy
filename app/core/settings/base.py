@@ -168,7 +168,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/applications/'
+LOGIN_REDIRECT_URL = '/'
 
 LOGGING = {
     'version': 1,
