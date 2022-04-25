@@ -51,7 +51,7 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         self.assertEqual(
             PostApplicationView.template_name, 'application/application_form.html')
         self.assertEqual(
-            PostApplicationView.success_url, '/applications/')
+            PostApplicationView.success_url, '/')
 
     def test_gets_application_page_successfully(self):
         self.login_user()
@@ -126,7 +126,7 @@ class ApplicationViewTestCase(AccountsBaseTestCase):
         response = self.client.post(
             f'/applications/{self.call_to_action.slug}/',
             self.form_data, follow=True)
-        self.assertRedirects(response, '/applications/', 302)
+        self.assertRedirects(response, '/', 302)
 
     def test_on_successful_post_application_status_is_updated(self):
         application = Application.objects.get(id=self.user.application.id)

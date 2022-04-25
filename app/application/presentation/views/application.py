@@ -33,7 +33,7 @@ class PostApplicationView(SingleObjectMixin, FormView):
 
     template_name = "application/application_form.html"
     form_class = ApplicationForm
-    success_url = '/applications/'
+    success_url = '/'
     model = CallToAction
 
     def post(self, request, *args, **kwargs):

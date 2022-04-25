@@ -36,6 +36,6 @@ class LoginTestCase(AccountsBaseTestCase):
     def test_redirects_to_next_if_no_application(self):
         self.user.application.delete()
         response = self.client.post(
-            '/accounts/login/?next=/applications/', self.form, follow=True)
+            '/accounts/login/?next=/', self.form, follow=True)
         self.assertRedirects(
-            response, '/applications/', 302)
+            response, '/', 302)
