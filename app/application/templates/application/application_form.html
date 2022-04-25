@@ -36,7 +36,8 @@
             <strong><h5 class="text-center"><em> {% trans "NB: Check and Fill all the Fields before you click Next." %}</em></h5></strong>
             <strong><h4 class="text-center"> {% trans "Call For Application" %} </h4></strong>
             <div class="form-step form-step-active step-1-form tab" >
-                <strong><p>{{ form.preferred_language.label }}</p></strong>
+            <span class="error-msg" id="error-step-1-form"></span>
+                <strong><p id="label_preferred_language">{{ form.preferred_language.label }}</p></strong>
                 <div class="form-check">
                     {{ form.preferred_language }}
                     {% for error in form.preferred_language.errors %}
@@ -46,7 +47,7 @@
                     {% endfor %}
                 </div>
                 <div class="input-group">
-                    <strong><label for="name">{{form.full_name.label}}</label></strong>
+                    <strong><label for="name" id="label_full_name">{{form.full_name.label}}</label></strong>
                     {{ form.full_name }}
                     {% for error in form.full_name.errors %}
                     <div class="error">
@@ -63,7 +64,7 @@
             <div class="form-step  step-2-form tab">
             <span class="error-msg" id="error-step-2-form"></span>
 
-                <p class="required" id="step-2-form-age"> {{ form.age.label }}  </p>
+                <p class="required" id="label_age"> {{ form.age.label }}  </p>
                  {{ form.age }}
                 {% for error in form.age.errors %}
                 <div class="error">
@@ -81,7 +82,7 @@
             <span class="error-msg" id="error-step-3-form"></span>
 
                 <div class="form-check">
-                     <p class="required" id="step-3-form-gender">{{ form.gender.label }}</p>
+                     <p class="required" id="label_gender">{{ form.gender.label }}</p>
                     {{ form.gender }}
                     {% for error in form.gender.errors %}
                     <div class="error">
@@ -99,7 +100,7 @@
             <span class="error-msg" id="error-step-4-form"></span>
                 <div>
                     <strong>
-                        <label for="Your answer">
+                        <label id="label_organization_name">
                         {% trans  "Organization name and social media presence. (Include any links to your organization_name website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts))" %}
                         </label>
                     </strong>
@@ -152,7 +153,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <strong><p>{% trans "Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *" %} </p></strong>
+                <strong><p id="label_value_chain">{% trans "Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *" %} </p></strong>
                 <div class="form-check">
                     {{ form.value_chain }}
                     {% for error in form.value_chain.errors %}
@@ -171,7 +172,7 @@
             <span class="error-msg" id="error-step-5-form"></span>
 
                 <strong>
-                    <p>
+                    <p id="label_existence_period">
                         {% trans "How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating." %}
                     </p>
                 </strong>
@@ -193,7 +194,7 @@
             <span class="error-msg" id="error-step-6-form"></span>
 
             <strong>
-                <p>{% trans "Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product" %}
+                <p id="label_stage">{% trans "Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product" %}
                 </p>
             </strong>
             <div class="form-check">
@@ -213,7 +214,7 @@
         <div class="mil form-step">
             <span class="error-msg" id="error-step-7-form"></span>
 
-            <strong>
+            <strong id="label_milestones">
                 {% if form.milestones.errors %}
                 <p class="error">
                     {% trans "What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years." %}
@@ -235,7 +236,7 @@
             <br>
             <div class="input-group">
                 <strong>
-                    <label for="Your answer">
+                    <label for="Your answer" id="label_impact">
                         {% trans "How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business. (negative and/or positive effect)" %}
                     </label>
                 </strong>
@@ -298,4 +299,5 @@
 {{ block.super }}
 <script src="{% static 'js/application/save_draft.js' %}"></script>
 <script src="{% static 'js/application/save_document.js' %}"></script>
+<script src="{% static 'js/acc_scripts.js' %}"></script>
 {% endblock %}

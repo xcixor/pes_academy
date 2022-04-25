@@ -25,11 +25,11 @@ function showErrorMessage(data_title){
   let formSection = $(`.${data_title}`)[0];
   formSection.querySelectorAll("[required]").forEach(function(i){
     if (i.type === "radio" && i.checked === false )  {
-      $(`#${data_title}-${i.name}`).css("color","red");
-    } 
-    if (i.type === "text" && i.checked === false )  {
-      $(`#${data_title}-${i.name}`).css("color","red");
-    } 
+      $(`#label_${i.name}`).css("color","red");
+    }
+    if (i.type === "text" && !$(i).val() )  {
+      $(`#label_${i.name}`).css("color","red");
+    }
   })
 }
 
@@ -46,7 +46,7 @@ function updateFormSteps() {
     formStep.classList.contains("form-step-active") &&
     formStep.classList.remove("form-step-active");
   });
-  
+
   formSteps[formStepsNum].classList.add("form-step-active");
 }
 
@@ -58,7 +58,7 @@ function updateProgressbar() {
       progressStep.classList.remove("progress-step-active");
     }
   });
-  
+
   const progressActive = document.querySelectorAll(".progress-step-active");
 
   progress.style.width =
@@ -92,5 +92,5 @@ function checkRequiredFields(data_title) {
     }
   });
   return allAreFilled;
-  
+
 }
