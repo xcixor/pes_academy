@@ -49,6 +49,7 @@
         <i class="fa fa-key icon"></i>
         <input class="input-field" type="password" placeholder="{% trans "Repeat Password" %}" name="password2" id="psw-repeat" required>
       </div>
+      <input type="hidden" name="is_applying_for_a_call_to_action" value="False">
       <div class="input-container">
         {% for error in form.password2.errors %}
         <div class="error">{{ error|escape }}</div>

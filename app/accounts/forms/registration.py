@@ -13,15 +13,27 @@ from django.conf import settings
 
 User = get_user_model()
 
+USER_TYPE_CHOICES = (
+    (True, 'Applying for call to action'),
+    (False, 'Other')
+)
+
 
 class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
 
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+    is_applying_for_a_call_to_action = forms.ChoiceField(
+        choices=USER_TYPE_CHOICES,
+        label="Reason for Application",
+        widget=forms.Select(
+            attrs={
+                'class': 'input-field'}),
+        required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email', 'is_applying_for_a_call_to_action']
 
     def clean_password1(self):
         password = self.cleaned_data['password1']

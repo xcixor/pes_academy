@@ -33,11 +33,18 @@
           <div class="error">{{ error|escape }}</div>
           {% endfor %}
       </div>
+      <div class="input-container">
+        <i class="fa-solid fa-crosshairs icon"></i>
+        <select name="is_applying_for_a_call_to_action" class="input-field" required>
+          <option selected value="">Please select the reason for application</option>
+          <option value="True">Applying for call to action</option>
+          <option value="False">Other</option>
+        </select>
+      </div>
 
       <div class="input-container">
         <i class="fa fa-key icon"></i>
         <input class="input-field" type="password" placeholder="{% trans "Enter Password" %}" name="password1" id="psw" required>
-
       </div>
       <div class="error-container">
         {% for error in form.password1.errors %}
