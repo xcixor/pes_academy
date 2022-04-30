@@ -14,8 +14,8 @@ from django.conf import settings
 User = get_user_model()
 
 USER_TYPE_CHOICES = (
-    (True, 'Applying for call to action'),
-    (False, 'Other')
+    (True, _('Applying for call to action')),
+    (False, _('Other'))
 )
 
 
@@ -25,7 +25,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
     password2 = forms.CharField(widget=forms.PasswordInput)
     is_applying_for_a_call_to_action = forms.ChoiceField(
         choices=USER_TYPE_CHOICES,
-        label="Reason for Application",
+        label=_("Reason for Application"),
         widget=forms.Select(
             attrs={
                 'class': 'input-field'}),

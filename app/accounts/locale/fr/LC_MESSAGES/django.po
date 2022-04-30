@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 14:26+0300\n"
+"POT-Creation-Date: 2022-04-30 14:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,77 +18,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms/registration.py:36 templates/registration/registration.html:62
-#: templates/registration/staff_registration.html:62
-msgid "Your password should have a special character."
-msgstr "Votre mot de passe doit avoir un caractère spécial."
+#: forms/registration.py:17 templates/registration/registration.html:40
+msgid "Applying for call to action"
+msgstr "Demande d'appel à l'action"
 
-#: forms/registration.py:39 templates/registration/registration.html:63
-#: templates/registration/staff_registration.html:63
-msgid "Your password should have at least one number."
-msgstr "Votre mot de passe doit comporter au moins un chiffre."
-
-#: forms/registration.py:47
-msgid "Please make sure your passwords match."
-msgstr "Merci de vérifier que vos mots de passe correspondent."
-
-#: forms/registration.py:52
-msgid "Account Activation"
-msgstr "Activation de compte"
-
-#: models/user.py:17
-msgid "A User must have a username"
-msgstr "Un utilisateur doit avoir un nom d'utilisateur"
-
-#: models/user.py:36
-msgid "Superuser must have is_superuser=True."
-msgstr "Le superutilisateur doit avoir is_superuser=True."
-
-#: models/user.py:54
-msgid "English"
-msgstr "Anglais"
-
-#: models/user.py:55
-msgid "French"
-msgstr "français"
-
-#: models/user.py:56
-msgid "Portuguese"
-msgstr "Portugais"
-
-#: models/user.py:58
-msgid "Male"
-msgstr "Mâle"
-
-#: models/user.py:59
-msgid "Female"
-msgstr "Femme"
-
-#: models/user.py:60
-msgid "Prefer not to say"
-msgstr "Je préfère ne pas le dire"
-
-#: models/user.py:61
+#: forms/registration.py:18 models/user.py:62
+#: templates/registration/registration.html:41
 msgid "Other"
 msgstr "Autre"
 
-#: models/user.py:63
+#: forms/registration.py:28
+#, fuzzy
+#| msgid "Your Application"
+msgid "Reason for Application"
+msgstr "Ton application"
+
+#: forms/registration.py:48 templates/registration/registration.html:69
+#: templates/registration/staff_registration.html:63
+msgid "Your password should have a special character."
+msgstr "Votre mot de passe doit avoir un caractère spécial."
+
+#: forms/registration.py:51 templates/registration/registration.html:70
+#: templates/registration/staff_registration.html:64
+msgid "Your password should have at least one number."
+msgstr "Votre mot de passe doit comporter au moins un chiffre."
+
+#: forms/registration.py:59
+msgid "Please make sure your passwords match."
+msgstr "Merci de vérifier que vos mots de passe correspondent."
+
+#: forms/registration.py:64
+msgid "Account Activation"
+msgstr "Activation de compte"
+
+#: models/user.py:18
+msgid "A User must have a username"
+msgstr "Un utilisateur doit avoir un nom d'utilisateur"
+
+#: models/user.py:37
+msgid "Superuser must have is_superuser=True."
+msgstr "Le superutilisateur doit avoir is_superuser=True."
+
+#: models/user.py:55
+msgid "English"
+msgstr "Anglais"
+
+#: models/user.py:56
+msgid "French"
+msgstr "français"
+
+#: models/user.py:57
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: models/user.py:59
+msgid "Male"
+msgstr "Mâle"
+
+#: models/user.py:60
+msgid "Female"
+msgstr "Femme"
+
+#: models/user.py:61
+msgid "Prefer not to say"
+msgstr "Je préfère ne pas le dire"
+
+#: models/user.py:64
 msgid "20-29"
 msgstr "20-29"
 
-#: models/user.py:64
+#: models/user.py:65
 msgid "30-39"
 msgstr "30-39"
 
-#: models/user.py:65
+#: models/user.py:66
 msgid "40-49"
 msgstr "40-49"
 
-#: models/user.py:66
+#: models/user.py:67
 msgid "Above 50"
 msgstr "Au-dessus de 50"
 
-#: models/user.py:70
+#: models/user.py:71
 msgid "Primary Email Address"
 msgstr "Adresse e-mail principale"
 
@@ -215,21 +226,21 @@ msgstr "Inviter un collaborateur"
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/profile/staff/applications.html:5
+#: templates/profile/staff/applications.html:6
 #, fuzzy
 #| msgid "Applications"
 msgid "Application"
 msgstr "Applications"
 
-#: templates/profile/staff/applications.html:6
+#: templates/profile/staff/applications.html:7
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: templates/profile/staff/applications.html:13
+#: templates/profile/staff/applications.html:14
 msgid "Review"
 msgstr "La revue"
 
-#: templates/profile/staff/applications.html:18
+#: templates/profile/staff/applications.html:19
 msgid "You do not have any applications to review at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
@@ -243,9 +254,9 @@ msgstr "Mais ne vous inquiétez pas, essayez l'une de ces choses"
 
 #: templates/registration/account_activation_invalid.html:16
 #: templates/registration/registration.html:10
-#: templates/registration/registration.html:72
+#: templates/registration/registration.html:79
 #: templates/registration/staff_registration.html:10
-#: templates/registration/staff_registration.html:72
+#: templates/registration/staff_registration.html:73
 msgid "Register"
 msgstr "S'inscrire"
 
@@ -263,15 +274,20 @@ msgid "if you already have an account"
 msgstr "si vous avez déjà un compte"
 
 #: templates/registration/activation_email_sent.html:7
+#, fuzzy
+#| msgid ""
+#| "    Thank you for registration.\n"
+#| "    We have sent an activation email to your inbox.\n"
+#| "    Click on the link to continue.\n"
+#| "    "
 msgid ""
 "    Thank you for registration.\n"
 "    We have sent an activation email to your inbox.\n"
 "    Click on the link to continue.\n"
 "    "
 msgstr ""
-"Merci pour l'inscription. "
-"Nous avons envoyé un e-mail d'activation dans votre boîte de réception."
-"Cliquez sur le lien pour continuer."
+"Merci pour l'inscription. Nous avons envoyé un e-mail d'activation dans "
+"votre boîte de réception.Cliquez sur le lien pour continuer."
 
 #: templates/registration/email/account_activation.html:5
 msgid ""
@@ -283,6 +299,12 @@ msgstr ""
 msgid "ACTIVATE"
 msgstr "ACTIVER"
 
+#: templates/registration/login.html:14
+#, fuzzy
+#| msgid "Please correct the errors in the form below"
+msgid "Please correct the errors in the form below."
+msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
+
 #: templates/registration/login.html:22
 #: templates/registration/registration.html:19
 #: templates/registration/staff_registration.html:19
@@ -290,7 +312,7 @@ msgid "Username"
 msgstr "Nom d'utilisateur"
 
 #: templates/registration/login.html:32
-#: templates/registration/registration.html:39
+#: templates/registration/registration.html:47
 #: templates/registration/staff_registration.html:39
 msgid "Enter Password"
 msgstr "Entrer le mot de passe"
@@ -320,53 +342,61 @@ msgstr "S'inscrire"
 msgid "Please correct the errors in the form below"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
-#: templates/registration/registration.html:50
+#: templates/registration/registration.html:39
+#, fuzzy
+#| msgid "Please correct the errors in the form below"
+msgid "Please select the reason for registration"
+msgstr "Veuillez sélectionner le motif de l'inscription"
+
+#: templates/registration/registration.html:57
 #: templates/registration/staff_registration.html:50
 msgid "Repeat Password"
 msgstr "Répéter le mot de passe"
 
-#: templates/registration/registration.html:58
-#: templates/registration/staff_registration.html:58
+#: templates/registration/registration.html:65
+#: templates/registration/staff_registration.html:59
 msgid "Password Policy"
 msgstr "Politique de mot de passe"
 
-#: templates/registration/registration.html:60
-#: templates/registration/staff_registration.html:60
+#: templates/registration/registration.html:67
+#: templates/registration/staff_registration.html:61
 msgid "Your password must contain at least 8 characters."
 msgstr "Votre mot de passe doit contenir au moins 8 caractères."
 
-#: templates/registration/registration.html:61
-#: templates/registration/staff_registration.html:61
+#: templates/registration/registration.html:68
+#: templates/registration/staff_registration.html:62
 msgid "Your password should not be entirely numeric."
 msgstr "Votre mot de passe ne doit pas être entièrement numérique."
 
-#: templates/registration/registration.html:64
-#: templates/registration/staff_registration.html:64
+#: templates/registration/registration.html:71
+#: templates/registration/staff_registration.html:65
 msgid ""
 "Your password should not be too similar to your personal details eg username."
-msgstr "Votre mot de passe ne doit pas être trop similaire à vos informations personnelles, par exemple votre nom d'utilisateur."
+msgstr ""
+"Votre mot de passe ne doit pas être trop similaire à vos informations "
+"personnelles, par exemple votre nom d'utilisateur."
 
-#: templates/registration/registration.html:65
-#: templates/registration/staff_registration.html:65
+#: templates/registration/registration.html:72
+#: templates/registration/staff_registration.html:66
 msgid "Your passwords should match."
 msgstr "Vos mots de passe doivent correspondre."
 
-#: templates/registration/registration.html:70
-#: templates/registration/staff_registration.html:70
+#: templates/registration/registration.html:77
+#: templates/registration/staff_registration.html:71
 msgid "By creating an account you agree to our"
 msgstr "En créant un compte, vous acceptez nos"
 
-#: templates/registration/registration.html:70
-#: templates/registration/staff_registration.html:70
+#: templates/registration/registration.html:77
+#: templates/registration/staff_registration.html:71
 msgid "Terms & Privacy"
 msgstr "Conditions et confidentialité"
 
-#: templates/registration/registration.html:75
-#: templates/registration/staff_registration.html:75
+#: templates/registration/registration.html:82
+#: templates/registration/staff_registration.html:76
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte?"
 
-#: templates/registration/registration.html:75
-#: templates/registration/staff_registration.html:75
+#: templates/registration/registration.html:82
+#: templates/registration/staff_registration.html:76
 msgid "Sign in"
 msgstr "S'identifier"
