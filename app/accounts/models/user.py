@@ -1,3 +1,4 @@
+from operator import mod
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.base_user import BaseUserManager
@@ -74,6 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_moderator = models.BooleanField(default=False)
     is_reviewer = models.BooleanField(default=False)
+    is_applying_for_a_call_to_action = models.BooleanField(default=False)
     age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     preferred_language = models.CharField(
