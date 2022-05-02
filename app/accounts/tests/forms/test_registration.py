@@ -13,7 +13,8 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
             'email': 'testuser@gmail.com',
             'password1': 'cli3ntnu1#',
             'password2': 'cli3ntnu1#',
-            'username': 'pish_dush'
+            'username': 'pish_dush',
+            'is_applying_for_a_call_to_action': True
         }
         self.form = RegistrationForm(self.data)
         self.request = self.generate_request()
