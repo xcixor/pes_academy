@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-30 14:26+0300\n"
+"POT-Creation-Date: 2022-05-03 19:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Applying for call to action"
 msgstr "Demande d'appel à l'action"
 
-#: forms/registration.py:18 models/user.py:62
+#: forms/registration.py:18 models/user.py:66
 #: templates/registration/registration.html:41
 msgid "Other"
 msgstr "Autre"
@@ -59,48 +59,50 @@ msgstr "Un utilisateur doit avoir un nom d'utilisateur"
 msgid "Superuser must have is_superuser=True."
 msgstr "Le superutilisateur doit avoir is_superuser=True."
 
-#: models/user.py:55
+#: models/user.py:59
 msgid "English"
 msgstr "Anglais"
 
-#: models/user.py:56
+#: models/user.py:60
 msgid "French"
 msgstr "français"
 
-#: models/user.py:57
+#: models/user.py:61
 msgid "Portuguese"
 msgstr "Portugais"
 
-#: models/user.py:59
+#: models/user.py:63
 msgid "Male"
 msgstr "Mâle"
 
-#: models/user.py:60
+#: models/user.py:64
 msgid "Female"
 msgstr "Femme"
 
-#: models/user.py:61
+#: models/user.py:65
 msgid "Prefer not to say"
 msgstr "Je préfère ne pas le dire"
 
-#: models/user.py:64
+#: models/user.py:68
 msgid "20-29"
 msgstr "20-29"
 
-#: models/user.py:65
+#: models/user.py:69
 msgid "30-39"
 msgstr "30-39"
 
-#: models/user.py:66
+#: models/user.py:70
 msgid "40-49"
 msgstr "40-49"
 
-#: models/user.py:67
+#: models/user.py:71
 msgid "Above 50"
 msgstr "Au-dessus de 50"
 
-#: models/user.py:71
-msgid "Primary Email Address"
+#: models/user.py:75
+#, fuzzy
+#| msgid "Primary Email Address"
+msgid "Email Address"
 msgstr "Adresse e-mail principale"
 
 #: presentation/views/activate_account.py:20
@@ -115,6 +117,10 @@ msgstr ""
 #: presentation/views/activate_account.py:27
 msgid "Uh oh! something went wrong."
 msgstr "Oh oh ! quelque chose s'est mal passé."
+
+#: presentation/views/coaching.py:15
+msgid " Has been added as your coach."
+msgstr " A été ajouté comme entraîneur."
 
 #: presentation/views/login.py:16
 msgid "Welcome back "
@@ -132,7 +138,7 @@ msgstr "Prénom"
 msgid "Lastname"
 msgstr "Nom de famille"
 
-#: templates/help.html:23 templates/profile/dashboard.html:213
+#: templates/help.html:23 templates/profile/dashboard.html:284
 msgid "Email"
 msgstr "E-mail"
 
@@ -144,51 +150,59 @@ msgstr "Écris quelque chose.."
 msgid "Submit"
 msgstr "Soumettre"
 
-#: templates/profile/dashboard.html:16
+#: templates/profile/dashboard.html:23
 msgid "Home"
 msgstr "Domicile"
 
-#: templates/profile/dashboard.html:19
+#: templates/profile/dashboard.html:26
 msgid "Academy"
 msgstr "Académie"
 
-#: templates/profile/dashboard.html:22 templates/profile/dashboard.html:118
+#: templates/profile/dashboard.html:35 templates/profile/dashboard.html:144
+msgid "Coaches"
+msgstr "Entraîneurs"
+
+#: templates/profile/dashboard.html:44 templates/profile/dashboard.html:165
+msgid "My Coaches"
+msgstr "Mes entraîneurs"
+
+#: templates/profile/dashboard.html:50 templates/profile/dashboard.html:187
 msgid "Applications"
 msgstr "Applications"
 
-#: templates/profile/dashboard.html:25
+#: templates/profile/dashboard.html:53
 msgid "Team"
 msgstr "Équipe"
 
-#: templates/profile/dashboard.html:28
+#: templates/profile/dashboard.html:56
 msgid "Log Out"
 msgstr "Se déconnecter"
 
-#: templates/profile/dashboard.html:42
+#: templates/profile/dashboard.html:71
 msgid "Invite"
 msgstr "Inviter"
 
-#: templates/profile/dashboard.html:54
+#: templates/profile/dashboard.html:83
 msgid "Hello"
 msgstr "Bonjour"
 
-#: templates/profile/dashboard.html:59 templates/profile/dashboard.html:159
+#: templates/profile/dashboard.html:88 templates/profile/dashboard.html:228
 msgid "Your Team Members"
 msgstr "Membres de votre équipe"
 
-#: templates/profile/dashboard.html:85 templates/profile/dashboard.html:121
+#: templates/profile/dashboard.html:114 templates/profile/dashboard.html:190
 msgid "Ongoing Applications"
 msgstr "Candidatures en cours"
 
-#: templates/profile/dashboard.html:88 templates/profile/dashboard.html:90
+#: templates/profile/dashboard.html:117 templates/profile/dashboard.html:119
 msgid "Your Application"
 msgstr "Ton application"
 
-#: templates/profile/dashboard.html:105
+#: templates/profile/dashboard.html:134
 msgid "PES Academy"
 msgstr "Académie PSE"
 
-#: templates/profile/dashboard.html:108
+#: templates/profile/dashboard.html:137
 msgid ""
 "Joining the PES academy will give you access to the videos and presentations "
 "Featured by PES where you get to learn more and get more advisory about your "
@@ -198,31 +212,41 @@ msgstr ""
 "Présenté par PES où vous pouvez en savoir plus et obtenir plus de conseils "
 "sur votre des affaires"
 
-#: templates/profile/dashboard.html:109
+#: templates/profile/dashboard.html:138
 msgid "Join the PES Academy"
 msgstr "Rejoignez la PES Academy"
 
-#: templates/profile/dashboard.html:122
+#: templates/profile/dashboard.html:146
+#, fuzzy
+#| msgid "You do not have any applications to review at the moment"
+msgid "We do not have mentors at the moment"
+msgstr "Vous n'avez pas d'application à examiner pour le moment"
+
+#: templates/profile/dashboard.html:156 templates/profile/dashboard.html:174
+msgid "View Bio"
+msgstr "Voir la biographie"
+
+#: templates/profile/dashboard.html:191
 msgid "Click on the link below to resume to your applications."
 msgstr "Cliquez sur le lien ci-dessous pour reprendre vos candidatures."
 
-#: templates/profile/dashboard.html:124 templates/profile/dashboard.html:126
+#: templates/profile/dashboard.html:193 templates/profile/dashboard.html:195
 msgid "Continue"
 msgstr "Continuez"
 
-#: templates/profile/dashboard.html:133
+#: templates/profile/dashboard.html:202
 msgid "Upload Further Documents"
 msgstr "Télécharger d'autres documents"
 
-#: templates/profile/dashboard.html:151
+#: templates/profile/dashboard.html:220
 msgid "Save"
 msgstr "Sauver"
 
-#: templates/profile/dashboard.html:211
+#: templates/profile/dashboard.html:282
 msgid "Invite Collaborator"
 msgstr "Inviter un collaborateur"
 
-#: templates/profile/dashboard.html:223
+#: templates/profile/dashboard.html:294
 msgid "Send"
 msgstr "Envoyer"
 
@@ -294,6 +318,8 @@ msgid ""
 "Thank you for your interest in registering with us. Please verify your email "
 "address by clicking the activation link below"
 msgstr ""
+"Merci de votre intérêt à vous inscrire chez nous. Veuillez vérifier votre e-mail "
+"adresse en cliquant sur le lien d'activation ci-dessous"
 
 #: templates/registration/email/account_activation.html:11
 msgid "ACTIVATE"
