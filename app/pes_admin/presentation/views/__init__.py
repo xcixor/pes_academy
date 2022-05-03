@@ -8,3 +8,4 @@ from .application_more import ApplicationDetails
 from .unassigned_applications import UnassignedApplicationsView
 from .in_review import InReviewApplicationsView
 from .make_moderator import CreateModerator
+from .make_coach import MakeStaffCoachView

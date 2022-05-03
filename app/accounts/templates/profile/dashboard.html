@@ -25,9 +25,7 @@
                         <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
                             <span class="tablink" onclick="openPage('Academy')" >{% trans "Academy" %}</span></a></li>
 
-                        {% if user.is_applying_for_a_call_to_action %}
-                        is calling
-                        {% else %}
+                        {% if not user.is_applying_for_a_call_to_action %}
                         <li class="tablink" onclick="openPage('Mentors')">
                             <a href="#">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -176,6 +174,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {% empty %}
+                            <p class="ml-4 mt-5">{% trans "You do not have coaches at the moment" %}</p>
                             {% endfor %}
                         </div>
                   </div>

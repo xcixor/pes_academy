@@ -7,7 +7,7 @@
         <div class="row pb-4">
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Full Name" %}</b></div>
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
-            <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Role" %}</b></div>
+            <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Is Coach" %}</b></div>
             <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Is Reviewer" %}</b></div>
             <div class="col-md-2 px-2 d-flex align-items-center"><b>{% trans "Is Moderator" %}</b></div>
         </div>
@@ -18,18 +18,17 @@
         <div class="col-md-3 px-2 d-flex align-items-center">{{employee.full_name}}</div>
         <div class="col-md-3 px-2 d-flex align-items-center">{{employee.email}}</div>
         <div class="col-md-2 px-2 d-flex align-items-center">
-            Role
-            {% if employee.is_superuser %}
-            {% trans "Admin" %}:
+            {% if employee.is_coach %}
+            <i class="fa-solid fa-circle-check"></i>
             {% else %}
-            {% trans "Staff" %}
+            <a href="/admin/advanced/make/{{employee.pk}}/coach/" class="btn btn-primary">{% trans "Make Coach" %}</a>
             {% endif %}
         </div>
         <div class="col-md-2 px-2 d-flex align-items-center">
             {% if employee.is_reviewer %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
-            <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn">{% trans "Make Reviewer" %}</a>
+            <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn btn-primary">{% trans "Make Reviewer" %}</a>
             {% endif %}
         </div>
         <div class="col-md-2 px-2 d-flex align-items-center">

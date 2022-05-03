@@ -22,7 +22,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         application, msg = get_application(self.request.user)
         context['application'] = application
-        context['mentors'] = User.objects.filter(is_mentor=True)
+        context['mentors'] = User.objects.filter(is_coach=True)
         return context
 
 
