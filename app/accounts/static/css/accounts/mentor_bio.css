@@ -1,0 +1,21 @@
+.img {
+    height: 200px;
+    max-width: 100%;
+}
+
+.linkedin {
+    border: 1px solid #0f4ddc;
+    display:inline-block;
+    width: auto;
+    border-radius: 3px;
+}
+
+.basic-info {
+    border-bottom: 1px solid #9ca6bd;
+}
+
+.small-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #9ca6bd;
+}

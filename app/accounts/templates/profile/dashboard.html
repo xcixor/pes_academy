@@ -133,18 +133,23 @@
 
                   <div id="Mentors" class="tabcontent">
                         <h4 class="card-header">{% trans "Mentors" %}</h4>
+                        {% if not mentors %}
+                        <h4 class="ml-3">{% trans "We do not have mentors at the moment" %}</h4>
+                        {% endif %}
                         <div class="grid">
+                            {% for mentor in mentors %}
                             <div class="g-col">
                                 <div class="card">
                                     <div class="card-body d-flex justify-content-between">
-                                        <img src="{% static 'common/images/avatar.jpg' %}" class="img-rounded">
+                                        <img src="{{mentor.avatar.url}}" class="img-rounded">
                                         <div class="d-flex flex-column card-action">
-                                            <h4>Mentor name</h4>
-                                            <a href="#" class="btn btn-primary">View Bio</a>
+                                            <h4>{{ mentor.full_name }}</h4>
+                                            <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}" class="btn btn-primary">{% trans "View Bio" %}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                   </div>
 

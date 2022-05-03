@@ -49,6 +49,10 @@ class UserManager(BaseUserManager):
         return user
 
 
+def image_directory_path(instance, filename):
+    return (f'accounts/{instance.email}/{filename}')
+
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     LANGUAGE_CHOICES = [
@@ -68,18 +72,23 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
-        verbose_name=_('Primary Email Address'), max_length=255, unique=True)
+        verbose_name=_('Email Address'), max_length=255, unique=True)
     full_name = models.CharField(max_length=255)
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_moderator = models.BooleanField(default=False)
     is_reviewer = models.BooleanField(default=False)
+    is_mentor = models.BooleanField(default=False)
     is_applying_for_a_call_to_action = models.BooleanField(default=False)
     age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     preferred_language = models.CharField(
         max_length=40, choices=LANGUAGE_CHOICES)
+    bio = models.TextField(null=True, blank=True)
+    linked_in = models.URLField(null=True, blank=True)
+    avatar = models.ImageField(
+        upload_to=image_directory_path, null=True, blank=True)
 
     objects = UserManager()
 
