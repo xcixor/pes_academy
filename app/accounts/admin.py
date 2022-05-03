@@ -1,5 +1,5 @@
 from django.contrib import admin
-from accounts.models import User
+from accounts.models import User, Coach
 from application.models import (
     BusinessOrganization, Milestone, CovidImpact)
 
@@ -36,4 +36,4 @@ class BusinessOrganizationAdmin(admin.ModelAdmin):
     inlines = [CovidImpactInline]
 
 
-admin.site.register(Milestone)
+admin.site.register(Coach)

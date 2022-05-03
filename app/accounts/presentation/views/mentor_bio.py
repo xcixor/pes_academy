@@ -4,8 +4,8 @@ from django.views.generic import DetailView
 User = get_user_model()
 
 
-class MentorBio(DetailView):
+class CoachBio(DetailView):
 
     model = User
-    template_name = 'profile/mentor_bio.html'
-    context_object_name = 'mentor'
+    template_name = 'profile/coach_bio.html'
+    context_object_name = 'coach'

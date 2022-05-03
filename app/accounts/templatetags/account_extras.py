@@ -72,3 +72,12 @@ def get_organization_members(email):
     except Subscription.DoesNotExist as sdne:
         print(sdne)
     return members
+
+
+@register.filter('is_user_coach')
+def is_user_coach(coach, user):
+    is_coach = False
+    for coaching in user.coaches.all():
+        if coaching.coach == coach:
+            is_coach = True
+    return is_coach

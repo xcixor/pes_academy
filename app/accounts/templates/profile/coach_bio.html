@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load account_extras %}
+{% block styles %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/coach_bio.css' %}" />
+{% endblock %}
+{% load i18n %}
+{% block content %}
+<div class="bio container">
+    <div class="d-flex basic-info pb-5 mb-5">
+        <img src="{{coach.avatar.url}}" class="img">
+        <div class="p-4">
+            <h4>{{ coach.full_name }}</h4>
+            <p class="small-text">{{coach.email}}</p>
+            <a href="{{coach.linked_in}}" target="_blank" class="py-2 px-5 mt-4 linkedin">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a> <br>
+            <span class="d-flex align-items-center mt-4">
+                <i class="fa-solid fa-user mr-3"></i>
+                {{coach.gender}}
+            </span>
+        </div>
+    </div>
+    <div class="more-info mb-5">
+        <h4>Bio</h4>
+        <p>{{coach.bio}}</p>
+    </div>
+    <div class="actions d-flex">
+        {% if not coach|is_user_coach:user %}
+        <form action="{% url 'accounts:coaching' %}" method="post">
+            {% csrf_token %}
+            <button class="btn mr-4" type="submit">Add Coach</button>
+            <input type="hidden" name="coach" value="{{coach.pk}}">
+            <input type="hidden" name="mentee" value="{{user.pk}}">
+        </form>
+        {% endif %}
+        <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
+    </div>
+</div>
+{% endblock %}
