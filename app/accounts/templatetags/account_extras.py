@@ -81,3 +81,8 @@ def is_user_coach(coach, user):
         if coaching.coach == coach:
             is_coach = True
     return is_coach
+
+
+@register.filter('distinct')
+def distinct(queryset):
+    return queryset.distinct('coach_id')
