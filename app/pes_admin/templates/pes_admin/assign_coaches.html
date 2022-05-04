@@ -1,4 +1,9 @@
 {% extends 'admin_base.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/pes_admin/assign_coaches.css' %}">
+{% endblock %}
 {% block admin_content %}
 {% load i18n %}
 <div class="row">
@@ -8,16 +13,29 @@
 </div>
 <div class="row">
     <div class="col-md-6 offset-md-2">
+        <ul class="coaches-list">
+            <h6><b>Current Applicant's coaches</b></h6>
+            {% for coaching in applicant.coaches.all %}
+            <li><i class="fa-solid fa-angle-right"></i> {{coaching.coach}}</li>
+            {% empty %}
+            This applicant has not been assigned any coaches yet.
+            {% endfor %}
+        </ul>
+        {% if form.number_of_coaches.initial %}
+        <h6><b>Select Coach</b></h6>
         <form action="/admin/advanced/assign/{{applicant.pk}}/coaches/" method="post">
             {% csrf_token %}
-            <div class="form-group">
             {{form.coaches}}
+            <div class="form-group">
             {% for error in form.coaches.errors %}
             <p class="error">{{ error|escape }}</p>
             {% endfor %}
             </div>
             <button type="submit" class="btn btn-primary">{% trans "Assign" %}</button>
         </form>
+        {% else %}
+        <p>Hmm, all the available coaches have been assigned to this user.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

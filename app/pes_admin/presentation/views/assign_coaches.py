@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, FormView, View
 from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -8,16 +9,26 @@ from pes_admin.forms import AssignCoachesForm
 User = get_user_model()
 
 
-class GetAssignCoaches(DetailView):
+class GetAssignCoaches(DetailView, FormMixin):
 
     template_name = 'pes_admin/assign_coaches.html'
     model = User
     context_object_name = 'applicant'
+    form_class = AssignCoachesForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = AssignCoachesForm
-        return context
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = {
+            'initial': self.get_initial(),
+            'prefix': self.get_prefix(),
+            'user': self.get_object()
+        }
+        if self.request.method in ('POST', 'PUT'):
+            kwargs.update({
+                'data': self.request.POST,
+                'files': self.request.FILES,
+            })
+        return kwargs
 
 
 class PostAssignCoaches(SingleObjectMixin, FormView):

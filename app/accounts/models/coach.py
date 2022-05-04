@@ -14,6 +14,7 @@ class Coach(models.Model):
     class Meta:
 
         verbose_name_plural = 'Coaches'
+        unique_together = [['coach', 'mentee']]
 
     def __str__(self) -> str:
         return f'Coach: {self.coach} - Mentee: {self.mentee}'
