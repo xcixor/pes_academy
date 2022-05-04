@@ -1,0 +1,37 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block styles %}
+{% load i18n %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
+{% endblock %}
+{% block admin_content %}
+<div class="card card-admin">
+    <div class="card-header ">
+        <div class="row pb-4">
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Name" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Has Coaches" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
+        </div>
+    </div>
+    <div class="card-body">
+        {% for user in users %}
+        <div class="row pb-4">
+        <div class="col-md-3 px-2 d-flex align-items-center">{{user.full_name}}</div>
+        <div class="col-md-3 px-2 d-flex align-items-center">{{user.email}}</div>
+        <div class="col-md-3 px-2 d-flex align-items-center">
+            {% if user.coaches.all %}
+            <i class="fa-solid fa-circle-check"></i>
+            {% else %}
+            <i class="fa-solid fa-xmark"></i>
+            {% endif %}
+        </div>
+        <div class="col-md-3 px-2 d-flex align-items-center">
+            <a href="/admin/accounts/user/{{user.pk}}/change/" class="btn btn-primary">{% trans "View More" %}</a>
+        </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
