@@ -11,7 +11,7 @@
         <div class="row pb-4">
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Name" %}</b></div>
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Applying for call to action" %}</b></div>
+            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Has Coaches" %}</b></div>
             <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
         </div>
     </div>
@@ -21,14 +21,14 @@
         <div class="col-md-3 px-2 d-flex align-items-center">{{user.full_name}}</div>
         <div class="col-md-3 px-2 d-flex align-items-center">{{user.email}}</div>
         <div class="col-md-3 px-2 d-flex align-items-center">
-            {% if user.is_applying_for_a_call_to_action %}
+            {% if user.coaches.all %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
             <i class="fa-solid fa-xmark"></i>
             {% endif %}
         </div>
         <div class="col-md-3 px-2 d-flex align-items-center">
-            <a href="/admin/accounts/user/{{user.pk}}/change/" class="btn btn-primary">{% trans "View More" %}</a>
+            <a href="/admin/advanced/user/{{user.pk}}/assign/coaches/" class="btn btn-primary">{% trans "Assign Coaches" %}</a>
         </div>
         </div>
         {% endfor %}

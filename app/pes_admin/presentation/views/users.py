@@ -23,3 +23,14 @@ class RegularUsers(ListView):
     def get_queryset(self):
         return super().get_queryset().filter(
             is_applying_for_a_call_to_action=False)
+
+
+class CallToActionUsers(ListView):
+
+    template_name = 'pes_admin/users_call_to_action.html'
+    model = User
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            is_applying_for_a_call_to_action=True)
