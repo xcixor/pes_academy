@@ -4,7 +4,8 @@ from pes_admin.presentation.views import (
     AdvancedAdminDashboardView, InviteReviewerView, DisplayStaffView,
     MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
     ApplicationDetails, UnassignedApplicationsView,
-    InReviewApplicationsView, CreateModerator, MakeStaffCoachView)
+    InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
+    AllUsersView)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -26,6 +27,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(UnassignedApplicationsView.as_view())),
             path('applications/in-review/',
                  admin.site.admin_view(InReviewApplicationsView.as_view())),
+            path('users/all/',
+                 admin.site.admin_view(AllUsersView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
             path('view/<slug:slug>/',
