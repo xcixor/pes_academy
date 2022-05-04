@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+{% block admin_content %}
+{% load i18n %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>{% trans "Assign coaches to" %} {{applicant}}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-2">
+        <form action="/admin/advanced/assign/{{applicant.pk}}/coaches/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            {{form.coaches}}
+            {% for error in form.coaches.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Assign" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

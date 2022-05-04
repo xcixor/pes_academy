@@ -5,7 +5,7 @@ from pes_admin.presentation.views import (
     MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
     ApplicationDetails, UnassignedApplicationsView,
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
-    AllUsersView, RegularUsers, CallToActionUsers)
+    AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -33,6 +33,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(RegularUsers.as_view())),
             path('users/call-to-action/',
                  admin.site.admin_view(CallToActionUsers.as_view())),
+            path('assign/<int:pk>/coaches/',
+                 admin.site.admin_view(AssignCoachesView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
             path('view/<slug:slug>/',

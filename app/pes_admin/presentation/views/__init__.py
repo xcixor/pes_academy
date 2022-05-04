@@ -10,3 +10,4 @@ from .in_review import InReviewApplicationsView
 from .make_moderator import CreateModerator
 from .make_coach import MakeStaffCoachView
 from .users import AllUsersView, RegularUsers, CallToActionUsers
+from .assign_coaches import AssignCoachesView
