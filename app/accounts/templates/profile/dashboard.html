@@ -148,7 +148,7 @@
                             <div class="g-col">
                                 <div class="card">
                                     <div class="card-body d-flex justify-content-between">
-                                        <img src="{{mentor.avatar.url}}" class="img-rounded">
+                                        <img src="{% if mentor.avatar %}{{mentor.avatar.url}}{% endif %}" class="img-rounded" alt="No Avatar">
                                         <div class="d-flex flex-column card-action">
                                             <h4>{{ mentor.full_name }}</h4>
                                             <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}" class="btn btn-primary">{% trans "View Bio" %}</a>
@@ -156,6 +156,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {% empty %}
+
                             {% endfor %}
                         </div>
                   </div>

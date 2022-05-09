@@ -9,7 +9,7 @@
 {% block content %}
 <div class="bio container">
     <div class="d-flex basic-info pb-5 mb-5">
-        <img src="{{coach.avatar.url}}" class="img">
+        <img src="{% if coach.avatar %}{{coach.avatar.url}}{% endif %}" class="img">
         <div class="p-4">
             <h4>{{ coach.full_name }}</h4>
             <p class="small-text">{{coach.email}}</p>
