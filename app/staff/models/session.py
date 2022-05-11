@@ -17,3 +17,6 @@ class Session(models.Model):
     def special_id(self):
         filled_id = f'{self.id}'.zfill(3)
         return f'MEET - {filled_id}'
+
+    def __str__(self) -> str:
+        return self.title

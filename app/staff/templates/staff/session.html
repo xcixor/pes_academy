@@ -15,7 +15,7 @@
                         {% endfor %}
                     </div>
                     <div class="col mt-2">
-                        <input type="text" name="description" placeholder="Add a brief description">
+                        <textarea type="text" name="description" placeholder="Add a brief description"></textarea>
                         {% for error in form.description.errors %}
                         <div class="error">{{ error|escape }}</div>
                         {% endfor %}

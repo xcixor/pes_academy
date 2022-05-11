@@ -1,0 +1,22 @@
+{% extends 'staff_base.html' %}
+{% load i18n %}
+{% block admin_content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2>{{session}}</h2>
+        <div>
+            {% if session.description %}
+            <p>{{session.description}}</p>
+            {% else %}
+            <form action="{% url 'staff:session_update' pk=session.pk %}" method="post">
+                {% csrf_token %}
+                <textarea name="description" id="id_description" rows="5" placeholder="Please provide a description for this session"></textarea>
+                <button type="submit" class="btn btn-primary">Save Description</button>
+            </form>
+            {% endif %}
+            <p>{{session.coachee.email}}</p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

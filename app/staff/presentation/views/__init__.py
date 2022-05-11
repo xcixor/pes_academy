@@ -1,2 +1,3 @@
 from .coachees import CoacheesView
-from .sessions import SessionsView, SessionView
+from .sessions import (
+    SessionsView, SessionView, SessionDetails, SessionUpdate)

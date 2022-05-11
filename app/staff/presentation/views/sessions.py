@@ -1,6 +1,7 @@
 from django.views import View
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView
 from staff.models import Session
 
 
@@ -31,3 +32,20 @@ class SessionView(View):
     def post(self, request, *args, **kwargs):
         view = PostSessionView.as_view()
         return view(request, *args, **kwargs)
+
+
+class SessionDetails(DetailView):
+
+    template_name = 'staff/session_details.html'
+    model = Session
+    context_object_name = 'session'
+
+
+class SessionUpdate(UpdateView):
+
+    template_name = 'staff/session_details.html'
+    model = Session
+    fields = ['description']
+
+    def get_success_url(self) -> str:
+        return f'/staff/session/{self.object.pk}/'

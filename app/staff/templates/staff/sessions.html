@@ -19,7 +19,7 @@
         <div class="col-md-4 px-2 d-flex align-items-center">{{session.special_id}}</div>
         <div class="col-md-4 px-2 d-flex align-items-center">{{session.coachee.email}}</div>
         <div class="col-md-4 px-2 d-flex align-items-center">
-            <a href="#" class="btn btn-primary">View More</a>
+            <a href="{% url 'staff:session_details' pk=session.pk %}" class="btn btn-primary">View More</a>
         </div>
         </div>
         {% endfor %}
