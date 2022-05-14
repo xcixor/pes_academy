@@ -42,6 +42,11 @@ class PostAssignCoaches(SingleObjectMixin, FormView):
         self.object = self.get_object()
         return super().post(request, *args, **kwargs)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.object
+        return kwargs
+
     def form_valid(self, form):
         self.object.is_in_review = True
         self.object.save()

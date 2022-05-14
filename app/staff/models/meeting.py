@@ -1,11 +1,11 @@
 from django.db import models
-from staff.models import Event
+from staff.models import Session
 
 
 class Meeting(models.Model):
 
-    event = models.ForeignKey(
-        Event, on_delete=models.CASCADE,
+    session = models.ForeignKey(
+        Session, on_delete=models.CASCADE,
         related_name='meetings')
     link = models.URLField(unique=True)
 

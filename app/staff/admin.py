@@ -1,4 +1,4 @@
 from django.contrib import admin
-from staff.models import Event
+from staff.models import Session
 
-admin.site.register(Event)
+admin.site.register(Session)

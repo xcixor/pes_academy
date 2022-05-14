@@ -2,7 +2,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from staff.models import Event
+from staff.models import Session
 
 
 class SessionsView(TemplateView):
@@ -19,7 +19,7 @@ class PostSessionView(CreateView):
 
     template_name = 'staff/session.html'
     fields = ['coach', 'coachee', 'title', 'description']
-    model = Event
+    model = Session
     success_url = '/staff/sessions/'
 
 
@@ -37,14 +37,14 @@ class SessionView(View):
 class SessionDetails(DetailView):
 
     template_name = 'staff/session_details.html'
-    model = Event
+    model = Session
     context_object_name = 'session'
 
 
 class SessionUpdate(UpdateView):
 
     template_name = 'staff/session_details.html'
-    model = Event
+    model = Session
     fields = ['description']
 
     def get_success_url(self) -> str:

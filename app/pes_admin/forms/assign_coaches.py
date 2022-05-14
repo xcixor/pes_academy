@@ -23,6 +23,7 @@ class AssignCoachesForm(forms.Form):
         return True
 
     def __init__(self, user=None, *args, **kwargs):
+        print(user, '********************************')
         super(AssignCoachesForm, self).__init__(*args, **kwargs)
         if user:
             coach_ids = (coaching.coach.id for coaching in user.coaches.all())

@@ -5,11 +5,11 @@
     <div class="col-md-6">
         <div class="row">
         <h2>Set up a meeting</h2>
-        {{event}}
+        {{session}}
         </div>
         <form action="{% url 'staff:meeting_create' %}" method="post">
             {% csrf_token %}
-            <input type="hidden" name="event" value="{{event.pk}}">
+            <input type="hidden" name="session" value="{{session.pk}}">
             <div class="row">
                 <input class="input-field" type="url" name="link" id="id_link" placeholder="Paste Link to meeting" required>
                 {% for error in form.link.errors %}
