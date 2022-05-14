@@ -18,13 +18,17 @@
         </div>
         <div>
             {% for meeting in session.meetings.all %}
-            {{ meeting }}
+            <div class="row">
+                <div class="col">
+                    <a href="{{meeting.link}}" target="_blank">{{meeting}}</a>
+                </div>
+            </div>
             {% empty %}
             <p>This session has no meetings</p>
             {% endfor %}
         </div>
         <div>
-            <a class="btn" href="{% url 'staff:meeting_setup' %}" style="display: inline-block;">Set up a meeting</a>
+            <a class="btn" href="{% url 'staff:meeting_setup' pk=session.pk %}" style="display: inline-block;">Set up a meeting</a>
         </div>
     </div>
 </div>
