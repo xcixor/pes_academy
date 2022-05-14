@@ -13,5 +13,6 @@ urlpatterns = [
     path('session/<int:pk>/', SessionDetails.as_view(), name='session_details'),
     path('session/update/<int:pk>/', SessionUpdate.as_view(), name='session_update'),
     path('<int:pk>/meeting/', GetSetupMeetingPageView.as_view(), name='meeting_setup'),
-    path('meeting/create/', SetupMeetingView.as_view(), name='meeting_create'),
+    path('<int:pk>/meeting/create/',
+         SetupMeetingView.as_view(), name='meeting_create'),
 ]

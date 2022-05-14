@@ -5,9 +5,8 @@
     <div class="col-md-6">
         <div class="row">
         <h2>Set up a meeting</h2>
-        {{session}}
         </div>
-        <form action="{% url 'staff:meeting_create' %}" method="post">
+        <form action="{% url 'staff:meeting_create' pk=session.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="session" value="{{session.pk}}">
             <div class="row">
