@@ -12,3 +12,6 @@ weasyprint==52.5
 django-storages==1.12.3
 django-google-storage==0.3
 google-cloud-storage==2.2.1
+google-api-python-client==2.47.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.5.1

@@ -3,23 +3,23 @@
 {% block admin_content %}
     <div class="row">
         <div class="col-sm-2">
-            <a href="{% url 'staff:session_create' %}" class="btn btn-primary">Setup Session</a>
+            <a href="{% url 'staff:session_create' %}" class="btn btn-primary">Setup an Event</a>
         </div>
     </div>
     <div class="card-header">
         <div class="row pb-4">
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Session ID" %}</b></div>
+            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Event ID" %}</b></div>
             <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Mentee" %}</b></div>
             <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
         </div>
     </div>
     <div class="card-body">
-        {% for session in user.sessions.all %}
+        {% for event in user.events.all %}
         <div class="row pb-4">
-        <div class="col-md-4 px-2 d-flex align-items-center">{{session.special_id}}</div>
-        <div class="col-md-4 px-2 d-flex align-items-center">{{session.coachee.email}}</div>
+        <div class="col-md-4 px-2 d-flex align-items-center">{{event.special_id}}</div>
+        <div class="col-md-4 px-2 d-flex align-items-center">{{event.coachee.email}}</div>
         <div class="col-md-4 px-2 d-flex align-items-center">
-            <a href="{% url 'staff:session_details' pk=session.pk %}" class="btn btn-primary">View More</a>
+            <a href="{% url 'staff:session_details' pk=event.pk %}" class="btn btn-primary">View More</a>
         </div>
         </div>
         {% endfor %}

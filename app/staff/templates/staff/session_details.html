@@ -14,8 +14,17 @@
                 <button type="submit" class="btn btn-primary">Save Description</button>
             </form>
             {% endif %}
-            <p>{{session.coachee.email}}</p>
-
+            <p><b>Coachee: </b>{{session.coachee.email}}</p>
+        </div>
+        <div>
+            {% for meeting in session.meetings.all %}
+            {{ meeting }}
+            {% empty %}
+            <p>This session has no meetings</p>
+            {% endfor %}
+        </div>
+        <div>
+            <a class="btn" href="{% url 'staff:meeting_setup' %}" style="display: inline-block;">Set up a meeting</a>
         </div>
     </div>
 </div>
