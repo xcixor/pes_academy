@@ -11,15 +11,15 @@
     <div class="row">
         <div class="col">
             <h3>Your sessions with {{coach.full_name}}</h3>
-            {% for session in coach.events.all %}
             <ul style="list-style-type:decimal;">
+            {% for session in coach.events.all %}
                 <li>
-                    <span>{{session}} <a href="#">View More</a></span>
+                    <span>{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
                 </li>
-            </ul>
             {% empty %}
             <p>Your coach has not created sessions yet</p>
             {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from accounts.models import Coach
+from staff.models import Session
 
 
 User = get_user_model()
@@ -33,3 +35,10 @@ class CoachSessions(TemplateView):
         context = super().get_context_data(**kwargs)
         context['coach'] = coach
         return context
+
+
+class SessionView(DetailView):
+
+    template_name = 'coach/session.html'
+    model = Session
+    context_object_name = 'session'
