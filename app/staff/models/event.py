@@ -12,11 +12,16 @@ class Session(models.Model):
         User, on_delete=models.CASCADE, related_name='sessions')
     title = models.CharField(max_length=400)
     description = models.TextField(blank=True, null=True)
+    created = models.DateTimeField(
+        auto_now_add=True)
 
     @property
     def special_id(self):
         filled_id = f'{self.id}'.zfill(3)
-        return f'EVT - {filled_id}'
+        return f'SESS - {filled_id}'
+
+    class Meta:
+        ordering = ['created']
 
     def __str__(self) -> str:
         return self.title

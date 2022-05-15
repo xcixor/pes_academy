@@ -168,10 +168,10 @@
                             <div class="g-col">
                                 <div class="card">
                                     <div class="card-body d-flex justify-content-between">
-                                        <img src="{{coaching.coach.avatar.url}}" class="img-rounded">
+                                        <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}" class="img-rounded" alt="No Image">
                                         <div class="d-flex flex-column card-action">
                                             <h4>{{ coaching.coach.full_name }}</h4>
-                                            <a href="{% url 'accounts:mentor_bio' pk=coaching.coach.pk %}" class="btn btn-primary">{% trans "View Bio" %}</a>
+                                            <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}" class="btn btn-primary">{% trans "View Sessions" %}</a>
                                         </div>
                                     </div>
                                 </div>

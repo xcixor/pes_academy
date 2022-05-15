@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load account_extras %}
+{% block styles %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/coach_bio.css' %}" />
+{% endblock %}
+{% load i18n %}
+{% block content %}
+<div class="bio container">
+    <div class="row">
+        <div class="col">
+            <h3>Your sessions with {{coach.full_name}}</h3>
+            {% for session in coach.events.all %}
+            <ul style="list-style-type:decimal;">
+                <li>
+                    <span>{{session}} <a href="#">View More</a></span>
+                </li>
+            </ul>
+            {% empty %}
+            <p>Your coach has not created sessions yet</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

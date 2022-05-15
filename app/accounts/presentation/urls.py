@@ -3,7 +3,7 @@ from django.contrib.auth.views import LogoutView
 from accounts.presentation.views import (
     HelpView, UserLoginView, RegistrationView, ActivationEmailSentView,
     AccountActivationView, DashboardView, ReviewerRegistrationView,
-    ApplicationsToReviewView, CoachBio, Coaching)
+    ApplicationsToReviewView, CoachBio, Coaching, CoachSessions)
 
 app_name = 'accounts'
 
@@ -23,4 +23,5 @@ urlpatterns = [
          ApplicationsToReviewView.as_view(), name='applications_to_review'),
     path('bio/<int:pk>/', CoachBio.as_view(), name='mentor_bio'),
     path('mentor/add/', Coaching.as_view(), name='coaching'),
+    path('mentor/sessions/<int:pk>/', CoachSessions.as_view(), name='sessions'),
 ]

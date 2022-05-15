@@ -7,5 +7,5 @@ User = get_user_model()
 class CoachBio(DetailView):
 
     model = User
-    template_name = 'profile/coach_bio.html'
+    template_name = 'coach/coach_bio.html'
     context_object_name = 'coach'
