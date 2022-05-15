@@ -16,7 +16,9 @@
             {% endif %}
             <p><b>Coachee: </b>{{session.coachee.email}}</p>
         </div>
-        <div>
+        <div class="mt-5">
+            <h4><b>Session Meetings</b></h4>
+
             {% for meeting in session.meetings.all %}
             <div class="row">
                 <div class="col">
@@ -29,6 +31,21 @@
         </div>
         <div>
             <a class="btn" href="{% url 'staff:meeting_setup' pk=session.pk %}" style="display: inline-block;">Set up a meeting</a>
+        </div>
+        <div class="mt-5">
+            <h4><b>Session Materials</b></h4>
+            {% for material in session.materials.all %}
+            <div class="row">
+                <div class="col">
+                    <a href="{{material.material.url}}" target="_blank">{{material}}</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>You have not uploaded any materials for this session</p>
+            {% endfor %}
+        </div>
+        <div>
+            <a class="btn" href="{% url 'staff:material' pk=session.pk %}" style="display: inline-block;">Upload Material</a>
         </div>
     </div>
 </div>

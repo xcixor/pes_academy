@@ -1,0 +1,31 @@
+{% extends 'staff_base.html' %}
+{% load i18n %}
+{% block admin_content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+        <h2>Set up a meeting</h2>
+        </div>
+        <form action="{% url 'staff:material_upload' pk=session.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="session" value="{{session.pk}}">
+            <div class="row">
+                <input type="text" name="material_name" placeholder="Document Name" required>
+                    <div>
+                    {% for error in form.material_name.errors %}
+                    <p class="error">{{ error|escape }}</p>
+                    {% endfor %}
+                </div>
+                <input class="input-field" type="file" name="material" required>
+                <div>
+                    {% for error in form.material.errors %}
+                    <p class="error">{{ error|escape }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row my-5">
+            <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+</div>
+{% endblock %}

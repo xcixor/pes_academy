@@ -3,7 +3,7 @@ from staff.models import Session
 
 
 def image_directory_path(instance, filename):
-    return (f'sessions/{instance.application}/{filename}')
+    return (f'sessions/{instance.session}/{filename}')
 
 
 class SessionMaterial(models.Model):
