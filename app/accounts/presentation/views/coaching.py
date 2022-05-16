@@ -4,14 +4,16 @@ from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from accounts.models import Coach
 from staff.models import Session
+from common.utils.email import HtmlEmailMixin
 
 
 User = get_user_model()
 
 
-class Coaching(CreateView):
+class Coaching(CreateView, HtmlEmailMixin):
 
     model = Coach
     fields = ['coach', 'mentee']
@@ -22,6 +24,18 @@ class Coaching(CreateView):
             _(' Has been added as your coach.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
+        to_email = self.object.coach.email
+        from_email = settings.VERIFIED_EMAIL_USER
+        email_message = _(
+            f'Hi, {self.object.mentee.full_name} has added you as their coach.'
+        )
+        subject = _('PSA Student')
+        context = {
+            'message': email_message,
+        }
+        super().send_email(
+            subject, None, from_email, [to_email],
+            template='coach/email/new_student.html', context=context)
         return f'/accounts/bio/{self.object.coach.pk}/'
 
 
