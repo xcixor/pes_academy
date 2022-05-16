@@ -17,9 +17,14 @@
                     <span>{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
                 </li>
             {% empty %}
-            <p>Your coach has not created sessions yet</p>
+            <p><b>Your coach has not created any sessions yet</b></p>
             {% endfor %}
             </ul>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <a href="{% url 'accounts:dashboard' %}" class="btn" style="display: inline-block;">Back</a>
         </div>
     </div>
 </div>

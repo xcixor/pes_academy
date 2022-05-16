@@ -32,8 +32,8 @@ class UploadMaterialView(CreateView, HtmlEmailMixin):
         to_email = self.object.session.coachee.email
         from_email = settings.VERIFIED_EMAIL_USER
         email_message = _(
-            f'Hi, your coach uploaded a new material {self.object.material_name}'
-            'Please login to your account to view it, thank you.'
+            f'Hi, your coach uploaded a new material: {self.object.material_name}'
+            ' Please login to your account to view it, thank you.'
         )
         subject = _('Session Material')
         context = {
