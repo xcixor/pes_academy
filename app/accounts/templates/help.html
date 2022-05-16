@@ -1,35 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-
+{% block body_id %}agri-window{% endblock %}
 {% block content %}
 
 
   <form action=" ">
-    <div class="container">
-      <h1 class="text-center">{% trans "Help" %}</h1>
-      <div class="input-container">
-        <!-- <i class="fa fa-user icon"></i> -->
-        <input class="input-field" type="text" placeholder="{% trans "Firstname" %}" name="firstname" required>
-      </div>
+    <div class="row pb-5 mb-3">
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
+        <div class="card">
+          <div class="card-body">
+              <h2 class="font-weight-bold mb-5 mt-5 text-center h1 text-white"></i>{% trans "Help" %} </h2>
+              <br>
+              <!--Body-->
+              <div class="md-form">
+                  <i class="fa fa-user prefix white-text"></i>
+                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Firstname" %}" name="firstnm" required>
+                  <label for="defaultForm-email1">{% trans "Firstname" %}</label>
 
-      <div class="input-container">
-        <!-- <i class="fa fa-user icon"></i> -->
-        <input class="input-field" type="text" placeholder="{% trans "Lastname" %}" name="lastname" required>
-      </div>
+              </div>
+              <div class="md-form">
+                  <i class="fa fa-user prefix white-text"></i>
+                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Lastname" %}" name="lastnm" required>
+                  <label for="defaultForm-email1">{% trans "Lastname" %}</label>
 
-      <div class="input-container">
-        <!-- <i class="fa fa-envelope icon"></i> -->
-        <input class="input-field" type="text" placeholder="{% trans "Email" %}" name="email" required>
-      </div>
+              </div>
+              <div class="md-form">
+                  <i class="fa fa-envelope prefix white-text"></i>
+                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Email" %}" name="email" required>
+                  <label for="defaultForm-email1">{% trans "Email" %}</label>
 
-      <div class="input-container">
-        <!-- <i class="fa fa-key icon"></i> -->
-        <textarea id="subject" name="subject" placeholder="{% trans "Write something.." %}" style="height:200px"></textarea>
-      </div>
+              </div>
+              <div class="md-form">
+                <textarea id="subject" name="subject" placeholder="{% trans "Write something.." %}" style="height:200px"></textarea>
 
-      <button type="submit" class="registerbtn">{% trans "Submit" %}</button>
-    </div>
+              </div>
+              <div class="text-center">
+                  <button type="submit" class="btn registerbtn">{% trans "Submit" %}</button>
+              </div>
+
+
+              </div>
+          </div>
+      </div>
+      </div>
 
 
   </form>

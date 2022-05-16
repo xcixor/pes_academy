@@ -11,7 +11,7 @@
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col">
-            <h3 class="form_name">{% trans "Application for" %} {{application.call_to_action.tagline}}</h3>
+            <h3 class="form_name font-weight-bold mb-5 mt-5 text-center h1">{% trans "Application for" %} {{application.call_to_action.tagline}}</h3>
             <a href="{% url 'application:application_pdf' %}" target="_blank" class="btn btn-primary" download>{% trans "Download Application Form" %}</a>
         </div>
     </div>
@@ -22,19 +22,19 @@
         <!-- progress bar -->
             <div class="progressbar">
                 <div class="progress" id="progress"></div>
-                <div class="progress-step progress-step-active" data-title="{% trans 'Personal Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Personal Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Personal Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
-                <div class="progress-step" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step progress-step-active font-weight-bold" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Personal Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Business Info' %}"></div>
+                <div class="progress-step font-weight-bold" data-title="{% trans 'Business Info' %}"></div>
             </div>
             <!-- steps -->
             <!-- step1 -->
-            <strong><h5 class="text-center"><em> {% trans "NB: Check and Fill all the Fields before you click Next." %}</em></h5></strong>
-            <strong><h4 class="text-center"> {% trans "Call For Application" %} </h4></strong>
+            <strong><h5 class="text-center font-weight-bold mb-5 mt-5"><em> {% trans "NB: Check and Fill all the Fields before you click Next." %}</em></h5></strong>
+            <strong><h4 class="text-center font-weight-bold mb-5 mt-5 h1"> {% trans "Call For Application" %} </h4></strong>
             <div class="form-step form-step-active step-1-form tab" >
             <span class="error-msg" id="error-step-1-form"></span>
                 <strong><p id="label_preferred_language">{{ form.preferred_language.label }}</p></strong>

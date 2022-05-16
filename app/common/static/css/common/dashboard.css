@@ -1,6 +1,6 @@
 
 #navigation {
-    background: #0e1a35;
+    background: #4b6386;
     height:80vh;
 }
 
@@ -179,18 +179,18 @@ header {
 
 .navi i {
     margin-right: 15px;
-    color: #5584ff;
+    color: #ffffff;
 }
 
 .navi .active a {
-    background: #122143;
-    border-left: 5px solid #5584ff;
+    background: #a91917;
+    border-left: 5px solid #1e2836;
     padding-left: 15px;
 }
 
 .navi a:hover {
-    background: #122143 none repeat scroll 0 0;
-    border-left: 5px solid #5584ff;
+    background: #1e2836 none repeat scroll 0 0;
+    border-left: 5px solid #a91917;
     display: block;
     padding-left: 15px;
 }

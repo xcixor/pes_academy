@@ -2,57 +2,63 @@
 {% load static %}
 {% load i18n %}
 
+{% block body_id %}agri-window{% endblock %}
 {% block content %}
-
 
 <form action="/accounts/login/?next={{request.GET.next}}" method="post">
   {% csrf_token %}
-    <div class="container">
-      <h1>Login</h1>
-        <div class="error-container">
-        {% if form.errors %}
-        <p class="error"><strong>{% trans "Please correct the errors in the form below." %}</strong></p>
-        {% endif %}
-        {% for error in form.non_field_errors %}
-        <p class="error">{{ error|escape }}</p>
-        {% endfor %}
-      </div>
-      <div class="input-container">
-        <i class="fa fa-user icon"></i>
-        <input class="input-field" type="text" placeholder="{% trans "Username" %}" name="username" required>
-        <div class="error-container">
-          {% for error in form.username.errors %}
-          <p class="error">{{ error|escape }}</p>
-          {% endfor %}
+      <div class="row pb-5 mb-3">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
+          <div class="card form-white">
+            <div class="card-body">
+                <h2 class="font-weight-bold mb-5 mt-5 text-center h1 text-white"><i class="fa fa-user mr-3"></i>Login </h2>
+                <br>
+                <!--Body-->
+                <div class="error-container">
+                  {% if form.errors %}
+                  <p class="error"><strong>{% trans "Please correct the errors in the form below." %}</strong></p>
+                  {% endif %}
+                  {% for error in form.non_field_errors %}
+                  <p class="error text-white">{{ error|escape }}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-user prefix white-text"></i>
+                    <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Username" %}" name="username" required>
+                    <label for="defaultForm-email1">{% trans "Username" %}</label>
+                    <div class="error-container">
+                      {% for error in form.username.errors %}
+                      <p class="error text-white">{{ error|escape }}</p>
+                      {% endfor %}
+                    </div>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-lock prefix white-text"></i>
+                    <input type="password" id="psw" name="password" placeholder="{% trans "Enter Password" %}" class="form-control">
+                    <label for="defaultForm-pass1">{% trans "Enter Password" %}</label>
+                    <div class="error-container">
+                      {% for error in form.password.errors %}
+                      <p class="error text-white">{{ error|escape }}</p>
+                      {% endfor %}
+                  </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn registerbtn">{% trans "Login" %}</button>
+                </div>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember">  {% trans "Remember me" %}
+                </label>
+          
+                <span class="psw">{% trans "Forgot" %}<a href="#" style="color: #00FFFF;">{% trans "password" %}?</a></span>
+          
+                <div class="signin">
+                  <p style="color: #a91917;">{% trans "Don't have an account yet" %}? <a href="{% url 'accounts:register' %}" style="color: #4b6386;">{% trans "Sign Up" %}</a>.</p>
+          
+                </div>
+            </div>
+        </div>
         </div>
       </div>
-
-      <div class="input-container">
-        <i class="fa fa-key icon"></i>
-        <input class="input-field" type="password" placeholder="{% trans "Enter Password" %}" name="password" id="psw" required>
-          <div class="error-container">
-            {% for error in form.password.errors %}
-            <p class="error">{{ error|escape }}</p>
-            {% endfor %}
-        </div>
-      </div>
-
-      <button type="submit" class="registerbtn">{% trans "Login" %}</button>
-
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> {% trans "Remember me" %}
-      </label>
-
-      <span class="psw">{% trans "Forgot" %} <a href="#">{% trans "password" %}?</a></span>
-
-      <div class="signin">
-        <p>{% trans "Don't have an account yet" %}? <a href="{% url 'accounts:register' %}">{% trans "Sign Up" %}</a>.</p>
-
-      </div>
-    </div>
-
-
-  </form>
-
-
+    </form>
 {% endblock %}
