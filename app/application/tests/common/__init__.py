@@ -15,7 +15,8 @@ class ApplicationBaseTestCase(BaseTestCase):
             tagline='Call For Application 1',
             description='Applications for agribusiness',
             slug='call-for-application-1',
-            deadline=datetime.now(timezone.utc) + timedelta(days=10)
+            deadline=datetime.now(timezone.utc) + timedelta(days=10),
+            available_for_applications=True
         )
         return call_to_action
 
