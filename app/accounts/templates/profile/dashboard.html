@@ -194,7 +194,11 @@
                           {% if user.application %}
                           <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
                           {% else %}
+                          {% if user.email|get_application_url %}
                           <a href="{{user.email|get_application_url}}" class="btn btn-primary">{% trans "Continue" %}</a>
+                          {% else %}
+                          <a href="{% url 'application:index' %}" class="btn btn-primary">{% trans "Start Application" %}</a>
+                          {% endif %}
                           {% endif %}
                         </div>
                       </div>
@@ -218,8 +222,8 @@
                                 <div class="error">{{ error|escape }}</div>
                                 {% endfor %}
                              </div>
-                            <input name="application" type="hidden"  value="{{application.pk}}">
-                            <button type="submit">{% trans "Save" %}</button>
+                            <input name="application" type="hidden"  value="{{application.pk}}" class="btn">
+                            <button type="submit" class="btn">{% trans "Save" %}</button>
                         </form>
                         </div>
                       </div>
