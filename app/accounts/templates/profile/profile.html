@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if user.avatar %}
+            <img src="{{user.avatar.url}}" class="img" alt="No Avatar">
+            {% else %}
+            <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+            {% endif %}
+            <p class="mt-2">{{user.email}}</p>
+            <p class="mt-2">{{user.get_preferred_language_display}}</p>
+            {% if user.linked_in %}
+            <a href="{{user.linked_in}}">
+                <i class="fa fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="row d-flex flex-column">
+                <h4 class="mt-2">{% if user.full_name %}{{user.full_name}}{% else %}Please add your names{% endif %}</h4>
+                <h4><b>Bio:</b></h4>
+                <p class="mt-2">{% if user.bio %}{{user.bio}}{% else %}Please add a bio{% endif %}</p>
+            </div>
+            <div class="row">
+                <a href="#" class="btn">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
