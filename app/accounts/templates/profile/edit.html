@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" class="py-2" enctype="multipart/form-data">
+                {% if form.errors %}
+                <h4 class="error">{% trans "There seems to be a problem with your details, please check again." %}</h4>
+                {% endif %}
+                {% csrf_token %}
+                <div class="input-row mb-2">
+                    <label for="id_full_name">{% trans "Names" %}:</label>
+                    <input type="text" name="full_name" placeholder="{% trans "Full Name" %}" {% if user.full_name %}value="{{user.full_name}}"{% endif %} id="id_full_name">
+                    {% for error in form.full_name.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-2">
+                    <label for="id_bio">{% trans "Bio" %}:</label>
+                    <textarea type="text" name="bio" placeholder="{% trans "Bio" %}" rows="6" id="id_bio">{% if user.full_name %}{{user.bio}}{% endif %}</textarea>
+                    {% for error in form.bio.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-2">
+                    <label for="id_age">{% trans "Age" %}:</label>
+                    <select name="age" id="id_age">
+                        <option value="" disabled selected>{% trans "Select Age Range" %}</option>
+                        <option value="range_one" {% if user.age == 'range_one' %}selected{% endif %}>20-29</option>
+                        <option value="range_two" {% if user.age == 'range_two' %}selected{% endif %}>30-39</option>
+                        <option value="range_three" {% if user.age == 'range_three' %}selected{% endif %}>40-49</option>
+                        <option value="range_four" {% if user.age == 'range_four' %}selected{% endif %}>{% trans "Above 50" %}</option>
+                    </select>
+                    {% for error in form.age.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-2">
+                    <label for="id_gender">{% trans "Gender" %}:</label>
+                    <select name="gender" id="id_gender">
+                        <option value="" disabled selected>{% trans "Select Gender" %}</option>
+                        <option value="male" {% if user.gender == 'male' %}selected{% endif %}>{% trans "Male" %}</option>
+                        <option value="female" {% if user.gender == 'female' %}selected{% endif %}>{% trans "Female" %}</option>
+                        <option value="undisclosed" {% if user.gender == 'undisclosed' %}selected{% endif %}>{% trans "Prefer not to say" %}</option>
+                        <option value="other" {% if user.gender == 'other' %}selected{% endif %}>{% trans "Other" %}</option>
+                    </select>
+                    {% for error in form.gender.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-2">
+                    <label for="id_linked_in">Linked In:</label>
+                    <input type="text" name="linked_in" placeholder="{% trans "Linked In Profile Link" %}" {% if user.linked_in %} value="{{user.linked_in}}" {% endif %} id="id_linked_in">
+                    {% for error in form.linked_in.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-2">
+                    <label for="id_preferred_language">{% trans "Preferred Language" %}:</label>
+                    <select name="preferred_language" id="id_preferred_language">
+                        <option value="" disabled selected>{% trans "Select Preferred Language" %}</option>
+                        <option value="english" {% if user.preferred_language == 'english' %}selected{% endif %}>{% trans "English" %}</option>
+                        <option value="french" {% if user.preferred_language == 'french' %}selected{% endif %}>{% trans "French" %}</option>
+                        <option value="portuguese" {% if user.preferred_language == 'portuguese' %}selected{% endif %}>{% trans "Portuguese" %}</option>
+                    </select>
+                    {% for error in form.preferred_language.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row mb-5">
+                    {% if user.avatar %}
+                    <label for="avatar">{% trans "Change profile picture" %}:</label><br>
+                    <img src="{{user.avatar.url}}" alt="Avatar" height="150px" class="mb-2">
+                    {% else %}
+                    <label for="avatar">{% trans "Choose a profile picture" %}:</label>
+                    {% endif %}
+                    <input type="file" name="avatar" id="id_avatar" class="btn">
+
+                    {% for error in form.avatar.errors %}
+                    <div class="error">
+                        {{error|escape}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-row d-flex">
+                    <button type="submit" class="btn btn-primary mb-5 mr-3">{% trans "Save Changes" %}</button>
+                    <a href="{% url 'accounts:profile_view' %}" class="btn btn-primary mb-5" style="display: inline-block;">{% trans "Back" %}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

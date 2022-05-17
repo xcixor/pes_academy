@@ -4,7 +4,7 @@ from accounts.presentation.views import (
     HelpView, UserLoginView, RegistrationView, ActivationEmailSentView,
     AccountActivationView, DashboardView, ReviewerRegistrationView,
     ApplicationsToReviewView, CoachBio, Coaching, CoachSessions, SessionView,
-    ViewProfile)
+    ViewProfile, EditProfile)
 
 app_name = 'accounts'
 
@@ -21,6 +21,7 @@ urlpatterns = [
          AccountActivationView.as_view(), name='activate'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('profile/', ViewProfile.as_view(), name='profile_view'),
+    path('profile/edit/<int:pk>/', EditProfile.as_view(), name='profile_edit'),
     path('reviewer/applications/',
          ApplicationsToReviewView.as_view(), name='applications_to_review'),
     path('bio/<int:pk>/', CoachBio.as_view(), name='mentor_bio'),
