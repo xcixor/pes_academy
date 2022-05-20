@@ -1,32 +1,37 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
+    <figure class="snip1515">
+        <div class="profile-image">
             {% if user.avatar %}
             <img src="{{user.avatar.url}}" class="img" alt="No Avatar" height="200px">
             {% else %}
             <i class="fa fa-user fa-5x" aria-hidden="true"></i>
             {% endif %}
-            <p class="mt-2">{{user.email}}</p>
-            <p class="mt-2">{{user.get_preferred_language_display}}</p>
+        </div>
+        <figcaption>
+          <h3>{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your names" %}{% endif %}</h3>
+          <h4 class="mt-2">{{user.email}}</h4>
+          <p>
+            {% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}
+          </p>
+          <div class="icons">
             {% if user.linked_in %}
             <a href="{{user.linked_in}}" target="_blank">
                 <i class="fa fa-linkedin-in" aria-hidden="true"></i>
             </a>
             {% endif %}
-        </div>
-        <div class="col-md-8">
-            <div class="row d-flex flex-column">
-                <h4 class="mt-2">{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your names" %}{% endif %}</h4>
-                <h4><b>{% trans "Bio" %}:</b></h4>
-                <p class="mt-2">{% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}</p>
-            </div>
-            <div class="row">
-                <a href="{% url 'accounts:profile_edit' pk=user.pk %}" class="btn">{% trans "Edit Profile" %}</a>
-            </div>
-        </div>
-    </div>
+          </div>
+          <div class="card-buttons">
+            <button data-section="#about" class="is-active">{{user.get_preferred_language_display}}</button>
+            <!-- <button data-section="#experience">EXPERIENCE</button> -->
+            <button data-section="#contact"><a href="{% url 'accounts:profile_edit' pk=user.pk %}">{% trans "Edit Profile" %}</a></button>
+          </div>
+        </figcaption>
+        <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
+      </figure>
+      
 </div>
 {% endblock %}

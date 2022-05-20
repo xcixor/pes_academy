@@ -4,24 +4,85 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/pes_admin/admin_base.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 {% endblock %}
 {% block content %}
 <div class="container-fluid d-flex justify-content-between align-items-start">
-    <aside class="">
-        <ul>
-            <li class="pl-5 active"><a class="my-5 aside-link" href="/accounts/dashboard/">{% trans "Home" %}</a></li>
-            <li class="pl-5 active"><a class="my-5 aside-link" href="/accounts/reviewer/applications/">{% trans "Applications to Review" %}</a></li>
-            <li class="pl-5 active"><a class="my-5 aside-link" href="/staff/coachees/">{% trans "My Coachees" %}</a></li>
-            <li class="pl-5 active"><a class="my-5 aside-link" href="/staff/sessions/">{% trans "Sessions" %}</a></li> <br>
-            <li class="pl-5 active"><a class="my-5 aside-link" href="{% url 'accounts:profile_view' %}">{% trans "Profile" %}</a></li> <br>
-            <li class="pl-5"><a class="my-5 aside-link" href="/accounts/logout/">{% trans "Logout" %}</a></li>
-        </ul>
-    </aside>
-    <section class="content p-5" style="width: 100%;">
-        {% block admin_content %}
-        <h1>{% trans "Hello" %} {{user.username}}</h1>
-        <p>{% trans "Manage your organization's applications and more" %}</p>
-        {% endblock %}
-    </section>
+    <!-- sidebar -->
+    <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
+        <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center">Staff</h1>
+        <div class="list-group rounded-0">
+            
+          <a href="/accounts/dashboard/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+            <span class="bi bi-border-all text-white"></span>
+            <span class="ml-2  text-white">{% trans "Home" %}</span>
+          </a>
+          <a href="/accounts/reviewer/applications/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+            <span class="bi bi-person-plus"></span>
+            <span class="ml-2">{% trans "Applications to Review" %}</span>
+          </a>
+          <a href="/staff/coachees/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+            <span class="bi bi-people"></span>
+            <span class="ml-2">{% trans "My Coachees" %}</span>
+          </a>
+          <a href="/staff/sessions/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+            <span class="bi bi-app"></span>
+            <span class="ml-2">{% trans "Sessions" %}</span>
+          </a>
+          <a href="{% url 'accounts:profile_view' %}" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+            <span class="bi bi-person"></span>
+            <span class="ml-2">{% trans "Profile" %}</span>
+          </a>
+        </div>
+      </div>
+      <!-- overlay to close sidebar on small screens -->
+      <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
+      <!-- note: in the layout margin auto is the key as sidebar is fixed -->
+      <div class="col-md-9 col-lg-10 ml-md-auto px-0">
+        <!-- top nav -->
+        <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
+          <!-- close sidebar -->
+          <button class="btn py-0 d-lg-none" id="open-sidebar">
+            <span class="bi bi-list text-primary h3"></span>
+          </button>
+          <div class="dropdown ml-auto">
+            <button class="py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
+              <span class="bi bi-person text-primary h4"></span>
+              <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
+              <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
+              <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
+            </div>
+          </div>
+        </nav>
+
+    <!-- main content -->
+    <main class="container-fluid">
+        <div class="jumbotron jumbotron-fluid jumbotron-admin rounded border-0 shadow-sm border-left px-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                
+            <section class="content p-5">
+                {% block admin_content %}
+                 <div class="card card-admin">
+                        <div class="card-header ">
+                            <h4 class="card-title">{% trans "Hello" %} {{user.username}}</h4>
+                        </div>
+                        <div class="card-body ">
+                            <h6>{% trans "Manage your organization's applications and more" %}</h6>
+                            
+                        </div>
+                    </div>
+                {% endblock %}
+            </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
 </div>
 {% endblock %}
