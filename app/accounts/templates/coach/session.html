@@ -8,31 +8,39 @@
 {% load i18n %}
 {% block content %}
 <div class="bio container">
-    <div class="row">
-        <div class="col">
-            <h3>{{session}}</h3>
-            <div class="row">
-                <ul>
-                    <h4><b>Meetings</b></h4>
-                    {% for meeting in session.meetings.all %}
-                        <li><a href="{{meeting.link}}" target="_blank">{{meeting}}</a></li>
-                    {% empty %}
-                    <p>Your coach has not created any meetings yet</p>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="row">
-                <ul>
-                    <h4><b>Materials</b></h4>
-                    {% for material in session.materials.all %}
-                        <li><a href="{{material.material.url}}" target="_blank">{{material}}</a></li>
-                    {% empty %}
-                    <p>Your coach has not created any meetings yet</p>
-                    {% endfor %}
-                </ul>
-            </div>
+    <h3 class="text-center">{{session}}</h3>
 
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-center">Meetings</h3>
+          </div>
+        <div class="card-body m-4">
+          {% for meeting in session.meetings.all %}
+                <li class="list-group-item"><a href="{{meeting.link}}" target="_blank" class="list-group-item list-group-item-action">{{meeting}}</a></li>
+            {% empty %}
+            <p class="card-text">Your coach has not created any meetings yet</p>
+            {% endfor %}
+          
         </div>
+      </div>
     </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-center">Materials</h3>
+          </div>
+        <div class="card-body m-4">
+            {% for material in session.materials.all %}
+            <li class="list-group-item"><a href="{{material.material.url}}" target="_blank" class="list-group-item list-group-item-action">{{material}}</a></li>
+        {% empty %}
+        <p class="card-text">Your coach has not created any meetings yet</p>
+        {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

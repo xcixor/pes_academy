@@ -7,25 +7,26 @@
 {% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="bio container">
-    <div class="row">
-        <div class="col">
-            <h3>Your sessions with {{coach.full_name}}</h3>
-            <ul style="list-style-type:decimal;">
-            {% for session in coach.events.all %}
-                <li>
-                    <span>{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
-                </li>
-            {% empty %}
-            <p><b>Your coach has not created any sessions yet</b></p>
-            {% endfor %}
-            </ul>
+<div class="bio container">   
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-center">Your sessions with {{coach.full_name}}</h3>
         </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col">
-            <a href="{% url 'accounts:dashboard' %}" class="btn" style="display: inline-block;">Back</a>
+        <div class="card-body m-4">
+            <ol style="list-style-type:decimal;" class="list-group list-group-flush">
+                {% for session in coach.events.all %}
+                    <li  class="list-group-item list-group-item-action">
+                        <span class="text-dark">{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
+                    </li>
+                {% empty %}
+                <p class="card-text"><b>Your coach has not created any sessions yet</b></p>
+                {% endfor %}
+            </ol>
+            <div class="col mt-5">
+                <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
+            </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

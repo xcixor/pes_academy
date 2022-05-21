@@ -11,13 +11,13 @@
                     <div class="col mt-2">
                         <input type="text" name="title" placeholder="Add an appropriate title">
                         {% for error in form.title.errors %}
-                        <div class="error">{{ error|escape }}</div>
+                        <div class="error text-white">{{ error|escape }}</div>
                         {% endfor %}
                     </div>
                     <div class="col mt-2">
                         <textarea type="text" name="description" placeholder="Add a brief description"></textarea>
                         {% for error in form.description.errors %}
-                        <div class="error">{{ error|escape }}</div>
+                        <div class="error text-white">{{ error|escape }}</div>
                         {% endfor %}
                     </div>
                     <div class="col mt-2">
@@ -28,7 +28,7 @@
                             {% endfor %}
                         </select>
                         {% for error in form.coachee.errors %}
-                        <div class="error">{{ error|escape }}</div>
+                        <div class="error text-white">{{ error|escape }}</div>
                         {% endfor %}
                     </div>
                     <div class="col mt-2">
