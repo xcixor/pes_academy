@@ -194,6 +194,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 VERIFIED_EMAIL_USER = os.getenv('VERIFIED_EMAIL_USER')
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 
+SUPPORT_EMAILS = ['coach@privateequity-support.com']
 
 # redis
 

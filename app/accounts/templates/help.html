@@ -3,9 +3,8 @@
 {% load i18n %}
 {% block body_id %}agri-window{% endblock %}
 {% block content %}
-
-
-  <form action=" ">
+  <form action="{% url 'accounts:help' %}" method="post">
+    {% csrf_token %}
     <div class="row pb-5 mb-3">
       <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
         <div class="card">
@@ -15,31 +14,26 @@
               <!--Body-->
               <div class="md-form">
                   <i class="fa fa-user prefix white-text"></i>
-                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Firstname" %}" name="firstnm" required>
-                  <label for="defaultForm-email1">{% trans "Firstname" %}</label>
-
+                  <label for="id_name">{% trans "Name" %}</label>
+                  <input type="text" id="id_name" class="form-control" placeholder="{% trans "Name" %}" name="name" required>
               </div>
               <div class="md-form">
                   <i class="fa fa-user prefix white-text"></i>
-                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Lastname" %}" name="lastnm" required>
-                  <label for="defaultForm-email1">{% trans "Lastname" %}</label>
-
+                  <label for="id_subject">{% trans "Subject" %}</label>
+                  <input type="text" id="id_subject" class="form-control" placeholder="{% trans "Reason for contacting us" %}" name="subject" required>
               </div>
               <div class="md-form">
                   <i class="fa fa-envelope prefix white-text"></i>
-                  <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Email" %}" name="email" required>
-                  <label for="defaultForm-email1">{% trans "Email" %}</label>
-
+                  <label for="id_name">{% trans "Email" %}</label>
+                  <input type="text" id="id_name" class="form-control" placeholder="{% trans "Your Email Address" %}" name="email" required>
               </div>
               <div class="md-form">
-                <textarea id="subject" name="subject" placeholder="{% trans "Write something.." %}" style="height:200px"></textarea>
-
+                <label for="id_message">{% trans "Your Message" %}</label>
+                <textarea id="id_message" name="message" placeholder="{% trans "How can we help you?" %}" style="height:200px; color: black;"></textarea>
               </div>
               <div class="text-center">
                   <button type="submit" class="btn registerbtn">{% trans "Submit" %}</button>
               </div>
-
-
               </div>
           </div>
       </div>
