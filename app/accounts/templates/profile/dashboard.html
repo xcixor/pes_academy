@@ -107,8 +107,8 @@
 
                             </div>
                         </div>
+                        {% if user.is_applying_for_a_call_to_action %}
                         <div class="col-md-6 col-sm-4 col-xs-12 gutter">
-
                             <div class=" row sales ">
                                 <h2>{% trans "Ongoing Applications" %}</h2>
                                 <div class="col-md-12">
@@ -120,6 +120,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         <!-- <div class="col-md-6 col-sm-4 col-xs-12 gutter">
                                 <div class="sales">
                                 <button><a href=""></a>Join PES Academy</button>

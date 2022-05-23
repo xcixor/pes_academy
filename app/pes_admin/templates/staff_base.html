@@ -12,7 +12,7 @@
     <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
         <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center">Staff</h1>
         <div class="list-group rounded-0">
-            
+
           <a href="/accounts/dashboard/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
             <span class="bi bi-border-all text-white"></span>
             <span class="ml-2  text-white">{% trans "Home" %}</span>
@@ -33,6 +33,11 @@
             <span class="bi bi-person"></span>
             <span class="ml-2">{% trans "Profile" %}</span>
           </a>
+            <a class="dropdown-item" href="/accounts/logout/">
+              <span class="ml-2">
+              {% trans "Logout" %}
+              </span>
+            </a>
         </div>
       </div>
       <!-- overlay to close sidebar on small screens -->
@@ -63,7 +68,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                
+
             <section class="content p-5">
                 {% block admin_content %}
                  <div class="card card-admin">
@@ -72,7 +77,7 @@
                         </div>
                         <div class="card-body ">
                             <h6>{% trans "Manage your organization's applications and more" %}</h6>
-                            
+
                         </div>
                     </div>
                 {% endblock %}
@@ -83,6 +88,6 @@
         </div>
     </main>
 
-    
+
 </div>
 {% endblock %}
