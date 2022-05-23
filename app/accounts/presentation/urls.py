@@ -1,10 +1,13 @@
 from django.urls import path
-from django.contrib.auth.views import LogoutView
+from django.urls import path, reverse_lazy
+from django.contrib.auth.views import (
+    LogoutView, PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView)
 from accounts.presentation.views import (
     HelpView, UserLoginView, RegistrationView, ActivationEmailSentView,
     AccountActivationView, DashboardView, ReviewerRegistrationView,
     ApplicationsToReviewView, CoachBio, Coaching, CoachSessions, SessionView,
-    ViewProfile, EditProfile)
+    ViewProfile, EditProfile, PasswordChangeView, PasswordResetView)
 
 app_name = 'accounts'
 
@@ -22,6 +25,24 @@ urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('profile/', ViewProfile.as_view(), name='profile_view'),
     path('profile/edit/<int:pk>/', EditProfile.as_view(), name='profile_edit'),
+    path(
+        'password/change/',
+        PasswordChangeView.as_view(), name='password_change'),
+    path('password_reset/', PasswordResetView.as_view(),
+         name='password_reset_request'),
+    path('password/reset/', PasswordResetCompleteView.as_view(
+        template_name='registration/password/password_reset_complete.html'),
+        name='password_reset'),
+    path('password_reset/done/', PasswordResetDoneView.as_view(
+        template_name='registration/password/password_reset_done.html'),
+        name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(
+        template_name="registration/password/password_reset_confirm.html",
+        success_url=reverse_lazy('accounts:password_reset_complete')),
+        name='password_reset_confirm'),
+    path('reset/done/', PasswordResetCompleteView.as_view(
+        template_name='registration/password/password_reset_complete.html'),
+        name='password_reset_complete'),
     path('reviewer/applications/',
          ApplicationsToReviewView.as_view(), name='applications_to_review'),
     path('bio/<int:pk>/', CoachBio.as_view(), name='mentor_bio'),

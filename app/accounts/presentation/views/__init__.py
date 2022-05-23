@@ -9,3 +9,4 @@ from .staff.applications import ApplicationsToReviewView
 from .mentor_bio import CoachBio
 from .coaching import Coaching, CoachSessions, SessionView
 from .profile import ViewProfile, EditProfile
+from .password_change import PasswordChangeView, PasswordResetView

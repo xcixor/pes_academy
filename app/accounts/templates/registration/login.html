@@ -49,16 +49,19 @@
                 <label>
                   <input type="checkbox" checked="checked" name="remember">  {% trans "Remember me" %}
                 </label>
-          
-                <span class="psw">{% trans "Forgot" %}<a href="#" style="color: #00FFFF;">{% trans "password" %}?</a></span>
-          
-                <div class="signin">
-                  <p style="color: #a91917;">{% trans "Don't have an account yet" %}? <a href="{% url 'accounts:register' %}" style="color: #4b6386;">{% trans "Sign Up" %}</a>.</p>
-          
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <p>{% trans "Don't have an account yet" %}? <a href="{% url 'accounts:register' %}" style="color: #4b6386; font-weight: 600;">{% trans "Sign Up" %}</a>.</p>
+                  <p class="psw">{% trans "Forgot password" %}?<a href="{% url 'accounts:password_reset_request' %}" style="color: #00FFFF; font-weight: 600;">{% trans "Reset" %}?</a></p>
+                  </div>
+
                 </div>
             </div>
         </div>
         </div>
       </div>
     </form>
+
 {% endblock %}
