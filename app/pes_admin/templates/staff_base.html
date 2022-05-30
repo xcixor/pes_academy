@@ -68,11 +68,20 @@
                 {% block admin_content %}
                  <div class="card card-admin">
                         <div class="card-header ">
-                            <h4 class="card-title">{% trans "Hello" %} {{user.username}}</h4>
+                            <h2 class="card-title">{% trans "Hello" %} {{user.username}}</h2>
                         </div>
-                        <div class="card-body ">
-                            <h6>{% trans "Manage your organization's applications and more" %}</h6>
-
+                        <div class="card-body">
+                          {% if user.is_coach %}
+                          <h3>Quick Stats</h3>
+                          <p>No of students: {{user.mentees.count}}</p>
+                          <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
+                          <p>Applications reviewed: {{ user.applications.count }}</p>
+                          {% else %}
+                          <h3>Quick Stats</h3>
+                          <p>No of students: {{user.mentees.count}}</p>
+                          <p>Other roles: {% if user.is_coach %}Reviewer{% else %}Coach{% endif %}</p>
+                          <p>Applications reviewed: {{ user.applications.count }}</p>
+                          {% endif %}
                         </div>
                     </div>
                 {% endblock %}
