@@ -2,6 +2,16 @@
 {% load i18n %}
 
 {% block message %}
+{% if is_registered %}
+{% trans "Your account has been upgraded to reviewer, please login to review applications:" %} <br>
+<div style="margin: 20px 0;">
+    <a
+        style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
+        href="{{protocol}}://{{domain}}{% url 'accounts:login' %}">
+        {% trans "REGISTER/LOGIN" %}
+    </a>
+</div><br>
+{% else %}
 {% trans "Please register as a reviewer by clicking the registration link below:" %} <br>
 <div style="margin: 20px 0;">
     <a
@@ -10,5 +20,6 @@
         {% trans "REGISTER/LOGIN" %}
     </a>
 </div><br>
+{% endif %}
 
 {% endblock %}
