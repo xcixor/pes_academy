@@ -1,0 +1,13 @@
+{% extends 'common/email/base.html' %}
+{% load i18n %}
+
+{% block message %}
+{% trans "Your have upgraded to coach. Please login to your account to administer to your students:" %} <br>
+<div style="margin: 20px 0;">
+    <a
+        style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
+        href="{{protocol}}://{{domain}}{% url 'accounts:login' %}">
+        {% trans "REGISTER/LOGIN" %}
+    </a>
+</div><br>
+{% endblock %}

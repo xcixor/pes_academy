@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from common.utils.email import HtmlEmailMixin
 
@@ -15,7 +14,6 @@ class InviteSubscriberForm(forms.Form, HtmlEmailMixin):
 
     def send_invitation_email(self, request):
         to_email = self.cleaned_data['email']
-        # user = None
         try:
             user = User.objects.get(email=to_email)
         except User.DoesNotExist:
