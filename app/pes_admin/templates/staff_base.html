@@ -23,7 +23,7 @@
           </a>
           <a href="/staff/coachees/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
             <span class="bi bi-people"></span>
-            <span class="ml-2">{% trans "My Students" %}</span>
+            <span class="ml-2">{% trans "My Clients" %}</span>
           </a>
           <a href="/staff/sessions/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
             <span class="bi bi-app"></span>
@@ -73,12 +73,12 @@
                         <div class="card-body">
                           {% if user.is_coach %}
                           <h3>Quick Stats</h3>
-                          <p>No of students: {{user.mentees.count}}</p>
+                          <p>No of clients: {{user.mentees.count}}</p>
                           <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
                           <p>Applications reviewed: {{ user.applications.count }}</p>
                           {% else %}
                           <h3>Quick Stats</h3>
-                          <p>No of students: {{user.mentees.count}}</p>
+                          <p>No of clients: {{user.mentees.count}}</p>
                           <p>Other roles: {% if user.is_coach %}Reviewer{% else %}Coach{% endif %}</p>
                           <p>Applications reviewed: {{ user.applications.count }}</p>
                           {% endif %}

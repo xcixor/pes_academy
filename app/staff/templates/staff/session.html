@@ -22,7 +22,7 @@
                     </div>
                     <div class="col mt-2">
                         <select name="coachee" id="id_coachee">
-                            <option selected value="">{% trans "Please select a student" %}</option>
+                            <option selected value="">{% trans "Please select a client" %}</option>
                             {% for coaching in user.mentees.all %}
                             <option value="{{coaching.mentee.pk}}">{{coaching.mentee.email}}</option>
                             {% endfor %}
