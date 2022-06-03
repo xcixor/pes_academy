@@ -73,14 +73,30 @@
                         <div class="card-body">
                           {% if user.is_coach %}
                           <h3>Quick Stats</h3>
+
                           <p>No of clients: {{user.mentees.count}}</p>
+                          <p>Total Applications: {{ user.applications.count }}</p>
+                          {% if user.applications.count > 0 %}
+                          <div >
+                            <p>Applications in Progress</p>
+                            {% for application in user.applications.all %}
+                            {% if application.is_in_review %}
+                            <a href="/eligibility/{{review.application.slug}}/">{% trans "Review" %}</a>
+                            {% else %}
+                            <p>{{application}: <i class="fas fa-check"></i></p>
+                            {% endif %}
+                            {% empty %}
+                            <p>You do not have applications in progress at the moment</p>
+                            {% endfor %}
+                          </div>
+                          {% endif %}
                           <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
                           <p>Applications reviewed: {{ user.applications.count }}</p>
                           {% else %}
                           <h3>Quick Stats</h3>
+                          <p>hi</p>
                           <p>No of clients: {{user.mentees.count}}</p>
                           <p>Other roles: {% if user.is_coach %}Reviewer{% else %}Coach{% endif %}</p>
-                          <p>Applications reviewed: {{ user.applications.count }}</p>
                           {% endif %}
                         </div>
                     </div>
