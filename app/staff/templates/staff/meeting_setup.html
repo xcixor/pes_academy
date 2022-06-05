@@ -1,15 +1,23 @@
 {% extends 'staff_base.html' %}
+{% block styles %}
+{{ block.super }}
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+{% endblock %}
 {% load i18n %}
 {% block admin_content %}
 <div class="row">
     <div class="col-md-6">
         <div class="row">
-        <h2>Set up a meeting</h2>
+        <h2 class="mb-5">Set up a meeting</h2>
+        <!-- Calendly link widget begin -->
+        <a href="" class="btn mb-5" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/test_calender'});return false;">Schedule a time</a>
+        <!-- Calendly link widget end -->
         </div>
         <form action="{% url 'staff:meeting_create' pk=session.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="session" value="{{session.pk}}">
             <div class="row">
+
                 <input class="input-field" type="url" name="link" id="id_link" placeholder="Paste Link to meeting" required>
                 {% for error in form.link.errors %}
                     <p class="error">{{ error|escape }}</p>
@@ -20,4 +28,8 @@
             </div>
         </form>
 </div>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 {% endblock %}
