@@ -1,7 +1,6 @@
 {% extends 'staff_base.html' %}
 {% block styles %}
 {{ block.super }}
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 {% endblock %}
 {% load i18n %}
 {% block admin_content %}
@@ -9,9 +8,7 @@
     <div class="col-md-6">
         <div class="row">
         <h2 class="mb-5">Set up a meeting</h2>
-        <!-- Calendly link widget begin -->
-        <a href="" class="btn mb-5" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/test_calender'});return false;">Schedule a time</a>
-        <!-- Calendly link widget end -->
+        <a class="btn mb-5" href="https://calendly.com/event_types/user/me" target="_blank">Set up event on calendly</a>
         </div>
         <form action="{% url 'staff:meeting_create' pk=session.pk %}" method="post">
             {% csrf_token %}
@@ -31,5 +28,4 @@
 {% endblock %}
 {% block scripts %}
 {{ block.super }}
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 {% endblock %}
