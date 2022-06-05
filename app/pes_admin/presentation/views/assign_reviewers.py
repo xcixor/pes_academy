@@ -37,7 +37,7 @@ class PostAssignReviewers(SingleObjectMixin, FormView):
 
     def get_success_url(self):
         success_message = _('Great, application ') + \
-            self.object + _(' is now in review.')
+            str(self.object) + _(' is now in review.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return super().get_success_url()

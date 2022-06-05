@@ -54,3 +54,15 @@ def get_moderation_score(application):
     moderation_score = application.scores.exclude(
         reviewer__is_reviewer=True).aggregate(Avg('score'))
     return moderation_score['score__avg']
+
+
+@register.filter('in_progress')
+def in_progress(application_reviews):
+    if application_reviews:
+        return application_reviews.filter(application__stage='step_three')
+
+
+@register.filter('review_finished')
+def review_finished(application_reviews):
+    if application_reviews:
+        return application_reviews.filter(application__stage='step_four')
