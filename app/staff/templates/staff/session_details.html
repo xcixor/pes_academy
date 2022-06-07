@@ -2,8 +2,8 @@
 {% load i18n %}
 {% block admin_content %}
 <div class="row">
-    <div class="col-md-6">
-        <h2>{{session}}</h2>
+    <div class="col">
+        <h2 class="text-center">{{session}}</h2>
         <div>
             {% if session.description %}
             <p>{{session.description}}</p>
@@ -14,10 +14,23 @@
                 <button type="submit" class="btn btn-primary">Save Description</button>
             </form>
             {% endif %}
-            <p><b>{% trans 'Client' %}: </b>{{session.coachee.email}}</p>
+            <p><b>Student: </b>{{session.coachee.email}}</p>
+        </div>
+        <div class="mt-5">
+            <h4><b>Session Meetings</b></h4>
+
+            {% for meeting in session.meetings.all %}
+            <div class="row">
+                <div class="col">
+                    <a href="{{meeting.link}}" target="_blank">{{meeting}}</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>This session has no meetings</p>
+            {% endfor %}
         </div>
         <div>
-            <a class="btn" href="https://calendly.com/event_types/user/me" target="_blank" style="display: inline-block;">Set up a meeting</a>
+            <a class="btn" href="{% url 'staff:meeting_setup' pk=session.pk %}" style="display: inline-block;">Set up a meeting</a>
         </div>
         <div class="mt-5">
             <h4><b>Session Materials</b></h4>

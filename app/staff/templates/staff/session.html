@@ -1,41 +1,41 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% block admin_content %}
-    <div class="row">
-        <div class="col-sm-8">
-            <h2>Create Session</h2>
-            <div class="card p-5">
-                <form action="{% url 'staff:session_create' %}" method="post" style="color: black;">
-                    {% csrf_token %}
-                    <input type="hidden" name="coach" value="{{user.pk}}">
-                    <div class="col mt-2">
-                        <input type="text" name="title" placeholder="Add an appropriate title">
-                        {% for error in form.title.errors %}
-                        <div class="error text-white">{{ error|escape }}</div>
+<div class="row">
+    <div class="col">
+        <h2 class="text-center">Create Session</h2>
+        <div class="card p-5">
+            <form action="{% url 'staff:session_create' %}" method="post" style="color: black;">
+                {% csrf_token %}
+                <input type="hidden" name="coach" value="{{user.pk}}">
+                <div class="col mt-2">
+                    <input type="text" name="title" placeholder="Add an appropriate title">
+                    {% for error in form.title.errors %}
+                    <div class="error text-white">{{ error|escape }}</div>
+                    {% endfor %}
+                </div>
+                <div class="col mt-2">
+                    <textarea type="text" name="description" placeholder="Add a brief description"></textarea>
+                    {% for error in form.description.errors %}
+                    <div class="error text-white">{{ error|escape }}</div>
+                    {% endfor %}
+                </div>
+                <div class="col mt-2">
+                    <select name="coachee" id="id_coachee">
+                        <option selected value="">{% trans "Please select a client" %}</option>
+                        {% for coaching in user.mentees.all %}
+                        <option value="{{coaching.mentee.pk}}">{{coaching.mentee.email}}</option>
                         {% endfor %}
-                    </div>
-                    <div class="col mt-2">
-                        <textarea type="text" name="description" placeholder="Add a brief description"></textarea>
-                        {% for error in form.description.errors %}
-                        <div class="error text-white">{{ error|escape }}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="col mt-2">
-                        <select name="coachee" id="id_coachee">
-                            <option selected value="">{% trans "Please select a client" %}</option>
-                            {% for coaching in user.mentees.all %}
-                            <option value="{{coaching.mentee.pk}}">{{coaching.mentee.email}}</option>
-                            {% endfor %}
-                        </select>
-                        {% for error in form.coachee.errors %}
-                        <div class="error text-white">{{ error|escape }}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="col mt-2">
-                        <button type="submit" class="btn btn-primary mt-4">Create</button>
-                    </div>
-                </form>
-            </div>
+                    </select>
+                    {% for error in form.coachee.errors %}
+                    <div class="error text-white">{{ error|escape }}</div>
+                    {% endfor %}
+                </div>
+                <div class="col mt-2">
+                    <button type="submit" class="btn btn-primary mt-4">Create</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 {% endblock %}

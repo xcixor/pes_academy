@@ -1,26 +1,28 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% block admin_content %}
-    <div class="card-header">
-        <div class="row pb-4">
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Name" %}</b></div>
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Type" %}</b></div>
-        </div>
-    </div>
-    <div class="card-body">
+    <table class="table table-striped">
+        <thead class="text-white" style="background-color: #4b6386;">
+        <tr>
+            <th scope="col">{% trans "Name" %}</th>
+            <th scope="col">{% trans "Email" %}</th>
+            <th scope="col">{% trans "Type" %}</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for mentorship in user.mentees.all %}
-        <div class="row pb-4">
-        <div class="col-md-4 px-2 d-flex align-items-center">{{mentorship.mentee.full_name}}</div>
-        <div class="col-md-4 px-2 d-flex align-items-center">{{mentorship.mentee.email}}</div>
-        <div class="col-md-4 px-2 d-flex align-items-center">
-            {% if mentorship.mentee.is_applying_for_a_call_to_action %}
-            Call to Action
-            {% else %}
-            Regular user
-            {% endif %}
-        </div>
-        </div>
+        <tr>
+            <td>{{mentorship.mentee.full_name}}</td>
+            <td>{{mentorship.mentee.email}}</td>
+            <td>
+                {% if mentorship.mentee.is_applying_for_a_call_to_action %}
+                Call to Action
+                {% else %}
+                Regular user
+                {% endif %}
+            </td>
+        </tr>
         {% endfor %}
-    </div>
+        </tbody>
+    </table>
 {% endblock %}

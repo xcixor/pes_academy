@@ -1,27 +1,29 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% block admin_content %}
-    <div class="row">
-        <div class="col-sm-4">
-            <a href="{% url 'staff:session_create' %}" class="btn btn-primary">Setup a Session</a>
-        </div>
+<div class="row">
+    <div class="col p-4">
+        <a href="{% url 'staff:session_create' %}" class="btn btn-primary">Setup a Session</a>
     </div>
-    <div class="card-header">
-        <div class="row pb-4">
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Session ID" %}</b></div>
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Client" %}</b></div>
-            <div class="col-md-4 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
-        </div>
-    </div>
-    <div class="card-body">
-        {% for event in user.events.all %}
-        <div class="row pb-4">
-        <div class="col-md-4 px-2 d-flex align-items-center">{{event.special_id}}</div>
-        <div class="col-md-4 px-2 d-flex align-items-center">{{event.coachee.email}}</div>
-        <div class="col-md-4 px-2 d-flex align-items-center">
-            <a href="{% url 'staff:session_details' pk=event.pk %}" class="btn btn-primary">View More</a>
-        </div>
-        </div>
+
+    <table class="table table-striped">
+        <thead class="text-white" style="background-color: #4b6386;">
+        <tr>
+            <th scope="col">{% trans "Session ID" %}</th>
+            <th scope="col">{% trans "Student" %}</th>
+            <th scope="col">{% trans "Action" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for event in user.events.all %}
+        <tr>
+            <td>{{event.special_id}}</td>
+            <td>{{event.coachee.email}}</td>
+            <td>
+                <a href="{% url 'staff:session_details' pk=event.pk %}" class="btn btn-primary">View More</a>
+            </td>
+        </tr>
         {% endfor %}
-    </div>
+        </tbody>
+    </table>
 {% endblock %}
