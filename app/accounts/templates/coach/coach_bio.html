@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load account_extras %}
+{% block body_id %}staff{% endblock %}
 {% block styles %}
 {{ block.super }}
 {% load static %}
@@ -7,7 +8,7 @@
 {% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="container">
+<div class="container d-flex justify-content-center p-5" style="background: rgba(75, 99, 134, 0.9); border-radius: 5%;">
     <figure class="snip1515">
         <div class="profile-image">
             <img src="{% if coach.avatar %}{{coach.avatar.url}}{% endif %}" class="img" alt="No Avatar" height="200px">

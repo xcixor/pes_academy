@@ -21,6 +21,11 @@
 #admin{
   background-image:url("../../common/images/PES-LOGO.jpg");
 }
+#staff {
+  background-image: url("../../common/images/Logo_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .h1 {
   color: #a91917;
 }
