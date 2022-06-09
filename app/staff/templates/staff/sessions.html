@@ -1,11 +1,10 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% block admin_content %}
-<div class="row">
     <div class="col p-4">
         <a href="{% url 'staff:session_create' %}" class="btn btn-primary">Setup a Session</a>
     </div>
-
+    <div class="table-responsive">
     <table class="table table-striped">
         <thead class="text-white" style="background-color: #4b6386;">
         <tr>
@@ -26,4 +25,5 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}

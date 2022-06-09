@@ -39,13 +39,7 @@
   }
   
   /* admin dash */
-  
-  
-  @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
-  
-  body{
-    font-family: 'Barlow', sans-serif;
-  }
+
   
   a:hover{
     text-decoration: none;
@@ -110,7 +104,9 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
- 
+ .navbar-brand {
+   padding: 0;
+ }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

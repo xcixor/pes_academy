@@ -62,9 +62,6 @@
     width: 100%;
     margin: 10px;
   }
-  table.table.table-striped {
-    background-color: red;
-  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
