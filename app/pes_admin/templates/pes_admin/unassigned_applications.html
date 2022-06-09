@@ -6,28 +6,29 @@
 <link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
 {% endblock %}
 {% block admin_content %}
-<div class="card card-admin">
-    <div class="card-header ">
-        <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "ID" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Owner" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Stage" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
-        </div>
-    </div>
-    <div class="card-body">
+
+<div class="table-responsive card-admin">
+    <table id="admin-dashboard" class="table table-striped text-white">
+      <thead>
+        <tr>
+          <th scope="col">{% trans "ID" %}</th>
+          <th scope="col">{% trans "Owner" %}</th>
+          <th scope="col">{% trans "Stage" %}</th>
+          <th scope="col">{% trans "Action" %}</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for application in applications %}
-        <div class="row pb-4">
-        <div class="col-md-3 px-2 d-flex align-items-center">{{application.special_id}}</div>
-        <div class="col-md-3 px-2 d-flex align-items-center">{{application.application_creator}}</div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
-            {{application.get_stage_display}}
-        </div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
+        <tr>
+          <th scope="row">{{application.special_id}}</th>
+          <td>{{application.application_creator}}</td>
+          <td>{{application.get_stage_display}}</td>
+          <td>
             <a href="/admin/advanced/assign/{{application.pk}}/reviewers/" class="btn btn-primary">{% trans "Assign Reviewers" %}</a>
-        </div>
-        </div>
+          </td>
+        </tr>
+        {% endfor %}
+        {% endblock %}
+      </tbody>
+    </table>
     </div>
-</div>
-{% endfor %}
-{% endblock %}

@@ -6,32 +6,34 @@
 <link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
 {% endblock %}
 {% block admin_content %}
-<div class="card card-admin">
-    <div class="card-header ">
-        <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Name" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Email" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Applying for call to action" %}</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>{% trans "Action" %}</b></div>
-        </div>
-    </div>
-    <div class="card-body">
+<div class="table-responsive card-admin">
+    <table id="admin-dashboard" class="table table-striped text-white">
+      <thead>
+        <tr>
+          <th scope="col">{% trans "Name" %}</th>
+          <th scope="col">{% trans "Email" %}</th>
+          <th scope="col">{% trans "Applying for call to action" %}</th>
+          <th scope="col">{% trans "Action" %}</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for user in users %}
-        <div class="row pb-4">
-        <div class="col-md-3 px-2 d-flex align-items-center">{{user.full_name}}</div>
-        <div class="col-md-3 px-2 d-flex align-items-center">{{user.email}}</div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
+        <tr>
+          <th scope="row">{{user.full_name}}</th>
+          <td>{{user.email}}</td>
+          <td>
             {% if user.is_applying_for_a_call_to_action %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
             <i class="fa-solid fa-xmark"></i>
             {% endif %}
-        </div>
-        <div class="col-md-3 px-2 d-flex align-items-center">
+          </td>
+          <td>
             <a href="/admin/accounts/user/{{user.pk}}/change/" class="btn btn-primary">{% trans "View More" %}</a>
-        </div>
-        </div>
+          </td>
+        </tr>
         {% endfor %}
+        {% endblock %}
+      </tbody>
+    </table>
     </div>
-</div>
-{% endblock %}

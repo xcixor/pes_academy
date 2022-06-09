@@ -7,31 +7,32 @@
 {% endblock %}
 {% block admin_content %}
 
-<div class="card card-admin">
-    <div class="card-header ">
-    </div>
-    <div class="card-body">
-
-        <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>ID</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Creator</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>Stage</b></div>
-            <div class="col-md-3 px-2 d-flex align-items-center"><b>In Review</b></div>
-        </div>
-        {% for application in applications %}
-        <div class="row pb-4">
-            <div class="col-md-3 px-2 d-flex align-items-center">{{application.special_id}}</div>
-            <div class="col-md-3 px-2 d-flex align-items-center">{{application.application_creator}}</div>
-            <div class="col-md-3 px-2 d-flex align-items-center">{{application.get_stage_display}}</div>
-            <div class="col-md-3 px-2 d-flex align-items-center">
-                {% if application.is_in_review %}
+<div class="table-responsive card-admin">
+<table id="admin-dashboard" class="table table-striped text-white">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Creator</th>
+      <th scope="col">Stage</th>
+      <th scope="col">In Review</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for application in applications %}
+    <tr>
+      <th scope="row">{{application.special_id}}</th>
+      <td>{{application.application_creator}}</td>
+      <td>{{application.get_stage_display}}</td>
+      <td>
+        {% if application.is_in_review %}
                 <i class="fa-solid fa-circle-check"></i>
                 {% else %}
                 <i class="fa-solid fa-xmark"></i>
-                {% endif %}
-            </div>
-        </div>
-        {% endfor %}
-        {% endblock %}
-    </div>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    {% endblock %}
+  </tbody>
+</table>
 </div>
