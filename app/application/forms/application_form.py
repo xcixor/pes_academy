@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from application.models import BusinessOrganization, CovidImpact
 from accounts.models import User
 from application.services.redis_caching import (
-    get_draft_application_data_from_redis_cache)
+    get_draft_application_data_from_cache)
 from common.utils.common_queries import get_application
 
 
@@ -13,7 +13,7 @@ class ApplicationForm(forms.Form):
         label=_('Participant Name'),
         max_length=255,
         widget=forms.TextInput(
-            attrs={'class': 'text draftable', 'placeholder': _('Full Name')}))
+            attrs={'class': 'text personal', 'placeholder': _('Full Name')}))
     age = forms.ChoiceField(
         label=_('Age'),
         choices=User.AGE_CHOICES, widget=forms.RadioSelect)
@@ -129,15 +129,14 @@ class ApplicationForm(forms.Form):
         if application:
             data = {}
             try:
-                data = get_draft_application_data_from_redis_cache(
+                data = get_draft_application_data_from_cache(
                     application.pk)
             except Exception as ce:
                 print(ce)
-            self.fields['age'].initial = data.get('age', None)
-            self.fields['full_name'].initial = data.get('full_name', None)
-            self.fields['preferred_language'].initial = data.get(
-                'preferred_language', None)
-            self.fields['gender'].initial = data.get('gender', None)
+            self.fields['age'].initial = request.user.age
+            self.fields['full_name'].initial = request.user.full_name
+            self.fields['preferred_language'].initial = request.user.preferred_language
+            self.fields['gender'].initial = request.user.gender
             self.fields['organization_name'].initial = data.get(
                 'organization_name', None)
             self.fields['facebook_link'].initial = data.get(
@@ -158,3 +157,5 @@ class ApplicationForm(forms.Form):
                 'stage', None)
             self.fields['impact'].initial = data.get(
                 'impact', None)
+            self.fields['milestones'].initial = data.get(
+                'milestones', None)

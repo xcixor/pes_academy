@@ -1,8 +1,9 @@
 import json
 from django_redis import get_redis_connection
+from application.models import ApplicationDraftData
 
 
-def set_draft_application_data_to_redis_cache(application_id, data):
+def set_draft_application_data_to_cache(application, data):
     """Sets application data to redis cache
 
     Args:
@@ -12,30 +13,29 @@ def set_draft_application_data_to_redis_cache(application_id, data):
     Returns:
         bool: status after setting
     """
-
-    conn = get_redis_connection()
-    application_data = conn.get(application_id)
-    if not application_data:
-        return conn.set(application_id, json.dumps(data))
-    application_data = json.loads(application_data)
-    application_data.update(data)
-    return conn.set(application_id, json.dumps(application_data))
+    application, created = ApplicationDraftData.objects.get_or_create(
+        application=application)
+    ApplicationDraftData.objects.filter(pk=application.pk).update(**data)
+    return created
 
 
-def get_draft_application_data_from_redis_cache(application_id):
+def get_draft_application_data_from_cache(application):
     """Retrieves the application data from redis cache
 
     Args:
         application_id (int): the id of the application
     """
+    data = {}
+    application_found = None
+    try:
+        application_found = ApplicationDraftData.objects.get(
+            application=application)
+    except ApplicationDraftData.DoesNotExist as exc:
+        print(exc)
+    if application_found:
+        data = ApplicationDraftData.objects.filter(pk=application_found.pk).values()
+    return data[0]
 
-    conn = get_redis_connection()
-    data = conn.get(application_id)
-    if data:
-        return json.loads(data)
-    return {}
 
-
-def delete_draft_application_data_from_redis_cache(application_id):
-    conn = get_redis_connection()
-    return conn.delete(application_id)
+def delete_draft_application_data_from_cache(application):
+    return ApplicationDraftData.objects.get(application=application).delete()

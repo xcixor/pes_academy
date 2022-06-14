@@ -1,9 +1,9 @@
 from django.urls import path
 from application.presentation.views import (
-    IndexView, DraftUserDataView, ApplicationView, SubmitView,
+    IndexView, DraftApplicationDataView, ApplicationView, SubmitView,
     PostApplicationDocumentFormView, ApplicationPDFView,
     UploadExtraDocumentsView, ApplicationPromptView, ApplicationScoreView,
-    ApplicationCommentView)
+    ApplicationCommentView, DraftUserInfoView)
 
 app_name = 'application'
 
@@ -20,7 +20,9 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('applications/<slug:slug>/', ApplicationView.as_view()),
     path('applications/application/draft/',
-         DraftUserDataView.as_view(), name='draft'),
+         DraftApplicationDataView.as_view(), name='draft'),
+    path('applications/user/info/',
+         DraftUserInfoView.as_view(), name='draft_user'),
     path('applications/application/pdf/',
          ApplicationPDFView.as_view(), name='application_pdf'),
 ]

@@ -17,7 +17,7 @@ class ApplicationDraftData(models.Model):
     existence_period = models.CharField(max_length=100, blank=True, null=True)
     stage = models.CharField(max_length=100, blank=True, null=True)
     milestones = models.TextField(blank=True, null=True)
-    covid_19_impact = models.TextField(blank=True, null=True)
+    impact = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return f'Draft for {self.application}'

@@ -66,3 +66,12 @@ def in_progress(application_reviews):
 def review_finished(application_reviews):
     if application_reviews:
         return application_reviews.filter(application__stage='step_four')
+
+
+@register.filter('get_document')
+def get_document(application, document_name):
+    if application:
+        document = application.documents.filter(
+            document_name=document_name).first()
+        return document
+    return None

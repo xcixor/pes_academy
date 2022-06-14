@@ -6,7 +6,7 @@ import weasyprint
 from application.forms import ApplicationForm
 from common.utils.common_queries import get_application
 from application.services.redis_caching import (
-    get_draft_application_data_from_redis_cache)
+    get_draft_application_data_from_cache)
 
 
 class ApplicationPDFView(View):
@@ -17,7 +17,7 @@ class ApplicationPDFView(View):
         form = ApplicationForm(request)
         data = {}
         try:
-            data = get_draft_application_data_from_redis_cache(application.pk)
+            data = get_draft_application_data_from_cache(application.pk)
         except Exception as ce:
             print(ce)
         context = {

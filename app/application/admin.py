@@ -1,8 +1,12 @@
 from django.contrib import admin
 from application.models import (
     CallToAction, Application, ApplicationDocument, ApplicationReview,
-    ApplicationScore, ApplicationPrompt, ApplicationComment)
+    ApplicationScore, ApplicationPrompt, ApplicationComment,
+    ApplicationDraftData)
 from application.forms import CallToActionAdminForm
+
+
+admin.site.register(ApplicationDraftData)
 
 
 @admin.register(CallToAction)
