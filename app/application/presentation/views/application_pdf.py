@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 import weasyprint
 from application.forms import ApplicationForm
 from common.utils.common_queries import get_application
-from application.services.redis_caching import (
+from application.services.caching import (
     get_draft_application_data_from_cache)
 
 

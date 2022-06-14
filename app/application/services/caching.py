@@ -1,10 +1,8 @@
-import json
-from django_redis import get_redis_connection
 from application.models import ApplicationDraftData
 
 
 def set_draft_application_data_to_cache(application, data):
-    """Sets application data to redis cache
+    """Sets application data to cache
 
     Args:
         application_id (int): the id for the application
@@ -20,7 +18,7 @@ def set_draft_application_data_to_cache(application, data):
 
 
 def get_draft_application_data_from_cache(application):
-    """Retrieves the application data from redis cache
+    """Retrieves the application data from cache
 
     Args:
         application_id (int): the id of the application

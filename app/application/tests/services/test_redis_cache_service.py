@@ -1,5 +1,3 @@
-from django.test import TestCase
-from django_redis import get_redis_connection
 from application.services import (
     set_draft_application_data_to_cache,
     get_draft_application_data_from_cache,
@@ -16,9 +14,6 @@ class CacheTestCase(ApplicationBaseTestCase):
             'organization_name': 'Caravan Tech',
             'milestones': 'Gain customers'}
         self.application = self.create_application_instance()
-
-    def tearDown(self) -> None:
-        get_redis_connection("default").flushall()
 
     def set_draft_application_data_to_cache(self):
         return set_draft_application_data_to_cache(self.application, self.data)

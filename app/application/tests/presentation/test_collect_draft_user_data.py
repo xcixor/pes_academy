@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from django_redis import get_redis_connection
 from accounts.tests.common import AccountsBaseTestCase
 from application.presentation.views import (
     DraftApplicationDataView)
@@ -17,8 +16,6 @@ class DraftApplicationDataViewTestCase(AccountsBaseTestCase):
         }
         self.application = self.create_application()
 
-    def tearDown(self) -> None:
-        get_redis_connection("default").flushall()
 
     def test_view_properties(self):
         self.assertTrue(issubclass(DraftApplicationDataView, View))
@@ -79,7 +76,7 @@ class DraftApplicationDataViewTestCase(AccountsBaseTestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.content.decode('utf-8'), "Not found")
 
-    def test_sets_data_in_redis_cache(self):
+    def test_sets_data_in_cache(self):
         self.login_user()
         new_data = {
             'facebook_link': 'Jane Doe'

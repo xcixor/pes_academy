@@ -20,8 +20,6 @@ services:
       GS_BUCKET_URL: https://console.cloud.google.com/storage/browser/pes_online/
       GS_LOCATION: pes/testing/
       GS_BUCKET_NAME: pes_online
-      REDIS_HOST: localhost
-      REDIS_PORT: 6379
     env_file:
       - .env
 networks:
