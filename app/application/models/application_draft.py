@@ -4,9 +4,9 @@ from application.models import Application
 
 class ApplicationDraftData(models.Model):
 
-    application = models.ForeignKey(
+    application = models.OneToOneField(
         Application, on_delete=models.DO_NOTHING,
-        null=True, blank=True)
+        null=True, blank=True, related_name='draft')
     organization_name = models.CharField(max_length=100, blank=True, null=True)
     facebook_link = models.URLField(null=True, blank=True)
     twitter_link = models.URLField(null=True, blank=True)

@@ -194,13 +194,25 @@
                           <h5 class="card-title">{% trans "Ongoing Applications" %}</h5>
                           <p class="card-text">{% trans "Click on the link below to resume to your applications." %}</p>
                           {% if user.application %}
-                          <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
+                            {% if user.application.stage == 'step_four' %}
+                            <h4><b>Application Closed</b></h4>
+                            {% else %}
+                            <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
+                            {% endif %}
                           {% else %}
-                          {% if user.email|get_application_url %}
-                          <a href="{{user.email|get_application_url}}" class="btn btn-primary">{% trans "Continue" %}</a>
+
+                          {% with user.email|get_application_url as application %}
+                          {% if application %}
+                            {% if application.stage == 'step_four' %}
+                             <h4><b>Application Closed</b></h4>
+                             {% else %}
+                            <a href="/applications/application.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
+                            {% endif %}
                           {% else %}
                           <a href="{% url 'application:index' %}" class="btn btn-primary">{% trans "Start Application" %}</a>
                           {% endif %}
+                          {% endwith %}
+
                           {% endif %}
                         </div>
                       </div>

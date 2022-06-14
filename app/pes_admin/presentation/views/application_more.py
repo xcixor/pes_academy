@@ -1,5 +1,5 @@
 from django.views.generic import DetailView, UpdateView, View
-from application.models import Application
+from application.models import Application, ApplicationDraftData
 
 
 class GetApplicationDetails(DetailView):

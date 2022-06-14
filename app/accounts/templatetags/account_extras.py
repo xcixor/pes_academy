@@ -39,15 +39,14 @@ def get_application_url(email):
     usage:
         email|get_application_url
     """
-    url = None
+    application = None
     subscription = Subscription.objects.filter(subscriber_email=email).first()
     if subscription:
         try:
             application = subscription.subscription.subscription_creator.application
-            url = f'/applications/{application.call_to_action.slug}/'
         except AttributeError as ae:
             print(ae)
-    return url
+    return application
 
 
 @register.filter('get_organization_members')
