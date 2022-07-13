@@ -51,7 +51,7 @@ class Application(models.Model):
         help_text=_('Whether to advance or avoid the application'))
     milestones = models.TextField(verbose_name=_('Milestones'))
     expected_max_score = models.IntegerField(
-        verbose_name=_('Expected Max Score'), default=0)
+        verbose_name=_('Expected Max Score'), default=35)
 
     def _generate_slug(self):
         value = self.call_to_action.tagline

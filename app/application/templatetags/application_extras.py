@@ -1,5 +1,5 @@
 from django import template
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 from application.models import ApplicationScore
 
 register = template.Library()
@@ -44,16 +44,28 @@ def check_in_queryset(queryset, key):
 
 @register.filter('get_average_score')
 def get_average_score(application):
-    average_score = application.scores.exclude(
-        reviewer__is_moderator=True).aggregate(Avg('score'))
-    return average_score['score__avg']
+    application_scores = application.scores.exclude(
+        reviewer__is_moderator=True)
+    total_scores = application_scores.aggregate(Sum('score'))['score__sum']
+    reviewers = application.scores.exclude(
+        reviewer__is_moderator=True).distinct('reviewer').count()
+    average_score = 0
+    if total_scores:
+        average_score = round(total_scores/reviewers, 2)
+    return average_score
 
 
 @register.filter('get_moderation_score')
 def get_moderation_score(application):
-    moderation_score = application.scores.exclude(
-        reviewer__is_reviewer=True).aggregate(Avg('score'))
-    return moderation_score['score__avg']
+    moderation_score = application.scores.filter(
+        reviewer__is_moderator=True)
+    total_scores = moderation_score.aggregate(Sum('score'))['score__sum']
+    reviewers = application.scores.filter(
+        reviewer__is_moderator=True).distinct('reviewer').count()
+    average_score = 0
+    if total_scores:
+        average_score = round(total_scores/reviewers, 2)
+    return average_score
 
 
 @register.filter('in_progress')

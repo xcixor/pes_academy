@@ -16,7 +16,7 @@
                     <ul class="px-2">
                     {% for reviewer in application.reviewers.all %}
                     <li class="card-text">
-                        {{reviewer.reviewer}}
+                        {{reviewer.reviewer}}{% if reviewer.reviewer.is_moderator %} - moderator{% endif %}
                     </li>
                     {% empty %}
                     {% trans "There are no reviewers for this application yet." %}
@@ -34,6 +34,7 @@
                 <div class="card-body">
                     <h4 class="card-title"><b>{% trans "Review Breakdown" %}</b></h4>
                     {% for review in application.reviewers.all %}
+                {% if not review.reviewer.is_moderator %}
                     <div class="row mb-4">
                         <div class="col-md-10 border p-3 m-4">
                             <p><b>{% trans "Reviewer" %}:</b> {{review.reviewer}}</p>
@@ -74,6 +75,7 @@
                             </details>
                         </div>
                     </div>
+                    {% endif %}
                     {% empty %}
                     {% trans "There are no reviewers for this application yet." %}
                     {% endfor %}

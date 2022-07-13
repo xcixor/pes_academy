@@ -18,4 +18,4 @@ class ApplicationPrompt(models.Model):
 
     def __str__(self) -> str:
         return _('Message for') + self.application.special_id +\
-            _(' by') + self.reviewer
+            _(' by') + str(self.reviewer)
