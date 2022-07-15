@@ -26,9 +26,10 @@ class Coaching(CreateView, HtmlEmailMixin):
             self.request, messages.SUCCESS, success_message)
         to_email = self.object.coach.email
         from_email = settings.VERIFIED_EMAIL_USER
-        email_message = _(
-            f'Hi, {self.object.mentee.full_name} has added you as their coach.'
-        )
+        message_piece_one = _("Hi, ")
+        message_piece_two = _(" has added you as their coach.")
+        email_message = message_piece_one + \
+            self.object.mentee.full_name + message_piece_two
         subject = _('PSA Student')
         context = {
             'message': email_message,
