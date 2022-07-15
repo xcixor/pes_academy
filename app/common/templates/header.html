@@ -27,9 +27,9 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {% if user.is_authenticated %}
                         {% if user and user.is_superuser %}
-                            <h5 class="font-weight-bold m-0 pl-4 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome Admin" %}</h5>
+                            <h6 class="font-weight-bold m-0 ps-3 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome Admin" %}</h6>
                         {% else %}
-                            <h5 class="font-weight-bold m-0 pl-4 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome " %}{{user.username}}</h5>
+                            <h6 class="font-weight-bold m-0 ps-3 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome " %}{{user.username}}</h6>
                         {% endif %}
                         {% endif %}
                         <li class="nav-item">
@@ -56,7 +56,7 @@
                         {% endif %}
                     {% endif %}
                 </div>
-                <form class="ml-5" action="{% url 'set_language' %}" method="post" id="languageForm">
+                <form class="ms-5" action="{% url 'set_language' %}" method="post" id="languageForm">
                     {% csrf_token %}
                     <select name="language" id="languageSelect" class="form-control">
                         {% get_current_language as LANGUAGE_CODE %}
@@ -74,7 +74,7 @@
 
         <div class="lower d-flex justify-content-end">
             <div class="lower-items d-flex align-items-center p-4" id="contacts">
-                <p class="p-0 mb-0 mr-5">{% trans "Call:" %} +254 20 36 73711</p>
+                <p class="p-0 mb-0 me-5">{% trans "Call:" %} +254 20 36 73711</p>
                 <p class="p-0 mb-0 ">{% trans "Email:" %} info@privateequity-support</p>
             </div>
         </div>
