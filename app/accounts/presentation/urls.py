@@ -17,7 +17,7 @@ urlpatterns = [
     path('register/staff/reviewer/', ReviewerRegistrationView.as_view(),
          name='reviewer_registration'),
     path('login/', UserLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(next_page='/')),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('activation-email-sent/', ActivationEmailSentView.as_view(),
          name='activation_email_sent'),
     path('activate/<str:uidb64>/<str:token>/',

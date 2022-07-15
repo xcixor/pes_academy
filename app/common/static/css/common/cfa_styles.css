@@ -8,12 +8,54 @@
   background-blend-mode: soft-light;
 }
 
+nav .upper {
+  width: 85%;
+}
+
+nav .lower {
+  width: 100%;
+  padding-right: 7.5%;
+  min-height: 40px;
+}
+
+nav .lower {
+  background-color: #a91917;
+}
+
+nav .row {
+  width: 100%;
+}
+
+.upper .links-wrapper {
+  flex-basis: 40%;
+}
+.upper .language {
+  flex: 1;
+}
+
+.navbar-brand {
+  height: auto!important;
+}
+
+.navbar {
+  border-radius: unset !important;
+}
+
+nav #contacts {
+  font-weight: bold;
+
+}
+
+#dropdownMenuLink {
+  color: black !important;
+}
+
 #cfa {
   background-image:url("../../common/images/background.jpg");
 }
 #error-page{
   background-image:url("../../common/images/agri3.jpg");
-  
+
 }
 #agri-window{
   background-image:url("../../common/images/clientlog2.jpg");
@@ -31,7 +73,6 @@
 }
 
 #second-nav {
-  background-color: #a91917;
   color: #ffffff;
 }
 
@@ -66,12 +107,39 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
- 
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+ #dropdownMenuLink {
+  display: none;
+ }
+}
 
+@media only screen and (max-width: 767px) {
+  .links {
+    display: none;
+  }
+  nav .upper {
+      width: 100%;
+  }
+  .lower {
+    justify-content: unset !important;
+  }
+  #contacts {
+    font-size: 1rem;
+  }
+  .lower-items {
+    width: 100% !important;
+    justify-content: space-between;
+  }
+  nav .lower{
+    padding-right: unset;
+  }
+  .user-container {
+    display: none;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

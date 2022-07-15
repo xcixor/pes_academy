@@ -1,59 +1,83 @@
 {% load static %}
 {% load i18n %}
-<nav class="navbar navbar-expand-lg
-navbar-light bg-light pb-3">
-
-<a class="navbar-brand" href="/">
-    <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top"
-    alt="PES logo">
-</a>
-    <div class="text-center">
-        {% if user.is_superuser %}
-        <div>
-            <h2 class="font-weight-bold" style="color: #a91917;">{% trans "Welcome Admin" %}</h2>
+<nav class="navbar navbar-expand-lg bg-light navbar-light m-0 p-0">
+    <div class="container-fluid m-0 p-0 flex-column">
+        <div class="upper d-flex justify-content-between align-items-center p-4">
+            <div class="links-wrapper d-flex justify-content-between align-items-center">
+                <a class="navbar-brand m-0 p-0" href="/">
+                    <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
+                </a>
+                <div class="links">
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <i class="fas fa-bars fa-2x mx-4 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {% if user.is_authenticated %}
+                        {% if user and user.is_superuser %}
+                            <h5 class="font-weight-bold m-0 pl-4 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome Admin" %}</h5>
+                        {% else %}
+                            <h5 class="font-weight-bold m-0 pl-4 pb-2 border-bottom" style="color: #a91917;">{% trans "Welcome " %}{{user.username}}</h5>
+                        {% endif %}
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="language d-flex justify-content-end align-items-center">
+                <div class="user-container">
+                    {% if user.is_authenticated %}
+                        {% if user and user.is_superuser %}
+                            <h4 class="font-weight-bold m-0 p-0" style="color: #a91917;">{% trans "Welcome Admin" %}</h4>
+                        {% else %}
+                            <h4 class="font-weight-bold m-0 p-0" style="color: #a91917;">{% trans "Welcome " %}{{user.username}}</h4>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <form class="ml-5" action="{% url 'set_language' %}" method="post" id="languageForm">
+                    {% csrf_token %}
+                    <select name="language" id="languageSelect" class="form-control">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
         </div>
-        {% else %}
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
-            </li>
-        </ul>
-        {% endif %}
+
+        <div class="lower d-flex justify-content-end">
+            <div class="lower-items d-flex align-items-center p-4" id="contacts">
+                <p class="p-0 mb-0 mr-5">{% trans "Call:" %} +254 20 36 73711</p>
+                <p class="p-0 mb-0 ">{% trans "Email:" %} info@privateequity-support</p>
+            </div>
+        </div>
     </div>
 </nav>
 
-<!--Second navbar-->
-<nav id="second-nav" class="navbar navbar-expand-lg">
-
-    <ul class="navbar-nav mx-auto">
-
-      <li class="nav-item">
-          <p class="nav-link" href="#">{% trans "Call:" %} +254 20 36 73711</p>
-      </li>
-      <li class="nav-item">
-          <p class="nav-link" href="#">{% trans "Email:" %} info@privateequity-support</p>
-      </li>
-  </ul>
-  <ul class="navbar-nav mr-auto">
-    <div class="d-flex language-div pl-5">
-        <form action="{% url 'set_language' %}" method="post" id="languageForm">
-            {% csrf_token %}
-            <select name="language" id="languageSelect" class="form-control">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                    {{ language.name_local }} ({{ language.code }})
-                </option>
-                {% endfor %}
-            </select>
-        </form>
-    </div>
-</ul>
-<!-- </div> -->
-
-</nav>

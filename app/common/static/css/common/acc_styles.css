@@ -3,16 +3,15 @@
     font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     height: auto;
-    
+    font-family: 'Quicksand', sans-serif;
   }
-  
+
   .navbar{
-    background-color: #910521;
     color: #f3f3f3;
   }
 
   .nav-item{
-    font-size: 20px;
+    font-size: 16px;
     padding-right: 20px;
   }
 
@@ -55,7 +54,7 @@
   left:10%;
   text-align: center;
   background: rgba(0, 0, 0, 0.6);
-} 
+}
 
   /* .landing_img img{
     max-width: 100%;
@@ -68,7 +67,7 @@
   }
 
   .required:after {
-     content:"*"; 
+     content:"*";
      color: red;
     }
 
@@ -228,7 +227,6 @@
   }
 
   .container {
-    width: 50%;
     background-color: white;
   }
   .input-container {
@@ -313,14 +311,14 @@
 
                                                           /* MEDIA QUERIES */
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  
+/* Extra small devices (phones, 576px and down) */
+@media only screen and (max-width: 576px) {
+
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  
+/* Small devices (portrait tablets and large phones, 576px and up) */
+@media only screen and (min-width: 576px) {
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
