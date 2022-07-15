@@ -145,7 +145,7 @@
                             {% endif %}
                             {% endfor %}
                             {% if not application.prompts.all|check_in_queryset:2 %}
-                            <li>There are no prompts here</li>
+                            <li>{% trans "There are no prompts here" %}</li>
                             {% endif %}
                         </ul>
                         <form action="/applications/prompt/" method="post">

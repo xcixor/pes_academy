@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 16:54+0300\n"
+"POT-Creation-Date: 2022-07-15 12:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,15 +63,6 @@ msgid "Scoring"
 msgstr "Notation"
 
 #: templates/eligibility/eligibility.html:46
-#, fuzzy
-#| msgid ""
-#| "                        1. Organization name and social media presence.\n"
-#| "                        Include any links to your organization, website "
-#| "and/or social media\n"
-#| "                        handles where applicable (LinkedIn, Facebook, "
-#| "Instagram, Twitter,\n"
-#| "                        WhatsApp Business accounts)\n"
-#| "                        "
 msgid ""
 "1. Organization name and social media presence. Include any links to your "
 "organization, website and/or social media handles where applicable "
@@ -133,6 +123,7 @@ msgid "Previous prompts for this response"
 msgstr "Invites précédentes pour cette réponse"
 
 #: templates/eligibility/eligibility.html:73
+#: templates/eligibility/eligibility.html:148
 msgid "There are no prompts here"
 msgstr "Il n'y a pas d'invite ici"
 
