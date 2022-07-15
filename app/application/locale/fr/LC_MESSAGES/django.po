@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 15:19+0300\n"
+"POT-Creation-Date: 2022-07-15 12:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,25 +100,21 @@ msgid "Date Updated"
 msgstr "Date de mise à jour"
 
 #: models/application.py:27
-#, fuzzy
 #| msgid "Application for"
 msgid "Application Creator"
 msgstr "Application pour"
 
 #: models/application.py:28
-#, fuzzy
 #| msgid "Application for"
 msgid "application"
 msgstr "Application pour"
 
 #: models/application.py:31
-#, fuzzy
 #| msgid "Application for"
 msgid "Call To Action"
 msgstr "Appel à candidatures"
 
 #: models/application.py:32
-#, fuzzy
 #| msgid "Application for"
 msgid "applications"
 msgstr "Application pour"
@@ -157,7 +152,6 @@ msgid "Expected Max Score"
 msgstr "Score maximum attendu"
 
 #: models/application.py:84
-#, fuzzy
 #| msgid "Application for"
 msgid "User Applications"
 msgstr "Applications utilisateur"
@@ -270,7 +264,6 @@ msgid "Product or service is in the market. There are sales/revenues"
 msgstr "Le produit ou le service est sur le marché. Il y a des ventes/revenus"
 
 #: models/comment.py:19
-#, fuzzy
 #| msgid "Comment for"
 msgid "Comment for "
 msgstr "Commentaire pour "
@@ -306,7 +299,7 @@ msgstr "Parfait, votre invite a été envoyée."
 msgid "Great, your score has been saved."
 msgstr "Parfait, votre score a été enregistré."
 
-#: presentation/views/draft_data.py:22
+#: presentation/views/draft_data.py:26
 msgid "Not found"
 msgstr "Pas trouvé"
 
@@ -332,40 +325,43 @@ msgstr "Succès"
 msgid " has been saved!"
 msgstr " a été sauvegardé!"
 
-#: templates/application/application_form.html:14
+#: templates/application/application_form.html:15
 msgid "Application for"
 msgstr "Application pour"
 
-#: templates/application/application_form.html:15
-#, fuzzy
+#: templates/application/application_form.html:16
 #| msgid "Application for"
 msgid "Download Application Form"
 msgstr "Télécharger le formulaire de candidature"
 
+#: templates/application/application_form.html:26
+#: templates/application/application_form.html:27
 #: templates/application/application_form.html:28
-#: templates/application/application_form.html:29
-#: templates/application/application_form.html:30
 msgid "Personal Info"
 msgstr "Informations personnelles"
 
+#: templates/application/application_form.html:29
+#: templates/application/application_form.html:30
 #: templates/application/application_form.html:31
 #: templates/application/application_form.html:32
 #: templates/application/application_form.html:33
-#: templates/application/application_form.html:34
-#: templates/application/application_form.html:35
 msgid "Business Info"
 msgstr "Informations sur l'entreprise"
 
-#: templates/application/application_form.html:39
+#: templates/application/application_form.html:37
 msgid "NB: Check and Fill all the Fields before you click Next."
 msgstr ""
 "NB : Vérifiez et remplissez tous les champs avant de cliquer sur Suivant."
 
-#: templates/application/application_form.html:40
-#, fuzzy
+#: templates/application/application_form.html:38 templates/index/index.html:6
 #| msgid "Application for"
 msgid "Call For Application"
 msgstr "Appel à candidatures"
+
+#: templates/application/application_form.html:60
+#| msgid "Application for"
+msgid "Return to Applications"
+msgstr "Applications utilisateur"
 
 #: templates/application/application_form.html:61
 #: templates/application/application_form.html:77
@@ -383,12 +379,11 @@ msgstr "Suivant"
 #: templates/application/application_form.html:189
 #: templates/application/application_form.html:210
 #: templates/application/application_form.html:252
-#: templates/application/application_form.html:289
+#: templates/application/application_form.html:304
 msgid "Previous"
 msgstr "Précédent"
 
 #: templates/application/application_form.html:105
-#, fuzzy
 #| msgid ""
 #| "                        Organization name and social media presence.\n"
 #| "                        (Include any links to your organization_name "
@@ -464,26 +459,41 @@ msgstr "Veuillez télécharger les documents pertinents comme décrit ci-dessous
 msgid "KRA PIN"
 msgstr "KRA PIN"
 
-#: templates/application/application_form.html:275
+#: templates/application/application_form.html:271
+msgid "Uploaded KRA Pin"
+msgstr "Épingle KRA téléchargée"
+
+#: templates/application/application_form.html:280
 msgid "ID Card"
 msgstr "ID Card"
 
-#: templates/application/application_form.html:282
+#: templates/application/application_form.html:283
+#| msgid "ID Card"
+msgid "Uploaded ID Card"
+msgstr "ID Card"
+
+#: templates/application/application_form.html:292
 msgid "Work Licence"
 msgstr "Work Licence"
 
-#: templates/index/index.html:6
-#, fuzzy
-#| msgid "Application for"
-msgid "Call For Applications"
-msgstr "Appel à candidatures"
+#: templates/application/application_form.html:295
+msgid "Uploaded License"
+msgstr "Licence téléchargée"
 
-#: templates/index/index.html:15
-#, fuzzy
-#| msgid "Application for"
-msgid "Applications Ongoing."
-msgstr "Candidatures en cours."
+#: templates/application/application_form.html:305
+#| msgid "Data Submitted"
+msgid "Submit"
+msgstr "Données soumises"
 
 #: templates/index/index.html:18
+#| msgid "Application for"
+msgid "Applications Ongoing. Ends "
+msgstr "Candidatures en cours."
+
+#: templates/index/index.html:20
 msgid "Apply"
 msgstr "Appliquer"
+
+#~| msgid "Application for"
+#~ msgid "Call For Applications"
+#~ msgstr "Appel à candidatures"

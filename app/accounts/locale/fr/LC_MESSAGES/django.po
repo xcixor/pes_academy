@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 12:16+0300\n"
+"POT-Creation-Date: 2022-07-15 12:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +27,6 @@ msgid "Other"
 msgstr "Autre"
 
 #: forms/registration.py:28
-#, fuzzy
-#| msgid "Your Application"
 msgid "Reason for Application"
 msgstr "Ton application"
 
@@ -100,8 +97,6 @@ msgid "Above 50"
 msgstr "Au-dessus de 50"
 
 #: models/user.py:75
-#, fuzzy
-#| msgid "Primary Email Address"
 msgid "Email Address"
 msgstr "Adresse e-mail principale"
 
@@ -127,8 +122,6 @@ msgid "Hi, "
 msgstr "Salut, "
 
 #: presentation/views/coaching.py:30
-#, fuzzy
-#| msgid " Has been added as your coach."
 msgid " has added you as their coach."
 msgstr " A été ajouté comme entraîneur."
 
@@ -166,8 +159,6 @@ msgid "Subject"
 msgstr "Matière"
 
 #: templates/help.html:23
-#, fuzzy
-#| msgid "Your Application"
 msgid "Reason for contacting us"
 msgstr "Ton application"
 
@@ -176,8 +167,6 @@ msgid "Email"
 msgstr "E-mail"
 
 #: templates/help.html:28
-#, fuzzy
-#| msgid "Primary Email Address"
 msgid "Your Email Address"
 msgstr "Adresse e-mail principale"
 
@@ -264,8 +253,6 @@ msgid "Join the PES Academy"
 msgstr "Rejoignez la PES Academy"
 
 #: templates/profile/dashboard.html:146
-#, fuzzy
-#| msgid "You do not have any applications to review at the moment"
 msgid "We do not have mentors at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
@@ -274,14 +261,10 @@ msgid "View Bio"
 msgstr "Voir la biographie"
 
 #: templates/profile/dashboard.html:176
-#, fuzzy
-#| msgid "View Bio"
 msgid "View Sessions"
 msgstr "Voir la biographie"
 
 #: templates/profile/dashboard.html:182
-#, fuzzy
-#| msgid "You do not have any applications to review at the moment"
 msgid "You do not have coaches at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
@@ -294,8 +277,6 @@ msgid "Continue"
 msgstr "Continuez"
 
 #: templates/profile/dashboard.html:212
-#, fuzzy
-#| msgid "Your Application"
 msgid "Start Application"
 msgstr "Ton application"
 
@@ -388,8 +369,6 @@ msgid "Edit Profile"
 msgstr "Editer le profil"
 
 #: templates/profile/staff/applications.html:6
-#, fuzzy
-#| msgid "Applications"
 msgid "Application"
 msgstr "Applications"
 
@@ -435,12 +414,6 @@ msgid "if you already have an account"
 msgstr "si vous avez déjà un compte"
 
 #: templates/registration/activation_email_sent.html:14
-#, fuzzy
-#| msgid ""
-#| "    Thank you for registration.\n"
-#| "    We have sent an activation email to your inbox.\n"
-#| "    Click on the link to continue.\n"
-#| "    "
 msgid ""
 "\n"
 "              Thank you for registration.\n"
@@ -448,6 +421,7 @@ msgid ""
 "              Click on the link to continue.\n"
 "              "
 msgstr ""
+"\n"
 "Merci pour l'inscription. Nous avons envoyé un e-mail d'activation dans "
 "votre boîte de réception.Cliquez sur le lien pour continuer."
 
@@ -464,8 +438,6 @@ msgid "ACTIVATE"
 msgstr "ACTIVER"
 
 #: templates/registration/login.html:19
-#, fuzzy
-#| msgid "Please correct the errors in the form below"
 msgid "Please correct the errors in the form below."
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
@@ -494,8 +466,6 @@ msgid "Sign Up"
 msgstr "S'inscrire"
 
 #: templates/registration/login.html:57
-#, fuzzy
-#| msgid "password"
 msgid "Forgot password"
 msgstr "le mot de passe"
 
@@ -509,8 +479,6 @@ msgid "Please correct the errors in the form below"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
 #: templates/registration/registration.html:47
-#, fuzzy
-#| msgid "Please correct the errors in the form below"
 msgid "Please select the reason for registration"
 msgstr "Veuillez sélectionner le motif de l'inscription"
 
