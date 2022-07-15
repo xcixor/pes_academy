@@ -1,0 +1,28 @@
+.card {
+    border-radius: unset !important;
+}
+
+.card {
+    width: 100%;
+    margin: unset;
+    border: unset;
+}
+
+.card img {
+    width: 100%;
+    height: 400px;
+}
+
+.card-body {
+    height: 100%;
+}
+
+.row {
+    --bs-gutter-x: unset;
+    --bs-gutter-y: unset;
+    border: unset;
+}
+
+small {
+    font-weight: bold;
+}
