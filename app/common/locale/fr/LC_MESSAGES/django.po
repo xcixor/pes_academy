@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 15:22+0300\n"
+"POT-Creation-Date: 2022-07-15 12:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: templates/common/email/base.html:25
+msgid "Thank you."
+msgstr "Merci."
+
 #: templates/common/email/base.html:26
 msgid "The"
 msgstr "Le"
@@ -26,22 +29,22 @@ msgstr "Le"
 msgid "Team"
 msgstr "Équipe"
 
-#: templates/header.html:14
-msgid "Call:"
-msgstr "Appel:"
-
-#: templates/header.html:17
-msgid "Email:"
-msgstr "E-mail:"
-
-#: templates/header.html:24
+#: templates/header.html:13
 msgid "Welcome Admin"
 msgstr "Bienvenue administrateur"
 
-#: templates/header.html:28
+#: templates/header.html:18
+msgid "Account"
+msgstr "Compte"
+
+#: templates/header.html:21
 msgid "Help"
 msgstr "Aider"
 
-#: templates/header.html:32
-msgid "Account"
-msgstr "Compte"
+#: templates/header.html:34
+msgid "Call:"
+msgstr "Appel:"
+
+#: templates/header.html:37
+msgid "Email:"
+msgstr "E-mail:"
