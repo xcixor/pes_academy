@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 12:32+0300\n"
+"POT-Creation-Date: 2022-07-16 20:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,22 +100,18 @@ msgid "Date Updated"
 msgstr "Date de mise à jour"
 
 #: models/application.py:27
-#| msgid "Application for"
 msgid "Application Creator"
 msgstr "Application pour"
 
 #: models/application.py:28
-#| msgid "Application for"
 msgid "application"
 msgstr "Application pour"
 
 #: models/application.py:31
-#| msgid "Application for"
 msgid "Call To Action"
 msgstr "Appel à candidatures"
 
 #: models/application.py:32
-#| msgid "Application for"
 msgid "applications"
 msgstr "Application pour"
 
@@ -152,7 +148,6 @@ msgid "Expected Max Score"
 msgstr "Score maximum attendu"
 
 #: models/application.py:84
-#| msgid "Application for"
 msgid "User Applications"
 msgstr "Applications utilisateur"
 
@@ -264,7 +259,6 @@ msgid "Product or service is in the market. There are sales/revenues"
 msgstr "Le produit ou le service est sur le marché. Il y a des ventes/revenus"
 
 #: models/comment.py:19
-#| msgid "Comment for"
 msgid "Comment for "
 msgstr "Commentaire pour "
 
@@ -330,7 +324,6 @@ msgid "Application for"
 msgstr "Application pour"
 
 #: templates/application/application_form.html:16
-#| msgid "Application for"
 msgid "Download Application Form"
 msgstr "Télécharger le formulaire de candidature"
 
@@ -353,13 +346,11 @@ msgid "NB: Check and Fill all the Fields before you click Next."
 msgstr ""
 "NB : Vérifiez et remplissez tous les champs avant de cliquer sur Suivant."
 
-#: templates/application/application_form.html:38 templates/index/index.html:6
-#| msgid "Application for"
+#: templates/application/application_form.html:38
 msgid "Call For Application"
 msgstr "Appel à candidatures"
 
 #: templates/application/application_form.html:60
-#| msgid "Application for"
 msgid "Return to Applications"
 msgstr "Applications utilisateur"
 
@@ -384,13 +375,6 @@ msgid "Previous"
 msgstr "Précédent"
 
 #: templates/application/application_form.html:105
-#| msgid ""
-#| "                        Organization name and social media presence.\n"
-#| "                        (Include any links to your organization_name "
-#| "website and/or social media handles where applicable\n"
-#| "                        (LinkedIn, Facebook, Instagram, Twitter, WhatsApp "
-#| "Business accounts))\n"
-#| "                        "
 msgid ""
 "Organization name and social media presence. (Include any links to your "
 "organization_name website and/or social media handles where applicable "
@@ -468,7 +452,6 @@ msgid "ID Card"
 msgstr "ID Card"
 
 #: templates/application/application_form.html:283
-#| msgid "ID Card"
 msgid "Uploaded ID Card"
 msgstr "ID Card"
 
@@ -481,17 +464,21 @@ msgid "Uploaded License"
 msgstr "Licence téléchargée"
 
 #: templates/application/application_form.html:305
-#| msgid "Data Submitted"
 msgid "Submit"
 msgstr "Données soumises"
 
-#: templates/index/index.html:18
-#| msgid "Application for"
+#: templates/index/index.html:13
+#| msgid "Call For Application"
+msgid "Calls For Application"
+msgstr "Appel à candidatures"
+
+#: templates/index/index.html:24
 msgid "Applications Ongoing. Ends "
 msgstr "Candidatures en cours."
 
-#: templates/index/index.html:20
-msgid "Apply"
+#: templates/index/index.html:25
+#| msgid "Apply"
+msgid "Apply Now"
 msgstr "Appliquer"
 
 #~| msgid "Application for"
