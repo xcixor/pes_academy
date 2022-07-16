@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-16 17:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: forms/initialize_subscription.py:23
+msgid "This user is already subscribed to your organization"
+msgstr "Este usuário já está inscrito em sua organização"
+
+#: forms/initialize_subscription.py:29
+msgid "Join Our Organization Channel"
+msgstr "Junte-se ao nosso canal de organização"
+
+#: presentation/views/activate_subscription.py:11
+msgid ""
+"Congratulations, your have joined your organization's workspace. Please "
+"register to continue!"
+msgstr ""
+"Parabéns, você ingressou no workspace da sua organização. Por favor "
+"cadastre-se para continuar!"
+
+#: presentation/views/initiate_subscription.py:39
+msgid "Great."
+msgstr "Excelente."
+
+#: presentation/views/initiate_subscription.py:40
+msgid " has been invited to your organization."
+msgstr " foi convidado para sua organização."
+
+#: presentation/views/initiate_subscription.py:47
+msgid "Hmm..That didn't work please try again."
+msgstr "Hmm.. Isso não funcionou, por favor tente novamente."
+
+#: templates/organization_subscription/email/organization_subscription.html:5
+msgid ""
+"Please join your organization's channel at Private Equity Support through "
+"the link below."
+msgstr ""
+"Junte-se ao canal da sua organização em Private Equity Support através "
+"o link abaixo."
+
+#: templates/organization_subscription/email/organization_subscription.html:6
+msgid "Please verify your email address by clicking the activation link below:"
+msgstr "Verifique seu endereço de e-mail clicando no link de ativação abaixo:"
+
+#: templates/organization_subscription/email/organization_subscription.html:11
+msgid "ACTIVATE"
+msgstr "ATIVAR"
+
+#: templates/organization_subscription/initiate.html:14
+msgid "Please correct the errors in the form below"
+msgstr "Corrija os erros no formulário abaixo"
+
+#: templates/organization_subscription/initiate.html:20
+msgid "Invite People to Your Org"
+msgstr "Convidar pessoas para sua organização"
+
+#: templates/organization_subscription/initiate.html:29
+msgid "INVITE"
+msgstr "CONVIDAR"
