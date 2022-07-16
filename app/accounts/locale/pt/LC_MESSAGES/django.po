@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-16 14:40+0300\n"
+"POT-Creation-Date: 2022-07-16 17:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,8 +244,8 @@ msgid ""
 "business."
 msgstr ""
 "Juntar-se à academia PES lhe dará acesso aos vídeos e apresentações "
-"Apresentado pelo PES, onde você aprende mais e recebe mais conselhos sobre o seu "
-"o negócio."
+"Apresentado pelo PES, onde você aprende mais e recebe mais conselhos sobre o "
+"seu o negócio."
 
 #: templates/profile/dashboard.html:138
 msgid "Join the PES Academy"
@@ -432,8 +431,8 @@ msgid ""
 "Thank you for your interest in registering with us. Please verify your email "
 "address by clicking the activation link below"
 msgstr ""
-"Obrigado pelo seu interesse em se registrar conosco. Por favor, verifique seu e-mail "
-"endereço clicando no link de ativação abaixo."
+"Obrigado pelo seu interesse em se registrar conosco. Por favor, verifique "
+"seu e-mail endereço clicando no link de ativação abaixo."
 
 #: templates/registration/email/account_activation.html:11
 msgid "ACTIVATE"
@@ -480,9 +479,21 @@ msgstr "Redefinir"
 msgid "Please correct the errors in the form below"
 msgstr "Corrija os erros no formulário abaixo"
 
+#: templates/registration/registration.html:28
+msgid "Your Username"
+msgstr "Nome de usuário"
+
+#: templates/registration/registration.html:38
+msgid "Your Email"
+msgstr "Seu endereço de email"
+
 #: templates/registration/registration.html:47
 msgid "Please select the reason for registration"
 msgstr "Selecione o motivo da inscrição"
+
+#: templates/registration/registration.html:55
+msgid "Your password"
+msgstr "Esqueceu a senha"
 
 #: templates/registration/registration.html:64
 #: templates/registration/registration.html:65
@@ -505,7 +516,8 @@ msgstr "Sua senha não deve ser totalmente numérica."
 msgid ""
 "Your password should not be too similar to your personal details eg username."
 msgstr ""
-"Sua senha não deve ser muito semelhante aos seus dados pessoais, por exemplo, nome de usuário."
+"Sua senha não deve ser muito semelhante aos seus dados pessoais, por "
+"exemplo, nome de usuário."
 
 #: templates/registration/registration.html:78
 #: templates/registration/staff_registration.html:66

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 12:38+0300\n"
+"POT-Creation-Date: 2022-07-16 17:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -478,9 +478,21 @@ msgstr "Réinitialiser"
 msgid "Please correct the errors in the form below"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
+#: templates/registration/registration.html:28
+msgid "Your Username"
+msgstr "Nom d'utilisateur"
+
+#: templates/registration/registration.html:38
+msgid "Your Email"
+msgstr "Adresse e-mail principale"
+
 #: templates/registration/registration.html:47
 msgid "Please select the reason for registration"
 msgstr "Veuillez sélectionner le motif de l'inscription"
+
+#: templates/registration/registration.html:55
+msgid "Your password"
+msgstr "le mot de passe"
 
 #: templates/registration/registration.html:64
 #: templates/registration/registration.html:65
