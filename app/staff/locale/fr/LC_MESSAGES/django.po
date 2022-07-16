@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-16 20:17+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: presentation/views/material.py:29
+msgid "Great! the material has been saved."
+msgstr "Super! le matériel a été sauvegardé."
+
+#: presentation/views/material.py:34
+msgid "Hi, your coach uploaded a new material: "
+msgstr "Bonjour, votre coach a mis en ligne un nouveau matériel : "
+
+#: presentation/views/material.py:36
+msgid " Please login to your account to view it, thank you."
+msgstr " Veuillez vous connecter à votre compte pour le voir, merci."
+
+#: presentation/views/material.py:39
+msgid "Session Material"
+msgstr "Matériel de session"
+
+#: presentation/views/material.py:50 presentation/views/meeting.py:51
+msgid "Hmm! something went wrong, please try again."
+msgstr "Hmm! Une erreur s'est produite. Veuillez réessayer."
+
+#: presentation/views/meeting.py:29
+msgid "Great! a meeting has been added to your event"
+msgstr "Super! une réunion a été ajoutée à votre événement"
+
+#: presentation/views/meeting.py:35
+msgid ""
+"Hi, your coach has set up a new meeting.Please click the link to book and "
+"select your availability, thank you."
+msgstr ""
+"Bonjour, votre coach a mis en place un nouveau rendez-vous. Veuillez cliquer sur le lien pour réserver et "
+"sélectionnez vos disponibilités, merci."
+
+#: presentation/views/meeting.py:39
+msgid "Event Booking"
+msgstr "Réservation d'événement"
+
+#: templates/staff/coachees.html:7
+msgid "Name"
+msgstr "Nom"
+
+#: templates/staff/coachees.html:8
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/staff/coachees.html:9
+msgid "Type"
+msgstr "Taper"
+
+#: templates/staff/session.html:25
+msgid "Please select a client"
+msgstr "Veuillez sélectionner un client"
+
+#: templates/staff/sessions.html:11
+msgid "Session ID"
+msgstr "ID de session"
+
+#: templates/staff/sessions.html:12
+msgid "Client"
+msgstr "Client"
+
+#: templates/staff/sessions.html:13
+msgid "Action"
+msgstr "Action"

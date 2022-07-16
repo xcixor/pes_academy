@@ -31,10 +31,11 @@ class UploadMaterialView(CreateView, HtmlEmailMixin):
             self.request, messages.SUCCESS, success_message)
         to_email = self.object.session.coachee.email
         from_email = settings.VERIFIED_EMAIL_USER
-        email_message = _(
-            f'Hi, your coach uploaded a new material: {self.object.material_name}'
-            ' Please login to your account to view it, thank you.'
-        )
+        message_piece_one = _('Hi, your coach uploaded a new material: ')
+        message_piece_two = _(
+            ' Please login to your account to view it, thank you.')
+        email_message = message_piece_one + \
+            {self.object.material_name} + message_piece_two
         subject = _('Session Material')
         context = {
             'message': email_message,

@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-16 20:13+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: presentation/views/material.py:29
+msgid "Great! the material has been saved."
+msgstr "Excelente! o material foi salvo."
+
+#: presentation/views/material.py:34
+msgid "Hi, your coach uploaded a new material: "
+msgstr "Olá, seu treinador carregou um novo material: "
+
+#: presentation/views/material.py:36
+msgid " Please login to your account to view it, thank you."
+msgstr " Por favor, faça login na sua conta para visualizá-lo, obrigado."
+
+#: presentation/views/material.py:39
+msgid "Session Material"
+msgstr "Material da Sessão"
+
+#: presentation/views/material.py:50 presentation/views/meeting.py:51
+msgid "Hmm! something went wrong, please try again."
+msgstr "Hum! Alguma coisa deu errado. Por favor tente outra vez."
+
+#: presentation/views/meeting.py:29
+msgid "Great! a meeting has been added to your event"
+msgstr "Excelente! uma reunião foi adicionada ao seu evento"
+
+#: presentation/views/meeting.py:35
+msgid ""
+"Hi, your coach has set up a new meeting.Please click the link to book and "
+"select your availability, thank you."
+msgstr ""
+"Olá, seu treinador marcou uma nova reunião. Clique no link para reservar e "
+"selecione sua disponibilidade, obrigado."
+
+#: presentation/views/meeting.py:39
+msgid "Event Booking"
+msgstr "Reserva de eventos"
+
+#: templates/staff/coachees.html:7
+msgid "Name"
+msgstr "Nome"
+
+#: templates/staff/coachees.html:8
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/staff/coachees.html:9
+msgid "Type"
+msgstr "Modelo"
+
+#: templates/staff/session.html:25
+msgid "Please select a client"
+msgstr "Por favor selecione um cliente"
+
+#: templates/staff/sessions.html:11
+msgid "Session ID"
+msgstr "Identificação de sessão"
+
+#: templates/staff/sessions.html:12
+msgid "Client"
+msgstr "Cliente"
+
+#: templates/staff/sessions.html:13
+msgid "Action"
+msgstr "Action"
