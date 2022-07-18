@@ -1,0 +1,13 @@
+.site-bg-primary {
+    background-color: #a91917;
+}
+
+.wrapper {
+    padding: 0 10%;
+}
+
+@media only screen and (max-width: 767px) {
+    .wrapper {
+        padding: 0 5%;
+    }
+}

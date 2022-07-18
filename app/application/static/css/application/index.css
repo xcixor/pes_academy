@@ -26,3 +26,9 @@
 small {
     font-weight: bold;
 }
+
+@media only screen and (max-width: 767px) {
+    .wrapper .p-4{
+        padding: 10px !important;
+    }
+}

@@ -8,15 +8,6 @@
   background-blend-mode: soft-light;
 }
 
-nav .upper {
-  width: 85%;
-}
-
-nav .lower {
-  width: 100%;
-  padding-right: 7.5%;
-  min-height: 40px;
-}
 
 nav .lower {
   background-color: #a91917;
@@ -26,6 +17,10 @@ nav .row {
   width: 100%;
 }
 
+.navbar-nav>li>a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .upper .links-wrapper {
   flex-basis: 40%;
 }
@@ -121,9 +116,6 @@ nav #contacts {
   .links {
     display: none;
   }
-  nav .upper {
-      width: 100%;
-  }
   .lower {
     justify-content: unset !important;
   }
@@ -133,9 +125,6 @@ nav #contacts {
   .lower-items {
     width: 100% !important;
     justify-content: space-between;
-  }
-  nav .lower{
-    padding-right: unset;
   }
   .user-container {
     display: none;

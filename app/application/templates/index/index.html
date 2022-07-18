@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="{% static 'css/application/index.css' %}">
 {% endblock %}
 {% block content %}
-<section class="container-fluid">
-  <div class="container p-5">
-    <div class="row">
+<section class="container-fluid m-0 p-0">
+  <div class="wrapper py-5">
+    <div class="row bg-white m-0 p-4 rounded">
       <h3 class="pb-4"><strong>{% trans "Calls For Application" %}</strong></h3>
       {% for application in calls_to_action %}
       <div class="card mb-3" style="max-width: 1200px;">

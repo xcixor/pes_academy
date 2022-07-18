@@ -67,3 +67,7 @@ input[type=submit]:hover {
 .success {
   color: #388e3c;
 }
+
+.btn {
+  outline: none !important;
+}
