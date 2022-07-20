@@ -5,5 +5,6 @@ from agripitch.presentation.views import ApplicationFormView
 app_name = 'agripitch'
 
 urlpatterns = [
-    path('application/', ApplicationFormView.as_view(), name='application')
+    path('<slug:slug>/application/',
+         ApplicationFormView.as_view(), name='application')
 ]
