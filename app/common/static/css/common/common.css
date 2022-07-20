@@ -11,8 +11,12 @@
     background-color: var(--bg-secondary);
 }
 
-.text-primary {
+.text-site-primary {
     color: var(--bg-primary)
+}
+
+.text-site-secondary {
+    color: var(--bg-secondary)
 }
 
 .wrapper {

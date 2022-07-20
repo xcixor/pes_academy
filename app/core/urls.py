@@ -36,6 +36,7 @@ urlpatterns = [
         include('eligibility.presentation.urls', namespace='eligibility')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('staff/', include('staff.presentation.urls', namespace='staff')),
+    path('agripitch/', include('agripitch.presentation.urls', namespace='agripitch')),
 ]
 
 if settings.DEBUG:
