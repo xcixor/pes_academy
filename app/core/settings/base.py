@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'organization_subscription',
     'eligibility',
     'pes_admin',
-    'staff'
+    'staff',
+    'agripitch'
 ]
 
 MIDDLEWARE = [

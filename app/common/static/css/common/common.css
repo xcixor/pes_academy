@@ -1,5 +1,18 @@
+:root {
+    --bg-primary: #455D8D;
+    --bg-secondary: #14A562;
+}
+
 .site-bg-primary {
-    background-color: #a91917;
+    background-color: var(--bg-primary);
+}
+
+.site-bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.text-primary {
+    color: var(--bg-primary)
 }
 
 .wrapper {
