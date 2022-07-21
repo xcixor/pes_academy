@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
+from django import forms
+from django.forms import modelform_factory
 
 User = get_user_model()
 
@@ -101,15 +103,72 @@ class CriteriaItem(models.Model):
         return self.label
 
 
+class DynamicForm(forms.Form):
+
+    def __init__(self, instance, *args, **kwargs):
+        super(DynamicForm, self).__init__(*args, **kwargs)
+        if instance.type == 'charfield':
+            self.fields[instance.label] = forms.CharField(max_length=400)
+        elif instance.type == 'textfield':
+            self.fields[instance.label] = forms.CharField(
+                widget=forms.Textarea)
+        elif instance.type == 'choicefield':
+            initial_choices = [
+                (choice.choice, choice.choice)
+                for choice in instance.choices.all()]
+            self.fields[instance.label] = forms.ChoiceField()
+            self.fields[instance.label].choices = initial_choices
+        elif instance.type == 'file':
+            self.fields[instance.label] = forms.FileField()
+
+
+def get_form(instance):
+    return DynamicForm(instance)
+
+
 class SubCriteriaItem(models.Model):
+
+    FIELD_CHOICES = [
+        ('charfield', 'Charfield'),
+        ('textfield', 'Textfield'),
+        ('choicefield', 'ChoiceField'),
+        ('file', 'FileField')
+    ]
 
     label = models.CharField(max_length=400)
     criteria = models.ForeignKey(
         CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
+    type = models.CharField(max_length=100, choices=FIELD_CHOICES)
+
+    @property
+    def input(self):
+        return get_form(self)
 
     def __str__(self) -> str:
         return self.label
+
+
+class SubCriteriaItemChoice(models.Model):
+
+    choice = models.CharField(max_length=200)
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='choices')
+
+    def __str__(self) -> str:
+        return self.choice
+
+
+class SubCriteriaItemResponse(models.Model):
+
+    application = models.ForeignKey(
+        AFDBApplication, on_delete=models.CASCADE,
+        related_name='responses')
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='responses')
+    value = models.TextField()
 
 
 class SubCriteriaDocumentPrompt(models.Model):
@@ -120,6 +179,8 @@ class SubCriteriaDocumentPrompt(models.Model):
     sub_criteria = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria_documents')
+    application = models.ForeignKey(
+        AFDBApplication, on_delete=models.CASCADE, related_name='documents')
 
 
 class SubCriteriaInputFieldPrompt(models.Model):
@@ -128,6 +189,11 @@ class SubCriteriaInputFieldPrompt(models.Model):
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria_text_inputs')
     value = models.CharField(max_length=400)
+    application = models.ForeignKey(
+        AFDBApplication, on_delete=models.CASCADE, related_name='text_inputs')
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class SubCriteriaTextFieldInputPrompt(models.Model):
@@ -135,34 +201,10 @@ class SubCriteriaTextFieldInputPrompt(models.Model):
     sub_criteria = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria_text_area_inputs')
-    value = models.CharField(max_length=400)
+    value = models.TextField(max_length=400)
+    application = models.ForeignKey(
+        AFDBApplication, on_delete=models.CASCADE,
+        related_name='text_area_inputs')
 
-
-class SubCriteriaSelectFieldInputPrompt(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='sub_criteria_select_inputs')
-
-
-class SubCriteriaSelectFieldInputPromptChoice(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='select_choices')
-    value = models.CharField(max_length=400)
-
-
-class SubCriteriaRadioFieldInputPrompt(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='sub_criteria_radio_inputs')
-
-
-class SubCriteriaRadioFieldInputPromptOption(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='radio_options')
-    value = models.CharField(max_length=400)
+    def __str__(self) -> str:
+        return self.value

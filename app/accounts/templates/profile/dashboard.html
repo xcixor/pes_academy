@@ -317,3 +317,7 @@
     </div>
 
 {% endblock %}
+{% block scripts %}
+{{ block.super }}
+    <script src="{% static 'js/accounts/dashboard.js' %}"></script>
+{% endblock %}

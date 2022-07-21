@@ -1,8 +1,12 @@
+from django.shortcuts import redirect
+from django.views.generic.detail import SingleObjectMixin
+from django.views import View
 from django.views.generic import DetailView
+from django.urls import reverse
 from agripitch.models import Competition
 
 
-class ApplicationFormView(DetailView):
+class GetApplicationFormView(DetailView):
 
     template_name = 'agripitch/application_form.html'
     model = Competition
@@ -18,3 +22,26 @@ class ApplicationFormView(DetailView):
                 criteria_items.append(item)
         context.update({'criteria': criteria_items})
         return context
+
+
+class PostApplicationFormView(SingleObjectMixin, View):
+
+    model = Competition
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return redirect(
+            reverse(
+                'agripitch:application',
+                kwargs={'slug': self.object.slug}))
+
+
+class ApplicationFormView(View):
+
+    def get(self, request, *args, **kwargs):
+        view = GetApplicationFormView.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = PostApplicationFormView.as_view()
+        return view(request, *args, **kwargs)
