@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from application.models import CallToAction, Application
+from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()
@@ -40,9 +41,20 @@ class CriteriaItem(models.Model):
         return self.label
 
 
+def get_sub_criteria_item_response_if_exist(sub_criteria_item):
+    response = None
+    try:
+        response = SubCriteriaItemResponse.objects.get(
+            sub_criteria_item=sub_criteria_item)
+    except SubCriteriaItemResponse.DoesNotExist:
+        pass
+    return response
+
+
 class DynamicForm(forms.Form):
 
     def __init__(self, instance, *args, **kwargs):
+        response = get_sub_criteria_item_response_if_exist(instance)
         super(DynamicForm, self).__init__(*args, **kwargs)
         if instance.type == 'charfield':
             self.fields[instance.label] = forms.CharField(max_length=400)
@@ -57,6 +69,8 @@ class DynamicForm(forms.Form):
             self.fields[instance.label].choices = initial_choices
         elif instance.type == 'file':
             self.fields[instance.label] = forms.FileField()
+        if not instance.type == 'file' and response:
+            self.initial[instance.label] = response.value
 
 
 def get_form(instance):

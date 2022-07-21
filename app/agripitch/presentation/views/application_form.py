@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 from django.urls import reverse
 from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
+from agripitch.models import SubCriteriaItemResponse, SubCriteriaItem
 
 
 class GetApplicationFormView(DetailView):
@@ -35,12 +36,35 @@ class GetApplicationFormView(DetailView):
         return context
 
 
+def get_sub_criteria_item(label):
+    return SubCriteriaItem.objects.get(label=label)
+
+
+def process_inputs(inputs, application):
+    inputs.pop('csrfmiddlewaretoken')
+    for key, value in inputs.items():
+        if value[0] and not value[0].isspace():
+            sub_criteria_item = get_sub_criteria_item(key)
+            SubCriteriaItemResponse.objects.update_or_create(
+                application=application,
+                sub_criteria_item=sub_criteria_item,
+                defaults={
+                    'value': value[0]
+                }
+            )
+
+
+def process_files(files, application):
+    pass
+
+
 class PostApplicationFormView(SingleObjectMixin, View):
 
     model = CallToAction
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
+        process_inputs(dict(request.POST), request.user.application)
         return redirect(
             reverse(
                 'agripitch:application',
