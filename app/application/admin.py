@@ -54,7 +54,7 @@ class ApplicationCommentInline(admin.TabularInline):
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
 
-    list_display = ['special_id', 'application_creator']
+    list_display = ['special_id', 'application_creator', 'created']
 
     inlines = [
         ApplicationDocumentInline, ApplicationReviewInline,
