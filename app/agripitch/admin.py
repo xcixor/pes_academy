@@ -9,6 +9,7 @@ from agripitch.models import (
 admin.site.register(AFDBApplication)
 admin.site.register(ShortList)
 admin.site.register(CriteriaItem)
+admin.site.register(SubCriteriaItem)
 
 
 @admin.register(Competition)

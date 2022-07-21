@@ -82,7 +82,7 @@ class ShortList(models.Model):
     label = models.CharField(max_length=200)
     competition = models.ForeignKey(
         Competition,
-        related_name='short_lists',
+        related_name='shortlists',
         on_delete=models.CASCADE,
         verbose_name=_("Application"))
 
@@ -105,8 +105,11 @@ class SubCriteriaItem(models.Model):
 
     label = models.CharField(max_length=400)
     criteria = models.ForeignKey(
-        ShortList, on_delete=models.CASCADE,
+        CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
+
+    def __str__(self) -> str:
+        return self.label
 
 
 class SubCriteriaDocumentPrompt(models.Model):

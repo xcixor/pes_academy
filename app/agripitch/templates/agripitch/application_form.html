@@ -19,30 +19,28 @@
                     <!-- Form Steps / Progress Bar -->
                     <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
 
-                        <li class="form-stepper-active text-center form-stepper-list" step="{{competition.short_lists.first.id}}">
+                        <li class="form-stepper-active text-center form-stepper-list" step="1">
                             <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
                                 <span class="form-stepper-circle">
-                                    <span>{{competition.short_lists.first.id}}</span>
+                                    <span>1</span>
                                 </span>
-                                <div class="label">{{competition.short_lists.first}}</div>
+                                <div class="label">{{criteria|first}}</div>
                             </a>
                         </li>
-                        {% for short_list in competition.short_lists.all %}
-                        {% if not short_list.id == competition.short_lists.first.id %}
-                        <li class="form-stepper-unfinished text-center form-stepper-list" step="{{short_list.id}}">
+                        {% for item in criteria|slice:"1:" %}
+                        <li class="form-stepper-unfinished text-center form-stepper-list" step="{{forloop.counter|add:"1"}}">
                             <a class="mr-2 d-flex flex-column align-items-center justify-content-center">
                                 <span class="form-stepper-circle">
-                                    <span>{{short_list.id}}</span>
+                                    <span>{{forloop.counter|add:"1"}}</span>
                                 </span>
-                                <div class="label">{{short_list}}</div>
+                                <div class="label">{{item}}</div>
                             </a>
                         </li>
-                        {% endif %}
                         {% endfor %}
-                        <li class="form-stepper-unfinished text-center form-stepper-list" step="{{competition.short_lists.last.id|add:"1"}}">
+                        <li class="form-stepper-unfinished text-center form-stepper-list" step="{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}">
                             <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
                                 <span class="form-stepper-circle">
-                                    <span>{{competition.short_lists.last.id|add:"1"}}</span>
+                                    <span>{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}</span>
                                 </span>
                                 <div class="label">Save</div>
                             </a>
@@ -51,39 +49,37 @@
                     <!-- Step Wise Form Content -->
                     <form id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="#">
                         <!-- Step 1 Content -->
-                        <section id="step-{{competition.short_lists.first.id}}" class="form-step">
+                        <section id="step-1" class="form-step">
                             <h2 class="font-normal">Account Basic Details</h2>
                             <!-- Step 1 input fields -->
                             <div class="mt-3">
-                                {{competition.short_lists.first}}
+                                {{criteria|first}}
                             </div>
                             <div class="mt-3">
-                                <button class="button btn-navigate-form-step" type="button" step_number="{{ competition.short_lists.first.id|add:"1" }}">Next</button>
+                                <button class="button btn-navigate-form-step" type="button" step_number="2">Next</button>
                             </div>
                         </section>
                         <!-- Step 2 Content, default hidden on page load. -->
-                        {% for short_list in competition.short_lists.all %}
-                        {% if not short_list.id == competition.short_lists.first.id %}
-                        <section id="step-{{short_list.id}}" class="form-step d-none">
+                        {% for item in criteria|slice:"1:" %}
+                        <section id="step-{{forloop.counter|add:"1"}}" class="form-step d-none">
                             <h2 class="font-normal">Social Profiles</h2>
                             <div class="mt-3">
-                                {{short_list}}
+                                {{item}}
                             </div>
                             <div class="mt-3">
-                                <button class="button btn-navigate-form-step" type="button" step_number="{{ short_list.id|add:"-1" }}">Prev</button>
-                                <button class="button btn-navigate-form-step" type="button" step_number="{{ short_list.id|add:"1" }}">Next</button>
+                                <button class="button btn-navigate-form-step" type="button" step_number="{{ forloop.counter }}">Prev</button>
+                                <button class="button btn-navigate-form-step" type="button" step_number="{{ forloop.counter|add:"2" }}">Next</button>
                             </div>
                         </section>
-                        {% endif %}
                         {% endfor %}
                         <!-- Step 3 Content, default hidden on page load. -->
-                        <section id="step-{{competition.short_lists.last.id|add:"1"}}" class="form-step d-none">
+                        <section id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}" class="form-step d-none">
                             <h2 class="font-normal">Personal Details</h2>
                             <div class="mt-3">
                                 Step 3 input fields goes here..
                             </div>
                             <div class="mt-3">
-                                <button class="button btn-navigate-form-step" type="button" step_number="{{competition.short_lists.last.id}}">Prev</button>
+                                <button class="button btn-navigate-form-step" type="button" step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
                                 <button class="button submit-btn" type="submit">Save</button>
                             </div>
                         </section>
