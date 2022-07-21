@@ -1,12 +1,12 @@
 from django.views.generic import ListView
 from django.utils import timezone
-from agripitch.models import Competition
+from application.models import CallToAction
 
 
 class IndexView(ListView):
 
     template_name = "index/index.html"
-    model = Competition
+    model = CallToAction
     context_object_name = 'calls_to_action'
 
     def get_queryset(self):

@@ -1,18 +1,11 @@
 from django.contrib import admin
 from agripitch.models import (
-    AFDBApplication, Competition, ShortList, CriteriaItem,
-    SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaDocumentPrompt, SubCriteriaInputFieldPrompt,
-    SubCriteriaTextFieldInputPrompt)
+    ShortList, CriteriaItem,
+    SubCriteriaItem, SubCriteriaItemChoice)
 
-admin.site.register(AFDBApplication)
+
 admin.site.register(ShortList)
 admin.site.register(SubCriteriaItemChoice)
-
-
-@admin.register(Competition)
-class CallToActionAdmin(admin.ModelAdmin):
-    exclude = ['slug']
-    list_display = ['tagline', 'deadline', 'available_for_applications']
 
 
 @admin.register(CriteriaItem)
