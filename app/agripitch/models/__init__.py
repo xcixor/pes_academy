@@ -94,7 +94,7 @@ class SubCriteriaItem(models.Model):
         related_name='sub_criteria')
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
     position_in_form = models.CharField(
-        max_length=3, unique=True)
+        max_length=3)
 
     @property
     def input(self):

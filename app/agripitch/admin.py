@@ -14,18 +14,16 @@ class CriteriaItemAdmin(admin.ModelAdmin):
     list_display = ['label', 'shortlist']
 
 
-class CustomForm(forms.ModelForm):
+class CustomSubCriteriaItemAdminForm(forms.ModelForm):
     class Meta:
         model = SubCriteriaItem
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        super(CustomForm, self).__init__(*args, **kwargs)
+        super(CustomSubCriteriaItemAdminForm, self).__init__(*args, **kwargs)
         choices = [(index+1, index+1) for index, item in enumerate(SubCriteriaItem.objects.filter(
             criteria=self.instance.criteria))]
-        choices.insert(0, [0, 0])
-        self.fields['position_in_form'] = forms.ChoiceField(
-            help_text='Do not start at 0, the zeroth index helps you incase you have a duplicate error')
+        self.fields['position_in_form'] = forms.ChoiceField()
         self.fields['position_in_form'].choices = choices
         print(self.fields['position_in_form'].choices)
         self.fields['label'].initial = self.instance.label
@@ -37,7 +35,7 @@ class CustomForm(forms.ModelForm):
 @admin.register(SubCriteriaItem)
 class SubCriteriaItemAdmin(admin.ModelAdmin):
     list_display = ['label', 'criteria']
-    form = CustomForm
+    form = CustomSubCriteriaItemAdminForm
 
 
 @admin.register(SubCriteriaItemResponse)
