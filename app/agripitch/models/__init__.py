@@ -71,6 +71,8 @@ class DynamicForm(forms.Form):
             self.fields[instance.label] = forms.FileField()
         if not instance.type == 'file' and response:
             self.initial[instance.label] = response.value
+        for property in instance.properties.all():
+            self.fields[instance.label].widget.attrs[property.name] = property.value
 
 
 def get_form(instance):
@@ -105,6 +107,18 @@ class SubCriteriaItem(models.Model):
 
     class Meta:
         ordering = ('position_in_form',)
+
+
+class SubCriteriaItemFieldProperties(models.Model):
+
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='properties')
+    name = models.CharField(max_length=40)
+    value = models.CharField(max_length=40)
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class SubCriteriaItemChoice(models.Model):

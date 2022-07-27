@@ -2,7 +2,8 @@ from django.contrib import admin
 from django import forms
 from agripitch.models import (
     ShortList, CriteriaItem,
-    SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse)
+    SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
+    SubCriteriaItemFieldProperties)
 
 
 admin.site.register(ShortList)
@@ -12,6 +13,11 @@ admin.site.register(SubCriteriaItemChoice)
 @admin.register(CriteriaItem)
 class CriteriaItemAdmin(admin.ModelAdmin):
     list_display = ['label', 'shortlist']
+
+
+@admin.register(SubCriteriaItemFieldProperties)
+class SubCriteriaItemFieldPropertiesAdmin(admin.ModelAdmin):
+    list_display = ['sub_criteria_item', 'name', 'value']
 
 
 class CustomSubCriteriaItemAdminForm(forms.ModelForm):
@@ -25,7 +31,6 @@ class CustomSubCriteriaItemAdminForm(forms.ModelForm):
             criteria=self.instance.criteria))]
         self.fields['position_in_form'] = forms.ChoiceField()
         self.fields['position_in_form'].choices = choices
-        print(self.fields['position_in_form'].choices)
         self.fields['label'].initial = self.instance.label
         self.fields['criteria'].initial = self.instance.criteria
         self.fields['type'].initial = self.instance.type
