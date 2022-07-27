@@ -79,6 +79,8 @@ def get_form(instance):
 
 class SubCriteriaItem(models.Model):
 
+    a = [1, 2, 3, 4]
+
     FIELD_CHOICES = [
         ('charfield', 'Charfield'),
         ('textfield', 'Textfield'),
@@ -91,6 +93,8 @@ class SubCriteriaItem(models.Model):
         CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
+    position_in_form = models.CharField(
+        max_length=3, unique=True)
 
     @property
     def input(self):
@@ -98,6 +102,9 @@ class SubCriteriaItem(models.Model):
 
     def __str__(self) -> str:
         return self.label
+
+    class Meta:
+        ordering = ('position_in_form',)
 
 
 class SubCriteriaItemChoice(models.Model):
