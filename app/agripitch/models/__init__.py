@@ -109,6 +109,54 @@ class SubCriteriaItem(models.Model):
         ordering = ('position_in_form',)
 
 
+class ValidatorType(models.Model):
+
+    name = models.CharField(max_length=80)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class SubCriteriaItemValidators(models.Model):
+
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='validators')
+    validator = models.ForeignKey(
+        ValidatorType, on_delete=models.CASCADE,
+        related_name='items')
+
+    class Meta:
+        unique_together = ('sub_criteria_item', 'validator')
+
+    def __str__(self) -> str:
+        return str(self.validator) + " : " + str(self.sub_criteria_item)
+
+
+class FileExtension(models.Model):
+
+    extension = models.CharField(max_length=80)
+
+    def __str__(self) -> str:
+        return self.extension
+
+
+class SubCriteriaItemFileExtension(models.Model):
+
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='extensions')
+    extension = models.ForeignKey(
+        FileExtension, on_delete=models.CASCADE,
+        related_name='files')
+
+    class Meta:
+        unique_together = ('sub_criteria_item', 'extension')
+
+    def __str__(self) -> str:
+        return str(self.extension) + " : " + str(self.sub_criteria_item)
+
+
 class SubCriteriaItemFieldProperties(models.Model):
 
     sub_criteria_item = models.ForeignKey(
