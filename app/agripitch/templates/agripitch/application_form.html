@@ -70,7 +70,9 @@
                             <section id="step-{{forloop.counter|add:"1"}}" class="form-step d-none">
                                 <h2 class="font-normal">{{item}}</h2>
                                 <div class="mt-3">
-                                    {{item}} inputs
+                                    {% for sub_criteria in item.sub_criteria.all %}
+                                    <div>{{sub_criteria.input}}</div>
+                                    {% endfor %}
                                 </div>
                                 <div class="mt-3">
                                     <button class="button btn-navigate-form-step" type="button" step_number="{{ forloop.counter }}">Prev</button>
