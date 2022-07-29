@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from application.models import CallToAction, Application
-from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()
@@ -56,19 +55,22 @@ class DynamicForm(forms.Form):
     def __init__(self, instance, *args, **kwargs):
         response = get_sub_criteria_item_response_if_exist(instance)
         super(DynamicForm, self).__init__(*args, **kwargs)
+        properties = {}
+        for validator in instance.validators.all():
+            properties[validator.validator.name] = validator.value
         if instance.type == 'charfield':
-            self.fields[instance.label] = forms.CharField(max_length=400)
+            self.fields[instance.label] = forms.CharField(**properties)
         elif instance.type == 'textfield':
             self.fields[instance.label] = forms.CharField(
-                widget=forms.Textarea)
+                **properties, widget=forms.Textarea)
         elif instance.type == 'choicefield':
             initial_choices = [
                 (choice.choice, choice.choice)
                 for choice in instance.choices.all()]
-            self.fields[instance.label] = forms.ChoiceField()
+            self.fields[instance.label] = forms.ChoiceField(**properties)
             self.fields[instance.label].choices = initial_choices
         elif instance.type == 'file':
-            self.fields[instance.label] = forms.FileField()
+            self.fields[instance.label] = forms.FileField(**properties)
         if not instance.type == 'file' and response:
             self.initial[instance.label] = response.value
         for property in instance.properties.all():
@@ -125,6 +127,7 @@ class SubCriteriaItemValidators(models.Model):
     validator = models.ForeignKey(
         ValidatorType, on_delete=models.CASCADE,
         related_name='items')
+    value = models.CharField(max_length=80)
 
     class Meta:
         unique_together = ('sub_criteria_item', 'validator')

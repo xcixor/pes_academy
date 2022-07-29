@@ -6,12 +6,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/agripitch/application_form.css' %}">
 {% endblock %}
+{% load agripitch_extras %}
 {% block content %}
 <section class="container-fluid m-0 p-0 section-main">
     <div class="wrapper">
         <div class="row m-0 p-0 main-row bg-white">
             <div class="col-md-4 m-0 p-0">
-                <img class="img-responsive" src="{{competition.image.url}}" alt="Agripitch Logo">
+                <img class="img-responsive" src="{{request.user.application.call_to_action.image.url}}" alt="Agripitch Logo">
             </div>
             <div class="col-md-8">
                 <div>
@@ -48,7 +49,7 @@
                             </li>
                         </ul>
                         <!-- Step Wise Form Content -->
-                        <form id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" novalidate>
+                        <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" action="{% url 'agripitch:application' slug=user.application.slug %}" novalidate>
                             {% csrf_token %}
                             <!-- Step 1 Content -->
                             <section id="step-1" class="form-step">
@@ -58,6 +59,13 @@
                                     {% with criteria|first as first_criteria  %}
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
                                     <div>{{sub_criteria.input}}</div>
+                                    {% if form_errors %}
+                                    {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
+                                    {% for error in errors %}
+                                    <span class="error">{{ error.message|escape }}</span>
+                                    {% endfor %}
+                                    {% endwith %}
+                                    {% endif %}
                                     {% endfor %}
                                     {% endwith %}
                                 </div>
@@ -72,6 +80,13 @@
                                 <div class="mt-3">
                                     {% for sub_criteria in item.sub_criteria.all %}
                                     <div>{{sub_criteria.input}}</div>
+                                    {% if form_errors %}
+                                    {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
+                                    {% for error in errors %}
+                                    <span class="error">{{ error.message|escape }}</span>
+                                    {% endfor %}
+                                    {% endwith %}
+                                    {% endif %}
                                     {% endfor %}
                                 </div>
                                 <div class="mt-3">
