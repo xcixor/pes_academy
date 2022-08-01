@@ -66,18 +66,29 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
             const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
             navigateToFormStep(stepNumber);
         }else {
-            // $(formNavigationBtn).attr('disabled', 'disabled').css('background-color', '#8ad2b1');
+            $(formNavigationBtn).attr('disabled', 'disabled').css('background-color', '#8ad2b1');
             return;
         }
     });
 });
 
+$('.form-input').on('change', evt =>{
+    let formSection = $(evt.target).parent().parent().parent();
+    let actionButtons = formSection.find(".btn-navigate-form-step");
+    for (let i = 0; i < actionButtons.length; i++) {
+        $(actionButtons[i]).removeAttr('disabled').css('background-color', '#14A562');
+        $(evt.target).css('border-color', '#ccc');
+        $(`label[for="id_${evt.target.name}"]`).css('color', 'unset');
+    }
+});
+
 function validateSection(formSection){
     let isValid = true;
-    let inputs = formSection.find("input[type=text]");
+    let inputs = formSection.find(".form-input");
     for (i = 0; i < inputs.length; i++) {
         if($(inputs[i]).val() == ""){
             $(inputs[i]).css('border-color', 'red');
+            $(`label[for="id_${inputs[i].name}"]`).css('color', 'red');
             isValid = false;
         }
     }

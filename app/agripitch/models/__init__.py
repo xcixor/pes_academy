@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from application.models import CallToAction, Application
-# from agripitch.forms import DynamicForm
 from django import forms
 
 User = get_user_model()

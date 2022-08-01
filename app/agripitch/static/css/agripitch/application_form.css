@@ -27,6 +27,12 @@ h2 {
     outline: 0;
     border: none;
 }
+
+.button:focus { outline: none; }
+
+.form-input {outline:0;}
+.form-input:focus {outline:none!important;}
+
 .submit-btn {
     background-color: #0e9594;
 }
