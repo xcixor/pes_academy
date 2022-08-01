@@ -5,16 +5,13 @@ from agripitch.models import (
     ShortList, CriteriaItem,
     SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
     SubCriteriaItemFieldProperties, ValidatorType,
-    SubCriteriaItemValidators, FileExtension,
-    SubCriteriaItemFileExtension)
+    SubCriteriaItemValidators)
 
 
 admin.site.register(ShortList)
 admin.site.register(SubCriteriaItemChoice)
 admin.site.register(ValidatorType)
 admin.site.register(SubCriteriaItemValidators)
-admin.site.register(FileExtension)
-admin.site.register(SubCriteriaItemFileExtension)
 
 
 @admin.register(CriteriaItem)
