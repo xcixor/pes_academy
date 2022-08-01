@@ -60,13 +60,26 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
      * Add a click event listener to the button.
      */
     formNavigationBtn.addEventListener("click", () => {
-        /**
-         * Get the value of the step.
-         */
-        const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
-        /**
-         * Call the function to navigate to the target form step.
-         */
-        navigateToFormStep(stepNumber);
+        var formSection = $(formNavigationBtn).parent().parent();
+        var isValid = validateSection(formSection);
+        if(isValid){
+            const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
+            navigateToFormStep(stepNumber);
+        }else {
+            // $(formNavigationBtn).attr('disabled', 'disabled').css('background-color', '#8ad2b1');
+            return;
+        }
     });
 });
+
+function validateSection(formSection){
+    let isValid = true;
+    let inputs = formSection.find("input[type=text]");
+    for (i = 0; i < inputs.length; i++) {
+        if($(inputs[i]).val() == ""){
+            $(inputs[i]).css('border-color', 'red');
+            isValid = false;
+        }
+    }
+    return isValid;
+}

@@ -20,14 +20,14 @@ h2 {
 }
 .button {
     padding: 0.7rem 1.5rem;
-    border: 1px solid var(--bg-secondary);
     background-color: var(--bg-secondary);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    outline: 0;
+    border: none;
 }
 .submit-btn {
-    border: 1px solid #0e9594;
     background-color: #0e9594;
 }
 .mt-3 {
