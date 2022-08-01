@@ -1,4 +1,4 @@
-from agripitch.models import SubCriteriaItem, SubCriteriaItemResponse
+from agripitch.models import SubCriteriaItemResponse, SubCriteriaItem
 
 
 def get_sub_criteria_item_by_label(label):

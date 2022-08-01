@@ -3,15 +3,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic.detail import SingleObjectMixin
 from django.views import View
-from django.views.generic import DetailView, FormView
+from django.views.generic import DetailView
 from django.urls import reverse
-from django.views.generic.edit import FormMixin
 from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
 from agripitch.models import (
     SubCriteriaItemResponse, SubCriteriaItem, CriteriaItem)
 from agripitch.utils import get_sub_criteria_item_by_label
-from agripitch.forms import DynamicForm
+from agripitch.models import DynamicForm
 
 
 def get_application_form(sub_criteria_items):
