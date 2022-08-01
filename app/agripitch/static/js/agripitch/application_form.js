@@ -72,7 +72,7 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
     });
 });
 
-$('.form-input').on('change', evt =>{
+$('.form-input-validate').on('change', evt =>{
     let formSection = $(evt.target).parent().parent().parent();
     let actionButtons = formSection.find(".btn-navigate-form-step");
     for (let i = 0; i < actionButtons.length; i++) {
@@ -84,7 +84,7 @@ $('.form-input').on('change', evt =>{
 
 function validateSection(formSection){
     let isValid = true;
-    let inputs = formSection.find(".form-input");
+    let inputs = formSection.find(".form-input-validate");
     for (i = 0; i < inputs.length; i++) {
         if($(inputs[i]).val() == ""){
             $(inputs[i]).css('border-color', 'red');
