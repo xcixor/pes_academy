@@ -79,10 +79,11 @@ class DynamicForm(forms.Form):
                     for choice in instance.choices.all()]
                 self.fields[instance.label] = forms.CharField(
                     **properties, widget=forms.RadioSelect(choices=choices))
-                # self.initial[instance.label] = response.value
             elif instance.type == 'file':
                 self.fields[instance.label] = forms.FileField(**properties)
             if not instance.type == 'file' and response:
+                self.initial[instance.label] = response.value
+            if response:
                 self.initial[instance.label] = response.value
             for property in instance.properties.all():
                 self.fields[instance.label].widget.attrs[property.name] = property.value

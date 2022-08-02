@@ -68,7 +68,6 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
 });
 
 $('.form-input-validate').on('change', evt =>{
-    console.log()
     let formSection = $(evt.target).parent().parent().parent();
     let actionButtons = formSection.find(".btn-navigate-form-step");
     for (let i = 0; i < actionButtons.length; i++) {
@@ -79,29 +78,55 @@ $('.form-input-validate').on('change', evt =>{
     if(evt.target.type === 'file'){
         $(`label[for="id_${evt.target.name}"]`).html(evt.target.name)
     }
+    if(evt.target.type === 'radio'){
+        var radios = document.getElementsByName(evt.target.name);
+        let parentId = $(radios).parent().parent().parent().attr('id');
+        let parentLabel = $(`label[for="${parentId}_0"]`)[0];
+        $(parentLabel).css('color', 'unset')
+    }
 });
 
 function validateSection(formSection){
     let isValid = true;
     let inputs = formSection.find(".form-input-validate");
     for (i = 0; i < inputs.length; i++) {
-        if($(inputs[i]).val() == ""){
+        if($(inputs[i]).val() == "" && inputs[i].type != 'radio' && inputs[i].type){
             $(inputs[i]).css('border-color', 'red');
             $(`label[for="id_${inputs[i].name}"]`).css('color', 'red');
             isValid = false;
         }
+        if (inputs[i].type === 'radio'){
+            isValid = validateRadios(inputs[i].name)
+        }
     }
+
     let file_inputs = formSection.find("input[type=file]");
     for (i = 0; i < file_inputs.length; i++) {
         if(file_inputs[i].files[0]){
-            console.log()
             if(file_inputs[i].files[0].size > $(file_inputs[i]).attr('max_size')){
                 $(`label[for="id_${file_inputs[i].name}"]`).css('color', 'red');
                 let max_size = parseInt($(file_inputs[i]).attr('max_size')) / 1048576
                 $(`label[for="id_${file_inputs[i].name}"]`).append(` is too big, maximum size should be ${max_size}MB!`)
                 this.value = "";
-            };
+                isValid = false;
+            };var formValid = false;
         }
     }
     return isValid;
+}
+
+function validateRadios(name){
+    var radios = document.getElementsByName(name);
+    var formValid = false;
+    var i = 0;
+    while (!formValid && i < radios.length) {
+        if (radios[i].checked) formValid = true;
+        i++;
+    }
+    if (!formValid) {
+        let parentId = $(radios).parent().parent().parent().attr('id');
+        let parentLabel = $(`label[for="${parentId}_0"]`)[0];
+        $(parentLabel).css('color', 'red')
+    }
+    return formValid;
 }
