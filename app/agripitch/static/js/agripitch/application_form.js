@@ -75,7 +75,7 @@ $('.form-input-validate').on('change', evt =>{
         $(actionButtons[i]).removeAttr('disabled').css('background-color', '#14A562');
         $(evt.target).css('border-color', '#ccc');
         $(`label[for="id_${evt.target.name}"]`).css('color', 'unset');
-    }
+    }evt.target.name
     if(evt.target.type === 'file'){
         $(`label[for="id_${evt.target.name}"]`).html(evt.target.name)
     }
