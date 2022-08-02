@@ -33,6 +33,12 @@ h2 {
 .form-input {outline:0;}
 .form-input:focus {outline:none!important;}
 
+.form-radio {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .submit-btn {
     background-color: #0e9594;
 }

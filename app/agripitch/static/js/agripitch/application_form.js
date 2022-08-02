@@ -52,13 +52,8 @@ const navigateToFormStep = (stepNumber) => {
         }
     }
 };
-/**
- * Select all form navigation buttons, and loop through them.
- */
+
 document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn) => {
-    /**
-     * Add a click event listener to the button.
-     */
     formNavigationBtn.addEventListener("click", () => {
         var formSection = $(formNavigationBtn).parent().parent();
         var isValid = validateSection(formSection);
@@ -91,6 +86,20 @@ function validateSection(formSection){
             $(`label[for="id_${inputs[i].name}"]`).css('color', 'red');
             isValid = false;
         }
+    }
+    let file_inputs = formSection.find("input[type=file]");
+    for (i = 0; i < file_inputs.length; i++) {
+        if(file_inputs[i].files[0]){
+            console.log()
+            if(file_inputs[i].files[0].size > $(file_inputs[i]).attr('max_size')){
+                // alert("File is too big!");
+                $(`label[for="id_${file_inputs[i].name}"]`).css('color', 'red');
+                let max_size = parseInt($(file_inputs[i]).attr('max_size')) / 1048576
+                $(`label[for="id_${file_inputs[i].name}"]`).append(` is too big, maximum size should be ${max_size}MB!`)
+                this.value = "";
+            };
+        }
+
     }
     return isValid;
 }
