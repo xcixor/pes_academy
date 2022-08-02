@@ -53,6 +53,7 @@ class DynamicForm(forms.Form):
 
     def __init__(self, sub_criteria_items, *args, **kwargs):
         super(DynamicForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ""
         for instance in sub_criteria_items:
             properties = {}
             for validator in instance.validators.all():
@@ -60,6 +61,8 @@ class DynamicForm(forms.Form):
             response = get_sub_criteria_item_response_if_exist(instance)
             if instance.type == 'charfield':
                 self.fields[instance.label] = forms.CharField(**properties)
+            if instance.type == 'numberfield':
+                self.fields[instance.label] = forms.IntegerField(**properties)
             elif instance.type == 'textfield':
                 self.fields[instance.label] = forms.CharField(
                     **properties,
@@ -70,6 +73,13 @@ class DynamicForm(forms.Form):
                     for choice in instance.choices.all()]
                 self.fields[instance.label] = forms.ChoiceField(**properties)
                 self.fields[instance.label].choices = initial_choices
+            elif instance.type == 'radiofield':
+                choices = [
+                    (choice.choice, choice.choice)
+                    for choice in instance.choices.all()]
+                self.fields[instance.label] = forms.CharField(
+                    **properties, widget=forms.RadioSelect(choices=choices))
+                # self.initial[instance.label] = response.value
             elif instance.type == 'file':
                 self.fields[instance.label] = forms.FileField(**properties)
             if not instance.type == 'file' and response:
@@ -87,10 +97,12 @@ class SubCriteriaItem(models.Model):
     a = [1, 2, 3, 4]
 
     FIELD_CHOICES = [
-        ('charfield', 'Charfield'),
-        ('textfield', 'Textfield'),
-        ('choicefield', 'ChoiceField'),
-        ('file', 'FileField')
+        ('charfield', 'CharInput'),
+        ('textfield', 'TextInput'),
+        ('choicefield', 'ChoiceInput'),
+        ('file', 'FileInput'),
+        ('numberfield', 'NumberInput'),
+        ('radiofield', 'RadioInput')
     ]
 
     label = models.CharField(max_length=400)
