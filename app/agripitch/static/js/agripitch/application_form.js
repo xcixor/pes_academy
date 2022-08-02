@@ -68,12 +68,16 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
 });
 
 $('.form-input-validate').on('change', evt =>{
+    console.log()
     let formSection = $(evt.target).parent().parent().parent();
     let actionButtons = formSection.find(".btn-navigate-form-step");
     for (let i = 0; i < actionButtons.length; i++) {
         $(actionButtons[i]).removeAttr('disabled').css('background-color', '#14A562');
         $(evt.target).css('border-color', '#ccc');
         $(`label[for="id_${evt.target.name}"]`).css('color', 'unset');
+    }
+    if(evt.target.type === 'file'){
+        $(`label[for="id_${evt.target.name}"]`).html(evt.target.name)
     }
 });
 
@@ -92,14 +96,12 @@ function validateSection(formSection){
         if(file_inputs[i].files[0]){
             console.log()
             if(file_inputs[i].files[0].size > $(file_inputs[i]).attr('max_size')){
-                // alert("File is too big!");
                 $(`label[for="id_${file_inputs[i].name}"]`).css('color', 'red');
                 let max_size = parseInt($(file_inputs[i]).attr('max_size')) / 1048576
                 $(`label[for="id_${file_inputs[i].name}"]`).append(` is too big, maximum size should be ${max_size}MB!`)
                 this.value = "";
             };
         }
-
     }
     return isValid;
 }
