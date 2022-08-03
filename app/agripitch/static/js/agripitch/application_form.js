@@ -68,7 +68,7 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
 });
 
 $('.form-input-validate').on('change', evt =>{
-    let formSection = $(evt.target).parent().parent().parent();
+    let formSection = $(evt.target).closest(".form-step");
     let actionButtons = formSection.find(".btn-navigate-form-step");
     for (let i = 0; i < actionButtons.length; i++) {
         $(actionButtons[i]).removeAttr('disabled').css('background-color', '#14A562');
@@ -80,8 +80,7 @@ $('.form-input-validate').on('change', evt =>{
     }
     if(evt.target.type === 'radio'){
         var radios = document.getElementsByName(evt.target.name);
-        let parentId = $(radios).parent().parent().parent().attr('id');
-        let parentLabel = $(`label[for="${parentId}_0"]`)[0];
+        let parentLabel = $(`label[for="${getRadiosParent(radios).attr('id')}_0"]`)[0];
         $(parentLabel).css('color', 'unset')
     }
 });
@@ -109,7 +108,7 @@ function validateSection(formSection){
                 $(`label[for="id_${file_inputs[i].name}"]`).append(` is too big, maximum size should be ${max_size}MB!`)
                 this.value = "";
                 isValid = false;
-            };var formValid = false;
+            };
         }
     }
     return isValid;
@@ -124,9 +123,12 @@ function validateRadios(name){
         i++;
     }
     if (!formValid) {
-        let parentId = $(radios).parent().parent().parent().attr('id');
-        let parentLabel = $(`label[for="${parentId}_0"]`)[0];
+        let parentLabel = $(`label[for="${getRadiosParent(radios).attr('id')}_0"]`)[0];
         $(parentLabel).css('color', 'red')
     }
     return formValid;
+}
+
+function getRadiosParent(radios){
+    return $(radios).closest("ul")
 }
