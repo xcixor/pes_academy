@@ -85,12 +85,17 @@ class DynamicForm(forms.Form):
                     **properties, widget=forms.RadioSelect(choices=choices))
             elif instance.type == 'file':
                 self.fields[instance.label] = forms.FileField(**properties)
+
+            for property in instance.properties.all():
+                self.fields[instance.label].widget.attrs[property.name] = property.value
             if not instance.type == 'file' and response:
                 self.initial[instance.label] = response.value
             else:
                 self.initial[instance.label] = response.document
-            for property in instance.properties.all():
-                self.fields[instance.label].widget.attrs[property.name] = property.value
+                if "class" in self.fields[instance.label].widget.attrs:
+                    updated_class_value = self.fields[instance.label].widget.attrs['class'].replace(
+                        "form-input-validate", "")
+                    self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip()
 
 
 def get_form(instance):
