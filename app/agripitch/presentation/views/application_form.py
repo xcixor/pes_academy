@@ -38,7 +38,6 @@ class GetApplicationFormView(DetailView):
 
 
 def process_inputs(inputs, application):
-    inputs.pop('csrfmiddlewaretoken')
     for key, value in inputs.items():
         if value[0] and not value[0].isspace():
             sub_criteria_item = get_sub_criteria_item_by_label(key)
@@ -64,7 +63,9 @@ class PostApplicationFormView(SingleObjectMixin, View):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = DynamicForm(SubCriteriaItem.objects.all(), request.POST)
+        form = DynamicForm(
+            SubCriteriaItem.objects.all(),
+            request.POST, request.FILES)
         if not form.is_valid():
             form_errors = json.loads(form.errors.as_json())
             context = {}
@@ -72,6 +73,9 @@ class PostApplicationFormView(SingleObjectMixin, View):
             context['form_errors'] = form_errors
             context['criteria'] = CriteriaItem.objects.all()
             return render(request, self.template_name, context)
+        data = dict(request.POST)
+        data.pop('csrfmiddlewaretoken')
+        process_inputs(data, request.user.application)
         return redirect(
             reverse(
                 'agripitch:application',
