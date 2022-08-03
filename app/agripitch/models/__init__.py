@@ -42,8 +42,12 @@ class CriteriaItem(models.Model):
 def get_sub_criteria_item_response_if_exist(sub_criteria_item):
     response = None
     try:
-        response = SubCriteriaItemResponse.objects.get(
-            sub_criteria_item=sub_criteria_item)
+        if sub_criteria_item.type == 'file':
+            response = SubCriteriaItemDocumentResponse.objects.get(
+                sub_criteria_item=sub_criteria_item)
+        else:
+            response = SubCriteriaItemResponse.objects.get(
+                sub_criteria_item=sub_criteria_item)
     except SubCriteriaItemResponse.DoesNotExist:
         pass
     return response
@@ -83,8 +87,8 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label] = forms.FileField(**properties)
             if not instance.type == 'file' and response:
                 self.initial[instance.label] = response.value
-            if response:
-                self.initial[instance.label] = response.value
+            else:
+                self.initial[instance.label] = response.document
             for property in instance.properties.all():
                 self.fields[instance.label].widget.attrs[property.name] = property.value
 
@@ -184,17 +188,20 @@ class SubCriteriaItemResponse(models.Model):
     value = models.TextField()
 
 
-class SubCriteriaDocumentPrompt(models.Model):
+class SubCriteriaItemDocumentResponse(models.Model):
 
-    label = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     document = models.FileField(
         upload_to=image_directory_path)
-    sub_criteria = models.ForeignKey(
+    sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='sub_criteria_documents')
+        related_name='sub_criteria_item_documents')
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE,
         related_name='application_documents')
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class SubCriteriaInputFieldPrompt(models.Model):

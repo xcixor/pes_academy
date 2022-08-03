@@ -8,9 +8,9 @@ from django.urls import reverse
 from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
 from agripitch.models import (
-    SubCriteriaItemResponse, SubCriteriaItem, CriteriaItem)
+    SubCriteriaItemResponse, SubCriteriaItem, CriteriaItem,
+    DynamicForm, SubCriteriaItemDocumentResponse)
 from agripitch.utils import get_sub_criteria_item_by_label
-from agripitch.models import DynamicForm
 
 
 def get_application_form(sub_criteria_items):
@@ -51,7 +51,16 @@ def process_inputs(inputs, application):
 
 
 def process_files(files, application):
-    pass
+    for key, value in files.items():
+        sub_criteria_item = get_sub_criteria_item_by_label(key)
+        SubCriteriaItemDocumentResponse.objects.update_or_create(
+            application=application,
+            sub_criteria_item=sub_criteria_item,
+            defaults={
+                'name': key,
+                'document': value[0]
+            }
+        )
 
 
 class PostApplicationFormView(SingleObjectMixin, View):
@@ -76,6 +85,7 @@ class PostApplicationFormView(SingleObjectMixin, View):
         data = dict(request.POST)
         data.pop('csrfmiddlewaretoken')
         process_inputs(data, request.user.application)
+        process_files(dict(request.FILES), request.user.application)
         return redirect(
             reverse(
                 'agripitch:application',

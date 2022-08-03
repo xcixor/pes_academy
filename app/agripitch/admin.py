@@ -4,14 +4,12 @@ from agripitch.forms import CustomSubCriteriaItemAdminForm
 from agripitch.models import (
     ShortList, CriteriaItem,
     SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
-    SubCriteriaItemFieldProperties, ValidatorType,
-    SubCriteriaItemValidators)
+    SubCriteriaItemFieldProperties, SubCriteriaItemDocumentResponse)
 
 
 admin.site.register(ShortList)
 admin.site.register(SubCriteriaItemChoice)
-admin.site.register(ValidatorType)
-admin.site.register(SubCriteriaItemValidators)
+admin.site.register(SubCriteriaItemDocumentResponse)
 
 
 @admin.register(CriteriaItem)
