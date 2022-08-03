@@ -42,14 +42,20 @@ class CriteriaItem(models.Model):
 def get_sub_criteria_item_response_if_exist(sub_criteria_item):
     response = None
     try:
-        if sub_criteria_item.type == 'file':
-            response = SubCriteriaItemDocumentResponse.objects.get(
-                sub_criteria_item=sub_criteria_item)
-        else:
-            response = SubCriteriaItemResponse.objects.get(
-                sub_criteria_item=sub_criteria_item)
+        response = SubCriteriaItemResponse.objects.get(
+            sub_criteria_item=sub_criteria_item)
     except SubCriteriaItemResponse.DoesNotExist:
-        pass
+        response = None
+    return response
+
+
+def get_sub_criteria_item_document_response_if_exist(sub_criteria_item):
+    response = None
+    try:
+        response = SubCriteriaItemDocumentResponse.objects.get(
+            sub_criteria_item=sub_criteria_item)
+    except SubCriteriaItemDocumentResponse.DoesNotExist:
+        response = None
     return response
 
 
@@ -62,7 +68,6 @@ class DynamicForm(forms.Form):
             properties = {}
             for validator in instance.validators.all():
                 properties[validator.validator.name] = validator.value
-            response = get_sub_criteria_item_response_if_exist(instance)
             if instance.type == 'charfield':
                 self.fields[instance.label] = forms.CharField(**properties)
             if instance.type == 'numberfield':
@@ -88,14 +93,20 @@ class DynamicForm(forms.Form):
 
             for property in instance.properties.all():
                 self.fields[instance.label].widget.attrs[property.name] = property.value
-            if not instance.type == 'file' and response:
-                self.initial[instance.label] = response.value
-            else:
-                self.initial[instance.label] = response.document
-                if "class" in self.fields[instance.label].widget.attrs:
-                    updated_class_value = self.fields[instance.label].widget.attrs['class'].replace(
-                        "form-input-validate", "")
-                    self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip()
+            if instance.type == 'file':
+                response = get_sub_criteria_item_document_response_if_exist(
+                    instance)
+                if response:
+                    self.initial[instance.label] = response.document
+                    if "class" in self.fields[instance.label].widget.attrs:
+                        updated_class_value = self.fields[instance.label].widget.attrs['class'].replace(
+                            "form-input-validate", "")
+                        self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
+                        )
+            elif instance.type != 'file':
+                response = get_sub_criteria_item_response_if_exist(instance)
+                if response:
+                    self.initial[instance.label] = response.value
 
 
 def get_form(instance):
