@@ -63,6 +63,38 @@ def process_files(files, application):
         )
 
 
+def validate_files(files):
+    # {'Name': [{'message': 'This field is required.', 'code': 'required'}]}
+    is_valid = False
+    messages = {}
+    for key, value in files.items():
+        sub_criteria_item = get_sub_criteria_item_by_label(key)
+        property_labels = [
+            item.name for item in sub_criteria_item.properties.all()]
+        if 'max_size' in property_labels:
+            validation = validate_file_max_size(value[0], sub_criteria_item)
+            is_valid = validation['status']
+            messages[key] = [
+                {'message': validation['message'], 'code': validation['code']}]
+    return is_valid, messages
+
+
+def validate_file_max_size(file, sub_criteria_item):
+    is_valid = True
+    file_size = file.size
+    max_size_in_kb = int(
+        sub_criteria_item.properties.all().get(name='max_size').value)
+    if file_size > max_size_in_kb:
+        is_valid = False
+    if not is_valid:
+        max_size = max_size_in_kb / 1048576
+        return {
+            'status': is_valid,
+            'message': f"{sub_criteria_item.label} is too big, maximum size should be {max_size}MB!",
+            'code': 'max_size'}
+    return {'status': is_valid, 'message': "Valid size", 'code': 'max_size'}
+
+
 class PostApplicationFormView(SingleObjectMixin, View):
 
     template_name = 'agripitch/application_form.html'
@@ -75,8 +107,14 @@ class PostApplicationFormView(SingleObjectMixin, View):
         form = DynamicForm(
             SubCriteriaItem.objects.all(),
             request.POST, request.FILES)
-        if not form.is_valid():
+        dict_files = dict(request.FILES)
+        valid_files = True
+        if dict_files:
+            valid_files, messages = validate_files(dict_files)
+        if not form.is_valid() or not valid_files:
             form_errors = json.loads(form.errors.as_json())
+            form_errors.update(messages)
+            print(form_errors)
             context = {}
             context['form'] = form
             context['form_errors'] = form_errors
@@ -85,7 +123,7 @@ class PostApplicationFormView(SingleObjectMixin, View):
         data = dict(request.POST)
         data.pop('csrfmiddlewaretoken')
         process_inputs(data, request.user.application)
-        process_files(dict(request.FILES), request.user.application)
+        process_files(dict_files, request.user.application)
         return redirect(
             reverse(
                 'agripitch:application',
