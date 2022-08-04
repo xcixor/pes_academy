@@ -107,6 +107,11 @@ class DynamicForm(forms.Form):
                 response = get_sub_criteria_item_response_if_exist(instance)
                 if response:
                     self.initial[instance.label] = response.value
+            inputs_class = {'class': 'form-input'}
+            if "class" not in self.fields[instance.label].widget.attrs.keys():
+                self.fields[instance.label].widget.attrs.update(inputs_class)
+            else:
+                self.fields[instance.label].widget.attrs['class'] += " form-input"
 
 
 def get_form(instance):
@@ -175,8 +180,8 @@ class SubCriteriaItemFieldProperties(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='properties')
-    name = models.CharField(max_length=40)
-    value = models.CharField(max_length=40)
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=400)
 
     def __str__(self) -> str:
         return self.value

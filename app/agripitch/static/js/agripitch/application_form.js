@@ -67,7 +67,7 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
     });
 });
 
-$('.form-input-validate').on('change', evt =>{
+$('.form-input').on('change', evt =>{
     let formSection = $(evt.target).closest(".form-step");
     let actionButtons = formSection.find(".btn-navigate-form-step");
     for (let i = 0; i < actionButtons.length; i++) {
