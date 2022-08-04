@@ -113,7 +113,7 @@
                                 <h2>{% trans "Ongoing Applications" %}</h2>
                                 <div class="col-md-12">
                                     {% if user.application %}
-                                    <button><a href="/applications/{{user.application.call_to_action.slug}}/">{% trans "Your Application" %}</a></button>
+                                    <button><a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}">{% trans "Your Application" %}</a></button>
                                     {% else %}
                                     <button><a href="{{user.email|get_application_url}}">{% trans "Your Application" %}</a></button>
                                     {% endif %}
@@ -197,7 +197,7 @@
                             {% if user.application.stage == 'step_four' %}
                             <h4><b>Application Closed</b></h4>
                             {% else %}
-                            <a href="/applications/{{user.application.call_to_action.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
+                            <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}" class="btn btn-primary">{% trans "Continue" %}</a>
                             {% endif %}
                           {% else %}
 
@@ -206,7 +206,7 @@
                             {% if application.stage == 'step_four' %}
                              <h4><b>Application Closed</b></h4>
                              {% else %}
-                            <a href="/applications/application.slug}}/" class="btn btn-primary">{% trans "Continue" %}</a>
+                            <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}" class="btn btn-primary">{% trans "Continue" %}</a>
                             {% endif %}
                           {% else %}
                           <a href="{% url 'application:index' %}" class="btn btn-primary">{% trans "Start Application" %}</a>

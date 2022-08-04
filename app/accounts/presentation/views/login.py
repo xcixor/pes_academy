@@ -20,7 +20,7 @@ class UserLoginView(LoginView):
         application, msg = get_application(user)
         if application:
             if application.stage == 'step_one':
-                next_url = f'/applications/{application.call_to_action.slug}/'
+                next_url = f'/agripitch/{application.call_to_action.slug}/application/'
                 return next_url
         next_url = self.request.GET.get("next", None)
         if next_url:
