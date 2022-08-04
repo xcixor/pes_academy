@@ -10,6 +10,7 @@ from application.models import CallToAction, Application
 from agripitch.models import (
     SubCriteriaItemResponse, SubCriteriaItem, CriteriaItem,
     DynamicForm, SubCriteriaItemDocumentResponse)
+from django.http import JsonResponse
 from agripitch.utils import get_sub_criteria_item_by_label
 
 
@@ -64,8 +65,7 @@ def process_files(files, application):
 
 
 def validate_files(files):
-    # {'Name': [{'message': 'This field is required.', 'code': 'required'}]}
-    is_valid = False
+    is_valid = True
     messages = {}
     for key, value in files.items():
         sub_criteria_item = get_sub_criteria_item_by_label(key)
@@ -104,26 +104,47 @@ class PostApplicationFormView(SingleObjectMixin, View):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = DynamicForm(
-            SubCriteriaItem.objects.all(),
-            request.POST, request.FILES)
+        data = dict(request.POST)
+        data.pop('csrfmiddlewaretoken', None)
         dict_files = dict(request.FILES)
+
+        is_ajax = request.META.get(
+            'HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+        if is_ajax and data:
+            # assumption: ajax requests only post one item per request
+            first_value = next(iter(data.keys()))
+            sub_criteria_item = get_sub_criteria_item_by_label(first_value)
+            form = DynamicForm(
+                [sub_criteria_item],
+                request.POST, request.FILES)
+        elif is_ajax and dict_files:
+            form = DynamicForm([], request.FILES)
+        elif not is_ajax:
+            form = DynamicForm(
+                SubCriteriaItem.objects.all(),
+                request.POST, request.FILES)
+
         valid_files = True
+        messages = {}
         if dict_files:
             valid_files, messages = validate_files(dict_files)
+
         if not form.is_valid() or not valid_files:
             form_errors = json.loads(form.errors.as_json())
             form_errors.update(messages)
-            print(form_errors)
             context = {}
             context['form'] = form
             context['form_errors'] = form_errors
             context['criteria'] = CriteriaItem.objects.all()
+            if is_ajax:
+                return JsonResponse(
+                    form_errors, status=400)
             return render(request, self.template_name, context)
-        data = dict(request.POST)
-        data.pop('csrfmiddlewaretoken')
         process_inputs(data, request.user.application)
         process_files(dict_files, request.user.application)
+        if is_ajax:
+            return JsonResponse(
+                data, status=201)
         return redirect(
             reverse(
                 'agripitch:application',

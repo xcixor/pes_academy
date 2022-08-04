@@ -51,6 +51,7 @@
                         <!-- Step Wise Form Content -->
                         <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" action="{% url 'agripitch:application' slug=user.application.slug %}" novalidate>
                             {% csrf_token %}
+                            <input type="hidden" id="currentApplication" value="{{request.user.application.slug}}">
                             <!-- Step 1 Content -->
                             <section id="step-1" class="form-step">
                                 <h2 class="font-normal">{{criteria|first}}</h2>

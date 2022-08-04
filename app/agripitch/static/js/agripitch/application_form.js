@@ -111,6 +111,19 @@ function validateSection(formSection){
             };
         }
     }
+    if(isValid){
+        for (i = 0; i < inputs.length; i++) {
+            console.log(inputs[i].type)
+            if(inputs[i].type != 'file'){
+                saveDraftData(inputs[i].name, $(inputs[i]).val())
+            }
+        }
+        for (i = 0; i < file_inputs.length; i++) {
+            if($(file_inputs[i])[0].files[0]){
+                saveDraftData(file_inputs[i].name, $(file_inputs[i])[0].files[0])
+            }
+        }
+    }
     return isValid;
 }
 
@@ -131,4 +144,33 @@ function validateRadios(name){
 
 function getRadiosParent(radios){
     return $(radios).closest("ul")
+}
+
+function saveDraftData(field, value) {
+    let application = $('#currentApplication').val();
+    var url = `/agripitch/${application}/application/`;
+    var CSRFToken = $('input[name=csrfmiddlewaretoken]').val();
+
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('X-CSRFToken', CSRFToken);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('enctype', 'multipart/form-data');
+
+    xhr.addEventListener('readystatechange', function(e) {
+        if (xhr.readyState === 4 && xhr.status == 201) {
+            var response = JSON.parse(xhr.response);
+            console.log(response)
+        }
+        else if (xhr.readyState === 4 && xhr.status === 400) {
+            var errors = JSON.parse(xhr.response);
+            Object.values(errors).forEach(val => {
+                console.log(val);
+            });
+        }
+    });
+    formData.append(field, value);
+    xhr.send(formData);
 }
