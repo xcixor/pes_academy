@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% block body_id %}agri-window{% endblock %}
+{% block body_id %}register{% endblock %}
 {% block content %}
 
   <form action="/accounts/register/" method="post">
   {% csrf_token %}
-      <div class="row pb-5 mb-3">
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
-          <div class="card form-white">
-            <div class="card-body">
-                <h2 class="font-weight-bold mb-5 mt-5 text-center h1 text-white"><i class="fa fa-user-plus mr-3"></i>{% trans "Register" %}</h2>
-                <br>
+      
+    <div class="container login">
+      <div class="row header">
+        <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="agri-logo">
+      </div>
+      <h2 class="font-weight-bold mb-5 mt-5 text-center h1 login-header"> &nbsp; <i class="fa fa-user-plus mr-3" style="color: #14A562;"></i>{% trans "Register" %}</h2>
                 <!--Body-->
                 <div class="error-container">
                   {% if form.errors %}
@@ -79,13 +79,16 @@
                         </ul>
                 </details>
                 <hr>
-                <p>{% trans "By creating an account you agree to our" %}<a href="#" style="color: #00FFFF;"> {% trans "Terms & Privacy" %}</a>.</p>
+                <p>{% trans "By creating an account you agree to our" %}<a href="#" style="color: #455D8D;"> {% trans "Terms & Privacy" %}</a>.</p>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn registerbtn">{% trans "Register" %}</button>
                 </div>
 
                 <div class="signin">
-                  <p style="color: #a91917;">{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}" style="color: #4b6386;">{% trans "Sign in" %}</a>.</p>
+                  <p>{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}" style="color: #455D8D;">{% trans "Sign in" %}</a>.</p>
+                </div>
+            </div>
+  </form>
 
 {% endblock %}
