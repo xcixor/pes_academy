@@ -27,6 +27,9 @@ class ShortList(models.Model):
     def __str__(self) -> str:
         return self.label
 
+    class Meta:
+        verbose_name_plural = "1. Shortlists"
+
 
 class CriteriaItem(models.Model):
 
@@ -37,6 +40,9 @@ class CriteriaItem(models.Model):
 
     def __str__(self) -> str:
         return self.label
+
+    class Meta:
+        verbose_name_plural = "2. Criteria Items"
 
 
 def get_sub_criteria_item_response_if_exist(sub_criteria_item):
@@ -148,6 +154,7 @@ class SubCriteriaItem(models.Model):
 
     class Meta:
         ordering = ('position_in_form',)
+        verbose_name_plural = "3. Form Questions"
 
 
 class ValidatorType(models.Model):
