@@ -148,10 +148,7 @@ class SubCriteriaItem(models.Model):
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
     position_in_form = models.CharField(
         max_length=3, default=0)
-
-    # @property
-    # def input(self):
-    #     return get_form([self])
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.label
@@ -217,6 +214,7 @@ class SubCriteriaItemChoice(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='choices')
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.choice

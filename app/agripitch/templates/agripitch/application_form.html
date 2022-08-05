@@ -59,7 +59,17 @@
                                 <div class="mt-3">
                                     {% with criteria|first as first_criteria  %}
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
-                                    <div>{{sub_criteria|get_form:request.user.application}}</div>
+                                    <div>
+                                        {{sub_criteria|get_form:request.user.application}}
+                                        <p class="small muted">{{sub_criteria.description}}</p>
+                                        <ul>
+                                        {% for choice in sub_criteria.choices.all %}
+                                        {% if choice.description %}
+                                            <li>{{choice.description}}</li>
+                                        {% endif %}
+                                        {% endfor%}
+                                        </ul>
+                                    </div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
                                     {% for error in errors %}
@@ -80,7 +90,17 @@
                                 <h2 class="font-normal">{{item}}</h2>
                                 <div class="mt-3">
                                     {% for sub_criteria in item.sub_criteria.all %}
-                                    <div>{{sub_criteria|get_form:request.user.application}}</div>
+                                    <div>
+                                        {{sub_criteria|get_form:request.user.application}}
+                                        <p class="small muted">{{sub_criteria.description}}</p>
+                                        <ul>
+                                        {% for choice in sub_criteria.choices.all %}
+                                        {% if choice.description %}
+                                            <li>{{choice.description}}</li>
+                                        {% endif %}
+                                        {% endfor%}
+                                        </ul>
+                                    </div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
                                     {% for error in errors %}
