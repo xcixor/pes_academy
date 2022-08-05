@@ -49,9 +49,9 @@
                             </li>
                         </ul>
                         <!-- Step Wise Form Content -->
-                        <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" action="{% url 'agripitch:application' slug=user.application.slug %}" novalidate>
+                        <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" novalidate>
                             {% csrf_token %}
-                            <input type="hidden" id="currentApplication" value="{{request.user.application.slug}}">
+                            <input type="hidden" id="currentApplication" value="{{competition.slug}}">
                             <!-- Step 1 Content -->
                             <section id="step-1" class="form-step">
                                 <h2 class="font-normal">{{criteria|first}}</h2>
@@ -80,7 +80,7 @@
                                 <h2 class="font-normal">{{item}}</h2>
                                 <div class="mt-3">
                                     {% for sub_criteria in item.sub_criteria.all %}
-                                    <div>{{sub_criteria.input}}</div>
+                                    <div>{{sub_criteria|get_form:request.user.application}}</div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
                                     {% for error in errors %}
@@ -98,11 +98,10 @@
                             {% endfor %}
                             <!-- Step 3 Content, default hidden on page load. -->
                             <section id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}" class="form-step d-none">
-                                <h2 class="font-normal">Personal Details</h2>
-                                <div class="mt-3">
-                                    Step 3 input fields goes here..
+                                <div class="mt-3 mb-5">
+                                    <h4><strong>Thank you for applying to the {{competition.tagline}}. Please save your changes.</strong></h4>
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-5">
                                     <button class="button btn-navigate-form-step" type="button" step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
                                     <button class="button submit-btn" type="submit">Save</button>
                                 </div>

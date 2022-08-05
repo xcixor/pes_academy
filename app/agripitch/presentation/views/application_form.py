@@ -147,10 +147,7 @@ class PostApplicationFormView(SingleObjectMixin, View):
         if is_ajax:
             return JsonResponse(
                 data, status=201)
-        return redirect(
-            reverse(
-                'agripitch:application',
-                kwargs={'slug': self.object.slug}))
+        return redirect(reverse('application:index'))
 
 
 class ApplicationFormView(LoginRequiredMixin, View):

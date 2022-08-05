@@ -237,6 +237,7 @@ class SubCriteriaItemResponse(models.Model):
 
     class Meta:
         unique_together = [['sub_criteria_item', 'application']]
+        verbose_name_plural = '4 Responses'
 
 
 class SubCriteriaItemDocumentResponse(models.Model):
@@ -253,6 +254,10 @@ class SubCriteriaItemDocumentResponse(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    class Meta:
+        unique_together = [['sub_criteria_item', 'application']]
+        verbose_name_plural = '5 Documents'
 
 
 class SubCriteriaInputFieldPrompt(models.Model):
