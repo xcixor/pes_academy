@@ -9,8 +9,16 @@ from agripitch.models import (
 
 
 admin.site.register(ShortList)
-admin.site.register(SubCriteriaItemResponse)
-admin.site.register(SubCriteriaItemDocumentResponse)
+
+
+@admin.register(SubCriteriaItemResponse)
+class SubCriteriaItemResponseAdmin(admin.ModelAdmin):
+    list_display = ['sub_criteria_item', 'application', 'value']
+
+
+@admin.register(SubCriteriaItemDocumentResponse)
+class SubCriteriaItemDocumentResponseAdmin(admin.ModelAdmin):
+    list_display = ['sub_criteria_item', 'application', 'document']
 
 
 @admin.register(CriteriaItem)
