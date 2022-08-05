@@ -1,5 +1,6 @@
 from django.contrib import admin
-from agripitch.forms import CustomSubCriteriaItemAdminForm
+from agripitch.forms import (
+    CustomSubCriteriaItemAdminForm)
 
 from agripitch.models import (
     ShortList, CriteriaItem,
