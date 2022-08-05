@@ -184,11 +184,24 @@ class SubCriteriaItemValidators(models.Model):
 
 class SubCriteriaItemFieldProperties(models.Model):
 
+    NAME_CHOICES = (
+        ('class', 'class'),
+        ('accept', 'accept'),
+        ('max_size', 'max_size')
+    )
+    VALUE_CHOICES = (
+        ('form-input-validate', 'form-input-validate'),
+        ('form-radio', 'form-radio'),
+        ('form-input-validate form-radio', 'form-input-validate form-radio'),
+        ('.pdf', 'PDF'),
+        ('image/*', 'Images')
+    )
+
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='properties')
-    name = models.CharField(max_length=100)
-    value = models.CharField(max_length=400)
+    name = models.CharField(max_length=100, choices=NAME_CHOICES)
+    value = models.CharField(max_length=400, choices=VALUE_CHOICES)
 
     def __str__(self) -> str:
         return self.value
@@ -214,6 +227,9 @@ class SubCriteriaItemResponse(models.Model):
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='responses')
     value = models.TextField()
+
+    def __str__(self) -> str:
+        return self.value
 
 
 class SubCriteriaItemDocumentResponse(models.Model):
