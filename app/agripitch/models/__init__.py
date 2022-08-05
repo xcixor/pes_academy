@@ -45,21 +45,24 @@ class CriteriaItem(models.Model):
         verbose_name_plural = "2. Criteria Items"
 
 
-def get_sub_criteria_item_response_if_exist(sub_criteria_item):
+def get_sub_criteria_item_response_if_exist(sub_criteria_item, application):
     response = None
     try:
         response = SubCriteriaItemResponse.objects.get(
-            sub_criteria_item=sub_criteria_item)
+            sub_criteria_item=sub_criteria_item, application=application)
     except SubCriteriaItemResponse.DoesNotExist:
         response = None
+    # for item in [response]:
+        # print(item, '***********************')
     return response
 
 
-def get_sub_criteria_item_document_response_if_exist(sub_criteria_item):
+def get_sub_criteria_item_document_response_if_exist(sub_criteria_item, application):
     response = None
     try:
         response = SubCriteriaItemDocumentResponse.objects.get(
-            sub_criteria_item=sub_criteria_item)
+            sub_criteria_item=sub_criteria_item,
+            application=application)
     except SubCriteriaItemDocumentResponse.DoesNotExist:
         response = None
     return response
@@ -67,7 +70,7 @@ def get_sub_criteria_item_document_response_if_exist(sub_criteria_item):
 
 class DynamicForm(forms.Form):
 
-    def __init__(self, sub_criteria_items, *args, **kwargs):
+    def __init__(self, application, sub_criteria_items, *args, **kwargs):
         super(DynamicForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
         for instance in sub_criteria_items:
@@ -101,7 +104,7 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label].widget.attrs[property.name] = property.value
             if instance.type == 'file':
                 response = get_sub_criteria_item_document_response_if_exist(
-                    instance)
+                    instance, application)
                 if response:
                     self.initial[instance.label] = response.document
                     if "class" in self.fields[instance.label].widget.attrs:
@@ -110,7 +113,8 @@ class DynamicForm(forms.Form):
                         self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
                         )
             elif instance.type != 'file':
-                response = get_sub_criteria_item_response_if_exist(instance)
+                response = get_sub_criteria_item_response_if_exist(
+                    instance, application)
                 if response:
                     self.initial[instance.label] = response.value
             inputs_class = {'class': 'form-input'}
@@ -145,9 +149,9 @@ class SubCriteriaItem(models.Model):
     position_in_form = models.CharField(
         max_length=3, default=0)
 
-    @property
-    def input(self):
-        return get_form([self])
+    # @property
+    # def input(self):
+    #     return get_form([self])
 
     def __str__(self) -> str:
         return self.label
@@ -230,6 +234,9 @@ class SubCriteriaItemResponse(models.Model):
 
     def __str__(self) -> str:
         return self.value
+
+    class Meta:
+        unique_together = [['sub_criteria_item', 'application']]
 
 
 class SubCriteriaItemDocumentResponse(models.Model):

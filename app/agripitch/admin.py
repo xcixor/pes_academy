@@ -9,6 +9,8 @@ from agripitch.models import (
 
 
 admin.site.register(ShortList)
+admin.site.register(SubCriteriaItemResponse)
+admin.site.register(SubCriteriaItemDocumentResponse)
 
 
 @admin.register(CriteriaItem)

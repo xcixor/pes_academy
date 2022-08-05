@@ -59,7 +59,7 @@
                                 <div class="mt-3">
                                     {% with criteria|first as first_criteria  %}
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
-                                    <div>{{sub_criteria.input}}</div>
+                                    <div>{{sub_criteria|get_form:request.user.application}}</div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
                                     {% for error in errors %}

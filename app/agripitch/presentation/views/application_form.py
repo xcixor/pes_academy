@@ -115,12 +115,14 @@ class PostApplicationFormView(SingleObjectMixin, View):
             first_value = next(iter(data.keys()))
             sub_criteria_item = get_sub_criteria_item_by_label(first_value)
             form = DynamicForm(
+                request.user.application,
                 [sub_criteria_item],
                 request.POST, request.FILES)
         elif is_ajax and dict_files:
-            form = DynamicForm([], request.FILES)
+            form = DynamicForm(request.user.application, [], request.FILES)
         elif not is_ajax:
             form = DynamicForm(
+                request.user.application,
                 SubCriteriaItem.objects.all(),
                 request.POST, request.FILES)
 
