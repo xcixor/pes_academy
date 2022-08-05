@@ -5,6 +5,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.contrib import messages
 from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
 from agripitch.models import (
@@ -66,7 +67,7 @@ def process_files(files, application):
 
 def validate_files(files):
     is_valid = True
-    messages = {}
+    error_messages = {}
     for key, value in files.items():
         sub_criteria_item = get_sub_criteria_item_by_label(key)
         property_labels = [
@@ -74,9 +75,9 @@ def validate_files(files):
         if 'max_size' in property_labels:
             validation = validate_file_max_size(value[0], sub_criteria_item)
             is_valid = validation['status']
-            messages[key] = [
+            error_messages[key] = [
                 {'message': validation['message'], 'code': validation['code']}]
-    return is_valid, messages
+    return is_valid, error_messages
 
 
 def validate_file_max_size(file, sub_criteria_item):
@@ -127,13 +128,13 @@ class PostApplicationFormView(SingleObjectMixin, View):
                 request.POST, request.FILES)
 
         valid_files = True
-        messages = {}
+        error_messages = {}
         if dict_files:
-            valid_files, messages = validate_files(dict_files)
+            valid_files, error_messages = validate_files(dict_files)
 
         if not form.is_valid() or not valid_files:
             form_errors = json.loads(form.errors.as_json())
-            form_errors.update(messages)
+            form_errors.update(error_messages)
             context = {}
             context['form'] = form
             context['form_errors'] = form_errors
@@ -141,12 +142,20 @@ class PostApplicationFormView(SingleObjectMixin, View):
             if is_ajax:
                 return JsonResponse(
                     form_errors, status=400)
+            success_message = (
+                "Please correct the errors in your form.")
+            messages.add_message(
+                request, messages.SUCCESS, success_message)
             return render(request, self.template_name, context)
         process_inputs(data, request.user.application)
         process_files(dict_files, request.user.application)
         if is_ajax:
             return JsonResponse(
                 data, status=201)
+        success_message = (
+            "Your application has been recorded, we will get back to you shortly")
+        messages.add_message(
+            request, messages.SUCCESS, success_message)
         return redirect(reverse('application:index'))
 
 

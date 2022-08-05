@@ -89,13 +89,18 @@ function validateSection(formSection){
     let isValid = true;
     let inputs = formSection.find(".form-input-validate");
     for (i = 0; i < inputs.length; i++) {
-        if($(inputs[i]).val() == "" && inputs[i].type != 'radio' && inputs[i].type){
+        let inputsValidity = true;
+        let radiosValidity = true;
+        if(isEmptyOrSpaces($(inputs[i]).val()) && inputs[i].type != 'radio' && inputs[i].type){
             $(inputs[i]).css('border-color', 'red');
             $(`label[for="id_${inputs[i].name}"]`).css('color', 'red');
-            isValid = false;
+            inputsValidity = false;
         }
         if (inputs[i].type === 'radio'){
-            isValid = validateRadios(inputs[i].name)
+            radiosValidity = validateRadios(inputs[i].name)
+        }
+        if(!inputsValidity || !radiosValidity){
+            isValid = false;
         }
     }
 
@@ -114,7 +119,6 @@ function validateSection(formSection){
     if(isValid){
         for (i = 0; i < inputs.length; i++) {
             if(inputs[i].type != 'file' && inputs[i].type != 'radio' && $(inputs[i]).val()){
-                console.log(inputs[i].name, $(inputs[i]).val())
                 saveDraftData(inputs[i].name, $(inputs[i]).val())
             }
             if(inputs[i].type == 'radio'){
@@ -129,6 +133,12 @@ function validateSection(formSection){
             }
         }
     }
+    if(!isValid) {
+        $('#formErrors').text("Please fix the errors in your form * means an input is required")
+    }else{
+        $('#formErrors').text('');
+    }
+    console.log(isValid)
     return isValid;
 }
 
@@ -178,4 +188,9 @@ function saveDraftData(field, value) {
     });
     formData.append(field, value);
     xhr.send(formData);
+}
+
+
+function isEmptyOrSpaces(str){
+    return str === null || str.match(/^ *$/) !== null;
 }
