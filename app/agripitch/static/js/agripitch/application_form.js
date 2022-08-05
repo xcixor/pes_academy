@@ -113,9 +113,14 @@ function validateSection(formSection){
     }
     if(isValid){
         for (i = 0; i < inputs.length; i++) {
-            console.log(inputs[i].type)
-            if(inputs[i].type != 'file'){
+            if(inputs[i].type != 'file' && inputs[i].type != 'radio' && $(inputs[i]).val()){
+                console.log(inputs[i].name, $(inputs[i]).val())
                 saveDraftData(inputs[i].name, $(inputs[i]).val())
+            }
+            if(inputs[i].type == 'radio'){
+                if($(inputs[i]).is(":checked")){
+                    saveDraftData(inputs[i].name, $(inputs[i]).val())
+                }
             }
         }
         for (i = 0; i < file_inputs.length; i++) {
