@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- FAQ -->
-<h2 class="text-center">Frequently Asked Questions</h2>
+<h3 class="pb-4 text-site-primary text-center"><strong>Frequently Asked Questions</strong></h3>
 <div class="container faq-page">
   <div id="faq-links">
       <div id="service" class="faq-selected">Applications</div>
@@ -50,7 +50,7 @@
                       <!--Beer ipsum-->
   
                       <li>
-                          <a href="#">What do I need?</a>
+                          <a href="#">What do I need to apply?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>Alrighty then it's because i'm green isn't it! here she comes to wreck the day. alrighty then kinda hot in these rhinos. i just heard about evans new position,good luck to you evan backstabber, bastard, i mean baxter. your entrance was good, his was better. we're going for a ride on the information super highway. we're going for a ride on the information super highway. look at that, it's exactly three seconds before i honk your nose and pull your underwear over your head. brain freeze. we got no food we got no money and our pets heads are falling off! haaaaaaarry.</p></div>
@@ -101,7 +101,7 @@
                       <!--Beer ipsum-->
   
                       <li>
-                          <a href="#">Carey ipsum</a>
+                          <a href="#">What are the priority sectors?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>Alrighty then it's because i'm green isn't it! here she comes to wreck the day. alrighty then kinda hot in these rhinos. i just heard about evans new position,good luck to you evan backstabber, bastard, i mean baxter. your entrance was good, his was better. we're going for a ride on the information super highway. we're going for a ride on the information super highway. look at that, it's exactly three seconds before i honk your nose and pull your underwear over your head. brain freeze. we got no food we got no money and our pets heads are falling off! haaaaaaarry.</p></div>
@@ -181,7 +181,7 @@
                       <!--Bacon ipsum-->
   
                       <li>
-                          <a href="#">Wine Ipsum</a>
+                          <a href="#">How much do I get as a grant if I win?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>ester saccharification mead lambic draft (draught), hand pump cask. brewing ale balthazar hops, " bitter becher craft beer keg alpha acid." crystal malt racking mouthfeel mash, barrel ale; malt! brewpub; biere de garde balthazar acid rest alcohol carbonation. wit beer krug brew mash hop back? shelf life, balthazar hand pump.</p></div>
@@ -191,7 +191,7 @@
                       <!--Beer ipsum-->
   
                       <li>
-                          <a href="#">Woody ipsum</a>
+                          <a href="#">What is the expected outcome from the competition?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>Alrighty then it's because i'm green isn't it! here she comes to wreck the day. alrighty then kinda hot in these rhinos. i just heard about evans new position,good luck to you evan backstabber, bastard, i mean baxter. your entrance was good, his was better. we're going for a ride on the information super highway. we're going for a ride on the information super highway. look at that, it's exactly three seconds before i honk your nose and pull your underwear over your head. brain freeze. we got no food we got no money and our pets heads are falling off! haaaaaaarry.</p></div>
@@ -226,7 +226,7 @@
                       <!--Bacon ipsum-->
   
                       <li>
-                          <a href="#">ho are the partners involved?</a>
+                          <a href="#">Who are the partners involved?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>ester saccharification mead lambic draft (draught), hand pump cask. brewing ale balthazar hops, " bitter becher craft beer keg alpha acid." crystal malt racking mouthfeel mash, barrel ale; malt! brewpub; biere de garde balthazar acid rest alcohol carbonation. wit beer krug brew mash hop back? shelf life, balthazar hand pump.</p></div>
@@ -236,7 +236,7 @@
                       <!--Beer ipsum-->
   
                       <li>
-                          <a href="#">Carey ipsum</a>
+                          <a href="#">SME's from which country can apply?</a>
                           <ul class="faq-content">
                               <li>
                                   <div><p>Alrighty then it's because i'm green isn't it! here she comes to wreck the day. alrighty then kinda hot in these rhinos. i just heard about evans new position,good luck to you evan backstabber, bastard, i mean baxter. your entrance was good, his was better. we're going for a ride on the information super highway. we're going for a ride on the information super highway. look at that, it's exactly three seconds before i honk your nose and pull your underwear over your head. brain freeze. we got no food we got no money and our pets heads are falling off! haaaaaaarry.</p></div>
@@ -260,7 +260,7 @@
   <form id="help-form" action="{% url 'accounts:help' %}" method="post">
     {% csrf_token %}
           <div class="container login">
-              <h2 class="font-weight-bold mb-5 mt-5 text-center h1"></i>{% trans "Help" %} </h2>
+              <h2 class="font-weight-bold mb-2 mt-2 text-center h1 text-site-primary"></i>{% trans "Help" %} </h2>
               <br>
               <!--Body-->
               <div class="md-form">
@@ -285,9 +285,20 @@
               </div>
               
               <!-- <div class="md-form">
+                  <i class="fa fa-user prefix white-text"></i>
+                  <label for="id_subject">{% trans "Subject" %}</label>
+                  <!-- <input type="text" id="id_subject" class="form-control" placeholder="{% trans "Reason for contacting us" %}" name="subject" required> -->
+                  <select name="subject" id="id-subject">
+                    <option value="Cant upload">Cannot Upload documents</option>
+                    <option value="No documents">Cannot upload documents</option>
+                    <option value="Other">Other</option>
+                </select>
+              </div>
+              
+              <!-- <div class="md-form">
                 <label for="id_message">{% trans "Your Message" %}</label>
                 <textarea id="id_message" name="message" placeholder="{% trans "How can we help you?" %}" style="height:200px; color: black;"></textarea>
-              </div> -->
+              </div> --> -->
               <div class="text-center">
                   <button type="submit" class="btn registerbtn">{% trans "Submit" %}</button>
               </div>
