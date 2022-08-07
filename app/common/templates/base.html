@@ -24,6 +24,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- application form css -->
+    <link rel="stylesheet" href="{% static 'css/common/layout.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/common/nav.css' %}">
     <!-- alert messages css -->
     <link rel="stylesheet" href="{% static 'css/common/base.css' %}">
@@ -50,11 +52,12 @@
     </div>
     {% endfor%}
 {% endif %}
+{% endblock %}
 
 
 <body id="{% block body_id %}{% endblock %}">
     {% include 'header.html' %}
-
+    <section class="page-content">
     {% block content %}
 
     {% endblock %}
@@ -128,6 +131,7 @@
     <script src="{% static 'js/common/base.js' %}"></script>
     <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
     {% endblock %}
+    {% include 'footer.html' %}
 </body>
 </html>
 

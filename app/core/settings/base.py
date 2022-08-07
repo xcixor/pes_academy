@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'common',
     'accounts',
     'application',
@@ -198,3 +199,20 @@ ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 
 SUPPORT_EMAILS = ['coach@privateequity-support.com']
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Full': [
+            ['Styles', 'Format', 'Bold', 'Italic', 'Underline',
+             'Strike', 'SpellChecker', 'Undo', 'Redo'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'], ['Source'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList'],
+            ['Indent', 'Outdent'],
+            ['Maximize'],
+        ],
+        'extraPlugins': 'justify,liststyle,indent',
+    },
+}

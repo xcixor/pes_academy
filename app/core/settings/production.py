@@ -1,20 +1,27 @@
 from .base import *
-from google.oauth2 import service_account
+DEBUG = True
+CPANEL_HOSTING = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-DEBUG = False
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+# STATICFILES_DIRS = [
+# '/home/dianagic/applications/core',
+# ]
 
-# static files settings
-STATIC_ROOT = os.environ.get('GS_BUCKET_URL') + 'static/'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/dianagic/applications.privateequity-support.com/static'
 
 
-# media files config
-MEDIA_URL = os.environ.get('GS_BUCKET_URL')
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
-GS_LOCATION = os.environ.get('GS_LOCATION')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.environ.get('GS_CREDENTIALS')
-)
+#HTTPS SETTING
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+
+# ckeditor config
+CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'

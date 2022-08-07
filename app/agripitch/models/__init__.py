@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from application.models import CallToAction, Application
 from django import forms
+from ckeditor.fields import RichTextField
+from django_countries.fields import CountryField
+from application.models import CallToAction, Application
+
 
 User = get_user_model()
 
@@ -52,8 +55,6 @@ def get_sub_criteria_item_response_if_exist(sub_criteria_item, application):
             sub_criteria_item=sub_criteria_item, application=application)
     except SubCriteriaItemResponse.DoesNotExist:
         response = None
-    # for item in [response]:
-        # print(item, '***********************')
     return response
 
 
@@ -79,6 +80,13 @@ class DynamicForm(forms.Form):
                 properties[validator.validator.name] = validator.value
             if instance.type == 'charfield':
                 self.fields[instance.label] = forms.CharField(**properties)
+            if instance.type == 'countryfield':
+                self.fields[instance.label] = CountryField().formfield()
+            if instance.type == 'datefield':
+                print('a date here')
+                self.fields[instance.label] = forms.DateField(
+                    widget=forms.DateInput(attrs={'type': 'date'}),
+                    **properties)
             if instance.type == 'numberfield':
                 self.fields[instance.label] = forms.IntegerField(**properties)
             elif instance.type == 'textfield':
@@ -101,7 +109,10 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label] = forms.FileField(**properties)
 
             for property in instance.properties.all():
-                self.fields[instance.label].widget.attrs[property.name] = property.value
+                if property.name == 'required' and property.value == 'False':
+                    self.fields[instance.label].required = False
+                else:
+                    self.fields[instance.label].widget.attrs[property.name] = property.value
             if instance.type == 'file':
                 response = get_sub_criteria_item_document_response_if_exist(
                     instance, application)
@@ -138,17 +149,19 @@ class SubCriteriaItem(models.Model):
         ('choicefield', 'ChoiceInput'),
         ('file', 'FileInput'),
         ('numberfield', 'NumberInput'),
-        ('radiofield', 'RadioInput')
+        ('radiofield', 'RadioInput'),
+        ('datefield', 'DateField'),
+        ('countryfield', 'CountryField')
     ]
 
-    label = models.CharField(max_length=400)
+    label = models.CharField(max_length=600)
     criteria = models.ForeignKey(
         CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
     position_in_form = models.CharField(
         max_length=3, default=0)
-    description = models.TextField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.label
@@ -188,14 +201,18 @@ class SubCriteriaItemFieldProperties(models.Model):
     NAME_CHOICES = (
         ('class', 'class'),
         ('accept', 'accept'),
-        ('max_size', 'max_size')
+        ('max_size', 'max_size'),
+        ('required', 'required')
     )
     VALUE_CHOICES = (
         ('form-input-validate', 'form-input-validate'),
         ('form-radio', 'form-radio'),
         ('form-input-validate form-radio', 'form-input-validate form-radio'),
         ('.pdf', 'PDF'),
-        ('image/*', 'Images')
+        ('image/*', 'Images'),
+        ('1048576', '1 MB'),
+        ('2097152', '2 MB'),
+        ('False', 'Not required')
     )
 
     sub_criteria_item = models.ForeignKey(
@@ -214,7 +231,7 @@ class SubCriteriaItemChoice(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='choices')
-    description = models.TextField(blank=True, null=True)
+    description = RichTextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.choice
@@ -228,7 +245,7 @@ class SubCriteriaItemResponse(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='responses')
-    value = models.TextField()
+    value = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.value
