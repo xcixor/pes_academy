@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from application.models import CallToAction, Application
 from django import forms
 from ckeditor.fields import RichTextField
+from django_countries.fields import CountryField
+from application.models import CallToAction, Application
+
 
 User = get_user_model()
 
@@ -53,8 +55,6 @@ def get_sub_criteria_item_response_if_exist(sub_criteria_item, application):
             sub_criteria_item=sub_criteria_item, application=application)
     except SubCriteriaItemResponse.DoesNotExist:
         response = None
-    # for item in [response]:
-        # print(item, '***********************')
     return response
 
 
@@ -80,6 +80,8 @@ class DynamicForm(forms.Form):
                 properties[validator.validator.name] = validator.value
             if instance.type == 'charfield':
                 self.fields[instance.label] = forms.CharField(**properties)
+            if instance.type == 'countryfield':
+                self.fields[instance.label] = CountryField().formfield()
             if instance.type == 'datefield':
                 print('a date here')
                 self.fields[instance.label] = forms.DateField(
@@ -148,7 +150,8 @@ class SubCriteriaItem(models.Model):
         ('file', 'FileInput'),
         ('numberfield', 'NumberInput'),
         ('radiofield', 'RadioInput'),
-        ('datefield', 'DateField')
+        ('datefield', 'DateField'),
+        ('countryfield', 'CountryField')
     ]
 
     label = models.CharField(max_length=600)
