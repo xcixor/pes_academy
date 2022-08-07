@@ -1,24 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body_id %}agri-window{% endblock %}
 {% load i18n %}
 {% block content %}
 
-<div class="row pb-5 mb-3">
-    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 mx-auto">
-      <div class="card indigo form-white">
-        <div class="card-body">
-            <h2 class="font-weight-bold mb-5 mt-5 text-center h1 text-white">Activate your account </h2>
-            <br>
-            <!--Body-->
-             <h3>
-              {% blocktrans %}
-              Thank you for registration.
-              We have sent an activation email to your inbox.
-              Click on the link to continue.
-              {% endblocktrans %}
-            </h3>
-        </div>
-    </div>
-    </div>
+<div class="container login mt-5">
+  <div class="row header">
+    <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="img-fluid">
   </div>
+  <h2 class="font-weight-bold mb-5 mt-5 text-center h1 login-header">Activate your account</h2>
+  <p class="paragraph-site-primary text-center">
+    {% blocktrans %}
+    Thank you for registration.
+    We have sent an activation email to your inbox.
+    Click on the link to continue.
+    {% endblocktrans %}
+  </p>
+</div>
 {% endblock %}

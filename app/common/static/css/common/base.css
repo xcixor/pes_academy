@@ -97,18 +97,11 @@ select.form-control {
   margin:0
 }
 
-.agri-logo {
-  height: 150px;
-}
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
   {
     margin-bottom:30px
-  }
-
-  .agri-logo {
-    height: 150px;
   }
 
 }
@@ -193,9 +186,5 @@ select.form-control {
     display:block;
     margin-right:0;
     font-weight:600
-  }
-
-  .agri-logo {
-    height: 100px;
   }
 }

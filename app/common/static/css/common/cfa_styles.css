@@ -666,6 +666,11 @@ nav #contacts {
     transform: translateX(0%);
   }
 }
+.header img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 
 /* MEDIA QUERIES */
 
@@ -744,117 +749,9 @@ nav #contacts {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
 
-.agri-logo {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
 .header {
   padding: 1.5em 2.5em;
   border-bottom: 1px solid #ccc;
   background: url(../../common/images/header.jpg) left -80px;
   color: #fff;
-}
-
-
-
-
-
-
-
-/* @import url(https://fonts.googleapis.com/css?family=Fira+Sans:100,200,300,400,500,600,700,800,900); */
-@keyframes carousel {
-  0% {
-    left: 0%;
-  }
-
-  20% {
-    left: 0%;
-  }
-
-  25% {
-    left: -100%;
-  }
-
-  45% {
-    left: -100%;
-  }
-
-  50% {
-    left: -200%;
-  }
-
-  70% {
-    left: -200%;
-  }
-
-  75% {
-    left: -300%;
-  }
-
-  95% {
-    left: -300%;
-  }
-
-  100% {
-    left: -400%;
-  }
-}
-
-/* 
-body{
-  margin: 0; background: #111;
-} */
-
-/*------------------------------------*\
-    $CAROUSEL
-\*------------------------------------*/
-.carousel {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  width: 100%;
-  background: #000;
-}
-
-.panes {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: relative;
-  width: 500%;
-  /* Number of panes * 100% */
-  overflow: hidden;
-  /* This is used solely to clear floats, it does not add functionality. */
-
-  -moz-animation: carousel 30s infinite;
-  -webkit-animation: carousel 30s infinite;
-  animation: carousel 30s infinite;
-}
-
-.panes>li {
-  position: relative;
-  float: left;
-  width: 20%;
-  /* 100 / number of panes */
-}
-
-.carousel img {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-}
-
-.carousel h2 {
-  font-size: 2rem;
-  padding: 0.5em;
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-  left: 20px;
-  text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 4px #000;
-  background-color: rgba(250, 250, 250, 0.5);
 }

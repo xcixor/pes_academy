@@ -4,12 +4,12 @@
 {% block body_id %}register{% endblock %}
 {% block content %}
 
-  <form action="/accounts/register/" method="post">
+  <form action="/accounts/register/" method="post" class="mt-5">
   {% csrf_token %}
       
     <div class="container login">
       <div class="row header">
-        <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="agri-logo">
+        <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="img-fluid">
       </div>
       <h2 class="font-weight-bold mb-5 mt-5 text-center h1 login-header"> &nbsp; <i class="fa fa-user-plus mr-3" style="color: #14A562;"></i>{% trans "Register" %}</h2>
                 <!--Body-->
