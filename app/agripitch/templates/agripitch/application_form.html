@@ -50,7 +50,11 @@
                         </ul>
                         <!-- Step Wise Form Content -->
                         <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" novalidate>
-                            <h4 class="error px-4" id="formErrors"></h4>
+                            <h4 class="error px-4" id="formErrors">
+                                {% if form_errors %}
+                                Please fix the errors in your form
+                                {% endif %}
+                            </h4>
                             {% csrf_token %}
                             <input type="hidden" id="currentApplication" value="{{competition.slug}}">
                             <!-- Step 1 Content -->

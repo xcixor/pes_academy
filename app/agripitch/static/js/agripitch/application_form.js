@@ -134,7 +134,7 @@ function validateSection(formSection){
         }
     }
     if(!isValid) {
-        $('#formErrors').text("Please fix the errors in your form * means an input is required")
+        $('#formErrors').text("Please fill in all the required fields. * Means an input required.")
     }else{
         $('#formErrors').text('');
     }
