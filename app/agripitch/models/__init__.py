@@ -196,8 +196,8 @@ class SubCriteriaItemFieldProperties(models.Model):
         ('form-input-validate form-radio', 'form-input-validate form-radio'),
         ('.pdf', 'PDF'),
         ('image/*', 'Images'),
-        (1048576, '1 MB'),
-        (2097152, '2 MB')
+        ('1048576', '1 MB'),
+        ('2097152', '2 MB')
     )
 
     sub_criteria_item = models.ForeignKey(
