@@ -41,15 +41,14 @@ class GetApplicationFormView(DetailView):
 
 def process_inputs(inputs, application):
     for key, value in inputs.items():
-        if value[0] and not value[0].isspace():
-            sub_criteria_item = get_sub_criteria_item_by_label(key)
-            SubCriteriaItemResponse.objects.update_or_create(
-                application=application,
-                sub_criteria_item=sub_criteria_item,
-                defaults={
-                    'value': value[0]
-                }
-            )
+        sub_criteria_item = get_sub_criteria_item_by_label(key)
+        SubCriteriaItemResponse.objects.update_or_create(
+            application=application,
+            sub_criteria_item=sub_criteria_item,
+            defaults={
+                'value': value[0]
+            }
+        )
 
 
 def process_files(files, application):

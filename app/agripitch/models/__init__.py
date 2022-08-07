@@ -101,7 +101,10 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label] = forms.FileField(**properties)
 
             for property in instance.properties.all():
-                self.fields[instance.label].widget.attrs[property.name] = property.value
+                if property.name == 'required' and property.value == 'False':
+                    self.fields[instance.label].required = False
+                else:
+                    self.fields[instance.label].widget.attrs[property.name] = property.value
             if instance.type == 'file':
                 response = get_sub_criteria_item_document_response_if_exist(
                     instance, application)
@@ -188,7 +191,8 @@ class SubCriteriaItemFieldProperties(models.Model):
     NAME_CHOICES = (
         ('class', 'class'),
         ('accept', 'accept'),
-        ('max_size', 'max_size')
+        ('max_size', 'max_size'),
+        ('required', 'required')
     )
     VALUE_CHOICES = (
         ('form-input-validate', 'form-input-validate'),
@@ -197,7 +201,8 @@ class SubCriteriaItemFieldProperties(models.Model):
         ('.pdf', 'PDF'),
         ('image/*', 'Images'),
         ('1048576', '1 MB'),
-        ('2097152', '2 MB')
+        ('2097152', '2 MB'),
+        ('False', 'Not required')
     )
 
     sub_criteria_item = models.ForeignKey(
