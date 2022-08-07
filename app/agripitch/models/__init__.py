@@ -79,6 +79,11 @@ class DynamicForm(forms.Form):
                 properties[validator.validator.name] = validator.value
             if instance.type == 'charfield':
                 self.fields[instance.label] = forms.CharField(**properties)
+            if instance.type == 'datefield':
+                print('a date here')
+                self.fields[instance.label] = forms.DateField(
+                    widget=forms.DateInput(attrs={'type': 'date'}),
+                    **properties)
             if instance.type == 'numberfield':
                 self.fields[instance.label] = forms.IntegerField(**properties)
             elif instance.type == 'textfield':
@@ -141,7 +146,8 @@ class SubCriteriaItem(models.Model):
         ('choicefield', 'ChoiceInput'),
         ('file', 'FileInput'),
         ('numberfield', 'NumberInput'),
-        ('radiofield', 'RadioInput')
+        ('radiofield', 'RadioInput'),
+        ('datefield', 'DateField')
     ]
 
     label = models.CharField(max_length=400)
@@ -235,7 +241,7 @@ class SubCriteriaItemResponse(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='responses')
-    value = models.TextField()
+    value = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.value
