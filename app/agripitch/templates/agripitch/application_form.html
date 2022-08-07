@@ -66,11 +66,11 @@
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
-                                        <p class="small muted">{{sub_criteria.description}}</p>
+                                        <p class="small muted">{{sub_criteria.description | safe}}</p>
                                         <ul>
                                         {% for choice in sub_criteria.choices.all %}
                                         {% if choice.description %}
-                                            <li>{{choice.description}}</li>
+                                            <li>{{choice.description | safe}}</li>
                                         {% endif %}
                                         {% endfor%}
                                         </ul>
@@ -97,11 +97,11 @@
                                     {% for sub_criteria in item.sub_criteria.all %}
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
-                                        <p class="small muted">{{sub_criteria.description}}</p>
+                                        <p class="small muted">{{sub_criteria.description | safe}}</p>
                                         <ul>
                                         {% for choice in sub_criteria.choices.all %}
                                         {% if choice.description %}
-                                            <li>{{choice.description}}</li>
+                                            <li>{{choice.description | safe}}</li>
                                         {% endif %}
                                         {% endfor%}
                                         </ul>

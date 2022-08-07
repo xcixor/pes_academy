@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from application.models import CallToAction, Application
 from django import forms
+from ckeditor.fields import RichTextField
 
 User = get_user_model()
 
@@ -150,14 +151,14 @@ class SubCriteriaItem(models.Model):
         ('datefield', 'DateField')
     ]
 
-    label = models.CharField(max_length=400)
+    label = models.CharField(max_length=600)
     criteria = models.ForeignKey(
         CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
     position_in_form = models.CharField(
         max_length=3, default=0)
-    description = models.TextField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.label
@@ -227,7 +228,7 @@ class SubCriteriaItemChoice(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='choices')
-    description = models.TextField(blank=True, null=True)
+    description = RichTextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.choice
