@@ -6,7 +6,7 @@
 
   <form action="/accounts/register/" method="post">
   {% csrf_token %}
-      
+
     <div class="container login">
       <div class="row header">
         <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="agri-logo">
@@ -58,8 +58,18 @@
                       <p class="error text-white">{{ error|escape }}</p>
                       {% endfor %}
                   </div>
+                  <details>
+                      <ul>
+                          <li> {% trans "Your password must contain at least 8 characters." %}</li>
+                          <li> {% trans "Your password should not be entirely numeric." %}</li>
+                          <li> {% trans "Your password should have a special character." %}</li>
+                          <li> {% trans "Your password should have at least one number." %}</li>
+                          <li> {% trans "Your password should not be too similar to your personal details eg username." %}</li>
+                          <li> {% trans "Your passwords should match." %}</li>
+                      </ul>
+                  </details>
                 </div>
-                <div class="md-form">
+                <div class="md-form mt-4">
                     <i class="fa fa-lock prefix white-text"></i>
                     <input type="password" id="psw-repeat" name="password2" placeholder="{% trans "Repeat Password" %}" class="form-control">
                     <label for="defaultForm-pass1">{% trans "Repeat Password" %}</label>
@@ -68,16 +78,6 @@
                       <p class="error text-white">{{ error|escape }}</p>
                       {% endfor %}
                   </div>
-                  <details>
-                        <ul>
-                            <li> {% trans "Your password must contain at least 8 characters." %}</li>
-                            <li> {% trans "Your password should not be entirely numeric." %}</li>
-                            <li> {% trans "Your password should have a special character." %}</li>
-                            <li> {% trans "Your password should have at least one number." %}</li>
-                            <li> {% trans "Your password should not be too similar to your personal details eg username." %}</li>
-                            <li> {% trans "Your passwords should match." %}</li>
-                        </ul>
-                </details>
                 <hr>
                 <p>{% trans "By creating an account you agree to our" %}<a href="#" style="color: #455D8D;"> {% trans "Terms & Privacy" %}</a>.</p>
                 </div>

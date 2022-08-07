@@ -24,6 +24,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- application form css -->
+    <link rel="stylesheet" href="{% static 'css/common/layout.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/common/nav.css' %}">
     <!-- alert messages css -->
     <link rel="stylesheet" href="{% static 'css/common/base.css' %}">
@@ -50,71 +52,17 @@
     </div>
     {% endfor%}
 {% endif %}
+{% endblock %}
 
 
 <body id="{% block body_id %}{% endblock %}">
     {% include 'header.html' %}
-
+    <section class="page-content">
     {% block content %}
 
     {% endblock %}
+    </section>
 
-    {% endblock %}
-
-  <!-- Site footer -->
-  <footer class="site-footer mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <!-- <h6>About</h6> -->      
-          <p class="text-justify">
-            <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="agri-logo">
-            </p>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Insights</h6>
-          <ul class="footer-links">
-            <li><a href="#">Priority sectors | Food & Nutrition</a></li>
-            <li><a href="#">Key Goal | SME Linkages and Upgrading</a></li>
-            <li><a href="#">Average grant amount | USD 50,000 (KES 5M)</a></li>
-            <li><a href="#">Number of SMEs | 25</a></li>
-            <li><a href="#">Project Duration | 12 Weeks</a></li>
-          </ul>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="https://www.privateequity-support.com/our-services/our-services/">About Us</a></li>
-            <li><a href="https://www.privateequity-support.com/contact/">Contact Us</a></li>
-            <li><a href="{% url 'accounts:help' %}">FAQ</a></li>
-            <li><a href="#">Eligiility</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by 
-       <a href="https://www.privateequity-support.com/">Private Equity Support</a>.
-          </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="https://www.facebook.com/privateequityea"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="twitter" href="https://twitter.com/PrivateEquityAF"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://www.youtube.com/channel/UCpcbpFeuHEMXofYasRYTzLQ"><i class="fab fa-youtube"></i></a></li>
-            <li><a class="linkedin" href="https://www.linkedin.com/company/privateequityaf/"><i class="fab fa-linkedin"></i></a></li>   
-          </ul>
-        </div>
-      </div>
-    </div>
-</footer>
 
     {% block scripts %}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -126,6 +74,7 @@
     <script src="{% static 'js/common/base.js' %}"></script>
     <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
     {% endblock %}
+    {% include 'footer.html' %}
 </body>
 </html>
 
