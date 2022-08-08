@@ -61,68 +61,6 @@
     {% block content %}
 
     {% endblock %}
-
-    {% endblock %}
-
-  <!-- Site footer -->
-  <footer class="site-footer mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <!-- <h6>About</h6> -->      
-          <p class="text-justify">
-            <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="img-fluid">
-            </p> 
-        </div>
-        <div class="col-xs-6 col-md-3">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="https://www.privateequity-support.com/our-services/our-services/">About Us</a></li>
-            <li><a href="https://www.privateequity-support.com/contact/">Contact Us</a></li>
-            <li><a href="{% url 'accounts:help' %}">FAQ</a></li>
-            <li><a href="#">Eligiility</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6 class="text-center">Folow us</h6>
-          <ul class="social-icons">
-            <li><a class="facebook" href="https://www.facebook.com/privateequityea"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="twitter" href="https://twitter.com/PrivateEquityAF"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://www.youtube.com/channel/UCpcbpFeuHEMXofYasRYTzLQ"><i class="fab fa-youtube"></i></a></li>
-            <li><a class="linkedin" href="https://www.linkedin.com/company/privateequityaf/"><i class="fab fa-linkedin"></i></a></li>   
-          </ul>
-        </div>
-      </div>
-      <hr>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col">
-            <h5 class="text-center">Host:</h5>
-            <img class="img-fluid" src="{% static 'images/afdb for green gb.png' %}">
-        </div>
-        <div class="col">
-            <h5 class="text-center">Implementing lead:</h5>
-            <img class="img-fluid" src="{% static 'images/pes for green gb.png' %}">
-        </div>
-        <div class="col">
-          
-        </div>
-        <div class="col">
-            <h5 class="text-center">Knowledge partner:</h5>
-            <img class="img-fluid float-left" src="{% static 'images/pfan-logo.png' %}">
-        </div>
-        <div class="col">
-            <h5 class="text-center">Digital partner:</h5>
-            <img class="img-fluid float-right" src="{% static 'images/eldohub-logo.png' %}">
-        </div>
-      </div>
-    </div>
-</footer>
-
     {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
