@@ -20,7 +20,7 @@
       <p class="error"><strong>{% trans "Please correct the errors in the form below." %}</strong></p>
       {% endif %}
       {% for error in form.non_field_errors %}
-      <p class="error text-white">{{ error|escape }}</p>
+      <p class="error">{{ error|escape }}</p>
       {% endfor %}
     </div>
 
@@ -31,7 +31,7 @@
       <label for="defaultForm-email1">{% trans "Username" %}</label>
       <div class="error-container">
         {% for error in form.username.errors %}
-        <p class="error text-white">{{ error|escape }}</p>
+        <p class="error">{{ error|escape }}</p>
         {% endfor %}
       </div>
     </div>
@@ -41,7 +41,7 @@
       <label for="defaultForm-pass1">{% trans "Enter Password" %}</label>
       <div class="error-container">
         {% for error in form.password.errors %}
-        <p class="error text-white">{{ error|escape }}</p>
+        <p class="error">{{ error|escape }}</p>
         {% endfor %}
       </div>
     </div>

@@ -17,7 +17,7 @@
                   {% if form.errors %}
                   <span class="d-inline-flex align-items-center">
                     <i class="fas fa-info error mr-2"></i>
-                    <p class="error m-0 text-white">{% trans "Please correct the errors in the form below" %}</p>
+                    <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
                   </span>
                   {% endif %}
                 </div>
@@ -28,7 +28,7 @@
                     <label for="defaultForm-email1">{% trans "Your Username" %}</label>
                     <div class="error-container">
                       {% for error in form.username.errors %}
-                      <p class="error text-white">{{ error|escape }}</p>
+                      <p class="error e">{{ error|escape }}</p>
                       {% endfor %}
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <label for="defaultForm-email1">{% trans "Your Email" %}</label>
                     <div class="error-container">
                       {% for error in form.email.errors %}
-                      <p class="error text-white">{{ error|escape }}</p>
+                      <p class="error">{{ error|escape }}</p>
                       {% endfor %}
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <label for="defaultForm-pass1">{% trans "Your password" %}</label>
                     <div class="error-container">
                       {% for error in form.password1.errors %}
-                      <p class="error text-white">{{ error|escape }}</p>
+                      <p class="error">{{ error|escape }}</p>
                       {% endfor %}
                   </div>
                   <details>
@@ -75,7 +75,7 @@
                     <label for="defaultForm-pass1">{% trans "Repeat Password" %}</label>
                     <div class="error-container">
                       {% for error in form.password2.errors %}
-                      <p class="error text-white">{{ error|escape }}</p>
+                      <p class="error">{{ error|escape }}</p>
                       {% endfor %}
                   </div>
                 <hr>
