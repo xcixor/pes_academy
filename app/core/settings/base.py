@@ -214,5 +214,6 @@ CKEDITOR_CONFIGS = {
             ['Maximize'],
         ],
         'extraPlugins': 'justify,liststyle,indent',
+        'allowedContent': True
     },
 }
