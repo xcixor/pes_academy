@@ -2,11 +2,12 @@ from django.contrib import admin
 from application.models import (
     CallToAction, Application, ApplicationDocument, ApplicationReview,
     ApplicationScore, ApplicationPrompt, ApplicationComment,
-    ApplicationDraftData)
+    ApplicationDraftData, CarouselImage)
 from application.forms import CallToActionAdminForm
 
 
 admin.site.register(ApplicationDraftData)
+admin.site.register(CarouselImage)
 
 
 @admin.register(CallToAction)
