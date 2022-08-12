@@ -248,3 +248,28 @@ class SubCriteriaItemDocumentResponse(models.Model):
     class Meta:
         unique_together = [['sub_criteria_item', 'application']]
         verbose_name_plural = '5 Documents'
+
+
+class ValidatorType(models.Model):
+
+    name = models.CharField(max_length=80)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class SubCriteriaItemValidators(models.Model):
+
+    sub_criteria_item = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='validators')
+    validator = models.ForeignKey(
+        ValidatorType, on_delete=models.CASCADE,
+        related_name='items')
+    value = models.CharField(max_length=80)
+
+    class Meta:
+        unique_together = ('sub_criteria_item', 'validator')
+
+    def __str__(self) -> str:
+        return str(self.validator) + " : " + str(self.sub_criteria_item)
