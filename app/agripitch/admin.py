@@ -14,11 +14,13 @@ admin.site.register(ShortList)
 @admin.register(SubCriteriaItemResponse)
 class SubCriteriaItemResponseAdmin(admin.ModelAdmin):
     list_display = ['sub_criteria_item', 'application', 'value']
+    list_filter = ['sub_criteria_item', 'application']
 
 
 @admin.register(SubCriteriaItemDocumentResponse)
 class SubCriteriaItemDocumentResponseAdmin(admin.ModelAdmin):
     list_display = ['sub_criteria_item', 'application', 'document']
+    list_filter = ['sub_criteria_item', 'application']
 
 
 @admin.register(CriteriaItem)
@@ -53,9 +55,8 @@ class SubCriteriaItemResponseInline(admin.TabularInline):
 @admin.register(SubCriteriaItem)
 class SubCriteriaItemAdmin(admin.ModelAdmin):
     list_display = ['label', 'criteria']
+    list_filter = ['criteria', ]
     form = CustomSubCriteriaItemAdminForm
     inlines = [
         SubCriteriaItemFieldPropertiesInline,
-        SubCriteriaItemResponseInline,
-        SubCriteriaItemDocumentResponseInline,
-        SubCriteriaItemChoiceInline, ]
+        SubCriteriaItemChoiceInline]
