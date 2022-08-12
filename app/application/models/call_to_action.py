@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 def image_directory_path(instance, filename):
@@ -12,7 +13,7 @@ class CallToAction(models.Model):
         help_text='An image to display in the call to action page.')
     tagline = models.CharField(
         max_length=255, help_text='A title for the call to action.')
-    description = models.TextField(
+    description = RichTextField(
         help_text='A description of what the call to action is about.')
     slug = models.SlugField(
         max_length=255, unique=True,

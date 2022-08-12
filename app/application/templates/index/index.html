@@ -72,7 +72,7 @@
           </div>
           <img class="img-fluid" src="{{application.image.url}}" alt="{{application.tagline}}.">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item paragraph-site-primary">{{application.description}}</li>
+            <li class="list-group-item paragraph-site-primary">{{application.description | safe }}</li>
             <li class="list-group-item"><small>{% trans "Applications Ongoing. Ends " %}<span> {{application.deadline}}</span></small></li>
           </ul>
           <div class="card-body">
