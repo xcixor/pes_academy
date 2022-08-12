@@ -171,31 +171,6 @@ class SubCriteriaItem(models.Model):
         verbose_name_plural = "3. Form Questions"
 
 
-class ValidatorType(models.Model):
-
-    name = models.CharField(max_length=80)
-
-    def __str__(self) -> str:
-        return self.name
-
-
-class SubCriteriaItemValidators(models.Model):
-
-    sub_criteria_item = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='validators')
-    validator = models.ForeignKey(
-        ValidatorType, on_delete=models.CASCADE,
-        related_name='items')
-    value = models.CharField(max_length=80)
-
-    class Meta:
-        unique_together = ('sub_criteria_item', 'validator')
-
-    def __str__(self) -> str:
-        return str(self.validator) + " : " + str(self.sub_criteria_item)
-
-
 class SubCriteriaItemFieldProperties(models.Model):
 
     NAME_CHOICES = (
@@ -273,30 +248,3 @@ class SubCriteriaItemDocumentResponse(models.Model):
     class Meta:
         unique_together = [['sub_criteria_item', 'application']]
         verbose_name_plural = '5 Documents'
-
-
-class SubCriteriaInputFieldPrompt(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='sub_criteria_text_inputs')
-    value = models.CharField(max_length=400)
-    application = models.ForeignKey(
-        Application, on_delete=models.CASCADE, related_name='text_inputs')
-
-    def __str__(self) -> str:
-        return self.value
-
-
-class SubCriteriaTextFieldInputPrompt(models.Model):
-
-    sub_criteria = models.ForeignKey(
-        SubCriteriaItem, on_delete=models.CASCADE,
-        related_name='sub_criteria_text_area_inputs')
-    value = models.TextField(max_length=400)
-    application = models.ForeignKey(
-        Application, on_delete=models.CASCADE,
-        related_name='text_area_inputs')
-
-    def __str__(self) -> str:
-        return self.value
