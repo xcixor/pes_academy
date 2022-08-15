@@ -13,3 +13,7 @@
 .card-action {
     flex-basis: 60%;
 }
+
+.navi ul {
+    list-style-type: none;
+}

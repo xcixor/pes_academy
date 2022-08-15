@@ -14,17 +14,23 @@
 <div class="home">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
-            <div class="col-md-2 col-sm-1  display-table-cell v-align box" id="navigation">
+            <div class="col-md-2 col-sm-1  display-table-cell v-align box site-bg-primary px-0" id="navigation">
 
                 <div class="navi">
                     <ul>
                         {% block links %}
-                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Home')" id="defaultOpen">{% trans "Home" %}</span></a></li>
-
-                        <li class="tablink" onclick="openPage('Academy')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Academy')" >{% trans "Academy" %}</span></a></li>
-
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="tablink" onclick="openPage('Home')" id="defaultOpen">{% trans "Home" %}</span>
+                            </a>
+                        </li>
+                        <li class="tablink" onclick="openPage('Academy')">
+                            <a href="#">
+                                <i class="fa fa-tasks" aria-hidden="true"></i>
+                                <span class="tablink" onclick="openPage('Academy')" >{% trans "Academy" %}</span>
+                            </a>
+                        </li>
                         {% if not user.is_applying_for_a_call_to_action %}
                         <li class="tablink" onclick="openPage('Mentors')">
                             <a href="#">
@@ -44,16 +50,31 @@
                             </a>
                         </li>
 
-                        <li class="tablink" onclick="openPage('App')"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('App')" >{% trans "Applications" %}</span></a></li>
+                        <li class="tablink" onclick="openPage('App')">
+                            <a href="#">
+                                <i class="fa fa-tasks" aria-hidden="true"></i>
+                                <span class="tablink" onclick="openPage('App')" >{% trans "Applications" %}</span>
+                            </a>
+                        </li>
 
-                        <li class="tablink" onclick="openPage('Team')"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Team')" >{% trans "Team" %}</span></a></li>
-                        <li ><a href="{% url 'accounts:profile_view' %}"><i class="fa fa-cog" aria-hidden="true"></i>
-                            <span >{% trans "Profile" %}</span></a></li>
-                        <li ><a href="/accounts/logout/"><i class="fa fa-cog" aria-hidden="true"></i>
-                            <span >{% trans "Log Out" %}</span></a></li>
-
+                        <li class="tablink" onclick="openPage('Team')">
+                            <a href="#">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span class="tablink" onclick="openPage('Team')" >{% trans "Team" %}</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="{% url 'accounts:profile_view' %}">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span >{% trans "Profile" %}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout/">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span >{% trans "Log Out" %}</span>
+                            </a>
+                        </li>
                         {% endblock %}
                     </ul>
                 </div>
