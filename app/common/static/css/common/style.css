@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 body {
@@ -36,7 +37,6 @@ body::-webkit-scrollbar-thumb, .custom-scroll::-webkit-scrollbar-thumb {
 
 
 .card{
-  /* width: 50%; */
   margin: 20px;
 
 }
