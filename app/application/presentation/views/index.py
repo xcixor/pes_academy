@@ -18,8 +18,9 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        first_image = CarouselImage.objects.first()
-        context['first_carousel_image'] = first_image
-        context['other_carousel_images'] = CarouselImage.objects.exclude(
-            id=first_image.id)
+        if CarouselImage.objects.all():
+            first_image = CarouselImage.objects.first()
+            context['first_carousel_image'] = first_image
+            context['other_carousel_images'] = CarouselImage.objects.exclude(
+                id=first_image.id)
         return context

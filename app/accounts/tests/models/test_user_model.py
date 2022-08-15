@@ -71,7 +71,7 @@ class UserModelTestCase(AccountsBaseTestCase):
         self.assertEqual(user.username, 'admin')
 
     def test_defines_user_readable_name(self):
-        self.assertEqual(str(self.user), 'normal_user')
+        self.assertEqual(str(self.user), str(self.user.id).zfill(3))
 
     def test_can_get_user_by_uid(self):
         uid = urlsafe_base64_encode(force_bytes(self.user.pk))

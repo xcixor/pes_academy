@@ -95,4 +95,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
 
     def __str__(self) -> str:
-        return self.username
+        if self.is_applying_for_a_call_to_action:
+            return 'AFDB-' + str(self.id).zfill(3)
+        return str(self.id).zfill(3)
