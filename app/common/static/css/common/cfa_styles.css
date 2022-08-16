@@ -110,11 +110,6 @@ nav #contacts {
   color: #ffffff;
 }
 
-.card {
-  background-color: (--bg-secondary);
-  border-radius: 30px;
-}
-
 .btn-primary {
   background-color: #4b6386;
   border-radius: 10px;

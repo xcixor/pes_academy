@@ -9,7 +9,7 @@
       tablinks[i].style.backgroundColor = "none";
     }
     document.getElementById(pageName).style.display = "block";
-    elmnt.style.backgroundColor = color;
+    // elmnt.style.backgroundColor = color;
   }
 
   // Get the element with id="defaultOpen" and click on it
@@ -22,4 +22,22 @@ document.querySelector("#show-form").addEventListener("click", function(){
 
 document.querySelector(".popup .close-btn").addEventListener("click",function(){
   document.querySelector(".popup").classList.remove("active");
+});
+
+$('#sideNavIcon').on('click', ()=> {
+  $('#navigation').toggle({ direction: "right" }, 1000);
+  $('#navigation').addClass("toggle-click");
+});
+
+$('#closeSideNav').on('click', ()=>{
+  $('#navigation').toggle({ direction: "right" }, 10000);
+});
+
+$(".toggle-click").on('click', ()=> {
+  $('#navigation').css('display', 'none');
+});
+
+$(document).on('click', ".toggle-click", function() {
+      $('#navigation').css('display', 'none');
+
 });
