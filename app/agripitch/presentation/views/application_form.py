@@ -141,10 +141,10 @@ class PostApplicationFormView(SingleObjectMixin, View):
             if is_ajax:
                 return JsonResponse(
                     form_errors, status=400)
-            success_message = (
+            error_message = (
                 "Please correct the errors in your form.")
             messages.add_message(
-                request, messages.SUCCESS, success_message)
+                request, messages.ERROR, error_message)
             return render(request, self.template_name, context)
         process_inputs(data, request.user.application)
         process_files(dict_files, request.user.application)
