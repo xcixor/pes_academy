@@ -2,12 +2,12 @@
 {% load i18n %}
 {% block body_id %}staff{% endblock %}
 {% block content %}
-<div class="container p-5" style="background: rgba(169, 25, 23, 0.8); border-radius: 3%;"">
+<div class="container p-5 site-bg-secondary py-5">
     <div class="row">
         <div class="col-md-12">
             <form method="post" class="py-2" enctype="multipart/form-data">
                 {% if form.errors %}
-                
+
                 <h4 class="error text-white">
                     <i class="bi bi-exclamation-triangle text-white p-3"></i>
                     {% trans "There seems to be a problem with your details, please check again." %}</h4>

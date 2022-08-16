@@ -17,3 +17,12 @@
 .navi ul {
     list-style-type: none;
 }
+
+.img-profile{
+    border-radius: 8px;
+    border: solid 1px silver;
+}
+
+#profileContainer {
+    height: 100%;
+}

@@ -1,38 +1,44 @@
 {% extends 'base.html' %}
+{% block styles %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/profile.css' %}" />
+{% endblock %}
+{% load static %}
 {% load i18n %}
 {% block body_id %}staff{% endblock %}
 {% block content %}
-
-<div class="container d-flex justify-content-center p-5" style="background: rgba(75, 99, 134, 0.9); border-radius: 5%;">
-    <figure class="snip1515">
-        <div class="profile-image">
-            {% if user.avatar %}
-            <img src="{{user.avatar.url}}" class="img" alt="No Avatar" height="200px">
-            {% else %}
-            <i class="fa fa-user fa-5x" aria-hidden="true"></i>
-            {% endif %}
+<div class="container site-bg-secondary py-5 text-light" id="profileContainer">
+  <div class="row">
+    <div class="col-md-4">
+      {% if user.avatar %}
+      <img src="{{user.avatar.url}}" class="img-fluid img-profile" alt="No Avatar" height="200px">
+      {% else %}
+      <img src="{% static 'images/common/avatar.png' %}" class="img-fluid img-profile" alt="Avatar" height="250px">
+      <p class="text-light">{% trans "Change your photo" %}</p>
+      {% endif %}
+    </div>
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <h2>{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your names" %}{% endif %}</h2>
+      <h4>{{user.email}}</h4>
+      <h4>{% trans "Preferred Language" %}: {% if user.preferred_language %}{{user.get_preferred_language_display}}{% else %}{% trans "Please set your preferred Language" %}{% endif %}</h4>
+      <div class="icons">
+        {% if user.linked_in %}
+        <a href="{{user.linked_in}}" target="_blank" class="text-light">
+           <i class="fa-brands fa-linkedin fa-2x"></i> LinkedIn
+        </a>
+        {% else %}
+        {% trans "Please set your LinkedIn profile" %}
+        {% endif %}
+      </div>
+      <p>
+        {% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}
+      </p>
+      <div class="d-flex">
+          <button class="btn btn-primary mr-2"><a class="text-light" href="{% url 'accounts:profile_edit' pk=user.pk %}"><b>{% trans "Edit Profile" %}>></b></a></button>
+          <button class="btn btn-primary"><a class="text-light" href="{% url 'accounts:dashboard' %}"><b>{% trans "Back" %}</b></a></button>
         </div>
-        <figcaption>
-          <h3>{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your names" %}{% endif %}</h3>
-          <h4 class="mt-2">{{user.email}}</h4>
-          <p>
-            {% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}
-          </p>
-          <div class="icons">
-            {% if user.linked_in %}
-            <a href="{{user.linked_in}}" target="_blank">
-                <i class="fa fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            {% endif %}
-          </div>
-          <div class="card-buttons">
-            <button data-section="#about" class="is-active">{{user.get_preferred_language_display}}</button>
-            <!-- <button data-section="#experience">EXPERIENCE</button> -->
-            <button data-section="#contact"><a href="{% url 'accounts:profile_edit' pk=user.pk %}">{% trans "Edit Profile" %}</a></button>
-          </div>
-        </figcaption>
-        <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
-      </figure>
-      
+    </div>
+  </div>
 </div>
 {% endblock %}
