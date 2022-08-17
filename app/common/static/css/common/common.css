@@ -15,6 +15,17 @@
     color: var(--bg-primary)
 }
 
+.header-site-primary {
+    color: var(--bg-primary);
+    font-size: large;
+}
+
+.main-secondary-title {
+    color: var(--bg-primary);
+    font-family: 'Paytone One';
+    font-size: 5em;
+}
+
 .paragraph-site-primary {
     color: var(--bg-primary);
     font-size: medium;

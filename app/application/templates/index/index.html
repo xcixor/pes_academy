@@ -7,4 +7,106 @@
 <link rel="stylesheet" href="{% static 'css/application/index.css' %}">
 {% endblock %}
 {% block content %}
+
+
+<section class="hero">
+    <div class="main-nav">
+         <div class="logo"><a href="#">Download Application guide</a></div>
+         <div class="hamburger-menu"><span class="bar"></span></div>
+         <ul class="nav-list">
+              <li class="home-nav-item"><a href="/" class="nav-link">home</a></li>
+              <li class="home-nav-item"><a href="#partners" class="nav-link">Partners</a></li>
+              <li class="home-nav-item"><a href="/agripitch/agriculture/application" class="nav-link">Apply</a></li>
+              <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
+         </ul>
+    </div>
+  <div class="hero-clipped">
+       <div class="hero-textbox">
+        <img src="{% static 'images/agripitch-logo.png' %}" width="700" alt="Agripitch logo" class="img-fluid">
+            <!-- <h1 class="main-heading">The 2022 Agripitch Competition</h1> -->
+            <h2 class="sub-heading">The Role of African Youth Within African Food Systems</h2>
+            <a href="/agripitch" class="cta-button">Find Out More</a>
+       </div>
+  </div>
+
+
+</section>
+<div class="container">
+  
+  <div class="board">
+    <h1 id="partners" class="text-center main-secondary-title mb-5">Key Partners</h1>
+
+    <div class="section">
+      <div class="tile cover">
+        <img src="{% static 'images/AFDB logo.png' %}" class="partner-img-2">
+        <h5 class="header-site-primary">African Development Bank</h5>
+      </div>
+      <div class="tile desc">
+        <span>Host</span>
+        <a href="https://www.afdb.org/"><p> Visit Website</p></a>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="tile cover">
+        <img class="partner-img" src="{% static 'images/PES logo.png' %}">
+          <h5 class="header-site-primary">Private Equity Support</h5>
+        
+      </div>
+      <div class="tile desc">
+        <span>Implementing Partner.</span>
+        <a href="https://www.privateequity-support.com/"><p> Visit Website</p></a>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="tile cover">
+        <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
+        <h5 class="header-site-primary">Pfan</h5>
+      </div>
+      <div class="tile desc">
+        <span>Knowledge Partner.</span>
+        <a href="https://pfan.net/"><p> Visit Website</p></a>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="tile cover">
+        <img src="{% static 'images/eldohub-logo.png' %}"  class="partner-img-3">
+        <h5 class="header-site-primary">Eldohub</h5>
+      </div>
+      <div class="tile desc">
+        <span>Digital Partner</span>
+        <a href="https://www.eldohub.co.ke/"><p> Visit Website</p></a>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="tile cover">
+        <img class="partner-img" src="{% static 'images/agripitch-logo.png' %}">
+        <h5 class="header-site-primary">Other partner</h5>
+      </div>
+      <div class="tile desc">
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ab ipsa commodi quas voluptatibu?</span>
+        <a href="">Visit Website</a>
+      </div>
+    </div>
+    
+    
+    <div class="section">
+      <div class="tile cover">
+        <img class="partner-img" src="{% static 'images/agripitch-logo.png' %}">
+        <h5 class="header-site-primary">Another Partner</h5>
+      </div>
+      <div class="tile desc">
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ab ipsa commodi quas voluptatibus!</span>
+        <a href=""><p> Visit Website</p></a>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
