@@ -83,7 +83,6 @@ class DynamicForm(forms.Form):
             if instance.type == 'countryfield':
                 self.fields[instance.label] = CountryField().formfield()
             if instance.type == 'datefield':
-                print('a date here')
                 self.fields[instance.label] = forms.DateField(
                     widget=forms.DateInput(attrs={'type': 'date'}),
                     **properties)
@@ -177,7 +176,9 @@ class SubCriteriaItemFieldProperties(models.Model):
         ('class', 'class'),
         ('accept', 'accept'),
         ('max_size', 'max_size'),
-        ('required', 'required')
+        ('required', 'required'),
+        ('min', 'min'),
+        ('max', 'max')
     )
     VALUE_CHOICES = (
         ('form-input-validate', 'form-input-validate'),
@@ -187,7 +188,9 @@ class SubCriteriaItemFieldProperties(models.Model):
         ('image/*', 'Images'),
         ('1048576', '1 MB'),
         ('2097152', '2 MB'),
-        ('False', 'Not required')
+        ('False', 'Not required'),
+        ('1987-01-01', 'Min Year'),
+        ('2004-01-01', 'Max Year')
     )
 
     sub_criteria_item = models.ForeignKey(

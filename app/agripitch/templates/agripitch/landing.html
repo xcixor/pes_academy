@@ -22,7 +22,7 @@
                 <h2>The 2022 Agripitch Competition is Here!</h2>
                 <h3>Get your Agribusiness to the next level today!</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
-                <a href="#" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
+                <a href="{% url "agripitch:application" slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
               </div>
           </div>
           {% for image in other_carousel_images %}
@@ -32,7 +32,7 @@
                 <h2>The 2022 Agripitch Competition is Here!</h2>
                 <h3>Get your Agribusiness to the next level today!</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
-                <a href="#" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
+                <a href="{% url "agripitch:application" slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
               </div>
           </div>
           {% endfor %}

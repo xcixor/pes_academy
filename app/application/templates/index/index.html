@@ -16,7 +16,9 @@
          <ul class="nav-list">
               <li class="home-nav-item"><a href="/" class="nav-link">home</a></li>
               <li class="home-nav-item"><a href="#partners" class="nav-link">Partners</a></li>
-              <li class="home-nav-item"><a href="/agripitch/agriculture/application" class="nav-link">Apply</a></li>
+              {% for call in calls_to_action %}
+              <li class="home-nav-item"><a href="{% url "agripitch:application" slug=call.slug %}" class="nav-link">Apply</a></li>
+              {% endfor %}
               <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
          </ul>
     </div>

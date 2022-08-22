@@ -18,9 +18,11 @@ class AgripitchLandingView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        queryset = super().get_queryset()
         if CarouselImage.objects.all():
             first_image = CarouselImage.objects.first()
             context['first_carousel_image'] = first_image
             context['other_carousel_images'] = CarouselImage.objects.exclude(
                 id=first_image.id)
+        context['application'] = queryset.first()
         return context
