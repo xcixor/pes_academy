@@ -64,7 +64,7 @@
 
         </div>
         <div class="col-lg-7 col-sm-12">
-          {% for application in calls_to_action %}
+          {% if application %}
           <div class="card text-center text-site-primary" >
             <div class="card-header">
               <h2 class="pb-4 text-site-primary text-center"><strong>{{application.tagline}}</strong></h2>
@@ -79,7 +79,7 @@
               <a href="#" class="btn registerbtn">Download Application Guide</a>
             </div>
           </div>
-          {% empty %}
+          {% else %}
               <div class="card m-3" style="max-width: 1200px;">
                 <div class="row">
                   <div class="col-md-12">
@@ -89,7 +89,7 @@
                   </div>
                 </div>
               </div>
-          {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
