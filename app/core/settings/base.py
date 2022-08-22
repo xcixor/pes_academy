@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'common.context_processor.debug_context',
+                'agripitch.context_processors.logos'
             ],
         },
     },

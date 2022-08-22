@@ -38,73 +38,19 @@
   <div class="board">
     <h1 id="partners" class="text-center main-secondary-title mb-5">Key Partners</h1>
 
+    {% for logo in logos %}
     <div class="section">
       <div class="tile cover">
-        <img src="{% static 'images/AFDB_Logo.png' %}" class="partner-img-2">
-        <h5 class="header-site-primary">African Development Bank</h5>
+        <img src="{{ logo.image.url }}" class="partner-img-2">
+        <h5 class="header-site-primary">{{logo.title}}</h5>
       </div>
       <div class="tile desc">
-        <span>Host</span>
-        <a href="https://www.afdb.org/"><p> Visit Website</p></a>
+        <span>{{logo.description}}</span>
+        <a href="{{logo.website}}"><p> Visit Website</p></a>
       </div>
     </div>
-
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/PES logo.png' %}">
-          <h5 class="header-site-primary">Private Equity Support</h5>
-
-      </div>
-      <div class="tile desc">
-        <span>Implementing Partner.</span>
-        <a href="https://www.privateequity-support.com/"><p> Visit Website</p></a>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
-        <h5 class="header-site-primary">Pfan</h5>
-      </div>
-      <div class="tile desc">
-        <span>Knowledge Partner.</span>
-        <a href="https://pfan.net/"><p> Visit Website</p></a>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="tile cover">
-        <img src="{% static 'images/eldohub-logo.png' %}"  class="partner-img-3">
-        <h5 class="header-site-primary">Eldohub</h5>
-      </div>
-      <div class="tile desc">
-        <span>Digital Partner</span>
-        <a href="https://www.eldohub.co.ke/"><p> Visit Website</p></a>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/agripitch-logo.png' %}">
-        <h5 class="header-site-primary">Other partner</h5>
-      </div>
-      <div class="tile desc">
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ab ipsa commodi quas voluptatibu?</span>
-        <a href="">Visit Website</a>
-      </div>
-    </div>
-
-
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/agripitch-logo.png' %}">
-        <h5 class="header-site-primary">Another Partner</h5>
-      </div>
-      <div class="tile desc">
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ab ipsa commodi quas voluptatibus!</span>
-        <a href=""><p> Visit Website</p></a>
-      </div>
-    </div>
+    {% endfor %}
+    
 
   </div>
 

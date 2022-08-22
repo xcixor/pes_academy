@@ -40,25 +40,13 @@
 
     <div class="container bg-light p-4">
       <div class="row">
+        {% for logo in logos %}
+        {% if logo.for_footer %}
         <div class="col">
-            <!-- <h5 class="text-center">Host:</h5> -->
-            <img class="img-fluid" src="{% static 'images/AFDB_Logo.png' %}" style="width: 150px;">
+            <img class="img-fluid float-left" src="{{ logo.image.url }}" style="width: 200px; height: 100px">
         </div>
-        <div class="col">
-            <!-- <h5 class="text-center">Implementing lead:</h5> -->
-            <img class="img-fluid" src="{% static 'images/PES logo.png' %}" style="width: 200px;">
-        </div>
-        <div class="col">
-
-        </div>
-        <div class="col">
-            <!-- <h5 class="text-center">Knowledge partner:</h5> -->
-            <img class="img-fluid float-left" src="{% static 'images/pfan-logo.png' %}" style="width: 200px;">
-        </div>
-        <div class="col">
-            <!-- <h5 class="text-center">Digital partner:</h5> -->
-            <img class="img-fluid float-right" src="{% static 'images/eldohub-logo.png' %}" style="width: 250px;">
-        </div>
+        {% endif %}
+        {% endfor %}
       </div>
     </div>
 </footer>

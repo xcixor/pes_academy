@@ -1,11 +1,12 @@
 from django.contrib import admin
 from agripitch.forms import (
-    CustomSubCriteriaItemAdminForm)
+    CustomSubCriteriaItemAdminForm, PartnerLogoAdminForm)
 
 from agripitch.models import (
     ShortList, CriteriaItem,
     SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
-    SubCriteriaItemFieldProperties, SubCriteriaItemDocumentResponse)
+    SubCriteriaItemFieldProperties, SubCriteriaItemDocumentResponse,
+    PartnerLogo)
 
 
 admin.site.register(ShortList)
@@ -60,3 +61,8 @@ class SubCriteriaItemAdmin(admin.ModelAdmin):
     inlines = [
         SubCriteriaItemFieldPropertiesInline,
         SubCriteriaItemChoiceInline]
+
+
+@admin.register(PartnerLogo)
+class PartnerLogoAdmin(admin.ModelAdmin):
+    form = PartnerLogoAdminForm
