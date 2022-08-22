@@ -79,6 +79,10 @@
               {% else %}
             <p class="pl-5">{% trans "None available" %}</p>
             {% endif %}
+            <a href="{% url 'admin:export_agripitch_questions_xls' %}" class="list-group-item list-group-item-action border-0 align-items-center">
+              <i class="fa-solid fa-file-excel"></i>
+              <span class="ml-2">{% trans "Export Agripitch Questions" %}</span>
+            </a>
             </div>
           </div>
           <!-- overlay to close sidebar on small screens -->
@@ -159,14 +163,14 @@
                                     </tbody>
                                   </table>
                                 </div>
-                              </div>      
+                              </div>
                           </div>
                           <div class="row">
                             <div class="col-md-12">
                                 <div class="card card-admin">
                                     <div class="card-header ">
                                         <div class="nav text-center">
-                                            <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a> 
+                                            <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a>
                                             <a href="#" class="btn btn-primary mx-auto nav-link">{% trans "Quit" %}</a>
                                           </div>
                                     </div>
