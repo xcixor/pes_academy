@@ -8,13 +8,13 @@
   <footer class="site-footer">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col d-flex justify-content-center-sm-12 col d-flex justify-content-center-md-6">
           <!-- <h6>About</h6> -->
           <p class="text-justify">
             <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="img-fluid">
             </p>
         </div>
-        <div class="col-xs-6 col-md-3">
+        <div class="col d-flex justify-content-center-xs-6 col d-flex justify-content-center-md-3">
           <h6>Quick Links</h6>
           <ul class="footer-links">
             <li><a href="https://www.privateequity-support.com/our-services/our-services/">About Us</a></li>
@@ -25,7 +25,7 @@
           </ul>
         </div>
 
-        <div class="col-xs-6 col-md-3">
+        <div class="col d-flex justify-content-center-xs-6 col d-flex justify-content-center-md-3">
           <h6 class="text-center">Folow us</h6>
           <ul class="social-icons">
             <li><a class="facebook" href="https://www.facebook.com/privateequityea"><i class="fab fa-facebook"></i></a></li>
@@ -39,14 +39,19 @@
     </div>
 
     <div class="container bg-light p-4">
-      <div class="row">
-        {% for logo in logos %}
-        {% if logo.for_footer %}
-        <div class="col">
-            <img class="img-fluid float-left" src="{{ logo.image.url }}" style="width: 200px; height: 100px">
+      <div class="row d-flex align-items-center">
+        <div class="col d-flex justify-content-center">
+            <img class="img-fluid" src="{% static 'images/AFDB_Logo.png' %}" style="width: 150px;">
         </div>
-        {% endif %}
-        {% endfor %}
+        <div class="col d-flex justify-content-center">
+            <img class="img-fluid" src="{% static 'images/PES logo.png' %}" style="width: 150px;">
+        </div>
+        <div class="col d-flex justify-content-center">
+            <img class="img-fluid float-left" src="{% static 'images/pfan-logo.png' %}" style="width: 150px;">
+        </div>
+        <div class="col d-flex justify-content-center">
+            <img class="img-fluid float-right" src="{% static 'images/eldohub-logo.png' %}" style="width: 150px">
+        </div>
       </div>
     </div>
 </footer>

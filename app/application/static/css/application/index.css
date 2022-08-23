@@ -481,3 +481,8 @@ header {
   -moz-animation: scootIn 1s 0s ease both;
   -webkit-animation: scootIn 1s 0s ease both;
 }
+
+.all-partners .img-fluid {
+  height: 250px;
+  /* width: 100%; */
+}
