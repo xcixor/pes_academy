@@ -143,14 +143,14 @@ class SubCriteriaItem(models.Model):
     a = [1, 2, 3, 4]
 
     FIELD_CHOICES = [
-        ('charfield', 'CharInput'),
-        ('textfield', 'TextInput'),
-        ('choicefield', 'ChoiceInput'),
-        ('file', 'FileInput'),
-        ('numberfield', 'NumberInput'),
-        ('radiofield', 'RadioInput'),
-        ('datefield', 'DateField'),
-        ('countryfield', 'CountryField')
+        ('charfield', 'One Line Text'),
+        ('textfield', 'Multiple Line Text'),
+        ('choicefield', 'Dropdown'),
+        ('file', 'File'),
+        ('numberfield', 'Number'),
+        ('radiofield', 'Choice'),
+        ('datefield', 'Date'),
+        ('countryfield', 'Country')
     ]
 
     label = models.CharField(max_length=600)
