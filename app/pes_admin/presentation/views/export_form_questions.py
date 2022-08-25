@@ -1,7 +1,7 @@
 import xlwt
 
 from django.http import HttpResponse
-from agripitch.models import SubCriteriaItem
+from agripitch.models import SubCriteriaItem, CriteriaItem
 
 
 def export_agripitch_questions_xls(request):
@@ -32,7 +32,8 @@ def export_agripitch_questions_xls(request):
     style = xlwt.XFStyle()
     style.alignment.wrap = 1
 
-    rows = SubCriteriaItem.objects.all().values_list('label')
+    rows = SubCriteriaItem.objects.all().values_list(
+        'label', 'criteria__label')
     updated_rows = []
     for row in rows:
         object = SubCriteriaItem.objects.get(label=row[0])
@@ -41,9 +42,15 @@ def export_agripitch_questions_xls(request):
         choice_list = [choice.choice + "\n" for choice in choices]
         updated_row = row + tuple(type) + tuple([choice_list])
         updated_rows.append(updated_row)
-    for row in updated_rows:
+
+    criterias = [criteria.label for criteria in CriteriaItem.objects.all()]
+    for criteria in range(len(criterias)):
         row_num += 1
-        for col_num in range(len(row)):
-            ws.write(row_num, col_num, row[col_num], style)
+        ws.write(row_num, 0, criterias[criteria], font_style)
+        for row in list(filter(lambda c: c[1] == criterias[criteria], updated_rows)):
+            row = row[:-3] + row[-2:]
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], style)
     wb.save(response)
     return response
