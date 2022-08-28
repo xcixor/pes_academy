@@ -16,7 +16,7 @@ class AccountActivationTestCase(AccountsBaseTestCase):
         self.assertTrue(uid)
         activation_request = self.client.get(
             '/accounts/activate/{}/{}/'.format(uid, token))
-        self.assertRedirects(activation_request, '/accounts/login/', 302)
+        self.assertRedirects(activation_request, '/', 302)
 
     def test_activation_failure_redirects_to_error_page(self):
         token = 'atokenthatshouldntexist'

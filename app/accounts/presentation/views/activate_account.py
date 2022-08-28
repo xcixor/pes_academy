@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.views import View
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from accounts.tokens import account_activation_token
@@ -19,11 +19,12 @@ class AccountActivationView(View):
             user.save()
             piece_one = _('Congratulations ')
             piece_two = _(
-                ', your account is now active. Please login to continue!')
+                ', your account is now active!')
             success_message = piece_one + str(user) + piece_two
             messages.add_message(
                 request, messages.SUCCESS, success_message)
-            return redirect('/accounts/login/')
+            login(request, user)
+            return redirect('/')
         error_message = _('Uh oh! something went wrong.')
         messages.add_message(
             request, messages.SUCCESS, error_message)
