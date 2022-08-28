@@ -7,28 +7,34 @@
 <link rel="stylesheet" href="{% static 'css/application/index.css' %}">
 {% endblock %}
 {% block content %}
-
-
 <section class="hero">
-    <div class="main-nav">
-         <div class="logo"><a href="#">Download Application guide</a></div>
-         <div class="hamburger-menu"><span class="bar"></span></div>
-         <ul class="nav-list">
-              <li class="home-nav-item"><a href="/" class="nav-link">home</a></li>
-              <li class="home-nav-item"><a href="#partners" class="nav-link">Partners</a></li>
-              {% for call in calls_to_action %}
-              <li class="home-nav-item"><a href="{% url "agripitch:application" slug=call.slug %}" class="nav-link">Apply</a></li>
-              {% endfor %}
-              <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
-         </ul>
+  <div class="main-nav">
+    <div class="logo">
+      <div class="row">
+        <a class="mb-4" href="#">Download Application guide</a>
+      </div>
+      <div class="row">
+        <a href="{% url "agripitch:generate_application_pdf" %}">Download Application Form</a>
+      </div>
     </div>
+    <div class="hamburger-menu"><span class="bar"></span></div>
+    <ul class="nav-list">
+      <li class="home-nav-item"><a href="/" class="nav-link">home</a></li>
+      <li class="home-nav-item"><a href="#partners" class="nav-link">Partners</a></li>
+      {% for call in calls_to_action %}
+      <li class="home-nav-item"><a href="{% url "agripitch:application" slug=call.slug %}" class="nav-link">Apply</a>
+      </li>
+      {% endfor %}
+      <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
+    </ul>
+  </div>
   <div class="hero-clipped">
-       <div class="hero-textbox">
-        <img src="{% static 'images/agripitch-logo.png' %}" width="700" alt="Agripitch logo" class="img-fluid">
-            <!-- <h1 class="main-heading">The 2022 Agripitch Competition</h1> -->
-            <h2 class="sub-heading">The Role of African Youth Within African Food Systems</h2>
-            <a href="/agripitch" class="cta-button">Find Out More</a>
-       </div>
+    <div class="hero-textbox">
+      <img src="{% static 'images/agripitch-logo.png' %}" width="700" alt="Agripitch logo" class="img-fluid">
+      <!-- <h1 class="main-heading">The 2022 Agripitch Competition</h1> -->
+      <h2 class="sub-heading">The Role of African Youth Within African Food Systems</h2>
+      <a href="/agripitch" class="cta-button">Find Out More</a>
+    </div>
   </div>
 
 
@@ -45,49 +51,57 @@
 
     <div class="other-partners d-flex justify-content-center">
       <div class="section">
-      <div class="tile cover">
-        <img src="{% static 'images/AFDB_Logo.png' %}" class="partner-img-2">
-        <!-- <h5 class="header-site-primary">African Development Bank</h5> -->
+        <div class="tile cover">
+          <img src="{% static 'images/AFDB_Logo.png' %}" class="partner-img-2">
+          <!-- <h5 class="header-site-primary">African Development Bank</h5> -->
+        </div>
+        <div class="tile desc">
+          <span>Host</span>
+          <a href="https://www.afdb.org/">
+            <p> Visit Website</p>
+          </a>
+        </div>
       </div>
-      <div class="tile desc">
-        <span>Host</span>
-        <a href="https://www.afdb.org/"><p> Visit Website</p></a>
-      </div>
-    </div>
 
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/PES logo.png' %}">
+      <div class="section">
+        <div class="tile cover">
+          <img class="partner-img" src="{% static 'images/PES logo.png' %}">
           <!-- <h5 class="header-site-primary">Private Equity Support</h5> -->
 
+        </div>
+        <div class="tile desc">
+          <span>Implementing Partner.</span>
+          <a href="https://www.privateequity-support.com/">
+            <p> Visit Website</p>
+          </a>
+        </div>
       </div>
-      <div class="tile desc">
-        <span>Implementing Partner.</span>
-        <a href="https://www.privateequity-support.com/"><p> Visit Website</p></a>
-      </div>
-    </div>
 
-    <div class="section">
-      <div class="tile cover">
-        <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
-        <!-- <h5 class="header-site-primary">Pfan</h5> -->
+      <div class="section">
+        <div class="tile cover">
+          <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
+          <!-- <h5 class="header-site-primary">Pfan</h5> -->
+        </div>
+        <div class="tile desc">
+          <span>Knowledge Partner.</span>
+          <a href="https://pfan.net/">
+            <p> Visit Website</p>
+          </a>
+        </div>
       </div>
-      <div class="tile desc">
-        <span>Knowledge Partner.</span>
-        <a href="https://pfan.net/"><p> Visit Website</p></a>
-      </div>
-    </div>
 
-    <div class="section">
-      <div class="tile cover">
-        <img src="{% static 'images/eldohub-logo.png' %}"  class="partner-img-3">
-        <!-- <h5 class="header-site-primary">Eldohub</h5> -->
+      <div class="section">
+        <div class="tile cover">
+          <img src="{% static 'images/eldohub-logo.png' %}" class="partner-img-3">
+          <!-- <h5 class="header-site-primary">Eldohub</h5> -->
+        </div>
+        <div class="tile desc">
+          <span>Digital Partner</span>
+          <a href="https://www.eldohub.co.ke/">
+            <p> Visit Website</p>
+          </a>
+        </div>
       </div>
-      <div class="tile desc">
-        <span>Digital Partner</span>
-        <a href="https://www.eldohub.co.ke/"><p> Visit Website</p></a>
-      </div>
-    </div>
 
     </div>
 
