@@ -10,19 +10,19 @@
   .h1 {
     color: #a91917;
   }
-  
+
   #second-nav {
     background-color: #a91917;
     color: #ffffff;
   }
-  
+
   .card {
     background-color: #a91917;
     border-radius: 30px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     color: #ffffff;
   }
-  
+
   .btn-primary {
     background-color: #a91917;
     border-radius: 10px;
@@ -30,32 +30,40 @@
   .btn-primary:hover {
     background-color: #4b6386;
   }
-  
+
   .jumbotron-alert {
     background-color: #a91917;
     border-radius: 30px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     color: #ffffff;
   }
-  
+
   /* admin dash */
 
-  
+
   a:hover{
     text-decoration: none;
   }
-  
+
   .list-group-item{
     background-color: #a91917;
     color: #ffffff;
   }
+  .list-group-item:first-child {
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+}
+  .list-group-item:last-child {
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset;
+}
   .list-group-item:hover{
     background-color: #4b6386;
-    color: #ffffff;
+    color: black !important;
   }
   .list-group-item.active{
     background-color: #4b6386;
-    color: #ffffff;
+    color: black !important;
   }
   .jumbotron-admin {
     background-color: a6c2d0;
@@ -70,35 +78,35 @@
   .border-left{
     border-left: 2px solid var(--primary) !important;
   }
-  
-  
+
+
   .sidebar{
     /* top: 0; */
     left : 0;
     z-index : 100;
     overflow-y: auto;
   }
-  
+
   .overlay{
     background-color: rgb(0 0 0 / 45%);
     z-index: 99;
   }
-  
+
   /* sidebar for small screens */
   @media screen and (max-width: 767px){
-    
+
     .sidebar{
       max-width: 18rem;
       transform : translateX(-100%);
       transition : transform 0.4s ease-out;
     }
-    
+
     .sidebar.active{
       transform : translateX(0);
     }
-    
+
   }
-  
+
 
                                                         /* MEDIA QUERIES */
 
@@ -111,7 +119,7 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

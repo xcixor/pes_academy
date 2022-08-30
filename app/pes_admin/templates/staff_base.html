@@ -10,104 +10,110 @@
 {% load application_extras %}
 {% block content %}
 <div class="container-fluid d-flex justify-content-between align-items-start">
-    <!-- sidebar -->
-    <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
-        <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center">Staff</h1>
-        <div class="list-group rounded-0">
+  <!-- sidebar -->
+  <div class="col-md-3 col-lg-2 px-0 h-100 shadow-sm sidebar bg-white" id="sidebar">
+    <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center">Staff</h1>
+    <div class="list-group m-0">
 
-          <a href="/accounts/dashboard/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
-            <span class="bi bi-border-all text-white"></span>
-            <span class="ml-2  text-white">{% trans "Home" %}</span>
-          </a>
-          <a href="/accounts/reviewer/applications/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
-            <span class="bi bi-person-plus"></span>
-            <span class="ml-2">{% trans "Applications to Review" %}</span>
-          </a>
-          <a href="/staff/coachees/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
-            <span class="bi bi-people"></span>
-            <span class="ml-2">{% trans "My Clients" %}</span>
-          </a>
-          <a href="/staff/sessions/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
-            <span class="bi bi-app"></span>
-            <span class="ml-2">{% trans "Sessions" %}</span>
-          </a>
-          <a href="{% url 'accounts:profile_view' %}" class="list-group-item list-group-item-action border-0 align-items-center text-white">
-            <span class="bi bi-person"></span>
-            <span class="ml-2">{% trans "Profile" %}</span>
-          </a>
+      <a href="/accounts/dashboard/"
+        class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+        <span class="bi bi-border-all text-white"></span>
+        <span class="ml-2  text-white">{% trans "Home" %}</span>
+      </a>
+      <a href="/accounts/reviewer/applications/"
+        class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-person-plus"></span>
+        <span class="ml-2">{% trans "Applications to Review" %}</span>
+      </a>
+      <a href="/staff/coachees/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-people"></span>
+        <span class="ml-2">{% trans "My Clients" %}</span>
+      </a>
+      <a href="/staff/sessions/" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-app"></span>
+        <span class="ml-2">{% trans "Sessions" %}</span>
+      </a>
+      <a href="{% url 'accounts:profile_view' %}"
+        class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-person"></span>
+        <span class="ml-2">{% trans "Profile" %}</span>
+      </a>
+    </div>
+  </div>
+  <!-- overlay to close sidebar on small screens -->
+  <div class="w-100 vh-100 overlay d-none" id="sidebar-overlay"></div>
+  <!-- note: in the layout margin auto is the key as sidebar is fixed -->
+  <div class="col-md-9 col-lg-10 ml-md-auto px-0">
+    <!-- top nav -->
+    <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
+      <!-- close sidebar -->
+      <button class="btn py-0 d-lg-none" id="open-sidebar">
+        <span class="bi bi-list text-primary h3"></span>
+      </button>
+      <div class="dropdown ml-auto">
+        <button class="py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown"
+          aria-expanded="false">
+          <span class="bi bi-person text-primary h4"></span>
+          <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
+          <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
+          <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
         </div>
       </div>
-      <!-- overlay to close sidebar on small screens -->
-      <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
-      <!-- note: in the layout margin auto is the key as sidebar is fixed -->
-      <div class="col-md-9 col-lg-10 ml-md-auto px-0">
-        <!-- top nav -->
-        <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
-          <!-- close sidebar -->
-          <button class="btn py-0 d-lg-none" id="open-sidebar">
-            <span class="bi bi-list text-primary h3"></span>
-          </button>
-          <div class="dropdown ml-auto">
-            <button class="py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
-              <span class="bi bi-person text-primary h4"></span>
-              <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-              <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
-              <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
-            </div>
-          </div>
-        </nav>
+    </nav>
 
     <!-- main content -->
     <main class="container-fluid">
-        <div class="jumbotron jumbotron-admin rounded border-0 shadow-sm border-left px-1">
-            
+      <div class="jumbotron jumbotron-admin border-0 shadow-sm border-left px-1">
 
-            <section class="content p-md-5">
-                {% block admin_content %}
-                 <div class="card card-admin">
-                        <div class="card-header ">
-                            <h2 class="card-title">{% trans "Hello" %} {{user.username}}</h2>
-                        </div>
-                        <div class="card-body">
-                          {% if user.is_coach %}
-                          <h3>Quick Stats</h3>
 
-                          <p>No of clients: {{user.mentees.count}}</p>
-                          <p>Total Applications: {{ user.applications.count }}</p>
-                          {% if user.applications.count > 0 %}
-                          <div >
-                            <p>Applications in Progress</p>
-                            {% for application in user.applications.all|in_progress %}
-                            <a href="/eligibility/{{application.application.slug}}/" style="font-size: 1.5rem;color: green;">{{application}}: {% trans "Click to Review" %}</a><br>
-                            {% empty %}
-                            <p>You do not have applications in progress at the moment</p>
-                            {% endfor %}
-                            <h4><b>Applications Reviewed</b></h4>
-                            {% for application in user.applications.all|review_finished %}
-                            <p>{{application}}: <i class="fas fa-check"></i></p>
-                            {% empty %}
-                            <p>You have not reviewed any applications</p>
-                            {% endfor %}
-                          </div>
-                          {% endif %}
-                          <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
-                          <p>Applications reviewed: {{ user.applications.count }}</p>
-                          {% else %}
-                          <h3>Quick Stats</h3>
-                          <p>No of clients: {{user.mentees.count}}</p>
-                          <p>Other roles: {% if user.is_coach %}Reviewer{% else %}Coach{% endif %}</p>
-                          {% endif %}
-                        </div>
-                    </div>
-                {% endblock %}
-            </section>
-                    
-                
-        </div>
+        <section class="content p-md-5">
+          {% block admin_content %}
+          <div class="card card-admin">
+            <div class="card-header ">
+              <h2 class="card-title">{% trans "Hello" %} {{user.username}}</h2>
+            </div>
+            <div class="card-body">
+              {% if user.is_coach %}
+              <h3>Quick Stats</h3>
+
+              <p>No of clients: {{user.mentees.count}}</p>
+              <p>Total Applications: {{ user.applications.count }}</p>
+              {% if user.applications.count > 0 %}
+              <div>
+                <p>Applications in Progress</p>
+                {% for application in user.applications.all|in_progress %}
+                <a href="/eligibility/{{application.application.slug}}/"
+                  style="font-size: 1.5rem;color: green;">{{application}}: {% trans "Click to Review" %}</a><br>
+                {% empty %}
+                <p>You do not have applications in progress at the moment</p>
+                {% endfor %}
+                <h4><b>Applications Reviewed</b></h4>
+                {% for application in user.applications.all|review_finished %}
+                <p>{{application}}: <i class="fas fa-check"></i></p>
+                {% empty %}
+                <p>You have not reviewed any applications</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+              <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
+              <p>Applications reviewed: {{ user.applications.count }}</p>
+              {% else %}
+              <h3>Quick Stats</h3>
+              <p>No of clients: {{user.mentees.count}}</p>
+              <p>Other roles: {% if user.is_coach %}Reviewer{% else %}Coach{% endif %}</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endblock %}
+        </section>
+
+
+      </div>
     </main>
 
 
+  </div>
 </div>
 {% endblock %}
