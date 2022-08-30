@@ -1,6 +1,9 @@
 from django import template
-from django.db.models import Avg, Sum
+from django.db.models import Sum
 from application.models import ApplicationScore
+from agripitch.models import (
+    SubCriteriaItem, SubCriteriaItemResponse,
+    SubCriteriaItemDocumentResponse)
 
 register = template.Library()
 
@@ -87,3 +90,31 @@ def get_document(application, document_name):
             document_name=document_name).first()
         return document
     return None
+
+
+@register.filter('get_applicant_response')
+def get_applicant_response(application, sub_criteria_label):
+    sub_criteria_item = SubCriteriaItem.objects.get(label=sub_criteria_label)
+    response = {}
+    if sub_criteria_item.type == 'file':
+        saved_response = SubCriteriaItemDocumentResponse.objects.get(
+            application=application,
+            sub_criteria_item=sub_criteria_item
+        )
+        response['type'] = 'file'
+        response['item'] = saved_response
+    elif sub_criteria_item.type == 'countryfield':
+        saved_response = SubCriteriaItemResponse.objects.get(
+            application=application,
+            sub_criteria_item=sub_criteria_item
+        )
+        response['type'] = 'countryfield'
+        response['item'] = saved_response
+    else:
+        saved_response = SubCriteriaItemResponse.objects.get(
+            application=application,
+            sub_criteria_item=sub_criteria_item
+        )
+        response['type'] = 'text'
+        response['item'] = saved_response
+    return response

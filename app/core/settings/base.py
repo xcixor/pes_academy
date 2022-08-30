@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
+    'django_countries',
     'common',
     'accounts',
     'application',
@@ -49,7 +50,7 @@ INSTALLED_APPS = [
     'eligibility',
     'pes_admin',
     'staff',
-    'agripitch'
+    'agripitch',
 ]
 
 MIDDLEWARE = [

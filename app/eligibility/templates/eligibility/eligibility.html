@@ -2,8 +2,10 @@
 {% load static %}
 {% load i18n %}
 {% load application_extras %}
+{% load countries %}
 {% block styles %}
 {{ block.super }}
+<link rel="stylesheet" href="{% static 'css/agripitch/application_form.css' %}">
 <link rel="stylesheet" href="{% static 'css/eligibility/eligibility.css' %}">
 {% endblock %}
 {% block content %}
@@ -17,617 +19,365 @@
             <h4><b>{% trans "Stage" %} </b>{{application.get_stage_display}}</h4>
             <h4><b>{% trans "Date of Application" %} </b>{{application.created}}</h4>
         </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
+        <div class="col-md-6 px-5 dark-bg">
             <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <h3><b>{% trans "Applicant's Responses" %}</b></h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <h3><b>{% trans "Scoring" %}</b></h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>
-                        {% trans "1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)" %}
-                    </b></p>
-                    <p>{% trans "Organization Name" %}: <i>{{application.application_creator.business}}</i></p>
-                    <p>{% trans "Facebook" %}: <i>{% if application.application_creator.business.facebook_link %}{{application.application_creator.business.facebook_link}}{%else%}{% trans "Not Provided" %}{%endif%}</i></p>
-                    <p>{% trans "Twitter" %}: <i>{% if application.application_creator.business.twitter_link %}{{application.application_creator.business.twitter_link}}{%else%}{% trans "Not Provided" %}{%endif%}</i></p>
-                    <p>{% trans "Instagram" %}: <i>{% if application.application_creator.business.instagram_link %}{{application.application_creator.business.instagram_link}}{%else%}{% trans "Not Provided" %}{%endif%}</i></p>
-                    <p>{% trans "Linked In" %}: <i>{% if application.application_creator.business.linkedin_link %}{{application.application_creator.business.linkedin_link}}{%else%}{% trans "Not Provided" %}{%endif%}</i></p>
-                    <p>{% trans "WhatsApp Business Link" %}: <i>{% if application.application_creator.business.whatsapp_business_link %}{{application.application_creator.business.whatsapp_business_link}}{%else%}{% trans "Not Provided" %}{%endif%}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 odd">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 1 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:1 %}
-                            <p>{% trans "There are no prompts here" %}</p>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="1">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 1 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:1 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:1 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:1 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:1 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:1 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:1 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
+                <div class="col-md-12 pt-4">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-5 d-flex flex-column">
+                            <a href="/eligibility/{{application.slug}}/done/"
+                                class="btn btn-primary py-4 mb-5">{% trans "Mark Review as Complete" %}</a>
+                            <a href="/accounts/dashboard/" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="1">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "2. Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *" %}</b></p>
-                    <p>{% trans "Stage" %}: <i>{{application.application_creator.business.get_stage_display}}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 even">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 2 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:2 %}
-                            <li>{% trans "There are no prompts here" %}</li>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="2">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 2 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:2 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:2 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:2 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:2 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:2 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:2 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="2. Kindly indicate which part of the value chain you operate in. Kindly select only 1 option which most applies *">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="2">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "3. How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating" %}</b></p>
-                    <p>{% trans "Existence Period" %}: <i>{{application.application_creator.business.get_existence_period_display}}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 odd">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 3 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:3 %}
-                            <li>There are no prompts here</li>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="3">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 3 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:3 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:3 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:3 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:3 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:3 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:3 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="3. How long has the business been in formal existence for? * Kindly select one option. Formal existence means from when the company was registered and started operating">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="3">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product" %}</b></p>
-                    <p>{% trans "Stage:" %} <i>{{application.application_creator.business.get_stage_display}}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 even">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 4 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:4 %}
-                            <li>There are no prompts here</li>
-                            {% endif %}
-                        </ul>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 4 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:1 %}
-                            <p>There are no prompts here</p>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="4">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 4 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:4 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:4 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:4 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:4 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:4 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:4 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="4. Which one sentence best describes the stage where your business is at? * Kindly select one option only that best describes where you are at in the business development stage. MVP means minimum viable product">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="4">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "5. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years." %}</b></p>
-                    <p>{% trans "Milestones" %}: <i>{{application.application_creator.business.milestones}}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 odd">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 5 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:5 %}
-                            <li>There are no prompts here</li>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="5">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 5 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:5 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:5 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:5 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:5 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:5 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:5 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="5. What are the 3 key business milestones to be achieved in the short term (1-2 years)? * Kindly choose the top 3 milestones that are your priorities over the next 1 to 2 years.">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="5">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "6. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)" %}</b></p>
-                    <p>{% trans "Stage:" %} <i>{{application.application_creator.business.covid_impact}}</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 even">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 6 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:6 %}
-                            <li>There are no prompts here</li>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="6">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 6 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:6 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:6 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:6 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:6 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:6 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:6 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="6. How has the COVID 19 pandemic affected your business? Kindly mention 2 key aspects * Give a short description on how the COVID Pandemic has impacted your business (negative and/or positive effect)">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="6">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 p-5 screen-1">
-            <div class="row">
-                <div class="col-md-10 offset-md-1">
-                    <p><b>{% trans "7. Documents" %}</b></p>
-                    <ul>
-                    {% for document in application.documents.all %}
-                    <li><a href="{{document.document.url}}" target="_blank">{{document.document_name}}</a></li>
-                    {% empty %}
-                    {% trans "No documents submitted" %}
-                    {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 p-5 screen-2 odd">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <details class="mb-5">
-                        <summary class="text-bg-secondary flex action-color">
-                            <i class="fa-solid fa-angle-right mr-2"></i>
-                            {% trans "Ask Applicant for more details about this prompt" %}
-                        </summary>
-                        <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                        <ul>
-                            {% for prompt in application.prompts.all %}
-                            {% if prompt.question_position == 7 %}
-                            <li>{{ prompt.message }}</li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if not application.prompts.all|check_in_queryset:7 %}
-                            <li>There are no prompts here</li>
-                            {% endif %}
-                        </ul>
-                        <form action="/applications/prompt/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="id_subject">{% trans "Subject" %}</label>
-                                <input type="text" class="form-control" name="subject" required>
-                                {% for error in form.subject.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group">
-                                <label for="id_message">{% trans "Message" %}</label>
-                                <textarea class="form-control" name="message" rows="3" required></textarea>
-                                {% for error in form.message.errors %}
-                                <p class="error">{{ error|escape }}</p>
-                                {% endfor %}
-                            </div>
-                            <input type="hidden" name="application" value="{{application.pk}}">
-                            <input type="hidden" name="question_position" value="7">
-                            <button type="submit" class="btn btn-primary">{% trans "Send Query" %}</button>
-                        </form>
-                    </details>
-                    <form action="{% url 'application:score' slug=application.slug %}" method="post">
-                        {% csrf_token %}
-                        <div class="d-flex align-items-center">
-                            <select name="score" class="custom-select custom-select-lg mr-4" required>
-                                <option {% if 7 in scores %}{% else %} selected disabled{% endif %} value="">{% trans "Prompt Score" %}</option>
-                                <option {% if scores|get_from_scores:7 == 1 %}selected{% else %}{% endif %} value="1">{% trans "Strongly Disagree" %}</option>
-                                <option {% if scores|get_from_scores:7 == 2 %}selected{% else %}{% endif %} value="2">{% trans "Disagree" %}</option>
-                                <option {% if scores|get_from_scores:7 == 3 %}selected{% else %}{% endif %} value="3">{% trans "Neutral" %}</option>
-                                <option {% if scores|get_from_scores:7 == 4 %}selected{% else %}{% endif %} value="4">{% trans "Agree" %}</option>
-                                <option {% if scores|get_from_scores:7 == 5 %}selected{% else %}{% endif %} value="5">{% trans "Strongly Agree" %}</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">{% if scores|get_from_scores:7 %} {% trans "Update Score" %} {% else %} {% trans "Submit Score" %} {% endif %}</button>
-                        </div>
-                        <div>
-                            {% for error in form.score.errors %}
-                            <p class="error">{{ error | escape }} </p>
-                            {% endfor %}
-                        </div>
-                        <input type="hidden" name="prompt" value="7. Documents">
-                        <input type="hidden" name="application" value="{{application.pk}}">
-                        <input type="hidden" name="question_position" value="7">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 screen-1"></div>
-        <div class="col-md-6 screen-2 odd">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <div class="card">
-                    <h3 class="py-5 px-5 rounded" style="color:black">{% trans "My Score" %}: {{user|get_reviewer_scores_for_application:application}}/{{application.expected_max_score}}</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-<div class="container-fluid py-5 dark-bg">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row m-0 p-0 main-row bg-white">
         <div class="col-md-12">
-            <form action="{% url 'application:comment' %}" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <textarea class="form-control" name="comment" id="id_comment" rows="10" placeholder="{% trans "Please provide some general comments in this application" %}" required></textarea>
+            <div>
+                <div id="multi-step-form-container">
+                    <!-- Form Steps / Progress Bar -->
+                    <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
+                        <li class="form-stepper-active text-center form-stepper-list" step="1">
+                            <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
+                                <span class="form-stepper-circle">
+                                    <span>1</span>
+                                </span>
+                                <div class="label">{{criteria|first}}</div>
+                            </a>
+                        </li>
+                        {% for item in criteria|slice:"1:" %}
+                        <li class="form-stepper-unfinished text-center form-stepper-list"
+                            step="{{forloop.counter|add:"1"}}">
+                            <a class="mr-2 d-flex flex-column align-items-center justify-content-center">
+                                <span class="form-stepper-circle">
+                                    <span>{{forloop.counter|add:"1"}}</span>
+                                </span>
+                                <div class="label">{{item}}</div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                        <li class="form-stepper-unfinished text-center form-stepper-list"
+                            step="{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}">
+                            <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
+                                <span class="form-stepper-circle">
+                                    <span>{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}</span>
+                                </span>
+                                <div class="label">Finish</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <section>
+                        <!-- Step 1 Content -->
+                        <section id="step-1" class="form-step">
+                            <div class="row">
+                                <div class="col-md-6 p-5 screen-1">
+                                    <h3><b>{% trans "Applicant's Responses" %}</b></h3>
+                                </div>
+                                <div class="col-md-6 p-5 screen-2">
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-1">
+                                            <h3><b>{% trans "Scoring" %}</b></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% with criteria|first as first_criteria  %}
+                            {% for sub_criteria in first_criteria.sub_criteria.all %}
+                            <div class="row mt-3">
+                                <div class="col-md-6 p-5 screen-1">
+                                    <p><b>{{sub_criteria}}</b></p>
+                                    <p>
+                                        {% with application|get_applicant_response:sub_criteria as response %}
+                                        {% if response.type == 'file' %}
+                                        <a href="{{response.item.document.url}}"
+                                            target="_blank">{{response.item.name}}</a>
+                                        {% elif response.type == 'countryfield' %}
+                                        {% get_country response.item as country %}
+                                        {{ country.name }}
+                                        {% else %}
+                                        {{ response.item }}
+                                        {% endif %}
+                                        {% endwith %}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 p-5 screen-2 odd">
+                                    <div class="row">
+                                        <div class="col-md-8 offset-md-1">
+                                            <details class="mb-5">
+                                                <summary class="text-bg-secondary flex action-color">
+                                                    <i class="fa-solid fa-angle-right mr-2"></i>
+                                                    {% trans "Ask Applicant for more details about " %}
+                                                    <b><i>{{sub_criteria}}</i></b>
+                                                </summary>
+                                                <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
+                                                <ul>
+                                                    {% for prompt in application.prompts.all %}
+                                                    {% if prompt.question_position == 1 %}
+                                                    <li>{{ prompt.message }}</li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                    {% if not application.prompts.all|check_in_queryset:1 %}
+                                                    <p>{% trans "There are no prompts here" %}</p>
+                                                    {% endif %}
+                                                </ul>
+                                                <form action="/applications/prompt/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label for="id_subject">{% trans "Subject" %}</label>
+                                                        <input type="text" class="form-control" name="subject" required>
+                                                        {% for error in form.subject.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="id_message">{% trans "Message" %}</label>
+                                                        <textarea class="form-control" name="message" rows="3"
+                                                            required></textarea>
+                                                        {% for error in form.message.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <input type="hidden" name="application" value="{{application.pk}}">
+                                                    <input type="hidden" name="question_position" value="1">
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{% trans "Send Query" %}</button>
+                                                </form>
+                                            </details>
+                                            <form action="{% url 'application:score' slug=application.slug %}"
+                                                method="post">
+                                                {% csrf_token %}
+                                                <div class="d-flex align-items-center">
+                                                    <select name="score" class="custom-select custom-select-lg mr-4"
+                                                        required>
+                                                        <option {% if 1 in scores %}{% else %} selected
+                                                            disabled{% endif %} value="">
+                                                            {% trans "Prompt Score" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 1 %}selected{% else %}{% endif %}
+                                                            value="1">
+                                                            {% trans "Strongly Disagree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 2 %}selected{% else %}{% endif %}
+                                                            value="2">
+                                                            {% trans "Disagree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 3 %}selected{% else %}{% endif %}
+                                                            value="3">
+                                                            {% trans "Neutral" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 4 %}selected{% else %}{% endif %}
+                                                            value="4">
+                                                            {% trans "Agree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 5 %}selected{% else %}{% endif %}
+                                                            value="5">
+                                                            {% trans "Strongly Agree" %}</option>
+                                                    </select>
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{% if scores|get_from_scores:1 %}
+                                                        {% trans "Update Score" %} {% else %}
+                                                        {% trans "Submit Score" %}
+                                                        {% endif %}</button>
+                                                </div>
+                                                <div>
+                                                    {% for error in form.score.errors %}
+                                                    <p class="error">{{ error | escape }} </p>
+                                                    {% endfor %}
+                                                </div>
+                                                <input type="hidden" name="prompt"
+                                                    value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
+                                                <input type="hidden" name="application" value="{{application.pk}}">
+                                                <input type="hidden" name="question_position" value="1">
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endwith %}
+                            <div class="row screen-1">
+                                <div class="col-md-6 p-5">
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="2">Next</button>
+                                </div>
+                            </div>
+
+                        </section>
+                        <!-- Step 2 Content, default hidden on page load. -->
+                        {% for item in criteria|slice:"1:" %}
+                        <section id="step-{{forloop.counter|add:"1"}}" class="form-step d-none">
+                            <div class="row">
+                                <div class="col-md-6 p-5 screen-1">
+                                    <h3><b>{% trans "Applicant's Responses" %}</b></h3>
+                                </div>
+                                <div class="col-md-6 p-5 screen-2">
+                                    <div class="row">
+                                        <div class="col-md-10 offset-md-1">
+                                            <h3><b>{% trans "Scoring" %}</b></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for sub_criteria in item.sub_criteria.all %}
+                            <div class="row">
+                                <div class="col-md-6 p-5 screen-1">
+                                    <p><b>{{sub_criteria}}</b></p>
+                                    <p>
+                                        {% with application|get_applicant_response:sub_criteria as response %}
+                                        {% if response.type == 'file' %}
+                                        <a href="{{response.item.document.url}}"
+                                            target="_blank">{{response.item.name}}</a>
+                                        {% elif response.type == 'countryfield' %}
+                                        {% get_country response.item as country %}
+                                        {{ country.name }}
+                                        {% else %}
+                                        {{ response.item }}
+                                        {% endif %}
+                                        {% endwith %}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 p-5 screen-2 odd">
+                                    <div class="row">
+                                        <div class="col-md-8 offset-md-1">
+                                            <details class="mb-5">
+                                                <summary class="text-bg-secondary flex action-color">
+                                                    <i class="fa-solid fa-angle-right mr-2"></i>
+                                                    {% trans "Ask Applicant for more details about " %}
+                                                    <b><i>{{sub_criteria}}</i></b>
+                                                </summary>
+                                                <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
+                                                <ul>
+                                                    {% for prompt in application.prompts.all %}
+                                                    {% if prompt.question_position == 1 %}
+                                                    <li>{{ prompt.message }}</li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                    {% if not application.prompts.all|check_in_queryset:1 %}
+                                                    <p>{% trans "There are no prompts here" %}</p>
+                                                    {% endif %}
+                                                </ul>
+                                                <form action="/applications/prompt/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label for="id_subject">{% trans "Subject" %}</label>
+                                                        <input type="text" class="form-control" name="subject" required>
+                                                        {% for error in form.subject.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="id_message">{% trans "Message" %}</label>
+                                                        <textarea class="form-control" name="message" rows="3"
+                                                            required></textarea>
+                                                        {% for error in form.message.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <input type="hidden" name="application" value="{{application.pk}}">
+                                                    <input type="hidden" name="question_position" value="1">
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{% trans "Send Query" %}</button>
+                                                </form>
+                                            </details>
+                                            <form action="{% url 'application:score' slug=application.slug %}"
+                                                method="post">
+                                                {% csrf_token %}
+                                                <div class="d-flex align-items-center">
+                                                    <select name="score" class="custom-select custom-select-lg mr-4"
+                                                        required>
+                                                        <option {% if 1 in scores %}{% else %} selected
+                                                            disabled{% endif %} value="">
+                                                            {% trans "Prompt Score" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 1 %}selected{% else %}{% endif %}
+                                                            value="1">
+                                                            {% trans "Strongly Disagree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 2 %}selected{% else %}{% endif %}
+                                                            value="2">
+                                                            {% trans "Disagree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 3 %}selected{% else %}{% endif %}
+                                                            value="3">
+                                                            {% trans "Neutral" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 4 %}selected{% else %}{% endif %}
+                                                            value="4">
+                                                            {% trans "Agree" %}</option>
+                                                        <option
+                                                            {% if scores|get_from_scores:1 == 5 %}selected{% else %}{% endif %}
+                                                            value="5">
+                                                            {% trans "Strongly Agree" %}</option>
+                                                    </select>
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{% if scores|get_from_scores:1 %}
+                                                        {% trans "Update Score" %} {% else %}
+                                                        {% trans "Submit Score" %}
+                                                        {% endif %}</button>
+                                                </div>
+                                                <div>
+                                                    {% for error in form.score.errors %}
+                                                    <p class="error">{{ error | escape }} </p>
+                                                    {% endfor %}
+                                                </div>
+                                                <input type="hidden" name="prompt"
+                                                    value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
+                                                <input type="hidden" name="application" value="{{application.pk}}">
+                                                <input type="hidden" name="question_position" value="1">
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="row screen-1">
+                                <div class="col-md-6 p-5">
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="{{ forloop.counter }}">Prev</button>
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="{{ forloop.counter|add:"2" }}">Next</button>
+                                </div>
+                            </div>
+                        </section>
+                        {% endfor %}
+                        <!-- Step 3 Content, default hidden on page load. -->
+                        <form id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}"
+                            class="form-step d-none py-5" action="{% url 'application:comment' %}" method="post">
+                            <div class="row">
+                                <div class="col-md-12 p-0">
+                                    <h4 class="mb-4"><b>{% trans "This is the last page" %}</b></h4>
+                                    <p><b>{% trans "Please provide some general comments on this application" %}</b></p>
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="comment" id="id_comment" rows="10"
+                                            placeholder="{% trans "Comment" %}" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <button class="button btn-navigate-form-step" type="button"
+                                    step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
+                                <button class="button submit-btn" type="submit">{% trans "Save Comment" %}</button>
+                            </div>
+                        </form>
+                    </section>
                 </div>
-                <input type="hidden" name="application" value="{{application.pk}}">
-                <button type="submit" class="btn btn-primary">{% trans "Save Comment" %}</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 <div class="container-fluid py-5 dark-bg">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-end">
-            <a href="/eligibility/{{application.slug}}/done/" class="btn btn-primary mr-5">{% trans "Mark Review as Complete" %}</a>
-            <a href="/accounts/dashboard/" class="btn btn-primary">{% trans "My Dashboard" %}</a>
-        </div>
-    </div>
+
 </div>
 {% endblock %}
 {% block scripts %}
 {{ block.super }}
 <script src="{% static 'js/eligibility/eligibility.js' %}"></script>
+<script src="{% static 'js/agripitch/application_form.js' %}"></script>
 {% endblock %}

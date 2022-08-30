@@ -26,3 +26,14 @@
 .card {
     background-color: inherit;
 }
+
+.form-step {
+    border: none;
+    border-radius: none;
+    padding: unset;
+}
+
+a.btn {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
