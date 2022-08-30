@@ -128,7 +128,13 @@
                                             {% if user.application %}
                                             <button class="btn btn-primary mt-4"><a class="text-light" href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}">{% trans "Your Application" %}</a></button>
                                             {% else %}
-                                            <button class="btn btn-primary mt-4"><a class="text-light" href="{{user.email|get_application_url}}">{% trans "Your Application" %}</a></button>
+                                            {% with user.email|get_application_url as url %}
+                                            {% if url %}
+                                            <button class="btn btn-primary mt-4"><a class="text-light" href="{{url}}">{% trans "Your Application" %}</a></button>
+                                            {% else %}
+                                            <a href="{% url 'application:index' %}" class="btn btn-primary mt-2">{% trans "Start Application" %}</a>
+                                            {% endif %}
+                                            {% endwith %}
                                             {% endif %}
                                         </div>
 
