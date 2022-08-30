@@ -20,7 +20,7 @@ class AccountActivationView(View):
             piece_one = _('Congratulations ')
             piece_two = _(
                 ', your account is now active!')
-            success_message = piece_one + str(user) + piece_two
+            success_message = piece_one + user.username + piece_two
             messages.add_message(
                 request, messages.SUCCESS, success_message)
             login(request, user)
