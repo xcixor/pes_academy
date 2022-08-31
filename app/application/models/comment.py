@@ -17,4 +17,4 @@ class ApplicationComment(models.Model):
 
     def __str__(self) -> str:
         return _('Comment for ') + self.application.special_id + \
-            _(' by') + self.reviewer
+            _(' by') + self.reviewer.email
