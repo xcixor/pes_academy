@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 from django.utils.translation import gettext_lazy as _
 from application.models import Application
 from agripitch.models import CriteriaItem
+from application.forms import ApplicationScoreForm
 
 
 User = get_user_model()
@@ -23,10 +24,6 @@ class EligibilityView(PermissionRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         scores_to_dict = {}
         reviewer_scores = self.object.scores.filter(reviewer=self.request.user)
-        for score in reviewer_scores:
-            scores_to_dict[score.question_position] = score.score
         context['scores'] = scores_to_dict
-        context['prompts'] = self.object.prompts.filter(
-            reviewer=self.request.user)
         context.update({'criteria': CriteriaItem.objects.all()})
         return context

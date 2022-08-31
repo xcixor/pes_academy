@@ -115,12 +115,10 @@
                                                 </summary>
                                                 <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
                                                 <ul>
-                                                    {% for prompt in application.prompts.all %}
-                                                    {% if prompt.question_position == 1 %}
+                                                    {% for prompt in sub_criteria.prompts.all %}
                                                     <li>{{ prompt.message }}</li>
-                                                    {% endif %}
                                                     {% endfor %}
-                                                    {% if not application.prompts.all|check_in_queryset:1 %}
+                                                    {% if not sub_criteria.prompts.all %}
                                                     <p>{% trans "There are no prompts here" %}</p>
                                                     {% endif %}
                                                 </ul>
@@ -142,7 +140,7 @@
                                                         {% endfor %}
                                                     </div>
                                                     <input type="hidden" name="application" value="{{application.pk}}">
-                                                    <input type="hidden" name="question_position" value="1">
+                                                    <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
                                                     <button type="submit"
                                                         class="btn btn-primary">{% trans "Send Query" %}</button>
                                                 </form>
@@ -153,27 +151,27 @@
                                                 <div class="d-flex align-items-center">
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
                                                         required>
-                                                        <option {% if 1 in scores %}{% else %} selected
+                                                        <option {% if not sub_criteria.scores.all %}selected
                                                             disabled{% endif %} value="">
                                                             {% trans "Prompt Score" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 1 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 1 == score.score %}selected{% endif %}{% endfor %}
                                                             value="1">
                                                             {% trans "Strongly Disagree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 2 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 2 == score.score %}selected{% endif %}{% endfor %}
                                                             value="2">
                                                             {% trans "Disagree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 3 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 3 == score.score %}selected{% endif %}{% endfor %}
                                                             value="3">
                                                             {% trans "Neutral" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 4 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 4 == score.score %}selected{% endif %}{% endfor %}
                                                             value="4">
                                                             {% trans "Agree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 5 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 5 == score.score %}selected{% endif %}{% endfor %}
                                                             value="5">
                                                             {% trans "Strongly Agree" %}</option>
                                                     </select>
@@ -187,11 +185,10 @@
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
+                                                    <input type="hidden" name="prompt" value="{{sub_criteria}}">
+                                                    <input type="hidden" name="application" value="{{application.pk}}">
+                                                    <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
                                                 </div>
-                                                <input type="hidden" name="prompt"
-                                                    value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
-                                                <input type="hidden" name="application" value="{{application.pk}}">
-                                                <input type="hidden" name="question_position" value="1">
                                             </form>
                                         </div>
                                     </div>
@@ -252,12 +249,10 @@
                                                 </summary>
                                                 <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
                                                 <ul>
-                                                    {% for prompt in application.prompts.all %}
-                                                    {% if prompt.question_position == 1 %}
+                                                    {% for prompt in sub_criteria.prompts.all %}
                                                     <li>{{ prompt.message }}</li>
-                                                    {% endif %}
                                                     {% endfor %}
-                                                    {% if not application.prompts.all|check_in_queryset:1 %}
+                                                    {% if not sub_criteria.prompts.all %}
                                                     <p>{% trans "There are no prompts here" %}</p>
                                                     {% endif %}
                                                 </ul>
@@ -279,7 +274,7 @@
                                                         {% endfor %}
                                                     </div>
                                                     <input type="hidden" name="application" value="{{application.pk}}">
-                                                    <input type="hidden" name="question_position" value="1">
+                                                    <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
                                                     <button type="submit"
                                                         class="btn btn-primary">{% trans "Send Query" %}</button>
                                                 </form>
@@ -290,27 +285,27 @@
                                                 <div class="d-flex align-items-center">
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
                                                         required>
-                                                        <option {% if 1 in scores %}{% else %} selected
+                                                        <option {% if not sub_criteria.scores.all %}selected
                                                             disabled{% endif %} value="">
                                                             {% trans "Prompt Score" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 1 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 1 == score.score %}selected{% endif %}{% endfor %}
                                                             value="1">
                                                             {% trans "Strongly Disagree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 2 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 2 == score.score %}selected{% endif %}{% endfor %}
                                                             value="2">
                                                             {% trans "Disagree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 3 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 3 == score.score %}selected{% endif %}{% endfor %}
                                                             value="3">
                                                             {% trans "Neutral" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 4 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 4 == score.score %}selected{% endif %}{% endfor %}
                                                             value="4">
                                                             {% trans "Agree" %}</option>
                                                         <option
-                                                            {% if scores|get_from_scores:1 == 5 %}selected{% else %}{% endif %}
+                                                            {% for score in sub_criteria.scores.all %}{% if 5 == score.score %}selected{% endif %}{% endfor %}
                                                             value="5">
                                                             {% trans "Strongly Agree" %}</option>
                                                     </select>
@@ -325,10 +320,9 @@
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
                                                 </div>
-                                                <input type="hidden" name="prompt"
-                                                    value="1. Organization name and social media presence. Include any links to your organization, website and/or social media handles where applicable (LinkedIn, Facebook, Instagram, Twitter, WhatsApp Business accounts)">
+                                                <input type="hidden" name="prompt" value="{{sub_criteria}}">
                                                 <input type="hidden" name="application" value="{{application.pk}}">
-                                                <input type="hidden" name="question_position" value="1">
+                                                <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
                                             </form>
                                         </div>
                                     </div>
