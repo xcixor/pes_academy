@@ -354,6 +354,7 @@
                                     <h4 class="mb-4"><b>{% trans "This is the last page" %}</b></h4>
                                     <p><b>{% trans "Please provide some general comments on this application" %}</b></p>
                                     {% csrf_token %}
+                                    <input type="hidden" name="application" value="{{application.pk}}">
                                     <div class="form-group">
                                         <textarea class="form-control" name="comment" id="id_comment" rows="10"
                                             placeholder="{% trans "Comment" %}" required></textarea>

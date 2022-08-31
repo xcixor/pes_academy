@@ -22,7 +22,6 @@ class ApplicationCommentView(FormView):
         return f'/eligibility/{self.comment.application.slug}/'
 
     def form_invalid(self, form):
-        print(form.errors)
         error_message = _('Hmm, that didn\'t work please try again.')
         messages.add_message(
             self.request, messages.ERROR, error_message)
