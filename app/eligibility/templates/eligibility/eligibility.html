@@ -176,7 +176,7 @@
                                                             {% trans "Strongly Agree" %}</option>
                                                     </select>
                                                     <button type="submit"
-                                                        class="btn btn-primary">{% if scores|get_from_scores:1 %}
+                                                        class="btn btn-primary">{% if sub_criteria.scores.all %}
                                                         {% trans "Update Score" %} {% else %}
                                                         {% trans "Submit Score" %}
                                                         {% endif %}</button>
@@ -310,7 +310,7 @@
                                                             {% trans "Strongly Agree" %}</option>
                                                     </select>
                                                     <button type="submit"
-                                                        class="btn btn-primary">{% if scores|get_from_scores:1 %}
+                                                        class="btn btn-primary">{% if sub_criteria.scores.all %}
                                                         {% trans "Update Score" %} {% else %}
                                                         {% trans "Submit Score" %}
                                                         {% endif %}</button>
