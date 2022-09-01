@@ -5,13 +5,7 @@ html {
 body {
   overflow-x: hidden;
 }
-header {
-  width: 100%;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  z-index: 1000;
-}
+
 .main-nav {
   width: 100%;
   height: 10rem;
@@ -83,7 +77,7 @@ header {
 }
 .nav-list {
   width: 20rem;
-  height: 80vh;
+  height: 100vh;
   position: absolute;
   top: 0px;
   right: 0px;
@@ -197,81 +191,6 @@ header {
   opacity: 0;
   transition: all 0.5s;
 }
-@media only screen and (max-width:1400px){
-  .hero-clipped {
-       width: 100%;
-       height: 75vh;
-       background-color: rgba(0,0,0,0.5);
-       clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 60%);
-  }
-
-  #main-logo{
-    width: 500px;
-  }
-  
-  .logo a {
-    display:none
-  }
-  .hero-textbox {
-    top: 45%;
-  }
-}
-@media only screen and (max-width:760px){
-  .nav-list {
-       width: 30rem;
-  }
-  #main-logo{
-    width: 400px;
-  }
-  
-  .sub-heading {
-       font-size: 2rem;
-  }
-  .cta-button {
-       padding: 1rem 2.5rem;
-       font-size: larger;
-  }
-  .hero-textbox {
-    top: 40%;
-  }
-
-}
-@media only screen and (max-width:550px){
-  #main-logo{
-    width: 300px;
-  }
-  
-  .sub-heading {
-       font-size: 1.3rem;
-  }
-  .cta-button {
-       margin-top: 3rem;
-       font-size: large;
-  }
-
-  #partners {
-    font-size: 2em;
-  }
-  .hamburger-menu {
-    width: 3rem;
-    height: 3rem;
-  }
-  .bar {
-    width: 3rem;
-    height: 2px;
-  }
-  .bar::before {
-    top: -0.6rem;
-  }
-  .bar::after {
-    top: 0.6rem;
-  }
-  .hero-textbox {
-    top: 38%;
-  }
-
-}
-
 
 
 
@@ -534,25 +453,119 @@ header {
 }
 
 
-
-@media only screen and (max-width:760px){
- 
-.countdown {
-  font-size: 30px;
-
-}
-
-.countdown div {
-  padding: 10px;
-  margin: 3px;
-}
-
-.countdown span {
+.timeline-img {
   display: block;
-  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
+.parallax{
+    /* background: url('https://images.pexels.com/photos/192136/pexels-photo-192136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') rgba(0, 0, 0, 0.9); */
+    background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.3)), url('../../images/carousel/h.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: aliceblue;
 }
-@media (max-width: 650px) {
+.parallax-1{
+    /* background: url('https://images.pexels.com/photos/3369569/pexels-photo-3369569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') repeat fixed 100%; */
+    background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.3)), url('../../images/carousel/b.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: aliceblue;
+}
+.parallax-inner{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
+@media only screen and (max-width:1400px){
+  .hero-clipped {
+       width: 100%;
+       height: 75vh;
+       background-color: rgba(0,0,0,0.5);
+       clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 60%);
+  }
+
+  #main-logo{
+    width: 500px;
+  }
+
+  .hero-textbox {
+    top: 45%;
+  }
+}
+@media only screen and (max-width:760px){
+  .nav-list {
+       width: 30rem;
+  }
+  #main-logo{
+    width: 400px;
+  }
+  
+  .sub-heading {
+       font-size: 2rem;
+  }
+  .cta-button {
+       padding: 1rem 2.5rem;
+       font-size: larger;
+  }
+  .hero-textbox {
+    top: 40%;
+  }
+
+  .countdown {
+    font-size: 30px;
+  
+  }
+  
+  .countdown div {
+    padding: 10px;
+    margin: 3px;
+  }
+  
+  .countdown span {
+    display: block;
+    font-size: 15px;
+  }
+
+}
+@media only screen and (max-width:550px){
+  #main-logo{
+    width: 300px;
+  }
+  
+  .sub-heading {
+       font-size: 1.3rem;
+  }
+  .cta-button {
+       margin-top: 3rem;
+       font-size: large;
+  }
+
+  #partners {
+    font-size: 2em;
+  }
+  .hamburger-menu {
+    width: 3rem;
+    height: 3rem;
+  }
+  .bar {
+    width: 3rem;
+    height: 2px;
+  }
+  .bar::before {
+    top: -0.6rem;
+  }
+  .bar::after {
+    top: 0.6rem;
+  }
+  .hero-textbox {
+    top: 38%;
+  }
   .landing img {
     width: 70%;
   }
@@ -575,25 +588,6 @@ header {
     width: 80%;
     padding: 10px;
   }
-}
-/* 
 
-@media (max-height: 600px) {
-  img {
-    width: 20%;
-  }
-
-  p {
-    display: none;
-  }
 }
 
-@media (max-height: 400px) {
-   img {
-    padding-bottom: 30px;
-  }
-  
-  h1 {
-    display: none;
-  }
-} */
