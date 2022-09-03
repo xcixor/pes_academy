@@ -1,19 +1,17 @@
-import io
-from django.http import FileResponse
-from agripitch.models import SubCriteriaItem, CriteriaItem
-
-
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from agripitch.models import CriteriaItem
+from application.models import CallToAction
 
 
 def generate_application_pdf(request):
     criteria = CriteriaItem.objects.all()
     context = {
         'criteria': criteria,
-        'request': request
+        'request': request,
+        'call_to_action': CallToAction.objects.first()
     }
     html_string = render_to_string(
         'agripitch/pdf/application_form.html', context)
