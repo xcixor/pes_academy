@@ -143,7 +143,7 @@
                     <div class="mb-5">
                       <p><b>Total by country</b></p>
                       <div class="d-flex">
-                        {% with ''|get_total_applications_by_country as countries %}
+                        {% with 'Country *'|get_total_applications_by_criteria as countries %}
                         {% for country in countries %}
                         {% for key, value in country.items %}
                         <div class="country-applications site-bg-primary mr-2 p-2 text-white">
@@ -160,7 +160,7 @@
                     <div class="mb-5">
                       <p><b>Total by Entity Type</b></p>
                       <div class="d-flex flex-column align-items-start">
-                        {% with ''|get_total_applications_by_entity_type as entities %}
+                        {% with 'Entity type *'|get_total_applications_by_criteria as entities %}
                         {% for entity in entities %}
                         {% for key, value in entity.items %}
                         <div class="country-applications site-bg-primary mb-2 p-2 text-white">
@@ -174,7 +174,7 @@
                     <div class="mb-5">
                       <p><b>Total by Language Speakers</b></p>
                       <div class="d-flex flex-column align-items-start">
-                        {% with ''|get_total_applications_by_language_speakers as entities %}
+                        {% with 'Language *'|get_total_applications_by_criteria as entities %}
                         {% for entity in entities %}
                         {% for key, value in entity.items %}
                         <div class="country-applications site-bg-primary mb-2 p-2 text-white">

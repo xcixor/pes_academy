@@ -1,5 +1,4 @@
 from django import template
-from django.db.models import Avg, Count
 from application.models import Application
 from agripitch.models import SubCriteriaItem, SubCriteriaItemResponse
 
@@ -11,48 +10,21 @@ def get_total_applications(string_to_invoke_call):
     return Application.objects.count()
 
 
-@register.filter('get_total_applications_by_country')
-def get_total_applications_by_country(string_to_invoke_call):
-    sub_criteria_item = SubCriteriaItem.objects.get(label='Country *')
+@register.filter('get_total_applications_by_criteria')
+def get_total_applications_by_criteria(criteria):
+    sub_criteria_item = None
+    try:
+        sub_criteria_item = SubCriteriaItem.objects.get(label=criteria)
+    except SubCriteriaItem.DoesNotExist as e:
+        print(e)
     applications = SubCriteriaItemResponse.objects.filter(
         sub_criteria_item=sub_criteria_item).distinct('value')
-    applications_by_country = []
+    applications_by_criteria = []
     for application in applications:
-        applications_by_country.append(
+        applications_by_criteria.append(
             {
                 application.value: SubCriteriaItemResponse.objects.filter(
                     value=application.value).count()
             }
         )
-    return applications_by_country
-
-
-@register.filter('get_total_applications_by_entity_type')
-def get_total_applications_by_entity_type(string_to_invoke_call):
-    sub_criteria_item = SubCriteriaItem.objects.get(label='Entity type *')
-    applications = SubCriteriaItemResponse.objects.filter(
-        sub_criteria_item=sub_criteria_item).distinct('value')
-    applications_by_country = []
-    for application in applications:
-        applications_by_country.append(
-            {
-                application.value: SubCriteriaItemResponse.objects.filter(
-                    value=application.value).count()
-            }
-        )
-    return applications_by_country
-
-@register.filter('get_total_applications_by_language_speakers')
-def get_total_applications_by_language_speakers(string_to_invoke_call):
-    sub_criteria_item = SubCriteriaItem.objects.get(label='Language *')
-    applications = SubCriteriaItemResponse.objects.filter(
-        sub_criteria_item=sub_criteria_item).distinct('value')
-    applications_by_country = []
-    for application in applications:
-        applications_by_country.append(
-            {
-                application.value: SubCriteriaItemResponse.objects.filter(
-                    value=application.value).count()
-            }
-        )
-    return applications_by_country
+    return applications_by_criteria
