@@ -92,6 +92,11 @@
     z-index: 99;
   }
 
+.country-applications {
+  border-radius: 5px;
+  font-weight: 700;
+}
+
   /* sidebar for small screens */
   @media screen and (max-width: 767px){
 
