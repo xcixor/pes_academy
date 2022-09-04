@@ -118,3 +118,18 @@ def get_applicant_response(application, sub_criteria_label):
         response['type'] = 'text'
         response['item'] = saved_response
     return response
+
+
+@register.filter('get_expected_application_total_score')
+def get_expected_application_total_score(multiplier):
+    return SubCriteriaItem.objects.count() * int(multiplier)
+
+
+@register.filter('get_total_questions')
+def get_total_questions(string_to_invoke_call):
+    return SubCriteriaItem.objects.count()
+
+
+@register.filter('get_unrated_questions')
+def get_unrated_questions(application):
+    return SubCriteriaItem.objects.count() - application.scores.count()

@@ -37,3 +37,35 @@ a.btn {
     font-size: 1.6rem;
     font-weight: bold;
 }
+
+#totalScore {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.score-font{
+    font-weight: bolder;
+    font-size: 1.6rem;
+}
+
+a.btn {
+    overflow-wrap: break-word;
+    white-space: unset;
+}
+
+@media only screen and (max-width: 992px) {
+    .label {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .section-title {
+        display: none;
+    }
+}
