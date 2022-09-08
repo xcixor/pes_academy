@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'ckeditor',
     'django_countries',
+    'googlecharts',
     'common',
     'accounts',
     'application',

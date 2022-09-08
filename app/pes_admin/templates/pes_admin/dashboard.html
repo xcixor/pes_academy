@@ -4,65 +4,200 @@
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
 {% endblock %}
-  {% load admin_extras %}
+{% load admin_extras %}
+{% load googlecharts %}
 {% block admin_content %}
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2>Key Stats</h2>
-                    <div class="mb-5">
-                      <p><b>Total Applications:
-                        </b>
-                      </p>
-                      <p class="country-applications site-bg-primary mb-2 py-2 px-5 text-white" style="display: inline-block;">
-                        {% with ''|get_total_applications as total_applications %}{{total_applications}}{% endwith %}
-                      </p>
-                    </div>
+<div class="row">
+  {# container #}
+  {% googlecharts %}
+  {# named data and options can be reused #}
+  {% with 'Country *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "BarChart",
+  options: {
+  title:'Application by Country',
+  height: 400
+  }
+  {% endoptions %}
+  {# chart is assembled from container, data and options #}
+  {% graph "out" "out_data" "out_options" %}
 
-                    <div class="mb-5">
-                      <p><b>Total by country</b></p>
-                      <div class="d-flex">
-                        {% with 'Country *'|get_total_applications_by_criteria as countries %}
-                        {% for country in countries %}
-                        {% for key, value in country.items %}
-                        <div class="country-applications site-bg-primary mr-2 p-2 text-white">
-                          {% load countries %}
-                          {% get_country key as country %}
-                          {{ country.name }}
-                          | {{value}}
-                        </div>
-                        {% endfor %}
-                        {% endfor %}
-                        {% endwith %}
-                      </div>
-                    </div>
-                    <div class="mb-5">
-                      <p><b>Total by Entity Type</b></p>
-                      <div class="d-flex flex-column align-items-start">
-                        {% with 'Entity type *'|get_total_applications_by_criteria as entities %}
-                        {% for entity in entities %}
-                        {% for key, value in entity.items %}
-                        <div class="country-applications site-bg-primary mb-2 p-2 text-white">
-                          {{ key }} | {{value}}
-                        </div>
-                        {% endfor %}
-                        {% endfor %}
-                        {% endwith %}
-                      </div>
-                    </div>
-                    <div class="mb-5">
-                      <p><b>Total by Language Speakers</b></p>
-                      <div class="d-flex flex-column align-items-start">
-                        {% with 'Language *'|get_total_applications_by_criteria as entities %}
-                        {% for entity in entities %}
-                        {% for key, value in entity.items %}
-                        <div class="country-applications site-bg-primary mb-2 p-2 text-white">
-                          {{ key }} | {{value}}
-                        </div>
-                        {% endfor %}
-                        {% endfor %}
-                        {% endwith %}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endblock %}
+
+  {% with 'Entity type *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Application by Entity Type',
+  height: 400
+  }
+  {% endoptions %}
+  {% graph "entities" "out_data" "out_options" %}
+
+  {% with 'Language *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Application by Language',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "language" "out_data" "out_options" %}
+
+  {% with 'Gender *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Application by Gender',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "gender" "out_data" "out_options" %}
+
+
+  {% with 'Are there women owners / shareholders in your business *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Businesses employing women',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "women" "out_data" "out_options" %}
+
+
+  {% with 'How many women owners /shareholders in the business *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Shareholding Women',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "womenPercentage" "out_data" "out_options" %}
+
+  {% with 'What were your annual revenues in 2020? *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'2020 Revenues',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "revenues2020" "out_data" "out_options" %}
+
+  {% with 'What were your annual revenues in 2021? *'|get_total_applications_by_criteria as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'2021 Revenues',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "revenues2021" "out_data" "out_options" %}
+
+  {% endgooglecharts %}
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Key Stats <i class="fa-solid fa-chart-simple ml-5"></i></h2>
+    <h4>
+      Total Applications:
+      {% with ''|get_total_applications as total_applications %}{{total_applications}}{% endwith %}
+    </h4>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div id="out"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="entities"></div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div id="language"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="gender"></div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div id="women"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="womenPercentage"></div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div id="revenues2020"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="revenues2021"></div>
+  </div>
+</div>
+
+{% endblock %}
