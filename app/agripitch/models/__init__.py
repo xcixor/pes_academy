@@ -198,7 +198,7 @@ class SubCriteriaItem(models.Model):
         return self.label
 
     class Meta:
-        ordering = ('position_in_form',)
+        ordering = ['position_in_form']
         verbose_name_plural = "3. Form Questions"
 
 
@@ -333,5 +333,5 @@ class PartnerLogo(models.Model):
         return f'{self.title} Logo'
 
     class Meta:
-        ordering = ('position',)
+        ordering = ['position']
         verbose_name_plural = '6 Partner Logos'
