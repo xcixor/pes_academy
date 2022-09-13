@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import Select
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -70,6 +71,15 @@ def get_sub_criteria_item_document_response_if_exist(sub_criteria_item, applicat
     return response
 
 
+class CustomSelect(Select):
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        if not option.get('value'):
+            option['attrs']['disabled'] = True
+
+        return option
+
+
 class DynamicForm(forms.Form):
 
     def __init__(self, application, sub_criteria_items, *args, **kwargs):
@@ -97,7 +107,9 @@ class DynamicForm(forms.Form):
                 initial_choices = [
                     (choice.choice, choice.choice)
                     for choice in instance.choices.all()]
-                self.fields[instance.label] = forms.ChoiceField(**properties)
+                initial_choices.insert(0, ('', 'Select Option'))
+                self.fields[instance.label] = forms.ChoiceField(
+                    **properties, widget=CustomSelect)
                 self.fields[instance.label].choices = initial_choices
             elif instance.type == 'multiplechoicefield':
                 choices = [
