@@ -40,11 +40,9 @@ class GetApplicationFormView(DetailView):
 
 
 def process_inputs(inputs, application):
-    print(inputs)
     for key, value in inputs.items():
         sub_criteria_item = get_sub_criteria_item_by_label(key)
         if sub_criteria_item.type == 'multiplechoicefield':
-            print('is multiple choice', value, '***************')
             SubCriteriaItemResponse.objects.update_or_create(
                 application=application,
                 sub_criteria_item=sub_criteria_item,
@@ -157,7 +155,6 @@ class PostApplicationFormView(SingleObjectMixin, View):
             messages.add_message(
                 request, messages.ERROR, error_message)
             return render(request, self.template_name, context)
-        # print(data)
         process_inputs(data, request.user.application)
         process_files(dict_files, request.user.application)
         if is_ajax:
