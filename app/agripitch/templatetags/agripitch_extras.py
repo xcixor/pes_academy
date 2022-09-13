@@ -16,4 +16,7 @@ def get_form(sub_criteria, application):
 
 @register.filter('sort_by_position_in_form')
 def sort_by_position_in_form(queryset):
-    return queryset.order_by('position_in_form')
+    if queryset:
+        return queryset.order_by('position_in_form')
+    else:
+        return queryset
