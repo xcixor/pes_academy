@@ -167,7 +167,7 @@ class PostApplicationFormView(SingleObjectMixin, View):
             "Your application has been recorded, we will get back to you shortly")
         messages.add_message(
             request, messages.SUCCESS, success_message)
-        return redirect(reverse('application:index'))
+        return redirect(reverse('accounts:dashboard'))
 
 
 class ApplicationFormView(LoginRequiredMixin, View):
