@@ -143,7 +143,7 @@ body {
   width: 100%;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 55%;
   z-index: 20;
   transform: translate(-50%,-50%);
   font-family: 'Nunito', sans-serif;
@@ -443,9 +443,9 @@ body {
   margin: 5px;
 }
 
-.countdown div:first-child {
+/* .countdown div:first-child {
   background: #455D8D;
-}
+} */
 
 .countdown span {
   display: block;
@@ -460,7 +460,8 @@ body {
 }
 .parallax{
     /* background: url('https://images.pexels.com/photos/192136/pexels-photo-192136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') rgba(0, 0, 0, 0.9); */
-    background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.3)), url('../../images/carousel/h.jpg');
+    /* background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.9)), url('../../images/carousel/h.jpg'); */
+    background-color: #14A562;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -469,7 +470,8 @@ body {
 }
 .parallax-1{
     /* background: url('https://images.pexels.com/photos/3369569/pexels-photo-3369569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') repeat fixed 100%; */
-    background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.3)), url('../../images/carousel/b.jpg');
+    /* background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.9)), url('../../images/carousel/b.jpg'); */
+    background-color: #14A562;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -487,7 +489,7 @@ body {
        width: 100%;
        height: 75vh;
        background-color: rgba(0,0,0,0.5);
-       clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 60%);
+       clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 100%);
   }
 
   #main-logo{

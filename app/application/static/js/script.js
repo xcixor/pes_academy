@@ -52,7 +52,7 @@ const intvl = setInterval(() => {
 
   // Display result
   countdown.innerHTML = `
-  <div class="bg-secondary">${days}<span>Days</span></div> 
+  <div>${days}<span>Days</span></div> 
   <div>${hours}<span>Hours</span></div>
   <div>${mins}<span>Minutes</span></div>
   <div>${seconds}<span>Seconds</span></div>
