@@ -120,6 +120,15 @@ class DynamicForm(forms.Form):
                     **properties)
                 self.fields[instance.label].choices = choices
 
+                responses = instance.responses.values_list('list_value')
+                initial_choices = []
+                if responses:
+                    for response in responses[0]:
+                        if response:
+                            for item in response:
+                                initial_choices.append(item)
+                    self.fields[instance.label].initial = initial_choices
+
             elif instance.type == 'radiofield':
                 choices = [
                     (choice.choice, choice.choice)
