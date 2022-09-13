@@ -107,12 +107,6 @@ class DynamicForm(forms.Form):
                     widget=forms.CheckboxSelectMultiple,
                     **properties)
                 self.fields[instance.label].choices = choices
-                responses = instance.responses.values_list('list_value')[0]
-                initial_choices = []
-                for response in responses:
-                    for item in response:
-                        initial_choices.append((item, item))
-                self.fields[instance.label].initial = initial_choices
 
             elif instance.type == 'radiofield':
                 choices = [
