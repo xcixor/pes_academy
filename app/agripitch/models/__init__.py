@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
@@ -98,6 +99,21 @@ class DynamicForm(forms.Form):
                     for choice in instance.choices.all()]
                 self.fields[instance.label] = forms.ChoiceField(**properties)
                 self.fields[instance.label].choices = initial_choices
+            elif instance.type == 'multiplechoicefield':
+                choices = [
+                    (choice.choice, choice.choice)
+                    for choice in instance.choices.all()]
+                self.fields[instance.label] = forms.MultipleChoiceField(
+                    widget=forms.CheckboxSelectMultiple,
+                    **properties)
+                self.fields[instance.label].choices = choices
+                responses = instance.responses.values_list('list_value')[0]
+                initial_choices = []
+                for response in responses:
+                    for item in response:
+                        initial_choices.append((item, item))
+                self.fields[instance.label].initial = initial_choices
+
             elif instance.type == 'radiofield':
                 choices = [
                     (choice.choice, choice.choice)
@@ -122,7 +138,7 @@ class DynamicForm(forms.Form):
                             "form-input-validate", "")
                         self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
                         )
-            elif instance.type != 'file':
+            elif instance.type != 'file' and instance.type != 'multiplechoicefield':
                 response = get_sub_criteria_item_response_if_exist(
                     instance, application)
                 if response:
@@ -150,7 +166,8 @@ class SubCriteriaItem(models.Model):
         ('numberfield', 'Number'),
         ('radiofield', 'Choice'),
         ('datefield', 'Date'),
-        ('countryfield', 'Country')
+        ('countryfield', 'Country'),
+        ('multiplechoicefield', 'Multiple Choice Field')
     ]
 
     label = models.CharField(max_length=600)
@@ -190,7 +207,9 @@ class SubCriteriaItemFieldProperties(models.Model):
         ('2097152', '2 MB'),
         ('False', 'Not required'),
         ('1987-01-01', 'Min Year'),
-        ('2004-01-01', 'Max Year')
+        ('2004-01-01', 'Max Year'),
+        ('form-input-validate form-radio multiple_checkbox',
+         'form-input-validate form-radio multiple_checkbox')
     )
 
     sub_criteria_item = models.ForeignKey(
@@ -224,9 +243,12 @@ class SubCriteriaItemResponse(models.Model):
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='responses')
     value = models.TextField(blank=True, null=True)
-
-    def __str__(self) -> str:
-        return self.value
+    list_value = ArrayField(
+        ArrayField(
+            models.CharField(max_length=400, blank=True, null=True),
+        ),
+        blank=True, null=True
+    )
 
     class Meta:
         unique_together = [['sub_criteria_item', 'application']]
