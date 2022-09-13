@@ -96,5 +96,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self) -> str:
         if self.is_applying_for_a_call_to_action:
-            return 'AFDB-' + str(self.id).zfill(3)
+            return 'AfDB-' + str(self.id).zfill(3)
         return str(self.id).zfill(3)
