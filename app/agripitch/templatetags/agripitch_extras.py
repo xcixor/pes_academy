@@ -12,3 +12,8 @@ def get_item_from_dict(dictionary, key):
 @register.filter('get_form')
 def get_form(sub_criteria, application):
     return DynamicForm(application, [sub_criteria])
+
+
+@register.filter('sort_by_position_in_form')
+def sort_by_position_in_form(queryset):
+    return queryset.order_by('position_in_form')
