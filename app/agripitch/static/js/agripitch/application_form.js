@@ -175,11 +175,15 @@ function validateSection(formSection) {
 				inputs[i].type != "checkbox" &&
 				$(inputs[i]).val()
 			) {
-				saveDraftData(inputs[i].name, $(inputs[i]).val());
+				formData = new FormData();
+				formData.append(inputs[i].name, $(inputs[i]).val());
+				saveDraftData(formData);
 			}
 			if (inputs[i].type == "radio") {
 				if ($(inputs[i]).is(":checked")) {
-					saveDraftData(inputs[i].name, $(inputs[i]).val());
+					formData = new FormData();
+					formData.append(inputs[i].name, $(inputs[i]).val());
+					saveDraftData(formData);
 				}
 			}
 
@@ -188,20 +192,28 @@ function validateSection(formSection) {
 					let checkBoxes = document.getElementsByName(inputs[i].name);
 					let inputValues = [];
 					for (let i = 0; i < checkBoxes.length; i++) {
-						if ($(checkBoxes[i]).val()) {
+						if ($(checkBoxes[i]).is(":checked")) {
 							inputValues.push($(checkBoxes[i]).val());
 						}
 					}
-					console.log(inputValues, checkBoxes[0].name);
-					saveDraftData(checkBoxes[0].name, inputValues);
-				}else {
-				saveDraftData(inputs[i].name, $(inputs[0]).val());
-                }
+					formData = new FormData();
+					inputValues.forEach((item) =>
+						formData.append(checkBoxes[0].name, item)
+					);
+					console.log(formData.getAll(checkBoxes[0].name));
+					saveDraftData(formData);
+				} else {
+					formData = new FormData();
+					formData.append(inputs[i].name, $(inputs[0]).val());
+					saveDraftData(formData);
+				}
 			}
 		}
 		for (i = 0; i < file_inputs.length; i++) {
 			if ($(file_inputs[i])[0].files[0]) {
-				saveDraftData(file_inputs[i].name, $(file_inputs[i])[0].files[0]);
+				formData = new FormData();
+				formData.append(file_inputs[i].name, $(file_inputs[i])[0].files[0]);
+				saveDraftData(formData);
 			}
 		}
 	}
@@ -237,13 +249,12 @@ function getRadiosParent(radios) {
 	return $(radios).closest("ul");
 }
 
-function saveDraftData(field, value) {
+function saveDraftData(formData) {
 	let application = $("#currentApplication").val();
 	var url = `/agripitch/${application}/application/`;
 	var CSRFToken = $("input[name=csrfmiddlewaretoken]").val();
 
 	var xhr = new XMLHttpRequest();
-	var formData = new FormData();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("X-CSRFToken", CSRFToken);
 	xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -261,7 +272,6 @@ function saveDraftData(field, value) {
 			});
 		}
 	});
-	formData.append(field, value);
 	xhr.send(formData);
 }
 
