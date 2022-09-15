@@ -5,7 +5,8 @@ from pes_admin.presentation.views import (
     MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
     ApplicationDetails, UnassignedApplicationsView,
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
-    AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView)
+    AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
+    SubCriteriaItemFieldPropertiesView)
 from pes_admin.presentation.views.export_form_questions import export_agripitch_questions_xls
 
 
@@ -46,6 +47,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(MakeStaffCoachView.as_view())),
             path('export/agripitch/xls/', export_agripitch_questions_xls,
                  name='export_agripitch_questions_xls'),
+            path('create/subcriteria/property/',
+                 SubCriteriaItemFieldPropertiesView.as_view()),
         ] + urls
         return custom_urls
 

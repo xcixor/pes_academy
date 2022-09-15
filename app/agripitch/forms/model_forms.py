@@ -1,5 +1,6 @@
 from django import forms
-from agripitch.models import SubCriteriaItem, PartnerLogo
+from agripitch.models import (
+    SubCriteriaItem, PartnerLogo, SubCriteriaItemFieldProperties)
 
 
 class CustomSubCriteriaItemAdminForm(forms.ModelForm):
@@ -38,3 +39,10 @@ class PartnerLogoAdminForm(forms.ModelForm):
             self.fields['position'].choices = choices
         else:
             self.fields['position'].widget = forms.HiddenInput()
+
+
+class SubCriteriaItemFieldPropertiesForm(forms.ModelForm):
+
+    class Meta:
+        model = SubCriteriaItemFieldProperties
+        fields = '__all__'

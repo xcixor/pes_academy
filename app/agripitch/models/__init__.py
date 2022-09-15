@@ -230,8 +230,8 @@ class SubCriteriaItemFieldProperties(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='properties')
-    name = models.CharField(max_length=100, choices=NAME_CHOICES)
-    value = models.CharField(max_length=400, choices=VALUE_CHOICES)
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=400)
 
     def __str__(self) -> str:
         return self.value
