@@ -204,29 +204,6 @@ class SubCriteriaItem(models.Model):
 
 class SubCriteriaItemFieldProperties(models.Model):
 
-    NAME_CHOICES = (
-        ('class', 'class'),
-        ('accept', 'accept'),
-        ('max_size', 'max_size'),
-        ('required', 'required'),
-        ('min', 'min'),
-        ('max', 'max')
-    )
-    VALUE_CHOICES = (
-        ('form-input-validate', 'form-input-validate'),
-        ('form-radio', 'form-radio'),
-        ('form-input-validate form-radio', 'form-input-validate form-radio'),
-        ('.pdf', 'PDF'),
-        ('image/*', 'Images'),
-        ('1048576', '1 MB'),
-        ('2097152', '2 MB'),
-        ('False', 'Not required'),
-        ('1987-01-01', 'Min Year'),
-        ('2004-01-01', 'Max Year'),
-        ('form-input-validate form-radio multiple_checkbox',
-         'form-input-validate form-radio multiple_checkbox')
-    )
-
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='properties')
