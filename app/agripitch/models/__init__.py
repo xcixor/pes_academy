@@ -190,8 +190,7 @@ class SubCriteriaItem(models.Model):
         CriteriaItem, on_delete=models.CASCADE,
         related_name='sub_criteria')
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
-    position_in_form = models.CharField(
-        max_length=3, default=0)
+    position_in_form = models.IntegerField(default=1)
     description = RichTextField(null=True, blank=True)
 
     def __str__(self) -> str:
