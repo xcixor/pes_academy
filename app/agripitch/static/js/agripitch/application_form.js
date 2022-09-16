@@ -131,21 +131,38 @@ function validateSection(formSection) {
 		if (inputs[i].type === "radio") {
 			radiosValidity = validateRadios(inputs[i].name);
 		}
+		let checkBoxParentLabel;
 		if (inputs[i].type === "checkbox") {
 			let checkBoxes = document.getElementsByName(inputs[i].name);
+			let checkBoxesSize = parseInt($(checkBoxes).attr("size"));
 			let numberOfCheckedItems = 0;
+			checkBoxParentLabel = $(`label:contains(${inputs[i].name})`);
+
 			for (let i = 0; i < checkBoxes.length; i++) {
-				let parentLabel = $(`label:contains(${checkBoxes[i].name})`);
 				if (checkBoxes[i].checked) {
 					numberOfCheckedItems++;
 				}
 				if (numberOfCheckedItems === 0) {
-					$(parentLabel).css("color", "red");
+					$(checkBoxParentLabel).css("color", "red");
 					checkBoxesValidity = false;
 				} else {
 					checkBoxesValidity = true;
-					$(parentLabel).css("color", "unset");
+					$(checkBoxParentLabel).css("color", "unset");
 				}
+			}
+			if (numberOfCheckedItems > checkBoxesSize) {
+				$(checkBoxParentLabel).css("color", "red");
+
+				if (!$(checkBoxParentLabel).attr("sizeErrorMessageAdded")) {
+					$(checkBoxParentLabel)
+						.html(
+							`${$(
+								checkBoxParentLabel
+							).text()} Please select a maximum of ${checkBoxesSize} choices`
+						)
+						.attr("sizeErrorMessageAdded", true);
+				}
+				checkBoxesValidity = false;
 			}
 		}
 		if (!inputsValidity || !radiosValidity || !checkBoxesValidity) {
