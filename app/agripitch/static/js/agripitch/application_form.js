@@ -163,6 +163,8 @@ function validateSection(formSection) {
 						.attr("sizeErrorMessageAdded", true);
 				}
 				checkBoxesValidity = false;
+			} else {
+				$(checkBoxParentLabel).html(inputs[i].name);
 			}
 		}
 		if (!inputsValidity || !radiosValidity || !checkBoxesValidity) {
