@@ -57,7 +57,7 @@ class SubCriteriaItemResponseInline(admin.TabularInline):
 
 @admin.register(SubCriteriaItem)
 class SubCriteriaItemAdmin(admin.ModelAdmin):
-    list_display = ['label', 'criteria']
+    list_display = ['label', 'position_in_form', 'criteria']
     list_filter = ['criteria', ]
     form = CustomSubCriteriaItemAdminForm
     inlines = [
