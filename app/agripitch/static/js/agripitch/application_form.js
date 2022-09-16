@@ -118,6 +118,7 @@ function validateSection(formSection) {
 		let inputsValidity = true;
 		let radiosValidity = true;
 		let checkBoxesValidity = true;
+		let textAreaValidity = true;
 		if (
 			isEmptyOrSpaces($(inputs[i]).val()) &&
 			inputs[i].type != "radio" &&
@@ -130,6 +131,17 @@ function validateSection(formSection) {
 		}
 		if (inputs[i].type === "radio") {
 			radiosValidity = validateRadios(inputs[i].name);
+		}
+		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords")) {
+			let setMaxWords = $(inputs[i]).attr("maxwords");
+			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
+				$(inputs[i]).css("border-color", "red");
+				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
+				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`);
+				textAreaValidity = false;
+			}else{
+				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`)
+			}
 		}
 		let checkBoxParentLabel;
 		if (inputs[i].type === "checkbox") {
@@ -167,7 +179,12 @@ function validateSection(formSection) {
 				$(checkBoxParentLabel).html(inputs[i].name);
 			}
 		}
-		if (!inputsValidity || !radiosValidity || !checkBoxesValidity) {
+		if (
+			!inputsValidity ||
+			!radiosValidity ||
+			!checkBoxesValidity ||
+			!textAreaValidity
+		) {
 			isValid = false;
 		}
 	}
@@ -245,6 +262,11 @@ function validateSection(formSection) {
 	}
 	console.log(isValid);
 	return isValid;
+}
+
+function getTypedWords(typedWords) {
+	let words = typedWords.split(" ");
+	return words.length;
 }
 
 function validateRadios(name) {

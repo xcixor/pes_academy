@@ -4,17 +4,18 @@ from agripitch.models import SubCriteriaItemFieldProperties
 
 
 NAME_CHOICES = (
-    ('class', 'class'),
-    ('accept', 'accept'),
-    ('max_size', 'max_size'),
-    ('required', 'required'),
-    ('min', 'min'),
-    ('max', 'max')
+    ('class', 'Class'),
+    ('accept', 'Files to Accept'),
+    ('max_size', 'Max Size'),
+    ('required', 'Required'),
+    ('min', 'Min'),
+    ('max', 'Max'),
+    ('maxwords', 'Max Words')
 )
 VALUE_CHOICES = (
-    ('form-input-validate', 'form-input-validate'),
+    ('form-input-validate', 'Class to validate inputs'),
     ('form-radio', 'form-radio'),
-    ('form-input-validate form-radio', 'form-input-validate form-radio'),
+    ('form-input-validate form-radio', 'Classes to validate radio inputs'),
     ('.pdf', 'PDF'),
     ('image/*', 'Images'),
     ('1048576', '1 MB'),
@@ -23,7 +24,7 @@ VALUE_CHOICES = (
     ('1987-01-01', 'Min Year'),
     ('2004-01-01', 'Max Year'),
     ('form-input-validate form-radio multiple_checkbox',
-     'form-input-validate form-radio multiple_checkbox')
+     'Classes to validate multiple checkbox inputs')
 )
 
 
