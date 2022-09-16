@@ -40,9 +40,3 @@ class PartnerLogoAdminForm(forms.ModelForm):
         else:
             self.fields['position'].widget = forms.HiddenInput()
 
-
-class SubCriteriaItemFieldPropertiesForm(forms.ModelForm):
-
-    class Meta:
-        model = SubCriteriaItemFieldProperties
-        fields = '__all__'

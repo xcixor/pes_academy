@@ -1,27 +1,6 @@
 from django import forms
-from django.utils.translation import gettext_lazy as _
 from django.forms.widgets import Input
 from agripitch.models import SubCriteriaItemFieldProperties
-
-
-class Datalist(Input):
-    input_type = 'text'
-    template_name = 'forms/widgets/datalist.html'
-    option_template_name = 'forms/widgets/datalist_option.html'
-    add_id_index = False
-    checked_attribute = {'selected': True}
-    option_inherits_attrs = False
-
-
-class DatalistField(forms.ChoiceField):
-    widget = Datalist
-    default_error_messages = {
-        'invalid_choice': _('Select a valid choice. %(value)s is not one of the available choices.'),
-    }
-
-    def __init__(self, *, choices='', **kwargs):
-        super().__init__(**kwargs)
-        self.choices = choices
 
 
 NAME_CHOICES = (
