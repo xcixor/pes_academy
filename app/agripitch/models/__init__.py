@@ -60,6 +60,16 @@ def get_sub_criteria_item_response_if_exist(sub_criteria_item, application):
     return response
 
 
+def get_multiplechoice_responses_if_exist(sub_criteria_item, application):
+    response = None
+    try:
+        response = SubCriteriaItemResponse.objects.filter(
+            sub_criteria_item=sub_criteria_item, application=application).values_list('list_value')
+    except SubCriteriaItemResponse.DoesNotExist:
+        response = None
+    return response
+
+
 def get_sub_criteria_item_document_response_if_exist(sub_criteria_item, application):
     response = None
     try:
@@ -120,7 +130,8 @@ class DynamicForm(forms.Form):
                     **properties)
                 self.fields[instance.label].choices = choices
 
-                responses = instance.responses.values_list('list_value')
+                responses = get_multiplechoice_responses_if_exist(
+                    instance, application)
                 initial_choices = []
                 if responses:
                     for response in responses[0]:
