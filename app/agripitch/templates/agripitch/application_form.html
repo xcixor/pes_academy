@@ -32,7 +32,8 @@
                                 </a>
                             </li>
                             {% for item in criteria|slice:"1:" %}
-                            <li class="form-stepper-unfinished text-center form-stepper-list" step="{{forloop.counter|add:"1"}}">
+                            <li class="form-stepper-unfinished text-center form-stepper-list"
+                                step="{{forloop.counter|add:"1"}}">
                                 <a class="mr-2 d-flex flex-column align-items-center justify-content-center">
                                     <span class="form-stepper-circle">
                                         <span>{{forloop.counter|add:"1"}}</span>
@@ -41,7 +42,8 @@
                                 </a>
                             </li>
                             {% endfor %}
-                            <li class="form-stepper-unfinished text-center form-stepper-list" step="{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}">
+                            <li class="form-stepper-unfinished text-center form-stepper-list"
+                                step="{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}">
                                 <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
                                     <span class="form-stepper-circle">
                                         <span>{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}</span>
@@ -51,7 +53,8 @@
                             </li>
                         </ul>
                         <!-- Step Wise Form Content -->
-                        <form name="form" id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="post" novalidate>
+                        <form name="form" id="userAccountSetupForm" name="userAccountSetupForm"
+                            enctype="multipart/form-data" method="post" novalidate>
                             <h4 class="error px-4" id="formErrors">
                                 {% if form_errors %}
                                 Please fix the errors in your form
@@ -68,14 +71,8 @@
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
-                                        <div class="small muted" >{{sub_criteria.description | safe}}</div>
-                                        <ul class="small muted">
-                                        {% for choice in sub_criteria.choices.all %}
-                                        {% if choice.description %}
-                                            <li>{{choice.description | safe}}</li>
-                                        {% endif %}
-                                        {% endfor%}
-                                        </ul>
+                                        <div class="small muted">{{sub_criteria.description | safe}}</div>
+
                                     </div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
@@ -88,7 +85,8 @@
                                     {% endwith %}
                                 </div>
                                 <div class="mt-3">
-                                    <button class="button btn-navigate-form-step" type="button" step_number="2">Next</button>
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="2">Next</button>
                                 </div>
                             </section>
                             <!-- Step 2 Content, default hidden on page load. -->
@@ -100,13 +98,7 @@
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
                                         <div class="small muted">{{sub_criteria.description | safe}}</div>
-                                        <ul class="small muted">
-                                        {% for choice in sub_criteria.choices.all %}
-                                        {% if choice.description %}
-                                            <li>{{choice.description | safe}}</li>
-                                        {% endif %}
-                                        {% endfor%}
-                                        </ul>
+
                                     </div>
                                     {% if form_errors %}
                                     {% with form_errors|get_item_from_dict:sub_criteria.label as errors %}
@@ -118,18 +110,23 @@
                                     {% endfor %}
                                 </div>
                                 <div class="mt-3">
-                                    <button class="button btn-navigate-form-step" type="button" step_number="{{ forloop.counter }}">Prev</button>
-                                    <button class="button btn-navigate-form-step" type="button" step_number="{{ forloop.counter|add:"2" }}">Next</button>
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="{{ forloop.counter }}">Prev</button>
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="{{ forloop.counter|add:"2" }}">Next</button>
                                 </div>
                             </section>
                             {% endfor %}
                             <!-- Step 3 Content, default hidden on page load. -->
-                            <section id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}" class="form-step d-none">
+                            <section id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}"
+                                class="form-step d-none">
                                 <div class="mt-3 mb-5">
-                                    <h4><strong>Thank you for applying to the {{competition.tagline}}. Please save your changes.</strong></h4>
+                                    <h4><strong>Thank you for applying to the {{competition.tagline}}. Please save your
+                                            changes.</strong></h4>
                                 </div>
                                 <div class="mt-5">
-                                    <button class="button btn-navigate-form-step" type="button" step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
+                                    <button class="button btn-navigate-form-step" type="button"
+                                        step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
                                     <button class="button submit-btn" type="submit">Save</button>
                                 </div>
                             </section>

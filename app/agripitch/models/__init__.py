@@ -219,7 +219,6 @@ class SubCriteriaItemChoice(models.Model):
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='choices')
-    description = RichTextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.choice

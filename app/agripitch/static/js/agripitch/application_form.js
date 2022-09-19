@@ -1,3 +1,12 @@
+$(document).ready(function () {
+	$(".is-dependent").siblings().css("display", "none");
+	let questionsWithDependants = $(".has-dependent-question");
+	// for (let i = 0; i < questionsWithDependants.length; i++) {
+	// 	if ($(questionsWithDependants[i]).attr("data-dependant-question-id")) {
+	// 		toggleDependantQuestion(questionsWithDependants[i]);
+	// 	}
+	// }
+});
 /**
  * Define a function to navigate betweens form steps.
  * It accepts one parameter. That is - step number.
@@ -111,6 +120,48 @@ $(".form-input").on("change", (evt) => {
 	}
 });
 
+$(".has-dependent-question").on("change", (evt) => {
+	let elementWithDependant = $(evt.target);
+	toggleDependantQuestion(elementWithDependant);
+});
+
+function toggleDependantQuestion(elementWithDependant) {
+	// console.log(elementWithDependant)
+	let dependentElement = $(
+		`#${$(elementWithDependant).attr("data-dependant-question-id")}`
+	);
+	let dependantChildren = $(dependentElement).find("input");
+	// console.log($(elementWithDependant).attr("data-dependant-question-id"));
+
+	if (
+		$(elementWithDependant).val() ===
+		$(elementWithDependant).attr("data-determinant-answer")
+	) {
+		$(dependentElement).removeClass("is-dependent");
+		$(dependentElement).siblings().css("display", "block");
+		if (
+			$(dependentElement).hasClass("form-radio") ||
+			$(dependentElement).hasClass("multiple_checkbox")
+		) {
+			$(dependentElement).css("display", "block");
+			for (i = 0; i < dependantChildren.length; i++) {
+				$(dependantChildren[i]).removeClass("is-dependent");
+			}
+		}
+	} else {
+		$(dependentElement).val("");
+		dependentElement.siblings().css("display", "none");
+		$(dependentElement).addClass("is-dependent");
+
+		if ($(dependentElement).hasClass("form-radio")) {
+			for (i = 0; i < dependantChildren.length; i++) {
+				$(dependentElement).css("display", "none");
+				$(dependantChildren[i]).addClass("is-dependent");
+			}
+		}
+	}
+}
+
 function validateSection(formSection) {
 	let isValid = true;
 	let inputs = formSection.find(".form-input-validate");
@@ -137,10 +188,12 @@ function validateSection(formSection) {
 			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
-				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`);
+				$(`label[for="id_${inputs[i].name}"]`).text(
+					`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`
+				);
 				textAreaValidity = false;
-			}else{
-				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`)
+			} else {
+				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
 			}
 		}
 		let checkBoxParentLabel;
@@ -305,7 +358,6 @@ function saveDraftData(formData) {
 	xhr.addEventListener("readystatechange", function (e) {
 		if (xhr.readyState === 4 && xhr.status == 201) {
 			var response = JSON.parse(xhr.response);
-			// console.log(response)
 		} else if (xhr.readyState === 4 && xhr.status === 400) {
 			var errors = JSON.parse(xhr.response);
 			Object.values(errors).forEach((val) => {

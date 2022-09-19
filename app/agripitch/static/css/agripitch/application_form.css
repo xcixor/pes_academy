@@ -167,3 +167,7 @@ ul.form-stepper li a .form-stepper-circle {
 .form-stepper a {
     cursor: default;
 }
+
+.is-dependent {
+    display: none !important;
+}
