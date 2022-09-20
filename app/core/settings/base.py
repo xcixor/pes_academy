@@ -131,7 +131,6 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en-us', _('English')),
     ('fr', _('French')),
-    ('pt', _('Portuguese')),
 ]
 
 LOCALE_PATHS = [
