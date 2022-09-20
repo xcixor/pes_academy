@@ -95,6 +95,7 @@ class DynamicForm(forms.Form):
     def __init__(self, application, sub_criteria_items, *args, **kwargs):
         super(DynamicForm, self).__init__(*args, **kwargs)
         self.label_suffix = ""
+        response = None
         for instance in sub_criteria_items:
             properties = {}
             for validator in instance.validators.all():
@@ -139,7 +140,6 @@ class DynamicForm(forms.Form):
                             for item in response:
                                 initial_choices.append(item)
                     self.fields[instance.label].initial = initial_choices
-
             elif instance.type == 'radiofield':
                 choices = [
                     (choice.choice, choice.choice)
@@ -149,21 +149,11 @@ class DynamicForm(forms.Form):
             elif instance.type == 'file':
                 self.fields[instance.label] = forms.FileField(**properties)
 
-            for property in instance.properties.all():
-                if property.name == 'required' and property.value == 'False':
-                    self.fields[instance.label].required = False
-                else:
-                    self.fields[instance.label].widget.attrs[property.name] = property.value
             if instance.type == 'file':
                 response = get_sub_criteria_item_document_response_if_exist(
                     instance, application)
                 if response:
                     self.initial[instance.label] = response.document
-                    if "class" in self.fields[instance.label].widget.attrs:
-                        updated_class_value = self.fields[instance.label].widget.attrs['class'].replace(
-                            "form-input-validate", "")
-                        self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
-                        )
             elif instance.type != 'file' and instance.type != 'multiplechoicefield':
                 response = get_sub_criteria_item_response_if_exist(
                     instance, application)
@@ -174,6 +164,26 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label].widget.attrs.update(inputs_class)
             else:
                 self.fields[instance.label].widget.attrs['class'] += " form-input"
+
+            for property in instance.properties.all():
+                if property.name == 'required' and property.value == 'False':
+                    self.fields[instance.label].required = False
+                else:
+                    self.fields[instance.label].widget.attrs[property.name] = property.value
+
+            if response:
+                if "class" in self.fields[instance.label].widget.attrs.keys():
+                    new_classes = self.fields[instance.label].widget.attrs['class'].replace(
+                        "is-dependent", "")
+                    self.fields[instance.label].widget.attrs.update(
+                        {'class': new_classes.lstrip()})
+
+                if instance.type == 'file':
+                    if "class" in self.fields[instance.label].widget.attrs:
+                        updated_class_value = self.fields[instance.label].widget.attrs['class'].replace(
+                            "form-input-validate", "")
+                        self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
+                        )
 
 
 def get_form(instance):

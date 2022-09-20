@@ -1,11 +1,5 @@
 $(document).ready(function () {
 	$(".is-dependent").siblings().css("display", "none");
-	let questionsWithDependants = $(".has-dependent-question");
-	// for (let i = 0; i < questionsWithDependants.length; i++) {
-	// 	if ($(questionsWithDependants[i]).attr("data-dependant-question-id")) {
-	// 		toggleDependantQuestion(questionsWithDependants[i]);
-	// 	}
-	// }
 });
 /**
  * Define a function to navigate betweens form steps.
@@ -78,6 +72,7 @@ document
 	.forEach((formNavigationBtn) => {
 		formNavigationBtn.addEventListener("click", () => {
 			var formSection = $(formNavigationBtn).parent().parent();
+			saveNonRequiredFilledFields(formSection);
 			var isValid = validateSection(formSection);
 			if (isValid) {
 				const stepNumber = parseInt(
@@ -94,6 +89,7 @@ document
 	});
 
 $(".form-input").on("change", (evt) => {
+	console.log("has changed *************");
 	let formSection = $(evt.target).closest(".form-step");
 	let actionButtons = formSection.find(".btn-navigate-form-step");
 	for (let i = 0; i < actionButtons.length; i++) {
@@ -126,17 +122,17 @@ $(".has-dependent-question").on("change", (evt) => {
 });
 
 function toggleDependantQuestion(elementWithDependant) {
-	// console.log(elementWithDependant)
+	// elementWithDependant.trigger("change");
+
 	let dependentElement = $(
 		`#${$(elementWithDependant).attr("data-dependant-question-id")}`
 	);
 	let dependantChildren = $(dependentElement).find("input");
-	// console.log($(elementWithDependant).attr("data-dependant-question-id"));
-
 	if (
 		$(elementWithDependant).val() ===
 		$(elementWithDependant).attr("data-determinant-answer")
 	) {
+		// $(dependentElement).addClass("form-input-validate form-input");
 		$(dependentElement).removeClass("is-dependent");
 		$(dependentElement).siblings().css("display", "block");
 		if (
@@ -145,21 +141,213 @@ function toggleDependantQuestion(elementWithDependant) {
 		) {
 			$(dependentElement).css("display", "block");
 			for (i = 0; i < dependantChildren.length; i++) {
+				// $(dependentElement[i])
+				// 	.find("input")
+				// 	.addClass("form-input-validate form-input");
 				$(dependantChildren[i]).removeClass("is-dependent");
 			}
 		}
 	} else {
 		$(dependentElement).val("");
+		$(dependentElement).trigger("change");
+		// $(dependentElement).removeClass("form-input-validate");
+		removeResponseFromDb(
+			$(elementWithDependant).attr("data-dependant-question-name")
+		);
 		dependentElement.siblings().css("display", "none");
 		$(dependentElement).addClass("is-dependent");
 
 		if ($(dependentElement).hasClass("form-radio")) {
 			for (i = 0; i < dependantChildren.length; i++) {
+				// $(dependentElement[i]).find("input").removeClass("form-input-validate");
 				$(dependentElement).css("display", "none");
 				$(dependantChildren[i]).addClass("is-dependent");
 			}
+			$(dependentElement)
+				.find("input[type=checkbox]:checked")
+				.removeAttr("checked");
 		}
 	}
+}
+
+function removeResponseFromDb(name) {
+	var url = `/agripitch/subcriteria/responses/delete/`;
+	var CSRFToken = $("input[name=csrfmiddlewaretoken]").val();
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("X-CSRFToken", CSRFToken);
+	xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xhr.setRequestHeader("Accept", "application/json");
+
+	xhr.addEventListener("readystatechange", function (e) {
+		if (xhr.readyState == 4 && xhr.status == 204) {
+			var response = JSON.parse(xhr.response);
+			console.log(response);
+		} else {
+			var errors = xhr.status;
+			console.error(errors);
+		}
+	});
+	formData = new FormData();
+	formData.append("label", name);
+	xhr.send(formData);
+}
+
+function saveNonRequiredFilledFields(formSection) {
+	let isValid = true;
+
+	let inputs = formSection.find(".not-required");
+	for (i = 0; i < inputs.length; i++) {
+		let inputsValidity = true;
+		let radiosValidity = true;
+		let checkBoxesValidity = true;
+		let textAreaValidity = true;
+		if (
+			isEmptyOrSpaces($(inputs[i]).val()) &&
+			inputs[i].type != "radio" &&
+			inputs[i].type != "checkbox" &&
+			inputs[i].type
+		) {
+			$(inputs[i]).css("border-color", "red");
+			$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
+			inputsValidity = false;
+		}
+		if (inputs[i].type === "radio") {
+			radiosValidity = validateRadios(inputs[i].name);
+		}
+		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords")) {
+			let setMaxWords = $(inputs[i]).attr("maxwords");
+			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
+				$(inputs[i]).css("border-color", "red");
+				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
+				$(`label[for="id_${inputs[i].name}"]`).text(
+					`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`
+				);
+				textAreaValidity = false;
+			} else {
+				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
+			}
+		}
+		let checkBoxParentLabel;
+		if (inputs[i].type === "checkbox") {
+			let checkBoxes = document.getElementsByName(inputs[i].name);
+			let checkBoxesSize = parseInt($(checkBoxes).attr("size"));
+			let numberOfCheckedItems = 0;
+			checkBoxParentLabel = $(`label:contains(${inputs[i].name})`);
+
+			for (let i = 0; i < checkBoxes.length; i++) {
+				if (checkBoxes[i].checked) {
+					numberOfCheckedItems++;
+				}
+				if (numberOfCheckedItems === 0) {
+					$(checkBoxParentLabel).css("color", "red");
+					checkBoxesValidity = false;
+				} else {
+					checkBoxesValidity = true;
+					$(checkBoxParentLabel).css("color", "unset");
+				}
+			}
+			if (numberOfCheckedItems > checkBoxesSize) {
+				$(checkBoxParentLabel).css("color", "red");
+
+				if (!$(checkBoxParentLabel).attr("sizeErrorMessageAdded")) {
+					$(checkBoxParentLabel)
+						.html(
+							`${$(
+								checkBoxParentLabel
+							).text()} Please select a maximum of ${checkBoxesSize} choices`
+						)
+						.attr("sizeErrorMessageAdded", true);
+				}
+				checkBoxesValidity = false;
+			} else {
+				$(checkBoxParentLabel).html(inputs[i].name);
+			}
+		}
+		if (
+			!inputsValidity ||
+			!radiosValidity ||
+			!checkBoxesValidity ||
+			!textAreaValidity
+		) {
+			isValid = false;
+		}
+	}
+
+	let file_inputs = formSection.find("input[type=file]");
+	for (i = 0; i < file_inputs.length; i++) {
+		if (file_inputs[i].files[0]) {
+			if (file_inputs[i].files[0].size > $(file_inputs[i]).attr("max_size")) {
+				$(`label[for="id_${file_inputs[i].name}"]`).css("color", "red");
+				let max_size = parseInt($(file_inputs[i]).attr("max_size")) / 1048576;
+				$(`label[for="id_${file_inputs[i].name}"]`).append(
+					` is too big, maximum size should be ${max_size}MB!`
+				);
+				this.value = "";
+				isValid = false;
+			}
+		}
+	}
+	if (isValid) {
+		for (i = 0; i < inputs.length; i++) {
+			if (
+				inputs[i].type != "file" &&
+				inputs[i].type != "radio" &&
+				inputs[i].type != "checkbox" &&
+				$(inputs[i]).val()
+			) {
+				formData = new FormData();
+				formData.append(inputs[i].name, $(inputs[i]).val());
+				saveDraftData(formData);
+			}
+			if (inputs[i].type == "radio") {
+				if ($(inputs[i]).is(":checked")) {
+					formData = new FormData();
+					formData.append(inputs[i].name, $(inputs[i]).val());
+					saveDraftData(formData);
+				}
+			}
+
+			if (inputs[i].type == "checkbox") {
+				if ($(inputs[i]).hasClass("multiple_checkbox")) {
+					let checkBoxes = document.getElementsByName(inputs[i].name);
+					let inputValues = [];
+					for (let i = 0; i < checkBoxes.length; i++) {
+						if ($(checkBoxes[i]).is(":checked")) {
+							inputValues.push($(checkBoxes[i]).val());
+						}
+					}
+					formData = new FormData();
+					inputValues.forEach((item) =>
+						formData.append(checkBoxes[0].name, item)
+					);
+					console.log(formData.getAll(checkBoxes[0].name));
+					saveDraftData(formData);
+				} else {
+					formData = new FormData();
+					formData.append(inputs[i].name, $(inputs[0]).val());
+					saveDraftData(formData);
+				}
+			}
+		}
+		for (i = 0; i < file_inputs.length; i++) {
+			if ($(file_inputs[i])[0].files[0]) {
+				formData = new FormData();
+				formData.append(file_inputs[i].name, $(file_inputs[i])[0].files[0]);
+				saveDraftData(formData);
+			}
+		}
+	}
+	if (!isValid) {
+		$("#formErrors").text(
+			"Please fill in all the required fields. * Means an input required."
+		);
+	} else {
+		$("#formErrors").text("");
+	}
+	console.log(isValid);
+	return isValid;
 }
 
 function validateSection(formSection) {
