@@ -159,18 +159,18 @@ class DynamicForm(forms.Form):
                     instance, application)
                 if response:
                     self.initial[instance.label] = response.value
-            inputs_class = {'class': 'form-input'}
-            if "class" not in self.fields[instance.label].widget.attrs.keys():
-                self.fields[instance.label].widget.attrs.update(inputs_class)
-            else:
-                self.fields[instance.label].widget.attrs['class'] += " form-input"
 
             for property in instance.properties.all():
                 if property.name == 'required' and property.value == 'False':
                     self.fields[instance.label].required = False
                 else:
                     self.fields[instance.label].widget.attrs[property.name] = property.value
-
+            inputs_class = {'class': 'form-input'}
+            if "class" not in self.fields[instance.label].widget.attrs.keys():
+                self.fields[instance.label].widget.attrs.update(
+                    inputs_class)
+            else:
+                self.fields[instance.label].widget.attrs['class'] += " form-input"
             if response:
                 if "class" in self.fields[instance.label].widget.attrs.keys():
                     new_classes = self.fields[instance.label].widget.attrs['class'].replace(
@@ -184,6 +184,7 @@ class DynamicForm(forms.Form):
                             "form-input-validate", "")
                         self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
                         )
+
 
 
 def get_form(instance):
