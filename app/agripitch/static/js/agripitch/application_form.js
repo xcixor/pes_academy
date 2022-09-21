@@ -122,7 +122,6 @@ $(".has-dependent-question").on("change", (evt) => {
 });
 
 function toggleDependantQuestion(elementWithDependant) {
-	// elementWithDependant.trigger("change");
 
 	let dependentElement = $(
 		`#${$(elementWithDependant).attr("data-dependant-question-id")}`
@@ -132,7 +131,7 @@ function toggleDependantQuestion(elementWithDependant) {
 		$(elementWithDependant).val() ===
 		$(elementWithDependant).attr("data-determinant-answer")
 	) {
-		// $(dependentElement).addClass("form-input-validate form-input");
+		$(dependentElement).addClass("form-input-validate form-input");
 		$(dependentElement).removeClass("is-dependent");
 		$(dependentElement).siblings().css("display", "block");
 		if (
@@ -141,16 +140,16 @@ function toggleDependantQuestion(elementWithDependant) {
 		) {
 			$(dependentElement).css("display", "block");
 			for (i = 0; i < dependantChildren.length; i++) {
-				// $(dependentElement[i])
-				// 	.find("input")
-				// 	.addClass("form-input-validate form-input");
+				$(dependentElement[i])
+					.find("input")
+					.addClass("form-input-validate form-input");
 				$(dependantChildren[i]).removeClass("is-dependent");
 			}
 		}
 	} else {
 		$(dependentElement).val("");
 		$(dependentElement).trigger("change");
-		// $(dependentElement).removeClass("form-input-validate");
+		$(dependentElement).removeClass("form-input-validate");
 		removeResponseFromDb(
 			$(elementWithDependant).attr("data-dependant-question-name")
 		);
@@ -159,7 +158,7 @@ function toggleDependantQuestion(elementWithDependant) {
 
 		if ($(dependentElement).hasClass("form-radio")) {
 			for (i = 0; i < dependantChildren.length; i++) {
-				// $(dependentElement[i]).find("input").removeClass("form-input-validate");
+				$(dependentElement[i]).find("input").removeClass("form-input-validate");
 				$(dependentElement).css("display", "none");
 				$(dependantChildren[i]).addClass("is-dependent");
 			}
