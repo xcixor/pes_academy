@@ -72,8 +72,12 @@ document
 	.forEach((formNavigationBtn) => {
 		formNavigationBtn.addEventListener("click", () => {
 			var formSection = $(formNavigationBtn).parent().parent();
-			saveNonRequiredFilledFields(formSection);
-			var isValid = validateSection(formSection);
+			var isValid = true;
+			let notRequiredFieldsValidation = saveNonRequiredFilledFields(formSection);
+			let requiredFieldsValidation = validateSection(formSection);
+			if(!notRequiredFieldsValidation || !requiredFieldsValidation){
+				isValid = false;
+			}
 			if (isValid) {
 				const stepNumber = parseInt(
 					formNavigationBtn.getAttribute("step_number")
@@ -89,7 +93,6 @@ document
 	});
 
 $(".form-input").on("change", (evt) => {
-	console.log("has changed *************");
 	let formSection = $(evt.target).closest(".form-step");
 	let actionButtons = formSection.find(".btn-navigate-form-step");
 	for (let i = 0; i < actionButtons.length; i++) {
@@ -202,20 +205,10 @@ function saveNonRequiredFilledFields(formSection) {
 		let radiosValidity = true;
 		let checkBoxesValidity = true;
 		let textAreaValidity = true;
-		if (
-			isEmptyOrSpaces($(inputs[i]).val()) &&
-			inputs[i].type != "radio" &&
-			inputs[i].type != "checkbox" &&
-			inputs[i].type
-		) {
-			$(inputs[i]).css("border-color", "red");
-			$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
-			inputsValidity = false;
-		}
-		if (inputs[i].type === "radio") {
+		if (inputs[i].type === "radio" && $(inputs[i]).checked) {
 			radiosValidity = validateRadios(inputs[i].name);
 		}
-		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords")) {
+		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords") && !isEmptyOrSpaces($(inputs[i]).val())) {
 			let setMaxWords = $(inputs[i]).attr("maxwords");
 			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
 				$(inputs[i]).css("border-color", "red");
@@ -229,7 +222,7 @@ function saveNonRequiredFilledFields(formSection) {
 			}
 		}
 		let checkBoxParentLabel;
-		if (inputs[i].type === "checkbox") {
+		if (inputs[i].type === "checkbox" && $(inputs[i]).is(":checked")) {
 			let checkBoxes = document.getElementsByName(inputs[i].name);
 			let checkBoxesSize = parseInt($(checkBoxes).attr("size"));
 			let numberOfCheckedItems = 0;
@@ -345,7 +338,6 @@ function saveNonRequiredFilledFields(formSection) {
 	} else {
 		$("#formErrors").text("");
 	}
-	console.log(isValid);
 	return isValid;
 }
 
@@ -500,7 +492,6 @@ function validateSection(formSection) {
 	} else {
 		$("#formErrors").text("");
 	}
-	console.log(isValid);
 	return isValid;
 }
 
