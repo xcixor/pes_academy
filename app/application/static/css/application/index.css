@@ -39,7 +39,7 @@ body {
 	justify-content: center;
 	z-index: 2000;
 }
-.hamburger-menu:hover {
+/* .hamburger-menu:hover {
 	box-shadow: inset 0.5rem 0.5rem 1rem #cacaca, inset -0.5rem -0.5rem 1rem #fff;
 }
 .bar {
@@ -111,7 +111,101 @@ body {
 }
 .nav-link:hover {
 	color: #14a562;
+} */
+
+
+
+
+
+
+
+
+/***********  .sidenav   ************/
+.sidecontainer .sidenav{
+  position: fixed;
+  top: 17%;   right: 2%;
+  height: 60px;
+  z-index: 2000;
+  overflow: hidden;
 }
+/************** .nav .toggle  *******************/
+.sidecontainer .sidenav ul.toggle{
+  position: relative;
+  float: left;
+  height: 60px;   width: 70px;
+  background: rgba(0,0,0,.6);
+  z-index: 2000;
+  cursor: pointer;
+}
+.sidecontainer .sidenav ul.toggle.active{
+  background: #14A562;
+}
+.sidecontainer .sidenav ul.toggle li{
+  list-style: none;
+  position: absolute;
+  left: 10%;
+  width: 80%;   height: 5px;
+  background: #fff;
+  transform: translate(0,-50%);
+  transition: .9s;
+}
+.sidecontainer .sidenav ul.toggle li:nth-of-type(1){
+  top: 20%;
+}
+.sidecontainer .sidenav ul.toggle li:nth-of-type(2){
+  top: 50%;
+}
+.sidecontainer .sidenav ul.toggle li:nth-of-type(3){
+  top: 80%;
+}
+.sidecontainer .sidenav ul.toggle.active li:nth-of-type(1){
+  top: 50%;
+  transform: translate(0,-50%) rotate(45deg);
+}
+.sidecontainer .sidenav ul.toggle.active li:nth-of-type(2){
+  left: 100%;
+  opacity: 0;
+}
+.sidecontainer .sidenav ul.toggle.active li:nth-of-type(3){
+  top: 50%;
+  transform: translate(0,-50%) rotate(-45deg);
+}
+
+/*************  .nav .menu  *************/
+
+.sidecontainer .sidenav ul.sidemenu{
+  position: relative;
+  float: left;
+  height: 60px;  line-height: 60px;
+  background: rgba(0,0,0,.5);
+  left: 104%;
+  transition: .9s;
+  z-index: 1;
+}
+.sidecontainer .sidenav ul.sidemenu.active{
+  left: 0;
+}
+.sidecontainer .sidenav ul.sidemenu li{
+  list-style: none;
+  position: relative;
+  float: left;
+  height: 100%;
+}
+.sidecontainer .sidenav ul.sidemenu li a{
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;   text-transform: uppercase;
+}
+.sidecontainer .sidenav ul.sidemenu li:hover a{
+  background: #14A562;
+}
+
+
+
+
 .hero {
 	width: 100%;
 	height: 80vh;
@@ -192,6 +286,11 @@ body {
 	opacity: 0;
 	transition: all 0.5s;
 }
+.download-resources {
+	background-color: #14a562;
+	color: #fff;
+	z-index: 2000;
+}
 
 /* PARTNERS SECTION CSS */
 .board:after {
@@ -219,7 +318,7 @@ body {
 }
 .board {
 	width: 100%;
-	margin: 4em auto;
+	margin: 0 auto;
 }
 
 .section {
@@ -233,18 +332,27 @@ body {
 }
 .partner-img {
 	width: 70%;
+	margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .partner-img-2 {
 	width: 60%;
+	margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .partner-img-3 {
 	width: 90%;
+	margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .tile {
 	padding: 2em 0.8em;
 	position: absolute;
-	width: 300px;
-	height: 300px;
+	width: auto;
+	height: auto;
 	-moz-transition: top 0.55s ease-in;
 	-o-transition: top 0.55s ease-in;
 	-webkit-transition: top 0.55s ease-in;
@@ -412,7 +520,6 @@ body {
 }
 
 .all-partners .img-fluid {
-	/* height: 250px; */
 	width: 100%;
 }
 
@@ -442,11 +549,6 @@ body {
 	opacity: 0.7;
 	margin: 5px;
 }
-
-/* .countdown div:first-child {
-  background: #455D8D;
-} */
-
 .countdown span {
 	display: block;
 	font-size: 25px;
@@ -485,7 +587,7 @@ body {
 @media only screen and (max-width: 1400px) {
 	.hero-clipped {
 		width: 100%;
-		height: 75vh;
+		height: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 	}
@@ -499,6 +601,35 @@ body {
 	}
 }
 @media only screen and (max-width: 760px) {
+
+	/* .partner-img {
+		width: 48%;
+	}
+	.partner-img-2 {
+		width: 45%;
+	}
+	.partner-img-3 {
+		width: 70%;
+	} */
+	.tile {
+		padding: 5em 0.2em;
+		width: auto;
+		height: auto;
+
+	}
+
+	.desc {
+		top: 100%;
+		padding-top: 6em;
+		background: #f7f7f7 span;
+	}
+
+
+.main-nav {
+	display: none;
+}
+
+
 	.nav-list {
 		width: 30rem;
 	}
@@ -514,7 +645,7 @@ body {
 		font-size: larger;
 	}
 	.hero-textbox {
-		top: 40%;
+		top: 50%;
 	}
 
 	.countdown {
@@ -532,9 +663,13 @@ body {
 	}
 }
 @media only screen and (max-width: 550px) {
+	.section {
+		height: 8em;
+	}
 	.tile {
 		width: auto;
 		height: auto;
+		padding: 3em 0.1em;
 	}
 	#main-logo {
 		width: 300px;
@@ -551,7 +686,7 @@ body {
 	#section-heading {
 		font-size: 2.5em;
 	}
-	.hamburger-menu {
+	/* .hamburger-menu {
 		width: 3rem;
 		height: 3rem;
 	}
@@ -564,9 +699,22 @@ body {
 	}
 	.bar::after {
 		top: 0.6rem;
+	} */
+	.corner-guide {
+		display: none;
+	}
+	.sidecontainer .sidenav{
+		height: 75px;
+	}
+	.sidecontainer .sidenav ul.toggle{
+		height: 30px;   width: 40px;
+	}
+	.sidecontainer .sidenav ul.sidemenu{
+		height: 30px;  line-height: 50px;
 	}
 	.hero-textbox {
 		top: 38%;
+		left: 50%;
 	}
 	.landing img {
 		width: 70%;
@@ -578,11 +726,13 @@ body {
 
 	.countdown {
 		font-size: 20px;
-		flex-direction: column;
+		/* flex-direction: column; */
 	}
 
 	.countdown div {
-		display: none;
+		display: block;
+		width: 80%;
+		padding: 10px;
 	}
 
 	.countdown div:first-child {
@@ -590,9 +740,17 @@ body {
 		width: 80%;
 		padding: 10px;
 	}
+	.partner-img {
+		width: 70%;
+	}
+	.partner-img-2 {
+		width: 60%;
+	}
+	.partner-img-3 {
+		width: 90%;
+	}
 	.tile {
 		width: auto;
-		height: 200px;
 	}
   .logo a {
     padding: 0.2rem 0.4rem;

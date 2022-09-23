@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <section>
-  <div class="main-nav">
+  <!-- <div class="main-nav">
     <div class="logo">
       <div class="row">
         <a class="mb-2"
@@ -30,9 +30,45 @@
       {% endfor %}
       <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
     </ul>
-  </div>
-
+  </div> -->
   <section class="hero">
+    
+    <div class="dropdown corner-guide" style="z-index:2000 ;">
+      <a class="btn dropdown-toggle download-resources" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Download Application Guide
+      </a>
+    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
+        download target="_blank">English</a>
+        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
+        download target="_blank">French</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">Download FAQs </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
+      </div>
+    </div>
+
+    <div class="sidecontainer">
+      <div class="sidenav">
+            <ul class="sidemenu">
+               <li ><a href="/">Home</a></li> 
+               <li ><a href="#">Resources</a></li> 
+               <li><a href="#partners">Partners</a></li> 
+               {% for call in calls_to_action %}
+               <li><a href="{% url "agripitch:application" slug=call.slug %}">Apply</a></li> 
+               {% endfor %}
+               <li><a href="/accounts/help">FAQ's</a></li> 
+            </ul>
+            <ul class="toggle">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+      </div>
+    </div>
+
     <div class="hero-clipped">
       <div class="hero-textbox">
         <img src="{% static 'images/agripitch-logo.png' %}" alt="Agripitch logo" class="img-fluid" id="main-logo">
@@ -50,71 +86,91 @@
             <div class="countdown"></div>
           </div>
         </section>
-
+        
+        <div class="dropdown show mt-5">
+          <a class="btn dropdown-toggle download-resources" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Download Application Guide
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
+            download target="_blank">English</a>
+            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
+            download target="_blank">French</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">Download FAQs </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
+          </div>
+        </div>
+        
+      </div>
       </div>
     </div>
 
 
   </section>
   <div class="container">
-    <div class="other-partners d-flex justify-content-center">
-      <div class="section">
-        <div class="tile cover">
-          <img src="{% static 'images/AFDB_Logo.png' %}" class="partner-img-2">
-          <!-- <h5 class="header-site-primary">African Development Bank</h5> -->
-        </div>
-        <div class="tile desc">
-          <span>Host</span>
-          <a href="https://www.afdb.org/">
-            <p> Visit Website</p>
-          </a>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="tile cover">
-          <img class="partner-img" src="{% static 'images/PES logo.png' %}">
-          <!-- <h5 class="header-site-primary">Private Equity Support</h5> -->
-
-        </div>
-        <div class="tile desc">
-          <span>Implementing Partner.</span>
-          <a href="https://www.privateequity-support.com/">
-            <p> Visit Website</p>
-          </a>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="tile cover">
-          <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
-          <!-- <h5 class="header-site-primary">Pfan</h5> -->
-        </div>
-        <div class="tile desc">
-          <span>Knowledge Partner.</span>
-          <a href="https://pfan.net/">
-            <p> Visit Website</p>
-          </a>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="tile cover">
-          <img src="{% static 'images/eldohub-logo.png' %}" class="partner-img-3">
-          <!-- <h5 class="header-site-primary">Eldohub</h5> -->
-        </div>
-        <div class="tile desc">
-          <span>Digital Partner</span>
-          <a href="https://www.eldohub.co.ke/">
-            <p> Visit Website</p>
-          </a>
-        </div>
-      </div>
-
-    </div>
+    
 
     <div id="partners" class="board">
-      <h1 id="section-heading" class="text-center main-secondary-title mb-5">Key Partners</h1>
+      <div class="other-partners d-flex justify-content-center">
+        <div class="section">
+          <div class="tile cover">
+            <img src="{% static 'images/AFDB_Logo.png' %}" class="partner-img-2">
+            <!-- <h5 class="header-site-primary">African Development Bank</h5> -->
+          </div>
+          <div class="tile desc">
+            <span>Host</span>
+            <a href="https://www.afdb.org/">
+              <p> Visit Website</p>
+            </a>
+          </div>
+        </div>
+  
+        <div class="section">
+          <div class="tile cover">
+            <img class="partner-img" src="{% static 'images/PES logo.png' %}">
+            <!-- <h5 class="header-site-primary">Private Equity Support</h5> -->
+  
+          </div>
+          <div class="tile desc">
+            <span>Implementing Partner.</span>
+            <a href="https://www.privateequity-support.com/">
+              <p> Visit Website</p>
+            </a>
+          </div>
+        </div>
+  
+        <div class="section">
+          <div class="tile cover">
+            <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
+            <!-- <h5 class="header-site-primary">Pfan</h5> -->
+          </div>
+          <div class="tile desc">
+            <span>Knowledge Partner.</span>
+            <a href="https://pfan.net/">
+              <p> Visit Website</p>
+            </a>
+          </div>
+        </div>
+  
+        <div class="section">
+          <div class="tile cover">
+            <img src="{% static 'images/eldohub-logo.png' %}" class="partner-img-3">
+            <!-- <h5 class="header-site-primary">Eldohub</h5> -->
+          </div>
+          <div class="tile desc">
+            <span>Digital Partner</span>
+            <a href="https://www.eldohub.co.ke/">
+              <p> Visit Website</p>
+            </a>
+          </div>
+        </div>
+  
+      </div>
+      
+      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Key Partners</h1>
       <div class="row all-partners">
         <div class="col-sm-12 d-flex align-items-center justify-content-center">
           <img class="img-fluid" src="{% static 'images/common/partner-logos.jpg' %}" alt="All Partners">
@@ -149,10 +205,11 @@
                   <td>25</td>
                   <td>- Youth(35 Years & Below) 
                     <br>
-                    - Businesses that leverages
-                    technology <br>
                     - Agriculture value chain focused
                     businesses
+                    <br>
+                    - Businesses that leverages
+                    technology
                   </td>
                   <td>Food & Nutrition</td>
                 </tr>
@@ -171,7 +228,7 @@
     <section class="parallax-1">
       <div class="parallax-inner">
         <div class="container">
-          <h1 class="main-secondary-title text-center text-white">Eligibility Criteria</h1>
+          <h1 id="section-heading" class="main-secondary-title text-center text-white">Eligibility Criteria</h1>
           <div class="table-responsive">
             <table class="table table-bordered table-hover text-white h4">
               <thead>
@@ -208,15 +265,8 @@
                   </td>
                   <td>
                     <ol>
-                      <li>Meet eligibility criteria for Early Start-ups or Mature Start-ups.</li>
-                      <li>Firms with at least 51% shareholding by women or
-                        founded by a woman</li>
-                      <li>Individuals and firms with existing market traction:
-                        technology, product, service, etc., already on the mar-
-                        ket.</li>
-                      <li>Must have a clear investment ask and growth plan/
-                        strategy.</li>
-                      <li>Must be a registered corporate entity.</li>
+                      <li>Meet eligibility requirements for either Early Start-ups or Mature Start-ups.</li>
+                      <li>Firms that are 51% owned by women or founded by a woman. </li>
                     </ol>
                   </td>
                 </tr>

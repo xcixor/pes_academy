@@ -1,10 +1,16 @@
 // PARTNERS JS
 $(document).ready(function() {
-  const mainNav = document.querySelector('.main-nav');
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-hamburgerMenu.addEventListener('click',() => {
-     mainNav.classList.toggle('open');
-});
+//   const mainNav = document.querySelector('.main-nav');
+// const hamburgerMenu = document.querySelector('.hamburger-menu');
+// hamburgerMenu.addEventListener('click',() => {
+//      mainNav.classList.toggle('open');
+// });
+
+$('.sidenav ul.toggle').click(function(){
+  $(this).toggleClass('active');
+  $('.sidenav ul.sidemenu').toggleClass('active');
+})
+
 gsap.fromTo('.hero-clipped',{scaleX: 0},{duration: 1,scaleX: 1});
 gsap.fromTo('.logo',{x: 200,opacity: 0},{duration: 1,delay: 0.5,x: 0,opacity: 1});
 gsap.fromTo('.hamburger-menu',{x: 200,opacity: 0},{duration: 1,delay: 0.8,x: 0,opacity: 1});
@@ -32,7 +38,7 @@ gsap.fromTo('.hero-textbox',{yPercent: 40,opacity: 0},{duration: 1,delay: 1.3,yP
   const countdown = document.querySelector('.countdown');
 
 // Set Launch Date (ms)
-const launchDate = new Date('Sep 26, 2022 12:00:00').getTime();
+const launchDate = new Date('Sep 26, 2022 00:00:00').getTime();
 
 // Update every second
 const intvl = setInterval(() => {

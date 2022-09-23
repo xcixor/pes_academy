@@ -41,8 +41,8 @@ nav #contacts {
 
 }
 
-#dropdownMenuLink {
-  color: black !important;
+.menu-dropdown {
+  color: black;
 }
 
 #cfa {
@@ -139,7 +139,6 @@ nav #contacts {
 
 .faq-page {
   display: flex;
-  /* background: rgba(233, 30, 99, 0.1); */
   background: #455D8D;
   color: #ffffff;
 }
@@ -197,12 +196,17 @@ nav #contacts {
   border-top: 1px solid rgba(198, 198, 198, 0.4);
   background: #455D8D;
   color: #ffffff;
-  padding: 1.125em 0
+  padding: 1.125em 0;
+  list-style-type: none;
 }
 
 .faq-accordion li a {
   color: #ffffff;
   padding: 1.125em;
+}
+.faq-accordion li div p a {
+  color: #14A562;
+
 }
 
 .faq-accordion>li:last-child {
@@ -244,6 +248,9 @@ nav #contacts {
   color: #455D8D;
   margin: 20px 0 -20px;
 }
+.faq-content>li {
+  list-style-type: none;
+}
 
 .faq-content p:before {
   content: 'A.';
@@ -255,7 +262,7 @@ nav #contacts {
 
 .faq-content p {
   margin: 0 1.2em;
-  padding: 1.250em 0
+  padding: 1.250em 0;
 }
 
 .faq-hide {
@@ -472,6 +479,10 @@ nav #contacts {
 .faq-accordion li a {
   color: #ffffff;
   padding: 1.125em;
+}
+.faq-accordion li div p a {
+  color: #14A562;
+
 }
 
 .faq-accordion>li:last-child {

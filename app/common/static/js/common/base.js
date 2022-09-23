@@ -8,19 +8,19 @@ $('#languageSelect').on('change', function (){
 
 // Toggle Form Visibility
 
-const btn = document.getElementById('help-form-btn');
+// const btn = document.getElementById('help-form-btn');
 
-btn.addEventListener('click', () => {
-  const form = document.getElementById('help-form');
+// btn.addEventListener('click', () => {
+//   const form = document.getElementById('help-form');
 
-  if (form.style.display === 'none') {
-    // 👇️ this SHOWS the form
-    form.style.display = 'block';
-  } else {
-    // 👇️ this HIDES the form
-    form.style.display = 'none';
-  }
-});
+//   if (form.style.display === 'none') {
+//     // 👇️ this SHOWS the form
+//     form.style.display = 'block';
+//   } else {
+//     // 👇️ this HIDES the form
+//     form.style.display = 'none';
+//   }
+// });
 
 
 var accordWithPage =  function() {
