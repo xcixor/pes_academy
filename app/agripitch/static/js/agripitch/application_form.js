@@ -103,6 +103,9 @@ document
 					return;
 				}
 			} else {
+				if (isValid) {
+					$("#formErrors").text("");
+				}
 				navigateToFormStep(stepNumber);
 			}
 		});
