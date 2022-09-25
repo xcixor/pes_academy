@@ -71,10 +71,10 @@ document
 	.querySelectorAll(".top-navigate-form-step")
 	.forEach((formNavigationBtn) => {
 		formNavigationBtn.addEventListener("click", () => {
-				const stepNumber = parseInt(
-					formNavigationBtn.getAttribute("step_number")
-				);
-				navigateToFormStep(stepNumber);
+			const stepNumber = parseInt(
+				formNavigationBtn.getAttribute("step_number")
+			);
+			navigateToFormStep(stepNumber);
 		});
 	});
 
@@ -83,22 +83,27 @@ document
 	.forEach((formNavigationBtn) => {
 		formNavigationBtn.addEventListener("click", () => {
 			var formSection = $(formNavigationBtn).parent().parent();
-			var isValid = true;
-			let notRequiredFieldsValidation = saveNonRequiredFilledFields(formSection);
-			let requiredFieldsValidation = validateSection(formSection);
-			if(!notRequiredFieldsValidation || !requiredFieldsValidation){
-				isValid = false;
-			}
-			if (isValid) {
-				const stepNumber = parseInt(
-					formNavigationBtn.getAttribute("step_number")
-				);
-				navigateToFormStep(stepNumber);
+			const stepNumber = parseInt(
+				formNavigationBtn.getAttribute("step_number")
+			);
+			if ($(formNavigationBtn).text() === "Next") {
+				var isValid = true;
+				let notRequiredFieldsValidation =
+					saveNonRequiredFilledFields(formSection);
+				let requiredFieldsValidation = validateSection(formSection);
+				if (!notRequiredFieldsValidation || !requiredFieldsValidation) {
+					isValid = false;
+				}
+				if (isValid) {
+					navigateToFormStep(stepNumber);
+				} else {
+					$(formNavigationBtn)
+						.attr("disabled", "disabled")
+						.css("background-color", "#8ad2b1");
+					return;
+				}
 			} else {
-				$(formNavigationBtn)
-					.attr("disabled", "disabled")
-					.css("background-color", "#8ad2b1");
-				return;
+				navigateToFormStep(stepNumber);
 			}
 		});
 	});
@@ -136,7 +141,6 @@ $(".has-dependent-question").on("change", (evt) => {
 });
 
 function toggleDependantQuestion(elementWithDependant) {
-
 	let dependentElement = $(
 		`#${$(elementWithDependant).attr("data-dependant-question-id")}`
 	);
@@ -219,7 +223,11 @@ function saveNonRequiredFilledFields(formSection) {
 		if (inputs[i].type === "radio" && $(inputs[i]).checked) {
 			radiosValidity = validateRadios(inputs[i].name);
 		}
-		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords") && !isEmptyOrSpaces($(inputs[i]).val())) {
+		if (
+			inputs[i].type === "textarea" &&
+			$(inputs[i]).attr("maxwords") &&
+			!isEmptyOrSpaces($(inputs[i]).val())
+		) {
 			let setMaxWords = $(inputs[i]).attr("maxwords");
 			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
 				$(inputs[i]).css("border-color", "red");
