@@ -314,7 +314,6 @@ function saveNonRequiredFilledFields(formSection) {
 					inputValues.forEach((item) =>
 						formData.append(checkBoxes[0].name, item)
 					);
-					console.log(checkBoxes[0].name);
 					saveDraftData(formData);
 				} else {
 					formData = new FormData();
@@ -468,7 +467,6 @@ function validateSection(formSection) {
 					inputValues.forEach((item) =>
 						formData.append(checkBoxes[0].name, item)
 					);
-					console.log(checkBoxes[0].name);
 
 					saveDraftData(formData);
 				} else {

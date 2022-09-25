@@ -47,7 +47,8 @@ def process_inputs(inputs, application):
                 application=application,
                 sub_criteria_item=sub_criteria_item,
                 defaults={
-                    'list_value': value
+                    'list_value': value,
+                    'value': "",
                 }
             )
         else:
