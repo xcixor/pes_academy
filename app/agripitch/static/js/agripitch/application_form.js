@@ -536,7 +536,7 @@ function saveDraftData(formData) {
 	xhr.addEventListener("readystatechange", function (e) {
 		if (xhr.readyState === 4 && xhr.status == 201) {
 			var response = JSON.parse(xhr.response);
-		} else if (xhr.readyState === 4 && xhr.status === 400) {
+		} else {
 			var errors = JSON.parse(xhr.response);
 			Object.values(errors).forEach((val) => {
 				console.log(val);
