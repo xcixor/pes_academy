@@ -314,7 +314,7 @@ function saveNonRequiredFilledFields(formSection) {
 					inputValues.forEach((item) =>
 						formData.append(checkBoxes[0].name, item)
 					);
-					console.log(formData.getAll(checkBoxes[0].name));
+					console.log(checkBoxes[0].name);
 					saveDraftData(formData);
 				} else {
 					formData = new FormData();
@@ -468,7 +468,8 @@ function validateSection(formSection) {
 					inputValues.forEach((item) =>
 						formData.append(checkBoxes[0].name, item)
 					);
-					console.log(formData.getAll(checkBoxes[0].name));
+					console.log(checkBoxes[0].name);
+
 					saveDraftData(formData);
 				} else {
 					formData = new FormData();
@@ -537,10 +538,11 @@ function saveDraftData(formData) {
 		if (xhr.readyState === 4 && xhr.status == 201) {
 			var response = JSON.parse(xhr.response);
 		} else {
-			var errors = JSON.parse(xhr.response);
-			Object.values(errors).forEach((val) => {
-				console.log(val);
-			});
+			console.log(xhr.responseText)
+			// var errors = JSON.parse(xhr.response);
+			// Object.values(errors).forEach((val) => {
+			// 	console.log(val);
+			// });
 		}
 	});
 	xhr.send(formData);
