@@ -28,6 +28,10 @@ h2 {
     border: none;
 }
 
+.top-navigate-form-step{
+    cursor: pointer;
+}
+
 .button:focus { outline: none; }
 
 .form-input {outline:0;}
@@ -170,4 +174,10 @@ ul.form-stepper li a .form-stepper-circle {
 
 .is-dependent {
     display: none !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .label {
+        display: none;
+    }
 }

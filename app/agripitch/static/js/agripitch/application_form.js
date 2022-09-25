@@ -68,6 +68,17 @@ const navigateToFormStep = (stepNumber) => {
 };
 
 document
+	.querySelectorAll(".top-navigate-form-step")
+	.forEach((formNavigationBtn) => {
+		formNavigationBtn.addEventListener("click", () => {
+				const stepNumber = parseInt(
+					formNavigationBtn.getAttribute("step_number")
+				);
+				navigateToFormStep(stepNumber);
+		});
+	});
+
+document
 	.querySelectorAll(".btn-navigate-form-step")
 	.forEach((formNavigationBtn) => {
 		formNavigationBtn.addEventListener("click", () => {
@@ -536,11 +547,10 @@ function saveDraftData(formData) {
 		if (xhr.readyState === 4 && xhr.status == 201) {
 			var response = JSON.parse(xhr.response);
 		} else {
-			console.log(xhr.responseText)
-			// var errors = JSON.parse(xhr.response);
-			// Object.values(errors).forEach((val) => {
-			// 	console.log(val);
-			// });
+			var errors = JSON.parse(xhr.response);
+			Object.values(errors).forEach((val) => {
+				console.log(val);
+			});
 		}
 	});
 	xhr.send(formData);

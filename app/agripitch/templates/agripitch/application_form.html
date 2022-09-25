@@ -12,39 +12,41 @@
 <section class="container-fluid m-0 p-0 section-main">
     <div class="wrapper">
         <div class="row m-0 p-0 main-row bg-white">
-            <div class="col-md-4 m-0 p-0">
-                <img class="img-fluid" src="{{request.user.application.call_to_action.image.url}}" alt="Agripitch Logo">
+            <div class="col-lg-4 col-sm-12 m-0 p-0">
+                <img class="img-fluid" src="{{competition.image.url}}" alt="Agripitch Logo">
             </div>
-            <div class="col-md-8">
+            <div class="col-lg-8 col-sm-12">
                 <div>
                     <h3 class="text-site-secondary"><strong>{{user.application}}</strong></h3>
                     <h5 class="text-site-secondary"><strong><i>Application takes 45 to 60 minutes.</i></strong></h5>
-                    <h5 class="text-site-secondary"><strong><i>NB: Documents to be attached should be in pdf format only.</i></strong></h5>
+                    <h5 class="text-site-secondary"><strong><i>NB: Documents to be attached should be in pdf format
+                                only.</i></strong></h5>
                     <div id="multi-step-form-container">
                         <!-- Form Steps / Progress Bar -->
                         <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
 
                             <li class="form-stepper-active text-center form-stepper-list" step="1">
                                 <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
-                                    <span class="form-stepper-circle">
+                                    <span class="form-stepper-circle top-navigate-form-step" step_number="1">
                                         <span>1</span>
                                     </span>
-                                    <!-- <div class="label">{{criteria|first}}</div> -->
+                                    <div class="label">{{criteria|first}}</div>
                                 </a>
                             </li>
                             {% for item in criteria|slice:"1:" %}
                             <li class="form-stepper-unfinished text-center form-stepper-list"
-                                step="{{forloop.counter|add:"1"}}">
+                                step="{{forloop.counter|add:'1'}}">
                                 <a class="mr-2 d-flex flex-column align-items-center justify-content-center">
-                                    <span class="form-stepper-circle">
+                                    <span class="form-stepper-circle top-navigate-form-step"
+                                        step_number="{{ forloop.counter|add:'1' }}">
                                         <span>{{forloop.counter|add:"1"}}</span>
                                     </span>
-                                    <!-- <div class="label">{{item}}</div> -->
+                                    <div class=" label">{{item}}</div>
                                 </a>
                             </li>
                             {% endfor %}
                             <li class="form-stepper-unfinished text-center form-stepper-list"
-                                step="{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}">
+                                step="{% with criteria|length as length %}{{ length|add:'1' }}{% endwith %}">
                                 <a class="mx-2 d-flex flex-column align-items-center justify-content-center">
                                     <span class="form-stepper-circle">
                                         <span>{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}</span>
@@ -92,7 +94,7 @@
                             </section>
                             <!-- Step 2 Content, default hidden on page load. -->
                             {% for item in criteria|slice:"1:" %}
-                            <section id="step-{{forloop.counter|add:"1"}}" class="form-step d-none">
+                            <section id="step-{{forloop.counter|add:'1'}}" class="form-step d-none">
                                 <h2 class="font-normal">{{item}}</h2>
                                 <div class="mt-3">
                                     {% for sub_criteria in item.sub_criteria.all %}
@@ -114,16 +116,27 @@
                                     <button class="button btn-navigate-form-step" type="button"
                                         step_number="{{ forloop.counter }}">Prev</button>
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{{ forloop.counter|add:"2" }}">Next</button>
+                                        step_number="{{ forloop.counter|add:'2' }}">Next</button>
                                 </div>
                             </section>
                             {% endfor %}
                             <!-- Step 3 Content, default hidden on page load. -->
-                            <section id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}"
+                            <section id="step-{% with criteria|length as length %}{{ length|add:'1' }}{% endwith %}"
                                 class="form-step d-none">
                                 <div class="mt-3 mb-5">
-                                    <h4><strong>Thank you for applying to the {{competition.tagline}}. Please save your
-                                            changes.</strong></h4>
+                                    <h4>
+                                        <strong>
+                                            Thank you for applying to the {{competition.tagline}}. Please save your
+                                            changes.
+                                        </strong>
+                                    </h4>
+                                    <h4>
+                                        <strong>
+                                            Please Note, once your application is saved successfully, it cannot be
+                                            edited again.
+                                        </strong>
+                                    </h4>
+
                                 </div>
                                 <div class="mt-5">
                                     <button class="button btn-navigate-form-step" type="button"
