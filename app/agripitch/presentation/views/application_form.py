@@ -148,6 +148,7 @@ class PostApplicationFormView(SingleObjectMixin, View):
             context['form'] = form
             context['form_errors'] = form_errors
             context['criteria'] = CriteriaItem.objects.all()
+            context['competition'] = self.object
             if is_ajax:
                 return JsonResponse(
                     form_errors, status=400)
