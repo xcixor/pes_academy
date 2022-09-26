@@ -8,31 +8,9 @@
 {% endblock %}
 {% block content %}
 <section>
-  <!-- <div class="main-nav">
-    <div class="logo">
-      <div class="row">
-        <a class="mb-2"
-          href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
-          download target="_blank">Download Application guide</a>
-      </div>
-      <div class="row">
-        <a href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
-      </div>
-    </div>
-    <div class="hamburger-menu"><span class="bar"></span></div>
-    <ul class="nav-list">
-      <li class="home-nav-item"><a href="/" class="nav-link">Home</a></li>
-      <li class="home-nav-item"><a href="#" class="nav-link">Resources</a></li>
-      <li class="home-nav-item"><a href="#partners" class="nav-link">Partners</a></li>
-      {% for call in calls_to_action %}
-      <li class="home-nav-item"><a href="{% url "agripitch:application" slug=call.slug %}" class="nav-link">Apply</a>
-      </li>
-      {% endfor %}
-      <li class="home-nav-item"><a href="/accounts/help" class="nav-link">FAQ's</a></li>
-    </ul>
-  </div> -->
+
   <section class="hero">
-    
+ 
     <div class="dropdown corner-guide" style="z-index:2000 ;">
       <a class="btn dropdown-toggle download-resources" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Download Application Guide
@@ -71,6 +49,7 @@
 
     <div class="hero-clipped">
       <div class="hero-textbox">
+        
         <img src="{% static 'images/agripitch-logo.png' %}" alt="Agripitch logo" class="img-fluid" id="main-logo">
         <h2 class="sub-heading">Theme: The Role of African Youth Within African Food Systems</h2>
         <a href="/agripitch" class="cta-button">Find Out More</a>
@@ -114,6 +93,7 @@
     
 
     <div id="partners" class="board">
+      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Lead Partners</h1>
       <div class="other-partners d-flex justify-content-center">
         <div class="section">
           <div class="tile cover">
@@ -170,7 +150,7 @@
   
       </div>
       
-      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Key Partners</h1>
+      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Donor Partners</h1>
       <div class="row all-partners">
         <div class="col-sm-12 d-flex align-items-center justify-content-center">
           <img class="img-fluid" src="{% static 'images/common/partner-logos.jpg' %}" alt="All Partners">
@@ -281,16 +261,79 @@
       <div class="container">
         <h1 id="section-heading" class="main-secondary-title text-center">What do we offer?</h1>
         <h2 class="pb-4 text-site-primary">Dealroom</h2>
+        <p class="paragraph-site-primary">
+          AgriPitch falls under the African Development Bank’s fourth African Youth Agripreneurs Forum (AYAF) which is a platform for Africa’s youth who are interested in the agriculture startup scene.
+        </p>
         <p class="paragraph-site-primary">In line with the 2022 theme, the AYAF DealRoom will be held virtually. The
           Bank, through the 2022 Virtual Investor DealRoom, aims to create access to capital and markets which are often the two main hurdles for youth agripreneurs to overcome when scaling up their businesses.</p>
 
         <h2 class="pb-4 text-site-primary">Mentorship</h2>
+        <p class="paragraph-site-primary">The AgriPitch online programme includes a training session (Bootcamp) on strategic partnerships for equity in agriculture, nutrition, and financing the youth and women.</p>
+        <p class="paragraph-site-primary">In the two-week-long business development boot camp, AgriPitch competitors can attend virtual sessions on product development, revenue channel identification, logistics, marketing, business management, investment readiness, financing, and other issues, led by trainers and coache</p>
         <p class="paragraph-site-primary pb-5">Following the training and bootcamp, the participating agripreneurs will
           receive follow-up mentorship and coaching (virtually) for a period of six
           months.
           The mentorship activity will also link the AgriPitch participants to relevant
           resources throughout the six month period and beyond.</p>
       </div>
+    </section>
+
+    <section class="parallax">
+      
+        <div class="container">
+          <h1 id="section-heading" class="main-secondary-title text-center text-white mb-5">What previous participants say</h1>
+          <section id="testim" class="testim">
+            <div class="testim-cover">
+               <div class="wrap">
+   
+                   <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+                   <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
+                   <ul id="testim-dots" class="dots">
+                       <li class="dot active"></li><!--
+                       --><li class="dot"></li><!--
+                       --><li class="dot"></li><!--
+                       --><li class="dot"></li><!--
+                       --><li class="dot"></li>
+                   </ul>
+                   <div id="testim-content" class="cont">
+                       
+                       <div class="active">
+                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/03/06/08/44/beauty-6073128_960_720.jpg" alt=""></div>
+                           <h2>Participant name</h2>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                       </div>
+   
+                       <div>
+                           <div class="img"><img src="https://cdn.pixabay.com/photo/2022/02/22/08/58/woman-7028323_960_720.jpg" alt=""></div>
+                           <h2>Participant name</h2>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                       </div>
+   
+                       <div>
+                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/05/26/07/18/man-6284319_960_720.png" alt=""></div>
+                           <h2>Participant name</h2>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                       </div>
+   
+                       <div>
+                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/06/08/06/43/man-6319907_960_720.png" alt=""></div>
+                           <h2>Participant name </h2>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                       </div>
+   
+                       <div>
+                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/01/20/08/57/woman-5933499_960_720.png" alt=""></div>
+                           <h2>Participant name</h2>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                       </div>
+   
+                   </div>
+   
+               </div>
+            </div>
+          </section>  
+        </div>
+   
     </section>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>

@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="md-form">
-                    <i class="fa fa-user prefix white-text"></i>
+                    <i class="fa fa-user prefix white-text"></i> <label for="defaultForm-email1">{% trans "Your Username" %}</label>
                     <input type="text" id="defaultForm-email1" class="form-control" placeholder="{% trans "Username" %}" name="username" required>
-                    <label for="defaultForm-email1">{% trans "Your Username" %}</label>
+                    
                     <div class="error-container">
                       {% for error in form.username.errors %}
                       <p class="error e">{{ error|escape }}</p>
@@ -33,16 +33,18 @@
                     </div>
                 </div>
                 <div class="md-form">
-                    <i class="fa fa-envelope prefix white-text"></i>
+                    <i class="fa fa-envelope prefix white-text"></i> <label for="defaultForm-email1">{% trans "Your Email" %}</label>
                     <input type="email" id="defaultForm-email1" class="form-control" placeholder="Email" name="email" required>
-                    <label for="defaultForm-email1">{% trans "Your Email" %}</label>
+                    
                     <div class="error-container">
                       {% for error in form.email.errors %}
                       <p class="error">{{ error|escape }}</p>
                       {% endfor %}
                     </div>
                 </div>
+                <br>
                 <div class="input-container">
+                  <!-- <label for="defaultForm-pass1">{% trans "Please select the reason for registration" %}</label> -->
                   <select name="is_applying_for_a_call_to_action" class="input-field text-dark" required>
                     <option selected value="">{% trans "Please select the reason for registration" %}</option>
                     <option value="True">{% trans "Applying for call to action" %}</option>
@@ -50,9 +52,9 @@
                   </select>
                 </div>
                 <div class="md-form">
-                    <i class="fa fa-lock prefix white-text"></i>
+                    <i class="fa fa-lock prefix white-text"></i><label for="defaultForm-pass1">{% trans "Your password" %}</label>
                     <input type="password" id="psw" name="password1" placeholder="{% trans "Enter Password" %}" class="form-control">
-                    <label for="defaultForm-pass1">{% trans "Your password" %}</label>
+                    
                     <div class="error-container">
                       {% for error in form.password1.errors %}
                       <p class="error">{{ error|escape }}</p>
@@ -70,9 +72,9 @@
                   </details>
                 </div>
                 <div class="md-form mt-4">
-                    <i class="fa fa-lock prefix white-text"></i>
+                    <i class="fa fa-lock prefix white-text"></i><label for="defaultForm-pass1">{% trans "Repeat Password" %}</label>
                     <input type="password" id="psw-repeat" name="password2" placeholder="{% trans "Repeat Password" %}" class="form-control">
-                    <label for="defaultForm-pass1">{% trans "Repeat Password" %}</label>
+                    
                     <div class="error-container">
                       {% for error in form.password2.errors %}
                       <p class="error">{{ error|escape }}</p>

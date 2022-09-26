@@ -11,18 +11,24 @@
         <div class="col d-flex justify-content-center-sm-12 col d-flex justify-content-center-md-6">
           <!-- <h6>About</h6> -->
           <p class="text-justify">
-            <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="img-fluid">
+            <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="img-fluid"> <br>
+              
             </p>
+            
+    
         </div>
         <div class="col justify-content-center-xs-6 justify-content-center-md-3">
           <h6>Quick Links</h6>
           <ul class="footer-links">
             <li><a href="https://www.privateequity-support.com/our-services/our-services/">About Us</a></li>
-            <li><a href="https://www.privateequity-support.com/contact/">Contact Us</a></li>
             <li><a href="{% url 'accounts:help' %}">FAQ</a></li>
             <li><a href="#">Eligibility</a></li>
             <li><a href="#">Privacy Policy</a></li>
           </ul>
+        </div>
+        <div class="col justify-content-center-xs-6 justify-content-center-md-3">
+          <h6>Contact us</h6>
+          <p class="p-0 mb-0 ">{% trans "Email:" %} agri2022@privateequity-support.com</p>
         </div>
 
         <div class="col justify-content-center-xs-6 justify-content-center-md-3">
