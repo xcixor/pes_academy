@@ -17,12 +17,12 @@
       </a>
     
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
+        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide-1.pdf"
         download target="_blank">English</a>
         <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
         download target="_blank">French</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">Download FAQs </a>
+        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions-1.pdf" target="_blank">Download FAQs </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
       </div>
@@ -31,9 +31,9 @@
     <div class="sidecontainer">
       <div class="sidenav">
             <ul class="sidemenu">
-               <li ><a href="/">Home</a></li> 
-               <li ><a href="#">Resources</a></li> 
+               <li ><a href="/">Home</a></li>  
                <li><a href="#partners">Partners</a></li> 
+               <li ><a href="/agripitch/gallery/">Gallery</a></li>
                {% for call in calls_to_action %}
                <li><a href="{% url "agripitch:application" slug=call.slug %}">Apply</a></li> 
                {% endfor %}

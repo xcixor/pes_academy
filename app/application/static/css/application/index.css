@@ -560,8 +560,6 @@ body {
 	margin-right: auto;
 }
 .parallax {
-	/* background: url('https://images.pexels.com/photos/192136/pexels-photo-192136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') rgba(0, 0, 0, 0.9); */
-	/* background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.9)), url('../../images/carousel/h.jpg'); */
 	background-color: #14a562;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -570,8 +568,6 @@ body {
 	color: aliceblue;
 }
 .parallax-1 {
-	/* background: url('https://images.pexels.com/photos/3369569/pexels-photo-3369569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') repeat fixed 100%; */
-	/* background:linear-gradient(0deg, rgba(20, 165, 98, 0.3), rgba(69, 93, 141, 0.9)), url('../../images/carousel/b.jpg'); */
 	background-color: #14a562;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -584,195 +580,7 @@ body {
 	padding-bottom: 5%;
 }
 
-@media only screen and (max-width: 1400px) {
-	.hero-clipped {
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
-		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-	}
 
-	#main-logo {
-		width: 500px;
-	}
-
-	.hero-textbox {
-		top: 45%;
-	}
-}
-@media only screen and (max-width: 760px) {
-
-	/* .partner-img {
-		width: 48%;
-	}
-	.partner-img-2 {
-		width: 45%;
-	}
-	.partner-img-3 {
-		width: 70%;
-	} */
-	.tile {
-		padding: 5em 0.2em;
-		width: auto;
-		height: auto;
-
-	}
-
-	.desc {
-		top: 100%;
-		padding-top: 6em;
-		background: #f7f7f7 span;
-	}
-
-
-.main-nav {
-	display: none;
-}
-
-
-	.nav-list {
-		width: 30rem;
-	}
-	#main-logo {
-		width: 400px;
-	}
-
-	.sub-heading {
-		font-size: 2rem;
-	}
-	.cta-button {
-		padding: 1rem 2.5rem;
-		font-size: larger;
-	}
-	.hero-textbox {
-		top: 50%;
-	}
-
-	.countdown {
-		font-size: 30px;
-	}
-
-	.countdown div {
-		padding: 10px;
-		margin: 3px;
-	}
-
-	.countdown span {
-		display: block;
-		font-size: 15px;
-	}
-}
-@media only screen and (max-width: 550px) {
-	.section {
-		height: 8em;
-	}
-
-	.carousel {
-display: none;
-	}
-
-	.tile {
-		width: auto;
-		height: auto;
-		padding: 3em 0.1em;
-	}
-	#main-logo {
-		width: 300px;
-	}
-
-	.sub-heading {
-		font-size: 1.3rem;
-	}
-	.cta-button {
-		margin-top: 3rem;
-		font-size: large;
-	}
-
-	#section-heading {
-		font-size: 2.5em;
-	}
-	/* .hamburger-menu {
-		width: 3rem;
-		height: 3rem;
-	}
-	.bar {
-		width: 3rem;
-		height: 2px;
-	}
-	.bar::before {
-		top: -0.6rem;
-	}
-	.bar::after {
-		top: 0.6rem;
-	} */
-	.corner-guide {
-		display: none;
-	}
-	.sidecontainer .sidenav{
-		height: 75px;
-	}
-	.sidecontainer .sidenav ul.toggle{
-		height: 30px;   width: 40px;
-	}
-	.sidecontainer .sidenav ul.sidemenu{
-		height: 30px;  line-height: 50px;
-	}
-	.hero-textbox {
-		top: 38%;
-		left: 50%;
-	}
-	.landing img {
-		width: 70%;
-	}
-
-	.landing h1 {
-		font-size: 20px;
-	}
-
-	.countdown {
-		font-size: 20px;
-		/* flex-direction: column; */
-	}
-
-	.countdown div {
-		display: block;
-		width: 80%;
-		padding: 10px;
-	}
-
-	.countdown div:first-child {
-		display: block;
-		width: 80%;
-		padding: 10px;
-	}
-	.partner-img {
-		width: 70%;
-	}
-	.partner-img-2 {
-		width: 60%;
-	}
-	.partner-img-3 {
-		width: 90%;
-	}
-	.tile {
-		width: auto;
-	}
-  .logo a {
-    padding: 0.2rem 0.4rem;
-  }
-}
-
-
-.testim {
-	/* width: 100%; */
-	/* position: absolute; */
-	/* top: 50%; */
-	/* -webkit-transform: translatey(-50%);
-	-moz-transform: translatey(-50%);
-	-ms-transform: translatey(-50%);
-	-o-transform: translatey(-50%);
-	transform: translatey(-50%); */
-}
 
 .testim .wrap {
 	position: relative;
@@ -1334,24 +1142,6 @@ display: none;
 	}
 }
 
-@media all and (max-width: 300px) {
-body {
-	font-size: 14px;
-}
-}
-
-@media all and (max-width: 500px) {
-.testim .arrow {
-	font-size: 1.5em;
-}
-
-.testim .cont div p {
-	line-height: 25px;
-}
-
-}
-
-
 
 
 /* Timeline defaults */
@@ -1380,7 +1170,7 @@ body {
 .h--timeline {
   opacity: 0;
   transition: opacity 0.2s;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: normal;
   line-height: 1.5;
 }
@@ -1461,10 +1251,10 @@ body {
   bottom: 0;
   z-index: 2;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   padding-bottom: 0.75rem;
-  color: #000;
+  color: #455d8d;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -1766,3 +1556,177 @@ body {
 }
 
 /**/
+
+@media only screen and (max-width: 1400px) {
+	.hero-clipped {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+
+	#main-logo {
+		width: 500px;
+	}
+
+	.hero-textbox {
+		top: 45%;
+	}
+}
+@media only screen and (max-width: 760px) {
+
+	.tile {
+		padding: 5em 0.2em;
+		width: auto;
+		height: auto;
+
+	}
+
+	.desc {
+		top: 100%;
+		padding-top: 6em;
+		background: #f7f7f7 span;
+	}
+
+
+.main-nav {
+	display: none;
+}
+
+
+	.nav-list {
+		width: 30rem;
+	}
+	#main-logo {
+		width: 400px;
+	}
+
+	.sub-heading {
+		font-size: 2rem;
+	}
+	.cta-button {
+		padding: 1rem 2.5rem;
+		font-size: larger;
+	}
+	.hero-textbox {
+		top: 50%;
+	}
+
+	.countdown {
+		font-size: 30px;
+	}
+
+	.countdown div {
+		padding: 10px;
+		margin: 3px;
+	}
+
+	.countdown span {
+		display: block;
+		font-size: 15px;
+	}
+}
+@media only screen and (max-width: 550px) {
+	.section {
+		height: 8em;
+	}
+
+	.carousel {
+		display: none;
+	}
+
+	.tile {
+		width: auto;
+		height: auto;
+		padding: 3em 0.1em;
+	}
+	#main-logo {
+		width: 300px;
+	}
+
+	.sub-heading {
+		font-size: 1.3rem;
+	}
+	.cta-button {
+		margin-top: 3rem;
+		font-size: large;
+	}
+
+	#section-heading {
+		font-size: 2.5em;
+	}
+	
+	.corner-guide {
+		display: none;
+	}
+	.sidecontainer .sidenav{
+		height: 75px;
+	}
+	.sidecontainer .sidenav ul.toggle{
+		height: 30px;   width: 40px;
+	}
+	.sidecontainer .sidenav ul.sidemenu{
+		height: 30px;  line-height: 50px;
+	}
+	.hero-textbox {
+		top: 38%;
+		left: 50%;
+	}
+	.landing img {
+		width: 70%;
+	}
+
+	.landing h1 {
+		font-size: 20px;
+	}
+
+	.countdown {
+		font-size: 20px;
+		/* flex-direction: column; */
+	}
+
+	.countdown div {
+		display: block;
+		width: 80%;
+		padding: 10px;
+	}
+
+	.countdown div:first-child {
+		display: block;
+		width: 80%;
+		padding: 10px;
+	}
+	.partner-img {
+		width: 70%;
+	}
+	.partner-img-2 {
+		width: 60%;
+	}
+	.partner-img-3 {
+		width: 90%;
+	}
+	.tile {
+		width: auto;
+	}
+  .logo a {
+    padding: 0.2rem 0.4rem;
+  }
+
+	.h--timeline-event-title {
+		font-size: 2.4rem;
+	}
+	.h--timeline {
+		font-size: 1.4rem;
+	}
+
+	.testim .arrow {
+		font-size: 1.5em;
+	}
+	
+	.testim .cont div p {
+		line-height: 25px;
+	}
+
+}
+
+
