@@ -547,7 +547,7 @@ $("textarea").keyup(function () {
 });
 
 function validateCharacterLength(textarea) {
-	var maxLength = 30;
+	var maxLength = 2500;
 	var len = maxLength - $(textarea).val().length;
 	if (len > 0) {
 		if ($(textarea).next().length) {
