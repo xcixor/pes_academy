@@ -20,9 +20,10 @@
               <img class="d-block w-100" src="{{first_carousel_image.image.url}}" alt="First slide">
               <div class="carousel-caption d-none d-md-block">
                 <h2>The 2022 Agripitch Competition is Here!</h2>
-                <h3>Get your Agribusiness to the next level today!</h3>
+                <h3>{{first_carousel_image.caption}}</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
-                <a href="{% url "agripitch:application" slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
+                <h4>Note: Application takes 45 to 60 minutes.</h4>
+                <a href="{% url 'agripitch:application' slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
               </div>
           </div>
           {% for image in other_carousel_images %}
@@ -30,9 +31,10 @@
               <img class="d-block w-100" src="{{ image.image.url }}" alt="Fourth slide">
               <div class="carousel-caption d-none d-md-block">
                 <h2>The 2022 AgriPitch Competition is Here!</h2>
-                <h3>Get your Agribusiness to the next level today!</h3>
+                <h3>{{first_carousel_image.caption}}</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
-                <a href="{% url "agripitch:application" slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
+                <h4>Note: Application takes 45 to 60 minutes.</h4>
+                <a href="{% url 'agripitch:application' slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
               </div>
           </div>
           {% endfor %}
@@ -73,9 +75,11 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item paragraph-site-primary">{{application.description | safe }}</li>
               <li class="list-group-item"><small>{% trans "Applications Ongoing. Ends " %}<span> {{application.deadline}}</span></small></li>
+              <li class="list-group-item"><small>{% trans "Note: Application takes 45 to 60 minutes." %}</small></li>
+
             </ul>
             <div class="card-body">
-              <a href="{% url "agripitch:application" slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
+              <a href="{% url 'agripitch:application' slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
               <a href="#" class="btn registerbtn">Download Application Guide</a>
             </div>
           </div>
