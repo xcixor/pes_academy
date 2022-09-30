@@ -1,0 +1,8 @@
+{% extends 'common/email/base.html' %}
+
+{% block message %}
+<div style="margin: 5px 0;">
+    <h4>Hi {{name}}</h4> <br> <br>
+    {{message}} <br> <br> 
+</div><br>
+{% endblock %}

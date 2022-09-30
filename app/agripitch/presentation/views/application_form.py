@@ -5,7 +5,10 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.conf import settings
+from django.utils import timezone
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
 from agripitch.models import (
@@ -13,6 +16,7 @@ from agripitch.models import (
     DynamicForm, SubCriteriaItemDocumentResponse)
 from django.http import JsonResponse
 from agripitch.utils import get_sub_criteria_item_by_label
+from common.utils.email import HtmlEmailMixin
 
 
 def get_application_form(sub_criteria_items):
@@ -105,7 +109,7 @@ def validate_file_max_size(file, sub_criteria_item):
     return {'status': is_valid, 'message': "Valid size", 'code': 'max_size'}
 
 
-class PostApplicationFormView(SingleObjectMixin, View):
+class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
 
     template_name = 'agripitch/application_form.html'
     model = CallToAction
@@ -166,7 +170,30 @@ class PostApplicationFormView(SingleObjectMixin, View):
             "Your application has been recorded, we will get back to you shortly")
         messages.add_message(
             request, messages.SUCCESS, success_message)
+        self.send_email(request.user)
         return redirect(reverse('accounts:dashboard'))
+
+    def send_email(self, user):
+        subject = _(
+            'African Development Bank AgriPitch Competition '
+            '2022 Application')
+        message = ""
+        from_email = settings.VERIFIED_EMAIL_USER
+        to_email = [user.email]
+        message = ('Thanks for applying to the African Development Bank '
+                   'AgriPitch Competition 2022. Your application has '
+                   'been recorded, we will get back to you shortly')
+        context = {
+            'email_address': user.email,
+            'name': user.full_name,
+            'subject': subject,
+            'message': message,
+            'date': timezone.now()
+        }
+        return super().send_email(
+            subject, None, from_email, to_email,
+            template='email/agripitch/application_confirmation.html',
+            context=context)
 
 
 class ApplicationFormView(LoginRequiredMixin, View):
