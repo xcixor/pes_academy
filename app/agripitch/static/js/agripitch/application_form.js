@@ -178,7 +178,7 @@ function toggleDependant(elementWithDependant, dependentElement) {
 		$(dependentElement).val("");
 		$(dependentElement).trigger("change");
 		$(dependentElement).removeClass("form-input-validate");
-		console.log($(dependentElement).attr('name'));
+		console.log($(dependentElement).attr("name"));
 		removeResponseFromDb($(dependentElement).attr("name"));
 		dependentElement.siblings().css("display", "none");
 		$(dependentElement).addClass("is-dependent");
@@ -232,19 +232,14 @@ function saveNonRequiredFilledFields(formSection) {
 		if (inputs[i].type === "radio" && $(inputs[i]).checked) {
 			radiosValidity = validateRadios(inputs[i].name);
 		}
-		if (
-			inputs[i].type === "textarea" &&
-			$(inputs[i]).attr("maxwords") &&
-			!isEmptyOrSpaces($(inputs[i]).val())
-		) {
-			let setMaxWords = $(inputs[i]).attr("maxwords");
-			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
+		if (inputs[i].type === "textarea" && !isEmptyOrSpaces($(inputs[i]).val())) {
+			textAreaValidity = validateCharacterLength($(inputs[i]));
+			if (!textAreaValidity) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`
+					`${inputs[i].name}: Number of characters should not exceed 2500`
 				);
-				textAreaValidity = false;
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
 			}
@@ -389,15 +384,14 @@ function validateSection(formSection) {
 		if (inputs[i].type === "radio") {
 			radiosValidity = validateRadios(inputs[i].name);
 		}
-		if (inputs[i].type === "textarea" && $(inputs[i]).attr("maxwords")) {
-			let setMaxWords = $(inputs[i]).attr("maxwords");
-			if (getTypedWords($(inputs[i]).val()) > setMaxWords) {
+		if (inputs[i].type === "textarea") {
+			textAreaValidity = validateCharacterLength($(inputs[i]));
+			if (!textAreaValidity) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of words should not exceed ${setMaxWords}`
+					`${inputs[i].name}: Number of characters should not exceed 2500`
 				);
-				textAreaValidity = false;
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
 			}
