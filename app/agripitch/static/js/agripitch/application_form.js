@@ -548,6 +548,40 @@ function getRadiosParent(radios) {
 	return $(radios).closest("ul");
 }
 
+$("textarea").keyup(function () {
+	validateCharacterLength($(this));
+});
+
+function validateCharacterLength(textarea) {
+	var maxLength = 30;
+	var len = maxLength - $(textarea).val().length;
+	if (len > 0) {
+		if ($(textarea).next().length) {
+			$(textarea)
+				.next()
+				.replaceWith(
+					$(
+						`<p class="textarea-characters-remaining">${len} characters remaining</p>`
+					)
+				);
+		} else {
+			$(
+				`<p class="textarea-characters-remaining">${len} characters remaining</p>`
+			).insertAfter($(textarea));
+		}
+		return true;
+	} else {
+		$(textarea)
+			.next()
+			.replaceWith(
+				$(
+					`<p class="textarea-characters-remaining" style="color:red">0 characters remaining</p>`
+				)
+			);
+		return false;
+	}
+}
+
 function saveDraftData(formData) {
 	let application = $("#currentApplication").val();
 	var url = `/agripitch/${application}/application/`;
