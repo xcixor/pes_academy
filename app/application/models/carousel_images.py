@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 def image_directory_path(instance, filename):
@@ -7,7 +8,7 @@ def image_directory_path(instance, filename):
 
 class CarouselImage(models.Model):
 
-    caption = models.CharField(max_length=200)
+    caption = RichTextField()
     image = models.FileField(
         upload_to=image_directory_path)
 

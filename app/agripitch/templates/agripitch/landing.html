@@ -20,7 +20,7 @@
               <img class="d-block w-100" src="{{first_carousel_image.image.url}}" alt="First slide">
               <div class="carousel-caption d-none d-md-block">
                 <h2>The 2022 Agripitch Competition is Here!</h2>
-                <h3>{{first_carousel_image.caption}}</h3>
+                <h3>{{first_carousel_image.caption | safe }}</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
                 <h4>Note: Application takes 45 to 60 minutes.</h4>
                 <a href="{% url 'agripitch:application' slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
@@ -31,7 +31,7 @@
               <img class="d-block w-100" src="{{ image.image.url }}" alt="Fourth slide">
               <div class="carousel-caption d-none d-md-block">
                 <h2>The 2022 AgriPitch Competition is Here!</h2>
-                <h3>{{first_carousel_image.caption}}</h3>
+                <h3>{{first_carousel_image.caption | safe }}</h3>
                 <h4>Women-led businesses & the youth are encouraged to apply.</h4>
                 <h4>Note: Application takes 45 to 60 minutes.</h4>
                 <a href="{% url 'agripitch:application' slug=application.slug %}" class="btn registerbtn">{% trans "Apply Now" %} &raquo;</a>
