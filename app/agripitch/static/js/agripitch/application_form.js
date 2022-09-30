@@ -144,9 +144,16 @@ $(".has-dependent-question").on("change", (evt) => {
 });
 
 function toggleDependantQuestion(elementWithDependant) {
-	let dependentElement = $(
-		`#${$(elementWithDependant).attr("data-dependant-question-id")}`
+	let dependentElements = $(
+		`.${$(elementWithDependant).attr("data-dependant-question-id")}`
 	);
+	for (let i = 0; i <= dependentElements.length; i++) {
+		var dependentElement = $(dependentElements[i]);
+		toggleDependant(elementWithDependant, dependentElement);
+	}
+}
+
+function toggleDependant(elementWithDependant, dependentElement) {
 	let dependantChildren = $(dependentElement).find("input");
 	if (
 		$(elementWithDependant).val() ===
@@ -171,9 +178,8 @@ function toggleDependantQuestion(elementWithDependant) {
 		$(dependentElement).val("");
 		$(dependentElement).trigger("change");
 		$(dependentElement).removeClass("form-input-validate");
-		removeResponseFromDb(
-			$(elementWithDependant).attr("data-dependant-question-name")
-		);
+		console.log($(dependentElement).attr('name'));
+		removeResponseFromDb($(dependentElement).attr("name"));
 		dependentElement.siblings().css("display", "none");
 		$(dependentElement).addClass("is-dependent");
 
