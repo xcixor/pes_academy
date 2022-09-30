@@ -19,13 +19,15 @@ h2 {
     padding-left: 0;
 }
 .button {
-    padding: 0.7rem 1.5rem;
+    padding: 0.8rem 2rem;
     background-color: var(--bg-secondary);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
     outline: 0;
     border: none;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .top-navigate-form-step{
@@ -176,8 +178,12 @@ ul.form-stepper li a .form-stepper-circle {
     display: none !important;
 }
 
+.form-step label {
+    font-size: 1.6rem;
+}
+
 @media only screen and (max-width: 992px) {
-    .label {
+    .form-stepper .label {
         display: none;
     }
 }
