@@ -3,7 +3,7 @@ from application.presentation.views import (
     IndexView, DraftApplicationDataView, ApplicationView, SubmitView,
     PostApplicationDocumentFormView, ApplicationPDFView,
     UploadExtraDocumentsView, ApplicationPromptView, ApplicationScoreView,
-    ApplicationCommentView, DraftUserInfoView)
+    ApplicationCommentView, DraftUserInfoView, PrivacyPolicyView)
 
 app_name = 'application'
 
@@ -25,4 +25,5 @@ urlpatterns = [
          DraftUserInfoView.as_view(), name='draft_user'),
     path('applications/application/pdf/',
          ApplicationPDFView.as_view(), name='application_pdf'),
+    path('privacy/', PrivacyPolicyView.as_view(), name='privacy'),
 ]
