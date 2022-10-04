@@ -18,9 +18,24 @@
             <div class="col-lg-8 col-sm-12">
                 <div>
                     <h3 class="text-site-secondary"><strong>{{user.application}}</strong></h3>
-                    <h5 class="text-site-secondary"><strong><i>Application takes 45 to 60 minutes.</i></strong></h5>
-                    <h5 class="text-site-secondary"><strong><i>NB: Documents to be attached should be in pdf format
-                                only.</i></strong></h5>
+                    <h5 class="text-site-secondary">
+                        <strong>
+                            <i>
+                                {% trans "NB: Documents to be attached should be in pdf format only." %}
+                            </i></strong>
+                    </h5>
+                    <strong>
+                        <h5 class="text-site-secondary">
+                            <strong>
+                                <em>
+                                    {% trans "NB: Check and Fill all the Fields before you click Next. Once you click next your data will be saved." %}
+                                </em>
+                            </strong>
+                        </h5>
+                    </strong>
+                    <h5 class="text-site-secondary">
+                        <strong><i>{% trans "Application takes 45 to 60 minutes." %}</i></strong></h5>
+
                     <div id="multi-step-form-container">
                         <!-- Form Steps / Progress Bar -->
                         <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
