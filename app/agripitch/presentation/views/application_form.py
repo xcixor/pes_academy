@@ -171,6 +171,9 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         messages.add_message(
             request, messages.SUCCESS, success_message)
         self.send_email(request.user)
+        application = request.user.application
+        application.stage = 'step_two'
+        application.save()
         return redirect(reverse('accounts:dashboard'))
 
     def send_email(self, user):
