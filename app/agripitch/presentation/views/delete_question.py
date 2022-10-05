@@ -1,7 +1,7 @@
 from django.views import View
 from django.http import JsonResponse, HttpResponseNotFound
 from django.utils.translation import gettext_lazy as _
-from agripitch.models import SubCriteriaItem, Application
+from agripitch.models import SubCriteriaItem
 
 
 class DeleteSubCriteriaView(View):
@@ -10,7 +10,6 @@ class DeleteSubCriteriaView(View):
         is_ajax = request.META.get(
             'HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
         label = request.POST.get('label')
-        # application = request.POST.get('application')
         try:
             item = SubCriteriaItem.objects.get(
                 label=label)
@@ -20,14 +19,10 @@ class DeleteSubCriteriaView(View):
             else:
                 item.responses.filter(
                     application=request.user.application).delete()
-
         except SubCriteriaItem.DoesNotExist as e:
             print(e)
         not_found_msg = _('Not found')
-        if is_ajax and item:
+        if is_ajax:
             return JsonResponse(
                 {}, status=204)
-        else:
-            return JsonResponse(
-                {}, status=400)
         return HttpResponseNotFound(not_found_msg)
