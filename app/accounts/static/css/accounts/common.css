@@ -1,0 +1,71 @@
+.indicator{
+    position: absolute;
+    top: 0;
+    z-index:1;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    height: 100%;
+    width: 100%;
+    background: rgba(244, 249, 236, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.htmx-indicator{
+    opacity:0;
+    transition: opacity 500ms ease-in;
+}
+.htmx-request .htmx-indicator{
+    opacity:1;
+    position: absolute;
+    top: 0;
+    z-index:1;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    height: 100%;
+    width: 100%;
+    background: rgba(244, 249, 236, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.htmx-request.htmx-indicator{
+    opacity:1;
+    position: absolute;
+    top: 0;
+    z-index:1;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    height: 100%;
+    width: 100%;
+    background: rgba(244, 249, 236, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    width: 15px;
+}
+
+.auth-form {
+    height: 100%;
+}
+
+.auth-form .form-control {
+    padding: 24px 5px !important;
+    font-size: 1.6rem !important;
+}
+
+label {
+    font-size: 1.6rem !important;
+}
+
+option {
+    color: black !important;
+}
