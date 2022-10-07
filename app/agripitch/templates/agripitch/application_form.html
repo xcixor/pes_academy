@@ -17,16 +17,16 @@
             </div>
             <div class="col-lg-8 col-sm-12">
                 <div>
-                    <h3 class="text-site-secondary"><strong>{{user.application}}</strong></h3>
+                    <h3 class="text-site-primary"><strong>{{user.application}}</strong></h3>
                     {% if user.application.stage == 'step_one' %}
-                    <h5 class="text-site-secondary">
+                    <h5 class="text-site-primary">
                         <strong>
                             <i>
                                 {% trans "NB: Documents to be attached should be in pdf format only." %}
                             </i></strong>
                     </h5>
                     <strong>
-                        <h5 class="text-site-secondary">
+                        <h5 class="text-site-primary">
                             <strong>
                                 <em>
                                     {% trans "NB: Check and Fill all the Fields before you click Next. Once you click next your data will be saved." %}
@@ -34,11 +34,11 @@
                             </strong>
                         </h5>
                     </strong>
-                    <h5 class="text-site-secondary">
+                    <h5 class="text-site-primary">
                         <strong><i>{% trans "Application takes 45 to 60 minutes." %}</i></strong>
                     </h5>
                     {% else %}
-                    <h5 class="text-site-secondary mt-4">
+                    <h5 class="text-site-primary mt-4">
                         <strong><i>{% trans "Please note; you have already submitted your data. <br> Any changes that you make to this form will not be recorded" %}</i></strong>
                     </h5>
                     {% endif %}
