@@ -4,7 +4,7 @@
   hx-swap="innerHTML" id="registrationForm" hx-target="#htmx-parent" hx-indicator="#spinner">
   {% csrf_token %}
 
-  <div class="container container-wrapper">
+  <div class="container container-wrapper mb-2">
     <div class="row header">
       <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="img-fluid">
     </div>
@@ -30,8 +30,15 @@
     <div class="md-form row">
       <div class="col-sm-12">
         <i class="fa fa-user prefix white-text mr-2"></i> <label for="username">{% trans "Username" %}</label>
+        {% if request.session.registration_details.email %}
+        <input value="{{request.session.registration_details.username}}" type="text" id="username" class="form-control"
+          placeholder="{% trans 'Username' %}" name="username" required>
+        {% else %}
         <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username"
           required>
+
+        {% endif %}
+
 
         <div class="error-container">
           {% for error in form.username.errors %}
@@ -61,14 +68,15 @@
       <div class="col-sm-12">
         <i class="fa-solid fa-square-check prefix mr-2"></i>
         <label for="id_is_applying_for_a_call_to_action">{% trans "Reason for registration" %}</label>
-        <p>{{request.session.registration_details.is_applying_for_a_call_to_action}} here</p>
         <select name="is_applying_for_a_call_to_action" class="input-field text-dark" required
           id="id_is_applying_for_a_call_to_action">
           <option selected value=""><strong>{% trans "Applying for" %}</strong></option>
-          {% if request.session.registration_details.is_applying_for_a_call_to_action %}
-          <option {% if request.session.registration_details.is_applying_for_a_call_to_action %}selected{% endif %}
+          {% if 'is_applying_for_a_call_to_action' in request.session.registration_details %}
+          <option
+            {% if request.session.registration_details.is_applying_for_a_call_to_action == 'True' %}selected{% endif %}
             value="True">{% trans "African Development Bank AgriPitch Competition 2022" %}</option>
-          <option {% if not request.session.registration_details.is_applying_for_a_call_to_action %}selected{% endif %}
+          <option
+            {% if request.session.registration_details.is_applying_for_a_call_to_action == 'False' %}selected{% endif %}
             value="False">{% trans "Other" %}</option>
           {% else %}
           <option value="True">{% trans "African Development Bank AgriPitch Competition 2022" %}</option>
