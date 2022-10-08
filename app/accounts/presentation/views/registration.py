@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.views import View
 from django.views.generic import TemplateView, FormView
+from django_htmx.http import HttpResponseClientRedirect
 from accounts.forms import RegistrationForm
 
 
@@ -25,12 +26,20 @@ class PostRegistrationView(FormView):
     form_class = RegistrationForm
     template_name = 'registration/registration.html'
     success_url = '/accounts/activation-email-sent/'
+    partial_template_name = 'registration/partial/registration.html'
 
     def form_valid(self, form):
         self.request.session.pop('registration_details', None)
         inactive_user = form.save()
         form.send_account_activation_email(inactive_user, self.request)
+        if self.request.htmx:
+            return HttpResponseClientRedirect(self.success_url)
         return super().form_valid(form)
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return self.partial_template_name
+        return self.template_name
 
     def form_invalid(self, form):
         registration_details = {}

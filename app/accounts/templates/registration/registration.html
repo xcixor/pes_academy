@@ -10,7 +10,7 @@
 {% block body_id %}register{% endblock %}
 {% block content %}
 <div id="htmx-parent" class="htmx-parent">
-  <form action="/accounts/register/" method="post" class="auth-form" hx-post="/accounts/registration/freelancer/"
+  <form action="{% url 'accounts:register' %}" method="post" class="auth-form" hx-post="{% url 'accounts:register' %}"
     hx-swap="innerHTML" id="registrationForm" hx-target="#htmx-parent" hx-indicator="#spinner">
     {% csrf_token %}
 
@@ -28,18 +28,27 @@
       <!--Body-->
       <div class="error-container">
         {% if form.errors %}
-        <span class="d-inline-flex align-items-center">
-          <i class="fas fa-info error mr-2"></i>
-          <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
-        </span>
+        <div class="row ">
+          <div class="col-sm-12 d-inline-flex align-items-center">
+            <i class="fas fa-info error mr-2"></i>
+            <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
+          </div>
+        </div>
         {% endif %}
       </div>
 
       <div class="md-form row">
         <div class="col-sm-12">
           <i class="fa fa-user prefix white-text mr-2"></i> <label for="username">{% trans "Username" %}</label>
+          {% if request.session.registration_details.email %}
+          <input value="{{request.session.registration_details.username}}" type="text" id="username"
+            class="form-control" placeholder="{% trans 'Username' %}" name="username" required>
+          {% else %}
           <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username"
             required>
+
+          {% endif %}
+
 
           <div class="error-container">
             {% for error in form.username.errors %}
@@ -51,8 +60,12 @@
       <div class="md-form row">
         <div class="col-sm-12">
           <i class="fa fa-envelope prefix white-text mr-2"></i> <label for="email">{% trans "Email" %}</label>
+          {% if request.session.registration_details.email %}
+          <input type="email" id="email" class="form-control" placeholder="Email" name="email" required
+            value="{{request.session.registration_details.email}}">
+          {% else %}
           <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
-
+          {% endif %}
           <div class="error-container">
             {% for error in form.email.errors %}
             <p class="error">{{ error|escape }}</p>
@@ -67,9 +80,18 @@
           <label for="id_is_applying_for_a_call_to_action">{% trans "Reason for registration" %}</label>
           <select name="is_applying_for_a_call_to_action" class="input-field text-dark" required
             id="id_is_applying_for_a_call_to_action">
-            <option selected value="">{% trans "Applying for" %}</option>
+            <option selected value=""><strong>{% trans "Applying for" %}</strong></option>
+            {% if 'is_applying_for_a_call_to_action' in request.session.registration_details %}
+            <option
+              {% if request.session.registration_details.is_applying_for_a_call_to_action == 'True' %}selected{% endif %}
+              value="True">{% trans "African Development Bank AgriPitch Competition 2022" %}</option>
+            <option
+              {% if request.session.registration_details.is_applying_for_a_call_to_action == 'False' %}selected{% endif %}
+              value="False">{% trans "Other" %}</option>
+            {% else %}
             <option value="True">{% trans "African Development Bank AgriPitch Competition 2022" %}</option>
             <option value="False">{% trans "Other" %}</option>
+            {% endif %}
           </select>
         </div>
       </div>
