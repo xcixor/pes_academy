@@ -3,11 +3,20 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from common.utils.common_queries import get_application
+from accounts.forms import LoginForm
 
 
 class UserLoginView(LoginView):
 
     template_name = "registration/login.html"
+    form_class = LoginForm
+
+    def form_valid(self, form):
+        remember_me = form.cleaned_data['remember_me']
+        if not remember_me:
+            settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+            self.request.session.modified = True
+        return super(UserLoginView, self).form_valid(form)
 
     def form_invalid(self, form):
         return super().form_invalid(form)
