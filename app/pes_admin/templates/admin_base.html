@@ -26,7 +26,7 @@
         <div class="row">
           <!-- sidebar -->
           <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
-            <h1 class="bi bi-person-fill text-primary d-flex my-4 justify-content-center"> Admin</h1>
+            <h1 class="bi bi-person-fill text-site-secondary d-flex my-4 justify-content-center"> Admin</h1>
             <div class="list-group rounded-0">
                 {% if user.is_superuser %}
               <a href="/admin/advanced/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
@@ -97,7 +97,7 @@
               </button>
               <div class="dropdown ml-auto">
                 <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
-                  <span class="bi bi-person text-primary h4"></span>
+                  <span class="bi bi-person text-site-secondary h4"></span>
                   <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">

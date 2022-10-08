@@ -627,7 +627,7 @@ gsap.fromTo('.hero-textbox',{yPercent: 40,opacity: 0},{duration: 1,delay: 1.3,yP
   const countdown = document.querySelector('.countdown');
 
 // Set Launch Date (ms)
-const launchDate = new Date('Oct 6, 2022 00:00:00').getTime();
+const launchDate = new Date('Oct 17, 2022 00:00:00').getTime();
 
 // Update every second
 const intvl = setInterval(() => {
