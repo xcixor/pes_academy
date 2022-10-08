@@ -25,12 +25,6 @@ class UserLoginView(LoginView):
         success_message = _('Welcome back ') + self.request.user.username
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
-        user = self.request.user
-        application, msg = get_application(user)
-        if application:
-            if application.stage == 'step_one':
-                next_url = f'/agripitch/{application.call_to_action.slug}/application/'
-                return next_url
         next_url = self.request.GET.get("next", None)
         if next_url:
             return next_url
