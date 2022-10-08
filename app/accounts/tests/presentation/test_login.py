@@ -19,14 +19,16 @@ class LoginTestCase(AccountsBaseTestCase):
                          'registration/login.html')
 
     def test_login_redirects_to_the_next_page(self):
+        next_url = f'/agripitch/{self.user.application.call_to_action.slug}/application/'
         response = self.client.post(
-            '/accounts/login/?next=/applications/', self.form, follow=True)
+            f'/accounts/login/?next={next_url}', self.form, follow=True)
         self.assertRedirects(
-            response, f'/agripitch/{self.user.application.call_to_action.slug}/application/', 302)
+            response, next_url, 302)
 
     def test_adds_success_message(self):
+        url = f'/agripitch/{self.user.application.call_to_action.slug}/application/'
         response = self.client.post(
-            '/accounts/login/?next=/applications/', self.form, follow=True)
+            f'/accounts/login/?next={url}', self.form, follow=True)
         message = list(response.context.get('messages'))[0]
         expected_message = (
             'Welcome back normal_user')
