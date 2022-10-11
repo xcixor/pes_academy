@@ -188,9 +188,9 @@ class DynamicForm(forms.Form):
                         )
             language = get_language()
             if language == 'fr':
-                item = SubCriteriaItem.objects.filter(pk=instance.pk).translate('fr')[0]
+                item = SubCriteriaItem.objects.filter(
+                    pk=instance.pk).translate('fr')[0]
                 self.fields[instance.label].label = item.label
-
 
 
 def get_form(instance):
@@ -224,7 +224,8 @@ class SubCriteriaItem(Translatable):
     def __str__(self) -> str:
         language = get_language()
         if language == 'fr':
-            item = SubCriteriaItem.objects.filter(pk=self.pk).translate('fr')[0]
+            item = SubCriteriaItem.objects.filter(
+                pk=self.pk).translate('fr')[0]
             return item.label
         return self.label
 
@@ -239,7 +240,8 @@ class SubCriteriaItem(Translatable):
     def get_description(self):
         language = get_language()
         if language == 'fr':
-            item = SubCriteriaItem.objects.filter(pk=self.pk).translate('fr')[0]
+            item = SubCriteriaItem.objects.filter(
+                pk=self.pk).translate('fr')[0]
             return item.description
         return self.description
 
