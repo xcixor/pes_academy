@@ -36,6 +36,7 @@ urlpatterns = [
         'eligibility/',
         include('eligibility.presentation.urls', namespace='eligibility')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('rosetta/', include('rosetta.urls')),
     path('staff/', include('staff.presentation.urls', namespace='staff')),
     path('agripitch/', include('agripitch.presentation.urls', namespace='agripitch')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

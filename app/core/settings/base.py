@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_countries',
     'googlecharts',
+    'rosetta',
+    'parler',
     'common',
     'accounts',
     'application',
@@ -221,4 +223,15 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': 'justify,liststyle,indent',
         'allowedContent': True
     },
+}
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', },  # English
+        {'code': 'fr', },  # French
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
 }

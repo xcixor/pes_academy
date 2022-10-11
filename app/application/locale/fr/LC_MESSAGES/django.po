@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-16 20:31+0300\n"
+"POT-Creation-Date: 2022-10-11 10:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,57 +139,49 @@ msgstr "Que ce soit pour avancer"
 msgid "Whether to advance or avoid the application"
 msgstr "Que ce soit pour avancer ou éviter l'application"
 
-#: models/application.py:52
-msgid "Milestones"
-msgstr "Que ce soit pour avancer ou éviter l'application"
-
-#: models/application.py:54
-msgid "Expected Max Score"
-msgstr "Score maximum attendu"
-
-#: models/application.py:84
+#: models/application.py:81
 msgid "User Applications"
 msgstr "Applications utilisateur"
 
-#: models/application_prompt.py:17 models/application_score.py:28
-msgid "The position of the question in the form"
-msgstr "La position de la question dans le formulaire"
-
-#: models/application_prompt.py:20
+#: models/application_prompt.py:21
 msgid "Message for"
 msgstr "Message pour"
 
-#: models/application_prompt.py:21 models/comment.py:20
+#: models/application_prompt.py:22 models/comment.py:20
 msgid " by"
 msgstr " par"
 
-#: models/application_score.py:11
+#: models/application_score.py:12
 msgid "Strongly Disagree"
 msgstr "Pas du tout d'accord"
 
-#: models/application_score.py:12
+#: models/application_score.py:13
 msgid "Disagree"
 msgstr "Être en désaccord"
 
-#: models/application_score.py:13
+#: models/application_score.py:14
 msgid "Neutral"
 msgstr "Neutre"
 
-#: models/application_score.py:14
+#: models/application_score.py:15
 msgid "Agree"
 msgstr "Se mettre d'accord"
 
-#: models/application_score.py:15
+#: models/application_score.py:16
 msgid "Strongly Agree"
 msgstr "Tout à fait d'accord"
 
 #: models/application_score.py:32
-msgid "score for"
+#, fuzzy
+#| msgid "score for"
+msgid " score for: "
 msgstr "score pour"
 
 #: models/application_score.py:33
-msgid " for"
-msgstr "pour"
+#, fuzzy
+#| msgid "application"
+msgid " for application "
+msgstr "Application pour"
 
 #: models/business.py:12
 msgid "Primary production (farming)"
@@ -279,7 +271,7 @@ msgstr ""
 msgid "Great, your comment has been saved."
 msgstr "Parfait, votre commentaire a été enregistré."
 
-#: presentation/views/application_comment.py:26
+#: presentation/views/application_comment.py:25
 #: presentation/views/application_prompt.py:25
 #: presentation/views/application_score.py:31
 msgid "Hmm, that didn't work please try again."
@@ -319,62 +311,62 @@ msgstr "Succès"
 msgid " has been saved!"
 msgstr " a été sauvegardé!"
 
-#: templates/application/application_form.html:15
+#: templates/application/application_form.html:16
 msgid "Application for"
 msgstr "Application pour"
 
-#: templates/application/application_form.html:16
+#: templates/application/application_form.html:17
 msgid "Download Application Form"
 msgstr "Télécharger le formulaire de candidature"
 
-#: templates/application/application_form.html:26
 #: templates/application/application_form.html:27
 #: templates/application/application_form.html:28
+#: templates/application/application_form.html:29
 msgid "Personal Info"
 msgstr "Informations personnelles"
 
-#: templates/application/application_form.html:29
 #: templates/application/application_form.html:30
 #: templates/application/application_form.html:31
 #: templates/application/application_form.html:32
 #: templates/application/application_form.html:33
+#: templates/application/application_form.html:34
 msgid "Business Info"
 msgstr "Informations sur l'entreprise"
 
-#: templates/application/application_form.html:37
+#: templates/application/application_form.html:38
 msgid "NB: Check and Fill all the Fields before you click Next."
 msgstr ""
 "NB : Vérifiez et remplissez tous les champs avant de cliquer sur Suivant."
 
-#: templates/application/application_form.html:38
+#: templates/application/application_form.html:39
 msgid "Call For Application"
 msgstr "Appel à candidatures"
 
-#: templates/application/application_form.html:60
+#: templates/application/application_form.html:61
 msgid "Return to Applications"
 msgstr "Applications utilisateur"
 
-#: templates/application/application_form.html:61
+#: templates/application/application_form.html:62
+#: templates/application/application_form.html:78
+#: templates/application/application_form.html:97
+#: templates/application/application_form.html:169
+#: templates/application/application_form.html:191
+#: templates/application/application_form.html:212
+#: templates/application/application_form.html:254
+msgid "Next"
+msgstr "Suivant"
+
 #: templates/application/application_form.html:77
 #: templates/application/application_form.html:96
 #: templates/application/application_form.html:168
 #: templates/application/application_form.html:190
 #: templates/application/application_form.html:211
 #: templates/application/application_form.html:253
-msgid "Next"
-msgstr "Suivant"
-
-#: templates/application/application_form.html:76
-#: templates/application/application_form.html:95
-#: templates/application/application_form.html:167
-#: templates/application/application_form.html:189
-#: templates/application/application_form.html:210
-#: templates/application/application_form.html:252
-#: templates/application/application_form.html:304
+#: templates/application/application_form.html:305
 msgid "Previous"
 msgstr "Précédent"
 
-#: templates/application/application_form.html:105
+#: templates/application/application_form.html:106
 msgid ""
 "Organization name and social media presence. (Include any links to your "
 "organization_name website and/or social media handles where applicable "
@@ -385,7 +377,7 @@ msgstr ""
 "médias sociaux, le cas échéant (LinkedIn, Facebook, Instagram, Twitter, "
 "Whatsapp Comptes professionnels))"
 
-#: templates/application/application_form.html:157
+#: templates/application/application_form.html:158
 msgid ""
 "Kindly indicate which part of the value chain you operate in. Kindly select "
 "only 1 option which most applies *"
@@ -393,7 +385,7 @@ msgstr ""
 "Veuillez indiquer dans quelle partie de la chaîne de valeur vous opérez. "
 "Veuillez sélectionner 1 seule option qui s'applique le plus *"
 
-#: templates/application/application_form.html:177
+#: templates/application/application_form.html:178
 msgid ""
 "How long has the business been in formal existence for? * Kindly select one "
 "option. Formal existence means from when the company was registered and "
@@ -403,7 +395,7 @@ msgstr ""
 "en sélectionner un option. L'existence formelle signifie à partir du moment "
 "où la société a été enregistrée et commencé à fonctionner."
 
-#: templates/application/application_form.html:198
+#: templates/application/application_form.html:199
 msgid ""
 "Which one sentence best describes the stage where your business is at? * "
 "Kindly select one option only that best describes where you are at in the "
@@ -414,8 +406,8 @@ msgstr ""
 "dans le stade de développement des affaires. MVP signifie produit minimum "
 "viable"
 
-#: templates/application/application_form.html:221
-#: templates/application/application_form.html:225
+#: templates/application/application_form.html:222
+#: templates/application/application_form.html:226
 msgid ""
 "What are the 3 key business milestones to be achieved in the short term (1-2 "
 "years)? * Kindly choose the top 3 milestones that are your priorities over "
@@ -425,7 +417,7 @@ msgstr ""
 "(1-2années)? * Veuillez choisir les 3 principaux jalons qui sont vos "
 "priorités les 1 à 2 prochaines années."
 
-#: templates/application/application_form.html:241
+#: templates/application/application_form.html:242
 msgid ""
 "How has the COVID 19 pandemic affected your business? Kindly mention 2 key "
 "aspects * Give a short description on how the COVID Pandemic has impacted "
@@ -435,51 +427,60 @@ msgstr ""
 "mentionner 2 clés aspects * Donnez une brève description de l'impact de la "
 "pandémie de COVID votre entreprise. (effet négatif et/ou positif)"
 
-#: templates/application/application_form.html:262
+#: templates/application/application_form.html:263
 msgid "Kindly upload the relevant documents as described below."
 msgstr "Veuillez télécharger les documents pertinents comme décrit ci-dessous."
 
-#: templates/application/application_form.html:268
+#: templates/application/application_form.html:269
 msgid "KRA PIN"
 msgstr "KRA PIN"
 
-#: templates/application/application_form.html:271
+#: templates/application/application_form.html:272
 msgid "Uploaded KRA Pin"
 msgstr "Épingle KRA téléchargée"
 
-#: templates/application/application_form.html:280
+#: templates/application/application_form.html:281
 msgid "ID Card"
 msgstr "ID Card"
 
-#: templates/application/application_form.html:283
+#: templates/application/application_form.html:284
 msgid "Uploaded ID Card"
 msgstr "ID Card"
 
-#: templates/application/application_form.html:292
+#: templates/application/application_form.html:293
 msgid "Work Licence"
 msgstr "Work Licence"
 
-#: templates/application/application_form.html:295
+#: templates/application/application_form.html:296
 msgid "Uploaded License"
 msgstr "Licence téléchargée"
 
-#: templates/application/application_form.html:305
+#: templates/application/application_form.html:306
 msgid "Submit"
 msgstr "Données soumises"
 
-#: templates/index/index.html:13
-#| msgid "Call For Application"
-msgid "Calls For Application"
-msgstr "Appel à candidatures"
+#~ msgid "Milestones"
+#~ msgstr "Que ce soit pour avancer ou éviter l'application"
 
-#: templates/index/index.html:24
-msgid "Applications Ongoing. Ends "
-msgstr "Candidatures en cours."
+#~ msgid "Expected Max Score"
+#~ msgstr "Score maximum attendu"
 
-#: templates/index/index.html:25
-#| msgid "Apply"
-msgid "Apply Now"
-msgstr "Appliquer"
+#~ msgid "The position of the question in the form"
+#~ msgstr "La position de la question dans le formulaire"
+
+#~ msgid " for"
+#~ msgstr "pour"
+
+#~| msgid "Call For Application"
+#~ msgid "Calls For Application"
+#~ msgstr "Appel à candidatures"
+
+#~ msgid "Applications Ongoing. Ends "
+#~ msgstr "Candidatures en cours."
+
+#~| msgid "Apply"
+#~ msgid "Apply Now"
+#~ msgstr "Appliquer"
 
 #~| msgid "Application for"
 #~ msgid "Call For Applications"
