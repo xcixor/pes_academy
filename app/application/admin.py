@@ -1,4 +1,5 @@
 from django.contrib import admin
+from translations.admin import TranslatableAdmin, TranslationInline
 from application.models import (
     CallToAction, Application, ApplicationDocument, ApplicationReview,
     ApplicationScore, ApplicationPrompt, ApplicationComment,
@@ -11,10 +12,11 @@ admin.site.register(CarouselImage)
 
 
 @admin.register(CallToAction)
-class CallToActionAdmin(admin.ModelAdmin):
+class CallToActionAdmin(TranslatableAdmin):
     form = CallToActionAdminForm
     list_display = ['tagline', 'deadline', 'available_for_applications']
     prepopulated_fields = {'slug': ('tagline',)}
+    inlines = [TranslationInline]
 
 
 @admin.register(ApplicationReview)

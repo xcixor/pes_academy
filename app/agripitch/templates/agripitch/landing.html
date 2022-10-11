@@ -63,11 +63,11 @@
           {% if application %}
           <div class="card text-center text-site-primary" >
             <div class="card-header">
-              <h2 class="pb-4 text-site-primary text-center"><strong>{{application.tagline}}</strong></h2>
+              <h2 class="pb-4 text-site-primary text-center"><strong>{{application.get_tagline}}</strong></h2>
             </div>
-            <img class="img-fluid" src="{{application.image.url}}" alt="{{application.tagline}}.">
+            <img class="img-fluid" src="{{application.image.url}}" alt="{{application.get_tagline}}.">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item paragraph-site-primary">{{application.description | safe }}</li>
+              <li class="list-group-item paragraph-site-primary">{{application.get_description | safe }}</li>
               <li class="list-group-item"><small>{% trans "Applications Ongoing. Ends " %}<span> {{application.deadline}}</span></small></li>
               <li class="list-group-item"><small>{% trans "Note: Application takes 45 to 60 minutes." %}</small></li>
 
