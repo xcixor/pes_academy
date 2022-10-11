@@ -4,7 +4,9 @@ from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
+from django.utils.translation import get_language
 from ckeditor.fields import RichTextField
+from translations.models import Translatable
 from django_countries.fields import CountryField
 from application.models import CallToAction, Application
 
@@ -184,6 +186,10 @@ class DynamicForm(forms.Form):
                             "form-input-validate", "")
                         self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
                         )
+            language = get_language()
+            if language == 'fr':
+                item = SubCriteriaItem.objects.filter(pk=instance.pk).translate('fr')[0]
+                self.fields[instance.label].label = item.label
 
 
 
@@ -191,7 +197,7 @@ def get_form(instance):
     return DynamicForm(instance)
 
 
-class SubCriteriaItem(models.Model):
+class SubCriteriaItem(Translatable):
 
     a = [1, 2, 3, 4]
 
@@ -216,11 +222,26 @@ class SubCriteriaItem(models.Model):
     description = RichTextField(null=True, blank=True)
 
     def __str__(self) -> str:
+        language = get_language()
+        if language == 'fr':
+            item = SubCriteriaItem.objects.filter(pk=self.pk).translate('fr')[0]
+            return item.label
         return self.label
+
+    class TranslatableMeta:
+        fields = ['label', 'description']
 
     class Meta:
         ordering = ['position_in_form']
         verbose_name_plural = "3. Form Questions"
+
+    @property
+    def get_description(self):
+        language = get_language()
+        if language == 'fr':
+            item = SubCriteriaItem.objects.filter(pk=self.pk).translate('fr')[0]
+            return item.description
+        return self.description
 
 
 class SubCriteriaItemFieldProperties(models.Model):

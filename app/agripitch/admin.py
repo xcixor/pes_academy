@@ -1,4 +1,5 @@
 from django.contrib import admin
+from translations.admin import TranslatableAdmin, TranslationInline
 from agripitch.forms import (
     CustomSubCriteriaItemAdminForm, PartnerLogoAdminForm,
     SubCriteriaItemFieldPropertiesAdminForm)
@@ -56,13 +57,13 @@ class SubCriteriaItemResponseInline(admin.TabularInline):
 
 
 @admin.register(SubCriteriaItem)
-class SubCriteriaItemAdmin(admin.ModelAdmin):
+class SubCriteriaItemAdmin(TranslatableAdmin):
     list_display = ['label', 'position_in_form', 'criteria']
     list_filter = ['criteria', ]
     form = CustomSubCriteriaItemAdminForm
     inlines = [
         SubCriteriaItemFieldPropertiesInline,
-        SubCriteriaItemChoiceInline]
+        SubCriteriaItemChoiceInline, TranslationInline]
 
 
 @admin.register(PartnerLogo)

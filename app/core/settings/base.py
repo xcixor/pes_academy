@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django_countries',
     'googlecharts',
     'rosetta',
-    'parler',
     'common',
+    'translations',
     'accounts',
     'application',
     'organization_subscription',
@@ -146,6 +146,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -225,13 +227,3 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-PARLER_LANGUAGES = {
-    None: (
-        {'code': 'en', },  # English
-        {'code': 'fr', },  # French
-    ),
-    'default': {
-        'fallbacks': ['en'],
-        'hide_untranslated': False,
-    }
-}
