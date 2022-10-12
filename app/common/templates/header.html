@@ -24,11 +24,11 @@
                         </li>
                         {% else %}
                         <li class="mr-5">
-                            <a href="{% url 'accounts:login' %}" class="btn site-bg-primary text-white">Sign in</a>
+                            <a href="{% url 'accounts:login' %}" class="btn site-bg-primary text-white">{% trans "Sign in" %}</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/agripitch/gallery/">Gallery</a>
+                            <a class="nav-link" href="/agripitch/gallery/">{% trans "Gallery" %}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
@@ -53,7 +53,7 @@
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a href="{% url 'accounts:login' %}" class="nav-link">Sign in</a>
+                            <a href="{% url 'accounts:login' %}" class="nav-link">{% trans "Sign in" %}</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
@@ -92,7 +92,7 @@
             <a class="navbar-brand m-0 p-0" href="/">
                 <img src="{% static 'images/for blue bg.png' %}" height="40" class="d-inline-block align-top mr-5" alt="PES logo">
             </a>
-            
+
         </div>
     </div>
 </nav>

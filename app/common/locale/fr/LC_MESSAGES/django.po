@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-15 12:41+0300\n"
+"POT-Creation-Date: 2022-10-12 18:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,22 +29,67 @@ msgstr "Le"
 msgid "Team"
 msgstr "Équipe"
 
-#: templates/header.html:13
-msgid "Welcome Admin"
-msgstr "Bienvenue administrateur"
+#: templates/footer.html:21
+msgid "Quick Links"
+msgstr "Liens rapides"
 
-#: templates/header.html:18
+#: templates/footer.html:23
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: templates/footer.html:24
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/footer.html:25
+msgid "Eligibility"
+msgstr "Admissibilité"
+
+#: templates/footer.html:26
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: templates/footer.html:30
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: templates/footer.html:31
+msgid "Email:"
+msgstr "E-mail:"
+
+#: templates/footer.html:35
+msgid "Follow us"
+msgstr "Suivez-nous"
+
+#: templates/header.html:15 templates/header.html:19 templates/header.html:49
 msgid "Account"
 msgstr "Compte"
 
-#: templates/header.html:21
+#: templates/header.html:23 templates/header.html:52
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: templates/header.html:27 templates/header.html:56
+msgid "Sign in"
+msgstr "S'identifier"
+
+#: templates/header.html:31
+msgid "Gallery"
+msgstr "Galerie"
+
+#: templates/header.html:34 templates/header.html:60
 msgid "Help"
 msgstr "Aider"
 
-#: templates/header.html:34
-msgid "Call:"
-msgstr "Appel:"
+#: templates/header.html:44 templates/header.html:69
+msgid "Welcome Admin"
+msgstr "Bienvenue administrateur"
 
-#: templates/header.html:37
-msgid "Email:"
-msgstr "E-mail:"
+#: templates/header.html:46 templates/header.html:71
+#, fuzzy
+#| msgid "Welcome Admin"
+msgid "Welcome "
+msgstr "Bienvenue administrateur"
+
+#~ msgid "Call:"
+#~ msgstr "Appel:"
