@@ -10,21 +10,28 @@
 <section>
 
   <section class="hero">
- 
-    <!-- <div class="dropdown corner-guide" style="z-index:2000 ;">
-      <a class="btn dropdown-toggle download-resources" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Download Application Guide
+
+    <div class="dropdown corner-guide" style="z-index:2000 ;">
+      <a class="btn dropdown-toggle download-resources" href="#" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {% trans "Download Application Guide" %}
       </a>
-    
+
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide-1.pdf"
-        download target="_blank">English</a>
-        <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
-        download target="_blank">French</a>
+        <a class="dropdown-item"
+          href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide-1.pdf"
+          download target="_blank">{% trans "English" %}</a>
+        <a class="dropdown-item"
+          href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
+          download target="_blank">{% trans "French" %}</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item dropdown-toggle" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions-1.pdf" target="_blank">Download FAQs </a>
+        <a class="dropdown-item"
+          href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions-1.pdf"
+          target="_blank">{% trans "Download FAQs" %} </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item dropdown-toggle" href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
+        <a class="dropdown-item" href="{% url 'agripitch:generate_application_pdf' %}" target="_blank">
+          {% trans "Download Application Form" %}
+        </a>
       </div>
     </div> -->
     <div class="dropdown corner-guide" style="z-index:2000 ;">
@@ -44,7 +51,7 @@
         <div class="dropdown-divider"></div>
         <li>
           <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions-1.pdf" target="_blank">Download FAQs &raquo;</a>
-          
+
           <ul class="dropdown-menu dropdown-submenu">
             <li>
               <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">English</a>
@@ -57,7 +64,7 @@
         <div class="dropdown-divider"></div>
         <li>
           <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions-1.pdf" target="_blank">Download Hardcopy questions &raquo;</a>
-          
+
           <ul class="dropdown-menu dropdown-submenu">
             <li>
               <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-Hardcopy-questions.pdf" target="_blank">English</a>
@@ -72,33 +79,34 @@
 
     <div class="sidecontainer">
       <div class="sidenav">
-            <ul class="sidemenu">
-               <li ><a href="/">Home</a></li>  
-               <li><a href="#partners">Partners</a></li> 
-               <li ><a href="/agripitch/gallery/">Gallery</a></li>
-               {% for call in calls_to_action %}
-               <li><a href="{% url "agripitch:application" slug=call.slug %}">Apply</a></li> 
-               {% endfor %}
-               <li><a href="/accounts/help">FAQ's</a></li> 
-            </ul>
-            <ul class="toggle">
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+        <ul class="sidemenu">
+          <li><a href="/">{% trans "Home" %}</a></li>
+          <li><a href="#partners">{% trans "Partners" %}</a></li>
+          <li><a href="/agripitch/gallery/">{% trans "Gallery" %}</a></li>
+          {% for call in calls_to_action %}
+          <li><a href="{% url 'agripitch:application' slug=call.slug %}">{% trans "Apply" %}</a></li>
+          {% endfor %}
+          <li><a href="/accounts/help">{% trans "FAQ's" %}</a></li>
+        </ul>
+        <ul class="toggle">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </div>
 
     <div class="hero-clipped">
       <div class="hero-textbox">
-        
-        <img src="{% static 'images/agripitch-logo.png' %}" alt="AgriPitch logo" class="img-fluid" id="main-logo">
-        <h2 class="sub-heading">Theme: The Role of African Youth Within African Food Systems</h2>
-        <a href="/agripitch" class="cta-button">Find Out More</a>
+
+        <img src="{% static 'images/agripitch-logo.png' %}" alt="{ trans 'AgriPitch logo' }" class="img-fluid"
+          id="main-logo">
+        <h2 class="sub-heading">{% trans "Theme: The Role of African Youth Within African Food Systems" %}</h2>
+        <a href="/agripitch" class="cta-button">{% trans "Find Out More" %}</a>
 
         <section class="landing">
           <div class="landing-inner">
-            <h1>Official Launch</h1>
+            <h1>{% trans "Official Launch" %}</h1>
             <div class="countdown"></div>
           </div>
         </section>
@@ -107,35 +115,42 @@
             <div class="countdown"></div>
           </div>
         </section>
-        
+
         <div class="dropdown show mt-5">
-          <a class="btn dropdown-toggle download-resources" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Download Application Guide
+          <a class="btn dropdown-toggle download-resources" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% trans "Download Application Guide" %}
           </a>
-        
+
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
-            download target="_blank">English</a>
-            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
-            download target="_blank">French</a>
+            <a class="dropdown-item"
+              href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
+              download target="_blank">{% trans "English" %}</a>
+            <a class="dropdown-item"
+              href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
+              download target="_blank">{% trans "French" %}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">Download FAQs </a>
+            <a class="dropdown-item"
+              href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf"
+              target="_blank">{% trans "Download FAQs" %}</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url "agripitch:generate_application_pdf" %}" target="_blank">Download Application Form</a>
+            <a class="dropdown-item" href="{% url 'agripitch:generate_application_pdf' %}" target="_blank">Download
+              {% trans "Application Form" %}
+            </a>
           </div>
         </div>
-        
-      </div>
+
       </div>
     </div>
 
 
+
   </section>
   <div class="container">
-    
+
 
     <div id="partners" class="board">
-      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Lead Partners</h1>
+      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">{% trans "Lead Partners" %}</h1>
       <div class="other-partners d-flex justify-content-center">
         <div class="section">
           <div class="tile cover">
@@ -143,56 +158,56 @@
             <!-- <h5 class="header-site-primary">African Development Bank</h5> -->
           </div>
           <div class="tile desc">
-            <span>Host</span>
+            <span>{% trans "Host" %}</span>
             <a href="https://www.afdb.org/">
-              <p> Visit Website</p>
+              <p>{% trans "Visit Website" %}</p>
             </a>
           </div>
         </div>
-  
+
         <div class="section">
           <div class="tile cover">
             <img class="partner-img" src="{% static 'images/PES logo.png' %}">
             <!-- <h5 class="header-site-primary">Private Equity Support</h5> -->
-  
+
           </div>
           <div class="tile desc">
-            <span>Implementing Partner.</span>
+            <span>{% trans "Implementing Partner." %}</span>
             <a href="https://www.privateequity-support.com/">
-              <p> Visit Website</p>
+              <p>{% trans "Visit Website" %}</p>
             </a>
           </div>
         </div>
-  
+
         <div class="section">
           <div class="tile cover">
             <img class="partner-img" src="{% static 'images/pfan-logo.png' %}">
             <!-- <h5 class="header-site-primary">Pfan</h5> -->
           </div>
           <div class="tile desc">
-            <span>Knowledge Partner.</span>
+            <span>{% trans "Knowledge Partner." %}</span>
             <a href="https://pfan.net/">
-              <p> Visit Website</p>
+              <p>{% trans "Visit Website" %}</p>
             </a>
           </div>
         </div>
-  
+
         <div class="section">
           <div class="tile cover">
             <img src="{% static 'images/eldohub-logo.png' %}" class="partner-img-3">
             <!-- <h5 class="header-site-primary">Eldohub</h5> -->
           </div>
           <div class="tile desc">
-            <span>Digital Partner</span>
+            <span>{% trans "Digital Partner" %}</span>
             <a href="https://www.eldohub.co.ke/">
-              <p> Visit Website</p>
+              <p>{% trans "Visit Website" %}</p>
             </a>
           </div>
         </div>
-  
+
       </div>
-      
-      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">Donor Partners</h1>
+
+      <h1 id="section-heading" class="text-center main-secondary-title mb-5 mt-5">{% trans "Donor Partners" %}</h1>
       <div class="row all-partners">
         <div class="col-sm-12 d-flex align-items-center justify-content-center">
           <img class="img-fluid" src="{% static 'images/partners.jpg' %}" alt="All Partners">
@@ -210,32 +225,30 @@
     <section class="parallax">
       <div class="parallax-inner">
         <div class="container">
-          <h1 id="section-heading" class="main-secondary-title text-center text-white mb-5">Overview</h1>
+          <h1 id="section-heading" class="main-secondary-title text-center text-white mb-5">{% trans "Overview" %}</h1>
           <div class="table-responsive">
             <table class="table table-bordered table-hover text-white h4">
               <thead>
                 <tr>
-                  <th scope="col">Total grant funding</th>
-                  <th scope="col">SME support Duration</th>
-                  <th scope="col">Short list SME's</th>
-                  <th scope="col">Who can apply?</th>
-                  <th scope="col">Priority sectors</th>
+                  <th scope="col">{% trans "Total grant funding" %}</th>
+                  <th scope="col">{% trans "SME support Duration" %}</th>
+                  <th scope="col">{% trans "Short list SME's" %}</th>
+                  <th scope="col">{% trans "Who can apply?" %}</th>
+                  <th scope="col">{% trans "Priority sectors" %}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">USD 140,000</th>
-                  <th scope="row">12 Months</th>
-                  <td>25</td>
-                  <td>- Youth(35 Years & Below) 
+                  <th scope="row">{% trans "USD 140,000" %}</th>
+                  <th scope="row">{% trans "12 Months" %}</th>
+                  <td>{% trans "25" %}</td>
+                  <td>- {% trans "Youth(35 Years & Below)" %}
                     <br>
-                    - Agriculture value chain focused
-                    businesses
+                    - {% trans "Agriculture value chain focused businesses" %}
                     <br>
-                    - Businesses that leverages
-                    technology
+                    - {% trans "Businesses that leverages technology" %}
                   </td>
-                  <td>Food & Nutrition</td>
+                  <td>{% trans "Food & Nutrition" %}</td>
                 </tr>
               </tbody>
             </table>
@@ -245,143 +258,166 @@
     </section>
 
     <div class="container mt-5 mb-5">
-      <h1 id="section-heading" class="main-secondary-title text-center">Timeline</h1>
+      <h1 id="section-heading" class="main-secondary-title text-center">{% trans "Timeline" %}</h1>
 
       <section class="h--timeline js-h--timeline">
         <div class="h--timeline-container">
           <div class="h--timeline-dates">
-          <div class="h--timeline-line">
-            <ol>
-            <li><a href="#0" data-date="6/10/2022" class="h--timeline-date h--timeline-date--selected">Oct 2022</a></li>
-            <li><a href="#0" data-date="6/11/2022" class="h--timeline-date">Nov 2022</a></li>
-            <li><a href="#0" data-date="6/12/2022" class="h--timeline-date">Dec 2022</a></li>
-            <li><a href="#0" data-date="6/06/2023" class="h--timeline-date">Nov 2022 - Jun 2023</a></li>
-            <li><a href="#0" data-date="6/07/2023" class="h--timeline-date">Feb - July 2023</a></li>
-            <!-- <li><a href="#0" data-date="30/08/2014" class="h--timeline-date">2007</a></li>
+            <div class="h--timeline-line">
+              <ol>
+                <li><a href="#0" data-date="6/10/2022"
+                    class="h--timeline-date h--timeline-date--selected">{% trans "Oct 2022" %}</a>
+                </li>
+                <li><a href="#0" data-date="6/11/2022" class="h--timeline-date">{% trans "Nov 2022" %}</a></li>
+                <li><a href="#0" data-date="6/12/2022" class="h--timeline-date">{% trans "Dec 2022" %}</a></li>
+                <li><a href="#0" data-date="6/06/2023" class="h--timeline-date">{% trans "Nov 2022 - Jun 2023" %}</a>
+                </li>
+                <li><a href="#0" data-date="6/07/2023" class="h--timeline-date">{% trans "Feb - July 2023" %}</a></li>
+                <!-- <li><a href="#0" data-date="30/08/2014" class="h--timeline-date">2007</a></li>
             <li><a href="#0" data-date="15/09/2014" class="h--timeline-date">2001</a></li>
             <li><a href="#0" data-date="01/11/2014" class="h--timeline-date">1997</a></li>
             <li><a href="#0" data-date="10/12/2014" class="h--timeline-date">1994</a></li>
             <li><a href="#0" data-date="19/01/2015" class="h--timeline-date">1991</a></li>
             <li><a href="#0" data-date="03/03/2015" class="h--timeline-date">1988</a></li> -->
-            </ol>
-        
-            <span class="h--timeline-filling-line" aria-hidden="true"></span>
-          </div> <!-- .h--timeline-line -->
+              </ol>
+
+              <span class="h--timeline-filling-line" aria-hidden="true"></span>
+            </div> <!-- .h--timeline-line -->
           </div> <!-- .h--timeline-dates -->
-        
+
           <nav class="h--timeline-navigation-container">
             <ul>
-            <li><a href="#0" class="text-replace h--timeline-navigation h--timeline-navigation--prev h--timeline-navigation--inactive">Prev</a></li>
-            <li><a href="#0" class="text-replace h--timeline-navigation h--timeline-navigation--next">Next</a></li>
+              <li><a href="#0"
+                  class="text-replace h--timeline-navigation h--timeline-navigation--prev h--timeline-navigation--inactive">{% trans "Prev" %}</a>
+              </li>
+              <li><a href="#0"
+                  class="text-replace h--timeline-navigation h--timeline-navigation--next">{% trans "Next" %}</a></li>
             </ul>
           </nav>
         </div> <!-- .h--timeline-container -->
-        
+
         <div class="h--timeline-events">
           <ol>
-          <li class="h--timeline-event h--timeline-event--selected text-component">
-            <div class="h--timeline-event-content container">
-            <h2 class="h--timeline-event-title">Call For Applications</h2>
-            <em class="h--timeline-event-date">October 17, 2022</em>
-            <p class="h--timeline-event-description">
-              Opening of the call for applications.
-            </p>
-            </div>
-          </li>
-        
-          <li class="h--timeline-event text-component">
-            <div class="h--timeline-event-content container">
-            <h2 class="h--timeline-event-title">Virtual Bootcamp</h2>
-            <em class="h--timeline-event-date">November, 2022</em>
-            <p class="h--timeline-event-description">
-              In the two-week-long business development boot camp, AgriPitch competitors can attend virtual sessions on product development, revenue channel identification, logistics, marketing, business management, investment readiness, financing, and other issues, led by trainers and coaches.
-            </p>
-            </div>
-          </li>
-        
-          <li class="h--timeline-event text-component">
-            <div class="h--timeline-event-content container">
-            <h2 class="h--timeline-event-title">AgriPitch Competition</h2>
-            <em class="h--timeline-event-date">December, 2022</em>
-            <p class="h--timeline-event-description">
-              The actual AgriPitch Competition
-            </p>
-            </div>
-          </li>
-        
-          <li class="h--timeline-event text-component">
-            <div class="h--timeline-event-content container">
-            <h2 class="h--timeline-event-title">Dealroom</h2>
-            <em class="h--timeline-event-date">November 2022 - June 2023</em>
-            <p class="h--timeline-event-description">
-              In line with the 2022 theme, the AgriPitch Dealroom will be held virtually. The
-          Bank, through the 2022 Virtual Investor Dealroom, aims to create access to capital and markets which are often the two main hurdles for youth agripreneurs to overcome when scaling up their businesses.
-            </p>
-            </div>
-          </li>
-        
-          <li class="h--timeline-event text-component">
-            <div class="h--timeline-event-content container">
-            <h2 class="h--timeline-event-title">Mentorship & Support</h2>
-            <em class="h--timeline-event-date">February - July 2023</em>
-            <p class="h--timeline-event-description">
-              Participating agripreneurs will
-          receive follow-up mentorship and coaching (virtually) for a period of six
-          months.
-          The mentorship activity will also link the AgriPitch participants to relevant
-          resources throughout the six month period and beyond.
-            </p>
-            </div>
-          </li>
-        
-          
+            <li class="h--timeline-event h--timeline-event--selected text-component">
+              <div class="h--timeline-event-content container">
+                <h2 class="h--timeline-event-title">{% trans "Call For Applications" %}</h2>
+                <em class="h--timeline-event-date">{% trans "October 17, 2022" %}</em>
+                <p class="h--timeline-event-description">
+                  {% trans "Opening of the call for applications." %}
+                </p>
+              </div>
+            </li>
+
+            <li class="h--timeline-event text-component">
+              <div class="h--timeline-event-content container">
+                <h2 class="h--timeline-event-title">{% trans "Virtual Boot camp" %}</h2>
+                <em class="h--timeline-event-date">{% trans "November, 2022" %}</em>
+                <p class="h--timeline-event-description">
+                  {% blocktranslate %}
+                  In the two-week-long business development boot camp, AgriPitch competitors can attend virtual sessions
+                  on product development, revenue channel identification, logistics, marketing, business management,
+                  investment readiness, financing, and other issues, led by trainers and coaches.
+                  {% endblocktranslate %}
+                </p>
+              </div>
+            </li>
+
+            <li class="h--timeline-event text-component">
+              <div class="h--timeline-event-content container">
+                <h2 class="h--timeline-event-title">{% trans "AgriPitch Competition" %}</h2>
+                <em class="h--timeline-event-date">{% trans "December, 2022" %}</em>
+                <p class="h--timeline-event-description">
+                  {% trans "The actual AgriPitch Competition" %}
+                </p>
+              </div>
+            </li>
+
+            <li class="h--timeline-event text-component">
+              <div class="h--timeline-event-content container">
+                <h2 class="h--timeline-event-title">{% trans "Deal Room" %}</h2>
+                <em class="h--timeline-event-date">{% trans "November 2022 - June 2023" %}</em>
+                <p class="h--timeline-event-description">
+                  {% blocktranslate %}
+                  In line with the 2022 theme, the AgriPitch Dealroom will be held virtually. The
+                  Bank, through the 2022 Virtual Investor Dealroom, aims to create access to capital and markets which
+                  are often the two main hurdles for youth agripreneurs to overcome when scaling up their businesses.
+                  {% endblocktranslate %}
+                </p>
+              </div>
+            </li>
+
+            <li class="h--timeline-event text-component">
+              <div class="h--timeline-event-content container">
+                <h2 class="h--timeline-event-title">{% trans "Mentorship & Support" %}</h2>
+                <em class="h--timeline-event-date">{% trans "February - July 2023" %}</em>
+                <p class="h--timeline-event-description">
+                  {% blocktranslate %}
+                  Participating agripreneurs will
+                  receive follow-up mentorship and coaching (virtually) for a period of six
+                  months.
+                  The mentorship activity will also link the AgriPitch participants to relevant
+                  resources throughout the six month period and beyond.
+                  {% endblocktranslate %}
+                </p>
+              </div>
+            </li>
+
+
           </ol>
         </div> <!-- .h--timeline-events -->
-        </section>
+      </section>
       <!-- <img src="{% static 'images/timeline.jpg' %}" class="img-fluid timeline-img"> -->
     </div>
 
     <section class="parallax-1">
       <div class="parallax-inner">
         <div class="container">
-          <h1 id="section-heading" class="main-secondary-title text-center text-white">Eligibility Criteria</h1>
+          <h1 id="section-heading" class="main-secondary-title text-center text-white">
+            {% trans "Eligibility Criteria" %}</h1>
           <div class="table-responsive">
             <table class="table table-bordered table-hover text-white h4">
               <thead>
                 <tr>
-                  <th scope="col">Early Start-ups (0-3 years)</th>
-                  <th scope="col">Mature Start-ups (above 3 years)</th>
-                  <th scope="col">Women-empowered Businesses (WEBs)</th>
+                  <th scope="col">{% trans "Early Start-ups (0-3 years)" %}</th>
+                  <th scope="col">{% trans "Mature Start-ups (above 3 years)" %}</th>
+                  <th scope="col">{% trans "Women-empowered Businesses (WEBs)" %}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
                     <ol>
-                      <li>Meet eligibility criteria for Early Start-ups.</li>
-                      <li>Individuals who are at the very early stage of developing
+                      <li>{% trans "Meet eligibility criteria for Early Start-ups." %}</li>
+                      <li>
+                        {% blocktranslate %}
+                        Individuals who are at the very early stage of developing
                         ideas/concepts for agripreneurship or a newly established
-                        business.</li>
-                      <li>Must have a clearly defined prototype or proof of
-                        concept.</li>
-                      <li>May or may not have had any products introduced to
-                        the market.</li>
-                      <li>May or may not have a registered corporate entity.</li>
+                        business.
+                        {% endblocktranslate %}
+                      </li>
+                      <li>{% trans "Must have a clearly defined prototype or proof of concept." %}</li>
+                      <li>{% trans "May or may not have had any products introduced to the market." %}</li>
+                      <li>{% trans "May or may not have a registered corporate entity." %}</li>
                     </ol>
                   </td>
 
                   <td>
                     <ol>
-                      <li>Individuals and firms with existing market traction: technology, product or service, already in the market.</li>
-                      <li>Must have a clear investment ask and growth plan/
-                        strategy.</li>
-                      <li>Must be a registered corporate entity.</li>
+                      <li>
+                        {% blocktranslate %}
+                        Individuals and firms with existing market traction: technology, product or
+                        service, already in the market.
+                        {% endblocktranslate %}
+                      </li>
+                      <li>{% trans "Must have a clear investment ask and growth plan/strategy." %}</li>
+                      <li>{% trans "Must be a registered corporate entity." %}</li>
                     </ol>
                   </td>
                   <td>
                     <ol>
-                      <li>Meet eligibility requirements for either Early Start-ups or Mature Start-ups.</li>
-                      <li>Firms that are 51% owned by women or founded by a woman. </li>
+                      <li>{% trans "Meet eligibility requirements for either Early Start-ups or Mature Start-ups." %}
+                      </li>
+                      <li>{% trans "Firms that are 51% owned by women or founded by a woman." %}</li>
                     </ol>
                   </td>
                 </tr>
@@ -394,81 +430,125 @@
 
     <section class="2 mt-5 mb-5">
       <div class="container">
-        <h1 id="section-heading" class="main-secondary-title text-center">What do we offer?</h1>
+        <h1 id="section-heading" class="main-secondary-title text-center">{% trans "What do we offer?" %}</h1>
         <h2 class="pb-4 text-site-primary">Dealroom</h2>
         <p class="paragraph-site-primary">
-          AgriPitch falls under the African Development Bank’s fourth African Youth Agripreneurs Forum (AYAF) which is a platform for Africa’s youth who are interested in the agriculture startup scene.
+          {% blocktranslate %}
+          AgriPitch falls under the African Development Bank's fourth African Youth Agripreneurs Forum (AYAF) which is a
+          platform for Africa's youth who are interested in the agriculture startup scene.
+          {% endblocktranslate %}
         </p>
-        <p class="paragraph-site-primary">In line with the 2022 theme, the AgriPitch Dealroom will be held virtually. The
-          Bank, through the 2022 Virtual Investor Dealroom, aims to create access to capital and markets which are often the two main hurdles for youth agripreneurs to overcome when scaling up their businesses.</p>
-
-        <h2 class="pb-4 text-site-primary">Mentorship</h2>
-        <p class="paragraph-site-primary">The AgriPitch online programme includes a training session (Bootcamp) on strategic partnerships for equity in agriculture, nutrition, and financing the youth and women.</p>
-        <p class="paragraph-site-primary">In the two-week-long business development boot camp, AgriPitch competitors can attend virtual sessions on product development, revenue channel identification, logistics, marketing, business management, investment readiness, financing, and other issues, led by trainers and coaches</p>
-        <p class="paragraph-site-primary pb-5">Following the training and bootcamp, the participating agripreneurs will
-          receive follow-up mentorship and coaching (virtually) for a period of six
-          months.
+        <p class="paragraph-site-primary">
+          {% blocktranslate %}
+          In line with the 2022 theme, the AgriPitch Dealroom will be held virtually.
+          The Bank, through the 2022 Virtual Investor Dealroom, aims to create access to capital and markets which are
+          often
+          the two main hurdles for youth agripreneurs to overcome when scaling up their businesses.
+          {% endblocktranslate %}
+        </p>
+        <h2 class="pb-4 text-site-primary">{% trans "Mentorship" %}</h2>
+        <p class="paragraph-site-primary">
+          {% blocktranslate %}
+          The AgriPitch online programme includes a training session (Bootcamp) on
+          strategic partnerships for equity in agriculture, nutrition, and financing
+          the youth and women.
+          {% endblocktranslate %}
+        </p>
+        <p class="paragraph-site-primary">
+          {% blocktranslate %}
+          In the two-week-long business development boot camp, AgriPitch competitors can
+          attend virtual sessions on product development, revenue channel identification,
+          logistics, marketing, business management, investment readiness, financing,
+          and other issues, led by trainers and coaches
+          {% endblocktranslate %}
+        </p>
+        <p class="paragraph-site-primary pb-5">
+          {% blocktranslate %}
+          Following the training and bootcamp, the participating agripreneurs will
+          receive follow-up mentorship and coaching (virtually) for a period of six months.
           The mentorship activity will also link the AgriPitch participants to relevant
-          resources throughout the six month period and beyond.</p>
+          resources throughout the six month period and beyond.
+          {% endblocktranslate %}
+        </p>
       </div>
     </section>
 
     <section class="parallax">
-      
-        <div class="container">
-          <h1 id="section-heading" class="main-secondary-title text-center text-white mb-5">What previous participants say</h1>
-          <section id="testim" class="testim">
-            <div class="testim-cover">
-               <div class="wrap">
-   
-                   <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
-                   <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
-                   <ul id="testim-dots" class="dots">
-                       <li class="dot active"></li><!--
-                       --><li class="dot"></li><!--
-                       --><li class="dot"></li><!--
-                       --><li class="dot"></li><!--
-                       --><li class="dot"></li>
-                   </ul>
-                   <div id="testim-content" class="cont">
-                       
-                       <div class="active">
-                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/03/06/08/44/beauty-6073128_960_720.jpg" alt=""></div>
-                           <h2>Participant name</h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
-                       </div>
-   
-                       <div>
-                           <div class="img"><img src="https://cdn.pixabay.com/photo/2022/02/22/08/58/woman-7028323_960_720.jpg" alt=""></div>
-                           <h2>Participant name</h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
-                       </div>
-   
-                       <div>
-                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/05/26/07/18/man-6284319_960_720.png" alt=""></div>
-                           <h2>Participant name</h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
-                       </div>
-   
-                       <div>
-                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/06/08/06/43/man-6319907_960_720.png" alt=""></div>
-                           <h2>Participant name </h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
-                       </div>
-   
-                       <div>
-                           <div class="img"><img src="https://cdn.pixabay.com/photo/2021/01/20/08/57/woman-5933499_960_720.png" alt=""></div>
-                           <h2>Participant name</h2>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
-                       </div>
-   
-                   </div>
-   
-               </div>
+
+      <div class="container">
+        <h1 id="section-heading" class="main-secondary-title text-center text-white mb-5">
+          {% trans "What previous participants say" %}
+        </h1>
+        <section id="testim" class="testim">
+          <div class="testim-cover">
+            <div class="wrap">
+
+              <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+              <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
+              <ul id="testim-dots" class="dots">
+                <li class="dot active"></li>
+                <!--
+                       -->
+                <li class="dot"></li>
+                <!--
+                       -->
+                <li class="dot"></li>
+                <!--
+                       -->
+                <li class="dot"></li>
+                <!--
+                       -->
+                <li class="dot"></li>
+              </ul>
+              <div id="testim-content" class="cont">
+
+                <div class="active">
+                  <div class="img"><img src="https://cdn.pixabay.com/photo/2021/03/06/08/44/beauty-6073128_960_720.jpg"
+                      alt=""></div>
+                  <h2>Participant name</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+
+                <div>
+                  <div class="img"><img src="https://cdn.pixabay.com/photo/2022/02/22/08/58/woman-7028323_960_720.jpg"
+                      alt=""></div>
+                  <h2>Participant name</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+
+                <div>
+                  <div class="img"><img src="https://cdn.pixabay.com/photo/2021/05/26/07/18/man-6284319_960_720.png"
+                      alt=""></div>
+                  <h2>Participant name</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+
+                <div>
+                  <div class="img"><img src="https://cdn.pixabay.com/photo/2021/06/08/06/43/man-6319907_960_720.png"
+                      alt=""></div>
+                  <h2>Participant name </h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+
+                <div>
+                  <div class="img"><img src="https://cdn.pixabay.com/photo/2021/01/20/08/57/woman-5933499_960_720.png"
+                      alt=""></div>
+                  <h2>Participant name</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+
+              </div>
+
             </div>
-          </section>  
-        </div>
-   
+          </div>
+        </section>
+      </div>
+
     </section>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
