@@ -293,6 +293,25 @@ body {
 	z-index: 2000;
 }
 
+.dropdown-menu li {
+	position: relative;
+	}
+	.dropdown-menu .dropdown-submenu {
+	display: none;
+	position: absolute;
+	left: 100%;
+	top: -7px;
+	}
+	.dropdown-menu .dropdown-submenu-left {
+	right: 100%;
+	left: auto;
+	}
+	.dropdown-menu > li:hover > .dropdown-submenu {
+	display: block;
+	}
+
+	
+
 /* PARTNERS SECTION CSS */
 .board:after {
 	clear: both;
