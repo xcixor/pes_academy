@@ -11,7 +11,9 @@ from agripitch.models import (
     PartnerLogo)
 
 
-admin.site.register(ShortList)
+@admin.register(ShortList)
+class ShortListAdmin(TranslatableAdmin):
+    inlines = [TranslationInline]
 
 
 @admin.register(SubCriteriaItemResponse)
@@ -27,8 +29,9 @@ class SubCriteriaItemDocumentResponseAdmin(admin.ModelAdmin):
 
 
 @admin.register(CriteriaItem)
-class CriteriaItemAdmin(admin.ModelAdmin):
+class CriteriaItemAdmin(TranslatableAdmin):
     list_display = ['label', 'shortlist']
+    inlines = [TranslationInline]
 
 
 class SubCriteriaItemFieldPropertiesInline(admin.TabularInline):

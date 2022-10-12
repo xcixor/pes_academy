@@ -22,7 +22,7 @@ def competition_image_directory_path(instance, filename):
     return (f'competitions/{instance.slug}/{filename}')
 
 
-class ShortList(models.Model):
+class ShortList(Translatable):
 
     label = models.CharField(max_length=200)
     competition = models.ForeignKey(
@@ -32,21 +32,45 @@ class ShortList(models.Model):
         verbose_name=_("Application"))
 
     def __str__(self) -> str:
+        return self.get_label
+
+    @property
+    def get_label(self):
+        language = get_language()
+        if language == 'fr':
+            item = ShortList.objects.filter(
+                pk=self.pk).translate('fr')[0]
+            return item.label
         return self.label
+
+    class TranslatableMeta:
+        fields = ['label']
 
     class Meta:
         verbose_name_plural = "1. Shortlists"
 
 
-class CriteriaItem(models.Model):
+class CriteriaItem(Translatable):
 
     label = models.CharField(max_length=400)
     shortlist = models.ForeignKey(
         ShortList, on_delete=models.CASCADE,
         related_name='criteria')
 
-    def __str__(self) -> str:
+    @property
+    def get_label(self):
+        language = get_language()
+        if language == 'fr':
+            item = CriteriaItem.objects.filter(
+                pk=self.pk).translate('fr')[0]
+            return item.label
         return self.label
+
+    class TranslatableMeta:
+        fields = ['label']
+
+    def __str__(self) -> str:
+        return self.get_label
 
     class Meta:
         verbose_name_plural = "2. Criteria Items"
@@ -198,8 +222,6 @@ def get_form(instance):
 
 
 class SubCriteriaItem(Translatable):
-
-    a = [1, 2, 3, 4]
 
     FIELD_CHOICES = [
         ('charfield', 'One Line Text'),
