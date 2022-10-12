@@ -242,6 +242,7 @@ class SubCriteriaItem(Translatable):
     type = models.CharField(max_length=100, choices=FIELD_CHOICES)
     position_in_form = models.IntegerField(default=1)
     description = RichTextField(null=True, blank=True)
+    description_fr = RichTextField(null=True, blank=True)
 
     def __str__(self) -> str:
         language = get_language()
@@ -252,7 +253,7 @@ class SubCriteriaItem(Translatable):
         return self.label
 
     class TranslatableMeta:
-        fields = ['label', 'description']
+        fields = ['label']
 
     class Meta:
         ordering = ['position_in_form']
@@ -261,10 +262,8 @@ class SubCriteriaItem(Translatable):
     @property
     def get_description(self):
         language = get_language()
-        if language == 'fr':
-            item = SubCriteriaItem.objects.filter(
-                pk=self.pk).translate('fr')[0]
-            return item.description
+        if language == 'fr' and self.description_fr:
+            return self.description_fr
         return self.description
 
 

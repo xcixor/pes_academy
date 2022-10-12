@@ -97,7 +97,7 @@
                                     {% for sub_criteria in first_criteria.sub_criteria.all %}
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
-                                        <div class="small muted">{{sub_criteria.get_description}}</div>
+                                        <div class="small muted">{{sub_criteria.get_description | safe}}</div>
 
                                     </div>
                                     {% if form_errors %}
@@ -123,7 +123,7 @@
                                     {% for sub_criteria in item.sub_criteria.all %}
                                     <div>
                                         {{sub_criteria|get_form:request.user.application}}
-                                        <div class="small muted">{{sub_criteria.get_description}}</div>
+                                        <div class="small muted">{{sub_criteria.get_description | safe}}</div>
 
                                     </div>
                                     {% if form_errors %}
