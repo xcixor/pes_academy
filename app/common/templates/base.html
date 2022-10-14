@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     {% if debug_flag %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JBQLQ16M1W"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JBQLQ16M1W');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-JBQLQ16M1W');
     </script>
+    <!-- Meta Pixel Code -->
+    <script>
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '650197896455516');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=650197896455516&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
     {% endif %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,14 +37,19 @@
     <title>PES-SME Online</title>
     {% block styles %}
     {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Paytone One">
     <!-- application form css -->
     <link rel="stylesheet" href="{% static 'css/common/layout.css' %}">
@@ -41,68 +66,72 @@
     <link rel="stylesheet" href="{% static 'css/common/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/common/common.css' %}">
     {% endblock %}
-</head>
-{% block messages %}
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert-container d-flex flex-row align-items-center justify-content-center">
-        <div class="alert alert-{{ message.tags }} d-flex flex-row align-items-center justify-content-between alert-dismissible">
-            <p style="margin: 0;">{{message}}</p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-        </div>
+  </head>
+  {% block messages %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert-container d-flex flex-row align-items-center justify-content-center">
+    <div
+      class="alert alert-{{ message.tags }} d-flex flex-row align-items-center justify-content-between alert-dismissible">
+      <p style="margin: 0;">{{message}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    {% endfor%}
-{% endif %}
-{% endblock %}
+  </div>
+  {% endfor%}
+  {% endif %}
+  {% endblock %}
 
-<!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25804228.js"></script>
-<!-- End of HubSpot Embed Code -->
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25804228.js"></script>
+  <!-- End of HubSpot Embed Code -->
 
 
-<body id="{% block body_id %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}">
     <div class="page-content">
-    {% include 'header.html' %}
-    {% block content %}
+      {% include 'header.html' %}
+      {% block content %}
 
-    {% endblock %}
+      {% endblock %}
     </div>
     {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/common/base.js' %}"></script>
     <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
     <script type="text/javascript">
-        function onConversationsAPIReady() {
-          console.log(`HubSpot Conversations API: ${window.HubSpotConversations}`);
-        }
+      function onConversationsAPIReady() {
+        console.log(`HubSpot Conversations API: ${window.HubSpotConversations}`);
+      }
+      /*
+        configure window.hsConversationsSettings if needed.
+      */
+      window.hsConversationsSettings = {};
+      /*
+       If external API methods are already available, use them.
+      */
+      if (window.HubSpotConversations) {
+        onConversationsAPIReady();
+      } else {
         /*
-          configure window.hsConversationsSettings if needed.
+          Otherwise, callbacks can be added to the hsConversationsOnReady on the window object.
+          These callbacks will be called once the external API has been initialized.
         */
-        window.hsConversationsSettings = {};
-        /*
-         If external API methods are already available, use them.
-        */
-        if (window.HubSpotConversations) {
-          onConversationsAPIReady();
-        } else {
-          /*
-            Otherwise, callbacks can be added to the hsConversationsOnReady on the window object.
-            These callbacks will be called once the external API has been initialized.
-          */
-          window.hsConversationsOnReady = [onConversationsAPIReady];
-        }
-      </script>
-      <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+        window.hsConversationsOnReady = [onConversationsAPIReady];
+      }
+    </script>
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     {% endblock %}
     {% block footer %}
     {% include 'footer.html' %}
     {% endblock %}
-</body>
+  </body>
+
 </html>
-
-
