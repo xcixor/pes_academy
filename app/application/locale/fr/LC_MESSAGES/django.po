@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 12:04+0300\n"
+"POT-Creation-Date: 2022-10-14 23:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,14 +172,10 @@ msgid "Strongly Agree"
 msgstr "Tout à fait d'accord"
 
 #: models/application_score.py:32
-#, fuzzy
-#| msgid "score for"
 msgid " score for: "
 msgstr "score pour"
 
 #: models/application_score.py:33
-#, fuzzy
-#| msgid "application"
 msgid " for application "
 msgstr "Application pour"
 
@@ -316,6 +312,7 @@ msgid "Application for"
 msgstr "Application pour"
 
 #: templates/application/application_form.html:17
+#: templates/index/index.html:114
 msgid "Download Application Form"
 msgstr "Télécharger le formulaire de candidature"
 
@@ -460,6 +457,10 @@ msgstr "Licence téléchargée"
 msgid "Submit"
 msgstr "Données soumises"
 
+#: templates/application/email/prompt.html:9
+msgid "Login to make changes"
+msgstr ""
+
 #: templates/index/index.html:16 templates/index/index.html:98
 msgid "Download Application Guide"
 msgstr "Télécharger le formulaire de candidature"
@@ -495,8 +496,6 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: templates/index/index.html:63
-#, fuzzy
-#| msgid "Apply Now"
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -517,12 +516,6 @@ msgstr "En savoir plus"
 #: templates/index/index.html:85
 msgid "Official Launch"
 msgstr "Lancement officiel"
-
-#: templates/index/index.html:114
-#, fuzzy
-#| msgid "Application for"
-msgid "Application Form"
-msgstr "Application pour"
 
 #: templates/index/index.html:129
 msgid "Lead Partners"
@@ -630,8 +623,6 @@ msgid "Feb - July 2023"
 msgstr "Février - Juillet 2023"
 
 #: templates/index/index.html:267
-#, fuzzy
-#| msgid "Previous"
 msgid "Prev"
 msgstr "Précédent"
 
@@ -644,10 +635,8 @@ msgid "October 17, 2022"
 msgstr "17 Octobre 2022"
 
 #: templates/index/index.html:282
-#, fuzzy
-#| msgid "Call For Applications"
 msgid "Opening of the call for applications."
-msgstr "Appel à candidatures"
+msgstr "Ouverture de l'appel à candidatures."
 
 #: templates/index/index.html:289
 msgid "Virtual Boot camp"
@@ -744,8 +733,6 @@ msgstr ""
 "delà.                   "
 
 #: templates/index/index.html:352
-#, fuzzy
-#| msgid "Eligibility"
 msgid "Eligibility Criteria"
 msgstr "Admissibilité"
 
@@ -923,9 +910,11 @@ msgstr ""
 "six mois et au-delà.\n"
 "          "
 
-#: templates/index/index.html:456
-msgid "What previous participants say"
-msgstr "Ce que disent les participants précédents"
+#~ msgid "Application Form"
+#~ msgstr "Application pour"
+
+#~ msgid "What previous participants say"
+#~ msgstr "Ce que disent les participants précédents"
 
 #~ msgid "Milestones"
 #~ msgstr "Que ce soit pour avancer ou éviter l'application"
