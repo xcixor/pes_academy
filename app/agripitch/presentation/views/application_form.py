@@ -3,7 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic.detail import SingleObjectMixin
 from django.views import View
+from django.http import Http404
 from django.views.generic import DetailView
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
@@ -41,6 +43,17 @@ class GetApplicationFormView(DetailView):
                 call_to_action=self.get_object()
             )
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not self.object.available_for_applications or self.object.deadline < timezone.now():
+            message = _(
+                "The competition is not yet available!")
+            messages.add_message(
+                request, messages.INFO, message)
+            return redirect(reverse('agripitch:agripitch_landing_page'))
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 def process_inputs(inputs, application):
