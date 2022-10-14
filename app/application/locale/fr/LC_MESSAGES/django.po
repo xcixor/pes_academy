@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-12 18:03+0300\n"
+"POT-Creation-Date: 2022-10-14 12:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,7 +315,7 @@ msgstr " a été sauvegardé!"
 msgid "Application for"
 msgstr "Application pour"
 
-#: templates/application/application_form.html:17 templates/index/index.html:33
+#: templates/application/application_form.html:17
 msgid "Download Application Form"
 msgstr "Télécharger le formulaire de candidature"
 
@@ -353,7 +353,7 @@ msgstr "Applications utilisateur"
 #: templates/application/application_form.html:191
 #: templates/application/application_form.html:212
 #: templates/application/application_form.html:254
-#: templates/index/index.html:252
+#: templates/index/index.html:270
 msgid "Next"
 msgstr "Suivant"
 
@@ -460,198 +460,204 @@ msgstr "Licence téléchargée"
 msgid "Submit"
 msgstr "Données soumises"
 
-#: templates/index/index.html:17 templates/index/index.html:80
+#: templates/index/index.html:16 templates/index/index.html:98
 msgid "Download Application Guide"
 msgstr "Télécharger le formulaire de candidature"
 
-#: templates/index/index.html:23 templates/index/index.html:86
+#: templates/index/index.html:21 templates/index/index.html:33
+#: templates/index/index.html:46 templates/index/index.html:104
 msgid "English"
 msgstr "Anglais"
 
-#: templates/index/index.html:26 templates/index/index.html:89
+#: templates/index/index.html:25 templates/index/index.html:36
+#: templates/index/index.html:49 templates/index/index.html:107
 msgid "French"
 msgstr "Français"
 
-#: templates/index/index.html:30 templates/index/index.html:93
+#: templates/index/index.html:29 templates/index/index.html:111
 msgid "Download FAQs"
 msgstr "Télécharger la FAQ"
 
-#: templates/index/index.html:41
+#: templates/index/index.html:42
+msgid "Download Hardcopy questions"
+msgstr "Télécharger les questions sur papier"
+
+#: templates/index/index.html:59
 msgid "Home"
 msgstr "Maison"
 
-#: templates/index/index.html:42
+#: templates/index/index.html:60
 msgid "Partners"
 msgstr "Les partenaires"
 
-#: templates/index/index.html:43
+#: templates/index/index.html:61
 msgid "Gallery"
 msgstr "Galerie"
 
-#: templates/index/index.html:45
+#: templates/index/index.html:63
 #, fuzzy
 #| msgid "Apply Now"
 msgid "Apply"
 msgstr "Appliquer"
 
-#: templates/index/index.html:47
+#: templates/index/index.html:65
 msgid "FAQ's"
 msgstr "FAQ"
 
-#: templates/index/index.html:62
+#: templates/index/index.html:80
 msgid "Theme: The Role of African Youth Within African Food Systems"
 msgstr ""
 "Thème : Le rôle de la jeunesse africaine dans les systèmes alimentaires "
 "africains"
 
-#: templates/index/index.html:63
+#: templates/index/index.html:81
 msgid "Find Out More"
 msgstr "En savoir plus"
 
-#: templates/index/index.html:67
+#: templates/index/index.html:85
 msgid "Official Launch"
 msgstr "Lancement officiel"
 
-#: templates/index/index.html:96
+#: templates/index/index.html:114
 #, fuzzy
 #| msgid "Application for"
 msgid "Application Form"
 msgstr "Application pour"
 
-#: templates/index/index.html:111
+#: templates/index/index.html:129
 msgid "Lead Partners"
 msgstr "Partenaires principaux"
 
-#: templates/index/index.html:119
+#: templates/index/index.html:137
 msgid "Host"
 msgstr "Hôte"
 
-#: templates/index/index.html:121 templates/index/index.html:135
-#: templates/index/index.html:148 templates/index/index.html:161
+#: templates/index/index.html:139 templates/index/index.html:153
+#: templates/index/index.html:166 templates/index/index.html:179
 msgid "Visit Website"
 msgstr "Visitez le site Web"
 
-#: templates/index/index.html:133
+#: templates/index/index.html:151
 msgid "Implementing Partner."
 msgstr "Partenaire de mise en œuvre."
 
-#: templates/index/index.html:146
+#: templates/index/index.html:164
 msgid "Knowledge Partner."
 msgstr "Partenaire de connaissances."
 
-#: templates/index/index.html:159
+#: templates/index/index.html:177
 msgid "Digital Partner"
 msgstr "Partenaire numérique"
 
-#: templates/index/index.html:168
+#: templates/index/index.html:186
 msgid "Donor Partners"
 msgstr "Partenaires donateurs"
 
-#: templates/index/index.html:186
+#: templates/index/index.html:204
 msgid "Overview"
 msgstr "Aperçu"
 
-#: templates/index/index.html:191
+#: templates/index/index.html:209
 msgid "Total grant funding"
 msgstr "Financement total des subventions"
 
-#: templates/index/index.html:192
+#: templates/index/index.html:210
 msgid "SME support Duration"
 msgstr "Soutien aux PME Durée"
 
-#: templates/index/index.html:193
+#: templates/index/index.html:211
 msgid "Short list SME's"
 msgstr "Liste restreinte des PME"
 
-#: templates/index/index.html:194
+#: templates/index/index.html:212
 msgid "Who can apply?"
 msgstr "Qui peut postuler ?"
 
-#: templates/index/index.html:195
+#: templates/index/index.html:213
 msgid "Priority sectors"
 msgstr "Secteurs prioritaires"
 
-#: templates/index/index.html:200
+#: templates/index/index.html:218
 msgid "USD 140,000"
 msgstr "140 000 USD"
 
-#: templates/index/index.html:201
+#: templates/index/index.html:219
 msgid "12 Months"
 msgstr "12 mois"
 
-#: templates/index/index.html:202
+#: templates/index/index.html:220
 msgid "25"
 msgstr "25"
 
-#: templates/index/index.html:203
+#: templates/index/index.html:221
 msgid "Youth(35 Years & Below)"
 msgstr "Jeunesse (35 ans et moins)"
 
-#: templates/index/index.html:205
+#: templates/index/index.html:223
 msgid "Agriculture value chain focused businesses"
 msgstr "Entreprises axées sur la chaîne de valeur agricole"
 
-#: templates/index/index.html:207
+#: templates/index/index.html:225
 msgid "Businesses that leverages technology"
 msgstr "Entreprises qui tirent parti de la technologie"
 
-#: templates/index/index.html:209
+#: templates/index/index.html:227
 msgid "Food & Nutrition"
 msgstr "Alimentation et nutrition"
 
-#: templates/index/index.html:219
+#: templates/index/index.html:237
 msgid "Timeline"
 msgstr "Chronologie"
 
-#: templates/index/index.html:227
+#: templates/index/index.html:245
 msgid "Oct 2022"
 msgstr "Octobre 2022"
 
-#: templates/index/index.html:229
+#: templates/index/index.html:247
 msgid "Nov 2022"
 msgstr "Novembre 2022"
 
-#: templates/index/index.html:230
+#: templates/index/index.html:248
 msgid "Dec 2022"
 msgstr "Déc 2022"
 
-#: templates/index/index.html:231
+#: templates/index/index.html:249
 msgid "Nov 2022 - Jun 2023"
 msgstr "Novembre 2022 - Juin 2023"
 
-#: templates/index/index.html:233
+#: templates/index/index.html:251
 msgid "Feb - July 2023"
 msgstr "Février - Juillet 2023"
 
-#: templates/index/index.html:249
+#: templates/index/index.html:267
 #, fuzzy
 #| msgid "Previous"
 msgid "Prev"
 msgstr "Précédent"
 
-#: templates/index/index.html:261
+#: templates/index/index.html:279
 msgid "Call For Applications"
 msgstr "Appel à candidatures"
 
-#: templates/index/index.html:262
+#: templates/index/index.html:280
 msgid "October 17, 2022"
 msgstr "17 Octobre 2022"
 
-#: templates/index/index.html:264
+#: templates/index/index.html:282
 #, fuzzy
 #| msgid "Call For Applications"
 msgid "Opening of the call for applications."
 msgstr "Appel à candidatures"
 
-#: templates/index/index.html:271
+#: templates/index/index.html:289
 msgid "Virtual Boot camp"
 msgstr "Camp d'entraînement virtuel"
 
-#: templates/index/index.html:272
+#: templates/index/index.html:290
 msgid "November, 2022"
 msgstr "Novembre 2022"
 
-#: templates/index/index.html:274
+#: templates/index/index.html:292
 msgid ""
 "\n"
 "                  In the two-week-long business development boot camp, "
@@ -671,27 +677,27 @@ msgstr ""
 "dirigées par formateurs et coachs.\n"
 "                  "
 
-#: templates/index/index.html:285
+#: templates/index/index.html:303
 msgid "AgriPitch Competition"
 msgstr "Concours AgriPitch"
 
-#: templates/index/index.html:286
+#: templates/index/index.html:304
 msgid "December, 2022"
 msgstr "Décembre 2022"
 
-#: templates/index/index.html:288
+#: templates/index/index.html:306
 msgid "The actual AgriPitch Competition"
 msgstr "Le Concours AgriPitch proprement dit"
 
-#: templates/index/index.html:295
+#: templates/index/index.html:313
 msgid "Deal Room"
 msgstr "Salle des affaires"
 
-#: templates/index/index.html:296
+#: templates/index/index.html:314
 msgid "November 2022 - June 2023"
 msgstr "Novembre 2022 - Juin 2023"
 
-#: templates/index/index.html:298
+#: templates/index/index.html:316
 msgid ""
 "\n"
 "                  In line with the 2022 theme, the AgriPitch Dealroom will "
@@ -710,15 +716,15 @@ msgstr ""
 "sont souvent les deux principaux obstacles pour les jeunes agripreneurs "
 "surmonter lors de la mise à l'échelle de leurs activités.                   "
 
-#: templates/index/index.html:309
+#: templates/index/index.html:327
 msgid "Mentorship & Support"
 msgstr "Mentorat et soutien"
 
-#: templates/index/index.html:310
+#: templates/index/index.html:328
 msgid "February - July 2023"
 msgstr "Février - Juillet 2023"
 
-#: templates/index/index.html:312
+#: templates/index/index.html:330
 msgid ""
 "\n"
 "                  Participating agripreneurs will\n"
@@ -737,29 +743,29 @@ msgstr ""
 "participants aux ressources tout au long de la période de six mois et au-"
 "delà.                   "
 
-#: templates/index/index.html:334
+#: templates/index/index.html:352
 #, fuzzy
 #| msgid "Eligibility"
 msgid "Eligibility Criteria"
 msgstr "Admissibilité"
 
-#: templates/index/index.html:339
+#: templates/index/index.html:357
 msgid "Early Start-ups (0-3 years)"
 msgstr "Start-ups précoces (0-3 ans)"
 
-#: templates/index/index.html:340
+#: templates/index/index.html:358
 msgid "Mature Start-ups (above 3 years)"
 msgstr "Start-up matures (plus de 3 ans)"
 
-#: templates/index/index.html:341
+#: templates/index/index.html:359
 msgid "Women-empowered Businesses (WEBs)"
 msgstr "Entreprises autonomisées par les femmes (WEB)"
 
-#: templates/index/index.html:348
+#: templates/index/index.html:366
 msgid "Meet eligibility criteria for Early Start-ups."
 msgstr "Répondre aux critères d'éligibilité pour les startups précoces."
 
-#: templates/index/index.html:350
+#: templates/index/index.html:368
 msgid ""
 "\n"
 "                        Individuals who are at the very early stage of "
@@ -773,19 +779,19 @@ msgstr ""
 "Les personnes qui sont au tout début de développement idées/concepts pour "
 "l'agripreneuriat ou un nouveau établi Entreprise                         "
 
-#: templates/index/index.html:356
+#: templates/index/index.html:374
 msgid "Must have a clearly defined prototype or proof of concept."
 msgstr "Doit avoir un prototype clairement défini ou une preuve de concept."
 
-#: templates/index/index.html:357
+#: templates/index/index.html:375
 msgid "May or may not have had any products introduced to the market."
 msgstr "Peut ou non avoir eu des produits introduits sur le marché."
 
-#: templates/index/index.html:358
+#: templates/index/index.html:376
 msgid "May or may not have a registered corporate entity."
 msgstr "Peut ou non avoir une personne morale enregistrée."
 
-#: templates/index/index.html:365
+#: templates/index/index.html:383
 msgid ""
 "\n"
 "                        Individuals and firms with existing market traction: "
@@ -797,34 +803,34 @@ msgstr ""
 "Particuliers et entreprises ayant une traction sur le marché : technologie, "
 "produit ou service, déjà sur le marché.                        "
 
-#: templates/index/index.html:370
+#: templates/index/index.html:388
 msgid "Must have a clear investment ask and growth plan/strategy."
 msgstr ""
 "Doit avoir une demande d'investissement claire et un plan/stratégie de "
 "croissance."
 
-#: templates/index/index.html:371
+#: templates/index/index.html:389
 msgid "Must be a registered corporate entity."
 msgstr "Doit être une personne morale enregistrée."
 
-#: templates/index/index.html:376
+#: templates/index/index.html:394
 msgid ""
 "Meet eligibility requirements for either Early Start-ups or Mature Start-ups."
 msgstr ""
 "Répondre aux critères d'éligibilité pour les start-up précoces ou les start-"
 "up matures."
 
-#: templates/index/index.html:378
+#: templates/index/index.html:396
 #, python-format
 msgid "Firms that are 51%% owned by women or founded by a woman."
 msgstr ""
 "Entreprises détenues à 51 pour cent par des femmes ou fondées par une femme."
 
-#: templates/index/index.html:391
+#: templates/index/index.html:409
 msgid "What do we offer?"
 msgstr "Que proposons-nous ?"
 
-#: templates/index/index.html:394
+#: templates/index/index.html:412
 msgid ""
 "\n"
 "          AgriPitch falls under the African Development Bank's fourth "
@@ -839,7 +845,7 @@ msgstr ""
 "plate-forme pour les jeunes africains qui s'intéressent à l'agriculture "
 "scène de démarrage.          "
 
-#: templates/index/index.html:400
+#: templates/index/index.html:418
 msgid ""
 "\n"
 "          In line with the 2022 theme, the AgriPitch Dealroom will be held "
@@ -858,11 +864,11 @@ msgstr ""
 "obstacles que les jeunes agripreneurs doivent surmonter lorsqu'ils "
 "développer leurs activités."
 
-#: templates/index/index.html:407
+#: templates/index/index.html:425
 msgid "Mentorship"
 msgstr "Mentorat"
 
-#: templates/index/index.html:409
+#: templates/index/index.html:427
 msgid ""
 "\n"
 "          The AgriPitch online programme includes a training session "
@@ -877,7 +883,7 @@ msgstr ""
 "sur partenariats stratégiques pour l'équité dans l'agriculture, la nutrition "
 "et financement les jeunes et les femmes."
 
-#: templates/index/index.html:416
+#: templates/index/index.html:434
 msgid ""
 "\n"
 "          In the two-week-long business development boot camp, AgriPitch "
@@ -897,7 +903,7 @@ msgstr ""
 "financement, et d'autres questions, animées par des formateurs et des coachs "
 "et d'autres questions, animées par des formateurs et des coachs           "
 
-#: templates/index/index.html:424
+#: templates/index/index.html:442
 msgid ""
 "\n"
 "          Following the training and bootcamp, the participating "
@@ -917,7 +923,7 @@ msgstr ""
 "six mois et au-delà.\n"
 "          "
 
-#: templates/index/index.html:438
+#: templates/index/index.html:456
 msgid "What previous participants say"
 msgstr "Ce que disent les participants précédents"
 
