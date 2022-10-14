@@ -23,8 +23,8 @@ from django.views.static import serve
 admin.autodiscover()
 
 urlpatterns = [
-    path('admin/advanced/', custom_pes_admin_site.urls),
-    path('admin/', admin.site.urls),
+    path('CgDX4znLdQDLFw/advanced/', custom_pes_admin_site.urls),
+    path('CgDX4znLdQDLFw/', admin.site.urls),
     path('accounts/', include('accounts.presentation.urls', namespace='accounts')),
     path('', include('application.presentation.urls',
          namespace='applications')),

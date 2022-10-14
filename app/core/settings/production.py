@@ -24,6 +24,7 @@ ADMINS = [('Peter', 'peter@privateequity-support.com'), ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SERVER_EMAIL = 'peter@privateequity-support.com'
 
+ALLOWED_HOSTS = ["privateequity-support.com"]
 
 LOGGING = {
     'version': 1,
@@ -42,7 +43,7 @@ LOGGING = {
         'logfile': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': "private_equity_support.log",
+            'filename': "logs/prod.log",
             'maxBytes': 100000,
             'backupCount': 2,
             'formatter': 'verbose',
