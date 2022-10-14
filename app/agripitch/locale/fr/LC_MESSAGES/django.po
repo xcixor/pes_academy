@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-11 17:43+0300\n"
+"POT-Creation-Date: 2022-10-14 12:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models/__init__.py:31
+#: models/__init__.py:32
 msgid "Application"
-msgstr ""
+msgstr "Application"
 
-#: presentation/views/application_form.py:181
+#: presentation/views/application_form.py:51
+msgid "Sorry, the AFDB Agripitch Competition 2022 is not yet live!"
+msgstr "Désolé, le concours AFDB Agripitch 2022 n'est pas encore en ligne !"
+
+#: presentation/views/application_form.py:194
 msgid "African Development Bank AgriPitch Competition 2022 Application"
-msgstr ""
+msgstr "Concours AgriPitch 2022 de la Banque africaine de développement"
 
 #: presentation/views/delete_question.py:24
 msgid "Not found"
-msgstr ""
+msgstr "Pas trouvé"
 
 #: templates/agripitch/application_form.html:25
 msgid "NB: Documents to be attached should be in pdf format only."
-msgstr ""
+msgstr "NB : Les documents à joindre doivent être au format pdf uniquement."
 
 #: templates/agripitch/application_form.html:32
 msgid ""
 "NB: Check and Fill all the Fields before you click Next. Once you click next "
 "your data will be saved."
 msgstr ""
+"NB: Vérifiez et remplissez tous les champs avant de cliquer sur Suivant. Une "
+"fois que vous cliquez sur suivant vos données seront enregistrées."
 
 #: templates/agripitch/application_form.html:38
 msgid "Application takes 45 to 60 minutes."
-msgstr ""
+msgstr "L'application prend 45 à 60 minutes."
 
 #: templates/agripitch/application_form.html:42
-msgid ""
-"Please note; you have already submitted your data. <br> Any changes that you "
-"make to this form will not be recorded"
-msgstr ""
+msgid "Please note; you have already submitted your data."
+msgstr "Veuillez noter; vous avez déjà soumis vos données."
+
+#: templates/agripitch/application_form.html:42
+msgid "Any changes that you make to this form will not be recorded"
+msgstr "Toute modification que vous apporterez à ce formulaire ne sera pas enregistrée"
 
 #: templates/agripitch/landing.html:23 templates/agripitch/landing.html:31
 #: templates/agripitch/landing.html:76
 msgid "Apply Now"
-msgstr ""
+msgstr "Appliquer maintenant"
 
 #: templates/agripitch/landing.html:71
 msgid "Applications Ongoing. Ends "
-msgstr ""
+msgstr "Candidatures en cours. Prend fin "
 
 #: templates/agripitch/landing.html:72
 msgid "Note: Application takes 45 to 60 minutes."
-msgstr ""
+msgstr "Remarque : L'application prend 45 à 60 minutes."
