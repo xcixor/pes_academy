@@ -12,12 +12,12 @@ $(document).ready(function() {
             this.intervalId = false;
             initSwipeContent(this);
         };
-    
+
         function initSwipeContent(content) {
             content.element.addEventListener('mousedown', handleEvent.bind(content));
             content.element.addEventListener('touchstart', handleEvent.bind(content));
         };
-    
+
         function initDragging(content) {
             //add event listeners
             content.element.addEventListener('mousemove', handleEvent.bind(content));
@@ -26,7 +26,7 @@ $(document).ready(function() {
             content.element.addEventListener('mouseleave', handleEvent.bind(content));
             content.element.addEventListener('touchend', handleEvent.bind(content));
         };
-    
+
         function cancelDragging(content) {
             //remove event listeners
             if(content.intervalId) {
@@ -39,7 +39,7 @@ $(document).ready(function() {
             content.element.removeEventListener('mouseleave', handleEvent.bind(content));
             content.element.removeEventListener('touchend', handleEvent.bind(content));
         };
-    
+
         function handleEvent(event) {
             switch(event.type) {
                 case 'mousedown':
@@ -57,7 +57,7 @@ $(document).ready(function() {
                     break;
             }
         };
-    
+
         function startDrag(content, event) {
             content.dragging = true;
             // listen to drag movements
@@ -66,63 +66,63 @@ $(document).ready(function() {
             // emit drag start event
             emitSwipeEvents(content, 'dragStart', content.delta);
         };
-    
+
         function endDrag(content, event) {
             cancelDragging(content);
             // credits: https://css-tricks.com/simple-swipe-with-vanilla-javascript/
-            var dx = parseInt(unify(event).clientX), 
+            var dx = parseInt(unify(event).clientX),
             dy = parseInt(unify(event).clientY);
-          
+
           // check if there was a left/right swipe
             if(content.delta && (content.delta[0] || content.delta[0] === 0)) {
             var s = Math.sign(dx - content.delta[0]);
-                
+
                 if(Math.abs(dx - content.delta[0]) > 30) {
-                    (s < 0) ? emitSwipeEvents(content, 'swipeLeft', [dx, dy]) : emitSwipeEvents(content, 'swipeRight', [dx, dy]);	
+                    (s < 0) ? emitSwipeEvents(content, 'swipeLeft', [dx, dy]) : emitSwipeEvents(content, 'swipeRight', [dx, dy]);
                 }
-            
+
             content.delta[0] = false;
           }
             // check if there was a top/bottom swipe
           if(content.delta && (content.delta[1] || content.delta[1] === 0)) {
               var y = Math.sign(dy - content.delta[1]);
-    
+
               if(Math.abs(dy - content.delta[1]) > 30) {
                 (y < 0) ? emitSwipeEvents(content, 'swipeUp', [dx, dy]) : emitSwipeEvents(content, 'swipeDown', [dx, dy]);
             }
-    
+
             content.delta[1] = false;
           }
             // emit drag end event
           emitSwipeEvents(content, 'dragEnd', [dx, dy]);
           content.dragging = false;
         };
-    
+
         function drag(content, event) {
             if(!content.dragging) return;
             // emit dragging event with coordinates
-            (!window.requestAnimationFrame) 
-                ? content.intervalId = setTimeout(function(){emitDrag.bind(content, event);}, 250) 
+            (!window.requestAnimationFrame)
+                ? content.intervalId = setTimeout(function(){emitDrag.bind(content, event);}, 250)
                 : content.intervalId = window.requestAnimationFrame(emitDrag.bind(content, event));
         };
-    
+
         function emitDrag(event) {
             emitSwipeEvents(this, 'dragging', [parseInt(unify(event).clientX), parseInt(unify(event).clientY)]);
         };
-    
-        function unify(event) { 
+
+        function unify(event) {
             // unify mouse and touch events
-            return event.changedTouches ? event.changedTouches[0] : event; 
+            return event.changedTouches ? event.changedTouches[0] : event;
         };
-    
+
         function emitSwipeEvents(content, eventName, detail) {
             // emit event with coordinates
             var event = new CustomEvent(eventName, {detail: {x: detail[0], y: detail[1]}});
             content.element.dispatchEvent(event);
         };
-    
+
         window.SwipeContent = SwipeContent;
-        
+
         //initialize the SwipeContent objects
         var swipe = document.getElementsByClassName('js-swipe-content');
         if( swipe.length > 0 ) {
@@ -131,10 +131,10 @@ $(document).ready(function() {
             }
         }
     }());
-    
+
     // Utility function
     function Util () {};
-    
+
     /*
         class manipulation functions
     */
@@ -142,14 +142,14 @@ $(document).ready(function() {
         if (el.classList) return el.classList.contains(className);
         else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
     };
-    
+
     Util.addClass = function(el, className) {
         var classList = className.split(' ');
          if (el.classList) el.classList.add(classList[0]);
          else if (!Util.hasClass(el, classList[0])) el.className += " " + classList[0];
          if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
     };
-    
+
     Util.removeClass = function(el, className) {
         var classList = className.split(' ');
         if (el.classList) el.classList.remove(classList[0]);
@@ -159,18 +159,18 @@ $(document).ready(function() {
         }
         if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
     };
-    
+
     Util.toggleClass = function(el, className, bool) {
         if(bool) Util.addClass(el, className);
         else Util.removeClass(el, className);
     };
-    
+
     Util.setAttributes = function(el, attrs) {
       for(var key in attrs) {
         el.setAttribute(key, attrs[key]);
       }
     };
-    
+
     /*
       DOM manipulation
     */
@@ -182,14 +182,14 @@ $(document).ready(function() {
       }
       return childrenByClass;
     };
-    
+
     /*
         Animate height of an element
     */
     Util.setHeight = function(start, to, element, duration, cb) {
         var change = to - start,
             currentTime = null;
-    
+
       var animateHeight = function(timestamp){
         if (!currentTime) currentTime = timestamp;
         var progress = timestamp - currentTime;
@@ -201,20 +201,20 @@ $(document).ready(function() {
             cb();
         }
       };
-    
+
       //set the height of the element before starting animation -> fix bug on Safari
       element.setAttribute("style", "height:"+start+"px;");
       window.requestAnimationFrame(animateHeight);
     };
-    
+
     /*
         Smooth Scroll
     */
-    
+
     Util.scrollTo = function(final, duration, cb) {
       var start = window.scrollY || document.documentElement.scrollTop,
           currentTime = null;
-    
+
       var animateScroll = function(timestamp){
           if (!currentTime) currentTime = timestamp;
         var progress = timestamp - currentTime;
@@ -227,14 +227,14 @@ $(document).ready(function() {
           cb && cb();
         }
       };
-    
+
       window.requestAnimationFrame(animateScroll);
     };
-    
+
     /*
       Focus utility classes
     */
-    
+
     //Move focus to an element
     Util.moveFocus = function (element) {
       if( !element ) element = document.getElementsByTagName("body")[0];
@@ -244,15 +244,15 @@ $(document).ready(function() {
         element.focus();
       }
     };
-    
+
     /*
       Misc
     */
-    
+
     Util.getIndexInArray = function(array, el) {
       return Array.prototype.indexOf.call(array, el);
     };
-    
+
     Util.cssSupports = function(property, value) {
       if('CSS' in window) {
         return CSS.supports(property, value);
@@ -261,7 +261,7 @@ $(document).ready(function() {
         return jsProperty in document.body.style;
       }
     };
-    
+
     /*
         Polyfills
     */
@@ -269,7 +269,7 @@ $(document).ready(function() {
     if (!Element.prototype.matches) {
         Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
     }
-    
+
     if (!Element.prototype.closest) {
         Element.prototype.closest = function(s) {
             var el = this;
@@ -281,22 +281,22 @@ $(document).ready(function() {
             return null;
         };
     }
-    
+
     //Custom Event() constructor
     if ( typeof window.CustomEvent !== "function" ) {
-    
+
       function CustomEvent ( event, params ) {
         params = params || { bubbles: false, cancelable: false, detail: undefined };
         var evt = document.createEvent( 'CustomEvent' );
         evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
         return evt;
       }
-    
+
       CustomEvent.prototype = window.Event.prototype;
-    
+
       window.CustomEvent = CustomEvent;
     }
-    
+
     /*
         Animation curves
     */
@@ -306,8 +306,8 @@ $(document).ready(function() {
         t--;
         return -c/2 * (t*(t-2) - 1) + b;
     };
-    
-    
+
+
     /* Main js */
     /* -----------------*/
     (function() {
@@ -324,20 +324,20 @@ $(document).ready(function() {
             this.navigation = this.element.getElementsByClassName('h--timeline-navigation');
             this.contentWrapper = this.element.getElementsByClassName('h--timeline-events')[0];
             this.content = this.contentWrapper.getElementsByClassName('h--timeline-event');
-    
+
             this.eventsMinDistance = 60; // min distance between two consecutive events (in px)
             this.eventsMaxDistance = 140; // max distance between two consecutive events (in px)
             this.translate = 0; // this will be used to store the translate value of this.line
             this.lineLength = 0; //total length of this.line
-    
+
             // store index of selected and previous selected dates
             this.oldDateIndex = Util.getIndexInArray(this.date, this.selectedDate);
             this.newDateIndex = this.oldDateIndex;
-    
+
             initTimeline(this);
             initEvents(this);
       };
-    
+
       function initTimeline(timeline) {
           // set dates left position
           var left = 0;
@@ -347,7 +347,7 @@ $(document).ready(function() {
                 distanceNorm = (Math.round(distance/timeline.minLapse) + 2)*timeline.eventsMinDistance,
                 containerWidth = timeline.datesContainer.offsetWidth,
                 distanceCorrecture = 0;
-    
+
             if(distanceNorm < timeline.eventsMinDistance) {
                 distanceNorm = timeline.eventsMinDistance;
             } else if(distanceNorm > timeline.eventsMaxDistance) {
@@ -356,28 +356,28 @@ $(document).ready(function() {
             left = left + distanceNorm;
             timeline.date[i].setAttribute('style', 'left:' + left+'px');
             }
-    
+
             // set line/filling line dimensions
             timeline.line.style.width = (left + timeline.eventsMinDistance)+distanceCorrecture+'px';
             timeline.lineLength = left + timeline.eventsMinDistance+distanceCorrecture;
-          
+
             // add 100px more to line/filling line if container bigger then timeline lineLength
             if(containerWidth > timeline.lineLength) {
               timeline.line.style.width = (left + timeline.eventsMinDistance)+distanceCorrecture+'px';
               timeline.lineLength = timeline.lineLength + distanceCorrecture;
             }
-          
+
             // reveal timeline
             Util.addClass(timeline.element, 'h--timeline--loaded');
             selectNewDate(timeline, timeline.selectedDate);
             resetTimelinePosition(timeline, 'next');
       };
-    
+
       function initEvents(timeline) {
           var self = timeline;
             // deaktivate the buttons
             deaktivateNavigationButtons(self);
-          
+
             // click on arrow navigation
             self.navigation[0].addEventListener('click', function(event){
                 event.preventDefault();
@@ -389,7 +389,7 @@ $(document).ready(function() {
                 translateTimeline(self, 'next');
                 deaktivateNavigationButtons(self);
             });
-    
+
             //swipe on timeline
             new SwipeContent(self.datesContainer);
             self.datesContainer.addEventListener('swipeLeft', function(event){
@@ -397,8 +397,8 @@ $(document).ready(function() {
             });
             self.datesContainer.addEventListener('swipeRight', function(event){
                 translateTimeline(self, 'prev');
-            }); 
-    
+            });
+
             //select a new event
             for(var i = 0; i < self.date.length; i++) {
                 (function(i){
@@ -406,23 +406,23 @@ $(document).ready(function() {
                         event.preventDefault();
                         selectNewDate(self, event.target);
                     });
-    
+
                     self.content[i].addEventListener('animationend', function(event){
                         if( i == self.newDateIndex && self.newDateIndex != self.oldDateIndex) resetAnimation(self);
                     });
                 })(i);
             }
       };
-    
+
       function updateFilling(timeline) { // update fillingLine scale value
             var dateStyle = window.getComputedStyle(timeline.selectedDate, null),
                 left = dateStyle.getPropertyValue("left"),
                 width = dateStyle.getPropertyValue("width");
-    
+
             left = Number(left.replace('px', '')) + Number(width.replace('px', ''))/2;
             timeline.fillingLine.style.transform = 'scaleX('+(left/timeline.lineLength)+')';
         };
-    
+
       function translateTimeline(timeline, direction) { // translate timeline (and date elements)
           var containerWidth = timeline.datesContainer.offsetWidth;
           if(direction) {
@@ -430,13 +430,13 @@ $(document).ready(function() {
           }
         if( 0 - timeline.translate > timeline.lineLength - containerWidth ) timeline.translate = containerWidth - timeline.lineLength;
         if( timeline.translate > 0 ) timeline.translate = 0;
-    
+
         timeline.line.style.transform = 'translateX('+timeline.translate+'px)';
         // update the navigation items status (toggle inactive class)
             (timeline.translate == 0 ) ? Util.addClass(timeline.navigation[0], 'h--timeline-navigation--inactive') : Util.removeClass(timeline.navigation[0], 'h--timeline-navigation--inactive');
             (timeline.translate == containerWidth - timeline.lineLength ) ? Util.addClass(timeline.navigation[1], 'h--timeline-navigation--inactive') : Util.removeClass(timeline.navigation[1], 'h--timeline-navigation--inactive');
       };
-        
+
         function deaktivateNavigationButtons(timeline) {
         var containerWidth = timeline.datesContainer.offsetWidth;
         // deaktivate next button if container bigger then timeline lineLength
@@ -445,7 +445,7 @@ $(document).ready(function() {
                 Util.addClass(timeline.navigation[1], 'h--timeline-navigation--inactive');
             }
         };
-    
+
         function selectNewDate(timeline, target) { // ned date has been selected -> update timeline
             timeline.newDateIndex = Util.getIndexInArray(timeline.date, target);
             timeline.oldDateIndex = Util.getIndexInArray(timeline.date, timeline.selectedDate);
@@ -456,13 +456,13 @@ $(document).ready(function() {
             updateVisibleContent(timeline);
             updateFilling(timeline);
         };
-    
+
         function updateOlderEvents(timeline) { // update older events style
             for(var i = 0; i < timeline.date.length; i++) {
                 (i < timeline.newDateIndex) ? Util.addClass(timeline.date[i], 'h--timeline-date--older-event') : Util.removeClass(timeline.date[i], 'h--timeline-date--older-event');
             }
         };
-    
+
         function updateVisibleContent(timeline) { // show content of new selected date
             if (timeline.newDateIndex > timeline.oldDateIndex) {
                 var classEntering = 'h--timeline-event--selected h--timeline-event--enter-right',
@@ -474,7 +474,7 @@ $(document).ready(function() {
                 var classEntering = 'h--timeline-event--selected',
                     classLeaving = '';
             }
-    
+
             Util.addClass(timeline.content[timeline.newDateIndex], classEntering);
             if (timeline.newDateIndex != timeline.oldDateIndex) {
                 Util.removeClass(timeline.content[timeline.oldDateIndex], 'h--timeline-event--selected');
@@ -482,37 +482,37 @@ $(document).ready(function() {
                 //timeline.contentWrapper.style.height = timeline.content[timeline.newDateIndex].offsetHeight + 'px';
             }
         };
-    
+
         function resetAnimation(timeline) { // reset content classes when entering animation is over
             //timeline.contentWrapper.style.height = null;
             Util.removeClass(timeline.content[timeline.newDateIndex], 'h--timeline-event--enter-right h--timeline-event--enter-left');
             Util.removeClass(timeline.content[timeline.oldDateIndex], 'h--timeline-event--leave-right h--timeline-event--leave-left');
         };
-    
+
         function keyNavigateTimeline(timeline, direction) { // navigate the timeline using the keyboard
             var newIndex = (direction == 'next') ? timeline.newDateIndex + 1 : timeline.newDateIndex - 1;
             if(newIndex < 0 || newIndex >= timeline.date.length) return;
             selectNewDate(timeline, timeline.date[newIndex]);
             resetTimelinePosition(timeline, direction);
         };
-    
+
         function resetTimelinePosition(timeline, direction) { //translate timeline according to new selected event position
             var eventStyle = window.getComputedStyle(timeline.selectedDate, null),
                 eventLeft = Number(eventStyle.getPropertyValue('left').replace('px', '')),
                 timelineWidth = timeline.datesContainer.offsetWidth;
-    
+
         if( (direction == 'next' && eventLeft >= timelineWidth - timeline.translate) || (direction == 'prev' && eventLeft <= - timeline.translate) ) {
             timeline.translate = timelineWidth/2 - eventLeft;
             translateTimeline(timeline, false);
         }
       };
-    
+
       function parseDate(timeline) { // get timestamp value for each date
             var dateArrays = [];
             for(var i = 0; i < timeline.date.length; i++) {
                 var singleDate = timeline.date[i].getAttribute('data-date'),
                     dateComp = singleDate.split('T');
-    
+
                 if( dateComp.length > 1 ) { //both DD/MM/YEAR and time are provided
                     var dayComp = dateComp[0].split('/'),
                         timeComp = dateComp[1].split(':');
@@ -528,23 +528,23 @@ $(document).ready(function() {
             }
           return dateArrays;
       };
-    
+
       function calcMinLapse(timeline) { // determine the minimum distance among events
             var dateDistances = [];
             for(var i = 1; i < timeline.dateValues.length; i++) {
             var distance = daydiff(timeline.dateValues[i-1], timeline.dateValues[i]);
             if(distance > 0) dateDistances.push(distance);
             }
-    
+
             return (dateDistances.length > 0 ) ? Math.min.apply(null, dateDistances) : 86400000;
         };
-    
+
         function daydiff(first, second) { // time distance between events
             return Math.round((second-first));
         };
-    
+
       window.HorizontalTimeline = HorizontalTimeline;
-    
+
       var horizontalTimeline = document.getElementsByClassName('js-h--timeline'),
           horizontalTimelineTimelineArray = [];
       if(horizontalTimeline.length > 0) {
@@ -560,13 +560,13 @@ $(document).ready(function() {
                 }
             });
       };
-    
+
       function updateHorizontalTimeline(direction) {
             for(var i = 0; i < horizontalTimelineTimelineArray.length; i++) {
                 if(elementInViewport(horizontalTimeline[i])) keyNavigateTimeline(horizontalTimelineTimelineArray[i], direction);
             }
       };
-    
+
       /*
             How to tell if a DOM element is visible in the current viewport?
             http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
@@ -576,13 +576,13 @@ $(document).ready(function() {
             var left = el.offsetLeft;
             var width = el.offsetWidth;
             var height = el.offsetHeight;
-    
+
             while(el.offsetParent) {
                 el = el.offsetParent;
                 top += el.offsetTop;
                 left += el.offsetLeft;
             }
-    
+
             return (
                 top < (window.pageYOffset + window.innerHeight) &&
                 left < (window.pageXOffset + window.innerWidth) &&
@@ -591,11 +591,11 @@ $(document).ready(function() {
             );
         }
     }());
-    
+
 
 $('.sidenav ul.toggle').click(function(){
 
-    
+
   $(this).toggleClass('active');
   $('.sidenav ul.sidemenu').toggleClass('active');
 })
@@ -627,7 +627,7 @@ gsap.fromTo('.hero-textbox',{yPercent: 40,opacity: 0},{duration: 1,delay: 1.3,yP
   const countdown = document.querySelector('.countdown');
 
 // Set Launch Date (ms)
-const launchDate = new Date('Oct 17, 2022 00:00:00').getTime();
+let launchDate = new Date('Oct 17, 2022 12:00:00');
 
 // Update every second
 const intvl = setInterval(() => {
@@ -647,7 +647,7 @@ const intvl = setInterval(() => {
 
   // Display result
   countdown.innerHTML = `
-  <div>${days}<span>Days</span></div> 
+  <div>${days}<span>Days</span></div>
   <div>${hours}<span>Hours</span></div>
   <div>${mins}<span>Minutes</span></div>
   <div>${seconds}<span>Seconds</span></div>
@@ -698,13 +698,13 @@ window.onload = function() {
         }
 
         if (currentActive != currentSlide) {
-            testimContent[currentActive].classList.add("inactive");            
+            testimContent[currentActive].classList.add("inactive");
         }
         testimContent[slide].classList.add("active");
         testimDots[slide].classList.add("active");
 
         currentActive = currentSlide;
-    
+
         clearTimeout(testimTimer);
         testimTimer = setTimeout(function() {
             playSlide(currentSlide += 1);
@@ -717,7 +717,7 @@ window.onload = function() {
 
     testimRightArrow.addEventListener("click", function() {
         playSlide(currentSlide += 1);
-    })    
+    })
 
     for (var l = 0; l < testimDots.length; l++) {
         testimDots[l].addEventListener("click", function() {
@@ -733,7 +733,7 @@ window.onload = function() {
             case 37:
                 testimLeftArrow.click();
                 break;
-                
+
             case 39:
                 testimRightArrow.click();
                 break;
@@ -746,21 +746,21 @@ window.onload = function() {
                 break;
         }
     })
-		
+
 		testim.addEventListener("touchstart", function(e) {
 				touchStartPos = e.changedTouches[0].clientX;
 		})
-	
+
 		testim.addEventListener("touchend", function(e) {
 				touchEndPos = e.changedTouches[0].clientX;
-			
-				touchPosDiff = touchStartPos - touchEndPos;
-			
-				console.log(touchPosDiff);
-				console.log(touchStartPos);	
-				console.log(touchEndPos);	
 
-			
+				touchPosDiff = touchStartPos - touchEndPos;
+
+				console.log(touchPosDiff);
+				console.log(touchStartPos);
+				console.log(touchEndPos);
+
+
 				if (touchPosDiff > 0 + ignoreTouch) {
 						testimLeftArrow.click();
 				} else if (touchPosDiff < 0 - ignoreTouch) {
@@ -768,7 +768,7 @@ window.onload = function() {
 				} else {
 					return;
 				}
-			
+
 		})
 }
 
