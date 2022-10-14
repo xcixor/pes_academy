@@ -17,8 +17,8 @@ class CallToActionAdminFormTestCase(ApplicationBaseTestCase):
 
     def test_defines_fields(self):
         fields = [
-            'image', 'tagline', 'description', 'slug',
-            'deadline', 'available_for_applications']
+            'image', 'tagline', 'description', 'description_fr',
+            'slug', 'deadline', 'available_for_applications']
         self.assertEqual([*self.form.fields.keys()], fields)
 
     def test_slug_field_extra_properties(self):
