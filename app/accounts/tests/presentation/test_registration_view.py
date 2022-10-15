@@ -19,7 +19,8 @@ class RegistrationViewTestCase(TestCase):
             'password1': 'test1234*',
             'password2': 'test1234*',
             'username': 'pish_dush',
-            'is_applying_for_a_call_to_action': True
+            'is_applying_for_a_call_to_action': True,
+            'terms': True
         }
 
     def test_post_registration_view(self):

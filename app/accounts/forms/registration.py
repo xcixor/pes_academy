@@ -1,4 +1,5 @@
 import re
+from symbol import term
 from django.contrib.auth import get_user_model
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -23,6 +24,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
 
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+    terms = forms.BooleanField(initial=False, required=True)
     is_applying_for_a_call_to_action = forms.ChoiceField(
         choices=USER_TYPE_CHOICES,
         label=_("Reason for Application"),
@@ -40,6 +42,15 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
         validate_password(password)
         self.custom_validate_password(password)
         return password
+
+    def clean_terms(self):
+        terms = self.cleaned_data['terms']
+        if not terms:
+            terms_error_message = _(
+                'Please read and agree to our terms '
+                'and privacy by checking the box')
+            raise forms.ValidationError(terms_error_message)
+        return terms
 
     def custom_validate_password(self, password):
         regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')

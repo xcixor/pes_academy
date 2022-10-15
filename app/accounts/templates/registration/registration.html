@@ -135,10 +135,21 @@
             {% endfor %}
           </div>
           <hr>
-          <p>{% trans "By creating an account you agree to our" %}<a href="#" style="color: #455D8D;">
-              {% trans "Terms & Privacy" %}</a>.</p>
+
         </div>
 
+      </div>
+      <div class="md-form row mt-4">
+        <div class="col-sm-12">
+          <label>
+            <input type="checkbox" required name="terms"> {% trans "By creating an account you agree to our" %}<a
+              href="#" style="color: #455D8D;">
+              {% trans "Terms & Privacy" %}</a>.
+          </label>
+          {% for error in form.terms.errors %}
+          <p class="error e">{{ error|escape }}</p>
+          {% endfor %}
+        </div>
       </div>
       <div class="text-center">
         <button type="submit" class="btn registerbtn">{% trans "Register" %}</button>
