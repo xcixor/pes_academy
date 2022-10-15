@@ -53,7 +53,9 @@ class GetApplicationFormView(DetailView):
                 request, messages.INFO, message)
             return redirect(reverse('agripitch:agripitch_landing_page'))
         context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
+        if request.user.application.stage == 'step_one':
+            return self.render_to_response(context)
+        return redirect(reverse('agripitch:application_view'))
 
 
 def process_inputs(inputs, application):

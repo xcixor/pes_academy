@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body_id %}cfa{% endblock %}
+{% load i18n %}
+{% block styles %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/agripitch/pdf/application_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/application/index.css' %}">
+{% endblock %}
+{% load agripitch_extras %}
+{% load countries %}
+{% block content %}
+
+<section class="container-fluid m-0 p-0 section-main">
+    <div class="wrapper">
+        <div class="row m-0 p-0 main-row bg-white">
+            <div class="col-md-12 form-step">
+                <h2 class="text-site-secondary mt-5"><strong>AfDB Agripitch Competition 2022</strong></h2>
+                <h3 class="text-site-secondary"><strong>Your Application Responses</strong></h3>
+            </div>
+        </div>
+        <div class="row m-0 p-0 main-row bg-white">
+            <div class="col-md-12 col-sm-12">
+                <div>
+                    <div id="multi-step-form-container">
+                        <form name="form" id="userAccountSetupForm">
+                            {% for item in criteria %}
+                            <section class="form-step mb-5" style="page-break-before: always">
+                                <h2 class="font-normal">{{item}}</h2>
+                                <div class="mt-3">
+                                    {% for sub_criteria in item.sub_criteria.all %}
+                                    <div>
+                                        <h4><strong>{{sub_criteria}}</strong></h4>
+                                        {% with sub_criteria|get_response:user.application as response %}
+                                        {% if sub_criteria.type == 'file' %}
+                                        <a href="{{response.document.url}}"
+                                            target="_blank">{{response}}</a>
+                                        {% elif response.type == 'countryfield' %}
+                                        {% get_country response.item as country %}
+                                        {{ country.name }}
+                                        {% else %}
+                                        {{ response }}
+                                        {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                            {% endfor %}
+                            <!-- Step 3 Content, default hidden on page load. -->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/agripitch/application_form.js' %}"></script>
+{% endblock %}
+{% block footer %}
+{% endblock %}

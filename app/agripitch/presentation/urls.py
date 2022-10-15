@@ -2,7 +2,7 @@ from django.urls import path
 from agripitch.presentation.views import (
     ApplicationFormView, AgripitchLandingView,
     generate_application_pdf, DeleteSubCriteriaView,
-    GalleryPageView)
+    GalleryPageView, ApplicationView)
 
 
 app_name = 'agripitch'
@@ -15,5 +15,7 @@ urlpatterns = [
     path('subcriteria/responses/delete/',
          DeleteSubCriteriaView.as_view(), name='delete_sub_criteria'),
     path('gallery/',
-         GalleryPageView.as_view(), name='gallery')
+         GalleryPageView.as_view(), name='gallery'),
+    path('application/view/',
+         ApplicationView.as_view(), name='application_view')
 ]
