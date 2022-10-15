@@ -604,3 +604,14 @@ function saveDraftData(formData) {
 function isEmptyOrSpaces(str) {
 	return str === null || str.match(/^ *$/) !== null;
 }
+
+// $('#confirmationModal').on('shown.bs.modal', function () {
+//   $('#triggerModal').trigger('focus')
+
+// })
+
+
+
+// $('#triggerModal').on('click', function () {
+//   $('#confirmationModal').modal("show");
+// })

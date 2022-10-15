@@ -180,12 +180,35 @@ ul.form-stepper li a .form-stepper-circle {
 }
 
 .form-step label {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .textarea-characters-remaining {
     font-size: 1rem;
     font-weight: 600;
+}
+
+.modal-backdrop{
+    z-index: 1000 !important;
+}
+
+.emphasis {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.modal-body p {
+    font-size: 2rem;
+}
+
+.modal {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.green-info-icon {
+    font-size: 2.5rem;
+    color: #14A562;
 }
 
 @media only screen and (max-width: 992px) {
