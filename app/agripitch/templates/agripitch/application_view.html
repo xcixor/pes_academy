@@ -31,7 +31,7 @@
                                     {% for sub_criteria in item.sub_criteria.all %}
                                     <div>
                                         <h4><strong>{{sub_criteria}}</strong></h4>
-                                        {% with sub_criteria|get_response:user.application as response %}
+                                        {% with sub_criteria.label|get_response:user.application as response %}
                                         {% if sub_criteria.type == 'file' %}
                                         <a href="{{response.document.url}}"
                                             target="_blank">{{response}}</a>

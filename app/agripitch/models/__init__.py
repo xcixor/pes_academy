@@ -142,7 +142,7 @@ class DynamicForm(forms.Form):
                     widget=forms.Textarea)
             elif instance.type == 'choicefield':
                 initial_choices = [
-                    (choice.choice, choice.choice)
+                    (choice.choice, choice)
                     for choice in instance.choices.all()]
                 initial_choices.insert(0, ('', 'Select Option'))
                 self.fields[instance.label] = forms.ChoiceField(
@@ -150,7 +150,7 @@ class DynamicForm(forms.Form):
                 self.fields[instance.label].choices = initial_choices
             elif instance.type == 'multiplechoicefield':
                 choices = [
-                    (choice.choice, choice.choice)
+                    (choice.choice, choice)
                     for choice in instance.choices.all()]
                 self.fields[instance.label] = forms.MultipleChoiceField(
                     widget=forms.CheckboxSelectMultiple,
@@ -168,7 +168,7 @@ class DynamicForm(forms.Form):
                     self.fields[instance.label].initial = initial_choices
             elif instance.type == 'radiofield':
                 choices = [
-                    (choice.choice, choice.choice)
+                    (choice.choice, choice)
                     for choice in instance.choices.all()]
                 self.fields[instance.label] = forms.CharField(
                     **properties, widget=forms.RadioSelect(choices=choices))
@@ -279,15 +279,29 @@ class SubCriteriaItemFieldProperties(models.Model):
         return self.value
 
 
-class SubCriteriaItemChoice(models.Model):
+class SubCriteriaItemChoice(Translatable):
 
     choice = models.CharField(max_length=200)
     sub_criteria_item = models.ForeignKey(
         SubCriteriaItem, on_delete=models.CASCADE,
         related_name='choices')
 
+    class TranslatableMeta:
+        fields = ['choice']
+
     def __str__(self) -> str:
+        language = get_language()
+        if language == 'fr':
+            item = SubCriteriaItemChoice.objects.filter(
+                pk=self.pk).translate('fr')[0]
+            return item.choice
         return self.choice
+
+    # def __str__(self) -> str:
+    #     return self.get_choice_label
+
+    class Meta:
+        verbose_name_plural = '7 Choices'
 
 
 class SubCriteriaItemResponse(models.Model):

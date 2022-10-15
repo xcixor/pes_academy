@@ -11,6 +11,11 @@ from agripitch.models import (
     PartnerLogo)
 
 
+@admin.register(SubCriteriaItemChoice)
+class SubCriteriaItemChoiceAdmin(TranslatableAdmin):
+    inlines = [TranslationInline]
+
+
 @admin.register(ShortList)
 class ShortListAdmin(TranslatableAdmin):
     inlines = [TranslationInline]
