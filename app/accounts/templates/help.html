@@ -5,12 +5,12 @@
 {% block content %}
 
 <!-- FAQ -->
-<h3 class="pb-4 main-secondary-title text-center"><strong>Frequently Asked Questions</strong></h3>
+<h3 class="pb-4 main-secondary-title text-center"><strong>{% trans "Frequently Asked Questions" %}</strong></h3>
 <div class="container faq-page">
     <div id="faq-links">
-        <div id="service" class="faq-selected">Applications</div>
-        <div id="installation">Eligibility</div>
-        <div id="plan">Documents</div>
+        <div id="service" class="faq-selected">{% trans "Applications" %}</div>
+        <div id="installation">{% trans "Eligibility" %}</div>
+        <div id="plan">{% trans "Documents" %}</div>
     </div>
 
 
@@ -19,7 +19,7 @@
 
         <div class="faq-group">
             <div class="slide-left mt-5">
-                <div>Application Questions</div>
+                <div>{% trans "Application Questions" %}</div>
             </div>
             <hr>
         </div>
@@ -29,40 +29,39 @@
                 <ul class="faq-accordion">
 
                     <li>
-                        <a href="#">When does the Call for applications open?</a>
+                        <a href="#">{% trans "When does the Call for applications open?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
-                                    <p>The call for applications opens on 17 October 2022</p>
+                                    <p>{% trans "The call for applications opens on 17 October 2022" %}</p>
                                 </div>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">When is the Call for applications deadline?</a>
+                        <a href="#">{% trans "When is the Call for applications deadline?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
-                                    <p>The call for applications deadline is 4 November 2022</p>
+                                    <p>{% trans "The call for applications deadline is 4 November " %}</p>
                                 </div>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#">How long will the Call for applications be open?</a>
+                        <a href="#">{% trans "How long will the Call for applications be open?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
-                                    <p>The call for applications will be open for three(3) weeks, from 17 October to
-                                        4 November 2022</p>
+                                    <p>{% trans "The call for applications will be open for three(3) weeks, from 17 October to 4 November 2022" %}</p>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Who can apply?</a>
+                        <a href="#">{% trans "Who can apply?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
@@ -88,23 +87,33 @@
                     </li>
                     <!--Bacon ipsum-->
                     <li>
-                        <a href="#">Why should I apply?</a>
+                        <a href="#">{% trans "Why should I apply?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
-                                    <p>
+                                    <p>{% blocktranslate %}
                                         The aim of the 2022 AgriPitch Competition is to support agripreneurs by focusing
                                         on enhancing the bankability and viability of their businesses and ensuring that
-                                        they are pitch ready for potential investors. <br> <br>
+                                        they are pitch ready for potential investors.
+                                        {% endblocktranslate %}
+                                         <br> <br>
+                                         {% blocktranslate %}
                                         The AgriPitch Competition promotes innovation and entrepreneurship in
                                         agriculture among youth in Africa to create jobs and improve livelihoods by
                                         providing technical capacity, building skills, and facilitating access to
                                         finance for youth by virtually convening relevant investors focused on start-ups
-                                        and growing SMEs. <br> <br>
+                                        and growing SMEs.
+                                        {% endblocktranslate %}
+                                         <br> <br>
+                                         {% blocktranslate %}
                                         Shortlisted SMEs will receive access to one on one coaching and mentorship,
                                         access to the AgriPitch Dealroom, participation in the virtual bootcamp and six
-                                        months post competition access to resources. <br> <br>
+                                        months post competition access to resources. 
+                                        {% endblocktranslate %}
+                                        <br> <br>
+                                        {% blocktranslate %}
                                         Winning SMEs will access a total grant pool of USD 140,000.
+                                        {% endblocktranslate %}
 
                                     </p>
                                 </div>
@@ -113,14 +122,14 @@
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">How do I apply?</a>
+                        <a href="#">{% trans "How do I apply?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        You can apply online
+                                        {% trans "You can apply online" %}
 
-                                        <a href="https://applications.privateequity-support.com"> Here</a>
+                                        <a href="https://applications.privateequity-support.com"> {% trans "Here" %}</a>
                                     </p>
                                 </div>
                             </li>
@@ -128,17 +137,17 @@
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">What happens if I am unable to apply online?</a>
+                        <a href="#">{% trans "What happens if I am unable to apply online?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        Please contact us at <strong>agri2022@privateequity-support.com</strong> for
-                                        further assistance. <br>
-                                        You can also refer to the <a
-                                            href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf">Call
-                                            for application guide</a> which has detailed information on how to apply,
-                                        and is available in English and French.
+                                        {% trans "Please contact us at" %} <strong>agri2022@privateequity-support.com</strong> {% trans "for further assistance." %}
+                                         <br>
+                                        {% trans "You can also refer to the" %} <a
+                                            href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf">{% trans "Call for application guide" %}
+                                        </a> 
+                                        {% trans "which has detailed information on how to apply, and is available in English and French." %}
                                     </p>
                                 </div>
                             </li>
@@ -146,12 +155,12 @@
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">What languages can I apply in?</a>
+                        <a href="#">{% trans "What languages can I apply in?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        The application form is available in French and English.
+                                        {% trans "The application form is available in French and English." %}
                                     </p>
                                 </div>
                             </li>
@@ -159,93 +168,88 @@
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">How long does it take to complete an application?</a>
+                        <a href="#">{% trans "How long does it take to complete an application?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        The application process takes approximately 45 to 60 minutes. <br>
-                                        You need to have the required documents ready for ease of upload.
+                                        {% trans "The application process takes approximately 45 to 60 minutes." %}
+                                         <br>
+                                         {% trans "You need to have the required documents ready for ease of upload." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">Can I log back in to complete my application?</a>
+                        <a href="#">{% trans "Can I log back in to complete my application?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        Yes, you can log back in anytime before the deadline for submission date to
-                                        finalize and submit your application. You are able to save your application and
-                                        resume from where you left off. <br>
-                                        You are encouraged however to complete and submit your application as soon as
-                                        possible.
+                                        {% trans "Yes, you can log back in anytime before the deadline for submission date to finalize and submit your application. You are able to save your application and resume from where you left off." %} 
+                                        <br>
+                                        {% trans "You are encouraged however to complete and submit your application as soon as possible." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">How long will it take to know if my application was successful?</a>
+                        <a href="#">{% trans "How long will it take to know if my application was successful?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        Once your application is received, it will be reviewed based on the set criteria
-                                        and the outcome will be communicated to you in the fourth week of November.
+                                        {% trans "Once your application is received, it will be reviewed based on the set criteria and the outcome will be communicated to you in the fourth week of November." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">Can I edit my application once I submit?</a>
+                        <a href="#">{% trans "Can I edit my application once I submit?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        No. Once the application is submitted, you cannot be able to edit it.
+                                        {% trans "No. Once the application is submitted, you cannot be able to edit it." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">Can I apply if I had applied previously and was not shortlisted?</a>
+                        <a href="#">{% trans "Can I apply if I had applied previously and was not shortlisted?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        Yes. If you had applied previously and was not shortlisted, you are encouraged
-                                        to apply again.
+                                        {% trans "Yes. If you had applied previously and was not shortlisted, you are encouraged to apply again." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">If I had applied previously, was shortlisted and did not win the prize money, can I
-                            apply?</a>
+                        <a href="#">{% trans "If I had applied previously, was shortlisted and did not win the prize money, can I apply?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        Yes. If you had applied previously and did not win the prize money, you are
-                                        encouraged to apply again.
+                                        {% trans "Yes. If you had applied previously and did not win the prize money, you are encouraged to apply again." %}
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!--Carey ipsum-->
                     <li>
-                        <a href="#">If I had applied previously, and won the prize money, can I apply?</a>
+                        <a href="#">{% trans "If I had applied previously, and won the prize money, can I apply?" %}</a>
                         <ul class="faq-content">
                             <li>
                                 <div>
                                     <p>
-                                        No, we wish to provide opportunity to others to participate.
+                                        {% trans "No, we wish to provide opportunity to others to participate." %}
                                 </div>
                             </li>
                         </ul>
@@ -265,7 +269,7 @@
 
         <div class="faq-group">
             <div class="slide-left">
-                <div>Eligibility requirements</div>
+                <div>{% trans "Eligibility requirements" %}</div>
             </div>
             <hr>
         </div>
@@ -274,43 +278,43 @@
             <ul class="faq-accordion">
 
                 <li>
-                    <a href="#">Who is eligible to apply?</a>
+                    <a href="#">{% trans "Who is eligible to apply?" %}</a>
                     <ul class="faq-content">
                         <li>
                             <div>
                                 <p>
                                     <br>
-                                    1. <strong>Early Start-ups (0-3 years):</strong> 
+                                    1. <strong>{% trans "Early Start-ups (0-3 years):" %}</strong>
                                     <br>
-                                    -Meet eligibility criteria for Early Start-ups.
-                                    <br> 
-                                    -Individuals who are at the very early stage of developing ideas/concepts for agripreneurship or a newly established business.
+                                    -{% trans "Meet eligibility criteria for Early Start-ups." %}
                                     <br>
-                                    -Must have a clearly defined prototype or proof of concept.
+                                    -{% trans "Individuals who are at the very early stage of developing ideas/concepts for agripreneurship or a newly established business." %}
+                                    <br>
+                                    -{% trans "Must have a clearly defined prototype or proof of concept." %}
 
                                     <br>
-                                    -May or may not have had any products introduced to the market.
+                                    -{% trans "May or may not have had any products introduced to the market." %}
                                     <br>
-                                    -May or may not have a registered corporate entity but must have required business licenses.
-                                    <br>
-
-                                    <br>
-                                    2. <strong>Mature Start-ups (above 3 years):</strong> 
-                                    <br>
-                                    -Individuals and firms with existing market traction: technology, product or service, already in the market 
-                                    <br> 
-                                    -Must have a clear investment ask and growth plan/strategy.
-                                    <br>
-                                    -Must be a registered corporate entity.
+                                    -{% trans "May or may not have a registered corporate entity but must have required business licenses." %}
                                     <br>
 
                                     <br>
-                                    3. <strong>Women-empowered Businesses (WEBs):</strong> 
+                                    2. <strong>{% trans "Mature Start-ups (above 3 years):" %}</strong>
                                     <br>
-                                    -Meet eligibility requirements for either Early Start-ups or Mature Start-ups
-                                    <br> 
-                                    -Firms that are 51% owned by women or founded by a woman.
-                                    
+                                    -{% trans "Individuals and firms with existing market traction: technology, product or service, already in the market." %}
+                                    <br>
+                                    -{% trans "Must have a clear investment ask and growth plan/strategy." %}
+                                    <br>
+                                    -{% trans "Must be a registered corporate entity." %}
+                                    <br>
+
+                                    <br>
+                                    3. <strong>{% trans "Women-empowered Businesses (WEBs):" %}</strong>
+                                    <br>
+                                    -{% trans "Meet eligibility requirements for either Early Start-ups or Mature Start-ups" %}
+                                    <br>
+                                    -{% trans "Firms that are 51% owned by women or founded by a woman." %}
+
                                 </p>
                             </div>
                         </li>
@@ -319,11 +323,11 @@
                 <!--Bacon ipsum-->
 
                 <li>
-                    <a href="#">What is meant by Women-led?</a>
+                    <a href="#">{% trans "What is meant by Women-led?" %}</a>
                     <ul class="faq-content">
                         <li>
                             <div>
-                                <p>Firms with at least 51% share of women ownership or founded by a woman.</p>
+                                <p>{% trans "Firms with at least 51% share of women ownership or founded by a woman." %}</p>
                             </div>
                         </li>
                     </ul>
@@ -331,11 +335,13 @@
                 <!--Beer ipsum-->
 
                 <li>
-                    <a href="#">What are the priority sectors?</a>
+                    <a href="#">{% trans "What are the priority sectors?" %}</a>
                     <ul class="faq-content">
                         <li>
                             <div>
-                                <p>Businesses in the Agribusiness sector value chain, focusing on food and nutrition.
+                                <p>{% trans "Businesses in the Agribusiness sector value chain, focusing on food and nutrition." %} </p>    
+                            </div>
+                            
                         </li>
                     </ul>
                 </li>
@@ -351,7 +357,7 @@
 
         <div class="faq-group">
             <div class="slide-left">
-                <div>Required Documents</div>
+                <div>{% trans "Required Documents" %}</div>
             </div>
             <hr>
         </div>
@@ -359,21 +365,27 @@
             <ul class="faq-accordion">
 
                 <li>
-                    <a href="#">Which documents are required to apply?</a>
+                    <a href="#">{% trans "Which documents are required to apply?" %}</a>
                     <ul class="faq-content">
                         <li>
                             <div>
-                                <p>To apply, you need these documents <br>
+                                <p>{% trans "To apply, you need these documents" %} <br>
                                     <br>
-                                    National ID card / passport <br>
-                                    Company registration document <br>
-                                    Company brochure <br>
-                                    Summary business plan <br>
-                                    Business licences <br>
-                                    Company profile <br>
-                                    Financial statements <br>
-                                    Marketing materials <br>
-                                    Pitch deck <br>
+                                    {% trans "National ID card / passport" %} <br>
+                                    {% trans "Company registration document" %} <br>
+                                    {% trans "Company brochure" %} 
+                                    <br>
+                                    {% trans "Summary business plan" %} 
+                                    <br>
+                                    {% trans "Business licences" %} 
+                                    <br>
+                                    {% trans "Company profile" %} 
+                                    <br>
+                                    {% trans "Financial statements" %} 
+                                    <br>
+                                    {% trans "Marketing materials" %} 
+                                    <br>
+                                    {% trans "Pitch deck" %} <br>
                                 </p>
                             </div>
                         </li>
@@ -382,13 +394,14 @@
                 <!--Bacon ipsum-->
 
                 <li>
-                    <a href="#">What if I do not have my business registered?</a>
+                    <a href="#">{% trans "What if I do not have my business registered?" %}</a>
                     <ul class="faq-content">
                         <li>
                             <div>
                                 <p>
-                                    You need to have your business legally registered in order to apply for Mature Start-ups. <br>
-                                    For Early stage startups, you need to have the required business licences to operate in your required country.
+                                    {% trans "You need to have your business legally registered in order to apply for Mature Start-ups." %}
+                                     <br>
+                                     {% trans "For Early stage startups, you need to have the required business licences to operate in your required country." %}
                                 </p>
                             </div>
                         </li>
@@ -406,45 +419,47 @@
 <!--container-->
 
 <div class="dropdown d-flex justify-content-center m-5">
-  <button class="btn btn-secondary dropdown-toggle download-resources" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Need Help? Message Us
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <form action="{% url 'accounts:help' %}" method="post">
-        {% csrf_token %}
-        <div class="container login">
-            <h2 class="font-weight-bold mb-2 mt-2 text-center h1 text-site-primary"></i>{% trans "Help" %} </h2>
-            <br>
-            <!--Body-->
-            <div class="md-form">
-                <i class="fa fa-user prefix white-text"></i>
-                <label for="id_name">{% trans "Name" %}</label>
-                <input type="text" id="id_name" class="form-control" placeholder="{% trans " Name" %}" name="name" required>
+    <button class="btn btn-secondary dropdown-toggle download-resources" type="button" id="dropdownMenu2"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% trans "Need Help? Message Us" %}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <form action="{% url 'accounts:help' %}" method="post">
+            {% csrf_token %}
+            <div class="container login">
+                <h2 class="font-weight-bold mb-2 mt-2 text-center h1 text-site-primary"></i>{% trans "Help" %} </h2>
+                <br>
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fa fa-user prefix white-text"></i>
+                    <label for="id_name">{% trans "Name" %}</label>
+                    <input type="text" id="id_name" class="form-control" placeholder="{% trans " Name" %}" name="name"
+                        required>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix white-text"></i>
+                    <label for="id_name">{% trans "Email" %}</label>
+                    <input type="text" id="id_name" class="form-control" placeholder="{% trans " Your Email Address" %}"
+                        name="email" required>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-user prefix white-text"></i>
+                    <label for="id_subject">{% trans "Subject" %}</label>
+                    <!-- <input type="text" id="id_subject" class="form-control" placeholder="{% trans "Reason for contacting us" %}" name="subject" required> -->
+                    <select name="subject" id="id-subject">
+                        <option value="Cant upload documents">{% trans "Cannot Upload documents" %}</option>
+                        <option value="No documents">{% trans "I do not have certain documents" %}</option>
+                        <option value="Cant access application form">{% trans "Can't access application form" %}</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn registerbtn">{% trans "Submit" %}</button>
+                </div>
             </div>
-            <div class="md-form">
-                <i class="fa fa-envelope prefix white-text"></i>
-                <label for="id_name">{% trans "Email" %}</label>
-                <input type="text" id="id_name" class="form-control" placeholder="{% trans " Your Email Address" %}"
-                    name="email" required>
-            </div>
-            <div class="md-form">
-                <i class="fa fa-user prefix white-text"></i>
-                <label for="id_subject">{% trans "Subject" %}</label>
-                <!-- <input type="text" id="id_subject" class="form-control" placeholder="{% trans "Reason for contacting us" %}" name="subject" required> -->
-                <select name="subject" id="id-subject">
-                    <option value="Cant upload documents">Cannot Upload documents</option>
-                    <option value="No documents">I do not have certain documents</option>
-                    <option value="Cant access application form">Can't access application form</option>
-                </select>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn registerbtn">{% trans "Submit" %}</button>
-            </div>
-        </div>
-    
-    
-    </form>
-  </div>
+
+
+        </form>
+    </div>
 </div>
 
 

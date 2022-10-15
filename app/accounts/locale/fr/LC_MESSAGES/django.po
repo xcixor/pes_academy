@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-16 17:08+0300\n"
+"POT-Creation-Date: 2022-10-15 11:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,228 +17,720 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms/registration.py:17 templates/registration/registration.html:48
-msgid "Applying for call to action"
-msgstr "Demande d'appel à l'action"
-
-#: forms/registration.py:18 models/user.py:66 templates/profile/edit.html:56
-#: templates/registration/registration.html:49
-msgid "Other"
-msgstr "Autre"
-
-#: forms/registration.py:28
-msgid "Reason for Application"
-msgstr "Ton application"
-
-#: forms/registration.py:48 templates/registration/registration.html:75
-#: templates/registration/staff_registration.html:63
+#: .\forms\password_change.py:31 .\forms\registration.py:48
+#: .\templates\registration\staff_registration.html:63
 msgid "Your password should have a special character."
 msgstr "Votre mot de passe doit avoir un caractère spécial."
 
-#: forms/registration.py:51 templates/registration/registration.html:76
-#: templates/registration/staff_registration.html:64
+#: .\forms\password_change.py:35 .\forms\registration.py:51
+#: .\templates\registration\staff_registration.html:64
 msgid "Your password should have at least one number."
 msgstr "Votre mot de passe doit comporter au moins un chiffre."
 
-#: forms/registration.py:59
+#: .\forms\password_change.py:44 .\forms\registration.py:59
 msgid "Please make sure your passwords match."
 msgstr "Merci de vérifier que vos mots de passe correspondent."
 
-#: forms/registration.py:64
+#: .\forms\password_change.py:57 .\forms\password_change.py:83
+msgid "Sorry, account with the email"
+msgstr "Désolé, compte avec l'adresse e-mail"
+
+#: .\forms\password_change.py:58 .\forms\password_change.py:84
+msgid "does not exist."
+msgstr "n'existe pas."
+
+#: .\forms\password_change.py:66
+msgid "Password Reset Requested"
+msgstr "Réinitialisation du mot de passe demandée"
+
+#: .\forms\registration.py:17
+msgid "Applying for call to action"
+msgstr "Demande d'appel à l'action"
+
+#: .\forms\registration.py:18 .\models\user.py:66
+#: .\templates\profile\edit.html:56
+#: .\templates\registration\partial\registration.html:80
+#: .\templates\registration\partial\registration.html:83
+#: .\templates\registration\registration.html:90
+#: .\templates\registration\registration.html:93
+msgid "Other"
+msgstr "Autre"
+
+#: .\forms\registration.py:28
+msgid "Reason for Application"
+msgstr "Ton application"
+
+#: .\forms\registration.py:64
 msgid "Account Activation"
 msgstr "Activation de compte"
 
-#: models/user.py:18
+#: .\models\user.py:18
 msgid "A User must have a username"
 msgstr "Un utilisateur doit avoir un nom d'utilisateur"
 
-#: models/user.py:37
+#: .\models\user.py:37
 msgid "Superuser must have is_superuser=True."
 msgstr "Le superutilisateur doit avoir is_superuser=True."
 
-#: models/user.py:59 templates/profile/edit.html:77
+#: .\models\user.py:59 .\templates\profile\edit.html:77
 msgid "English"
 msgstr "Anglais"
 
-#: models/user.py:60 templates/profile/edit.html:78
+#: .\models\user.py:60 .\templates\profile\edit.html:78
 msgid "French"
 msgstr "français"
 
-#: models/user.py:61 templates/profile/edit.html:79
+#: .\models\user.py:61 .\templates\profile\edit.html:79
 msgid "Portuguese"
 msgstr "Portugais"
 
-#: models/user.py:63 templates/profile/edit.html:53
+#: .\models\user.py:63 .\templates\profile\edit.html:53
 msgid "Male"
 msgstr "Mâle"
 
-#: models/user.py:64 templates/profile/edit.html:54
+#: .\models\user.py:64 .\templates\profile\edit.html:54
 msgid "Female"
 msgstr "Femme"
 
-#: models/user.py:65 templates/profile/edit.html:55
+#: .\models\user.py:65 .\templates\profile\edit.html:55
 msgid "Prefer not to say"
 msgstr "Je préfère ne pas le dire"
 
-#: models/user.py:68
+#: .\models\user.py:68
 msgid "20-29"
 msgstr "20-29"
 
-#: models/user.py:69
+#: .\models\user.py:69
 msgid "30-39"
 msgstr "30-39"
 
-#: models/user.py:70
+#: .\models\user.py:70
 msgid "40-49"
 msgstr "40-49"
 
-#: models/user.py:71 templates/profile/edit.html:41
+#: .\models\user.py:71 .\templates\profile\edit.html:41
 msgid "Above 50"
 msgstr "Au-dessus de 50"
 
-#: models/user.py:75
+#: .\models\user.py:75
 msgid "Email Address"
 msgstr "Adresse e-mail principale"
 
-#: presentation/views/activate_account.py:20
+#: .\presentation\views\activate_account.py:20
 msgid "Congratulations "
 msgstr "Toutes nos félicitations"
 
-#: presentation/views/activate_account.py:22
-msgid ", your account is now active. Please login to continue!"
+#: .\presentation\views\activate_account.py:22
+#| msgid ", your account is now active. Please login to continue!"
+msgid ", your account is now active!"
 msgstr ""
 ", votre compte est maintenant actif. Veuillez vous connecter pour continuer!"
 
-#: presentation/views/activate_account.py:27
+#: .\presentation\views\activate_account.py:28
 msgid "Uh oh! something went wrong."
 msgstr "Oh oh ! quelque chose s'est mal passé."
 
-#: presentation/views/coaching.py:24
+#: .\presentation\views\coaching.py:24
 msgid " Has been added as your coach."
 msgstr " A été ajouté comme entraîneur."
 
-#: presentation/views/coaching.py:29
+#: .\presentation\views\coaching.py:29
 msgid "Hi, "
 msgstr "Salut, "
 
-#: presentation/views/coaching.py:30
+#: .\presentation\views\coaching.py:30
 msgid " has added you as their coach."
 msgstr " A été ajouté comme entraîneur."
 
-#: presentation/views/coaching.py:33
+#: .\presentation\views\coaching.py:33
 msgid "PSA Student"
 msgstr "Étudiant PSA"
 
-#: presentation/views/help.py:18
+#: .\presentation\views\help.py:18
 msgid ""
 "Thank you, your message has been received. We'll get back to you shortly."
 msgstr "Merci, votre message a bien été reçu. Nous vous répondrons sous peu."
 
-#: presentation/views/login.py:16
+#: .\presentation\views\login.py:25
 msgid "Welcome back "
 msgstr "Content de te revoir"
 
-#: presentation/views/profile.py:25
+#: .\presentation\views\password_change.py:52
+msgid "Hmm..That didn't work please try again."
+msgstr "Hmm.. Cela n'a pas fonctionné, veuillez réessayer."
+
+#: .\presentation\views\profile.py:25
 msgid "Oops, something went wrong, please check your details"
 msgstr "Merci, votre message a bien été reçu. Nous vous répondrons sous peu."
 
-#: presentation/views/profile.py:32
+#: .\presentation\views\profile.py:32
 msgid "Great! your details have been saved"
 msgstr "Super! vos coordonnées ont été enregistrées"
 
-#: templates/help.html:12
-msgid "Help"
-msgstr "Aider"
+#: .\templates\help.html:8
+msgid "Frequently Asked Questions"
+msgstr "Questions fréquemment posées"
 
-#: templates/help.html:17 templates/help.html:18
-msgid "Name"
-msgstr "Nom"
-
-#: templates/help.html:22
-msgid "Subject"
-msgstr "Matière"
-
-#: templates/help.html:23
-msgid "Reason for contacting us"
-msgstr "Ton application"
-
-#: templates/help.html:27 templates/profile/dashboard.html:304
-msgid "Email"
-msgstr "E-mail"
-
-#: templates/help.html:28
-msgid "Your Email Address"
-msgstr "Adresse e-mail principale"
-
-#: templates/help.html:31
-msgid "Your Message"
-msgstr "Votre message"
-
-#: templates/help.html:32
-msgid "How can we help you?"
-msgstr "Comment pouvons-nous vous aider?"
-
-#: templates/help.html:35
-msgid "Submit"
-msgstr "Soumettre"
-
-#: templates/profile/dashboard.html:23
-msgid "Home"
-msgstr "Domicile"
-
-#: templates/profile/dashboard.html:26
-msgid "Academy"
-msgstr "Académie"
-
-#: templates/profile/dashboard.html:33 templates/profile/dashboard.html:144
-msgid "Coaches"
-msgstr "Entraîneurs"
-
-#: templates/profile/dashboard.html:42 templates/profile/dashboard.html:167
-msgid "My Coaches"
-msgstr "Mes entraîneurs"
-
-#: templates/profile/dashboard.html:48 templates/profile/dashboard.html:191
+#: .\templates\help.html:11 .\templates\profile\dashboard.html:56
+#: .\templates\profile\dashboard.html:213
 msgid "Applications"
 msgstr "Applications"
 
-#: templates/profile/dashboard.html:51
+#: .\templates\help.html:12
+msgid "Eligibility"
+msgstr "Admissibilité"
+
+#: .\templates\help.html:13
+msgid "Documents"
+msgstr "Documents"
+
+#: .\templates\help.html:22
+#| msgid "Applications"
+msgid "Application Questions"
+msgstr "Demande de candidature"
+
+#: .\templates\help.html:32
+msgid "When does the Call for applications open?"
+msgstr "Quand s'ouvre l'appel à candidatures ?"
+
+#: .\templates\help.html:36
+msgid "The call for applications opens on 17 October 2022"
+msgstr "L'appel à candidatures ouvre le 17 octobre 2022"
+
+#: .\templates\help.html:43
+msgid "When is the Call for applications deadline?"
+msgstr "Quelle est la date limite de l'appel à candidatures ?"
+
+#: .\templates\help.html:47
+msgid "The call for applications deadline is 4 November "
+msgstr "La date limite d'appel à candidatures est le 4 novembre"
+
+#: .\templates\help.html:54
+msgid "How long will the Call for applications be open?"
+msgstr "Combien de temps l'appel à candidatures sera-t-il ouvert ?"
+
+#: .\templates\help.html:58
+msgid ""
+"The call for applications will be open for three(3) weeks, from 17 October "
+"to 4 November 2022"
+msgstr ""
+"L'appel à candidatures sera ouvert pendant trois (3) semaines, à partir du 17 octobre "
+"jusqu'au 4 novembre 2022"
+
+#: .\templates\help.html:64
+msgid "Who can apply?"
+msgstr "Qui peut postuler ?"
+
+#: .\templates\help.html:90
+msgid "Why should I apply?"
+msgstr "Pourquoi devrais-je postuler ?"
+
+#: .\templates\help.html:94
+msgid ""
+"\n"
+"                                        The aim of the 2022 AgriPitch "
+"Competition is to support agripreneurs by focusing\n"
+"                                        on enhancing the bankability and "
+"viability of their businesses and ensuring that\n"
+"                                        they are pitch ready for potential "
+"investors.\n"
+"                                        "
+msgstr ""
+"\n"
+"L'objectif de l'AgriPitch 2022 "
+"La concurrence est de soutenir les agripreneurs en se concentrant\n"
+"sur l'amélioration de la bancabilité et "
+"la viabilité de leurs entreprises et s'assurer que\n"
+"ils sont prêts pour le potentiel "
+"investisseurs.\n"
+"                                        "
+
+#: .\templates\help.html:100
+msgid ""
+"\n"
+"                                        The AgriPitch Competition promotes "
+"innovation and entrepreneurship in\n"
+"                                        agriculture among youth in Africa to "
+"create jobs and improve livelihoods by\n"
+"                                        providing technical capacity, "
+"building skills, and facilitating access to\n"
+"                                        finance for youth by virtually "
+"convening relevant investors focused on start-ups\n"
+"                                        and growing SMEs.\n"
+"                                        "
+msgstr ""
+"\n"
+"Le Concours AgriPitch promeut "
+"innovation et entrepreneuriat en\n"
+"l'agriculture chez les jeunes en Afrique pour "
+"créer des emplois et améliorer les moyens de subsistance en\n"
+"fournir une capacité technique, "
+"développer des compétences et faciliter l'accès à\n"
+"financement pour les jeunes en "
+"réunir des investisseurs pertinents axés sur les start-up\n"
+"et les PME en croissance.\n"
+"                                        "
+
+#: .\templates\help.html:108
+msgid ""
+"\n"
+"                                        Shortlisted SMEs will receive access "
+"to one on one coaching and mentorship,\n"
+"                                        access to the AgriPitch Dealroom, "
+"participation in the virtual bootcamp and six\n"
+"                                        months post competition access to "
+"resources. \n"
+"                                        "
+msgstr ""
+"\n"
+"Les PME présélectionnées auront accès "
+"au coaching individuel et au mentorat,\n"
+"accès à la Dealroom AgriPitch, "
+"participation au bootcamp virtuel et six\n"
+"mois après la compétition l'accès à "
+"ressources. \n"
+"                                        "
+
+#: .\templates\help.html:114
+msgid ""
+"\n"
+"                                        Winning SMEs will access a total "
+"grant pool of USD 140,000.\n"
+"                                        "
+msgstr ""
+"\n"
+"Les PME gagnantes accéderont à un total "
+"réserve de subventions de 140 000 USD.\n"
+"                                        "
+
+#: .\templates\help.html:125
+msgid "How do I apply?"
+msgstr "Comment postuler ?"
+
+#: .\templates\help.html:130
+msgid "You can apply online"
+msgstr "Vous pouvez postuler en ligne"
+
+#: .\templates\help.html:132
+msgid "Here"
+msgstr "Ici"
+
+#: .\templates\help.html:140
+msgid "What happens if I am unable to apply online?"
+msgstr "Que se passe-t-il si je ne parviens pas à postuler en ligne ?"
+
+#: .\templates\help.html:145
+#| msgid "Reason for contacting us"
+msgid "Please contact us at"
+msgstr "Veuillez nous contacter au"
+
+#: .\templates\help.html:145
+msgid "for further assistance."
+msgstr "pour plus d'aide."
+
+#: .\templates\help.html:147
+msgid "You can also refer to the"
+msgstr "Vous pouvez également vous référer au"
+
+#: .\templates\help.html:148
+#| msgid "Reason for Application"
+msgid "Call for application guide"
+msgstr "Appel à candidature"
+
+#: .\templates\help.html:150
+msgid ""
+"which has detailed information on how to apply, and is available in English "
+"and French."
+msgstr ""
+"qui contient des informations détaillées sur la manière de postuler et est disponible en anglais"
+"et français."
+
+#: .\templates\help.html:158
+msgid "What languages can I apply in?"
+msgstr "Dans quelles langues puis-je postuler ?"
+
+#: .\templates\help.html:163
+msgid "The application form is available in French and English."
+msgstr "Le formulaire de candidature est disponible en français et en anglais."
+
+#: .\templates\help.html:171
+msgid "How long does it take to complete an application?"
+msgstr "Combien de temps faut-il pour remplir une demande?"
+
+#: .\templates\help.html:176
+msgid "The application process takes approximately 45 to 60 minutes."
+msgstr "Le processus de demande prend environ 45 à 60 minutes."
+
+#: .\templates\help.html:178
+msgid "You need to have the required documents ready for ease of upload."
+msgstr "Vous devez avoir les documents requis prêts pour faciliter le téléchargement."
+
+#: .\templates\help.html:185
+msgid "Can I log back in to complete my application?"
+msgstr "Puis-je me reconnecter pour finaliser ma candidature ?"
+
+#: .\templates\help.html:190
+msgid ""
+"Yes, you can log back in anytime before the deadline for submission date to "
+"finalize and submit your application. You are able to save your application "
+"and resume from where you left off."
+msgstr ""
+"Oui, vous pouvez vous reconnecter à tout moment avant la date limite de soumission "
+"finaliser et soumettre votre candidature. Vous avez la possibilité de sauvegarder votre candidature "
+"et reprendre là où vous vous étiez arrêté."
+
+#: .\templates\help.html:192
+msgid ""
+"You are encouraged however to complete and submit your application as soon "
+"as possible."
+msgstr ""
+"Nous vous encourageons toutefois à remplir et soumettre votre candidature dès que possible "
+"le plus possible."
+
+#: .\templates\help.html:199
+msgid "How long will it take to know if my application was successful?"
+msgstr "Combien de temps faudra-t-il pour savoir si ma candidature a été retenue ?"
+
+#: .\templates\help.html:204
+msgid ""
+"Once your application is received, it will be reviewed based on the set "
+"criteria and the outcome will be communicated to you in the fourth week of "
+"November."
+msgstr ""
+"Une fois votre candidature reçue, elle sera examinée en fonction de l'ensemble "
+"les critères et le résultat vous seront communiqués dans la quatrième semaine de "
+"Novembre."
+
+#: .\templates\help.html:211
+msgid "Can I edit my application once I submit?"
+msgstr "Puis-je modifier ma demande une fois que je l'ai soumise ?"
+
+#: .\templates\help.html:216
+msgid "No. Once the application is submitted, you cannot be able to edit it."
+msgstr "Non. Une fois la demande soumise, vous ne pouvez plus la modifier."
+
+#: .\templates\help.html:223
+msgid "Can I apply if I had applied previously and was not shortlisted?"
+msgstr "Puis-je postuler si j'avais déjà postulé et que je n'étais pas présélectionné ?"
+
+#: .\templates\help.html:228
+msgid ""
+"Yes. If you had applied previously and was not shortlisted, you are "
+"encouraged to apply again."
+msgstr ""
+"Oui. Si vous aviez déjà postulé et que vous n'étiez pas présélectionné, vous êtes "
+"encouragé à postuler à nouveau."
+
+#: .\templates\help.html:235
+msgid ""
+"If I had applied previously, was shortlisted and did not win the prize "
+"money, can I apply?"
+msgstr ""
+"Si j'avais postulé auparavant, étais présélectionné et n'avais pas gagné le prix "
+"de l'argent, puis-je postuler ?"
+
+#: .\templates\help.html:240
+msgid ""
+"Yes. If you had applied previously and did not win the prize money, you are "
+"encouraged to apply again."
+msgstr ""
+"Oui. Si vous aviez déjà postulé et que vous n'avez pas gagné le prix en argent, vous êtes "
+"encouragé à postuler à nouveau."
+
+#: .\templates\help.html:247
+msgid "If I had applied previously, and won the prize money, can I apply?"
+msgstr "Si j'avais déjà postulé et gagné le prix en argent, puis-je postuler ?"
+
+#: .\templates\help.html:252
+msgid "No, we wish to provide opportunity to others to participate."
+msgstr "Non, nous souhaitons donner l'opportunité à d'autres de participer."
+
+#: .\templates\help.html:272
+msgid "Eligibility requirements"
+msgstr "Critères d'admissibilité"
+
+#: .\templates\help.html:281
+msgid "Who is eligible to apply?"
+msgstr "Qui est éligible pour postuler ?"
+
+#: .\templates\help.html:287
+msgid "Early Start-ups (0-3 years):"
+msgstr "Early Start-ups (0-3 ans):"
+
+#: .\templates\help.html:289
+msgid "Meet eligibility criteria for Early Start-ups."
+msgstr "Répondre aux critères d'éligibilité pour les start-ups précoces."
+
+#: .\templates\help.html:291
+msgid ""
+"Individuals who are at the very early stage of developing ideas/concepts for "
+"agripreneurship or a newly established business."
+msgstr ""
+"Les personnes qui sont au tout début du développement d'idées/concepts pour "
+"agripreneuriat ou une entreprise nouvellement créée."
+
+#: .\templates\help.html:293
+msgid "Must have a clearly defined prototype or proof of concept."
+msgstr "Doit avoir un prototype clairement défini ou une preuve de concept."
+
+#: .\templates\help.html:296
+msgid "May or may not have had any products introduced to the market."
+msgstr "Peut ou non avoir eu des produits introduits sur le marché."
+
+#: .\templates\help.html:298
+msgid ""
+"May or may not have a registered corporate entity but must have required "
+"business licenses."
+msgstr ""
+"Peut ou non avoir une personne morale enregistrée mais doit avoir exigé "
+"licences commerciales."
+
+#: .\templates\help.html:302
+msgid "Mature Start-ups (above 3 years):"
+msgstr "Start-up matures (plus de 3 ans) :"
+
+#: .\templates\help.html:304
+msgid ""
+"Individuals and firms with existing market traction: technology, product or "
+"service, already in the market."
+msgstr ""
+"Individus et entreprises ayant une influence sur le marché : technologie, produit ou "
+"service, déjà sur le marché."
+
+#: .\templates\help.html:306
+msgid "Must have a clear investment ask and growth plan/strategy."
+msgstr "Doit avoir une demande d'investissement claire et un plan/stratégie de croissance."
+
+#: .\templates\help.html:308
+msgid "Must be a registered corporate entity."
+msgstr "Doit être une personne morale enregistrée."
+
+#: .\templates\help.html:312
+msgid "Women-empowered Businesses (WEBs):"
+msgstr "Entreprises autonomisées par les femmes:"
+
+#: .\templates\help.html:314
+msgid ""
+"Meet eligibility requirements for either Early Start-ups or Mature Start-ups"
+msgstr "Répondre aux critères d'éligibilité pour les start-ups précoces ou les start-ups matures"
+
+#: .\templates\help.html:316
+#, python-format
+msgid "Firms that are 51%% owned by women or founded by a woman."
+msgstr "Entreprises détenues à 51 %% par des femmes ou fondées par une femme."
+
+#: .\templates\help.html:326
+msgid "What is meant by Women-led?"
+msgstr "Qu'entend-on par dirigé par des femmes ?"
+
+#: .\templates\help.html:330
+#, python-format
+msgid "Firms with at least 51%% share of women ownership or founded by a woman."
+msgstr "Entreprises détenues à au moins 51 %% par des femmes ou fondées par une femme."
+
+
+#: .\templates\help.html:338
+msgid "What are the priority sectors?"
+msgstr "Quels sont les secteurs prioritaires ?"
+
+#: .\templates\help.html:342
+msgid ""
+"Businesses in the Agribusiness sector value chain, focusing on food and "
+"nutrition."
+msgstr ""
+"Entreprises de la chaîne de valeur du secteur Agro-alimentaire, centrée sur l'agroalimentaire "
+"la nutrition."
+
+#: .\templates\help.html:360
+#| msgid "Upload Further Documents"
+msgid "Required Documents"
+msgstr "Télécharger d'autres documents"
+
+#: .\templates\help.html:368
+msgid "Which documents are required to apply?"
+msgstr "Quels sont les documents nécessaires pour postuler ?"
+
+#: .\templates\help.html:372
+msgid "To apply, you need these documents"
+msgstr "Pour postuler, vous avez besoin de ces documents"
+
+#: .\templates\help.html:374
+msgid "National ID card / passport"
+msgstr "Carte nationale d'identité / passeport"
+
+#: .\templates\help.html:375
+msgid "Company registration document"
+msgstr "Document d'enregistrement de la société"
+
+#: .\templates\help.html:376
+msgid "Company brochure"
+msgstr "Plaquette d'entreprise"
+
+#: .\templates\help.html:378
+msgid "Summary business plan"
+msgstr "Plan d'affaires sommaire"
+
+#: .\templates\help.html:380
+msgid "Business licences"
+msgstr "Licences commerciales"
+
+#: .\templates\help.html:382
+msgid "Company profile"
+msgstr "Profil de la société"
+
+#: .\templates\help.html:384
+msgid "Financial statements"
+msgstr "États financiers"
+
+#: .\templates\help.html:386
+msgid "Marketing materials"
+msgstr "Matériel promotionnel"
+
+#: .\templates\help.html:388
+msgid "Pitch deck"
+msgstr "Plate-forme d'emplacement"
+
+#: .\templates\help.html:397
+msgid "What if I do not have my business registered?"
+msgstr "Que se passe-t-il si je n'ai pas enregistré mon entreprise ?"
+
+#: .\templates\help.html:402
+msgid ""
+"You need to have your business legally registered in order to apply for "
+"Mature Start-ups."
+msgstr ""
+"Vous devez avoir votre entreprise légalement enregistrée afin de postuler "
+"Start-up matures"
+
+#: .\templates\help.html:404
+msgid ""
+"For Early stage startups, you need to have the required business licences to "
+"operate in your required country."
+msgstr ""
+"Pour les startups en phase de démarrage, vous devez disposer des licences commerciales requises pour "
+"opérer dans le pays de votre choix."
+
+#: .\templates\help.html:424
+msgid "Need Help? Message Us"
+msgstr "Besoin d'aide? Contactez-nous"
+
+#: .\templates\help.html:430
+msgid "Help"
+msgstr "Aider"
+
+#: .\templates\help.html:435
+msgid "Name"
+msgstr "Nom"
+
+#: .\templates\help.html:436
+#| msgid "Name"
+msgid " Name"
+msgstr "Nom"
+
+#: .\templates\help.html:441 .\templates\profile\dashboard.html:315
+#: .\templates\registration\partial\registration.html:52
+#: .\templates\registration\registration.html:62
+msgid "Email"
+msgstr "E-mail"
+
+#: .\templates\help.html:442
+#| msgid "Your Email Address"
+msgid " Your Email Address"
+msgstr "Adresse e-mail principale"
+
+#: .\templates\help.html:447
+msgid "Subject"
+msgstr "Matière"
+
+#: .\templates\help.html:448
+msgid "Reason for contacting us"
+msgstr "Ton application"
+
+#: .\templates\help.html:450
+#| msgid "Upload Further Documents"
+msgid "Cannot Upload documents"
+msgstr "Télécharger d'autres documents"
+
+#: .\templates\help.html:451
+#| msgid "if you do not have an account"
+msgid "I do not have certain documents"
+msgstr "si vous n'avez pas de compte"
+
+#: .\templates\help.html:452
+msgid "Can't access application form"
+msgstr "Impossible d'accéder au formulaire de candidature"
+
+#: .\templates\help.html:456
+msgid "Submit"
+msgstr "Soumettre"
+
+#: .\templates\profile\dashboard.html:24
+msgid "Home"
+msgstr "Domicile"
+
+#: .\templates\profile\dashboard.html:31
+msgid "Academy"
+msgstr "Académie"
+
+#: .\templates\profile\dashboard.html:39
+#: .\templates\profile\dashboard.html:165
+msgid "Coaches"
+msgstr "Entraîneurs"
+
+#: .\templates\profile\dashboard.html:48
+#: .\templates\profile\dashboard.html:191
+msgid "My Coaches"
+msgstr "Mes entraîneurs"
+
+#: .\templates\profile\dashboard.html:63
 msgid "Team"
 msgstr "Équipe"
 
-#: templates/profile/dashboard.html:53
+#: .\templates\profile\dashboard.html:69
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/profile/dashboard.html:55
+#: .\templates\profile\dashboard.html:75
 msgid "Log Out"
 msgstr "Se déconnecter"
 
-#: templates/profile/dashboard.html:70
-msgid "Invite"
-msgstr "Inviter"
-
-#: templates/profile/dashboard.html:82
+#: .\templates\profile\dashboard.html:92
 msgid "Hello"
 msgstr "Bonjour"
 
-#: templates/profile/dashboard.html:87 templates/profile/dashboard.html:248
+#: .\templates\profile\dashboard.html:99
+#: .\templates\profile\dashboard.html:275
 msgid "Your Team Members"
 msgstr "Membres de votre équipe"
 
-#: templates/profile/dashboard.html:113 templates/profile/dashboard.html:194
+#: .\templates\profile\dashboard.html:104
+msgid "You have not invited your team yet"
+msgstr "Vous n'avez pas encore invité votre équipe"
+
+#: .\templates\profile\dashboard.html:113
+msgid "There is not team yet"
+msgstr "Il n'y a pas encore d'équipe"
+
+#: .\templates\profile\dashboard.html:126
+#: .\templates\profile\dashboard.html:216
 msgid "Ongoing Applications"
 msgstr "Candidatures en cours"
 
-#: templates/profile/dashboard.html:116 templates/profile/dashboard.html:118
+#: .\templates\profile\dashboard.html:129
+#: .\templates\profile\dashboard.html:133
 msgid "Your Application"
 msgstr "Ton application"
 
-#: templates/profile/dashboard.html:134
+#: .\templates\profile\dashboard.html:135
+#: .\templates\profile\dashboard.html:233
+msgid "Start Application"
+msgstr "Ton application"
+
+#: .\templates\profile\dashboard.html:151
 msgid "PES Academy"
 msgstr "Académie PSE"
 
-#: templates/profile/dashboard.html:137
+#: .\templates\profile\dashboard.html:153
 msgid ""
 "Joining the PES academy will give you access to the videos and presentations "
 "Featured by PES where you get to learn more and get more advisory about your "
@@ -248,184 +740,215 @@ msgstr ""
 "Présenté par PES où vous pouvez en savoir plus et obtenir plus de conseils "
 "sur votre des affaires"
 
-#: templates/profile/dashboard.html:138
+#: .\templates\profile\dashboard.html:154
 msgid "Join the PES Academy"
 msgstr "Rejoignez la PES Academy"
 
-#: templates/profile/dashboard.html:146
+#: .\templates\profile\dashboard.html:167
 msgid "We do not have mentors at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
-#: templates/profile/dashboard.html:156
+#: .\templates\profile\dashboard.html:177
 msgid "View Bio"
 msgstr "Voir la biographie"
 
-#: templates/profile/dashboard.html:176
+#: .\templates\profile\dashboard.html:198
 msgid "View Sessions"
 msgstr "Voir la biographie"
 
-#: templates/profile/dashboard.html:182
+#: .\templates\profile\dashboard.html:203
 msgid "You do not have coaches at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
-#: templates/profile/dashboard.html:195
-msgid "Click on the link below to resume to your applications."
+#: .\templates\profile\dashboard.html:217
+#| msgid "Click on the link below to resume to your applications."
+msgid "Click on the link below to resume to your application."
 msgstr "Cliquez sur le lien ci-dessous pour reprendre vos candidatures."
 
-#: templates/profile/dashboard.html:200 templates/profile/dashboard.html:209
+#: .\templates\profile\dashboard.html:222
+#: .\templates\profile\dashboard.html:230
 msgid "Continue"
 msgstr "Continuez"
 
-#: templates/profile/dashboard.html:212
-msgid "Start Application"
-msgstr "Ton application"
-
-#: templates/profile/dashboard.html:222
+#: .\templates\profile\dashboard.html:243
 msgid "Upload Further Documents"
 msgstr "Télécharger d'autres documents"
 
-#: templates/profile/dashboard.html:240
+#: .\templates\profile\dashboard.html:249
+msgid "Document name"
+msgstr "Nom du document"
+
+#: .\templates\profile\dashboard.html:261
 msgid "Save"
 msgstr "Sauver"
 
-#: templates/profile/dashboard.html:302
+#: .\templates\profile\dashboard.html:270
+msgid "Invite"
+msgstr "Inviter"
+
+#: .\templates\profile\dashboard.html:293
+#| msgid "Don't have an account yet"
+msgid "You don't have a team yet"
+msgstr "Vous n'avez pas encore de compte"
+
+#: .\templates\profile\dashboard.html:313
 msgid "Invite Collaborator"
 msgstr "Inviter un collaborateur"
 
-#: templates/profile/dashboard.html:314
+#: .\templates\profile\dashboard.html:325
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/profile/edit.html:13
+#: .\templates\profile\edit.html:13
 msgid "There seems to be a problem with your details, please check again."
-msgstr ""
+msgstr "Il semble y avoir un problème avec vos coordonnées, veuillez vérifier à nouveau."
 
-#: templates/profile/edit.html:17
+#: .\templates\profile\edit.html:17
 msgid "Names"
 msgstr "Des noms"
 
-#: templates/profile/edit.html:18
+#: .\templates\profile\edit.html:18
 msgid "Full Name"
 msgstr "Nom et prénom"
 
-#: templates/profile/edit.html:26 templates/profile/edit.html:27
+#: .\templates\profile\edit.html:26 .\templates\profile\edit.html:27
 msgid "Bio"
 msgstr "Bio"
 
-#: templates/profile/edit.html:35
+#: .\templates\profile\edit.html:35
 msgid "Age"
 msgstr "Âge"
 
-#: templates/profile/edit.html:37
+#: .\templates\profile\edit.html:37
 msgid "Select Age Range"
 msgstr "Sélectionnez la tranche d'âge"
 
-#: templates/profile/edit.html:50
+#: .\templates\profile\edit.html:50
 msgid "Gender"
 msgstr "Le genre"
 
-#: templates/profile/edit.html:52
+#: .\templates\profile\edit.html:52
 msgid "Select Gender"
 msgstr "Sélectionnez le sexe"
 
-#: templates/profile/edit.html:66
+#: .\templates\profile\edit.html:66
 msgid "Linked In Profile Link"
 msgstr "Lien de profil Linkedin"
 
-#: templates/profile/edit.html:74
+#: .\templates\profile\edit.html:74 .\templates\profile\profile.html:24
 msgid "Preferred Language"
 msgstr "langue préférée"
 
-#: templates/profile/edit.html:76
+#: .\templates\profile\edit.html:76
 msgid "Select Preferred Language"
 msgstr "Sélectionnez la langue préférée"
 
-#: templates/profile/edit.html:89
+#: .\templates\profile\edit.html:89
 msgid "Change profile picture"
 msgstr "Modifier la photo de profil"
 
-#: templates/profile/edit.html:92
+#: .\templates\profile\edit.html:92
 msgid "Choose a profile picture"
 msgstr "Choisissez une photo de profil"
 
-#: templates/profile/edit.html:103
+#: .\templates\profile\edit.html:103
 msgid "Save Changes"
 msgstr "Sauvegarder les modifications"
 
-#: templates/profile/edit.html:104
+#: .\templates\profile\edit.html:104 .\templates\profile\profile.html:39
 msgid "Back"
 msgstr "Retour"
 
-#: templates/profile/profile.html:16
+#: .\templates\profile\profile.html:18
+msgid "Change your photo"
+msgstr "Changez votre photo"
+
+#: .\templates\profile\profile.html:22
 msgid "Please add your names"
 msgstr "Veuillez ajouter vos noms"
 
-#: templates/profile/profile.html:19
+#: .\templates\profile\profile.html:24
+#| msgid "Select Preferred Language"
+msgid "Please set your preferred Language"
+msgstr "Sélectionnez la langue préférée"
+
+#: .\templates\profile\profile.html:31
+msgid "Please set your LinkedIn profile"
+msgstr "Veuillez définir votre profil LinkedIn"
+
+#: .\templates\profile\profile.html:35
 msgid "Please add a bio"
 msgstr "Veuillez ajouter une biographie"
 
-#: templates/profile/profile.html:31
+#: .\templates\profile\profile.html:38
 msgid "Edit Profile"
 msgstr "Editer le profil"
 
-#: templates/profile/staff/applications.html:6
+#: .\templates\profile\staff\applications.html:6
 msgid "Application"
 msgstr "Applications"
 
-#: templates/profile/staff/applications.html:7
+#: .\templates\profile\staff\applications.html:7
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: templates/profile/staff/applications.html:14
+#: .\templates\profile\staff\applications.html:14
 msgid "Review"
 msgstr "La revue"
 
-#: templates/profile/staff/applications.html:19
+#: .\templates\profile\staff\applications.html:19
 msgid "You do not have any applications to review at the moment"
 msgstr "Vous n'avez pas d'application à examiner pour le moment"
 
-#: templates/registration/account_activation_invalid.html:12
+#: .\templates\registration\account_activation_invalid.html:12
 msgid "oops activation failed!"
 msgstr "oups l'activation a échoué !"
 
-#: templates/registration/account_activation_invalid.html:14
+#: .\templates\registration\account_activation_invalid.html:14
 msgid "But don't worry, try one of these things"
 msgstr "Mais ne vous inquiétez pas, essayez l'une de ces choses"
 
-#: templates/registration/account_activation_invalid.html:16
-#: templates/registration/registration.html:13
-#: templates/registration/registration.html:85
-#: templates/registration/staff_registration.html:10
-#: templates/registration/staff_registration.html:73
+#: .\templates\registration\account_activation_invalid.html:16
+#: .\templates\registration\partial\registration.html:134
+#: .\templates\registration\registration.html:144
+#: .\templates\registration\staff_registration.html:10
+#: .\templates\registration\staff_registration.html:73
 msgid "Register"
 msgstr "S'inscrire"
 
-#: templates/registration/account_activation_invalid.html:16
+#: .\templates\registration\account_activation_invalid.html:16
 msgid "if you do not have an account"
 msgstr "si vous n'avez pas de compte"
 
-#: templates/registration/account_activation_invalid.html:17
-#: templates/registration/login.html:47
+#: .\templates\registration\account_activation_invalid.html:17
+#: .\templates\registration\login.html:24
+#: .\templates\registration\login.html:70
 msgid "Login"
 msgstr "Connexion"
 
-#: templates/registration/account_activation_invalid.html:17
+#: .\templates\registration\account_activation_invalid.html:17
 msgid "if you already have an account"
 msgstr "si vous avez déjà un compte"
 
-#: templates/registration/activation_email_sent.html:14
+#: .\templates\registration\activation_email_sent.html:13
+#| msgid ""
+#| "\n"
+#| "              Thank you for registration.\n"
+#| "              We have sent an activation email to your inbox.\n"
+#| "              Click on the link to continue.\n"
+#| "              "
 msgid ""
 "\n"
-"              Thank you for registration.\n"
-"              We have sent an activation email to your inbox.\n"
-"              Click on the link to continue.\n"
-"              "
+"    Thank you for registration.\n"
+"    We have sent an activation email to your inbox.\n"
+"    Click on the link to continue.\n"
+"    "
 msgstr ""
 "\n"
 "Merci pour l'inscription. Nous avons envoyé un e-mail d'activation dans "
 "votre boîte de réception.Cliquez sur le lien pour continuer."
 
-#: templates/registration/email/account_activation.html:5
+#: .\templates\registration\email\account_activation.html:5
 msgid ""
 "Thank you for your interest in registering with us. Please verify your email "
 "address by clicking the activation link below"
@@ -433,119 +956,204 @@ msgstr ""
 "Merci de votre intérêt à vous inscrire chez nous. Veuillez vérifier votre e-"
 "mail adresse en cliquant sur le lien d'activation ci-dessous"
 
-#: templates/registration/email/account_activation.html:11
+#: .\templates\registration\email\account_activation.html:11
 msgid "ACTIVATE"
 msgstr "ACTIVER"
 
-#: templates/registration/login.html:19
+#: .\templates\registration\login.html:35
 msgid "Please correct the errors in the form below."
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
-#: templates/registration/login.html:28 templates/registration/login.html:29
-#: templates/registration/registration.html:27
-#: templates/registration/staff_registration.html:19
+#: .\templates\registration\login.html:46
+#: .\templates\registration\login.html:47
+#: .\templates\registration\partial\registration.html:32
+#: .\templates\registration\partial\registration.html:35
+#: .\templates\registration\partial\registration.html:37
+#: .\templates\registration\registration.html:42
+#: .\templates\registration\registration.html:45
+#: .\templates\registration\registration.html:47
+#: .\templates\registration\staff_registration.html:19
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: templates/registration/login.html:38 templates/registration/login.html:39
-#: templates/registration/registration.html:54
-#: templates/registration/staff_registration.html:39
+#: .\templates\registration\login.html:58
+#: .\templates\registration\login.html:59
+#: .\templates\registration\partial\registration.html:91
+#: .\templates\registration\registration.html:101
+#: .\templates\registration\staff_registration.html:39
 msgid "Enter Password"
 msgstr "Entrer le mot de passe"
 
-#: templates/registration/login.html:50
+#: .\templates\registration\login.html:77
 msgid "Remember me"
 msgstr "Souviens-toi de moi"
 
-#: templates/registration/login.html:56
+#: .\templates\registration\login.html:79
 msgid "Don't have an account yet"
 msgstr "Vous n'avez pas encore de compte"
 
-#: templates/registration/login.html:56
+#: .\templates\registration\login.html:80
 msgid "Sign Up"
 msgstr "S'inscrire"
 
-#: templates/registration/login.html:57
+#: .\templates\registration\login.html:81
 msgid "Forgot password"
 msgstr "le mot de passe"
 
-#: templates/registration/login.html:57
+#: .\templates\registration\login.html:82
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: templates/registration/registration.html:20
-#: templates/registration/staff_registration.html:14
+#: .\templates\registration\partial\registration.html:13
+#: .\templates\registration\registration.html:23
+#| msgid "Register"
+msgid "Registration"
+msgstr "S'inscrire"
+
+#: .\templates\registration\partial\registration.html:24
+#: .\templates\registration\registration.html:34
+#: .\templates\registration\staff_registration.html:14
 msgid "Please correct the errors in the form below"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
-#: templates/registration/registration.html:28
-msgid "Your Username"
-msgstr "Nom d'utilisateur"
+#: .\templates\registration\partial\registration.html:70
+#: .\templates\registration\registration.html:80
+#| msgid "Reason for Application"
+msgid "Reason for registration"
+msgstr "Ton application"
 
-#: templates/registration/registration.html:38
-msgid "Your Email"
-msgstr "Adresse e-mail principale"
+#: .\templates\registration\partial\registration.html:73
+#: .\templates\registration\registration.html:83
+#| msgid "Applying for call to action"
+msgid "Applying for"
+msgstr "Demande d'appel à l'action"
 
-#: templates/registration/registration.html:47
-msgid "Please select the reason for registration"
-msgstr "Veuillez sélectionner le motif de l'inscription"
+#: .\templates\registration\partial\registration.html:77
+#: .\templates\registration\partial\registration.html:82
+#: .\templates\registration\registration.html:87
+#: .\templates\registration\registration.html:92
+msgid "African Development Bank AgriPitch Competition 2022"
+msgstr ""
 
-#: templates/registration/registration.html:55
-msgid "Your password"
-msgstr "le mot de passe"
+#: .\templates\registration\partial\registration.html:90
+#: .\templates\registration\registration.html:100
+#| msgid "Enter Password"
+msgid "Password"
+msgstr "Entrer le mot de passe"
 
-#: templates/registration/registration.html:64
-#: templates/registration/registration.html:65
-#: templates/registration/staff_registration.html:50
+#: .\templates\registration\partial\registration.html:104
+#: .\templates\registration\registration.html:114
+#| msgid "Your password must contain at least 8 characters."
+msgid "password must contain at least 8 characters."
+msgstr "Votre mot de passe doit contenir au moins 8 caractères."
+
+#: .\templates\registration\partial\registration.html:105
+#: .\templates\registration\registration.html:115
+#| msgid "Your password should not be entirely numeric."
+msgid "password should not be entirely numeric."
+msgstr "Votre mot de passe ne doit pas être entièrement numérique."
+
+#: .\templates\registration\partial\registration.html:106
+#: .\templates\registration\registration.html:116
+#| msgid "Your password should have a special character."
+msgid "password should have a special character."
+msgstr "Votre mot de passe doit avoir un caractère spécial."
+
+#: .\templates\registration\partial\registration.html:107
+#: .\templates\registration\registration.html:117
+#| msgid "Your password should have at least one number."
+msgid "password should have at least one number."
+msgstr "Votre mot de passe doit comporter au moins un chiffre."
+
+#: .\templates\registration\partial\registration.html:108
+#: .\templates\registration\registration.html:118
+#| msgid ""
+#| "Your password should not be too similar to your personal details eg "
+#| "username."
+msgid ""
+"password should not be too similar to your personal details eg username."
+msgstr ""
+"Votre mot de passe ne doit pas être trop similaire à vos informations "
+"personnelles, par exemple votre nom d'utilisateur."
+
+#: .\templates\registration\partial\registration.html:109
+#: .\templates\registration\registration.html:119
+#| msgid "Your passwords should match."
+msgid "passwords should match."
+msgstr "Vos mots de passe doivent correspondre."
+
+#: .\templates\registration\partial\registration.html:118
+#: .\templates\registration\partial\registration.html:119
+#: .\templates\registration\registration.html:128
+#: .\templates\registration\registration.html:129
+#: .\templates\registration\staff_registration.html:50
 msgid "Repeat Password"
 msgstr "Répéter le mot de passe"
 
-#: templates/registration/registration.html:73
-#: templates/registration/staff_registration.html:61
+#: .\templates\registration\partial\registration.html:128
+#: .\templates\registration\registration.html:138
+#: .\templates\registration\staff_registration.html:71
+msgid "By creating an account you agree to our"
+msgstr "En créant un compte, vous acceptez nos"
+
+#: .\templates\registration\partial\registration.html:129
+#: .\templates\registration\registration.html:139
+#: .\templates\registration\staff_registration.html:71
+msgid "Terms & Privacy"
+msgstr "Conditions et confidentialité"
+
+#: .\templates\registration\partial\registration.html:138
+#: .\templates\registration\registration.html:148
+#: .\templates\registration\staff_registration.html:76
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte?"
+
+#: .\templates\registration\partial\registration.html:139
+#: .\templates\registration\registration.html:149
+#: .\templates\registration\staff_registration.html:76
+msgid "Sign in"
+msgstr "S'identifier"
+
+#: .\templates\registration\staff_registration.html:59
+msgid "Password Policy"
+msgstr "Politique de mot de passe"
+
+#: .\templates\registration\staff_registration.html:61
 msgid "Your password must contain at least 8 characters."
 msgstr "Votre mot de passe doit contenir au moins 8 caractères."
 
-#: templates/registration/registration.html:74
-#: templates/registration/staff_registration.html:62
+#: .\templates\registration\staff_registration.html:62
 msgid "Your password should not be entirely numeric."
 msgstr "Votre mot de passe ne doit pas être entièrement numérique."
 
-#: templates/registration/registration.html:77
-#: templates/registration/staff_registration.html:65
+#: .\templates\registration\staff_registration.html:65
 msgid ""
 "Your password should not be too similar to your personal details eg username."
 msgstr ""
 "Votre mot de passe ne doit pas être trop similaire à vos informations "
 "personnelles, par exemple votre nom d'utilisateur."
 
-#: templates/registration/registration.html:78
-#: templates/registration/staff_registration.html:66
+#: .\templates\registration\staff_registration.html:66
 msgid "Your passwords should match."
 msgstr "Vos mots de passe doivent correspondre."
 
-#: templates/registration/registration.html:82
-#: templates/registration/staff_registration.html:71
-msgid "By creating an account you agree to our"
-msgstr "En créant un compte, vous acceptez nos"
+#~ msgid "Your Message"
+#~ msgstr "Votre message"
 
-#: templates/registration/registration.html:82
-#: templates/registration/staff_registration.html:71
-msgid "Terms & Privacy"
-msgstr "Conditions et confidentialité"
+#~ msgid "How can we help you?"
+#~ msgstr "Comment pouvons-nous vous aider?"
 
-#: templates/registration/registration.html:89
-#: templates/registration/staff_registration.html:76
-msgid "Already have an account?"
-msgstr "Vous avez déjà un compte?"
+#~ msgid "Your Username"
+#~ msgstr "Nom d'utilisateur"
 
-#: templates/registration/registration.html:89
-#: templates/registration/staff_registration.html:76
-msgid "Sign in"
-msgstr "S'identifier"
+#~ msgid "Your Email"
+#~ msgstr "Adresse e-mail principale"
 
-#: templates/registration/staff_registration.html:59
-msgid "Password Policy"
-msgstr "Politique de mot de passe"
+#~ msgid "Please select the reason for registration"
+#~ msgstr "Veuillez sélectionner le motif de l'inscription"
+
+#~ msgid "Your password"
+#~ msgstr "le mot de passe"
 
 #~ msgid "Firstname"
 #~ msgstr "Prénom"
