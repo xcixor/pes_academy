@@ -41,4 +41,4 @@ class MakeStaffReviewerView(View):
             str(user) + _(' can now review applications.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
-        return redirect('/admin/advanced/view/staff/')
+        return redirect('/CgDX4znLdQDLFw/advanced/view/staff/')

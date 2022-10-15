@@ -22,7 +22,7 @@ class PostAssignReviewers(SingleObjectMixin, FormView):
 
     template_name = 'pes_admin/assign_reviewers.html'
     form_class = AssignReviewersForm
-    success_url = '/admin/advanced/view/applications/'
+    success_url = '/CgDX4znLdQDLFw/advanced/view/applications/'
     model = Application
 
     def post(self, request, *args, **kwargs):

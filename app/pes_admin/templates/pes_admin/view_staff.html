@@ -24,21 +24,21 @@
             {% if employee.is_coach %}
                 <i class="fa-solid fa-circle-check"></i>
             {% else %}
-                <a href="/admin/advanced/make/{{employee.pk}}/coach/" class="btn btn-primary">{% trans "Make Coach" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/coach/" class="btn btn-primary">{% trans "Make Coach" %}</a>
             {% endif %}
           </td>
           <td>
             {% if employee.is_reviewer %}
                 <i class="fa-solid fa-circle-check"></i>
             {% else %}
-                <a href="/admin/advanced/make/{{employee.pk}}/reviewer/" class="btn btn-primary">{% trans "Make Reviewer" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/reviewer/" class="btn btn-primary">{% trans "Make Reviewer" %}</a>
             {% endif %}
           </td>
           <td>
             {% if employee.is_moderator %}
             <i class="fa-solid fa-circle-check"></i>
             {% else %}
-            <form action="/admin/advanced/make/{{employee.pk}}/moderator/" method="post">
+            <form action="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/moderator/" method="post">
                 {% csrf_token %}
                 <input type="checkbox" name="is_moderator" checked hidden>
                 <button type="submit" class="btn btn-primary">{% trans "Make Moderator" %}</button>

@@ -16,7 +16,7 @@ class AdvanceAvoidApplicationView(UpdateView):
     fields = ['to_advance', 'stage']
 
     def get_success_url(self) -> str:
-        return f'/admin/advanced/view/{self.object.slug}/'
+        return f'/CgDX4znLdQDLFw/advanced/view/{self.object.slug}/'
 
 
 class ApplicationDetails(View):

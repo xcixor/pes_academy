@@ -35,7 +35,7 @@ class PostAssignCoaches(SingleObjectMixin, FormView):
 
     template_name = 'pes_admin/assign_coaches.html'
     form_class = AssignCoachesForm
-    success_url = '/admin/advanced/users/call-to-action/'
+    success_url = '/CgDX4znLdQDLFw/advanced/users/call-to-action/'
     model = User
 
     def post(self, request, *args, **kwargs):

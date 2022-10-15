@@ -18,7 +18,7 @@ class GetInviteReviewerView(TemplateView):
 class PostInviteReviewerView(FormView):
 
     template_name = 'pes_admin/invite_reviewer.html'
-    success_url = '/admin/advanced/'
+    success_url = '/CgDX4znLdQDLFw/advanced/'
     form_class = InviteSubscriberForm
 
     def form_valid(self, form):

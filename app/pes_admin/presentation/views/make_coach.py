@@ -36,4 +36,4 @@ class MakeStaffCoachView(View, HtmlEmailMixin):
             subject, None, from_email, [to_email],
             template='pes_admin/email/coach.html',
             context=context)
-        return redirect('/admin/advanced/view/staff/')
+        return redirect('/CgDX4znLdQDLFw/advanced/view/staff/')

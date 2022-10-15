@@ -14,7 +14,7 @@ class CreateModerator(UpdateView):
 
     model = User
     fields = ['is_moderator']
-    success_url = '/admin/advanced/view/staff/'
+    success_url = '/CgDX4znLdQDLFw/advanced/view/staff/'
 
     def get_success_url(self) -> str:
         reviewers_group, created = Group.objects.get_or_create(
@@ -28,7 +28,7 @@ class CreateModerator(UpdateView):
         self.object.groups.add(reviewers_group)
         self.object.is_reviewer = True
         self.object.save()
-        
+
         success_message = _('Great, staff member ') + \
             self.object.username + _(' is now a moderator.')
         messages.add_message(
