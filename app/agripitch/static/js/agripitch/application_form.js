@@ -547,20 +547,21 @@ $("textarea").keyup(function () {
 });
 
 function validateCharacterLength(textarea) {
-	var maxLength = 2500;
-	var len = maxLength - $(textarea).val().length;
+	var maxLength = 500;
+	var words  = $(textarea).val().split(' ');
+	var len = maxLength - words.length;
 	if (len > 0) {
 		if ($(textarea).next().length) {
 			$(textarea)
 				.next()
 				.replaceWith(
 					$(
-						`<p class="textarea-characters-remaining">${len} characters remaining</p>`
+						`<p class="textarea-characters-remaining">${len} words remaining</p>`
 					)
 				);
 		} else {
 			$(
-				`<p class="textarea-characters-remaining">${len} characters remaining</p>`
+				`<p class="textarea-characters-remaining">${len} words remaining</p>`
 			).insertAfter($(textarea));
 		}
 		return true;
