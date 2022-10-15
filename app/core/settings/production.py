@@ -24,7 +24,7 @@ ADMINS = [('Peter', 'peter@privateequity-support.com'), ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SERVER_EMAIL = 'peter@privateequity-support.com'
 
-ALLOWED_HOSTS = ["privateequity-support.com"]
+ALLOWED_HOSTS = [".privateequity-support.com"]
 
 LOGGING = {
     'version': 1,
