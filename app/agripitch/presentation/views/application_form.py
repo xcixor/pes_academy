@@ -189,7 +189,7 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         application = request.user.application
         application.stage = 'step_two'
         application.save()
-        return redirect(reverse('accounts:dashboard'))
+        return redirect(reverse('agripitch:application_view'))
 
     def send_email(self, user):
         subject = _(
