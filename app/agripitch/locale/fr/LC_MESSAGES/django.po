@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-14 12:49+0300\n"
+"POT-Creation-Date: 2022-10-15 07:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,17 +56,72 @@ msgstr "Veuillez noter; vous avez déjà soumis vos données."
 
 #: templates/agripitch/application_form.html:42
 msgid "Any changes that you make to this form will not be recorded"
-msgstr "Toute modification que vous apporterez à ce formulaire ne sera pas enregistrée"
+msgstr ""
+"Toute modification que vous apporterez à ce formulaire ne sera pas "
+"enregistrée"
 
-#: templates/agripitch/landing.html:23 templates/agripitch/landing.html:31
-#: templates/agripitch/landing.html:76
+#: templates/agripitch/landing.html:24 templates/agripitch/landing.html:33
+#: templates/agripitch/landing.html:87
 msgid "Apply Now"
 msgstr "Appliquer maintenant"
 
-#: templates/agripitch/landing.html:71
+#: templates/agripitch/landing.html:40
+msgid "Previous"
+msgstr "Précédent"
+
+#: templates/agripitch/landing.html:44
+msgid "Next"
+msgstr "Prochain"
+
+#: templates/agripitch/landing.html:51
+msgid "About AgriPitch 2022"
+msgstr "À propos d'AgriPitch 2022"
+
+#: templates/agripitch/landing.html:53
+msgid ""
+"\n"
+"          The aim of the 2022 AgriPitch Competition is to support "
+"agripreneurs by\n"
+"          focusing on building the bankability of their businesses and "
+"ensuring that they\n"
+"          are pitch ready for potential investors.\n"
+"          "
+msgstr ""
+"\n"
+"Le Concours AgriPitch 2022 a pour objectif d'accompagner les agripreneurs en "
+"en se concentrant sur le renforcement de la bancabilité de leurs entreprises "
+"et s'assurer qu'ils sont prêts pour les investisseurs potentiels."
+
+#: templates/agripitch/landing.html:61
+msgid ""
+"\n"
+"          Entrepreneurs will be coached and mentored in an interactive and "
+"tailored\n"
+"          two-week training to review, prepare and present their businesses "
+"for capital\n"
+"          raising from investors.\n"
+"          "
+msgstr ""
+
+#: templates/agripitch/landing.html:67
+msgid ""
+"The short listed successful agripreneurs will pitch to the judges and engage "
+"investors in the AgriPitch dealroom."
+msgstr ""
+
+#: templates/agripitch/landing.html:80
 msgid "Applications Ongoing. Ends "
 msgstr "Candidatures en cours. Prend fin "
 
-#: templates/agripitch/landing.html:72
+#: templates/agripitch/landing.html:82
 msgid "Note: Application takes 45 to 60 minutes."
 msgstr "Remarque : L'application prend 45 à 60 minutes."
+
+#: templates/agripitch/landing.html:88
+msgid "Download Application Guide"
+msgstr ""
+
+#: templates/agripitch/landing.html:96
+msgid ""
+"There are no ongoing applications at the moment, please check back later."
+msgstr ""
