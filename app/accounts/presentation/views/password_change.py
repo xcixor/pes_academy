@@ -2,6 +2,9 @@ from django.views.generic import FormView
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from accounts.forms import (
     UserPasswordChangeForm, UserPasswordResetForm)
 
@@ -43,3 +46,10 @@ class PasswordResetView(FormView):
     def form_valid(self, form):
         form.send_email(self.request)
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        error_message = _(
+            "Hmm..That didn't work please try again.")
+        messages.add_message(
+            self.request, messages.ERROR, error_message)
+        return super().form_invalid(form)
