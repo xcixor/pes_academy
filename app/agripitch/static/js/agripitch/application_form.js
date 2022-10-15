@@ -238,7 +238,7 @@ function saveNonRequiredFilledFields(formSection) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of characters should not exceed 2500`
+					`${inputs[i].name}: Number of words should not exceed 500`
 				);
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
@@ -390,7 +390,7 @@ function validateSection(formSection) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of characters should not exceed 2500`
+					`${inputs[i].name}: Number of words should not exceed 500`
 				);
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);

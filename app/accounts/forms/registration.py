@@ -76,6 +76,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {
+            "username": user.username,
             "email": user.email,
             'domain': current_site.domain,
             "protocol": request.scheme,

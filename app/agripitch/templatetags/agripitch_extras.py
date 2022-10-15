@@ -23,5 +23,8 @@ def get_response(sub_criteria, application):
     if sub_criteria_item.type == 'file':
         return get_sub_criteria_item_document_response_if_exist(
             sub_criteria_item, application)
-    return get_sub_criteria_item_response_if_exist(
-        sub_criteria_item, application).value
+    item = get_sub_criteria_item_response_if_exist(
+        sub_criteria_item, application)
+    if item:
+        return item.value
+    return item
