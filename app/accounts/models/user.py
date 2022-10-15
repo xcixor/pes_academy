@@ -55,21 +55,6 @@ def image_directory_path(instance, filename):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    LANGUAGE_CHOICES = [
-        ('english', _('English')),
-        ('french', _('French')),
-        ('portuguese', _('Portuguese'))]
-    GENDER_CHOICES = [
-        ('male', _('Male')),
-        ('female', _('Female')),
-        ('undisclosed', _('Prefer not to say')),
-        ('other', _('Other'))]
-    AGE_CHOICES = [
-        ('range_one', _('20-29')),
-        ('range_two', _('30-39')),
-        ('range_three', _('40-49')),
-        ('range_four', _('Above 50'))]
-
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
         verbose_name=_('Email Address'), max_length=255, unique=True)
@@ -81,10 +66,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_reviewer = models.BooleanField(default=False)
     is_coach = models.BooleanField(default=False)
     is_applying_for_a_call_to_action = models.BooleanField(default=False)
-    age = models.CharField(null=True, choices=AGE_CHOICES, max_length=20)
-    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
+    age = models.CharField(null=True, max_length=20)
+    gender = models.CharField(max_length=20)
     preferred_language = models.CharField(
-        max_length=40, choices=LANGUAGE_CHOICES)
+        max_length=40)
     bio = models.TextField(null=True, blank=True)
     linked_in = models.URLField(null=True, blank=True)
     avatar = models.ImageField(

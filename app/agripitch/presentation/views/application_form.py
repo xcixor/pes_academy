@@ -1,11 +1,10 @@
 import json
+import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic.detail import SingleObjectMixin
 from django.views import View
-from django.http import Http404
 from django.views.generic import DetailView
-from django.shortcuts import redirect
 from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
@@ -15,7 +14,8 @@ from common.utils.common_queries import get_application
 from application.models import CallToAction, Application
 from agripitch.models import (
     SubCriteriaItemResponse, SubCriteriaItem, CriteriaItem,
-    DynamicForm, SubCriteriaItemDocumentResponse)
+    DynamicForm, SubCriteriaItemDocumentResponse,
+    get_sub_criteria_item_response_if_exist)
 from django.http import JsonResponse
 from agripitch.utils import get_sub_criteria_item_by_label
 from common.utils.email import HtmlEmailMixin
@@ -124,6 +124,31 @@ def validate_file_max_size(file, sub_criteria_item):
     return {'status': is_valid, 'message': "Valid size", 'code': 'max_size'}
 
 
+def save_personal_info(application):
+    user = application.application_creator
+    for item in SubCriteriaItem.objects.all():
+        if item.criteria.label == 'Personal Information':
+            response = get_sub_criteria_item_response_if_exist(
+                item, application)
+            if item.label == 'Full Name *':
+                user.full_name = response.value
+                user.save()
+            if item.label == 'Language *':
+                user.preferred_language = response.value
+                user.save()
+            if item.label == 'Gender *':
+                user.gender = response.value
+                user.save()
+            if item.label == 'Date of Birth *':
+                dob = datetime.datetime.strptime(response.value, "%Y-%m-%d")
+                today = datetime.date.today()
+                age = today - dob.date()
+                age = age.days / 365.25
+                user.age = round(age)
+                user.save()
+    return user
+
+
 class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
 
     template_name = 'agripitch/application_form.html'
@@ -185,10 +210,12 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
             "Your application has been recorded, we will get back to you shortly")
         messages.add_message(
             request, messages.SUCCESS, success_message)
-        self.send_email(request.user)
         application = request.user.application
-        application.stage = 'step_two'
-        application.save()
+        # application.stage = 'step_two'
+        # application.save()
+        updated_user = save_personal_info(application)
+        print(updated_user.full_name, '**********')
+        self.send_email(updated_user)
         return redirect(reverse('agripitch:application_view'))
 
     def send_email(self, user):
