@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 17:29+0300\n"
+"POT-Creation-Date: 2022-10-16 20:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,9 +26,26 @@ msgstr "Application"
 msgid "Sorry, the AFDB Agripitch Competition 2022 is not yet live!"
 msgstr "Désolé, le concours AFDB Agripitch 2022 n'est pas encore en ligne !"
 
-#: presentation/views/application_form.py:222
+#: presentation/views/application_form.py:223
 msgid "African Development Bank AgriPitch Competition 2022 Application"
 msgstr "Concours AgriPitch 2022 de la Banque africaine de développement"
+
+#: presentation/views/application_form.py:229
+msgid ""
+"Thanks for applying to the African Development Bank AgriPitch Competition "
+"2022. Your application has "
+msgstr ""
+"Merci d’avoir postulé au Concours AgriPitch 2022 de la Banque africaine de "
+"développement. Votre demande a été enregistrée, nous vous répondrons sous "
+"peu."
+
+#: presentation/views/application_form.py:230
+msgid "been recorded, we will get back to you shortly"
+msgstr ""
+
+#: presentation/views/application_form.py:246
+msgid "New Application submitted"
+msgstr "Nouvelle demande soumise"
 
 #: presentation/views/delete_question.py:24
 msgid "Not found"
@@ -60,6 +77,57 @@ msgstr ""
 "Toute modification que vous apporterez à ce formulaire ne sera pas "
 "enregistrée"
 
+#: templates/agripitch/application_form.html:77
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/agripitch/application_form.html:87
+msgid "Please fix the errors in your form"
+msgstr "S'il vous plait, corriger les erreurs dans votre formulaire"
+
+#: templates/agripitch/application_form.html:116
+#: templates/agripitch/application_form.html:143
+#: templates/agripitch/landing.html:44
+msgid "Next"
+msgstr "Prochain"
+
+#: templates/agripitch/application_form.html:141
+#: templates/agripitch/application_form.html:166
+msgid "Prev"
+msgstr "Précédent"
+
+#: templates/agripitch/application_form.html:159
+msgid "Please review your application before submitting."
+msgstr "Veuillez examiner la demande avant de la soumettre."
+
+#: templates/agripitch/application_form.html:160
+msgid "Once submitted, your application cannot be edited."
+msgstr "Une fois soumise, la demande ne peut pas être modifiée"
+
+#: templates/agripitch/application_form.html:169
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: templates/agripitch/application_form.html:176
+msgid "Application Submission"
+msgstr "Présentation de la demande"
+
+#: templates/agripitch/application_form.html:183
+msgid "Are you sure you want to save your changes?"
+msgstr "Êtes-vous sûr de vouloir enregistrer vos modifications?"
+
+#: templates/agripitch/application_form.html:186
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/agripitch/application_form.html:188
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/agripitch/application_form.html:200
+msgid "This is the last section"
+msgstr "Il s’agit de la dernière section"
+
 #: templates/agripitch/landing.html:24 templates/agripitch/landing.html:33
 #: templates/agripitch/landing.html:87
 msgid "Apply Now"
@@ -68,10 +136,6 @@ msgstr "Appliquer maintenant"
 #: templates/agripitch/landing.html:40
 msgid "Previous"
 msgstr "Précédent"
-
-#: templates/agripitch/landing.html:44
-msgid "Next"
-msgstr "Prochain"
 
 #: templates/agripitch/landing.html:51
 msgid "About AgriPitch 2022"
@@ -108,6 +172,8 @@ msgid ""
 "The short listed successful agripreneurs will pitch to the judges and engage "
 "investors in the AgriPitch dealroom."
 msgstr ""
+"Les agripreneurs à succès présélectionnés présenteront aux juges et s’engageront "
+"les investisseurs dans la salle de traite AgriPitch."
 
 #: templates/agripitch/landing.html:80
 msgid "Applications Ongoing. Ends "
@@ -119,9 +185,31 @@ msgstr "Remarque : L'application prend 45 à 60 minutes."
 
 #: templates/agripitch/landing.html:88
 msgid "Download Application Guide"
-msgstr ""
+msgstr "Télécharger le guide de demande"
 
 #: templates/agripitch/landing.html:96
 msgid ""
 "There are no ongoing applications at the moment, please check back later."
 msgstr ""
+"Il n’y a pas de demandes en cours pour le moment. S’il vous plaît vérifier "
+"plus tard"
+
+#: templates/email/agripitch/application_submitted.html:5
+msgid "Hello Admin."
+msgstr "Bonjour administrateur"
+
+#: templates/email/agripitch/application_submitted.html:6
+msgid "A new application has been created. Login to view."
+msgstr "Une nouvelle application a été créée. Connectez-vous pour afficher"
+
+#: templates/email/agripitch/application_submitted.html:9
+msgid "Time:"
+msgstr "L'heure:"
+
+#~ msgid ""
+#~ "Thanks for applying to the African Development Bank AgriPitch Competition "
+#~ "2022. Your application has been recorded, we will get back to you shortly"
+#~ msgstr ""
+#~ "Merci d’avoir postulé au Concours AgriPitch 2022 de la Banque africaine "
+#~ "de développement. Votre demande a été enregistrée, nous vous répondrons "
+#~ "sous peu"

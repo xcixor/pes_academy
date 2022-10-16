@@ -74,7 +74,7 @@
                                     <span class="form-stepper-circle">
                                         <span>{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}</span>
                                     </span>
-                                    <div class="label">Save</div>
+                                    <div class="label">{% trans "Save" %}</div>
                                 </a>
                             </li>
                         </ul>
@@ -84,7 +84,7 @@
                             {% endif %} novalidate>
                             <h4 class="error px-4" id="formErrors">
                                 {% if form_errors %}
-                                Please fix the errors in your form
+                                {% trans "Please fix the errors in your form" %}
                                 {% endif %}
                             </h4>
                             {% csrf_token %}
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="2">Next</button>
+                                        step_number="2">{% trans "Next" %}</button>
                                 </div>
                             </section>
                             <!-- Step 2 Content, default hidden on page load. -->
@@ -138,9 +138,9 @@
                                 </div>
                                 <div class="mt-3">
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{{ forloop.counter }}">Prev</button>
+                                        step_number="{{ forloop.counter }}">{% trans "Prev" %}</button>
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{{ forloop.counter|add:'2' }}">Next</button>
+                                        step_number="{{ forloop.counter|add:'2' }}">{% trans "Next" %}</button>
                                 </div>
                             </section>
                             {% endfor %}
@@ -156,35 +156,36 @@
                                     </p>
                                     <p class="emphasis d-flex align-items-center">
                                         <i class="fa-solid fa-circle-info prefix green-info-icon mr-4"></i>
-                                        Please review your application before submitting. Once submitted, your application cannot be edited.
+                                        {% trans "Please review your application before submitting." %}
+                                        {% trans "Once submitted, your application cannot be edited." %}
                                     </p>
 
                                 </div>
                                 <div class="mt-5">
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
+                                        step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">{% trans "Prev" %}</button>
                                     <button type="button" class="button submit-btn" data-toggle="modal"
                                         data-target="#confirmationModal" id="triggerModal">
-                                        Confirm
+                                        {% trans "Confirm" %}
                                     </button>
                                     <div class="modal p-0" id="confirmationModal" tabindex="-1" role="dialog"
                                         aria-labelledby="confirmationModalLabel" aria-hidden="true">
                                         <div class="modal-dialog " role="document"></div>
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h3 class="modal-title"><strong>Application Submission</strong></h3>
+                                                <h3 class="modal-title"><strong>{% trans "Application Submission" %}</strong></h3>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Are you sure you want to save your changes?</p>
+                                                <p>{% trans "Are you sure you want to save your changes?" %}</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="button submit-btn" type="submit">Submit</button>
+                                                <button class="button submit-btn" type="submit">{% trans "Submit" %}</button>
                                                 <button type="button" class="btn button"
-                                                    data-dismiss="modal">Close</button>
+                                                    data-dismiss="modal">{% trans "Close" %}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +197,7 @@
     <div class="mt-3 mb-5">
         <h4>
             <strong>
-                This is the last seciton
+                {% trans "This is the last section" %}
             </strong>
         </h4>
 

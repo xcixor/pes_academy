@@ -225,9 +225,10 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         message = ""
         from_email = settings.VERIFIED_EMAIL_USER
         to_email = [user.email]
-        message = ('Thanks for applying to the African Development Bank '
-                   'AgriPitch Competition 2022. Your application has '
-                   'been recorded, we will get back to you shortly')
+        piece_one = _(
+            'Thanks for applying to the African Development Bank AgriPitch Competition 2022. Your application has ')
+        piece_two = _('been recorded, we will get back to you shortly')
+        message = f'{piece_one} {piece_two}'
         context = {
             'email_address': user.email,
             'name': user.full_name,
