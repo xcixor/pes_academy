@@ -67,7 +67,7 @@ class Application(models.Model):
 
     @property
     def special_id(self):
-        filled_id = f'{self.id}'.zfill(3)
+        filled_id = f'{self.application_creator.id}'.zfill(3)
         return f'PES - {self.slug} - {filled_id}'
 
     @property
