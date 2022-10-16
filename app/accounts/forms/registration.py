@@ -1,5 +1,5 @@
 import re
-from symbol import term
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -89,9 +89,24 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
             template='registration/email/account_activation.html',
             context=context)
 
+    def notify_admin(self, user):
+        subject = _(
+            'New User Registration')
+        from_email = settings.VERIFIED_EMAIL_USER
+        to_email = settings.ADMIN_EMAILS
+        context = {
+            'email_address': user.email,
+            'time': timezone.now()
+        }
+        return super().send_email(
+            subject, None, from_email, to_email,
+            template='registration/email/admin/new_user.html',
+            context=context)
+
     def save(self, commit=False):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
+            self.notify_admin(user)
         return user

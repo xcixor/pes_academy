@@ -15,7 +15,7 @@ class ReviewCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         from_email = settings.VERIFIED_EMAIL_USER
-        to_email = settings.ADMIN_EMAIL
+        to_email = settings.ADMIN_EMAILS
         current_site = get_current_site(request)
         context = {
             'user': request.user,
@@ -24,7 +24,7 @@ class ReviewCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
             'protocol': request.scheme,
         }
         super().send_email(
-            _('Review Completed'), None, from_email, [to_email],
+            _('Review Completed'), None, from_email, to_email,
             template='eligibility/email/review_done.html',
             context=context)
         return redirect('/accounts/dashboard/')

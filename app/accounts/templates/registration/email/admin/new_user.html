@@ -1,0 +1,11 @@
+{% extends 'common/email/base.html' %}
+{% load i18n %}
+
+{% block message %}
+{% trans "Hello Admin."%} <br>
+{% trans "A new user has registered with the details below." %}:
+<br>
+<p>{% trans "Email Address:" %} {{ email_address }}</p>
+<p>{% trans "Time:" %} {{ time }}</p>
+
+{% endblock %}

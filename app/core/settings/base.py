@@ -203,7 +203,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 VERIFIED_EMAIL_USER = os.getenv('VERIFIED_EMAIL_USER')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
+ADMIN_EMAILS = [
+    'agri2022@privateequity-support.com',
+    'peter@privateequity-support.com']
 
 SUPPORT_EMAILS = ['coach@privateequity-support.com']
 
@@ -225,4 +227,3 @@ CKEDITOR_CONFIGS = {
         'allowedContent': True
     },
 }
-

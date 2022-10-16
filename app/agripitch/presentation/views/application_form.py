@@ -211,10 +211,9 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         messages.add_message(
             request, messages.SUCCESS, success_message)
         application = request.user.application
-        # application.stage = 'step_two'
-        # application.save()
+        application.stage = 'step_two'
+        application.save()
         updated_user = save_personal_info(application)
-        print(updated_user.full_name, '**********')
         self.send_email(updated_user)
         return redirect(reverse('agripitch:application_view'))
 
