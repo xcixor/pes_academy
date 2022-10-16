@@ -112,7 +112,7 @@ class RegistrationViewTestCase(TestCase):
     def test_sends_account_activation_email(self):
         self.client.post(
             '/accounts/register/', self.form, follow=True)
-        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(len(mail.outbox), 2)
         self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
         self.assertIn('http', mail.outbox[0].alternatives[0][0])
         self.assertIn('testserver', mail.outbox[0].alternatives[0][0])

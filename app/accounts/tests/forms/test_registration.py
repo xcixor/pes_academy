@@ -49,13 +49,13 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
 
     def test_saves_user(self):
         self.assertTrue(self.form.is_valid())
-        self.form.save()
+        self.form.save(commit=True)
         saved_user = User.objects.get(email=self.data['email'])
         self.assertEqual(saved_user.username, self.data['username'])
 
     def test_saves_user_with_password(self):
         self.assertTrue(self.form.is_valid())
-        self.form.save()
+        self.form.save(commit=True)
         saved_user = User.objects.get(email=self.data['email'])
         self.assertTrue(saved_user.password)
         self.assertNotEqual(saved_user.password, self.data['password1'])
@@ -114,7 +114,7 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         user = self.form.save()
         self.form.send_account_activation_email(user, self.request)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Account Activation')
+        self.assertEqual(mail.outbox[0].subject, 'Welcome to Agripitch 2022! Please Confirm Your Email')
         to_email = self.data['email']
         self.assertEqual(mail.outbox[0].to[0], to_email)
 
