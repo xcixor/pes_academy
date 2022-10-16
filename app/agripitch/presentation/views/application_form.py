@@ -215,6 +215,7 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         application.save()
         updated_user = save_personal_info(application)
         self.send_email(updated_user)
+        self.notify_admin(application)
         return redirect(reverse('agripitch:application_view'))
 
     def send_email(self, user):
@@ -237,6 +238,20 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         return super().send_email(
             subject, None, from_email, to_email,
             template='email/agripitch/application_confirmation.html',
+            context=context)
+
+    def notify_admin(self, application):
+        subject = _(
+            'New Application submitted')
+        from_email = settings.VERIFIED_EMAIL_USER
+        to_email = settings.ADMIN_EMAILS
+        context = {
+            'application': application,
+            'time': timezone.now()
+        }
+        return super().send_email(
+            subject, None, from_email, to_email,
+            template='email/agripitch/application_submitted.html',
             context=context)
 
 
