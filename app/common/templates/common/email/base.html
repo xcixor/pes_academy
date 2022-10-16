@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRIVATE EQUITY SUPPORT</title>
-</head>
-{% load i18n %}
-<body style="padding: 2% 10%; background-color: whitesmoke; font-family: 'Google Sans', Roboto,RobotoDraft,Helvetica,Arial,sans-serif; font-size: 1rem;">
-    <div style="background-color: white; padding: 5%; border-radius: 20px;">
-        <div style="vertical-align: top; width: 100%">
-            <span>
-                <img src="cid:logo.webp" height="35px" style="background-color:white">
-            </span>
-        </div><br><br>
-        <div>
-            {% block message %}
-            {{context}}
-            {% endblock %}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PRIVATE EQUITY SUPPORT</title>
+    </head>
+    {% load i18n %}
+
+    <body
+        style="padding: 2% 10%; background-color: whitesmoke; font-family: 'Google Sans', Roboto,RobotoDraft,Helvetica,Arial,sans-serif;">
+        <div style="background-color: white; padding: 5%; border-radius: 20px;">
+            <div style="vertical-align: top; width: 100%">
+                <span>
+                    <img src="cid:logo.webp" height="35px" style="background-color:white">
+                </span>
+            </div><br><br>
+            <div style="font-size: 1rem;">
+                {% block message %}
+                {{context}}
+                {% endblock %}
+            </div>
+            <p style="margin: 0;">{% trans "Thank you." %}</p>
+            <p style="margin: 0;"><i>{% trans "The" %} Private Equity Support {% trans "Team" %}</i></p><br>
+            <address style="font-size: 0.6rem; color: #787878;">
+                Private Equity Support <br>
+                Tel: +254 20 3673 711 | Office Mobile: +254 703 041 711<br>
+                E-mail: info@privateequity-support.com| Skype: diana.gichaga<br>
+                Physical address: 13th Floor, Landmark Plaza, Argwings Kodhek Road<br>
+                Postal address:P.O. Box 856-00606 Nairobi, Kenya<br>
+                Web: www.privateequity-support.com
+            </address>
         </div>
-        <p style="margin: 0;">{% trans "Thank you." %}</p>
-        <p style="margin: 0;"><i>{% trans "The" %} Private Equity Support {% trans "Team" %}</i></p>
-    </div>
-</body>
+    </body>
+
 </html>
