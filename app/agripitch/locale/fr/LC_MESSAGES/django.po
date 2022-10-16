@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-15 07:56+0300\n"
+"POT-Creation-Date: 2022-10-16 17:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Application"
 msgid "Sorry, the AFDB Agripitch Competition 2022 is not yet live!"
 msgstr "Désolé, le concours AFDB Agripitch 2022 n'est pas encore en ligne !"
 
-#: presentation/views/application_form.py:194
+#: presentation/views/application_form.py:222
 msgid "African Development Bank AgriPitch Competition 2022 Application"
 msgstr "Concours AgriPitch 2022 de la Banque africaine de développement"
 
@@ -54,7 +54,7 @@ msgstr "L'application prend 45 à 60 minutes."
 msgid "Please note; you have already submitted your data."
 msgstr "Veuillez noter; vous avez déjà soumis vos données."
 
-#: templates/agripitch/application_form.html:42
+#: templates/agripitch/application_form.html:43
 msgid "Any changes that you make to this form will not be recorded"
 msgstr ""
 "Toute modification que vous apporterez à ce formulaire ne sera pas "
