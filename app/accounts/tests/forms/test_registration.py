@@ -113,16 +113,16 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         self.assertTrue(self.form.is_valid())
         user = self.form.save()
         self.form.send_account_activation_email(user, self.request)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Welcome to Agripitch 2022! Please Confirm Your Email')
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[1].subject, 'Welcome to Agripitch 2022! Please Confirm Your Email')
         to_email = self.data['email']
-        self.assertEqual(mail.outbox[0].to[0], to_email)
+        self.assertEqual(mail.outbox[0].to[0], 'agri2022@privateequity-support.com')
 
     def test_account_activation_email_sent_contains_appropriate_content(self):
         self.form.is_valid()
         user = self.form.save()
         self.form.send_account_activation_email(user, self.request)
-        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(len(mail.outbox), 2)
         self.assertIn('cid:logo.webp', mail.outbox[0].alternatives[0][0])
         self.assertIn('http', mail.outbox[0].alternatives[0][0])
-        self.assertIn('testserver', mail.outbox[0].alternatives[0][0])
+        self.assertIn('testserver', mail.outbox[1].alternatives[0][0])

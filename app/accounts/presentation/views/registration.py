@@ -32,10 +32,7 @@ class PostRegistrationView(FormView):
         self.partial_template_name = 'registration/partial/registration_success.html'
         self.request.session.pop('registration_details', None)
         inactive_user = form.save()
-        status = form.send_account_activation_email(
-            inactive_user, self.request)
-        if status:
-            form.save(commit=True)
+        form.send_account_activation_email(inactive_user, self.request)
         if self.request.htmx:
             return HttpResponseClientRedirect(self.success_url)
         return super().form_valid(form)

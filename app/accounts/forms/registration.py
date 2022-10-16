@@ -103,7 +103,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
             template='registration/email/admin/new_user.html',
             context=context)
 
-    def save(self, commit=False):
+    def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
