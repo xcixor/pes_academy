@@ -30,4 +30,4 @@ class HtmlEmailMixin(object):
         )
         email_message.attach_alternative(html_content, 'text/html')
         email_message.attach(img)
-        email_message.send()
+        return email_message.send()

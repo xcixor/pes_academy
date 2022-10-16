@@ -72,7 +72,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
 
     def send_account_activation_email(self, user, request):
         to_email = user.email
-        subject = _("Account Activation")
+        subject = _("Welcome to Agripitch 2022! Please Confirm Your Email")
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {
@@ -84,12 +84,12 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
             "uid": urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user)
         }
-        super().send_email(
+        return super().send_email(
             subject, None, from_email, [to_email],
             template='registration/email/account_activation.html',
             context=context)
 
-    def save(self, commit=True):
+    def save(self, commit=False):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
