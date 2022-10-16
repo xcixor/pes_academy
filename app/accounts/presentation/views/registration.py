@@ -29,6 +29,7 @@ class PostRegistrationView(FormView):
     partial_template_name = 'registration/partial/registration.html'
 
     def form_valid(self, form):
+        self.partial_template_name = 'registration/partial/registration_success.html'
         self.request.session.pop('registration_details', None)
         inactive_user = form.save()
         status = form.send_account_activation_email(
