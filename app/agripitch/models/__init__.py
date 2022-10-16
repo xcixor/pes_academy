@@ -56,6 +56,7 @@ class CriteriaItem(Translatable):
     shortlist = models.ForeignKey(
         ShortList, on_delete=models.CASCADE,
         related_name='criteria')
+    position_in_form = models.IntegerField(default=1)
 
     @property
     def get_label(self):
@@ -74,6 +75,7 @@ class CriteriaItem(Translatable):
 
     class Meta:
         verbose_name_plural = "2. Criteria Items"
+        ordering = ['position_in_form']
 
 
 def get_sub_criteria_item_response_if_exist(sub_criteria_item, application):
@@ -296,9 +298,6 @@ class SubCriteriaItemChoice(Translatable):
                 pk=self.pk).translate('fr')[0]
             return item.choice
         return self.choice
-
-    # def __str__(self) -> str:
-    #     return self.get_choice_label
 
     class Meta:
         verbose_name_plural = '7 Choices'

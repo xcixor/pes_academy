@@ -2,7 +2,7 @@ from django.contrib import admin
 from translations.admin import TranslatableAdmin, TranslationInline
 from agripitch.forms import (
     CustomSubCriteriaItemAdminForm, PartnerLogoAdminForm,
-    SubCriteriaItemFieldPropertiesAdminForm)
+    SubCriteriaItemFieldPropertiesAdminForm, CustomCriteriaItemAdminForm)
 
 from agripitch.models import (
     ShortList, CriteriaItem,
@@ -36,6 +36,7 @@ class SubCriteriaItemDocumentResponseAdmin(admin.ModelAdmin):
 @admin.register(CriteriaItem)
 class CriteriaItemAdmin(TranslatableAdmin):
     list_display = ['label', 'shortlist']
+    form = CustomCriteriaItemAdminForm
     inlines = [TranslationInline]
 
 

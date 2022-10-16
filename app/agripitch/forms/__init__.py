@@ -1,3 +1,4 @@
 from .model_forms import (
-    CustomSubCriteriaItemAdminForm, PartnerLogoAdminForm)
+    CustomSubCriteriaItemAdminForm, PartnerLogoAdminForm,
+    CustomCriteriaItemAdminForm)
 from .admin_forms import SubCriteriaItemFieldPropertiesAdminForm
