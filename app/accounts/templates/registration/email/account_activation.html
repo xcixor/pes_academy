@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block message %}
-{% trans "Dear " %}{{username}}, <br>
-{% trans "Thank you for your interest in registering with us. Please verify your email address by clicking the activation link below" %}:
+{% trans "Let's confirm your email address." <br>
+{% trans "By clicking on the following link, you are confirming your email address." %}:
 <br>
 <div style="margin: 20px 0;">
     <a
         style="background: green; padding: 15px 10px; border-radius: 5px; font: bold 0.9rem; text-decoration: none; color: white;"
         href="{{protocol}}://{{domain}}{% url 'accounts:activate' uidb64=uid token=token %}">
-        {% trans "ACTIVATE" %}
+        {% trans "Confirm Email Address" %}
     </a>
 </div><br>
 
