@@ -78,6 +78,26 @@ document
 		});
 	});
 
+document.addEventListener("mousedown", (event) => {
+	activateNavigationButtons();
+});
+
+document.addEventListener("keypress", (event) => {
+	activateNavigationButtons();
+});
+
+function activateNavigationButtons() {
+	let navigationButtons = $(".btn-navigate-form-step");
+
+	Array.from(navigationButtons).forEach((button) => {
+		if ($(button).attr("disabled")) {
+			console.log('clicked')
+			$(button).removeAttr("disabled");
+			$(button).css("background-color", "#14A562");
+		}
+	});
+}
+
 document
 	.querySelectorAll(".btn-navigate-form-step")
 	.forEach((formNavigationBtn) => {
@@ -548,7 +568,7 @@ $("textarea").keyup(function () {
 
 function validateCharacterLength(textarea) {
 	var maxLength = 500;
-	var words  = $(textarea).val().split(' ');
+	var words = $(textarea).val().split(" ");
 	var len = maxLength - words.length;
 	if (len > 0) {
 		if ($(textarea).next().length) {
@@ -610,8 +630,6 @@ function isEmptyOrSpaces(str) {
 //   $('#triggerModal').trigger('focus')
 
 // })
-
-
 
 // $('#triggerModal').on('click', function () {
 //   $('#confirmationModal').modal("show");
