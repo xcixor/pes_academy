@@ -78,10 +78,11 @@
         <img src="{% static 'images/agripitch-logo.png' %}" alt="{ trans 'AgriPitch logo' }" class="img-fluid"
           id="main-logo">
         <h2 class="sub-heading" style="font-size: 1.4rem;">{% trans "Theme: The Role of African Youth Within African Food Systems" %}</h2>
-        
+
         <section class="landing">
           <div class="landing-inner">
-            <h1>{% trans "Official Launch" %}</h1>
+            {% get_current_language as LANGUAGE_CODE %}
+			<input type="hidden" value="{{ LANGUAGE_CODE }}" id="languageCode" />
             <div class="countdown"></div>
           </div>
         </section>

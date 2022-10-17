@@ -655,11 +655,17 @@ const intvl = setInterval(() => {
 
   // If launch date is reached
   if (distance < 0) {
+    let languageCode = $("#languageCode").val();
+    console.log(languageCode)
+    var launchMessage = "Launched!";
+    if (languageCode === "fr") {
+        launchMessage = "Lancé!";
+    }
     // Stop countdown
     clearInterval(intvl);
     // Style and output text
     countdown.style.color = '#17a2b8';
-    countdown.innerHTML = 'Launched!';
+    countdown.innerHTML = launchMessage;
   }
 }, 1000);
 
