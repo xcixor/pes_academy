@@ -58,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(
         verbose_name=_('Email Address'), max_length=255, unique=True)
-    full_name = models.CharField(max_length=255)
+    full_name = models.CharField(max_length=255, null=True, blank=True)
     date_joined = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -66,10 +66,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_reviewer = models.BooleanField(default=False)
     is_coach = models.BooleanField(default=False)
     is_applying_for_a_call_to_action = models.BooleanField(default=False)
-    age = models.CharField(null=True, max_length=20)
-    gender = models.CharField(max_length=20)
+    age = models.CharField(null=True, blank=True, max_length=20)
+    gender = models.CharField(max_length=20,null=True, blank=True)
     preferred_language = models.CharField(
-        max_length=40)
+        max_length=40, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     linked_in = models.URLField(null=True, blank=True)
     avatar = models.ImageField(
