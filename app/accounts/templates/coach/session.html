@@ -15,30 +15,30 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title text-center">Meetings</h3>
+            <h3 class="card-title text-center">{% trans "Meetings" %}</h3>
           </div>
         <div class="card-body m-4">
           {% for meeting in session.meetings.all %}
                 <li class="list-group-item"><a href="{{meeting.link}}" target="_blank" class="list-group-item list-group-item-action">{{meeting}}</a></li>
             {% empty %}
-            <p class="card-text">Your coach has not created any meetings yet</p>
+            <p class="card-text">{% trans "Your coach has not created any meetings yet" %}</p>
             {% endfor %}
-          
+
         </div>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title text-center">Materials</h3>
+            <h3 class="card-title text-center">{% trans "Materials" %}</h3>
           </div>
         <div class="card-body m-4">
             {% for material in session.materials.all %}
             <li class="list-group-item"><a href="{{material.material.url}}" target="_blank" class="list-group-item list-group-item-action">{{material}}</a></li>
         {% empty %}
-        <p class="card-text">Your coach has not created any meetings yet</p>
+        <p class="card-text">{% trans "Your coach has not created any meetings yet" %}</p>
         {% endfor %}
-          
+
         </div>
       </div>
     </div>

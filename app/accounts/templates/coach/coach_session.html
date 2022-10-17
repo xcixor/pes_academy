@@ -7,10 +7,10 @@
 {% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="bio container">   
+<div class="bio container">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title text-center">Your sessions with {{coach.full_name}}</h3>
+            <h3 class="card-title text-center">{% trans "Your sessions with" %} {{coach.full_name}}</h3>
         </div>
         <div class="card-body m-4">
             <ol style="list-style-type:decimal;" class="list-group list-group-flush">
@@ -19,11 +19,11 @@
                         <span class="text-dark">{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
                     </li>
                 {% empty %}
-                <p class="card-text"><b>Your coach has not created any sessions yet</b></p>
+                <p class="card-text"><b>{% trans "Your coach has not created any sessions yet" %}</b></p>
                 {% endfor %}
             </ol>
             <div class="col mt-5">
-                <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
+                <a href="{% url 'accounts:dashboard' %}" class="btn">{% trans "Back" %}</a>
             </div>
         </div>
     </div>

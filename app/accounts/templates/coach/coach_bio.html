@@ -36,17 +36,17 @@
                 {% if not coach|is_user_coach:user %}
                 <form action="{% url 'accounts:coaching' %}" method="post" class=" d-flex justify-content-center">
                     {% csrf_token %}
-                    <button class="btn m-4" type="submit">Add Coach</button>
+                    <button class="btn m-4" type="submit">{% trans "Add Coach" %}</button>
                     <input type="hidden" name="coach" value="{{coach.pk}}">
                     <input type="hidden" name="mentee" value="{{user.pk}}">
                 </form>
                 {% endif %}
-                <a href="{% url 'accounts:dashboard' %}" class="btn">Back</a>
+                <a href="{% url 'accounts:dashboard' %}" class="btn">{% trans "Back" %}</a>
             </div>
           </div>
         </figcaption>
       </figure>
-      
+
 </div>
 
 

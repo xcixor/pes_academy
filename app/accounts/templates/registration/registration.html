@@ -29,9 +29,12 @@
       <div class="error-container">
         {% if form.errors %}
         <div class="row ">
-          <div class="col-sm-12 d-inline-flex align-items-center">
-            <i class="fas fa-info error mr-2"></i>
-            <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
+          <div class="col-sm-12">
+            <div class="d-flex align-items-center justify-content-center">
+              <i class="fas fa-info-circle error mr-2 postfix"></i>
+              <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
+            </div>
+
           </div>
         </div>
         {% endif %}
@@ -108,7 +111,8 @@
           </div>
           <details class="my-4">
             <summary id="detailsIconWrapper">
-              <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>Password Requirements</strong>
+              <strong><i class="fa-solid fa-angle-right"
+                  id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
             </summary>
             <ul>
               <li> {% trans "password must contain at least 8 characters." %}</li>

@@ -51,10 +51,10 @@
       <div class="col-sm-12">
         <i class="fa fa-envelope prefix white-text mr-2"></i> <label for="email">{% trans "Email" %}</label>
         {% if request.session.registration_details.email %}
-        <input type="email" id="email" class="form-control" placeholder="Email" name="email" required
+        <input type="email" id="email" class="form-control" placeholder="{% trans 'Email' %}" name="email" required
           value="{{request.session.registration_details.email}}">
         {% else %}
-        <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
+        <input type="email" id="email" class="form-control" placeholder="{% trans 'Email' %}" name="email" required>
         {% endif %}
         <div class="error-container">
           {% for error in form.email.errors %}
@@ -98,7 +98,7 @@
         </div>
         <details class="my-4">
           <summary id="detailsIconWrapper">
-            <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>Password Requirements</strong>
+            <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
           </summary>
           <ul>
             <li> {% trans "password must contain at least 8 characters." %}</li>

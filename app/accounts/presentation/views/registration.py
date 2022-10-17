@@ -1,4 +1,6 @@
 from django.contrib.auth import login
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import TemplateView, FormView
 from django_htmx.http import HttpResponseClientRedirect
@@ -74,6 +76,9 @@ class PostReviewerRegistrationView(FormView):
         registration_details.pop('password1')
         registration_details.pop('password2')
         self.request.session['registration_details'] = registration_details
+        error_message = _("Please correct the errors in your form")
+        messages.add_message(
+            self.request, messages.ERROR, error_message)
         return super().form_invalid(form)
 
 

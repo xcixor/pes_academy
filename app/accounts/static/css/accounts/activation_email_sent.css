@@ -1,0 +1,13 @@
+.box {
+    width: 60%;
+    font-size: 1.6rem;
+}
+
+@media (max-width:767px){
+    h2{
+        font-size: 2.6rem;
+    }
+    .box {
+        width: 80%;
+    }
+}
