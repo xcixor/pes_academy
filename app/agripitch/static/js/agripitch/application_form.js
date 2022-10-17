@@ -1,6 +1,8 @@
+let language = $("#languageCode").val();
 $(document).ready(function () {
 	$(".is-dependent").siblings().css("display", "none");
 });
+
 /**
  * Define a function to navigate betweens form steps.
  * It accepts one parameter. That is - step number.
@@ -78,25 +80,25 @@ document
 		});
 	});
 
-document.addEventListener("mousedown", (event) => {
-	activateNavigationButtons();
-});
+// document.addEventListener("mousedown", (event) => {
+// 	activateNavigationButtons();
+// });
 
-document.addEventListener("keypress", (event) => {
-	activateNavigationButtons();
-});
+// document.addEventListener("keypress", (event) => {
+// 	activateNavigationButtons();
+// });
 
-function activateNavigationButtons() {
-	let navigationButtons = $(".btn-navigate-form-step");
+// function activateNavigationButtons() {
+// 	let navigationButtons = $(".btn-navigate-form-step");
 
-	Array.from(navigationButtons).forEach((button) => {
-		if ($(button).attr("disabled")) {
-			console.log('clicked')
-			$(button).removeAttr("disabled");
-			$(button).css("background-color", "#14A562");
-		}
-	});
-}
+// 	Array.from(navigationButtons).forEach((button) => {
+// 		if ($(button).attr("disabled")) {
+// 			console.log('clicked')
+// 			$(button).removeAttr("disabled");
+// 			$(button).css("background-color", "#14A562");
+// 		}
+// 	});
+// }
 
 document
 	.querySelectorAll(".btn-navigate-form-step")
@@ -106,7 +108,8 @@ document
 			const stepNumber = parseInt(
 				formNavigationBtn.getAttribute("step_number")
 			);
-			if ($(formNavigationBtn).text() === "Next") {
+			console.log(stepNumber);
+			if ($(formNavigationBtn).attr("data-name") === "Next") {
 				var isValid = true;
 				let notRequiredFieldsValidation =
 					saveNonRequiredFilledFields(formSection);
@@ -114,6 +117,8 @@ document
 				if (!notRequiredFieldsValidation || !requiredFieldsValidation) {
 					isValid = false;
 				}
+				console.log(isValid);
+
 				if (isValid) {
 					navigateToFormStep(stepNumber);
 				} else {
@@ -254,11 +259,15 @@ function saveNonRequiredFilledFields(formSection) {
 		}
 		if (inputs[i].type === "textarea" && !isEmptyOrSpaces($(inputs[i]).val())) {
 			textAreaValidity = validateCharacterLength($(inputs[i]));
+			var textAreaErrorMessage = "The number of words should not exceed 500";
+			if (language === "fr") {
+				textAreaErrorMessage = "Le nombre de mots ne doit pas dépasser 500";
+			}
 			if (!textAreaValidity) {
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of words should not exceed 500`
+					`${inputs[i].name}: ${textAreaErrorMessage}`
 				);
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
@@ -287,11 +296,18 @@ function saveNonRequiredFilledFields(formSection) {
 				$(checkBoxParentLabel).css("color", "red");
 
 				if (!$(checkBoxParentLabel).attr("sizeErrorMessageAdded")) {
+					var errorMessagePieceOne = "Please select a maximum of";
+					var errorMessagePieceTwo = "choices";
+
+					if (language === "fr") {
+						errorMessagePieceOne = "Veuillez sélectionner un maximum de";
+						errorMessagePieceTwo = "les choix";
+					}
 					$(checkBoxParentLabel)
 						.html(
 							`${$(
 								checkBoxParentLabel
-							).text()} Please select a maximum of ${checkBoxesSize} choices`
+							).text()}: ${errorMessagePieceOne} ${checkBoxesSize} ${errorMessagePieceTwo}`
 						)
 						.attr("sizeErrorMessageAdded", true);
 				}
@@ -314,10 +330,14 @@ function saveNonRequiredFilledFields(formSection) {
 	for (i = 0; i < file_inputs.length; i++) {
 		if (file_inputs[i].files[0]) {
 			if (file_inputs[i].files[0].size > $(file_inputs[i]).attr("max_size")) {
+				var errorMessagePieceOne = "is too big, maximum size should be";
+				if (language === "fr") {
+					errorMessagePieceOne = "est trop grand, la taille maximale doit être";
+				}
 				$(`label[for="id_${file_inputs[i].name}"]`).css("color", "red");
 				let max_size = parseInt($(file_inputs[i]).attr("max_size")) / 1048576;
 				$(`label[for="id_${file_inputs[i].name}"]`).append(
-					` is too big, maximum size should be ${max_size}MB!`
+					`: ${errorMessagePieceOne} ${max_size}MB!`
 				);
 				this.value = "";
 				isValid = false;
@@ -374,9 +394,13 @@ function saveNonRequiredFilledFields(formSection) {
 		}
 	}
 	if (!isValid) {
-		$("#formErrors").text(
-			"Please fill in all the required fields. * Means an input required."
-		);
+		let errorMessage =
+			"Please fill in all the required fields. * Means an input is required.";
+		if (language === "fr") {
+			errorMessage =
+				"Veuillez remplir tous les champs obligatoires. * Signifie qu'une entrée est requise.";
+		}
+		$("#formErrors").text(`${errorMessage}`);
 	} else {
 		$("#formErrors").text("");
 	}
@@ -407,10 +431,14 @@ function validateSection(formSection) {
 		if (inputs[i].type === "textarea") {
 			textAreaValidity = validateCharacterLength($(inputs[i]));
 			if (!textAreaValidity) {
+				let errorMessage = "The number of words should not exceed 500";
+				if (language === "fr") {
+					errorMessage = "Le nombre de mots ne doit pas dépasser 500";
+				}
 				$(inputs[i]).css("border-color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).css("color", "red");
 				$(`label[for="id_${inputs[i].name}"]`).text(
-					`${inputs[i].name}: Number of words should not exceed 500`
+					`${inputs[i].name}: ${errorMessage}`
 				);
 			} else {
 				$(`label[for="id_${inputs[i].name}"]`).text(`${inputs[i].name}`);
@@ -418,10 +446,14 @@ function validateSection(formSection) {
 		}
 		let checkBoxParentLabel;
 		if (inputs[i].type === "checkbox") {
+			console.log(inputs[i].name);
+
 			let checkBoxes = document.getElementsByName(inputs[i].name);
 			let checkBoxesSize = parseInt($(checkBoxes).attr("size"));
 			let numberOfCheckedItems = 0;
-			checkBoxParentLabel = $(`label:contains(${inputs[i].name})`);
+			checkBoxParentLabel = $(
+				`label:contains(${$(inputs[i]).attr("data-label-text")})`
+			);
 
 			for (let i = 0; i < checkBoxes.length; i++) {
 				if (checkBoxes[i].checked) {
@@ -439,17 +471,24 @@ function validateSection(formSection) {
 				$(checkBoxParentLabel).css("color", "red");
 
 				if (!$(checkBoxParentLabel).attr("sizeErrorMessageAdded")) {
+					let errorMessagePieceOne = "Please select a maximum of";
+					let errorMessagePieceTwo = "choices";
+
+					if (language === "fr") {
+						errorMessagePieceOne = "Veuillez sélectionner un maximum de";
+						errorMessagePieceTwo = "les choix";
+					}
 					$(checkBoxParentLabel)
 						.html(
 							`${$(
 								checkBoxParentLabel
-							).text()} Please select a maximum of ${checkBoxesSize} choices`
+							).text()}: ${errorMessagePieceOne} ${checkBoxesSize} ${errorMessagePieceTwo}`
 						)
 						.attr("sizeErrorMessageAdded", true);
 				}
 				checkBoxesValidity = false;
 			} else {
-				$(checkBoxParentLabel).html(inputs[i].name);
+				$(checkBoxParentLabel).html($(inputs[i]).attr("data-label-text"));
 			}
 		}
 		if (
@@ -466,10 +505,14 @@ function validateSection(formSection) {
 	for (i = 0; i < file_inputs.length; i++) {
 		if (file_inputs[i].files[0]) {
 			if (file_inputs[i].files[0].size > $(file_inputs[i]).attr("max_size")) {
+				let errorMessage = "is too big, maximum size should be";
+				if (language === "fr") {
+					errorMessage = "est trop grand, la taille maximale doit être";
+				}
 				$(`label[for="id_${file_inputs[i].name}"]`).css("color", "red");
 				let max_size = parseInt($(file_inputs[i]).attr("max_size")) / 1048576;
 				$(`label[for="id_${file_inputs[i].name}"]`).append(
-					` is too big, maximum size should be ${max_size}MB!`
+					`: ${errorMessage} ${max_size}MB!`
 				);
 				this.value = "";
 				isValid = false;
@@ -527,9 +570,13 @@ function validateSection(formSection) {
 		}
 	}
 	if (!isValid) {
-		$("#formErrors").text(
-			"Please fill in all the required fields. * Means an input required."
-		);
+		let errorMessage =
+			"Please fill in all the required fields. * Means an input is required.";
+		if (language === "fr") {
+			errorMessage =
+				"Veuillez remplir tous les champs obligatoires. * Signifie qu'une entrée est requise.";
+		}
+		$("#formErrors").text(`${errorMessage}`);
 	} else {
 		$("#formErrors").text("");
 	}
@@ -572,25 +619,33 @@ function validateCharacterLength(textarea) {
 	var len = maxLength - words.length;
 	if (len > 0) {
 		if ($(textarea).next().length) {
+			let errorMessage = "words remaining";
+			if (language === "fr") {
+				errorMessage = "mots restants";
+			}
 			$(textarea)
 				.next()
 				.replaceWith(
 					$(
-						`<p class="textarea-characters-remaining">${len} words remaining</p>`
+						`<p class="textarea-characters-remaining">${len} ${errorMessage}</p>`
 					)
 				);
 		} else {
 			$(
-				`<p class="textarea-characters-remaining">${len} words remaining</p>`
+				`<p class="textarea-characters-remaining">${len} ${errorMessage}</p>`
 			).insertAfter($(textarea));
 		}
 		return true;
 	} else {
+		let errorMessage = "0 characters remaining";
+		if (language === "fr") {
+			errorMessage = "0 caractères restants";
+		}
 		$(textarea)
 			.next()
 			.replaceWith(
 				$(
-					`<p class="textarea-characters-remaining" style="color:red">0 characters remaining</p>`
+					`<p class="textarea-characters-remaining" style="color:red">${errorMessage}</p>`
 				)
 			);
 		return false;
@@ -625,12 +680,3 @@ function saveDraftData(formData) {
 function isEmptyOrSpaces(str) {
 	return str === null || str.match(/^ *$/) !== null;
 }
-
-// $('#confirmationModal').on('shown.bs.modal', function () {
-//   $('#triggerModal').trigger('focus')
-
-// })
-
-// $('#triggerModal').on('click', function () {
-//   $('#confirmationModal').modal("show");
-// })

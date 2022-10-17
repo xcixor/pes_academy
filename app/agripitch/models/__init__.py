@@ -213,10 +213,13 @@ class DynamicForm(forms.Form):
                         self.fields[instance.label].widget.attrs['class'] = updated_class_value.lstrip(
                         )
             language = get_language()
+
+            self.fields[instance.label].widget.attrs['data-label-text'] = instance.label
             if language == 'fr':
                 item = SubCriteriaItem.objects.filter(
                     pk=instance.pk).translate('fr')[0]
                 self.fields[instance.label].label = item.label
+                self.fields[instance.label].widget.attrs['data-label-text'] = item.label
 
 
 def get_form(instance):
