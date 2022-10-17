@@ -39,13 +39,14 @@
 }
 .htmx-request.htmx-indicator{
     opacity:1;
-    position: absolute;
+    position: fixed;
     top: 0;
+    bottom: 0;
     z-index:1;
     width: auto;
     transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background: rgba(244, 249, 236, 0.6);
     display: flex;
