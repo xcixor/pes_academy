@@ -80,25 +80,26 @@ document
 		});
 	});
 
-// document.addEventListener("mousedown", (event) => {
-// 	activateNavigationButtons();
-// });
+document.addEventListener("mousedown", (event) => {
+	activateNavigationButtons();
+});
 
-// document.addEventListener("keypress", (event) => {
-// 	activateNavigationButtons();
-// });
+document.addEventListener("keypress", (event) => {
+	activateNavigationButtons();
+});
 
-// function activateNavigationButtons() {
-// 	let navigationButtons = $(".btn-navigate-form-step");
+function activateNavigationButtons() {
+	let navigationButtons = $(".btn-navigate-form-step");
 
-// 	Array.from(navigationButtons).forEach((button) => {
-// 		if ($(button).attr("disabled")) {
-// 			console.log('clicked')
-// 			$(button).removeAttr("disabled");
-// 			$(button).css("background-color", "#14A562");
-// 		}
-// 	});
-// }
+	Array.from(navigationButtons).forEach((button) => {
+		if ($(button).attr("disabled")) {
+			console.log('clicked')
+			$(button).removeAttr("disabled");
+			$(button).css("background-color", "#14A562");
+		}
+	});
+	$("#formErrors").text("");
+}
 
 document
 	.querySelectorAll(".btn-navigate-form-step")
