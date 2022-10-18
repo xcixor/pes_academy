@@ -17,8 +17,10 @@ class UserAdmin(admin.ModelAdmin):
     def special_id(self, obj):
         return obj
 
-    list_display = ['special_id', 'username', 'email', 'date_joined', 'is_active']
+    list_display = ['special_id', 'username',
+                    'email', 'date_joined', 'is_active']
     search_fields = ['email', 'full_name', 'username', 'id']
+    list_filter = ['is_active']
     inlines = [BusinessOrganizationInline]
 
 
