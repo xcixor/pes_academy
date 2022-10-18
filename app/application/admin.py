@@ -57,6 +57,8 @@ class ApplicationCommentInline(admin.TabularInline):
 class ApplicationAdmin(admin.ModelAdmin):
 
     list_display = ['special_id', 'application_creator', 'created']
+    list_filter = ['stage']
+
 
     inlines = [
         ApplicationDocumentInline, ApplicationReviewInline,
