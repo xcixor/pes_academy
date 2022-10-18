@@ -18,7 +18,7 @@ class UserAdmin(admin.ModelAdmin):
         return obj
 
     list_display = ['special_id', 'username', 'email', 'date_joined', 'is_active']
-    search_fields = ['email']
+    search_fields = ['email', 'full_name', 'username', 'id']
     inlines = [BusinessOrganizationInline]
 
 

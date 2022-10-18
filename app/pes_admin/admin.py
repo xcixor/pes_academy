@@ -16,7 +16,7 @@ class CustomAdmin(admin.AdminSite):
         urls = super(CustomAdmin, self).get_urls()
         custom_urls = [
             path('',
-                 admin.site.admin_view(AdvancedAdminDashboardView.as_view())),
+                 admin.site.admin_view(AdvancedAdminDashboardView.as_view()), name='advanced_index'),
             path('invite/reviewer/',
                  admin.site.admin_view(InviteReviewerView.as_view())),
             path('view/staff/',
@@ -51,4 +51,4 @@ class CustomAdmin(admin.AdminSite):
         return custom_urls
 
 
-custom_pes_admin_site = CustomAdmin(name='Custom PES')
+custom_pes_admin_site = CustomAdmin(name='admin_advanced')

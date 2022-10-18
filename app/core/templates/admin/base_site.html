@@ -1,0 +1,34 @@
+<style>
+    .d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        margin-right: 10px;
+        background-color: white;
+    }
+    .d-flex a:hover {
+        color: #C8C8C8 !important;
+    }
+</style>
+
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} |
+{{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div class="d-flex">
+    <a class="navbar-brand" href="{% url 'admin:index' %}">
+        <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
+    </a>
+    <a href="{% url 'admin_advanced:advanced_index' %}">ADMIN ADVANCED</a>
+</div>
+{% if user.is_anonymous %}
+{% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
