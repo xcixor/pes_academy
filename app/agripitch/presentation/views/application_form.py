@@ -206,7 +206,7 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         if is_ajax:
             return JsonResponse(
                 data, status=201)
-        success_message = (
+        success_message = _(
             "Your application has been recorded, we will get back to you shortly")
         messages.add_message(
             request, messages.SUCCESS, success_message)
