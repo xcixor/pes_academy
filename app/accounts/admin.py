@@ -13,7 +13,12 @@ class BusinessOrganizationInline(admin.TabularInline):
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
 
-    list_display = ['username', 'email', 'date_joined']
+    @admin.display(description='Special Id')
+    def special_id(self, obj):
+        return obj
+
+    list_display = ['special_id', 'username', 'email', 'date_joined', 'is_active']
+    search_fields = ['email']
     inlines = [BusinessOrganizationInline]
 
 
