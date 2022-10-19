@@ -151,12 +151,34 @@
   {% endoptions %}
   {% graph "revenues2021" "out_data" "out_options" %}
 
+  <!-- Applications by stage -->
+  {% with ''|get_applications_by_stage as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Applications by Stage',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "applicationStage" "out_data" "out_options" %}
+
   {% endgooglecharts %}
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <h2>Key Stats <i class="fa-solid fa-chart-simple ml-5"></i></h2>
+    <h4>
+      Total AfDB Applicants:
+      {% with ''|get_total_afdb_applicants as total_applicants %}{{total_applicants|length}}{% endwith %}
+    </h4>
     <h4>
       Total Applications:
       {% with ''|get_total_applications as total_applications %}{{total_applications}}{% endwith %}
@@ -197,6 +219,12 @@
   </div>
   <div class="col-md-6">
     <div id="revenues2021"></div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div id="applicationStage"></div>
   </div>
 </div>
 
