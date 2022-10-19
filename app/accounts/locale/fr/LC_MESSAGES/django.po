@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 07:09+0300\n"
+"POT-Creation-Date: 2022-10-19 15:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,13 +66,29 @@ msgid "Please read and agree to our terms and privacy by checking the box"
 msgstr ""
 "Veuillez lire et accepter nos termes et confidentialité en cochant la case"
 
-#: forms/registration.py:75
+#: forms/registration.py:75 forms/registration.py:148
 msgid "Welcome to Agripitch 2022! Please Confirm Your Email"
 msgstr "Bienvenue à Agripitch 2022 ! Veuillez confirmer votre email"
 
-#: forms/registration.py:94
+#: forms/registration.py:94 forms/registration.py:167
 msgid "New User Registration"
 msgstr "S'inscrire"
+
+#: forms/registration.py:132
+msgid "Sorry that account does not exist."
+msgstr "n'existe pas."
+
+#: forms/registration.py:136
+msgid ""
+"Your account is already active. Please login with the details you registered "
+"with, or reset your password"
+msgstr ""
+"Votre compte est déjà actif. Veuillez vous connecter avec les détails que "
+"vous avez enregistrés avec ou réinitialisez votre mot de passe"
+
+#: forms/registration.py:146
+msgid "Sorry the account does not exist."
+msgstr "n'existe pas."
 
 #: models/user.py:18
 msgid "A User must have a username"
@@ -147,6 +163,10 @@ msgstr "Super! vos coordonnées ont été enregistrées"
 #: presentation/views/registration.py:79
 msgid "Please correct the errors in your form"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
+
+#: presentation/views/resend_activation_email.py:16
+msgid "We have sent you the activation email to your address"
+msgstr "Nous vous avons envoyé l'e-mail d'activation à votre adresse"
 
 #: templates/coach/coach_bio.html:39
 msgid "Add Coach"
@@ -694,6 +714,7 @@ msgstr "Nom"
 #: templates/registration/partial/registration.html:54
 #: templates/registration/partial/registration.html:57
 #: templates/registration/registration.html:65
+#: templates/registration/resend_activation_email.html:22
 msgid "Email"
 msgstr "E-mail"
 
@@ -1129,7 +1150,9 @@ msgstr "Activez votre compte"
 #: templates/registration/activation_email_sent.html:20
 msgid ""
 "You should receive an e mail with the activation link within 20 seconds."
-msgstr "Vous devriez recevoir un e-mail avec le lien d'activation dans les 20 secondes."
+msgstr ""
+"Vous devriez recevoir un e-mail avec le lien d'activation dans les 20 "
+"secondes."
 
 #: templates/registration/activation_email_sent.html:23
 msgid "However,"
@@ -1137,7 +1160,9 @@ msgstr "Cependant,"
 
 #: templates/registration/activation_email_sent.html:24
 msgid "If you do not find it in your inbox, please do the following;"
-msgstr "Si vous ne le trouvez pas dans votre boîte de réception, veuillez procéder comme suit ;"
+msgstr ""
+"Si vous ne le trouvez pas dans votre boîte de réception, veuillez procéder "
+"comme suit ;"
 
 #: templates/registration/activation_email_sent.html:29
 msgid "Check your spam folder for an email from"
@@ -1145,13 +1170,19 @@ msgstr "Vérifiez votre dossier spam pour un e-mail de"
 
 #: templates/registration/activation_email_sent.html:31
 msgid "It is common to have email delivery problems due to automated filters."
-msgstr "Il est courant d'avoir des problèmes de livraison d'e-mails en raison de filtres automatisés."
+msgstr ""
+"Il est courant d'avoir des problèmes de livraison d'e-mails en raison de "
+"filtres automatisés."
 
 #: templates/registration/activation_email_sent.html:32
 msgid "Mark the email as not spam and click the activation link."
 msgstr "Marquez l'e-mail comme non spam et cliquez sur le lien d'activation."
 
-#: templates/registration/activation_email_sent.html:37
+#: templates/registration/activation_email_sent.html:36
+msgid "Resend Activation Link"
+msgstr "Renvoyer le lien d'activation"
+
+#: templates/registration/activation_email_sent.html:39
 msgid "If you still don't see it, kindly e mail"
 msgstr "Si vous ne le voyez toujours pas, veuillez envoyer un e-mail"
 
@@ -1215,6 +1246,7 @@ msgid "Don't have an account yet"
 msgstr "Vous n'avez pas encore de compte"
 
 #: templates/registration/login.html:80
+#: templates/registration/resend_activation_email.html:45
 msgid "Sign Up"
 msgstr "S'inscrire"
 
@@ -1388,6 +1420,23 @@ msgid ""
 msgstr ""
 "Si vous ne recevez pas d'e-mail, assurez-vous d'avoir entré l'adresse vous "
 "vous êtes inscrit et vérifiez votre dossier spam."
+
+#: templates/registration/resend_activation_email.html:13
+#: templates/registration/resend_activation_email.html:15
+msgid "Resend Email"
+msgstr "Ré-envoyer l'email"
+
+#: templates/registration/resend_activation_email.html:25
+msgid "The email your registered with"
+msgstr "L'e-mail avec lequel vous vous êtes inscrit"
+
+#: templates/registration/resend_activation_email.html:39
+msgid "Resend Activation Email"
+msgstr "oups l'activation a échoué !"
+
+#: templates/registration/resend_activation_email.html:44
+msgid "Don't have an account yet?"
+msgstr "Vous n'avez pas encore de compte"
 
 #: templates/registration/staff_registration.html:65
 msgid ""

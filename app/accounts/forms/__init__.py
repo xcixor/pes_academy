@@ -1,4 +1,4 @@
-from .registration import RegistrationForm
+from .registration import RegistrationForm, ResendActivationEmail
 from .password_change import (
     UserPasswordChangeForm, UserPasswordResetForm)
 from .help import HelpForm

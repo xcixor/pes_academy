@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/passwords.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-8 col-md-push-2">
+        <div class="container-wrapper my-5">
+            {% if form.errors %}
+            <h3 class="font-weight-bold p-tb-20 error">{% trans "Resend Email" %}</h3>
+            {% else %}
+            <h3 class="font-weight-bold p-tb-20">{% trans "Resend Email" %}</h3>
+            {% endif %}
+            <form action="{% url 'accounts:resend_activation_email' %}" method="post">
+                {% csrf_token %}
+                <div class="input-row flex flex-justify-space-between my-4">
+                    <div class="input-column flex flex-v">
+                        {% if form.email.errors %}
+                        <label for="id_email" class="error">{% trans "Email" %}</label>
+                        {% else %}
+                        <label for="id_email"
+                            class="grenadier-text">{% trans "The email your registered with" %}</label>
+                        {% endif %}
+                        <input type="email" name="email" required="" id="id_email" class="form-control">
+                        {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                        <strong class="error">{{ error|escape }}</strong><br>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="input-row flex flex-justify-space-between my-4">
+                    <div class="input-column flex flex-v">
+                        <button type="submit"
+                            class="btn btn-primary px-5 py-3 rounded">{% trans "Resend Activation Email" %}</button>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <p>{% trans "Don't have an account yet?" %} <a href="{% url 'accounts:register' %}"
+                            style="color: #455D8D; font-weight: 600;">{% trans "Sign Up" %}</a>.</p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
