@@ -50,7 +50,6 @@ def get_applications_by_stage(string_to_invoke_call):
         ['Documents in review', step_three_applications],
         ['Verdict Passed', step_four_applications],
         ]
-    print(applications_by_stage)
     return applications_by_stage
 
 

@@ -1,6 +1,7 @@
 import xlwt
 
 from django.http import HttpResponse
+from django.utils.translation import gettext_lazy as _
 from agripitch.models import SubCriteriaItem, CriteriaItem
 
 
@@ -15,7 +16,7 @@ def export_agripitch_questions_xls(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
     font_style.alignment.wrap = 1
-    header = (
+    header = _(
         'These are the updated questions \n'
         'Questions ending with * means they are required'
     )
