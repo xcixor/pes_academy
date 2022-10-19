@@ -16,6 +16,6 @@ urlpatterns = [
          DeleteSubCriteriaView.as_view(), name='delete_sub_criteria'),
     path('gallery/',
          GalleryPageView.as_view(), name='gallery'),
-    path('application/view/',
+    path('application/<slug:slug>/view/',
          ApplicationView.as_view(), name='application_view')
 ]

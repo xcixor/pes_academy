@@ -15,6 +15,8 @@
       <th scope="col">Creator</th>
       <th scope="col">Stage</th>
       <th scope="col">In Review</th>
+      <th scope="col">View</th>
+
     </tr>
   </thead>
   <tbody>
@@ -29,6 +31,9 @@
                 {% else %}
                 <i class="fa-solid fa-xmark"></i>
         {% endif %}
+      </td>
+      <td>
+        <a href="{% url 'agripitch:application_view' slug=application.slug %}" class="text-white">Open</a>
       </td>
     </tr>
     {% endfor %}

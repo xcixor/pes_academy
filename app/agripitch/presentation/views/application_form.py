@@ -55,7 +55,10 @@ class GetApplicationFormView(DetailView):
         context = self.get_context_data(object=self.object)
         if request.user.application.stage == 'step_one':
             return self.render_to_response(context)
-        return redirect(reverse('agripitch:application_view'))
+        return redirect(
+            reverse(
+                'agripitch:application_view',
+                kwargs={'slug': request.user.application.slug}))
 
 
 def process_inputs(inputs, application):
@@ -216,7 +219,10 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         updated_user = save_personal_info(application)
         self.send_email(updated_user)
         self.notify_admin(application)
-        return redirect(reverse('agripitch:application_view'))
+        return redirect(
+            reverse(
+                'agripitch:application_view',
+                kwargs={'slug': application.slug}))
 
     def send_email(self, user):
         subject = _(
