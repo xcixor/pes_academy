@@ -24,7 +24,8 @@ class UserAdminTestCase(AccountsBaseTestCase):
 
     def test_inline_properties(self):
         self.assertEqual(self.model_admin.model, User)
-        list_display = ['username', 'email', 'date_joined']
+        list_display = ['special_id', 'username',
+                        'email', 'date_joined', 'is_active']
         inlines = [BusinessOrganizationInline]
         self.assertEqual(self.model_admin.list_display, list_display)
         self.assertEqual(self.model_admin.inlines, inlines)
