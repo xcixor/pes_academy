@@ -33,7 +33,7 @@ def export_inactive_user_emails_to_xls(request):
 
     cast_expr = Cast('date_joined', output_field=CharField())
     rows = User.objects.annotate(dt_as_str=cast_expr).values_list(
-        'email', 'dt_as_str')
+        'email', 'dt_as_str').filter(is_active=False)
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):
