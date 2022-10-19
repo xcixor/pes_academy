@@ -141,7 +141,7 @@ LOCALE_PATHS = [
 ]
 
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
