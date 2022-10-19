@@ -92,8 +92,9 @@
           </div>
         </section>
         <a href="/agripitch" class="cta-button">{% trans "Find Out More" %}</a>
-
-        <a href="https://applications.privateequity-support.com/agripitch/agriculture-window/application/" class="cta-button">{% trans "Apply Now" %} &raquo;</a>
+        {% for call in calls_to_action %}
+                  <a href="{% url 'agripitch:application' slug=call.slug %}" class="cta-button">{% trans "Apply Now" %} &raquo;</a>
+          {% endfor %}
 
         <div class="dropdown show mt-5">
           <a class="btn dropdown-toggle download-resources" href="#" role="button" id="dropdownMenuLink"
