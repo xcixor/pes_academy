@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 15:53+0300\n"
+"POT-Creation-Date: 2022-10-19 20:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -866,6 +866,14 @@ msgstr "E-MAIL"
 msgid "Send"
 msgstr "Envoyer"
 
+#: templates/password/password_reset.html:40
+msgid "If you did not activate your account, please do so here"
+msgstr "Si vous n'avez pas activé votre compte, veuillez le faire ici "
+
+#: templates/password/password_reset.html:43
+msgid "Reset?"
+msgstr "Réinitialiser?"
+
 #: templates/profile/dashboard.html:24
 msgid "Home"
 msgstr "Domicile"
@@ -1422,17 +1430,17 @@ msgstr ""
 "vous êtes inscrit et vérifiez votre dossier spam."
 
 #: templates/registration/resend_activation_email.html:13
-#: templates/registration/resend_activation_email.html:15
 msgid "Resend Email"
 msgstr "Ré-envoyer l'email"
+
+#: templates/registration/resend_activation_email.html:15
+#: templates/registration/resend_activation_email.html:39
+msgid "Resend Activation Email"
+msgstr "Renvoyer l'email d'activation"
 
 #: templates/registration/resend_activation_email.html:25
 msgid "The email your registered with"
 msgstr "L'e-mail avec lequel vous vous êtes inscrit"
-
-#: templates/registration/resend_activation_email.html:39
-msgid "Resend Activation Email"
-msgstr "oups l'activation a échoué !"
 
 #: templates/registration/resend_activation_email.html:44
 msgid "Don't have an account yet?"

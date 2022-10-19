@@ -12,7 +12,7 @@
             {% if form.errors %}
             <h3 class="font-weight-bold p-tb-20 error">{% trans "Resend Email" %}</h3>
             {% else %}
-            <h3 class="font-weight-bold p-tb-20">{% trans "Resend Email" %}</h3>
+            <h3 class="font-weight-bold p-tb-20">{% trans "Resend Activation Email" %}</h3>
             {% endif %}
             <form action="{% url 'accounts:resend_activation_email' %}" method="post">
                 {% csrf_token %}
