@@ -17,7 +17,7 @@ def export_inactive_user_emails_to_xls(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
     font_style.alignment.wrap = 1
-    header = _('Dormant Accounts')
+    header = ('Dormant Accounts')
     ws.write_merge(0, 0, 0, 5, header, font_style)
 
     # question title headings
@@ -34,7 +34,6 @@ def export_inactive_user_emails_to_xls(request):
     cast_expr = Cast('date_joined', output_field=CharField())
     rows = User.objects.annotate(dt_as_str=cast_expr).values_list(
         'email', 'dt_as_str')
-    print(rows)
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):

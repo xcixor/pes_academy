@@ -16,7 +16,7 @@ def export_agripitch_questions_xls(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
     font_style.alignment.wrap = 1
-    header = _(
+    header = (
         'These are the updated questions \n'
         'Questions ending with * means they are required'
     )
