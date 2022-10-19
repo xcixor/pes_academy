@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-18 03:05+0300\n"
+"POT-Creation-Date: 2022-10-19 16:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,17 +26,17 @@ msgstr "Application"
 msgid "Sorry, the AFDB Agripitch Competition 2022 is not yet live!"
 msgstr "Désolé, le concours AFDB Agripitch 2022 n'est pas encore en ligne !"
 
-#: presentation/views/application_form.py:210
+#: presentation/views/application_form.py:213
 msgid "Your application has been recorded, we will get back to you shortly"
 msgstr ""
 "Merci d’avoir postulé au Concours AgriPitch 2022 de la Banque africaine de "
 "développement. Votre demande a été enregistrée, nous vous répondrons sous peu"
 
-#: presentation/views/application_form.py:223
+#: presentation/views/application_form.py:229
 msgid "African Development Bank AgriPitch Competition 2022 Application"
 msgstr "Concours AgriPitch 2022 de la Banque africaine de développement"
 
-#: presentation/views/application_form.py:229
+#: presentation/views/application_form.py:235
 msgid ""
 "Thanks for applying to the African Development Bank AgriPitch Competition "
 "2022. Your application has "
@@ -45,11 +45,11 @@ msgstr ""
 "développement. Votre demande a été enregistrée, nous vous répondrons sous "
 "peu."
 
-#: presentation/views/application_form.py:230
+#: presentation/views/application_form.py:236
 msgid "been recorded, we will get back to you shortly"
 msgstr "été enregistré, nous vous répondrons sous peu"
 
-#: presentation/views/application_form.py:246
+#: presentation/views/application_form.py:252
 msgid "New Application submitted"
 msgstr "Nouvelle demande soumise"
 
@@ -139,8 +139,8 @@ msgid "This is the last section"
 msgstr "Il s’agit de la dernière section"
 
 #: templates/agripitch/application_view.html:19
-msgid "Your Application Responses"
-msgstr "Présentation de la demande"
+msgid "Application Responses"
+msgstr "Réponses d'application"
 
 #: templates/agripitch/landing.html:24 templates/agripitch/landing.html:33
 #: templates/agripitch/landing.html:87
