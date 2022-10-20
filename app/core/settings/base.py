@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'pes_admin',
     'staff',
     'agripitch',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -227,3 +228,6 @@ CKEDITOR_CONFIGS = {
         'allowedContent': True
     },
 }
+
+RECAPTCHA_PUBLIC_KEY = os.getenv('SITE_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('SECRET_KEY')

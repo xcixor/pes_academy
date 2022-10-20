@@ -4,12 +4,13 @@ from django.contrib.auth import get_user_model
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.password_validation import validate_password
-from common.utils.email import HtmlEmailMixin
-from accounts.tokens import account_activation_token
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.conf import settings
+from captcha.fields import ReCaptchaField
+from common.utils.email import HtmlEmailMixin
+from accounts.tokens import account_activation_token
 
 
 User = get_user_model()
@@ -32,6 +33,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
             attrs={
                 'class': 'input-field'}),
         required=True)
+    captcha = ReCaptchaField(required=True)
 
     class Meta:
         model = User
