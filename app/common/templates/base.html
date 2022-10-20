@@ -83,9 +83,11 @@
   {% endif %}
   {% endblock %}
 
+  {% if not debug_flag %}
   <!-- Start of HubSpot Embed Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25804228.js"></script>
   <!-- End of HubSpot Embed Code -->
+  {% endif %}
 
 
   <body id="{% block body_id %}{% endblock %}">
@@ -106,6 +108,7 @@
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/common/base.js' %}"></script>
     <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
+    {% if not debug_flag %}
     <script type="text/javascript">
       function onConversationsAPIReady() {
         console.log(`HubSpot Conversations API: ${window.HubSpotConversations}`);
@@ -127,6 +130,7 @@
         window.hsConversationsOnReady = [onConversationsAPIReady];
       }
     </script>
+    {% endif %}
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     {% endblock %}
     {% block footer %}
