@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 20:01+0300\n"
+"POT-Creation-Date: 2022-10-21 05:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms/password_change.py:31 forms/registration.py:59
+#: forms/password_change.py:31 forms/registration.py:61
 #: templates/password/password_change.html:63
 #: templates/registration/staff_registration.html:63
 msgid "Your password should have a special character."
 msgstr "Votre mot de passe doit avoir un caractère spécial."
 
-#: forms/password_change.py:35 forms/registration.py:62
+#: forms/password_change.py:35 forms/registration.py:64
 #: templates/password/password_change.html:64
 #: templates/registration/staff_registration.html:64
 msgid "Your password should have at least one number."
 msgstr "Votre mot de passe doit comporter au moins un chiffre."
 
-#: forms/password_change.py:44 forms/registration.py:70
+#: forms/password_change.py:44 forms/registration.py:72
 msgid "Please make sure your passwords match."
 msgstr "Merci de vérifier que vos mots de passe correspondent."
 
@@ -45,11 +45,11 @@ msgstr "n'existe pas."
 msgid "Password Reset Requested"
 msgstr "Réinitialisation du mot de passe demandée"
 
-#: forms/registration.py:18
+#: forms/registration.py:19
 msgid "Applying for call to action"
 msgstr "Demande d'appel à l'action"
 
-#: forms/registration.py:19 templates/profile/edit.html:56
+#: forms/registration.py:20 templates/profile/edit.html:56
 #: templates/registration/partial/registration.html:80
 #: templates/registration/partial/registration.html:83
 #: templates/registration/registration.html:93
@@ -57,28 +57,28 @@ msgstr "Demande d'appel à l'action"
 msgid "Other"
 msgstr "Autre"
 
-#: forms/registration.py:30
+#: forms/registration.py:31
 msgid "Reason for Application"
 msgstr "Ton application"
 
-#: forms/registration.py:50
+#: forms/registration.py:52
 msgid "Please read and agree to our terms and privacy by checking the box"
 msgstr ""
 "Veuillez lire et accepter nos termes et confidentialité en cochant la case"
 
-#: forms/registration.py:75 forms/registration.py:148
-msgid "Welcome to Agripitch 2022! Please Confirm Your Email"
-msgstr "Bienvenue à Agripitch 2022 ! Veuillez confirmer votre email"
+#: forms/registration.py:77 forms/registration.py:149
+msgid "Welcome to Agripitch 2022!"
+msgstr "Bienvenue à Agripitch 2022! "
 
-#: forms/registration.py:94 forms/registration.py:167
+#: forms/registration.py:94 forms/registration.py:168
 msgid "New User Registration"
 msgstr "S'inscrire"
 
-#: forms/registration.py:132
+#: forms/registration.py:133
 msgid "Sorry that account does not exist."
 msgstr "n'existe pas."
 
-#: forms/registration.py:136
+#: forms/registration.py:137
 msgid ""
 "Your account is already active. Please login with the details you registered "
 "with, or reset your password"
@@ -86,7 +86,7 @@ msgstr ""
 "Votre compte est déjà actif. Veuillez vous connecter avec les détails que "
 "vous avez enregistrés avec ou réinitialisez votre mot de passe"
 
-#: forms/registration.py:146
+#: forms/registration.py:147
 msgid "Sorry the account does not exist."
 msgstr "n'existe pas."
 
@@ -160,7 +160,7 @@ msgstr "Merci, votre message a bien été reçu. Nous vous répondrons sous peu.
 msgid "Great! your details have been saved"
 msgstr "Super! vos coordonnées ont été enregistrées"
 
-#: presentation/views/registration.py:79
+#: presentation/views/registration.py:82
 msgid "Please correct the errors in your form"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
@@ -866,14 +866,6 @@ msgstr "E-MAIL"
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/password/password_reset.html:40
-msgid "If you did not activate your account, please do so here"
-msgstr "Si vous n'avez pas activé votre compte, veuillez le faire ici "
-
-#: templates/password/password_reset.html:43
-msgid "Reset?"
-msgstr "Réinitialiser?"
-
 #: templates/profile/dashboard.html:24
 msgid "Home"
 msgstr "Domicile"
@@ -1131,8 +1123,8 @@ msgid "But don't worry, try one of these things"
 msgstr "Mais ne vous inquiétez pas, essayez l'une de ces choses"
 
 #: templates/registration/account_activation_invalid.html:16
-#: templates/registration/partial/registration.html:145
-#: templates/registration/registration.html:159
+#: templates/registration/partial/registration.html:155
+#: templates/registration/registration.html:169
 #: templates/registration/staff_registration.html:10
 #: templates/registration/staff_registration.html:73
 msgid "Register"
@@ -1195,17 +1187,16 @@ msgid "If you still don't see it, kindly e mail"
 msgstr "Si vous ne le voyez toujours pas, veuillez envoyer un e-mail"
 
 #: templates/registration/email/account_activation.html:5
-msgid "Let's confirm your email address."
-msgstr "Confirmons votre adresse e-mail."
+msgid "Congratulations!"
+msgstr "Toutes nos félicitations"
 
 #: templates/registration/email/account_activation.html:6
-msgid ""
-"By clicking on the following link, you are confirming your email address."
-msgstr "En cliquant sur le lien suivant, vous confirmez votre adresse e-mail."
+msgid "Your account has been successfully created."
+msgstr "Votre compte à été créé avec succès."
 
 #: templates/registration/email/account_activation.html:12
-msgid "Confirm Email Address"
-msgstr "Adresse e-mail principale"
+msgid "Back to site"
+msgstr "Retour au site"
 
 #: templates/registration/email/admin/new_user.html:5
 msgid "Hello Admin."
@@ -1361,14 +1352,14 @@ msgstr "En créant un compte, vous acceptez nos"
 msgid "Terms & Privacy"
 msgstr "Conditions et confidentialité"
 
-#: templates/registration/partial/registration.html:149
-#: templates/registration/registration.html:163
+#: templates/registration/partial/registration.html:161
+#: templates/registration/registration.html:174
 #: templates/registration/staff_registration.html:76
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte?"
 
-#: templates/registration/partial/registration.html:150
-#: templates/registration/registration.html:164
+#: templates/registration/partial/registration.html:162
+#: templates/registration/registration.html:175
 #: templates/registration/staff_registration.html:76
 msgid "Sign in"
 msgstr "S'identifier"
@@ -1452,6 +1443,23 @@ msgid ""
 msgstr ""
 "Votre mot de passe ne doit pas être trop similaire à vos informations "
 "personnelles, par exemple votre nom d'utilisateur."
+
+#~ msgid "If you did not activate your account, please do so here"
+#~ msgstr "Si vous n'avez pas activé votre compte, veuillez le faire ici "
+
+#~ msgid "Reset?"
+#~ msgstr "Réinitialiser?"
+
+#~ msgid "Let's confirm your email address."
+#~ msgstr "Confirmons votre adresse e-mail."
+
+#~ msgid ""
+#~ "By clicking on the following link, you are confirming your email address."
+#~ msgstr ""
+#~ "En cliquant sur le lien suivant, vous confirmez votre adresse e-mail."
+
+#~ msgid "Confirm Email Address"
+#~ msgstr "Adresse e-mail principale"
 
 #, fuzzy
 #~| msgid ""
