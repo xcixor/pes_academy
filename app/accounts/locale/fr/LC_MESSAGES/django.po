@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-21 05:02+0300\n"
+"POT-Creation-Date: 2022-10-21 06:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1169,12 +1169,14 @@ msgid "Check your spam folder for an email from"
 msgstr "Vérifiez votre dossier spam pour un e-mail de"
 
 #: templates/registration/activation_email_sent.html:31
+#: templates/registration/password/password_reset_done.html:14
 msgid "It is common to have email delivery problems due to automated filters."
 msgstr ""
 "Il est courant d'avoir des problèmes de livraison d'e-mails en raison de "
 "filtres automatisés."
 
 #: templates/registration/activation_email_sent.html:32
+#: templates/registration/password/password_reset_done.html:15
 msgid "Mark the email as not spam and click the activation link."
 msgstr "Marquez l'e-mail comme non spam et cliquez sur le lien d'activation."
 
@@ -1412,13 +1414,10 @@ msgstr ""
 msgid "You should receive the email shortly."
 msgstr "Vous devriez recevoir l'e-mail sous peu."
 
-#: templates/registration/password/password_reset_done.html:12
-msgid ""
-"If you don't receive an email, please make sure you've entered the address "
-"you registered with, and check your spam folder."
+#: templates/registration/password/password_reset_done.html:13
+msgid "If you don't receive an email, please check your spam folder."
 msgstr ""
-"Si vous ne recevez pas d'e-mail, assurez-vous d'avoir entré l'adresse vous "
-"vous êtes inscrit et vérifiez votre dossier spam."
+"Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam."
 
 #: templates/registration/resend_activation_email.html:13
 msgid "Resend Email"
