@@ -206,7 +206,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 VERIFIED_EMAIL_USER = os.getenv('VERIFIED_EMAIL_USER')
-ADMIN_EMAILS = json.loads(os.environ['ADMIN_EMAILS'])
+ADMIN_EMAILS = [os.getenv('ADMIN_EMAILS').split(",")]
 
 SUPPORT_EMAILS = ['coach@privateequity-support.com']
 
