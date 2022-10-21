@@ -114,7 +114,7 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         user = self.form.save()
         self.form.send_account_activation_email(user, self.request)
         self.assertEqual(len(mail.outbox), 2)
-        self.assertEqual(mail.outbox[1].subject, 'Welcome to Agripitch 2022! Please Confirm Your Email')
+        self.assertEqual(mail.outbox[1].subject, 'Welcome to Agripitch 2022!')
         to_email = self.data['email']
         self.assertEqual(mail.outbox[0].to[0], 'agri2022@privateequity-support.com')
 

@@ -74,7 +74,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
 
     def send_account_activation_email(self, user, request):
         to_email = user.email
-        subject = _("Welcome to Agripitch 2022! Please Confirm Your Email")
+        subject = _("Welcome to Agripitch 2022!")
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {
@@ -82,9 +82,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
             "email": user.email,
             'domain': current_site.domain,
             "protocol": request.scheme,
-            'email_head': subject,
-            "uid": urlsafe_base64_encode(force_bytes(user.pk)),
-            'token': account_activation_token.make_token(user)
+            'email_head': subject
         }
         return super().send_email(
             subject, None, from_email, [to_email],
@@ -108,6 +106,7 @@ class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        user.is_active = True
         if commit:
             user.save()
             self.notify_admin(user)
@@ -147,7 +146,7 @@ class ResendActivationEmail(forms.Form, HtmlEmailMixin):
             raise forms.ValidationError(
                 _("Sorry the account does not exist."), code='invalid')
         to_email = user.email
-        subject = _("Welcome to Agripitch 2022! Please Confirm Your Email")
+        subject = _("Welcome to Agripitch 2022!")
         from_email = settings.VERIFIED_EMAIL_USER
         current_site = get_current_site(request)
         context = {
