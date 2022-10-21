@@ -1,7 +1,8 @@
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotFound
 from agripitch.models import CriteriaItem
-from common.utils.common_queries import get_application
+from django.template.loader import render_to_string
 from application.models import Application
 
 
@@ -15,3 +16,16 @@ class ApplicationView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context.update({'criteria': CriteriaItem.objects.all()})
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.application_creator == request.user or request.user.is_superuser:
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
+        context = {}
+        content = render_to_string(
+            '404.html',
+            context,
+            request
+        )
+        return HttpResponseNotFound(content)
