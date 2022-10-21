@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 import sys
+import json
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
@@ -205,9 +206,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 VERIFIED_EMAIL_USER = os.getenv('VERIFIED_EMAIL_USER')
-ADMIN_EMAILS = [
-    'agri2022@privateequity-support.com',
-    'peter@privateequity-support.com']
+ADMIN_EMAILS = json.loads(os.environ['ADMIN_EMAILS'])
 
 SUPPORT_EMAILS = ['coach@privateequity-support.com']
 
