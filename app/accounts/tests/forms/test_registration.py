@@ -2,6 +2,7 @@ from unittest import mock
 from django.test import TestCase
 from django import forms
 from django.core import mail
+from django.conf import settings
 from accounts.forms import RegistrationForm
 from accounts.models import User
 from common.utils.tests import RequestFactoryMixin
@@ -127,7 +128,7 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[1].subject, 'Welcome to Agripitch 2022!')
         to_email = self.data['email']
-        self.assertEqual(mail.outbox[0].to[0], 'agri2022@privateequity-support.com')
+        self.assertEqual(mail.outbox[0].to[0], settings.ADMIN_EMAILS[0])
 
     @mock.patch("captcha.fields.ReCaptchaField.validate")
     def test_account_activation_email_sent_contains_appropriate_content(self, mock_function):
