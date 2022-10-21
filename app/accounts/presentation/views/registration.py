@@ -70,6 +70,9 @@ class PostReviewerRegistrationView(FormView):
         inactive_user.is_staff = True
         inactive_user.save()
         login(self.request, inactive_user)
+        success_message = _("Registration successful, start your application!")
+        messages.add_message(
+            self.request, messages.SUCCESS, success_message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
