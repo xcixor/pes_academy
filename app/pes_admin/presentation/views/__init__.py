@@ -13,3 +13,5 @@ from .users import AllUsersView, RegularUsers, CallToActionUsers
 from .assign_coaches import AssignCoachesView
 from .export_inactive_user_emails import export_inactive_user_emails_to_xls
 from .view_user_application import AdminApplicationView
+from .all_applications import AllApplicationsView
+

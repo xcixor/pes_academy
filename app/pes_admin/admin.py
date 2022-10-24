@@ -6,7 +6,7 @@ from pes_admin.presentation.views import (
     ApplicationDetails, UnassignedApplicationsView,
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
-    export_inactive_user_emails_to_xls, AdminApplicationView)
+    export_inactive_user_emails_to_xls, AdminApplicationView, AllApplicationsView)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -56,6 +56,9 @@ class CustomAdmin(admin.AdminSite):
                  name='export_key_stats_to_csv'),
             path('application/<slug:slug>/view/',
                  admin.site.admin_view(AdminApplicationView.as_view()),
+                 name='admin_application_view'),
+            path('applications/view/all/applications/',
+                 admin.site.admin_view(AllApplicationsView.as_view()),
                  name='admin_application_view')
         ] + urls
         return custom_urls
