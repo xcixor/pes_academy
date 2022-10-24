@@ -169,6 +169,24 @@
   {% endoptions %}
   {% graph "applicationStage" "out_data" "out_options" %}
 
+    <!-- Applications by step -->
+  {% with ''|get_responses_by_step as values %}
+  {% data values "out_data" %}
+  {% col "string" "Name" %}"{{ val }}"{% endcol %}
+  {% col "number" "Value" %}{{ val }}{% endcol %}
+  {% enddata %}
+  {% endwith %}
+  {# you can also use global javascript variables here, #}
+  {# and call functions #}
+  {% options "out_options" %}
+  kind: "PieChart",
+  options: {
+  title:'Applications by Step',
+  height: 300
+  }
+  {% endoptions %}
+  {% graph "applicationStep" "out_data" "out_options" %}
+
   {% endgooglecharts %}
 </div>
 
@@ -226,6 +244,10 @@
   <div class="col-md-6">
     <div id="applicationStage"></div>
   </div>
+  <div class="col-md-6">
+    <div id="applicationStep"></div>
+  </div>
 </div>
+
 
 {% endblock %}

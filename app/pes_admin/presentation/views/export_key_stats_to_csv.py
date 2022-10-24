@@ -2,7 +2,8 @@ import csv
 from django.http import HttpResponse
 from pes_admin.templatetags.admin_extras import (
     get_total_afdb_applicants, get_total_applications,
-    get_total_applications_by_criteria, get_applications_by_stage)
+    get_total_applications_by_criteria, get_applications_by_stage,
+    get_responses_by_step)
 
 
 def recursive1(index, rows):
@@ -28,7 +29,6 @@ def get_number(n=0, rows=[]):
 
 
 def export_key_stats_to_csv(request):
-    # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="key_stats.csv"'
     writer = csv.writer(response)
@@ -70,6 +70,15 @@ def export_key_stats_to_csv(request):
         [
             'Application by Language',
             formatted_applications_by_language,
+        ]
+    )
+    applications_by_step = get_responses_by_step('')
+    formatted_applications_by_step = [
+        f'{item[0]}({item[1]})' for item in applications_by_step]
+    writer.writerow(
+        [
+            'Application by Step',
+            formatted_applications_by_step,
         ]
     )
     return response

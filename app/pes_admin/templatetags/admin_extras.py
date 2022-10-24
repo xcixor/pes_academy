@@ -1,7 +1,9 @@
 from django import template
 from django_countries import countries
 from application.models import Application
-from agripitch.models import SubCriteriaItem, SubCriteriaItemResponse
+from agripitch.models import (
+    SubCriteriaItem, SubCriteriaItemResponse,
+    CriteriaItem)
 from accounts.models import User
 
 register = template.Library()
@@ -49,7 +51,7 @@ def get_applications_by_stage(string_to_invoke_call):
         ['Data Submitted', step_two_applications],
         ['Documents in review', step_three_applications],
         ['Verdict Passed', step_four_applications],
-        ]
+    ]
     return applications_by_stage
 
 
@@ -57,3 +59,19 @@ def get_applications_by_stage(string_to_invoke_call):
 def get_total_afdb_applicants(string_to_invoke_call):
     applicants = User.objects.filter(is_applying_for_a_call_to_action=True)
     return applicants
+
+
+@register.filter('get_responses_by_step')
+def get_responses_by_step(string_to_invoke_call):
+    criteria = CriteriaItem.objects.all()
+    applications_by_step = []
+    for criterion in criteria:
+        unique_response = 0
+        form_questions_in_criterion = [
+            form_question for form_question in criterion.sub_criteria.all()]
+        responses = [form_question.responses.count()
+                     for form_question in form_questions_in_criterion]
+        if len(responses) > 0:
+            unique_response = max(responses)
+        applications_by_step.append([criterion, unique_response])
+    return applications_by_step
