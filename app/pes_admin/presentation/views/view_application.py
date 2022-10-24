@@ -3,7 +3,7 @@ from agripitch.models import CriteriaItem
 from application.models import Application
 
 
-class ApplicationView(DetailView):
+class AdminApplicationView(DetailView):
 
     template_name = 'agripitch/application_view.html'
     context_object_name = 'application'

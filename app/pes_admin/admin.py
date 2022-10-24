@@ -6,7 +6,7 @@ from pes_admin.presentation.views import (
     ApplicationDetails, UnassignedApplicationsView,
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
-    export_inactive_user_emails_to_xls, ApplicationView)
+    export_inactive_user_emails_to_xls, AdminApplicationView)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -26,8 +26,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(DisplayStaffView.as_view())),
             path('make/<int:pk>/reviewer/',
                  admin.site.admin_view(MakeStaffReviewerView.as_view())),
-            path('view/applications/',
-                 admin.site.admin_view(ApplicationsView.as_view()), name='all_applications'),
+            path('applications/all/', admin.site.admin_view(ApplicationsView.as_view()),
+                 name='all_applications'),
             path('applications/unassigned/',
                  admin.site.admin_view(UnassignedApplicationsView.as_view())),
             path('applications/in-review/',
@@ -54,8 +54,8 @@ class CustomAdmin(admin.AdminSite):
                  name='export_inactive_user_emails_to_xls'),
             path('export/stats/csv/', export_key_stats_to_csv,
                  name='export_key_stats_to_csv'),
-            path('<slug:slug>/view/',
-                 ApplicationView.as_view(), name='application_view')
+            path('<slug:slug>/view/', AdminApplicationView.as_view(),
+                 name='admin_application_view')
         ] + urls
         return custom_urls
 
