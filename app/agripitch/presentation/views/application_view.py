@@ -25,7 +25,7 @@ class ApplicationView(LoginRequiredMixin, DetailView):
             return self.render_to_response(context)
         context = {}
         content = render_to_string(
-            '404.html',
+            'agripitch/404.html',
             context,
             request
         )
