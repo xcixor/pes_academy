@@ -20,7 +20,7 @@ class ApplicationView(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         user = request.user
-        if self.object.application_creator == user or user.is_superuser:
+        if self.object.application_creator == user:
             context = self.get_context_data(object=self.object)
             return self.render_to_response(context)
         context = {}

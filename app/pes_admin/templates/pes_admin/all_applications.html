@@ -14,7 +14,6 @@
       <th scope="col">ID</th>
       <th scope="col">Creator</th>
       <th scope="col">Stage</th>
-      <th scope="col">In Review</th>
       <th scope="col">View</th>
 
     </tr>
@@ -24,13 +23,8 @@
     <tr>
       <th scope="row">{{application.special_id}}</th>
       <td>{{application.application_creator}}</td>
-      <td>{{application.get_stage_display}}</td>
       <td>
-        {% if application.is_in_review %}
-                <i class="fa-solid fa-circle-check"></i>
-                {% else %}
-                <i class="fa-solid fa-xmark"></i>
-        {% endif %}
+        {{ application.get_stage_display }}
       </td>
       <td>
         Link to open here

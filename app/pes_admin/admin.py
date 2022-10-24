@@ -22,6 +22,9 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AdvancedAdminDashboardView.as_view()), name='advanced_index'),
             path('invite/reviewer/',
                  admin.site.admin_view(InviteReviewerView.as_view())),
+            path('view/all/applications/',
+                 admin.site.admin_view(AllApplicationsView.as_view()),
+                 name='admin_application_view'),
             path('view/staff/',
                  admin.site.admin_view(DisplayStaffView.as_view())),
             path('make/<int:pk>/reviewer/',
@@ -57,9 +60,7 @@ class CustomAdmin(admin.AdminSite):
             path('application/<slug:slug>/view/',
                  admin.site.admin_view(AdminApplicationView.as_view()),
                  name='admin_application_view'),
-            path('applications/view/all/applications/',
-                 admin.site.admin_view(AllApplicationsView.as_view()),
-                 name='admin_application_view')
+
         ] + urls
         return custom_urls
 
