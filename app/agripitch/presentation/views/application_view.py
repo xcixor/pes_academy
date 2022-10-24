@@ -25,7 +25,7 @@ class ApplicationView(LoginRequiredMixin, DetailView):
             return self.render_to_response(context)
         context = {}
         content = render_to_string(
-            'agripitch/404.html',
+            'agripitch/application_unavailable.html',
             context,
             request
         )

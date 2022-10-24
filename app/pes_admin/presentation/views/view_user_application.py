@@ -5,7 +5,7 @@ from application.models import Application
 
 class AdminApplicationView(DetailView):
 
-    template_name = 'agripitch/application_view.html'
+    template_name = 'pes_admin/view_application.html'
     context_object_name = 'application'
     model = Application
 
