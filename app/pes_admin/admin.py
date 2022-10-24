@@ -27,7 +27,7 @@ class CustomAdmin(admin.AdminSite):
             path('make/<int:pk>/reviewer/',
                  admin.site.admin_view(MakeStaffReviewerView.as_view())),
             path('view/applications/',
-                 admin.site.admin_view(ApplicationsView.as_view())),
+                 admin.site.admin_view(ApplicationsView.as_view()), name='all_applications'),
             path('applications/unassigned/',
                  admin.site.admin_view(UnassignedApplicationsView.as_view())),
             path('applications/in-review/',
