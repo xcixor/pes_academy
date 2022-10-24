@@ -54,7 +54,8 @@ class CustomAdmin(admin.AdminSite):
                  name='export_inactive_user_emails_to_xls'),
             path('export/stats/csv/', export_key_stats_to_csv,
                  name='export_key_stats_to_csv'),
-            path('<slug:slug>/view/', AdminApplicationView.as_view(),
+            path('application/<slug:slug>/view/',
+                 admin.site.admin_view(AdminApplicationView.as_view()),
                  name='admin_application_view')
         ] + urls
         return custom_urls
