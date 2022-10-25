@@ -1,0 +1,6 @@
+.link {
+    font-weight: 600;
+}
+.link:hover {
+    color: #14A562 !important;
+}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block styles %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
+<link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
 {% endblock %}
 {% block admin_content %}
 
@@ -27,8 +27,9 @@
             <td>{{application.get_stage_display}}</td>
 
             <td>
-              <a href="{% url 'admin:admin_application_view' slug=application.slug %}" class="text-white"
-                target="_blank">Open</a>
+              <a href="{% url 'admin:admin_application_view' slug=application.slug %}" class="text-white link flex align-items-center"
+                target="_blank">Open <i class="fa-solid fa-angles-right"></i>
+              </a>
             </td>
           </tr>
           {% endfor %}
