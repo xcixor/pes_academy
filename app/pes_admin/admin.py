@@ -45,6 +45,9 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AssignCoachesView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
+            path('application/<int:pk>/view/',
+                 admin.site.admin_view(AdminApplicationView.as_view()),
+                 name='admin_application_view'),
             path('view/<slug:slug>/',
                  admin.site.admin_view(ApplicationDetails.as_view())),
             path('make/<int:pk>/moderator/',
@@ -57,9 +60,6 @@ class CustomAdmin(admin.AdminSite):
                  name='export_inactive_user_emails_to_xls'),
             path('export/stats/csv/', export_key_stats_to_csv,
                  name='export_key_stats_to_csv'),
-            path('application/<slug:slug>/view/',
-                 admin.site.admin_view(AdminApplicationView.as_view()),
-                 name='admin_application_view'),
 
         ] + urls
         return custom_urls
