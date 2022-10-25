@@ -3,9 +3,21 @@
 {% load i18n %}
 {% block styles %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
+<link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
 {% endblock %}
 {% block admin_content %}
+
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="font-weight-bold">Applications in Review</h4>
+    <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+    <p class="small">
+      {% with page_obj|length as records %}
+      {{records}} record{{ records|pluralize }}
+      {% endwith %}
+    </p>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-12">

@@ -9,6 +9,18 @@
 
 <div class="row">
   <div class="col-sm-12">
+    <h4 class="font-weight-bold">All Applications</h4>
+    <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+    <p class="small">
+      {% with page_obj|length as records %}
+      {{records}} record{{ records|pluralize }}
+      {% endwith %}
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
     <div class="table-responsive card-admin">
       <table id="admin-dashboard" class="table table-striped text-white">
         <thead>
@@ -27,8 +39,9 @@
             <td>{{application.get_stage_display}}</td>
 
             <td>
-              <a href="{% url 'admin:admin_application_view' slug=application.slug %}" class="text-white link flex align-items-center"
-                target="_blank">Open <i class="fa-solid fa-angles-right"></i>
+              <a href="{% url 'admin:admin_application_view' slug=application.slug %}"
+                class="text-white link flex align-items-center" target="_blank">Open <i
+                  class="fa-solid fa-angles-right"></i>
               </a>
             </td>
           </tr>

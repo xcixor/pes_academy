@@ -3,22 +3,22 @@
 {% block admin_content %}
 
 
-            <form method="post" action="/CgDX4znLdQDLFw/advanced/invite/reviewer/">
-              {% csrf_token %}
-              <div class="card card-admin">
-                  <div class="card-header ">
-                      <h4 class="card-title">{% trans "Reviewer's Email address" %}</h4>
-                  </div>
-                  <div class="card-body ">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1"></label>
-                        <input type="email" class="form-control" name="email" placeholder="{% trans "Enter email" %}">
-                        {% for error in form.email.errors %}
-                        <p class="error">{{ error|escape }}</p>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="btn btn-primary">{% trans "Invite" %}</button>
-                  </div>
-              </div>
-            </form>
+<form method="post" action="/CgDX4znLdQDLFw/advanced/invite/reviewer/">
+  {% csrf_token %}
+  <div class="card card-admin">
+    <div class="card-header ">
+      <h4 class="card-title">{% trans "Reviewer's Email address" %}</h4>
+    </div>
+    <div class="card-body ">
+      <div class="form-group">
+        <label for="exampleInputEmail1"></label>
+        <input type="email" class="form-control" name="email" placeholder="{% trans "Enter email" %}">
+        {% for error in form.email.errors %}
+        <p class="error">{{ error|escape }}</p>
+        {% endfor %}
+      </div>
+      <button type="submit" class="btn btn-primary">{% trans "Invite" %}</button>
+    </div>
+  </div>
+</form>
 {% endblock %}

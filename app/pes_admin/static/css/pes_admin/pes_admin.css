@@ -4,3 +4,15 @@
 .link:hover {
     color: #14A562 !important;
 }
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination {
+    font-weight: 600;
+}
+
+.small {
+    font-size: 0.7rem;
+}
