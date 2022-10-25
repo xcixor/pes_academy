@@ -45,7 +45,7 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AssignCoachesView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
-            path('application/<int:pk>/view/',
+            path('application/<slug:slug>/view/',
                  admin.site.admin_view(AdminApplicationView.as_view()),
                  name='admin_application_view'),
             path('view/<slug:slug>/',

@@ -7,29 +7,54 @@
 {% endblock %}
 {% block admin_content %}
 
-
-<div class="table-responsive card-admin">
-    <table id="admin-dashboard" class="table table-striped text-white">
-      <thead>
-        <tr>
-          <th scope="col">{% trans "ID" %}</th>
-          <th scope="col">{% trans "Creator" %}</th>
-          <th scope="col">{% trans "Stage" %}</th>
-          <th scope="col">{% trans "Action" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for application in applications %}
-        <tr>
-          <th scope="row">{{application.special_id}}</th>
-          <td>{{application.application_creator}}</td>
-          <td>{{application.get_stage_display}}</td>
-          <td>
-            <a href="/CgDX4znLdQDLFw/advanced/view/{{application.slug}}/" class="btn btn-primary">{% trans "View More" %}</a>
-          </td>
-        </tr>
-        {% endfor %}
-        {% endblock %}
-      </tbody>
-    </table>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="table-responsive card-admin">
+      <table id="admin-dashboard" class="table table-striped text-white">
+        <thead>
+          <tr>
+            <th scope="col">{% trans "ID" %}</th>
+            <th scope="col">{% trans "Creator" %}</th>
+            <th scope="col">{% trans "Stage" %}</th>
+            <th scope="col">{% trans "Action" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for application in applications %}
+          <tr>
+            <th scope="row">{{application.special_id}}</th>
+            <td>{{application.application_creator}}</td>
+            <td>{{application.get_stage_display}}</td>
+            <td>
+              <a href="/CgDX4znLdQDLFw/advanced/view/{{application.slug}}/"
+                class="btn btn-primary">{% trans "View More" %}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %}
