@@ -6,7 +6,8 @@ from pes_admin.presentation.views import (
     ApplicationDetails, UnassignedApplicationsView,
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
-    export_inactive_user_emails_to_xls, AdminApplicationView, AllApplicationsView)
+    export_inactive_user_emails_to_xls, AdminApplicationView,
+    AllApplicationsView, export_remaining_steps_for_users)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -60,6 +61,8 @@ class CustomAdmin(admin.AdminSite):
                  name='export_inactive_user_emails_to_xls'),
             path('export/stats/csv/', export_key_stats_to_csv,
                  name='export_key_stats_to_csv'),
+            path('export/user/steps/csv/', export_remaining_steps_for_users,
+                 name='export_remaining_steps_for_users'),
 
         ] + urls
         return custom_urls

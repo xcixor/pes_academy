@@ -217,8 +217,9 @@ class PostApplicationFormView(SingleObjectMixin, View, HtmlEmailMixin):
         application.stage = 'step_two'
         application.save()
         updated_user = save_personal_info(application)
-        self.send_email(updated_user)
-        self.notify_admin(application)
+        if not settings.DEBUG:
+            self.send_email(updated_user)
+            self.notify_admin(application)
         return redirect(
             reverse(
                 'agripitch:application_view',
