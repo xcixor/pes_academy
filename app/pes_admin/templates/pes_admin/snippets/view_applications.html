@@ -51,7 +51,7 @@
                         {% for application in applications %}
                         <tr>
                             <th scope="row">{{application.special_id}}</th>
-                            <td>{{application.application_creator}}</td>
+                            <td>{{application.application_creator.email}}</td>
                             <td>{{application.get_stage_display}}</td>
 
                             <td>
