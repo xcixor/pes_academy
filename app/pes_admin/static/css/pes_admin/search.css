@@ -23,4 +23,6 @@
 
 .htmx-request.htmx-indicator{
     position: absolute !important;
+    align-items: unset !important;
+    padding-top: 20px;
 }
