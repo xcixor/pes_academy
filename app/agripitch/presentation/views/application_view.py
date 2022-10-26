@@ -1,8 +1,8 @@
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound
-from agripitch.models import CriteriaItem
 from django.template.loader import render_to_string
+from agripitch.models import CriteriaItem
 from application.models import Application
 
 

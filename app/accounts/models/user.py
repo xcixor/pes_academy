@@ -67,7 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_coach = models.BooleanField(default=False)
     is_applying_for_a_call_to_action = models.BooleanField(default=False)
     age = models.CharField(null=True, blank=True, max_length=20)
-    gender = models.CharField(max_length=20,null=True, blank=True)
+    gender = models.CharField(max_length=20, null=True, blank=True)
     preferred_language = models.CharField(
         max_length=40, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
@@ -83,3 +83,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.is_applying_for_a_call_to_action:
             return 'AfDB-' + str(self.id).zfill(3)
         return str(self.id).zfill(3)
+
+    class Meta:
+        ordering = ['date_joined']

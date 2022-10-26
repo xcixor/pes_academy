@@ -78,4 +78,5 @@ class Application(models.Model):
         return f'{self.call_to_action} - {self.application_creator}'
 
     class Meta:
-        verbose_name_plural = _('User Applications')
+        verbose_name_plural = _('1. User Applications')
+        ordering = ['created']
