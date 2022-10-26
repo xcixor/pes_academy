@@ -7,7 +7,7 @@ from pes_admin.presentation.views import (
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
     export_inactive_user_emails_to_xls, AdminApplicationView,
-    AllApplicationsView, export_remaining_steps_for_users)
+    export_remaining_steps_for_users)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -20,18 +20,18 @@ class CustomAdmin(admin.AdminSite):
         urls = super(CustomAdmin, self).get_urls()
         custom_urls = [
             path('',
-                 admin.site.admin_view(AdvancedAdminDashboardView.as_view()), name='advanced_index'),
+                 admin.site.admin_view(AdvancedAdminDashboardView.as_view()),
+                 name='advanced_index'),
             path('invite/reviewer/',
                  admin.site.admin_view(InviteReviewerView.as_view())),
-            path('view/all/applications/',
-                 admin.site.admin_view(AllApplicationsView.as_view()),
-                 name='admin_application_view'),
             path('view/staff/',
                  admin.site.admin_view(DisplayStaffView.as_view())),
             path('make/<int:pk>/reviewer/',
                  admin.site.admin_view(MakeStaffReviewerView.as_view())),
-            path('applications/all/', admin.site.admin_view(ApplicationsView.as_view()),
-                 name='all_applications'),
+            path(
+                'applications/all/',
+                admin.site.admin_view(ApplicationsView.as_view()),
+                name='all_applications'),
             path('applications/unassigned/',
                  admin.site.admin_view(UnassignedApplicationsView.as_view())),
             path('applications/in-review/',
@@ -57,8 +57,10 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(MakeStaffCoachView.as_view())),
             path('export/agripitch/xls/', export_agripitch_questions_xls,
                  name='export_agripitch_questions_xls'),
-            path('export/users/dormant/xls/', export_inactive_user_emails_to_xls,
-                 name='export_inactive_user_emails_to_xls'),
+            path(
+                'export/users/dormant/xls/',
+                export_inactive_user_emails_to_xls,
+                name='export_inactive_user_emails_to_xls'),
             path('export/stats/csv/', export_key_stats_to_csv,
                  name='export_key_stats_to_csv'),
             path('export/user/steps/csv/', export_remaining_steps_for_users,
