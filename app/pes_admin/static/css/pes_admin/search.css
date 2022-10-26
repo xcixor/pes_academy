@@ -1,0 +1,26 @@
+.table-responsive {
+    position: relative;
+}
+
+.indicator{
+    position: absolute;
+    top: 0;
+    z-index:1;
+    width: auto;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    height: 100vh;
+    width: 100%;
+    background: rgba(244, 249, 236, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request.htmx-indicator{
+    position: absolute !important;
+}
