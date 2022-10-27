@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 05:23+0300\n"
+"POT-Creation-Date: 2022-10-27 14:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "Super, membre du personnel "
 
 #: presentation/views/assign_coaches.py:58
 msgid " now has coaches."
-msgstr ""
+msgstr " a maintenant des entraîneurs."
 
 #: presentation/views/assign_reviewers.py:39
 msgid "Great, application "
@@ -42,18 +42,6 @@ msgstr "Super, application "
 #: presentation/views/assign_reviewers.py:40
 msgid " is now in review."
 msgstr " est maintenant en révision."
-
-#: presentation/views/export_form_questions.py:20
-msgid ""
-"These are the updated questions \n"
-"Questions ending with * means they are required"
-msgstr ""
-"Ce sont les questions mises à jour \n"
-"Les questions se terminant par * signifient qu'elles sont obligatoires"
-
-#: presentation/views/export_inactive_user_emails.py:20
-msgid "Dormant Accounts"
-msgstr "Comptes dormants"
 
 #: presentation/views/invite_reviewer.py:27
 msgid "Great. "
@@ -96,9 +84,11 @@ msgstr "utilisateur non trouvé."
 msgid " can now review applications."
 msgstr "peut désormais examiner les candidatures."
 
+#: presentation/views/search.py:57
+msgid "Search field should not be empty"
+msgstr "Le champ de recherche ne doit pas être vide"
+
 #: templates/admin-header.html:15
-#, fuzzy
-#| msgid "Hello Admin"
 msgid "Welcome Admin"
 msgstr "Bonjour administrateur"
 
@@ -149,8 +139,6 @@ msgid "Unassigned"
 msgstr "Non attribué"
 
 #: templates/admin_base.html:63
-#, fuzzy
-#| msgid "Applications"
 msgid "Applicants"
 msgstr "Applications"
 
@@ -160,7 +148,7 @@ msgstr "Utilisateur régulier"
 
 #: templates/admin_base.html:71
 msgid "Applying for Calls"
-msgstr ""
+msgstr "Demander des appels"
 
 #: templates/admin_base.html:77
 msgid "Basic Admin"
@@ -178,73 +166,79 @@ msgstr "Questions sur l'exportation d'AgriPitch"
 msgid "Export Dormant Accounts"
 msgstr "Exporter les comptes dormants"
 
-#: templates/admin_base.html:108 templates/staff_base.html:60
+#: templates/admin_base.html:92
+msgid "Export Key Stats"
+msgstr "Exporter les statistiques clés"
+
+#: templates/admin_base.html:96
+msgid "Export Remaining Steps"
+msgstr "Exporter les étapes restantes"
+
+#: templates/admin_base.html:116 templates/staff_base.html:60
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: templates/admin_base.html:109 templates/staff_base.html:61
+#: templates/admin_base.html:117 templates/staff_base.html:61
 msgid "Settings"
 msgstr "Réglages"
 
-#: templates/admin_base.html:123
+#: templates/admin_base.html:131
 #: templates/pes_admin/application_details.html:10
 msgid "Application Summary"
 msgstr "Résumé de la demande"
 
-#: templates/admin_base.html:127
-#: templates/pes_admin/in_review_applications.html:17
-#: templates/pes_admin/unassigned_applications.html:16
+#: templates/admin_base.html:135
+#: templates/pes_admin/in_review_applications.html:30
+#: templates/pes_admin/unassigned_applications.html:28
 msgid "Stage"
 msgstr "Organiser"
 
-#: templates/admin_base.html:128
-#: templates/pes_admin/in_review_applications.html:15
-#: templates/pes_admin/unassigned_applications.html:14
+#: templates/admin_base.html:136
+#: templates/pes_admin/in_review_applications.html:28
+#: templates/pes_admin/unassigned_applications.html:26
 msgid "ID"
 msgstr "IDENTIFIANT"
 
-#: templates/admin_base.html:129 templates/admin_base.html:154
+#: templates/admin_base.html:137 templates/admin_base.html:162
 #: templates/pes_admin/application_details.html:15
 msgid "Reviewers"
 msgstr "Réviseurs"
 
-#: templates/admin_base.html:130 templates/admin_base.html:155
+#: templates/admin_base.html:138 templates/admin_base.html:163
 #, fuzzy
 #| msgid "Total Score:"
 msgid "Total Score"
 msgstr "Score total:"
 
-#: templates/admin_base.html:131 templates/admin_base.html:156
+#: templates/admin_base.html:139 templates/admin_base.html:164
 #: templates/pes_admin/application_details.html:26
 msgid "Will Advance"
 msgstr "Avancera"
 
-#: templates/admin_base.html:148
+#: templates/admin_base.html:156
 #: templates/pes_admin/application_details.html:35
 msgid "Review Breakdown"
 msgstr "Répartition des avis"
 
-#: templates/admin_base.html:152
+#: templates/admin_base.html:160
 #: templates/pes_admin/application_details.html:40
 msgid "Reviewer"
 msgstr "Critique"
 
-#: templates/admin_base.html:153
+#: templates/admin_base.html:161
 #: templates/pes_admin/application_details.html:41
 msgid "Reviewer Total Score"
 msgstr "Note totale de l'examinateur"
 
-#: templates/admin_base.html:177
-#, fuzzy
-#| msgid "Will Advance"
+#: templates/admin_base.html:185
 msgid "Advance"
 msgstr "Avancera"
 
-#: templates/admin_base.html:178
+#: templates/admin_base.html:186
 msgid "Quit"
 msgstr "Arrêter"
 
-#: templates/admin_base.html:188
+#: templates/admin_base.html:196
 msgid "You don't have permission to view or edit anything"
 msgstr "Vous n'êtes pas autorisé à afficher ou à modifier quoi que ce soit."
 
@@ -307,8 +301,8 @@ msgid ""
 "Your have upgraded to coach. Please login to your account to administer to "
 "your clients:"
 msgstr ""
-"Vous êtes devenu entraîneur. Veuillez vous connecter à votre compte pour administrer "
-"vos clients :"
+"Vous êtes devenu entraîneur. Veuillez vous connecter à votre compte pour "
+"administrer vos clients :"
 
 #: templates/pes_admin/email/coach.html:10
 #: templates/pes_admin/email/reviewer_invitation.html:11
@@ -330,19 +324,19 @@ msgstr ""
 "Veuillez vous inscrire en tant qu'examinateur en cliquant sur le lien "
 "d'inscription ci-dessous :"
 
-#: templates/pes_admin/in_review_applications.html:16
+#: templates/pes_admin/in_review_applications.html:29
 msgid "Creator"
 msgstr "Créateur"
 
-#: templates/pes_admin/in_review_applications.html:18
-#: templates/pes_admin/unassigned_applications.html:17
+#: templates/pes_admin/in_review_applications.html:31
+#: templates/pes_admin/unassigned_applications.html:29
 #: templates/pes_admin/users_all.html:16
 #: templates/pes_admin/users_call_to_action.html:17
 #: templates/pes_admin/users_regular.html:16
 msgid "Action"
 msgstr "Action"
 
-#: templates/pes_admin/in_review_applications.html:28
+#: templates/pes_admin/in_review_applications.html:42
 #: templates/pes_admin/users_all.html:32
 #: templates/pes_admin/users_regular.html:32
 msgid "View More"
@@ -360,6 +354,11 @@ msgstr "Entrez l'e-mail"
 msgid "Invite"
 msgstr "Inviter"
 
+#: templates/pes_admin/snippets/view_applications.html:39
+#: templates/pes_admin/view_applications.html:47
+msgid "Search"
+msgstr "Chercher"
+
 #: templates/pes_admin/subcriteria_item_properties.html:15
 msgid "Add a subcriteria property"
 msgstr "Ajouter une propriété de sous-critère"
@@ -368,11 +367,11 @@ msgstr "Ajouter une propriété de sous-critère"
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: templates/pes_admin/unassigned_applications.html:15
+#: templates/pes_admin/unassigned_applications.html:27
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: templates/pes_admin/unassigned_applications.html:27
+#: templates/pes_admin/unassigned_applications.html:40
 msgid "Assign Reviewers"
 msgstr "Attribuer des réviseurs"
 
@@ -403,6 +402,12 @@ msgstr "A des entraîneurs"
 #: templates/pes_admin/users_call_to_action.html:33
 msgid "Assign Coaches"
 msgstr "Attribuer des réviseurs"
+
+#: templates/pes_admin/view_application.html:19
+#, fuzzy
+#| msgid "Applications"
+msgid "Application Responses"
+msgstr "Applications"
 
 #: templates/pes_admin/view_staff.html:11
 msgid "Full Name"
@@ -461,6 +466,16 @@ msgstr "Bonjour"
 #| msgid "Applications to Review"
 msgid "Click to Review"
 msgstr "Demandes à examiner"
+
+#~ msgid ""
+#~ "These are the updated questions \n"
+#~ "Questions ending with * means they are required"
+#~ msgstr ""
+#~ "Ce sont les questions mises à jour \n"
+#~ "Les questions se terminant par * signifient qu'elles sont obligatoires"
+
+#~ msgid "Dormant Accounts"
+#~ msgstr "Comptes dormants"
 
 #~ msgid "Role"
 #~ msgstr "Rôle"

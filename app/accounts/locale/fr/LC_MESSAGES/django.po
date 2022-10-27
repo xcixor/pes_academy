@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-21 06:11+0300\n"
+"POT-Creation-Date: 2022-10-27 14:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,17 @@ msgstr "Merci, votre message a bien été reçu. Nous vous répondrons sous peu.
 msgid "Great! your details have been saved"
 msgstr "Super! vos coordonnées ont été enregistrées"
 
-#: presentation/views/registration.py:82
+#: presentation/views/registration.py:42
+msgid "Registration successful, start your application!"
+msgstr "L'inscription est réussie, lancez votre candidature !"
+
+#: presentation/views/registration.py:76
+#, fuzzy
+#| msgid "Registration"
+msgid "Registration successful!"
+msgstr "S'inscrire"
+
+#: presentation/views/registration.py:89
 msgid "Please correct the errors in your form"
 msgstr "Merci de corriger les erreurs dans le formulaire ci-dessous"
 
@@ -1416,8 +1426,7 @@ msgstr "Vous devriez recevoir l'e-mail sous peu."
 
 #: templates/registration/password/password_reset_done.html:13
 msgid "If you don't receive an email, please check your spam folder."
-msgstr ""
-"Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam."
+msgstr "Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam."
 
 #: templates/registration/resend_activation_email.html:13
 msgid "Resend Email"

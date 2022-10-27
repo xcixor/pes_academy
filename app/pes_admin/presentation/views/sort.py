@@ -13,7 +13,9 @@ class SortByStageView(ListView):
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         sort_term = self.request.GET.get('stage')
-        queryset = queryset.filter(stage=sort_term)
+        stages = ['step_one', 'step_two', 'step_three', 'step_four']
+        if sort_term in stages:
+            queryset = queryset.filter(stage=sort_term)
         self.request.session['sort'] = sort_term
         return queryset
 
