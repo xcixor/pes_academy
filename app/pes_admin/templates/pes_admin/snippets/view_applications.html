@@ -4,7 +4,20 @@
 <div class="container htmx-parent" id="htmx-parent">
     <div class="row">
         <div class="col-sm-12">
-            <h4 class="font-weight-bold">All Applications</h4>
+            <div class="d-flex justify-content-between">
+                <h4 class="font-weight-bold">All Applications</h4>
+                <form method="GET">
+                    {%csrf_token %}
+                    <select class="custom-select" id="id_stage" name="stage" hx-get="{% url 'admin:sort_by_stage' %}"
+                      hx-swap="innerHTML" hx-target="#htmx-parent" hx-indicator="#spinner">
+                      <option selected>Filter by Stage</option>
+                      <option value="step_one" {% if request.session.sort == 'step_one' %}selected{% endif %}>In Progress</option>
+                      <option value="step_two" {% if request.session.sort == 'step_two' %}selected{% endif %}>Data Submitted</option>
+                      <option value="step_three" {% if request.session.sort == 'step_three' %}selected{% endif %}>In Review</option>
+                      <option value="step_four" {% if request.session.sort == 'step_four' %}selected{% endif %}>Verdict Passed</option>
+                    </select>
+                  </form>
+            </div>
             {% if not form.errors %}
             <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
             {% endif %}

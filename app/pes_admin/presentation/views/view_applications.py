@@ -8,3 +8,8 @@ class ApplicationsView(ListView):
     model = Application
     context_object_name = 'applications'
     paginate_by = 50
+
+    def get(self, request, *args, **kwargs):
+        self.request.session.pop('sort', None)
+        self.request.session.pop('search', None)
+        return super().get(request, *args, **kwargs)

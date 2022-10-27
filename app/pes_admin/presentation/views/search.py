@@ -66,20 +66,18 @@ class PostSearchApplicationsView(FormView):
     template_name = 'pes_admin/view_applications.html'
     partial_template_name = 'pes_admin/snippets/view_applications.html'
 
-
-
     def form_valid(self, form):
         self.request.session['search'] = form.cleaned_data['search']
+        self.request.session.pop('sort', None)
         return super().form_valid(form)
 
     def form_invalid(self, form):
+        self.request.session.pop('sort', None)
         self.request.session.pop('search', None)
-        print(form.errors)
         return super().form_invalid(form)
 
     def get_template_names(self):
         if self.request.htmx:
-            print('returning snippets')
             return self.partial_template_name
         return self.template_name
 
