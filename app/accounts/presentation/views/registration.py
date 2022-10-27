@@ -1,4 +1,4 @@
-from django.urls import reverse
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -36,8 +36,12 @@ class PostRegistrationView(FormView):
         self.partial_template_name = 'registration/partial/registration_success.html'
         self.request.session.pop('registration_details', None)
         new_user = form.save()
-        form.send_account_activation_email(new_user, self.request)
+        if not settings.DEBUG:
+            form.send_account_activation_email(new_user, self.request)
         login(self.request, new_user)
+        success_message = _("Registration successful, start your application!")
+        messages.add_message(
+            self.request, messages.SUCCESS, success_message)
         if self.request.htmx:
             return HttpResponseClientRedirect(self.success_url)
         return super().form_valid(form)
@@ -69,10 +73,10 @@ class PostReviewerRegistrationView(FormView):
         inactive_user.is_active = True
         inactive_user.is_staff = True
         inactive_user.save()
-        login(self.request, inactive_user)
-        success_message = _("Registration successful, start your application!")
+        success_message = _("Registration successful!")
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
+        login(self.request, inactive_user)
         return super().form_valid(form)
 
     def form_invalid(self, form):

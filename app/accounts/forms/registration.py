@@ -182,5 +182,6 @@ class ResendActivationEmail(forms.Form, HtmlEmailMixin):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
+        if not settings.DEBUG:
             self.notify_admin(user)
         return user
