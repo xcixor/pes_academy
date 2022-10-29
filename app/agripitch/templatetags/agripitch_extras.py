@@ -25,6 +25,11 @@ def get_response(sub_criteria, application):
             sub_criteria_item, application)
     item = get_sub_criteria_item_response_if_exist(
         sub_criteria_item, application)
+    if sub_criteria_item.type == 'multiplechoicefield':
+        str_response = ""
+        for response in item.list_value:
+            str_response += response + ", "
+        return str_response
     if item:
         return item.value
     return item
