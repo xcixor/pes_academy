@@ -96,29 +96,48 @@
                   <a href="{% url 'agripitch:application' slug=call.slug %}" class="cta-button">{% trans "Apply Now" %} &raquo;</a>
           {% endfor %}
 
-        <div class="dropdown show mt-5">
-          <a class="btn dropdown-toggle download-resources" href="#" role="button" id="dropdownMenuLink"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {% trans "Download Application Guide" %}
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item"
-              href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-competition-Application-guide.pdf"
-              download target="_blank">{% trans "English" %}</a>
-            <a class="dropdown-item"
-              href="https://www.privateequity-support.com/wp-content/uploads/2022/08/Agripitch-competition-Application-guide.pdf"
+          <div class="dropdown corner-guide show mt-3" style="z-index:2000 ;">
+            <button class="btn dropdown-toggle download-resources" type="button" id="dropdownMenuButton"
+              data-mdb-toggle="dropdown" aria-expanded="false" role="button" data-toggle="dropdown" aria-haspopup="true">
+              {% trans "Download Application Guide" %}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-competition-Application-guide.pdf"
+                download target="_blank">{% trans "English" %}</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-competition-Application-guide-French.pdf"
               download target="_blank">{% trans "French" %}</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item"
-              href="https://www.privateequity-support.com/wp-content/uploads/2022/09/Agripitch-2022-Frequently-Asked-Questions.pdf"
-              target="_blank">{% trans "Download FAQs" %}</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'agripitch:generate_application_pdf' %}" target="_blank">
-              {% trans "Download Application Form" %}
-            </a>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">{% trans "Download FAQs" %} &raquo;</a>
+      
+                <ul class="dropdown-menu dropdown-submenu">
+                  <li>
+                    <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-2022-Frequently-Asked-Questions.pdf" target="_blank">{% trans "English" %}</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-2022-Frequently-Asked-Questions-French.pdf" target="_blank">{% trans "French" %}</a>
+                  </li>
+                </ul>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-Hardcopy-questions.pdf" target="_blank">{% trans "Download Hardcopy questions" %} &raquo;</a>
+      
+                <ul class="dropdown-menu dropdown-submenu">
+                  <li>
+                    <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-Hardcopy-questions.pdf" target="_blank">{% trans "English" %}</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="https://www.privateequity-support.com/wp-content/uploads/2022/10/Agripitch-Hardcopy-questions-French.pdf" target="_blank">{% trans "French" %}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
-        </div>
 
       </div>
     </div>

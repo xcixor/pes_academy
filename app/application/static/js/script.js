@@ -627,7 +627,7 @@ gsap.fromTo('.hero-textbox',{yPercent: 40,opacity: 0},{duration: 1,delay: 1.3,yP
   const countdown = document.querySelector('.countdown');
 
 // Set Launch Date (ms)
-let launchDate = new Date('Oct 17, 2022 12:00:00');
+let launchDate = new Date('Nov 4, 2022 12:00:00');
 
 // Update every second
 const intvl = setInterval(() => {
@@ -647,6 +647,7 @@ const intvl = setInterval(() => {
 
   // Display result
   countdown.innerHTML = `
+  <h3>Application Deadline</h3>
   <div>${days}<span>Days</span></div>
   <div>${hours}<span>Hours</span></div>
   <div>${mins}<span>Minutes</span></div>
@@ -657,14 +658,14 @@ const intvl = setInterval(() => {
   if (distance < 0) {
     let languageCode = $("#languageCode").val();
     console.log(languageCode)
-    var launchMessage = "Launched!";
+    var launchMessage = "Applications closed!";
     if (languageCode === "fr") {
-        launchMessage = "Lancé!";
+        launchMessage = "Candidatures fermées!";
     }
     // Stop countdown
     clearInterval(intvl);
     // Style and output text
-    countdown.style.color = '#17a2b8';
+    countdown.style.color = '#E1341E';
     countdown.innerHTML = launchMessage;
   }
 }, 1000);
