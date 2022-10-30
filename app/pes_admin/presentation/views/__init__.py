@@ -16,3 +16,4 @@ from .view_user_application import AdminApplicationView
 from .export_remaining_steps_for_users_to_csv import export_remaining_steps_for_users
 from .search import SearchApplicationsView
 from .sort import SortByStageView
+from .clear_filters import ClearSortView, ClearSearchView
