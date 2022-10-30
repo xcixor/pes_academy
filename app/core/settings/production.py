@@ -48,11 +48,16 @@ LOGGING = {
             'backupCount': 2,
             'formatter': 'verbose',
         },
+        'mail_admins': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
     },
     'loggers': {
         'django': {
             'handlers': ['logfile'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True,
         },
         'apps': {

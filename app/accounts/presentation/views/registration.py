@@ -55,8 +55,8 @@ class PostRegistrationView(FormView):
         registration_details = {}
         for key, value in self.request.POST.items():
             registration_details[key] = value
-        registration_details.pop('password1')
-        registration_details.pop('password2')
+        registration_details.pop('password1', None)
+        registration_details.pop('password2', None)
         self.request.session['registration_details'] = registration_details
         return super().form_invalid(form)
 
@@ -83,8 +83,8 @@ class PostReviewerRegistrationView(FormView):
         registration_details = {}
         for key, value in self.request.POST.items():
             registration_details[key] = value
-        registration_details.pop('password1')
-        registration_details.pop('password2')
+        registration_details.pop('password1', None)
+        registration_details.pop('password2', None)
         self.request.session['registration_details'] = registration_details
         error_message = _("Please correct the errors in your form")
         messages.add_message(
