@@ -1,8 +1,8 @@
-from django.views.generic import View, ListView, FormView
+from itertools import chain
 from django.contrib.postgres.search import SearchVector
+from django.views.generic import View, ListView, FormView
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from itertools import chain
 from application.models import Application
 
 
@@ -14,8 +14,8 @@ class GetSearchApplicationsView(ListView):
     paginate_by = 50
     partial_template_name = 'pes_admin/snippets/view_applications.html'
 
-    def get_queryset(self):
-        queryset = Application.objects.all()
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
         search_fields = SearchVector('application_creator__email') \
             + SearchVector('application_creator__username') \
             + SearchVector('application_creator__full_name') \
@@ -68,7 +68,6 @@ class PostSearchApplicationsView(FormView):
 
     def form_valid(self, form):
         self.request.session['search'] = form.cleaned_data['search']
-        self.request.session.pop('sort', None)
         return super().form_valid(form)
 
     def form_invalid(self, form):
