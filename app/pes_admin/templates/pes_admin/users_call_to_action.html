@@ -4,37 +4,83 @@
 {% load i18n %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/pes_admin/view_staff.css' %}">
+<link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
 {% endblock %}
 {% block admin_content %}
 
-<div class="table-responsive card-admin">
-    <table id="admin-dashboard" class="table table-striped text-white">
-      <thead>
-        <tr>
-          <th scope="col">{% trans "Name" %}</th>
-          <th scope="col">{% trans "Email" %}</th>
-          <th scope="col">{% trans "Has Coaches" %}</th>
-          <th scope="col">{% trans "Action" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for user in users %}
-        <tr>
-          <th scope="row">{{user.full_name}}</th>
-          <td>{{user.email}}</td>
-          <td>
-            {% if user.coaches.all %}
-            <i class="fa-solid fa-circle-check"></i>
-            {% else %}
-            <i class="fa-solid fa-xmark"></i>
-            {% endif %}
-          </td>
-          <td>
-            <a href="/CgDX4znLdQDLFw/advanced/assign/{{user.pk}}/coaches/" class="btn btn-primary">{% trans "Assign Coaches" %}</a>
-          </td>
-        </tr>
-        {% endfor %}
-        {% endblock %}
-      </tbody>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="d-flex justify-content-between">
+        <h4 class="font-weight-bold">Users Applying for the Call to Action</h4>
+      </div>
+      <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+      <p class="small">
+        {% with page_obj|length as records %}
+        {{records}} record{{ records|pluralize }} of {{paginator.count }}
+        {% endwith %}
+      </p>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive card-admin">
+        <table id="admin-dashboard" class="table table-striped text-white">
+          <thead>
+            <tr>
+              <th scope="col">{% trans "Name" %}</th>
+              <th scope="col">{% trans "Email" %}</th>
+              <th scope="col">{% trans "Has Coaches" %}</th>
+              <th scope="col">{% trans "Action" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <th scope="row">{{user.full_name}}</th>
+              <td>{{user.email}}</td>
+              <td>
+                {% if user.coaches.all %}
+                <i class="fa-solid fa-circle-check"></i>
+                {% else %}
+                <i class="fa-solid fa-xmark"></i>
+                {% endif %}
+              </td>
+              <td>
+                <a href="/CgDX4znLdQDLFw/advanced/assign/{{user.pk}}/coaches/"
+                  class="btn btn-primary">{% trans "Assign Coaches" %}</a>
+              </td>
+            </tr>
+            {% endfor %}
+            {% endblock %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          {% if not form.errors %}
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% endif %}
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
