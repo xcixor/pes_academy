@@ -13,6 +13,12 @@ class ApplicationsView(ListView):
     paginate_by = 50
 
     def get(self, request, *args, **kwargs):
+        sort_term = self.request.GET.get('stage')
+        if sort_term:
+            self.request.session['sort'] = sort_term
+        search_term = self.request.GET.get('search')
+        if search_term:
+            self.request.session['search'] = search_term
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self, **kwargs):
