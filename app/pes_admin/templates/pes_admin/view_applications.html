@@ -32,7 +32,7 @@
       {% endif %}
       <p class="small">
         {% with page_obj|length as records %}
-        {{records}} record{{ records|pluralize }}
+        {{records}} record{{ records|pluralize }} of {{paginator.count }}
         {% endwith %}
       </p>
     </div>
