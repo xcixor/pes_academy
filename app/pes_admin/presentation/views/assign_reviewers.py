@@ -31,6 +31,7 @@ class PostAssignReviewers(SingleObjectMixin, FormView):
 
     def form_valid(self, form):
         self.object.is_in_review = True
+        self.object.stage = 'step_three'
         self.object.save()
         form.assign_reviewers(self.object)
         return super().form_valid(form)

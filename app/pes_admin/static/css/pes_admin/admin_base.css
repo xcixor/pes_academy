@@ -29,10 +29,6 @@ body {
   color: #ffffff;
 }
 
-.btn-primary {
-  background-color: #a91917;
-  border-radius: 10px;
-}
 
 .btn-primary:hover {
   background-color: var(--bg-primary);

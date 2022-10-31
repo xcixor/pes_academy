@@ -1,9 +1,15 @@
 {% extends 'admin_base.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/pes_admin/assign_reviewers.css' %}">
+{% endblock %}
 {% block admin_content %}
 {% load i18n %}
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <h3>{% trans "Assign reviewers to" %} {{application}}</h3>
+        <h4 class="heading"><strong>{% trans "Assign reviewers to" %} {{application}}</strong></h4>
     </div>
 </div>
 <div class="row">

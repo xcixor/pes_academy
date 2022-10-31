@@ -1,0 +1,27 @@
+ul {
+    margin: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.heading {
+    font-size: 1.2rem;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    width: 1.15em;
+    height: 1.15em;
+    cursor: pointer;
+
+}
+
+
+label {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    font-size: 1.5rem;
+    line-height: 1.15;
+}
