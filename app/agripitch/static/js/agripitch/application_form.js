@@ -201,7 +201,7 @@ function toggleDependant(elementWithDependant, dependentElement) {
 			}
 		}
 	} else {
-		$(dependentElement).val("");
+		$(dependentElement).attr("checked") ? 1 : 0;
 		$(dependentElement).trigger("change");
 		$(dependentElement).removeClass("form-input-validate");
 		console.log($(dependentElement).attr("name"));
