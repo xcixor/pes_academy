@@ -232,7 +232,7 @@ body {
 .hero-textbox {
 	width: 100%;
 	position: absolute;
-	top: 70%;
+	top: 60%;
 	left: 55%;
 	z-index: 20;
 	transform: translate(-50%, -50%);
