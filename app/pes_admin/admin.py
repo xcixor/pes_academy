@@ -7,7 +7,8 @@ from pes_admin.presentation.views import (
     InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
     export_inactive_user_emails_to_xls, AdminApplicationView,
-    export_remaining_steps_for_users, ClearSortView, ClearSearchView)
+    export_remaining_steps_for_users, ClearSortView, ClearSearchView,
+    export_emails_without_applications)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -71,6 +72,9 @@ class CustomAdmin(admin.AdminSite):
             path('search/clear/',
                  admin.site.admin_view(ClearSearchView.as_view()),
                  name='clear_search'),
+            path('export/user/emails/no/applications/csv/',
+                 export_emails_without_applications,
+                 name='export_emails_without_applications'),
         ] + urls
         return custom_urls
 

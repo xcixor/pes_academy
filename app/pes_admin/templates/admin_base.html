@@ -127,6 +127,11 @@
                   <i class="fa-solid fa-file-csv"></i>
                   <span class="ml-2">{% trans "Export Remaining Steps" %}</span>
                 </a>
+                <a href="{% url 'admin:export_emails_without_applications' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Emails without Applications" %}</span>
+                </a>
               </div>
             </div>
 
