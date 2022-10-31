@@ -19,5 +19,9 @@ class ClearSearchView(View):
 
     def get(self, request, *args, **kwargs):
         self.request.session.pop('search', None)
+        url_origin = request.META.get("HTTP_REFERER")
+        if '/applications/unassigned/' in url_origin:
+            return HttpResponseClientRedirect(
+                '/CgDX4znLdQDLFw/advanced/applications/unassigned/')
         return HttpResponseClientRedirect(
-            '/CgDX4znLdQDLFw/advanced/applications/all/')
+                '/CgDX4znLdQDLFw/advanced/applications/all/')
