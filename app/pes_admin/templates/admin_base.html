@@ -1,221 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-{% block styles %}
-{% endblock %}
-{% load i18n %}
-{% include 'admin-head.html' %}
-{% block messages %}
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert-container d-flex flex-row align-items-center justify-content-center">
-        <div class="alert alert-{{ message.tags }} d-flex flex-row align-items-center justify-content-between alert-dismissible">
-            <p style="margin: 0;">{{message}}</p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+  {% load static %}
+  {% block styles %}
+  {% endblock %}
+  {% load i18n %}
+  {% include 'admin-head.html' %}
+  {% block messages %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert-container d-flex flex-row align-items-center justify-content-center">
+    <div
+      class="alert alert-{{ message.tags }} d-flex flex-row align-items-center justify-content-between alert-dismissible">
+      <p style="margin: 0;">{{message}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    {% endfor%}
-{% endif %}
+  </div>
+  {% endfor%}
+  {% endif %}
 
 
-<body id="admin">
+  <body id="admin">
     {% include 'admin-header.html' %}
     <div class="container-fluid">
-        <div class="row">
-          <!-- sidebar -->
-          <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
-            <!-- <h1 class="bi bi-person-fill text-site-secondary d-flex my-4 justify-content-center"> Admin</h1> -->
-            <div class="list-group rounded-0">
-                {% if user.is_superuser %}
-              <a href="/CgDX4znLdQDLFw/advanced/" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
-                <span class="bi bi-border-all"></span>
-                <span class="ml-2">{% trans "Dashboard" %}</span>
-              </a>
-              <a href="/CgDX4znLdQDLFw/advanced/invite/reviewer/" class="list-group-item list-group-item-action border-0 align-items-center">
-                <span class="bi bi-person-plus"></span>
-                <span class="ml-2">{% trans "Invite Application Reviewers" %}</span>
-              </a>
-              <a href="/CgDX4znLdQDLFw/advanced/view/staff/" class="list-group-item list-group-item-action border-0 align-items-center">
-                <span class="bi bi-people"></span>
-                <span class="ml-2">{% trans "View Staff" %}</span>
-              </a>
+      <div class="row">
+        <!-- sidebar -->
+        <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
+          <!-- <h1 class="bi bi-person-fill text-site-secondary d-flex my-4 justify-content-center"> Admin</h1> -->
+          <div class="list-group rounded-0">
+            {% if user.is_superuser %}
+            <a href="/CgDX4znLdQDLFw/advanced/"
+              class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+              <span class="bi bi-border-all"></span>
+              <span class="ml-2">{% trans "Dashboard" %}</span>
+            </a>
+            <a href="/CgDX4znLdQDLFw/advanced/invite/reviewer/"
+              class="list-group-item list-group-item-action border-0 align-items-center">
+              <span class="bi bi-person-plus"></span>
+              <span class="ml-2">{% trans "Invite Application Reviewers" %}</span>
+            </a>
+            <a href="/CgDX4znLdQDLFw/advanced/view/staff/"
+              class="list-group-item list-group-item-action border-0 align-items-center">
+              <span class="bi bi-people"></span>
+              <span class="ml-2">{% trans "View Staff" %}</span>
+            </a>
 
-              <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#sale-collapse">
-                <div>
-                  <span class="bi bi-app"></span>
-                  <span class="ml-2">{% trans "Applications" %}</span>
-                </div>
-                <span class="bi bi-chevron-down small"></span>
-              </button>
-              <div class="collapse" id="sale-collapse" data-parent="#sidebar">
-                <div class="list-group">
-                  <a href="{% url 'admin:all_applications' %}" class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
-                  <a href="/CgDX4znLdQDLFw/advanced/applications/in-review/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "In Review" %}</a>
-                  <a href="/CgDX4znLdQDLFw/advanced/applications/unassigned/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "Unassigned" %}</a>
-                </div>
+            <button
+              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
+              data-toggle="collapse" data-target="#sale-collapse">
+              <div>
+                <span class="bi bi-app"></span>
+                <span class="ml-2">{% trans "Applications" %}</span>
               </div>
-
-              <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#applicants">
-                <div>
-                  <span class="bi bi-app"></span>
-                  <span class="ml-2">{% trans "Applicants" %}</span>
-                </div>
-                <span class="bi bi-chevron-down small"></span>
-              </button>
-              <div class="collapse" id="applicants" data-parent="#sidebar">
-                <div class="list-group">
-                  <a href="/CgDX4znLdQDLFw/advanced/users/all/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
-                  <a href="/CgDX4znLdQDLFw/advanced/users/regular/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "Regular User" %}</a>
-                  <a href="/CgDX4znLdQDLFw/advanced/users/call-to-action/" class="list-group-item list-group-item-action border-0 pl-5">{% trans "Applying for Calls" %}</a>
-                </div>
+              <span class="bi bi-chevron-down small"></span>
+            </button>
+            <div class="collapse" id="sale-collapse" data-parent="#sidebar">
+              <div class="list-group">
+                <a href="{% url 'admin:all_applications' %}"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/applications/in-review/"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "In Review" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/applications/unassigned/"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Unassigned" %}</a>
               </div>
+            </div>
 
-              <a href="/CgDX4znLdQDLFw/" class="list-group-item list-group-item-action border-0 align-items-center">
-                <span class="bi bi-person"></span>
-                <span class="ml-2">{% trans "Basic Admin" %}</span>
-              </a>
-              {% else %}
+            <button
+              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
+              data-toggle="collapse" data-target="#applicants">
+              <div>
+                <span class="bi bi-app"></span>
+                <span class="ml-2">{% trans "Applicants" %}</span>
+              </div>
+              <span class="bi bi-chevron-down small"></span>
+            </button>
+            <div class="collapse" id="applicants" data-parent="#sidebar">
+              <div class="list-group">
+                <a href="/CgDX4znLdQDLFw/advanced/users/all/"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/users/regular/"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Regular User" %}</a>
+                <a href="/CgDX4znLdQDLFw/advanced/users/call-to-action/"
+                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Applying for Calls" %}</a>
+              </div>
+            </div>
+
+            <a href="/CgDX4znLdQDLFw/" class="list-group-item list-group-item-action border-0 align-items-center">
+              <span class="bi bi-person"></span>
+              <span class="ml-2">{% trans "Basic Admin" %}</span>
+            </a>
+            {% else %}
             <p class="pl-5">{% trans "None available" %}</p>
             {% endif %}
-            <a href="{% url 'admin:export_agripitch_questions_xls' %}" class="list-group-item list-group-item-action border-0 align-items-center">
-              <i class="fa-solid fa-file-excel"></i>
-              <span class="ml-2">{% trans "Export AgriPitch Questions" %}</span>
-            </a>
-            <a href="{% url 'admin:export_inactive_user_emails_to_xls' %}" class="list-group-item list-group-item-action border-0 align-items-center">
-              <i class="fa-solid fa-file-excel"></i>
-              <span class="ml-2">{% trans "Export Dormant Accounts" %}</span>
-            </a>
-            <a href="{% url 'admin:export_key_stats_to_csv' %}" class="list-group-item list-group-item-action border-0 align-items-center">
-              <i class="fa-solid fa-file-csv"></i>
-              <span class="ml-2">{% trans "Export Key Stats" %}</span>
-            </a>
-            <a href="{% url 'admin:export_remaining_steps_for_users' %}" class="list-group-item list-group-item-action border-0 align-items-center">
-              <i class="fa-solid fa-file-csv"></i>
-              <span class="ml-2">{% trans "Export Remaining Steps" %}</span>
-            </a>
-            </div>
-          </div>
-          <!-- overlay to close sidebar on small screens -->
-          <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
-          <!-- note: in the layout margin auto is the key as sidebar is fixed -->
-          <div class="col-md-9 col-lg-10 ml-md-auto px-0">
-            <!-- top nav -->
-            <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
-              <!-- close sidebar -->
-              <button class="btn py-0 d-lg-none" id="open-sidebar">
-                <span class="bi bi-list text-primary h3"></span>
-              </button>
-              <div class="dropdown ml-auto">
-                <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
-                  <span class="bi bi-person text-site-secondary h4"></span>
-                  <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-                  <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
-                  <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
-                </div>
+
+
+
+            <button
+              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
+              data-toggle="collapse" data-target="#reporting">
+              <div>
+                <span class="bi bi-app"></span>
+                <span class="ml-2">{% trans "Reporting" %}</span>
               </div>
-            </nav>
-            <!-- main content -->
-            <main class="container-fluid">
-                <div class="jumbotron jumbotron-admin rounded border-0 shadow-sm border-left px-1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                        {% if user.is_superuser %}
+              <span class="bi bi-chevron-down small"></span>
+            </button>
+            <div class="collapse" id="reporting" data-parent="#sidebar">
+              <div class="list-group">
+                <a href="{% url 'admin:export_agripitch_questions_xls' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-excel"></i>
+                  <span class="ml-2">{% trans "Export AgriPitch Questions" %}</span>
+                </a>
+                <a href="{% url 'admin:export_inactive_user_emails_to_xls' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-excel"></i>
+                  <span class="ml-2">{% trans "Export Dormant Accounts" %}</span>
+                </a>
+                <a href="{% url 'admin:export_key_stats_to_csv' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Key Stats" %}</span>
+                </a>
+                <a href="{% url 'admin:export_remaining_steps_for_users' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Remaining Steps" %}</span>
+                </a>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+        <!-- overlay to close sidebar on small screens -->
+        <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
+        <!-- note: in the layout margin auto is the key as sidebar is fixed -->
+        <div class="col-md-9 col-lg-10 ml-md-auto px-0">
+          <!-- top nav -->
+          <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
+            <!-- close sidebar -->
+            <button class="btn py-0 d-lg-none" id="open-sidebar">
+              <span class="bi bi-list text-primary h3"></span>
+            </button>
+            <div class="dropdown ml-auto">
+              <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown"
+                aria-expanded="false">
+                <span class="bi bi-person text-site-secondary h4"></span>
+                <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
+                <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
+                <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
+              </div>
+            </div>
+          </nav>
+          <!-- main content -->
+          <main class="container-fluid">
+            <div class="jumbotron jumbotron-admin rounded border-0 shadow-sm border-left px-1">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    {% if user.is_superuser %}
                     <section class="content p-md-5">
-                        {% block admin_content %}
-                        <div class="table-responsive card-admin">
-                          <h4 class="card-title text-center">{% trans "Application Summary" %}</h4>
-                          <table id="admin-dashboard" class="table table-striped text-white">
-                            <thead>
-                              <tr>
-                                <th scope="col">{% trans "Stage" %}</th>
-                                <th scope="col">{% trans "ID" %}</th>
-                                <th scope="col">{% trans "Reviewers" %}</th>
-                                <th scope="col">{% trans "Total Score" %}</th>
-                                <th scope="col">{% trans "Will Advance" %}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                            <div class="row my-4">
-                              <div class="col-md-12">
-                                <div class="table-responsive card-admin">
-                                  <h4 class="card-title text-center">{% trans "Review Breakdown" %}</h4>
-                                  <table id="admin-dashboard" class="table table-striped text-white">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">{% trans "Reviewer" %}</th>
-                                        <th scope="col">{% trans "Reviewer Total Score" %}</th>
-                                        <th scope="col">{% trans "Reviewers" %}</th>
-                                        <th scope="col">{% trans "Total Score" %}</th>
-                                        <th scope="col">{% trans "Will Advance" %}</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
+                      {% block admin_content %}
+                      <div class="table-responsive card-admin">
+                        <h4 class="card-title text-center">{% trans "Application Summary" %}</h4>
+                        <table id="admin-dashboard" class="table table-striped text-white">
+                          <thead>
+                            <tr>
+                              <th scope="col">{% trans "Stage" %}</th>
+                              <th scope="col">{% trans "ID" %}</th>
+                              <th scope="col">{% trans "Reviewers" %}</th>
+                              <th scope="col">{% trans "Total Score" %}</th>
+                              <th scope="col">{% trans "Will Advance" %}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row"></th>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="row my-4">
+                        <div class="col-md-12">
+                          <div class="table-responsive card-admin">
+                            <h4 class="card-title text-center">{% trans "Review Breakdown" %}</h4>
+                            <table id="admin-dashboard" class="table table-striped text-white">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{% trans "Reviewer" %}</th>
+                                  <th scope="col">{% trans "Reviewer Total Score" %}</th>
+                                  <th scope="col">{% trans "Reviewers" %}</th>
+                                  <th scope="col">{% trans "Total Score" %}</th>
+                                  <th scope="col">{% trans "Will Advance" %}</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row"></th>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                                <div class="card card-admin">
-                                    <div class="card-header ">
-                                        <div class="nav text-center">
-                                            <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a>
-                                            <a href="#" class="btn btn-primary mx-auto nav-link">{% trans "Quit" %}</a>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        {% endblock %}
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card card-admin">
+                            <div class="card-header ">
+                              <div class="nav text-center">
+                                <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a>
+                                <a href="#" class="btn btn-primary mx-auto nav-link">{% trans "Quit" %}</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endblock %}
                     </section>
                     {% else %}
                     <section class="content p-md-5">
-                        <p>{% trans "You don't have permission to view or edit anything" %}.</p>
+                      <p>{% trans "You don't have permission to view or edit anything" %}.</p>
                     </section>
                     {% endif %}
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </main>
-    {% block content %}
+              </div>
+            </div>
+          </main>
+          {% block content %}
 
-    {% endblock %}
+          {% endblock %}
 
-    {% endblock %}
+          {% endblock %}
 
-    {% block scripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
-    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+          {% block scripts %}
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+          <script src="{% static 'js/pes_admin/admin_base.js' %}"></script>
+          <script src="https://unpkg.com/htmx.org@1.8.0"></script>
 
-    {% endblock %}
-</body>
+          {% endblock %}
+  </body>
+
 </html>
-
-
