@@ -59,11 +59,6 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ['special_id', 'application_creator', 'created']
     list_filter = ['stage']
 
-    inlines = [
-        ApplicationDocumentInline, ApplicationReviewInline,
-        ApplicationScoreInline, ApplicationPromptInline,
-        ApplicationCommentInline]
-
 
 @admin.register(ApplicationScore)
 class ApplicationScoreAdmin(admin.ModelAdmin):
