@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 from django.http import HttpResponse
 from pes_admin.templatetags.admin_extras import (
     get_total_afdb_applicants, get_total_applications,
@@ -29,8 +30,9 @@ def get_number(n=0, rows=[]):
 
 
 def export_key_stats_to_csv(request):
+    time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="key_stats.csv"'
+    response['Content-Disposition'] = f'attachment; filename="key_stats_{time}.csv"'
     writer = csv.writer(response)
     writer.writerow(
         [f'Total AfDB Applicants: {(get_total_afdb_applicants("").count())}'])

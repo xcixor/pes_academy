@@ -1,14 +1,15 @@
 import xlwt
+from datetime import datetime
 from django.http import HttpResponse
-from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Cast
 from django.db.models import CharField
 from accounts.models import User
 
 
 def export_inactive_user_emails_to_xls(request):
+    time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="dormant_accounts.xls"'
+    response['Content-Disposition'] = f'attachment; filename="dormant_accounts_{time}.xls"'
 
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('Dormant Accounts')

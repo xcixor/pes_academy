@@ -1,13 +1,13 @@
 import xlwt
-
+from datetime import datetime
 from django.http import HttpResponse
-from django.utils.translation import gettext_lazy as _
 from agripitch.models import SubCriteriaItem, CriteriaItem
 
 
 def export_agripitch_questions_xls(request):
+    time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="agripitch_questions.xls"'
+    response['Content-Disposition'] = f'attachment; filename="agripitch_questions_{time}.xls"'
 
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('Questions')

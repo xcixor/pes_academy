@@ -1,6 +1,6 @@
 import csv
 from django.http import HttpResponse
-from django.utils import timezone
+from datetime import datetime
 from accounts.models import User
 from application.models import Application
 
@@ -17,7 +17,8 @@ def emails():
 
 
 def export_emails_without_applications(request):
-    filename = f'emails_{timezone.now()}.csv'
+    time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    filename = f'emails_{time}.csv'
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
     writer = csv.writer(response)

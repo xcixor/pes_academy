@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 from django.http import HttpResponse
 from agripitch.models import CriteriaItem, Application
 
@@ -21,8 +22,9 @@ def get_csv_data():
 
 
 def export_remaining_steps_for_users(request):
+    time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="remaining_steps.csv"'
+    response['Content-Disposition'] = f'attachment; filename="remaining_steps_{time}.csv"'
     writer = csv.writer(response)
     writer.writerow(["Remaining Steps for Each User"])
     data = get_csv_data()
