@@ -30,7 +30,7 @@
   {% graph "out" "out_data" "out_options" %}
 
 
-  {% with 'Entity type *'|get_total_applications_by_criteria as values %}
+  {% with 'Entity Type *'|get_total_applications_by_criteria as values %}
   {% data values "out_data" %}
   {% col "string" "Name" %}"{{ val }}"{% endcol %}
   {% col "number" "Value" %}{{ val }}{% endcol %}
@@ -100,7 +100,7 @@
   {% graph "women" "out_data" "out_options" %}
 
 
-  {% with 'How many women owners /shareholders in the business *'|get_total_applications_by_criteria as values %}
+  {% with 'How much shareholding do the women have in total ? *'|get_total_applications_by_criteria as values %}
   {% data values "out_data" %}
   {% col "string" "Name" %}"{{ val }}"{% endcol %}
   {% col "number" "Value" %}{{ val }}{% endcol %}
