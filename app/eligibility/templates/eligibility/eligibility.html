@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/eligibility/eligibility.css' %}">
 {% endblock %}
 {% load application_extras %}
+{% load agripitch_extras %}
 {% block content %}
 <div class="container-fluid summary p-0">
     <div class="row mb-2">
@@ -96,15 +97,15 @@
                                 <div class="col-md-6 p-5 screen-1">
                                     <p><b>{{sub_criteria}}</b></p>
                                     <p>
-                                        {% with application|get_applicant_response:sub_criteria as response %}
-                                        {% if response.type == 'file' %}
-                                        <a href="{{response.item.document.url}}"
-                                            target="_blank">{{response.item.name}}</a>
+                                        {% with sub_criteria.label|get_response:application as response %}
+                                        {% if sub_criteria.type == 'file' %}
+                                        <a href="{{response.document.url}}"
+                                            target="_blank">{{response}}</a>
                                         {% elif response.type == 'countryfield' %}
                                         {% get_country response.item as country %}
                                         {{ country.name }}
                                         {% else %}
-                                        {{ response.item }}
+                                        {{ response }}
                                         {% endif %}
                                         {% endwith %}
                                     </p>
