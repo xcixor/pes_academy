@@ -20,16 +20,19 @@ def get_form(sub_criteria, application):
 @register.filter('get_response')
 def get_response(sub_criteria, application):
     sub_criteria_item = get_sub_criteria_item_by_label(sub_criteria)
-    if sub_criteria_item.type == 'file':
-        return get_sub_criteria_item_document_response_if_exist(
+    if sub_criteria_item is not None:
+        if sub_criteria_item.type == 'file':
+            return get_sub_criteria_item_document_response_if_exist(
+                sub_criteria_item, application)
+        item = get_sub_criteria_item_response_if_exist(
             sub_criteria_item, application)
-    item = get_sub_criteria_item_response_if_exist(
-        sub_criteria_item, application)
-    if sub_criteria_item.type == 'multiplechoicefield':
-        str_response = ""
-        for response in item.list_value:
-            str_response += response + ", "
-        return str_response
-    if item:
-        return item.value
-    return item
+        if item:
+            if sub_criteria_item.type == 'multiplechoicefield':
+                str_response = ""
+                for response in item.list_value:
+                    str_response += response + ", "
+                return str_response
+            if item:
+                return item.value
+        return item
+    return ""
