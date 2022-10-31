@@ -58,7 +58,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 
     list_display = ['special_id', 'application_creator', 'created']
     list_filter = ['stage']
-    search_fields = ['email']
+    search_fields = ['application_creator__email', 'slug']
 
 
 @admin.register(ApplicationScore)
