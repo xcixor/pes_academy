@@ -115,8 +115,8 @@
                                     {% endwith %}
                                 </div>
                                 <div class="mt-3">
-                                    <button class="button btn-navigate-form-step" type="button"
-                                        step_number="2" data-name="Next">{% trans "Next" %}</button>
+                                    <button class="button btn-navigate-form-step" type="button" step_number="2"
+                                        data-name="Next">{% trans "Next" %}</button>
                                 </div>
                             </section>
                             <!-- Step 2 Content, default hidden on page load. -->
@@ -143,7 +143,8 @@
                                     <button class="button btn-navigate-form-step" type="button"
                                         step_number="{{ forloop.counter }}" data-name="Prev">{% trans "Prev" %}</button>
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{{ forloop.counter|add:'2' }}" data-name="Next">{% trans "Next" %}</button>
+                                        step_number="{{ forloop.counter|add:'2' }}"
+                                        data-name="Next">{% trans "Next" %}</button>
                                 </div>
                             </section>
                             {% endfor %}
@@ -166,8 +167,9 @@
                                 </div>
                                 <div class="mt-5">
                                     <button class="button btn-navigate-form-step" type="button"
-                                        step_number="{% with criteria|length as length %}{{ length }}{% endwith %}" data-name="Prev">{% trans "Prev" %}</button>
-                                    <button type="button" class="button submit-btn" data-toggle="modal"
+                                        step_number="{% with criteria|length as length %}{{ length }}{% endwith %}"
+                                        data-name="Prev">{% trans "Prev" %}</button>
+                                    <!-- <button type="button" class="button submit-btn" data-toggle="modal"
                                         data-target="#confirmationModal" id="triggerModal">
                                         {% trans "Confirm" %}
                                     </button>
@@ -176,7 +178,9 @@
                                         <div class="modal-dialog modal-sm" role="document"></div>
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h3 class="modal-title"><strong>{% trans "Application Submission" %}</strong></h3>
+                                                <h3 class="modal-title">
+                                                    <strong>{% trans "Application Submission" %}</strong>
+                                                </h3>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -186,12 +190,41 @@
                                                 <p>{% trans "Are you sure you want to save your changes?" %}</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="button submit-btn" type="submit">{% trans "Submit" %}</button>
+                                                <button class="button submit-btn"
+                                                    type="submit">{% trans "Submit" %}</button>
                                                 <button type="button" class="btn button"
                                                     data-dismiss="modal">{% trans "Close" %}</button>
                                             </div>
                                         </div>
+                                    </div> -->
+                                    <!-- <div class="modal-section"> -->
+                                    <button id="myBtn" type="button" class="button submit-btn">Confirm</button>
+
+                                    <!-- The Modal -->
+                                    <div id="myModal" class="modal">
+
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h3 class="modal-title">
+                                                    <strong>{% trans "Application Submission" %}</strong>
+                                                </h3>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>{% trans "Are you sure you want to save your changes?" %}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="button submit-btn"
+                                                    type="submit">{% trans "Submit" %}</button>
+                                                <button type="button"
+                                                    class="btn button close-modal">{% trans "Close" %}</button>
+                                            </div>
+                                        </div>
+
                                     </div>
+                                    <!-- </div> -->
                                 </div>
                     </div>
 </section>
