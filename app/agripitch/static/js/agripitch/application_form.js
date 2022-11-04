@@ -719,6 +719,7 @@ function isEmptyOrSpaces(str) {
 		$("#closeBtn").attr('disabled', true);
 		var spinnerIcon = $('<i/>').addClass("fas fa-circle-notch fa-spin");
 		$(this).html(spinnerIcon);
+		$("#confirmationMessage").css('display','none');
 		if (language === "fr") {
 			$("#modalMessage").html("En soumettant votre candidature, si le processus prend plus de cinq minutes, veuillez actualiser cette page.");
 
