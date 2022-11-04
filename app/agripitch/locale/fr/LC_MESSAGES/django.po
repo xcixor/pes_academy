@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:01+0300\n"
+"POT-Creation-Date: 2022-11-04 22:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,8 @@ msgid "Application"
 msgstr "Application"
 
 #: presentation/views/application_form.py:51
-msgid "Sorry, the AFDB Agripitch Competition 2022 is not yet live!"
-msgstr "Désolé, le concours AFDB Agripitch 2022 n'est pas encore en ligne !"
+msgid "The AFDB Agripitch Competition 2022 has officially closed!"
+msgstr "Le concours AFDB Agripitch 2022 est officiellement clos !"
 
 #: presentation/views/application_form.py:213
 msgid "Your application has been recorded, we will get back to you shortly"
@@ -92,49 +92,53 @@ msgid "Please fix the errors in your form"
 msgstr "S'il vous plait, corriger les erreurs dans votre formulaire"
 
 #: templates/agripitch/application_form.html:119
-#: templates/agripitch/application_form.html:146
+#: templates/agripitch/application_form.html:147
 #: templates/agripitch/landing.html:44
 msgid "Next"
 msgstr "Prochain"
 
 #: templates/agripitch/application_form.html:144
-#: templates/agripitch/application_form.html:169
+#: templates/agripitch/application_form.html:171
 msgid "Prev"
 msgstr "Précédent"
 
-#: templates/agripitch/application_form.html:157
+#: templates/agripitch/application_form.html:158
 msgid "Thank you for applying to the"
 msgstr "Merci d'avoir postulé au "
 
-#: templates/agripitch/application_form.html:162
+#: templates/agripitch/application_form.html:163
 msgid "Please review your application before submitting."
 msgstr "Veuillez examiner la demande avant de la soumettre."
 
-#: templates/agripitch/application_form.html:163
+#: templates/agripitch/application_form.html:164
 msgid "Once submitted, your application cannot be edited."
 msgstr "Une fois soumise, la demande ne peut pas être modifiée"
 
-#: templates/agripitch/application_form.html:172
+#: templates/agripitch/application_form.html:174
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: templates/agripitch/application_form.html:179
+#: templates/agripitch/application_form.html:182
+#: templates/agripitch/application_form.html:211
 msgid "Application Submission"
 msgstr "Présentation de la demande"
 
-#: templates/agripitch/application_form.html:186
+#: templates/agripitch/application_form.html:190
+#: templates/agripitch/application_form.html:216
 msgid "Are you sure you want to save your changes?"
 msgstr "Êtes-vous sûr de vouloir enregistrer vos modifications?"
 
-#: templates/agripitch/application_form.html:189
+#: templates/agripitch/application_form.html:194
+#: templates/agripitch/application_form.html:222
 msgid "Submit"
 msgstr "Soumettre"
 
-#: templates/agripitch/application_form.html:191
+#: templates/agripitch/application_form.html:196
+#: templates/agripitch/application_form.html:224
 msgid "Close"
 msgstr "Fermer"
 
-#: templates/agripitch/application_form.html:203
+#: templates/agripitch/application_form.html:238
 msgid "This is the last section"
 msgstr "Il s’agit de la dernière section"
 

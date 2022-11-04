@@ -48,7 +48,7 @@ class GetApplicationFormView(DetailView):
         self.object = self.get_object()
         if not self.object.available_for_applications or self.object.deadline < timezone.now():
             message = _(
-                "Sorry, the AFDB Agripitch Competition 2022 is not yet live!")
+                "The AFDB Agripitch Competition 2022 has officially closed!")
             messages.add_message(
                 request, messages.INFO, message)
             return redirect(reverse('agripitch:agripitch_landing_page'))
