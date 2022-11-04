@@ -714,3 +714,16 @@ function isEmptyOrSpaces(str) {
 		modal.style.display = "none";
 	  }
 	}
+
+	$("#submitFormBtn").on('click', function(){
+		$("#closeBtn").attr('disabled', true);
+		var spinnerIcon = $('<i/>').addClass("fas fa-circle-notch fa-spin");
+		$(this).html(spinnerIcon);
+		if (language === "fr") {
+			$("#modalMessage").html("En soumettant votre candidature, si le processus prend plus de cinq minutes, veuillez actualiser cette page.");
+
+		}else{
+		$("#modalMessage").html("Submitting your application, if the process takes more than five minutes, please refresh this page.");
+
+		}
+	});

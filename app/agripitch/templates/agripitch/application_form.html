@@ -214,12 +214,14 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p>{% trans "Are you sure you want to save your changes?" %}</p>
+                                                <p id="modalMessage"></p>
+
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="button submit-btn"
-                                                    type="submit">{% trans "Submit" %}</button>
-                                                <button type="button"
-                                                    class="btn button close-modal">{% trans "Close" %}</button>
+                                                <button class="button submit-btn" type="submit"
+                                                    id="submitFormBtn">{% trans "Submit" %}</button>
+                                                <button type="button" class="btn button close-modal"
+                                                    id="closeBtn">{% trans "Close" %}</button>
                                             </div>
                                         </div>
 
