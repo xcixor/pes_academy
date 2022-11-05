@@ -272,6 +272,64 @@ class SubCriteriaItem(Translatable):
         return self.description
 
 
+class Scale(Translatable):
+
+    label = models.CharField(max_length=500)
+
+    class TranslatableMeta:
+        fields = ['label']
+
+    class Meta:
+        verbose_name_plural = "8. Scales"
+
+    def __str__(self) -> str:
+        language = get_language()
+        if language == 'fr':
+            item = Scale.objects.filter(
+                pk=self.pk).translate('fr')[0]
+            return item.label
+        return self.label
+
+
+class ScaleItem(Translatable):
+
+    label = models.CharField(max_length=500)
+    score = models.IntegerField()
+    scale = models.ForeignKey(
+        Scale, on_delete=models.SET_NULL,
+        related_name='items', null=True)
+
+    class TranslatableMeta:
+        fields = ['label']
+
+    class Meta:
+        verbose_name_plural = "9. Scale Items"
+
+    def __str__(self) -> str:
+        language = get_language()
+        if language == 'fr':
+            item = ScaleItem.objects.filter(
+                pk=self.pk).translate('fr')[0]
+            return item.label
+        return self.label
+
+
+class Scoring(models.Model):
+
+    question = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='scoring', null=True)
+    scale = models.ForeignKey(
+        Scale, on_delete=models.CASCADE,
+        related_name='scoring', null=True)
+
+    class Meta:
+        verbose_name_plural = "10. Scoring"
+
+    def __str__(self) -> str:
+        return str(self.question)
+
+
 class SubCriteriaItemFieldProperties(models.Model):
 
     sub_criteria_item = models.ForeignKey(
