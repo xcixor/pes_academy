@@ -322,6 +322,7 @@ class Scoring(models.Model):
     scale = models.ForeignKey(
         Scale, on_delete=models.CASCADE,
         related_name='scoring', null=True)
+    score = models.IntegerField()
 
     class Meta:
         verbose_name_plural = "10. Scoring"
