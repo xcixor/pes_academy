@@ -1,5 +1,5 @@
 from django import template
-from django_countries import countries
+from django_countries import countries as dj_countries
 from application.models import Application
 from agripitch.models import (
     SubCriteriaItem, SubCriteriaItemResponse,
@@ -22,16 +22,21 @@ def get_total_applications_by_criteria(criteria):
     except SubCriteriaItem.DoesNotExist as e:
         print(e)
     responses = SubCriteriaItemResponse.objects.filter(
-        sub_criteria_item=sub_criteria_item).distinct('value')
+        sub_criteria_item=sub_criteria_item, application__stage='step_two').distinct('value')
     applications_by_criteria = []
     for response in responses:
         title = response.value
         if criteria == 'Country *':
-            title = dict(countries)[title]
-        applications_by_criteria.append(
-            [title, SubCriteriaItemResponse.objects.filter(
-                value=response.value, application__stage='step_two').count()]
-        )
+            title = dict(dj_countries)[title]
+            applications_by_criteria.append(
+                [title, SubCriteriaItemResponse.objects.filter(
+                    value=response.value, application__stage='step_two').count()]
+            )
+        else:
+            applications_by_criteria.append(
+                [title, SubCriteriaItemResponse.objects.filter(
+                    value=response.value, application__stage='step_two').count()]
+            )
     return applications_by_criteria
 
 
@@ -75,3 +80,26 @@ def get_responses_by_step(string_to_invoke_call):
             unique_response = max(responses)
         applications_by_step.append([criterion, unique_response])
     return applications_by_step
+
+
+@register.filter('get_total_applications_by_country')
+def get_total_applications_by_country(string_to_invoke_call):
+    applications = Application.objects.filter(stage='step_two')
+    sub_criteria_item = None
+    try:
+        sub_criteria_item = SubCriteriaItem.objects.get(label='Country *')
+    except SubCriteriaItem.DoesNotExist as e:
+        print(e)
+    countries = []
+    for application in applications:
+        country = SubCriteriaItemResponse.objects.get(
+            application=application.pk, sub_criteria_item=sub_criteria_item.pk)
+        countries.append(country)
+    uniques = set(countries)
+    uniques = uniques
+    uniques_with_count = []
+    for item in uniques:
+        nums = countries.count(item)
+        title = item.value
+        uniques_with_count.append([dict(dj_countries)[title], nums])
+    return uniques_with_count
