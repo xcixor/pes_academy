@@ -197,51 +197,6 @@
                                             </form>
                                             {% endif %}
                                             {% endfor %}
-                                            <!-- <form action="{% url 'application:score' slug=application.slug %}"
-                                                method="post">
-                                                {% csrf_token %}
-                                                <div class="d-flex align-items-center">
-                                                    <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        required>
-                                                        <option {% if not sub_criteria.scores.all %}selected
-                                                            disabled{% endif %} value="">
-                                                            {% trans "Prompt Score" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 1 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="1">
-                                                            {% trans "Strongly Disagree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 2 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="2">
-                                                            {% trans "Disagree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 3 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="3">
-                                                            {% trans "Neutral" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 4 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="4">
-                                                            {% trans "Agree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 5 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="5">
-                                                            {% trans "Strongly Agree" %}</option>
-                                                    </select>
-                                                    <button type="submit"
-                                                        class="btn btn-primary">{% if sub_criteria.scores.all %}
-                                                        {% trans "Update Score" %} {% else %}
-                                                        {% trans "Submit Score" %}
-                                                        {% endif %}</button>
-                                                </div>
-                                                <div>
-                                                    {% for error in form.score.errors %}
-                                                    <p class="error">{{ error | escape }} </p>
-                                                    {% endfor %}
-                                                    <input type="hidden" name="prompt" value="{{sub_criteria}}">
-                                                    <input type="hidden" name="application" value="{{application.pk}}">
-                                                    <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
-                                                </div>
-                                            </form> -->
                                         </div>
                                     </div>
 
@@ -330,51 +285,47 @@
                                                         class="btn btn-primary">{% trans "Send Query" %}</button>
                                                 </form>
                                             </details>
-                                            <form action="{% url 'application:score' slug=application.slug %}"
-                                                method="post">
+                                            {% for scoring in sub_criteria.scoring.all %}
+                                            {% if scoring.saved_scores.all %}
+                                            <form class="d-flex align-items-center" method="post"
+                                                action="{% url 'eligibility:update_score' pk=application.pk %}">
                                                 {% csrf_token %}
-                                                <div class="d-flex align-items-center">
-                                                    <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        required>
-                                                        <option {% if not sub_criteria.scores.all %}selected
-                                                            disabled{% endif %} value="">
-                                                            {% trans "Prompt Score" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 1 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="1">
-                                                            {% trans "Strongly Disagree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 2 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="2">
-                                                            {% trans "Disagree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 3 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="3">
-                                                            {% trans "Neutral" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 4 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="4">
-                                                            {% trans "Agree" %}</option>
-                                                        <option
-                                                            {% for score in sub_criteria.scores.all %}{% if 5 == score.score %}selected{% endif %}{% endfor %}
-                                                            value="5">
-                                                            {% trans "Strongly Agree" %}</option>
-                                                    </select>
-                                                    <button type="submit"
-                                                        class="btn btn-primary">{% if sub_criteria.scores.all %}
-                                                        {% trans "Update Score" %} {% else %}
-                                                        {% trans "Submit Score" %}
-                                                        {% endif %}</button>
-                                                </div>
-                                                <div>
-                                                    {% for error in form.score.errors %}
-                                                    <p class="error">{{ error | escape }} </p>
+
+                                                <select name="score" class="custom-select custom-select-lg mr-4"
+                                                    required>
+                                                    {% for item in scoring.scale.items.values %}
+                                                    <option value="{{item.score}}"
+                                                        {% for score in scoring.saved_scores.all  %}{% if item.score == score.score %}selected{% endif %}{% endfor %}>
+                                                        {{item.label}}</option>
                                                     {% endfor %}
-                                                </div>
-                                                <input type="hidden" name="prompt" value="{{sub_criteria}}">
-                                                <input type="hidden" name="application" value="{{application.pk}}">
-                                                <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
+                                                </select>
+                                                <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Update Score" %}</button>
+                                                {% for error in form.score.errors %}
+                                                <p class="error">{{ error | escape }} </p>
+                                                {% endfor %}
                                             </form>
+                                            {% else %}
+                                            <form class="d-flex align-items-center" method="post"
+                                                action="{% url 'eligibility:score' pk=application.pk %}">
+                                                {% csrf_token %}
+                                                <select name="score" class="custom-select custom-select-lg mr-4"
+                                                    required>
+                                                    {% for item in scoring.scale.items.all %}
+                                                    <option value="{{item.score}}">{{item.label}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                <input type="hidden" name="application" value="{{application.pk}}">
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Submit Score" %}</button>
+                                                {% for error in form.score.errors %}
+                                                <p class="error">{{ error | escape }} </p>
+                                                {% endfor %}
+                                            </form>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
 
