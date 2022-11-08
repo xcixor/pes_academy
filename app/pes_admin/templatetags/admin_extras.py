@@ -25,13 +25,14 @@ def get_total_applications_by_criteria(criteria):
         sub_criteria_item=sub_criteria_item).distinct('value')
     applications_by_criteria = []
     for application in applications:
-        title = application.value
-        if criteria == 'Country *':
-            title = dict(countries)[title]
-        applications_by_criteria.append(
-            [title, SubCriteriaItemResponse.objects.filter(
-                value=application.value).count()]
-        )
+        if application.application.stage == 'step_two':
+            title = application.value
+            if criteria == 'Country *':
+                title = dict(countries)[title]
+            applications_by_criteria.append(
+                [title, SubCriteriaItemResponse.objects.filter(
+                    value=application.value).count()]
+            )
     return applications_by_criteria
 
 
