@@ -21,18 +21,17 @@ def get_total_applications_by_criteria(criteria):
         sub_criteria_item = SubCriteriaItem.objects.get(label=criteria)
     except SubCriteriaItem.DoesNotExist as e:
         print(e)
-    applications = SubCriteriaItemResponse.objects.filter(
+    responses = SubCriteriaItemResponse.objects.filter(
         sub_criteria_item=sub_criteria_item).distinct('value')
     applications_by_criteria = []
-    for application in applications:
-        if application.application.stage == 'step_two':
-            title = application.value
-            if criteria == 'Country *':
-                title = dict(countries)[title]
-            applications_by_criteria.append(
-                [title, SubCriteriaItemResponse.objects.filter(
-                    value=application.value).count()]
-            )
+    for response in responses:
+        title = response.value
+        if criteria == 'Country *':
+            title = dict(countries)[title]
+        applications_by_criteria.append(
+            [title, SubCriteriaItemResponse.objects.filter(
+                value=response.value, application__stage='step_two').count()]
+        )
     return applications_by_criteria
 
 
