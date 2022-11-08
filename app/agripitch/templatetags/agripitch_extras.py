@@ -36,3 +36,11 @@ def get_response(sub_criteria, application):
                 return item.value
         return item
     return ""
+
+
+@register.filter('get_marks')
+def get_marks(application):
+    total = 0
+    for mark in application.marks.all():
+        total += mark.score
+    return total

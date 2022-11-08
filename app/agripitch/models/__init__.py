@@ -304,6 +304,7 @@ class ScaleItem(Translatable):
 
     class Meta:
         verbose_name_plural = "9. Scale Items"
+        ordering = ['score']
 
     def __str__(self) -> str:
         language = get_language()
@@ -322,13 +323,30 @@ class Scoring(models.Model):
     scale = models.ForeignKey(
         Scale, on_delete=models.CASCADE,
         related_name='scoring', null=True)
-    score = models.IntegerField()
 
     class Meta:
         verbose_name_plural = "10. Scoring"
 
     def __str__(self) -> str:
         return str(self.question)
+
+
+class ApplicationMarks(models.Model):
+
+    scoring = models.ForeignKey(
+        Scoring, on_delete=models.CASCADE,
+        related_name='saved_scores')
+    application = models.ForeignKey(
+        Application, on_delete=models.CASCADE,
+        related_name='marks')
+    score = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "11. Applications Marks"
+        unique_together = ['application', 'scoring']
+
+    def __str__(self) -> str:
+        return str(self.application)
 
 
 class SubCriteriaItemFieldProperties(models.Model):

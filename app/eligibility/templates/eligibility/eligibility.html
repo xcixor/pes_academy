@@ -25,9 +25,15 @@
                 <div class="col-md-12 pt-4">
                     <div class="row">
                         <div class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
-                            <p>My Score: {{application.total_score}}/{% with '5'|get_expected_application_total_score as total_score %}{{total_score}}{% endwith %}</p>
-                            <p>Questions Rated: {{ application.scores.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}</p>
-                            <p>Questions Not Rated: {% with application|get_unrated_questions as unrated_questions %}{{ unrated_questions }}{% endwith %}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}</p>
+                            <p>My Score:
+                                {{ application|get_marks }}
+                            </p>
+                            <p>Questions Rated:
+                                {{ application.marks.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}
+                            </p>
+                            <p>Questions Not Rated:
+                                {% with application|get_unrated_questions as unrated_questions %}{{ unrated_questions }}{% endwith %}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}
+                            </p>
                         </div>
                         <div class="col-md-6 offset-md-1 d-flex flex-column">
                             <a href="/eligibility/{{application.slug}}/done/"
@@ -99,8 +105,7 @@
                                     <p>
                                         {% with sub_criteria.label|get_response:application as response %}
                                         {% if sub_criteria.type == 'file' %}
-                                        <a href="{{response.document.url}}"
-                                            target="_blank">{{response}}</a>
+                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
                                         {% elif response.type == 'countryfield' %}
                                         {% get_country response.item as country %}
                                         {{ country.name }}
@@ -151,7 +156,48 @@
                                                         class="btn btn-primary">{% trans "Send Query" %}</button>
                                                 </form>
                                             </details>
-                                            <form action="{% url 'application:score' slug=application.slug %}"
+                                            {% for scoring in sub_criteria.scoring.all %}
+                                            {% if scoring.saved_scores.all %}
+                                            <form class="d-flex align-items-center" method="post"
+                                                action="{% url 'eligibility:update_score' pk=application.pk %}">
+                                                {% csrf_token %}
+
+                                                <select name="score" class="custom-select custom-select-lg mr-4"
+                                                    required>
+                                                    {% for item in scoring.scale.items.values %}
+                                                    <option value="{{item.score}}"
+                                                        {% for score in scoring.saved_scores.all  %}{% if item.score == score.score %}selected{% endif %}{% endfor %}>
+                                                        {{item.label}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Update Score" %}</button>
+                                                {% for error in form.score.errors %}
+                                                <p class="error">{{ error | escape }} </p>
+                                                {% endfor %}
+                                            </form>
+                                            {% else %}
+                                            <form class="d-flex align-items-center" method="post"
+                                                action="{% url 'eligibility:score' pk=application.pk %}">
+                                                {% csrf_token %}
+                                                <select name="score" class="custom-select custom-select-lg mr-4"
+                                                    required>
+                                                    {% for item in scoring.scale.items.all %}
+                                                    <option value="{{item.score}}">{{item.label}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                <input type="hidden" name="application" value="{{application.pk}}">
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Submit Score" %}</button>
+                                                {% for error in form.score.errors %}
+                                                <p class="error">{{ error | escape }} </p>
+                                                {% endfor %}
+                                            </form>
+                                            {% endif %}
+                                            {% endfor %}
+                                            <!-- <form action="{% url 'application:score' slug=application.slug %}"
                                                 method="post">
                                                 {% csrf_token %}
                                                 <div class="d-flex align-items-center">
@@ -195,7 +241,7 @@
                                                     <input type="hidden" name="application" value="{{application.pk}}">
                                                     <input type="hidden" name="prompt" value="{{sub_criteria.pk}}">
                                                 </div>
-                                            </form>
+                                            </form> -->
                                         </div>
                                     </div>
 
@@ -233,8 +279,7 @@
                                     <p>
                                         {% with sub_criteria.label|get_response:application as response %}
                                         {% if sub_criteria.type == 'file' %}
-                                        <a href="{{response.document.url}}"
-                                            target="_blank">{{response}}</a>
+                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
                                         {% elif response.type == 'countryfield' %}
                                         {% get_country response.item as country %}
                                         {{ country.name }}

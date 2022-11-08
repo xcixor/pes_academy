@@ -132,4 +132,4 @@ def get_total_questions(string_to_invoke_call):
 
 @register.filter('get_unrated_questions')
 def get_unrated_questions(application):
-    return SubCriteriaItem.objects.count() - application.scores.count()
+    return SubCriteriaItem.objects.count() - application.marks.count()
