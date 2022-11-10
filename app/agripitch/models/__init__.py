@@ -295,9 +295,6 @@ class ScaleItem(Translatable):
 
     label = models.CharField(max_length=500)
     score = models.IntegerField()
-    scale = models.ForeignKey(
-        Scale, on_delete=models.SET_NULL,
-        related_name='items', null=True)
 
     class TranslatableMeta:
         fields = ['label']
@@ -313,6 +310,21 @@ class ScaleItem(Translatable):
                 pk=self.pk).translate('fr')[0]
             return item.label
         return self.label
+
+
+class ScoringItems(models.Model):
+    scale = models.ForeignKey(
+        Scale, on_delete=models.CASCADE,
+        related_name='items')
+    item = models.ForeignKey(
+        ScaleItem, on_delete=models.CASCADE,
+        related_name='scales')
+
+    class Meta:
+        verbose_name_plural = "12. Scoring Items"
+
+    def __str__(self) -> str:
+        return f'{self.scale} - {self.item}'
 
 
 class Scoring(models.Model):

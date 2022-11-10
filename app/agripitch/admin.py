@@ -8,11 +8,12 @@ from agripitch.models import (
     ShortList, CriteriaItem,
     SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
     SubCriteriaItemFieldProperties, SubCriteriaItemDocumentResponse,
-    PartnerLogo, Scale, ScaleItem, Scoring, ApplicationMarks)
+    PartnerLogo, Scale, ScaleItem, Scoring, ApplicationMarks, ScoringItems)
 
 
 admin.site.register(Scoring)
 admin.site.register(ApplicationMarks)
+admin.site.register(ScoringItems)
 
 
 class ScaleItemInline(admin.TabularInline):
@@ -23,7 +24,7 @@ class ScaleItemInline(admin.TabularInline):
 
 @admin.register(Scale)
 class ScaleAdmin(TranslatableAdmin):
-    inlines = [TranslationInline, ScaleItemInline]
+    inlines = [TranslationInline]
 
 
 @admin.register(ScaleItem)
