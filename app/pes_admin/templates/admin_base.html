@@ -132,6 +132,11 @@
                   <i class="fa-solid fa-file-csv"></i>
                   <span class="ml-2">{% trans "Export Emails without Applications" %}</span>
                 </a>
+                <a href="{% url 'admin:export_applications_by_country' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Countries" %}</span>
+                </a>
               </div>
             </div>
 

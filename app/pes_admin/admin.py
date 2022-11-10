@@ -8,7 +8,7 @@ from pes_admin.presentation.views import (
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
     export_inactive_user_emails_to_xls, AdminApplicationView,
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
-    export_emails_without_applications)
+    export_emails_without_applications, export_applications_by_country)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -76,6 +76,9 @@ class CustomAdmin(admin.AdminSite):
             path('export/user/emails/no/applications/csv/',
                  export_emails_without_applications,
                  name='export_emails_without_applications'),
+            path('export/countries/csv/',
+                 export_applications_by_country,
+                 name='export_applications_by_country'),
         ] + urls
         return custom_urls
 
