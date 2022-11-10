@@ -65,6 +65,7 @@ class PostReviewerRegistrationView(FormView):
 
     form_class = RegistrationForm
     template_name = 'registration/staff_registration.html'
+    partial_template_name = 'registration/partial/staff_registration.html'
     success_url = '/accounts/dashboard/'
 
     def form_valid(self, form):
@@ -77,6 +78,8 @@ class PostReviewerRegistrationView(FormView):
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         login(self.request, inactive_user)
+        if self.request.htmx:
+            return HttpResponseClientRedirect(self.success_url)
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -90,6 +93,11 @@ class PostReviewerRegistrationView(FormView):
         messages.add_message(
             self.request, messages.ERROR, error_message)
         return super().form_invalid(form)
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return self.partial_template_name
+        return self.template_name
 
 
 class RegistrationView(View):
