@@ -11,7 +11,7 @@
   {# container #}
   {% googlecharts %}
   {# named data and options can be reused #}
-  {% with 'Country *'|get_total_applications_by_country as values %}
+  {% with 'Country *'|get_total_applications_by_criteria as values %}
   {% data values "out_data" %}
   {% col "string" "Name" %}"{{ val }}"{% endcol %}
   {% col "number" "Value" %}{{ val }}{% endcol %}

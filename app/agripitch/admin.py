@@ -45,6 +45,7 @@ class ShortListAdmin(TranslatableAdmin):
 class SubCriteriaItemResponseAdmin(admin.ModelAdmin):
     list_display = ['sub_criteria_item', 'application', 'value']
     list_filter = ['sub_criteria_item', 'application']
+    search_fields = ['value']
 
 
 @admin.register(SubCriteriaItemDocumentResponse)
