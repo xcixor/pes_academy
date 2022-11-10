@@ -1,4 +1,5 @@
 import csv
+from django_countries import countries as dj_countries
 from datetime import datetime
 from django.http import HttpResponse
 from agripitch.models import (
@@ -14,8 +15,7 @@ def get_csv_data():
         if application.stage == 'step_two':
             country = get_sub_criteria_item_response_if_exist(
                 sub_criteria_item, application)
-            non_unique_countries.append(country.value)
-    print(non_unique_countries)
+            non_unique_countries.append(dict(dj_countries)[country.value])
     unique_countries = set(non_unique_countries)
     for country in unique_countries:
         count = non_unique_countries.count(country)
