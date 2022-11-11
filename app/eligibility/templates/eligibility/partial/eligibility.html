@@ -48,18 +48,15 @@
     <div class="row">
         <div class="col-sm-12">
             {% for message in messages %}
-            <div id="messageContainer" class="px-5 py-2">
-                {{message}}
-            </div>
+            <script>
+                var message = '{{message}}';
+                alert(`${message}`);
+            </script>
             {% endfor %}
-            
             <script>
                 $(document).ready(function () {
-                    setTimeout(function () {
-                        $('#messageContainer').fadeOut('slow');
-                    }, 2000);
                     let stepNumber = localStorage.getItem("stepNumber");
-                navigateToFormStep(parseInt(stepNumber));
+                    navigateToFormStep(parseInt(stepNumber));
                 })
             </script>
         </div>
