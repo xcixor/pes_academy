@@ -101,18 +101,28 @@
                             {% for sub_criteria in first_criteria.sub_criteria.all %}
                             <div class="row mt-3">
                                 <div class="col-md-6 p-5 screen-1">
-                                    <p><b>{{sub_criteria}}</b></p>
                                     <p>
-                                        {% with sub_criteria.label|get_response:application as response %}
-                                        {% if sub_criteria.type == 'file' %}
-                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
-                                        {% elif response.type == 'countryfield' %}
-                                        {% get_country response.item as country %}
-                                        {{ country.name }}
-                                        {% else %}
-                                        {{ response }}
-                                        {% endif %}
-                                        {% endwith %}
+                                        <b>
+                                            {% if sub_criteria.type == 'datefield' %}
+                                            Age
+                                            {% else %}
+                                            {{sub_criteria}}
+                                            {% endif %}
+                                        </b>
+                                    </p>
+                                    <p>
+                                    {% with sub_criteria.label|get_response:application as response %}
+                                    {% if sub_criteria.type == 'file' %}
+                                    <a href="{{response.document.url}}" target="_blank">{{response}}</a>
+                                    {% elif sub_criteria.type == 'countryfield' %}
+                                    {% get_country response as country %}
+                                    {{ country.name }}
+                                    {% elif sub_criteria.type == 'datefield' %}
+                                    {{ response|get_age }}
+                                    {% else %}
+                                    {{ response }}
+                                    {% endif %}
+                                    {% endwith %}
                                     </p>
                                 </div>
                                 <div class="col-md-6 p-5 screen-2 odd">
@@ -184,7 +194,7 @@
                                                 {% csrf_token %}
                                                 <select name="score" class="custom-select custom-select-lg mr-4"
                                                     required>
-                                                <option selected disabled value="">{{scoring.scale}}</option>
+                                                    <option selected disabled value="">{{scoring.scale}}</option>
                                                     {% for item in scoring.scale.items.all %}
                                                     <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                     {% endfor %}
@@ -232,18 +242,28 @@
                             {% for sub_criteria in item.sub_criteria.all %}
                             <div class="row">
                                 <div class="col-md-6 p-5 screen-1">
-                                    <p><b>{{sub_criteria}}</b></p>
                                     <p>
-                                        {% with sub_criteria.label|get_response:application as response %}
-                                        {% if sub_criteria.type == 'file' %}
-                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
-                                        {% elif response.type == 'countryfield' %}
-                                        {% get_country response.item as country %}
-                                        {{ country.name }}
-                                        {% else %}
-                                        {{ response }}
-                                        {% endif %}
-                                        {% endwith %}
+                                        <b>
+                                            {% if sub_criteria.type == 'datefield' %}
+                                            Age
+                                            {% else %}
+                                            {{sub_criteria}}
+                                            {% endif %}
+                                        </b>
+                                    </p>
+                                    <p>
+                                    {% with sub_criteria.label|get_response:application as response %}
+                                    {% if sub_criteria.type == 'file' %}
+                                    <a href="{{response.document.url}}" target="_blank">{{response}}</a>
+                                    {% elif sub_criteria.type == 'countryfield' %}
+                                    {% get_country response as country %}
+                                    {{ country.name }}
+                                    {% elif sub_criteria.type == 'datefield' %}
+                                    {{ response|get_age }}
+                                    {% else %}
+                                    {{ response }}
+                                    {% endif %}
+                                    {% endwith %}
                                     </p>
                                 </div>
                                 <div class="col-md-6 p-5 screen-2 odd">
@@ -314,7 +334,7 @@
                                                 {% csrf_token %}
                                                 <select name="score" class="custom-select custom-select-lg mr-4"
                                                     required>
-                                                <option selected disabled value="">{{scoring.scale}}</option>
+                                                    <option selected disabled value="">{{scoring.scale}}</option>
                                                     {% for item in scoring.scale.items.all %}
                                                     <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                     {% endfor %}

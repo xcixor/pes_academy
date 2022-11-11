@@ -1,3 +1,5 @@
+from dateutil.relativedelta import relativedelta
+from datetime import date, datetime
 from django import template
 from agripitch.models import (
     DynamicForm, get_sub_criteria_item_document_response_if_exist,
@@ -44,3 +46,11 @@ def get_marks(application):
     for mark in application.marks.all():
         total += mark.score
     return total
+
+
+@register.filter('get_age')
+def get_age(response):
+    today = date.today()
+    dob = datetime.strptime(response, '%Y-%m-%d')
+    age = relativedelta(today, dob)
+    return f'{age.years} years and {age.months} months'
