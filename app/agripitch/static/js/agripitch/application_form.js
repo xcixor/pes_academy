@@ -3,11 +3,18 @@ $(document).ready(function () {
 	$(".is-dependent").siblings().css("display", "none");
 });
 
+$(window).on('load', function () {
+	let stepNumber = localStorage.getItem("stepNumber");
+	navigateToFormStep(parseInt(stepNumber));
+});
+
 /**
  * Define a function to navigate betweens form steps.
  * It accepts one parameter. That is - step number.
  */
 const navigateToFormStep = (stepNumber) => {
+	console.log(stepNumber, stepNumber)
+	localStorage.setItem("stepNumber", JSON.stringify(stepNumber));
 	/**
 	 * Hide all form steps.
 	 */
@@ -109,7 +116,6 @@ document
 			const stepNumber = parseInt(
 				formNavigationBtn.getAttribute("step_number")
 			);
-			console.log(stepNumber);
 			if ($(formNavigationBtn).attr("data-name") === "Next") {
 				var isValid = true;
 				let notRequiredFieldsValidation =

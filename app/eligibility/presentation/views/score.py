@@ -2,9 +2,9 @@ from django.views.generic import CreateView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
 from django import forms
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
-from agripitch.models import ApplicationMarks, Application, Scoring
+from agripitch.models import ApplicationMarks, Application
 
 
 class ScoringForm(forms.ModelForm):
@@ -40,6 +40,7 @@ class UpdateScoreView(SingleObjectMixin, FormView):
 
     model = Application
     template_name = 'eligibility/eligibility.html'
+    partial_template_name = 'eligibility/partial/eligibility.html'
     form_class = ScoringForm
 
     def post(self, request, *args, **kwargs):
@@ -67,5 +68,4 @@ class UpdateScoreView(SingleObjectMixin, FormView):
         messages.add_message(self.request, messages.ERROR, message)
         context = self.get_context_data()
         context['form'] = form
-        # application = Application.objects.get(pk=self.kwargs.get('pk'))
         return redirect(f'/eligibility/{self.object.slug}/')

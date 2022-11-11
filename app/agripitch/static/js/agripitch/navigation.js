@@ -1,11 +1,15 @@
 $(document).ready(function () {
 	$(".is-dependent").siblings().css("display", "none");
 });
+
+
+
 /**
  * Define a function to navigate betweens form steps.
  * It accepts one parameter. That is - step number.
  */
 const navigateToFormStep = (stepNumber) => {
+	localStorage.setItem("stepNumber", JSON.stringify(stepNumber));
 	/**
 	 * Hide all form steps.
 	 */
@@ -86,7 +90,6 @@ document
 			const stepNumber = parseInt(
 				formNavigationBtn.getAttribute("step_number")
 			);
-								navigateToFormStep(stepNumber);
-
+			navigateToFormStep(stepNumber);
 		});
 	});

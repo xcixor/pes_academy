@@ -12,6 +12,7 @@ User = get_user_model()
 class EligibilityView(PermissionRequiredMixin, DetailView):
 
     template_name = 'eligibility/eligibility.html'
+    partial_template_name = 'eligibility/partial/eligibility.html'
     permission_required = ('application.can_view_application', )
     permission_denied_message = _(
         'Hmm it seems that you cannot view this application '
@@ -23,3 +24,8 @@ class EligibilityView(PermissionRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context.update({'criteria': CriteriaItem.objects.all()})
         return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return self.partial_template_name
+        return self.template_name
