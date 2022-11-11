@@ -8,14 +8,15 @@ from common.utils.email import HtmlEmailMixin
 from application.models import Application
 
 
-class ReviewCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
+class DisqualifyView(SingleObjectMixin, View, HtmlEmailMixin):
 
     model = Application
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
+        print(self.object, 'disqualify')
         self.object.is_in_review = False
-        self.object.eligibility = True
+        self.object.eligibility = False
         self.object.save()
         from_email = settings.VERIFIED_EMAIL_USER
         to_email = settings.ADMIN_EMAILS

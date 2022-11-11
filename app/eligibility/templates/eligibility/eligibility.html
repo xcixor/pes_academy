@@ -37,7 +37,8 @@
                         </div>
                         <div class="col-md-6 offset-md-1 d-flex flex-column">
                             <a href="/eligibility/{{application.slug}}/done/"
-                                class="btn btn-primary py-4 mb-5">{% trans "Mark Review as Complete" %}</a>
+                                class="btn btn-primary py-4 mb-4">{% trans "Qualify" %}</a>
+                            <a href="{% url 'eligibility:disqualify' slug=application.slug %}" class="btn btn-primary py-4 mb-4">{% trans "Disqualify" %}</a>
                             <a href="/accounts/dashboard/" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
                     </div>
@@ -111,18 +112,18 @@
                                         </b>
                                     </p>
                                     <p>
-                                    {% with sub_criteria.label|get_response:application as response %}
-                                    {% if sub_criteria.type == 'file' %}
-                                    <a href="{{response.document.url}}" target="_blank">{{response}}</a>
-                                    {% elif sub_criteria.type == 'countryfield' %}
-                                    {% get_country response as country %}
-                                    {{ country.name }}
-                                    {% elif sub_criteria.type == 'datefield' %}
-                                    {{ response|get_age }}
-                                    {% else %}
-                                    {{ response }}
-                                    {% endif %}
-                                    {% endwith %}
+                                        {% with sub_criteria.label|get_response:application as response %}
+                                        {% if sub_criteria.type == 'file' %}
+                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
+                                        {% elif sub_criteria.type == 'countryfield' %}
+                                        {% get_country response as country %}
+                                        {{ country.name }}
+                                        {% elif sub_criteria.type == 'datefield' %}
+                                        {{ response|get_age }}
+                                        {% else %}
+                                        {{ response }}
+                                        {% endif %}
+                                        {% endwith %}
                                     </p>
                                 </div>
                                 <div class="col-md-6 p-5 screen-2 odd">
@@ -252,18 +253,18 @@
                                         </b>
                                     </p>
                                     <p>
-                                    {% with sub_criteria.label|get_response:application as response %}
-                                    {% if sub_criteria.type == 'file' %}
-                                    <a href="{{response.document.url}}" target="_blank">{{response}}</a>
-                                    {% elif sub_criteria.type == 'countryfield' %}
-                                    {% get_country response as country %}
-                                    {{ country.name }}
-                                    {% elif sub_criteria.type == 'datefield' %}
-                                    {{ response|get_age }}
-                                    {% else %}
-                                    {{ response }}
-                                    {% endif %}
-                                    {% endwith %}
+                                        {% with sub_criteria.label|get_response:application as response %}
+                                        {% if sub_criteria.type == 'file' %}
+                                        <a href="{{response.document.url}}" target="_blank">{{response}}</a>
+                                        {% elif sub_criteria.type == 'countryfield' %}
+                                        {% get_country response as country %}
+                                        {{ country.name }}
+                                        {% elif sub_criteria.type == 'datefield' %}
+                                        {{ response|get_age }}
+                                        {% else %}
+                                        {{ response }}
+                                        {% endif %}
+                                        {% endwith %}
                                     </p>
                                 </div>
                                 <div class="col-md-6 p-5 screen-2 odd">
