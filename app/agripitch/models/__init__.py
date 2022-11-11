@@ -322,6 +322,7 @@ class ScoringItems(models.Model):
 
     class Meta:
         verbose_name_plural = "12. Scoring Items"
+        ordering = ['scale']
 
     def __str__(self) -> str:
         return f'{self.scale} - {self.item}'
@@ -335,6 +336,7 @@ class Scoring(models.Model):
     scale = models.ForeignKey(
         Scale, on_delete=models.CASCADE,
         related_name='scoring', null=True)
+    ordering = ['question']
 
     class Meta:
         verbose_name_plural = "10. Scoring"
