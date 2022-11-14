@@ -14,8 +14,11 @@ class Application(models.Model):
     STAGE_CHOICES = (
         ('step_one', _('Application Data Not Submitted')),
         ('step_two', _('Data Submitted')),
-        ('step_three', _('Documents in review')),
-        ('step_four', _('Verdict Passed'))
+        ('step_three', _('Eligibility Verification')),
+        ('step_four', _('Document Verification')),
+        ('step_five', _('Long List')),
+        ('step_six', _('Short List')),
+        ('step_seven', _('Verdict Passed')),
     )
 
     created = models.DateTimeField(
