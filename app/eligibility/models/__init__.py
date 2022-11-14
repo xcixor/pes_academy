@@ -6,7 +6,10 @@ from agripitch.models import SubCriteriaItem
 class ShortListGroup(models.Model):
 
     GROUPS = (
-        ('step_one', _('Application Data Not Submitted')),
+        ('step_one', _('Eligibility Verification')),
+        ('step_two', _('Document Verification')),
+        ('step_three', _('Long List')),
+        ('step_four', _('Short List')),
     )
 
     group = models.CharField(
