@@ -185,7 +185,7 @@
                                                 </form>
                                             </details>
                                             {% for scoring in sub_criteria.scoring.all %}
-                                            {% if scoring.saved_scores.all %}
+                                            {% if sub_criteria|is_scored:application %}
                                             <form class="d-flex align-items-center" method="post"
                                                 action="{% url 'eligibility:update_score' pk=application.pk %}">
                                                 {% csrf_token %}
@@ -195,7 +195,7 @@
                                                     <option selected disabled value="">{{scoring.scale}}</option>
                                                     {% for item in scoring.scale.items.all %}
                                                     <option value="{{item.item.score}}"
-                                                        {% for score in scoring.saved_scores.all  %}{% if item.item.score == score.score %}selected{% endif %}{% endfor %}>
+                                                        {% for mark in application.marks.all  %}{% if item.item.score == mark.score %}selected{% endif %}{% endfor %}>
                                                         {{item.item.label}}</option>
                                                     {% endfor %}
                                                 </select>
@@ -326,7 +326,7 @@
                                                 </form>
                                             </details>
                                             {% for scoring in sub_criteria.scoring.all %}
-                                            {% if scoring.saved_scores.all %}
+                                            {% if sub_criteria|is_scored:application %}
                                             <form class="d-flex align-items-center" method="post"
                                                 action="{% url 'eligibility:update_score' pk=application.pk %}">
                                                 {% csrf_token %}
@@ -336,7 +336,7 @@
                                                     <option selected disabled value="">{{scoring.scale}}</option>
                                                     {% for item in scoring.scale.items.all %}
                                                     <option value="{{item.item.score}}"
-                                                        {% for score in scoring.saved_scores.all  %}{% if item.item.score == score.score %}selected{% endif %}{% endfor %}>
+                                                        {% for mark in application.marks.all  %}{% if item.item.score == mark.score %}selected{% endif %}{% endfor %}>
                                                         {{item.item.label}}</option>
                                                     {% endfor %}
                                                 </select>

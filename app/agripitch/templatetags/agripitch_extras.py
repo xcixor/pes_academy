@@ -3,7 +3,7 @@ from datetime import date, datetime
 from django import template
 from agripitch.models import (
     DynamicForm, get_sub_criteria_item_document_response_if_exist,
-    get_sub_criteria_item_response_if_exist)
+    get_sub_criteria_item_response_if_exist, ApplicationMarks)
 from agripitch.presentation.views import get_sub_criteria_item_by_label
 
 register = template.Library()
@@ -54,3 +54,33 @@ def get_age(response):
     dob = datetime.strptime(response, '%Y-%m-%d')
     age = relativedelta(today, dob)
     return f'{age.years} years and {age.months} months'
+
+
+@register.filter('get_scoring_for_sub_criteria')
+def get_scoring_for_sub_criteria(application, sub_criteria):
+    existing_marks = ApplicationMarks.objects.filter(application=application)
+    for mark in existing_marks:
+        for scoring in mark.scoring.saved_scores.all():
+            if scoring.scoring.question.pk == sub_criteria.pk:
+                return True
+            return False
+
+
+@register.filter('is_scored')
+def is_scored(sub_criteria, application):
+    print(application.marks.count())
+    # if application.id in ApplicationMarks.objects.all().values_list('id', flat=True):
+    #     print('yaas')
+    for mark in application.marks.all():
+        print(mark.scoring.question)
+        if mark.scoring.question == sub_criteria:
+            return True
+        return False
+
+    # existing_marks = ApplicationMarks.objects.filter(application=application)
+    # for mark in existing_marks:
+    #     print(mark.scoring)
+    #     if mark.scoring.question == sub_criteria:
+    #         print(sub_criteria)
+    #         return True
+    #     return False
