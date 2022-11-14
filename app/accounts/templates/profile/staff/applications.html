@@ -2,16 +2,31 @@
 {% load i18n %}
 {% block admin_content %}
 {% if user.applications.all %}
+<style>
+    p {
+        font-size: 1.6rem !important;
+    }
+    h4 {
+        font-weight: bold;
+    }
+</style>
+
 <div class="row">
-    <div class="col-md-4"><b>{% trans "Application" %}</b></div>
-    <div class="col-md-4"><b>{% trans "Owner" %}</b></div>
+    <div class="col-md-4"><b><h4>{% trans "Application ID" %}</h4></b></div>
+    <div class="col-md-4"><b><h4>{% trans "Created By" %}</h4></b></div>
 </div>
 {% for review in user.applications.all %}
 <div class="row">
-    <div class="col-md-4"><b>{{review.application.special_id}}</b></div>
-    <div class="col-md-4"><b>{{review.application.application_creator.email}}</b></div>
+    <div class="col-md-4"><b>
+        <p>{{review.application.special_id}}</p>
+    </b></div>
+    <div class="col-md-4"><b><p>{{review.application.application_creator.email}}</p></b></div>
     <div class="col-md-4">
-        <a href="/eligibility/{{review.application.slug}}/">{% trans "Review" %}</a>
+        {% if review.application.is_in_review %}
+        <a href="/eligibility/{{review.application.slug}}/">{% trans "Start Review" %}</a>
+        {% else %}
+        <p>Review Complete</p>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
