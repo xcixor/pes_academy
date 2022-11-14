@@ -3,11 +3,6 @@ $(document).ready(function () {
 	$(".is-dependent").siblings().css("display", "none");
 });
 
-$(window).on('load', function () {
-	let stepNumber = localStorage.getItem("stepNumber");
-	navigateToFormStep(parseInt(stepNumber));
-});
-
 /**
  * Define a function to navigate betweens form steps.
  * It accepts one parameter. That is - step number.
