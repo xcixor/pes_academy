@@ -1,7 +1,7 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% block admin_content %}
-{% if user.applications.all %}
+{% if user.reviews.all %}
 <style>
     p {
         font-size: 1.6rem !important;
@@ -15,7 +15,7 @@
     <div class="col-md-4"><b><h4>{% trans "Application ID" %}</h4></b></div>
     <div class="col-md-4"><b><h4>{% trans "Created By" %}</h4></b></div>
 </div>
-{% for review in user.applications.all %}
+{% for review in user.reviews.all %}
 <div class="row">
     <div class="col-md-4"><b>
         <p>{{review.application.special_id}}</p>

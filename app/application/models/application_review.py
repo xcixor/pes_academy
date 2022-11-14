@@ -12,7 +12,7 @@ class ApplicationReview(models.Model):
         related_name='reviewers')
     reviewer = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True,
-        related_name='applications')
+        related_name='reviews')
 
     class Meta:
         unique_together = (('application', 'reviewer'))
