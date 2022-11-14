@@ -9,3 +9,4 @@ class ShortListGroupItemsInline(admin.TabularInline):
 @admin.register(ShortListGroup)
 class ShortListGroupItemsAdmin(admin.ModelAdmin):
     inlines = [ShortListGroupItemsInline]
+    exclude = ('slug',)
