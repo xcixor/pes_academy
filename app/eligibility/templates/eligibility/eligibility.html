@@ -177,6 +177,7 @@
                                                 </details>
                                                 {% for scoring in sub_criteria.scoring.all %}
                                                 {% if sub_criteria|is_scored:application %}
+                                                {% with sub_criteria|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:update_score' pk=application.pk %}">
                                                     {% csrf_token %}
@@ -186,16 +187,16 @@
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
                                                         <option value="{{item.item.score}}"
-                                                            {% for mark in application.marks.all  %}{% if item.item.score == mark.score %}selected{% endif %}{% endfor %}>
+                                                            {% if item.item.score == old_marks.score %}selected{% endif %}>
                                                             {{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="scoring" value="{{scoring.pk}}">
-
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
                                                 </form>
+                                                {% endwith %}
                                                 {% else %}
                                                 <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:score' pk=application.pk %}">
@@ -208,7 +209,7 @@
                                                         <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="application" value="{{application.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
@@ -318,6 +319,7 @@
                                                 </details>
                                                 {% for scoring in sub_criteria.scoring.all %}
                                                 {% if sub_criteria|is_scored:application %}
+                                                {% with sub_criteria|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:update_score' pk=application.pk %}">
                                                     {% csrf_token %}
@@ -327,16 +329,16 @@
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
                                                         <option value="{{item.item.score}}"
-                                                            {% for mark in application.marks.all  %}{% if item.item.score == mark.score %}selected{% endif %}{% endfor %}>
+                                                            {% if item.item.score == old_marks.score %}selected{% endif %}>
                                                             {{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="scoring" value="{{scoring.pk}}">
-
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
                                                 </form>
+                                                {% endwith %}
                                                 {% else %}
                                                 <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:score' pk=application.pk %}">
@@ -349,7 +351,7 @@
                                                         <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="scoring" value="{{scoring.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="application" value="{{application.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>

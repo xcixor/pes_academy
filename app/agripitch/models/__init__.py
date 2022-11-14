@@ -347,9 +347,9 @@ class Scoring(models.Model):
 
 class ApplicationMarks(models.Model):
 
-    scoring = models.ForeignKey(
-        Scoring, on_delete=models.CASCADE,
-        related_name='saved_scores')
+    question = models.ForeignKey(
+        SubCriteriaItem, on_delete=models.CASCADE,
+        related_name='marks')
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE,
         related_name='marks')
@@ -357,7 +357,7 @@ class ApplicationMarks(models.Model):
 
     class Meta:
         verbose_name_plural = "11. Applications Marks"
-        unique_together = ['application', 'scoring']
+        unique_together = ['application', 'question']
 
     def __str__(self) -> str:
         return str(self.application)
