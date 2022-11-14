@@ -16,7 +16,6 @@
             <div class="col-md-6 p-5 col-sm-6">
                 <h2 class="text-bold">{% trans "Application Summary" %}</h2>
                 <h4><b>{% trans "Applicant" %} </b>{{application.application_creator}}</h4>
-                <h4><b>{% trans "Organization Name" %} </b>{{application.application_creator.business}}</h4>
                 <h4><b>{% trans "Application ID" %} </b>{{application.special_id}}</h4>
                 <h4><b>{% trans "Stage" %} </b>{{application.get_stage_display}}</h4>
                 <h4><b>{% trans "Date of Application" %} </b>{{application.created}}</h4>

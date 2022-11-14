@@ -68,26 +68,8 @@ def get_scoring_for_sub_criteria(application, sub_criteria):
 
 @register.filter('is_scored')
 def is_scored(question, application):
-    # print(application.marks.count())
-    # # if application.id in ApplicationMarks.objects.all().values_list('id', flat=True):
-    # #     print('yaas')
-    # for mark in application.marks.all():
-    #     print(mark.scoring.question)
-    #     if mark.scoring.question == sub_criteria:
-    #         return True
-    #     return False
-
-    # existing_marks = ApplicationMarks.objects.filter(application=application)
-    # for mark in existing_marks:
-    #     print(mark.scoring)
-    #     if mark.scoring.question == sub_criteria:
-    #         print(sub_criteria)
-    #         return True
-    #     return False
-
     found_marks = ApplicationMarks.objects.filter(
         question=question, application=application).first()
     if found_marks:
-        print(found_marks.score)
         return found_marks
     return False

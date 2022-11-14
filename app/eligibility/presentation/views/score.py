@@ -63,7 +63,6 @@ class UpdateScoreView(SingleObjectMixin, FormView):
         return f'/eligibility/{self.object.slug}/'
 
     def form_invalid(self, form):
-        print(form.errors.as_data())
         message = _(
             'Something went wrong, please check your form below.')
         messages.add_message(self.request, messages.ERROR, message)

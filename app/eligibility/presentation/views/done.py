@@ -30,4 +30,4 @@ class ReviewCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
             _('Review Completed'), None, from_email, to_email,
             template='eligibility/email/review_done.html',
             context=context)
-        return redirect('/accounts/dashboard/')
+        return redirect('/accounts/reviewer/applications/')
