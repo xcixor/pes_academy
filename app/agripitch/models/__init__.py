@@ -353,11 +353,14 @@ class ApplicationMarks(models.Model):
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE,
         related_name='marks')
+    scoring = models.ForeignKey(
+        Scoring, on_delete=models.CASCADE,
+        related_name='marks')
     score = models.IntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "11. Applications Marks"
-        unique_together = ['application', 'question']
+        unique_together = ['application', 'question', 'scoring']
 
     def __str__(self) -> str:
         return str(self.application)

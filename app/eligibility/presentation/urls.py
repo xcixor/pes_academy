@@ -12,8 +12,8 @@ urlpatterns = [
     path('<slug:slug>/disqualify/', DisqualifyView.as_view(), name='disqualify'),
     path('<slug:slug>/done/', ReviewCompleteView.as_view(),
          name='finish_eligibility'),
-    path('<int:pk>/score/', ScoreView.as_view(),
+    path('<int:pk>/<slug:step_slug>/score/', ScoreView.as_view(),
          name='score'),
-    path('<int:pk>/score/update/', UpdateScoreView.as_view(),
+    path('<int:pk>/<slug:step_slug>/score/update/', UpdateScoreView.as_view(),
          name='update_score'),
 ]

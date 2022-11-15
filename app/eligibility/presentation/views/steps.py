@@ -1,7 +1,6 @@
 from django.views.generic import DetailView
 from eligibility.models import ShortListGroup
 from application.models import Application
-from agripitch.models import CriteriaItem
 from django.utils.translation import gettext_lazy as _
 
 
