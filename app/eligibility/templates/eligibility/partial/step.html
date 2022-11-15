@@ -4,6 +4,17 @@
 {% load agripitch_extras %}
 {% load countries %}
 <div class="container-fluid summary p-0">
+    <div class="row">
+        <div class="col-sm-12">
+            {% for message in messages %}
+            <script>
+                var message = '{{message}}';
+                alert(`${message}`);
+            </script>
+            {% endfor %}
+            
+        </div>
+    </div>
     <div class="row mb-2">
         <div class="col-md-6 p-5 col-sm-6">
             <h2 class="text-bold">{% trans "Application Summary" %}</h2>
