@@ -52,6 +52,10 @@ class Application(models.Model):
         verbose_name=_('Whether to Advance'),
         default=False,
         help_text=_('Whether to advance or avoid the application'))
+    disqualified = models.BooleanField(
+        verbose_name=_('Whether disqualified'),
+        default=False,
+        help_text=_('Whether application is disqualified'))
 
     def _generate_slug(self):
         value = self.call_to_action.tagline

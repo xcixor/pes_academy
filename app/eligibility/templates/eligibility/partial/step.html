@@ -29,10 +29,8 @@
                             </p>
                         </div>
                         <div class="col-md-6 offset-md-1 d-flex flex-column">
-                            <a href="/eligibility/{{application.slug}}/done/"
-                                class="btn btn-primary py-4 mb-4">{% trans "Qualify" %}</a>
-                            <a href="{% url 'eligibility:disqualify' slug=application.slug %}"
-                                class="btn btn-primary py-4 mb-4">{% trans "Disqualify" %}</a>
+                            <a href="{% url 'eligibility:step_done' slug=application.slug step_slug=criteria.slug %}"
+                                class="btn btn-primary py-4 mb-4">{% trans "Submit Rating" %}</a>
                             <a href="/accounts/dashboard/"
                                 class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
@@ -142,35 +140,7 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <div class="row screen-1">
-                                <div class="col-md-6 p-5">
-                                    <button class="button btn-navigate-form-step" type="button"
-                                        step_number="2">Next</button>
-                                </div>
-                            </div>
-
                         </section>
-                        <form id="step-{% with criteria|length as length %}{{ length|add:"1" }}{% endwith %}"
-                            class="form-step d-none py-5" action="{% url 'application:comment' %}" method="post">
-                            <div class="row">
-                                <div class="col-md-12 p-0">
-                                    <h4 class="mb-4"><b>{% trans "This is the last section" %}</b></h4>
-                                    <p><b>{% trans "Please provide some general comments on this application" %}</b>
-                                    </p>
-                                    {% csrf_token %}
-                                    <input type="hidden" name="application" value="{{application.pk}}">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="comment" id="id_comment" rows="10"
-                                            placeholder="{% trans "Comment" %}" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <button class="button btn-navigate-form-step" type="button"
-                                    step_number="{% with criteria|length as length %}{{ length }}{% endwith %}">Prev</button>
-                                <button class="button submit-btn" type="submit">{% trans "Save Comment" %}</button>
-                            </div>
-                        </form>
                     </section>
                 </div>
             </div>

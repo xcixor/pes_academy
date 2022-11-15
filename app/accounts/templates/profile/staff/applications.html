@@ -31,6 +31,22 @@
         </b></div>
 </div>
 {% for review in user.reviews.all %}
+{% if review.application.disqualified %}
+<div class="row">
+    <div class="col-md-4"><b>
+            <p>{{review.application.special_id}}</p>
+        </b></div>
+    <div class="col-md-4"><b>
+            <p>{{review.application.application_creator.email}}</p>
+        </b></div>
+    <div class="col-md-4">
+        <p style="font-weight: bold;">
+            Disqualified
+            <i class="fa-regular fa-circle-xmark"></i>
+        </p>
+    </div>
+</div>
+{% else %}
 <div class="row">
     <div class="col-md-4"><b>
             <p>{{review.application.special_id}}</p>
@@ -52,6 +68,7 @@
         {% endif %}
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% else %}
 <p class="text-center">{% trans "You do not have any applications to review at the moment" %}</p>
