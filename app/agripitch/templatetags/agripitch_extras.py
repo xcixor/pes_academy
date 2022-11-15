@@ -67,9 +67,9 @@ def get_scoring_for_sub_criteria(application, sub_criteria):
 
 
 @register.filter('is_scored')
-def is_scored(question, application):
+def is_scored(scoring, application):
     found_marks = ApplicationMarks.objects.filter(
-        question=question, application=application).first()
+        scoring=scoring, application=application).first()
     if found_marks:
         return found_marks
     return False

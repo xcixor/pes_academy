@@ -93,8 +93,8 @@
                                     <div class="row">
                                         <div class="col-md-8 offset-md-1">
                                             {% for scoring in sub_criteria.question.scoring.all %}
-                                            {% if sub_criteria.question|is_scored:application %}
-                                            {% with sub_criteria.question|is_scored:application as old_marks %}
+                                            {% if scoring|is_scored:application %}
+                                            {% with scoring|is_scored:application as old_marks %}
                                             <form class="d-flex align-items-center" method="post"
                                                 action="{% url 'eligibility:update_score' pk=application.pk step_slug=criteria.slug %}">
                                                 {% csrf_token %}
