@@ -58,7 +58,7 @@
         {% if review.application.stage == 'step_three' %}
         <a href="{% url 'eligibility:step' slug=review.application.slug step_slug='step_one'|get_group_slug %}" class="btn btn-primary">{% trans "Start Review" %}</a>
         {% elif review.application.stage == 'step_four' %}
-        <a href="#" class="btn btn-primary">{% trans "Verify Documents" %}</a>
+        <a href="{% url 'eligibility:step' slug=review.application.slug step_slug='step_two'|get_group_slug %}" class="btn btn-primary">{% trans "Verify Documents" %}</a>
         {% elif review.application.stage == 'step_five' %}
         <a href="/eligibility/{{review.application.slug}}/" class="btn btn-primary">{% trans "Long List" %}</a>
         {% elif review.application.stage == 'step_six' %}
