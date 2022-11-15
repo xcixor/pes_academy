@@ -1,6 +1,7 @@
 from django import template
 from accounts.models import User
 from organization_subscription.models import Subscription
+from eligibility.models import ShortListGroup
 
 
 register = template.Library()
@@ -85,3 +86,9 @@ def is_user_coach(coach, user):
 @register.filter('distinct')
 def distinct(queryset):
     return queryset.distinct('coach_id')
+
+
+@register.filter('get_group_slug')
+def get_group_slug(step):
+    group = ShortListGroup.objects.get(group=step)
+    return group.slug

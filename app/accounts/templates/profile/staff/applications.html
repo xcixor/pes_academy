@@ -1,30 +1,53 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
+{% load account_extras %}
 {% block admin_content %}
 {% if user.reviews.all %}
 <style>
     p {
         font-size: 1.6rem !important;
+        font-weight: 600;
     }
+
     h4 {
         font-weight: bold;
+    }
+
+    a.btn {
+        font-weight: 600;
+    }
+
+    a.btn:hover {
+        color: #DCDCDC;
     }
 </style>
 
 <div class="row">
-    <div class="col-md-4"><b><h4>{% trans "Application ID" %}</h4></b></div>
-    <div class="col-md-4"><b><h4>{% trans "Created By" %}</h4></b></div>
+    <div class="col-md-4"><b>
+            <h4>{% trans "Application ID" %}</h4>
+        </b></div>
+    <div class="col-md-4"><b>
+            <h4>{% trans "Created By" %}</h4>
+        </b></div>
 </div>
 {% for review in user.reviews.all %}
 <div class="row">
     <div class="col-md-4"><b>
-        <p>{{review.application.special_id}}</p>
-    </b></div>
-    <div class="col-md-4"><b><p>{{review.application.application_creator.email}}</p></b></div>
+            <p>{{review.application.special_id}}</p>
+        </b></div>
+    <div class="col-md-4"><b>
+            <p>{{review.application.application_creator.email}}</p>
+        </b></div>
     <div class="col-md-4">
-        {% if review.application.is_in_review %}
-        <a href="/eligibility/{{review.application.slug}}/">{% trans "Start Review" %}</a>
-        {% else %}
+        {% if review.application.stage == 'step_three' %}
+        <a href="{% url 'eligibility:step' slug=review.application.slug step_slug='step_one'|get_group_slug %}" class="btn btn-primary">{% trans "Start Review" %}</a>
+        {% elif review.application.stage == 'step_four' %}
+        <a href="#" class="btn btn-primary">{% trans "Verify Documents" %}</a>
+        {% elif review.application.stage == 'step_five' %}
+        <a href="/eligibility/{{review.application.slug}}/" class="btn btn-primary">{% trans "Long List" %}</a>
+        {% elif review.application.stage == 'step_six' %}
+        <a href="#" class="btn btn-primary">{% trans "Short List" %}</a>
+        {% elif review.application.stage == 'step_seven' %}
         <p>Review Complete</p>
         {% endif %}
     </div>
