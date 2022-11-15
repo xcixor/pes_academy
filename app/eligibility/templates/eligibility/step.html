@@ -156,11 +156,25 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+                {% if application.comments.all %}
+                <h4>Previous Comments</h4>
+                {% for comment in application.comments.all %}
+                <p>{{comment.comment}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <form class="form-step py-5" action="{% url 'application:step_comment' slug=application.slug step_slug=criteria.slug %}" method="post">
                 <div class="row">
                     <div class="col-md-12 p-0">
+                        {% if application.comments.all %}
+                        <p><b>Add Another Comment</b></p>
+                        {% else %}
                         <p><b>{% trans "Please provide some general comments on " %}{{criteria}}</b>
                         </p>
+                        {% endif %}
                         {% csrf_token %}
                         <input type="hidden" name="application" value="{{application.pk}}">
                         <div class="form-group">
