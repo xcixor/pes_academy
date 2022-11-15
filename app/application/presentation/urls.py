@@ -3,7 +3,7 @@ from application.presentation.views import (
     IndexView, SubmitView,
     PostApplicationDocumentFormView, UploadExtraDocumentsView,
     ApplicationPromptView, ApplicationScoreView,
-    ApplicationCommentView, PrivacyPolicyView)
+    ApplicationCommentView, PrivacyPolicyView, StepApplicationCommentView)
 
 app_name = 'application'
 
@@ -12,6 +12,8 @@ urlpatterns = [
     path('applications/prompt/', ApplicationPromptView.as_view(), name='prompt'),
     path('applications/score/<slug:slug>/',
          ApplicationScoreView.as_view(), name='score'),
+    path('eligibility/comment/<slug:slug>/<slug:step_slug>/',
+         StepApplicationCommentView.as_view(), name='step_comment'),
     path('applications/comment/', ApplicationCommentView.as_view(), name='comment'),
     path('applications/extra-documents/',
          UploadExtraDocumentsView.as_view(), name='extra_documents'),

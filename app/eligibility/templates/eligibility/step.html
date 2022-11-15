@@ -154,6 +154,28 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-step py-5" action="{% url 'application:step_comment' slug=application.slug step_slug=criteria.slug %}" method="post">
+                <div class="row">
+                    <div class="col-md-12 p-0">
+                        <p><b>{% trans "Please provide some general comments on " %}{{criteria}}</b>
+                        </p>
+                        {% csrf_token %}
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" id="id_comment" rows="10"
+                                placeholder="{% trans "Comment" %}" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5">
+
+                    <button class="button submit-btn" type="submit">{% trans "Save Comment" %}</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
