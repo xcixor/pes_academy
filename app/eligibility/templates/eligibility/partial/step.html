@@ -27,8 +27,7 @@
             <div class="row">
                 <div class="col-md-12 pt-4">
                     <div class="row">
-                        <div
-                            class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
+                        <div class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
                             <p>My Score:
                                 {{ application|get_marks }}
                             </p>
@@ -42,8 +41,7 @@
                         <div class="col-md-6 offset-md-1 d-flex flex-column">
                             <a href="{% url 'eligibility:step_done' slug=application.slug step_slug=criteria.slug %}"
                                 class="btn btn-primary py-4 mb-4">{% trans "Submit Rating" %}</a>
-                            <a href="/accounts/dashboard/"
-                                class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
+                            <a href="/accounts/dashboard/" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
                     </div>
                 </div>
@@ -101,6 +99,45 @@
                                 <div class="col-md-6 p-5 screen-2 odd">
                                     <div class="row">
                                         <div class="col-md-8 offset-md-1">
+                                            <details class="mb-5">
+                                                <summary class="text-bg-secondary flex action-color">
+                                                    <i class="fa-solid fa-angle-right mr-2"></i>
+                                                    {% trans "Ask Applicant for more details about " %}
+                                                    <b><i>{{sub_criteria.question}}</i></b>
+                                                </summary>
+                                                <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
+                                                <ul>
+                                                    {% for prompt in sub_criteria.question.prompts.all %}
+                                                    <li>{{ prompt.message }}</li>
+                                                    {% endfor %}
+                                                    {% if not sub_criteria.question.prompts.all %}
+                                                    <p>{% trans "There are no prompts here" %}</p>
+                                                    {% endif %}
+                                                </ul>
+                                                <form action="/applications/prompt/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label for="id_subject">{% trans "Subject" %}</label>
+                                                        <input type="text" class="form-control" name="subject" required>
+                                                        {% for error in form.subject.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="id_message">{% trans "Message" %}</label>
+                                                        <textarea class="form-control" name="message" rows="3"
+                                                            required></textarea>
+                                                        {% for error in form.message.errors %}
+                                                        <p class="error">{{ error|escape }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <input type="hidden" name="application" value="{{application.pk}}">
+                                                    <input type="hidden" name="prompt"
+                                                        value="{{sub_criteria.question.pk}}">
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{% trans "Send Query" %}</button>
+                                                </form>
+                                            </details>
                                             {% for scoring in sub_criteria.question.scoring.all %}
                                             {% if scoring|is_scored:application %}
                                             {% with scoring|is_scored:application as old_marks %}
@@ -117,7 +154,8 @@
                                                         {{item.item.label}}</option>
                                                     {% endfor %}
                                                 </select>
-                                                <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                <input type="hidden" name="question"
+                                                    value="{{sub_criteria.question.pk}}">
                                                 <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                 {% for error in form.score.errors %}
                                                 <p class="error">{{ error | escape }} </p>
@@ -136,7 +174,8 @@
                                                     <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                     {% endfor %}
                                                 </select>
-                                                <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                <input type="hidden" name="question"
+                                                    value="{{sub_criteria.question.pk}}">
                                                 <input type="hidden" name="application" value="{{application.pk}}">
                                                 <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                 {% for error in form.score.errors %}
@@ -169,28 +208,30 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form class="form-step py-5" action="{% url 'application:step_comment' slug=application.slug step_slug=criteria.slug %}" method="post">
-            <div class="row">
-                <div class="col-md-12 p-0">
-                    {% if application.comments.all %}
-                    <p><b>Add Another Comment</b></p>
-                    {% else %}
-                    <p><b>{% trans "Please provide some general comments on " %}{{criteria}}</b>
-                    </p>
-                    {% endif %}
-                    {% csrf_token %}
-                    <input type="hidden" name="application" value="{{application.pk}}">
-                    <div class="form-group">
-                        <textarea class="form-control" name="comment" id="id_comment" rows="10"
-                            placeholder="{% trans "Comment" %}" required></textarea>
+            <form class="form-step py-5"
+                action="{% url 'application:step_comment' slug=application.slug step_slug=criteria.slug %}"
+                method="post">
+                <div class="row">
+                    <div class="col-md-12 p-0">
+                        {% if application.comments.all %}
+                        <p><b>Add Another Comment</b></p>
+                        {% else %}
+                        <p><b>{% trans "Please provide some general comments on " %}{{criteria}}</b>
+                        </p>
+                        {% endif %}
+                        {% csrf_token %}
+                        <input type="hidden" name="application" value="{{application.pk}}">
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" id="id_comment" rows="10"
+                                placeholder="{% trans "Comment" %}" required></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="mt-5">
+                <div class="mt-5">
 
-                <button class="button submit-btn" type="submit">{% trans "Save Comment" %}</button>
-            </div>
-        </form>
+                    <button class="button submit-btn" type="submit">{% trans "Save Comment" %}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
