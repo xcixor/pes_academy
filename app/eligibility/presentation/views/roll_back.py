@@ -29,9 +29,10 @@ class RollBackApplicationView(DetailView):
         if current_step:
             for item in current_step.questions.all():
                 try:
-                    mark = ApplicationMarks.objects.get(
+                    marks = ApplicationMarks.objects.filter(
                         question=item.question, application=self.get_object())
-                    mark.delete()
+                    for mark in marks:
+                        mark.delete()
 
                 except ApplicationMarks.DoesNotExist as de:
                     print(de)
