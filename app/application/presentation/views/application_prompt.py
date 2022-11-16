@@ -12,7 +12,7 @@ class ApplicationPromptView(FormView):
     def form_valid(self, form):
         self.prompt = form.save(self.request.user)
         form.send_prompt(
-            self.prompt.application.application_creator.email, self.request)
+            self.prompt.application.application_creator.email, self.prompt.application.reviewers.first().reviewer.email, self.request)
         return super().form_valid(form)
 
     def get_success_url(self):

@@ -22,7 +22,7 @@ class HtmlEmailMixin(object):
             img.add_header('cid', '<{name}>'.format(name=image))
             img.add_header('Content-Disposition', 'inline', filename=image)
         email_message = EmailMultiAlternatives(
-            subject, body, from_email, to_emails
+            subject, body, from_email, to_emails, headers=kwargs.get('headers', None)
         )
         html_content = render_to_string(
             kwargs.get(
