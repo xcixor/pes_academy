@@ -8,7 +8,8 @@ from django.utils.translation import gettext_lazy as _
 from common.utils.email import HtmlEmailMixin
 from application.models import Application
 from eligibility.models import ShortListGroup, BonusPoints
-from agripitch.models import get_sub_criteria_item_response_if_exist
+from agripitch.models import (
+    get_sub_criteria_item_response_if_exist, ApplicationMarks)
 from agripitch.utils import get_sub_criteria_item_by_label
 
 
@@ -45,9 +46,17 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
         self.object = self.get_object()
         step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
         bonus = 0
+        total_marks = 0
+        for item in step.questions.all():
+            try:
+                mark = ApplicationMarks.objects.get(
+                    question=item.question, application=self.object)
+                total_marks += mark.score
+            except ApplicationMarks.DoesNotExist as de:
+                print(de)
         if step.has_bonus:
             bonus += step.bonus_to_award
-        total_marks = sum(mark.score for mark in self.object.marks.all())
+        # total_marks = sum(mark.score for mark in self.object.marks.all())
         if step.group == 'step_one':
             if total_marks >= 2:
                 self.object.stage = 'step_four'
