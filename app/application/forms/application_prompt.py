@@ -13,7 +13,7 @@ class ApplicationPromptForm(forms.ModelForm, HtmlEmailMixin):
         model = ApplicationPrompt
         fields = ['message', 'application', 'prompt']
 
-    def send_prompt(self, to_email, reply_to, request):
+    def send_prompt(self, to_email, request):
         from_email = settings.VERIFIED_EMAIL_USER
         message = self.cleaned_data['message']
         subject = self.cleaned_data['subject']
@@ -23,9 +23,9 @@ class ApplicationPromptForm(forms.ModelForm, HtmlEmailMixin):
             'domain': current_site.domain,
             'protocol': request.scheme,
         }
-        headers = {'Reply-To': reply_to}
+        # headers = {'Reply-To': reply_to}
         super().send_email(
-            subject, None, from_email, [to_email], headers=headers,
+            subject, None, from_email, [to_email],
             template='application/email/prompt.html', context=context)
 
     def save(self, reviewer, commit=True):
