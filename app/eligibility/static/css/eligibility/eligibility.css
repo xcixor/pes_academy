@@ -136,6 +136,17 @@ label.checkbox-container {
     font-weight: bold;
 }
 
+.bonus-btn{
+    padding: 0 !important;
+    border: none;
+    border-radius: 0;
+    color: #14A562;
+    font-size: 1.6rem;
+}
+.bonus-form{
+    font-size: 1.6rem;
+}
+
 @media only screen and (max-width: 992px) {
     .label {
         display: none;

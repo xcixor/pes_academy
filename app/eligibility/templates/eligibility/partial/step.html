@@ -198,6 +198,35 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            {% if criteria.has_bonus %}
+            {% if criteria.bonus %}
+            <form
+                action="{% url 'eligibility:delete_bonus' pk=criteria.bonus.pk application_slug=application.slug step_slug=criteria.slug %}"
+                method="post" class="d-flex align-items-center bonus-form">
+                {% csrf_token %}
+                <p class="m-0">You have Awarded a bonus of <b>{{criteria.bonus.bonus}}</b> points </p>
+
+                <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
+            </form>
+            {% else %}
+            <form action="{% url 'eligibility:bonus' step_slug=criteria.slug %}"
+                hx-post="{% url 'eligibility:bonus' step_slug=criteria.slug %}" method="POST" hx-trigger="change"
+                hx-swap="innerHTML" hx-target="#htmx-parent">
+                {% csrf_token %}
+                <label class="checkbox-container">Give Bonus?
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <input type="hidden" name="bonus" value="{{criteria.bonus_to_award}}">
+                <input type="hidden" name="application" value="{{application.pk}}">
+                <input type="hidden" name="step" value="{{criteria.pk}}">
+            </form>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             {% if application.comments.all %}
             <h4>Previous Comments</h4>
             {% for comment in application.comments.all %}

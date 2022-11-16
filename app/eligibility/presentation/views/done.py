@@ -1,4 +1,4 @@
-from django.views.generic import View, CreateView
+from django.views.generic import View, CreateView, DeleteView
 from django.views.generic.detail import SingleObjectMixin
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -106,13 +106,12 @@ class BonusPointsView(CreateView):
 
     def get_success_url(self):
         step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
-        success_message = _('Great, your bonus points has been saved.')
+        success_message = _('Great, your bonus points have been saved.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         return f'/eligibility/{self.object.application.slug}/{step.slug}/'
 
     def form_invalid(self, form):
-        print(form.errors.as_data())
         step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
         message = _(
             'Something went wrong, please check your form below.')
@@ -120,4 +119,30 @@ class BonusPointsView(CreateView):
         context = self.get_context_data()
         context['form'] = form
         application = Application.objects.get(pk=form.data['application'])
+        return redirect(f'/eligibility/{application.slug}/{step.slug}/')
+
+
+class DeleteBonusView(DeleteView):
+
+    model = BonusPoints
+    template_name = 'eligibility/step.html'
+
+    def get_success_url(self):
+        step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
+        application = Application.objects.get(
+            slug=self.kwargs.get('application_slug'))
+        success_message = _('Great, your bonus points have been deleted.')
+        messages.add_message(
+            self.request, messages.SUCCESS, success_message)
+        return f'/eligibility/{application.slug}/{step.slug}/'
+
+    def form_invalid(self, form):
+        step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
+        message = _(
+            'Something went wrong, please check your form below.')
+        messages.add_message(self.request, messages.ERROR, message)
+        context = self.get_context_data()
+        context['form'] = form
+        application = Application.objects.get(
+            slug=self.kwargs.get('application_slug'))
         return redirect(f'/eligibility/{application.slug}/{step.slug}/')

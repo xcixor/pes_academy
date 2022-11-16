@@ -24,6 +24,8 @@ class ShortListGroup(models.Model):
     slug = models.SlugField(
         max_length=255, unique=True,
         help_text=_('Unique text to append to the address for the application.'))
+    has_bonus = models.BooleanField(default=False)
+    bonus_to_award = models.IntegerField(default=3)
 
     def _generate_slug(self):
         value = self.get_group_display()
