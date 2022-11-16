@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.views.generic import FormView
 from django.utils.translation import gettext_lazy as _
 from application.forms import ApplicationPromptForm
+from eligibility.models import ShortListGroup
 
 
 class ApplicationPromptView(FormView):
@@ -16,10 +17,11 @@ class ApplicationPromptView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
+        step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
         success_message = _('Great, your prompt has been sent.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
-        return f'/eligibility/{self.prompt.application.slug}/'
+        return f'/eligibility/{self.prompt.application.slug}/{step.slug}/'
 
     def form_invalid(self, form):
         error_message = _('Hmm, that didn\'t work please try again.')

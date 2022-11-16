@@ -21,6 +21,8 @@ class CallToActionAdmin(TranslatableAdmin):
 @admin.register(ApplicationReview)
 class ApplicationReviewAdmin(admin.ModelAdmin):
     list_display = ['application', 'reviewer']
+    search_fields = ['application', 'reviewer__email',
+                     'reviewer__pk', 'reviewer__id']
 
 
 class ApplicationDocumentInline(admin.TabularInline):

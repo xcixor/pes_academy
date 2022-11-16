@@ -9,7 +9,8 @@ app_name = 'application'
 
 urlpatterns = [
     path('applications/submit/', SubmitView.as_view(), name='submit'),
-    path('applications/prompt/', ApplicationPromptView.as_view(), name='prompt'),
+    path('applications/prompt/<slug:step_slug>/',
+         ApplicationPromptView.as_view(), name='prompt'),
     path('applications/score/<slug:slug>/',
          ApplicationScoreView.as_view(), name='score'),
     path('eligibility/comment/<slug:slug>/<slug:step_slug>/',

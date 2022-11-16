@@ -113,7 +113,7 @@
                                                         <p>{% trans "There are no prompts here" %}</p>
                                                         {% endif %}
                                                     </ul>
-                                                    <form action="/applications/prompt/" method="post">
+                                                    <form action="{% url 'application:prompt' step_slug=criteria.slug %}" method="post">
                                                         {% csrf_token %}
                                                         <div class="form-group">
                                                             <label for="id_subject">{% trans "Subject" %}</label>

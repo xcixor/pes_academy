@@ -42,10 +42,9 @@ def get_response(sub_criteria, application):
 
 @register.filter('get_marks')
 def get_marks(application):
-    total = 0
-    for mark in application.marks.all():
-        total += mark.score
-    return total
+    total_marks = sum(mark.score for mark in application.marks.all())
+    total_bonus = sum(bonus.bonus for bonus in application.bonus.all())
+    return total_marks + total_bonus
 
 
 @register.filter('get_age')

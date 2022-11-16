@@ -14,8 +14,5 @@ class ApplicationReview(models.Model):
         User, on_delete=models.SET_NULL, null=True,
         related_name='reviews')
 
-    class Meta:
-        unique_together = (('application', 'reviewer'))
-
     def __str__(self):
         return f'{self.reviewer.username} - {self.application.special_id}'
