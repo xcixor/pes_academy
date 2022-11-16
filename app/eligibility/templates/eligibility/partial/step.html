@@ -106,19 +106,12 @@
                                                     <b><i>{{sub_criteria.question}}</i></b>
                                                 </summary>
                                                 <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                                                <ul>
-                                                    {% for prompt in sub_criteria.question.prompts.all %}
-                                                    <li>{{ prompt.message }}</li>
-                                                    {% endfor %}
-                                                    {% if not sub_criteria.question.prompts.all %}
-                                                    <p>{% trans "There are no prompts here" %}</p>
-                                                    {% endif %}
-                                                </ul>
-                                                <form action="/applications/prompt/" method="post">
+                                                <form action="{% url 'application:prompt' step_slug=criteria.slug %}" method="post">
                                                     {% csrf_token %}
                                                     <div class="form-group">
                                                         <label for="id_subject">{% trans "Subject" %}</label>
-                                                        <input type="text" class="form-control" name="subject" required>
+                                                        <input type="text" class="form-control" name="subject"
+                                                            required>
                                                         {% for error in form.subject.errors %}
                                                         <p class="error">{{ error|escape }}</p>
                                                         {% endfor %}
@@ -131,7 +124,8 @@
                                                         <p class="error">{{ error|escape }}</p>
                                                         {% endfor %}
                                                     </div>
-                                                    <input type="hidden" name="application" value="{{application.pk}}">
+                                                    <input type="hidden" name="application"
+                                                        value="{{application.pk}}">
                                                     <input type="hidden" name="prompt"
                                                         value="{{sub_criteria.question.pk}}">
                                                     <button type="submit"
