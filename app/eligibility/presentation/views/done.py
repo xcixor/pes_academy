@@ -44,6 +44,9 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         step = ShortListGroup.objects.get(slug=self.kwargs.get('step_slug'))
+        bonus = 0
+        if step.has_bonus:
+            bonus += step.bonus_to_award
         total_marks = sum(mark.score for mark in self.object.marks.all())
         if step.group == 'step_one':
             if total_marks >= 2:

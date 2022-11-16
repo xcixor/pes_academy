@@ -23,7 +23,7 @@ def get_user_language(application):
         print(e)
     if sub_criteria_item:
         response = SubCriteriaItemResponse.objects.filter(
-            sub_criteria_item=sub_criteria_item, application=application)
+            sub_criteria_item=sub_criteria_item, application=application).first()
         return response.value
 
 
