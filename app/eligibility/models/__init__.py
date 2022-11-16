@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from agripitch.models import SubCriteriaItem
+from application.models import Application
 
 
 class ShortListGroup(models.Model):
@@ -56,4 +57,18 @@ class ShortListGroupItems(models.Model):
         related_name='groups')
 
     class Meta:
-        verbose_name_plural = "2. Short List Group Items"
+        verbose_name_plural = "1. Short List Group Items"
+
+
+class BonusPoints(models.Model):
+
+    bonus = models.IntegerField()
+    application = models.ForeignKey(
+        Application, on_delete=models.CASCADE,
+        related_name='bonus')
+    step = models.OneToOneField(
+        ShortListGroup, on_delete=models.SET_NULL,
+        related_name='bonus', null=True)
+
+    class Meta:
+        verbose_name_plural = "2. Bonus"

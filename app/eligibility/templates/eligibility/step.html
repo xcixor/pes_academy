@@ -133,7 +133,8 @@
                                                         </div>
                                                         <input type="hidden" name="application"
                                                             value="{{application.pk}}">
-                                                        <input type="hidden" name="prompt" value="{{sub_criteria.question.pk}}">
+                                                        <input type="hidden" name="prompt"
+                                                            value="{{sub_criteria.question.pk}}">
                                                         <button type="submit"
                                                             class="btn btn-primary">{% trans "Send Query" %}</button>
                                                     </form>
@@ -194,6 +195,26 @@
                         </section>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% if criteria.bonus %}
+                <h4>You have Awarded a bonus of <b>{{criteria.bonus.bonus}}</b> points</h4>
+                {% else %}
+                <form action="{% url 'eligibility:bonus' step_slug=criteria.slug %}"
+                    hx-post="{% url 'eligibility:bonus' step_slug=criteria.slug %}" method="POST" hx-trigger="change"
+                    hx-swap="innerHTML" hx-target="#htmx-parent">
+                    {% csrf_token %}
+                    <label class="checkbox-container">Give Bonus?
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="hidden" name="bonus" value="3">
+                    <input type="hidden" name="application" value="{{application.pk}}">
+                    <input type="hidden" name="step" value="{{criteria.pk}}">
+                </form>
+                {% endif %}
             </div>
         </div>
         <div class="row">

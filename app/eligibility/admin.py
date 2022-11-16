@@ -1,5 +1,6 @@
 from django.contrib import admin
-from eligibility.models import ShortListGroup, ShortListGroupItems
+from eligibility.models import (
+    ShortListGroup, ShortListGroupItems, BonusPoints)
 
 
 class ShortListGroupItemsInline(admin.TabularInline):
@@ -10,3 +11,8 @@ class ShortListGroupItemsInline(admin.TabularInline):
 class ShortListGroupItemsAdmin(admin.ModelAdmin):
     inlines = [ShortListGroupItemsInline]
     exclude = ('slug',)
+
+
+@admin.register(BonusPoints)
+class BonusPointsAdmin(admin.ModelAdmin):
+    list_display = ['application', 'bonus']
