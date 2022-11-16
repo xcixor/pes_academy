@@ -49,9 +49,10 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
         total_marks = 0
         for item in step.questions.all():
             try:
-                mark = ApplicationMarks.objects.get(
+                saved_marks = ApplicationMarks.objects.filter(
                     question=item.question, application=self.object)
-                total_marks += mark.score
+                for mark in saved_marks:
+                    total_marks += mark.score
             except ApplicationMarks.DoesNotExist as de:
                 print(de)
         if step.has_bonus:
