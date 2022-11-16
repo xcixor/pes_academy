@@ -29,3 +29,23 @@ class AssignReviewersForm(forms.Form):
             for reviewer in reviewers
         ]
         self.fields['reviewers'].choices = REVIEWERS
+
+
+class UpdateReviewersForm(forms.ModelForm):
+
+    class Meta:
+        model = ApplicationReview
+        fields = ['reviewer']
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateReviewersForm, self).__init__(*args, **kwargs)
+        reviewers = User.objects.filter(
+            is_staff=True, is_superuser=False, is_reviewer=True)
+        REVIEWERS = [
+            (reviewer.id, reviewer.username)
+            for reviewer in reviewers
+        ]
+        self.fields['reviewer'].widget = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+        )
+        self.fields['reviewer'].choices = REVIEWERS

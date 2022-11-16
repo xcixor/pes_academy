@@ -28,6 +28,8 @@
             <th scope="col">{% trans "ID" %}</th>
             <th scope="col">{% trans "Creator" %}</th>
             <th scope="col">{% trans "Stage" %}</th>
+            <th scope="col">{% trans "Reviewer" %}</th>
+            <th scope="col">{% trans "Re-Assign" %}</th>
             <th scope="col">{% trans "Action" %}</th>
           </tr>
         </thead>
@@ -37,6 +39,12 @@
             <th scope="row">{{application.special_id}}</th>
             <td>{{application.application_creator}}</td>
             <td>{{application.get_stage_display}}</td>
+            <td>{{application.reviewers.first.reviewer.email}}</td>
+            <td>
+              <a href="{% url 'admin:reassign_home' slug=application.slug %}" class="btn btn-primary">
+                Reassign
+              </a>
+            </td>
             <td>
               <a href="/CgDX4znLdQDLFw/advanced/view/{{application.slug}}/"
                 class="btn btn-primary">{% trans "View More" %}</a>

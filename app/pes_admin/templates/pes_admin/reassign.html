@@ -1,0 +1,39 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/pes_admin/assign_reviewers.css' %}">
+{% endblock %}
+{% block admin_content %}
+{% load i18n %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h4 class="heading"><strong>{% trans "Re-assign a new reviewer to" %} {{application}}</strong></h4>
+        <h4>Current Reviewer: {{application.reviewers.first.reviewer.email}}</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-2">
+        <form action="{% url 'admin:reassign' pk=application.reviewers.first.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+            {% for reviewer in reviewers %}
+
+            <label class="checkbox-container">{{reviewer.email}}
+                <input type="radio" name="reviewer" value="{{reviewer.pk}}" id="id_{{reviewer.pk}}_0"
+            {% if application.reviewers.first.reviewer.pk == reviewer.pk %}disabled{% endif %}
+
+                >
+                <span class="checkmark"></span>
+            </label>
+            {% endfor %}
+            {% for error in form.reviewers.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">{% trans "Re-Assign" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

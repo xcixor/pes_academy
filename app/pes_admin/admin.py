@@ -8,7 +8,8 @@ from pes_admin.presentation.views import (
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
     export_inactive_user_emails_to_xls, AdminApplicationView,
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
-    export_emails_without_applications, export_applications_by_country)
+    export_emails_without_applications, export_applications_by_country,
+    ReassignApplicationHomeView, ReassignApplicationView)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -37,7 +38,8 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(UnassignedApplicationsView.as_view()),
                  name='unassigned_applications'),
             path('applications/in-review/',
-                 admin.site.admin_view(InReviewApplicationsView.as_view())),
+                 admin.site.admin_view(InReviewApplicationsView.as_view()),
+                 name='applications_in_review'),
             path('users/all/',
                  admin.site.admin_view(AllUsersView.as_view())),
             path('users/regular/',
@@ -53,6 +55,14 @@ class CustomAdmin(admin.AdminSite):
                  name='admin_application_view'),
             path('view/<slug:slug>/',
                  admin.site.admin_view(ApplicationDetails.as_view())),
+            path('reassign/home/<slug:slug>/',
+                 admin.site.admin_view(ReassignApplicationHomeView.as_view()),
+                 name='reassign_home'),
+
+            path('reassign/reviewer/<int:pk>/',
+                 admin.site.admin_view(ReassignApplicationView.as_view()),
+                 name='reassign'),
+
             path('make/<int:pk>/moderator/',
                  admin.site.admin_view(CreateModerator.as_view())),
             path('make/<int:pk>/coach/',

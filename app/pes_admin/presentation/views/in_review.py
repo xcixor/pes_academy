@@ -10,4 +10,4 @@ class InReviewApplicationsView(ListView):
     paginate_by = 50
 
     def get_queryset(self):
-        return super().get_queryset().filter(stage='step_three')
+        return super().get_queryset().filter(is_in_review=True)
