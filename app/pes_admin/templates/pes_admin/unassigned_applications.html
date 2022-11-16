@@ -1,6 +1,7 @@
 {% extends 'admin_base.html' %}
 {% load static %}
 {% block styles %}
+{% load admin_extras %}
 {% load i18n %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/pes_admin/pes_admin.css' %}">
@@ -57,6 +58,7 @@
               <th scope="col">{% trans "ID" %}</th>
               <th scope="col">{% trans "Owner" %}</th>
               <th scope="col">{% trans "Stage" %}</th>
+              <th scope="col">{% trans "Language" %}</th>
               <th scope="col">{% trans "Action" %}</th>
             </tr>
           </thead>
@@ -66,6 +68,7 @@
               <th scope="row">{{application.special_id}}</th>
               <td>{{application.application_creator.email}}</td>
               <td>{{application.get_stage_display}}</td>
+              <td>{{application|get_user_language}}</td>
               <td>
                 <a href="/CgDX4znLdQDLFw/advanced/assign/{{application.pk}}/reviewers/"
                   class="btn btn-primary">{% trans "Assign Reviewers" %}</a>

@@ -14,6 +14,19 @@ def get_total_applications(string_to_invoke_call):
     return Application.objects.count()
 
 
+@register.filter('get_user_language')
+def get_user_language(application):
+    sub_criteria_item = None
+    try:
+        sub_criteria_item = SubCriteriaItem.objects.get(label='Language *')
+    except SubCriteriaItem.DoesNotExist as e:
+        print(e)
+    if sub_criteria_item:
+        response = SubCriteriaItemResponse.objects.filter(
+            sub_criteria_item=sub_criteria_item, application=application)
+        return response.value
+
+
 @register.filter('get_total_applications_by_criteria')
 def get_total_applications_by_criteria(criteria):
     sub_criteria_item = None
