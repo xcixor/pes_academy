@@ -25,10 +25,11 @@ class ApplicationReviewAdmin(admin.ModelAdmin):
                      'reviewer__pk', 'reviewer__id']
 
 
-class ApplicationDocumentInline(admin.TabularInline):
+@admin.register(ApplicationDocument)
+class ApplicationDocumentAdmin(admin.ModelAdmin):
 
-    model = ApplicationDocument
-    extra = 0
+    list_display = [
+        'application', 'creator', 'reviewer', 'document_name', ]
 
 
 class ApplicationPromptInline(admin.TabularInline):

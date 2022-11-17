@@ -15,5 +15,13 @@ class ApplicationDocument(models.Model):
         Application, on_delete=models.CASCADE,
         related_name='documents')
 
+    def reviewer(self):
+        if self.application.reviewers.all():
+            return f'{self.application.reviewers.first().reviewer.email} : {self.application.reviewers.first().reviewer.username}'
+        return "Not Assigned"
+
+    def creator(self):
+        return self.application.application_creator.email
+
     def __str__(self) -> str:
         return self.document_name
