@@ -133,3 +133,19 @@ def get_total_questions(string_to_invoke_call):
 @register.filter('get_unrated_questions')
 def get_unrated_questions(application):
     return SubCriteriaItem.objects.count() - application.marks.count()
+
+
+@register.filter('get_step_reviews')
+def get_step_reviews(reviewer, stage):
+    total_reviews = reviewer.reviews.all()
+    reviews_in_step = total_reviews.filter(application__stage=stage).count()
+    return reviews_in_step
+
+
+@register.filter('get_remaining_reviews')
+def get_remaining_reviews(reviewer):
+    total_reviews = reviewer.reviews.all()
+    reviews_in_step_five = total_reviews.filter(
+        application__stage='step_five').count()
+    remaining_reviews = total_reviews.count() - reviews_in_step_five
+    return remaining_reviews
