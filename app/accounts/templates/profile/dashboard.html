@@ -18,24 +18,25 @@
                 <div class="navi">
                     <ul>
                         {% block links %}
-                        <li class="tablink d-flex align-items-center justify-content-between" onclick="openPage('Home')" id="defaultOpen">
+                        <li class="tablink d-flex align-items-center justify-content-between" onclick="openPage('Home')"
+                            id="defaultOpen">
                             <a href="#">
                                 <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="tablink" >{% trans "Home" %}</span>
+                                <span class="tablink">{% trans "Home" %}</span>
                             </a>
                             <i class="fa fa-times-circle" aria-hidden="true" id="closeSideNav"></i>
                         </li>
                         <li class="tablink" onclick="openPage('Academy')">
                             <a href="#">
                                 <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                                <span class="tablink" onclick="openPage('Academy')" >{% trans "Academy" %}</span>
+                                <span class="tablink" onclick="openPage('Academy')">{% trans "Academy" %}</span>
                             </a>
                         </li>
                         {% if not user.is_applying_for_a_call_to_action %}
                         <li class="tablink" onclick="openPage('Mentors')">
                             <a href="#">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
-                                <span class="tablink" onclick="openPage('Mentors')" >
+                                <span class="tablink" onclick="openPage('Mentors')">
                                     {% trans "Coaches" %}
                                 </span>
                             </a>
@@ -44,7 +45,7 @@
                         <li class="tablink" onclick="openPage('MyCoaches')">
                             <a href="#">
                                 <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
-                                <span class="tablink" onclick="openPage('MyCoaches')" >
+                                <span class="tablink" onclick="openPage('MyCoaches')">
                                     {% trans "My Coaches" %}
                                 </span>
                             </a>
@@ -53,7 +54,7 @@
                         <li class="tablink" onclick="openPage('App')">
                             <a href="#">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
-                                <span class="tablink" onclick="openPage('App')" >{% trans "Applications" %}</span>
+                                <span class="tablink" onclick="openPage('App')">{% trans "Applications" %}</span>
                             </a>
                         </li>
 
@@ -63,16 +64,16 @@
                             <span class="tablink" onclick="openPage('Team')" >{% trans "Team" %}</span>
                             </a>
                         </li> -->
-                        <li >
+                        <li>
                             <a href="{% url 'accounts:profile_view' %}">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span >{% trans "Profile" %}</span>
+                                <span>{% trans "Profile" %}</span>
                             </a>
                         </li>
                         <li>
                             <a href="/accounts/logout/">
                                 <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
-                                <span >{% trans "Log Out" %}</span>
+                                <span>{% trans "Log Out" %}</span>
                             </a>
                         </li>
                         {% endblock %}
@@ -86,7 +87,7 @@
                     </div>
                 </div>
                 {% block tabcontent %}
-                <div class="user-dashboard tabcontent"  id="Home">
+                <div class="user-dashboard tabcontent" id="Home">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 mb-5">
                             <h2 class="card-header">{% trans "Hello" %}, {{user}}</h2>
@@ -119,30 +120,33 @@
                         </div>
                     </div>
                     {% if user.is_applying_for_a_call_to_action %}
-                        <div class="row">
-                            <div class="col-md-8 offset-lg-2 p-0 col-sm-12 col-xs-12">
-                                <div class=" row sales ">
-                                    <div class="col-md-12">
-                                        <h2>{% trans "Ongoing Applications" %}</h2>
-                                        <div>
-                                            {% if user.application %}
-                                            <button class="btn btn-primary mt-4"><a class="text-light" href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}">{% trans "Your Application" %}</a></button>
-                                            {% else %}
-                                            {% with user.email|get_application_url as url %}
-                                            {% if url %}
-                                            <button class="btn btn-primary mt-4"><a class="text-light" href="{{url}}">{% trans "Your Application" %}</a></button>
-                                            {% else %}
-                                            <a href="{% url 'application:index' %}" class="btn btn-primary mt-2">{% trans "Start Application" %}</a>
-                                            {% endif %}
-                                            {% endwith %}
-                                            {% endif %}
-                                        </div>
-
+                    <div class="row">
+                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12 col-xs-12">
+                            <div class=" row sales ">
+                                <div class="col-md-12">
+                                    <h2>{% trans "Ongoing Applications" %}</h2>
+                                    <div>
+                                        {% if user.application %}
+                                        <button class="btn btn-primary mt-4"><a class="text-light"
+                                                href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}">{% trans "Your Application" %}</a></button>
+                                        {% else %}
+                                        {% with user.email|get_application_url as url %}
+                                        {% if url %}
+                                        <button class="btn btn-primary mt-4"><a class="text-light"
+                                                href="{{url}}">{% trans "Your Application" %}</a></button>
+                                        {% else %}
+                                        <a href="{% url 'application:index' %}"
+                                            class="btn btn-primary mt-2">{% trans "Start Application" %}</a>
+                                        {% endif %}
+                                        {% endwith %}
+                                        {% endif %}
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
+                    </div>
+                    {% endif %}
                 </div>
                 <div id="Academy" class="tabcontent">
                     <div class="row">
@@ -150,16 +154,19 @@
                             <div class="card border-0">
                                 <h2 class="card-header">{% trans "PES Academy" %}</h2>
                                 <div class="card-body">
-                                <p class="card-text">{% trans "Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business." %}</p>
-                                <a href=" https://privateequity-support.thinkific.com/users/sign_in"  target='_blank' class="btn btn-primary">{% trans "Join the PES Academy" %}</a>
+                                    <p class="card-text">
+                                        {% trans "Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business." %}
+                                    </p>
+                                    <a href=" https://privateequity-support.thinkific.com/users/sign_in" target='_blank'
+                                        class="btn btn-primary">{% trans "Join the PES Academy" %}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                  </div>
+                </div>
 
-                  <div id="Mentors" class="tabcontent">
+                <div id="Mentors" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
                             <h4 class="card-header ml-3">{% trans "Coaches" %}</h4>
@@ -171,10 +178,12 @@
                                 <div class="g-col">
                                     <div class="card">
                                         <div class="card-body d-flex justify-content-between">
-                                            <img src="{% if mentor.avatar %}{{mentor.avatar.url}}{% endif %}" class="img-rounded" alt="No Avatar">
+                                            <img src="{% if mentor.avatar %}{{mentor.avatar.url}}{% endif %}"
+                                                class="img-rounded" alt="No Avatar">
                                             <div class="d-flex flex-column card-action">
                                                 <h4>{{ mentor.full_name }}</h4>
-                                                <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}" class="btn btn-primary">{% trans "View Bio" %}</a>
+                                                <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}"
+                                                    class="btn btn-primary">{% trans "View Bio" %}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -184,18 +193,20 @@
                             </div>
                         </div>
                     </div>
-                  </div>
-                  <div id="MyCoaches" class="tabcontent">
+                </div>
+                <div id="MyCoaches" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
                             <h2 class="card-header">{% trans "My Coaches" %}</h2>
                             {% for coaching in user.coaches.all|distinct %}
                             <div class="card">
                                 <div class="card-body d-flex justify-content-between">
-                                    <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}" class="img-rounded" alt="No Image">
+                                    <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}"
+                                        class="img-rounded" alt="No Image">
                                     <div class="d-flex flex-column card-action">
                                         <h4>{{ coaching.coach.full_name }}</h4>
-                                        <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}" class="btn btn-primary">{% trans "View Sessions" %}</a>
+                                        <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}"
+                                            class="btn btn-primary">{% trans "View Sessions" %}</a>
                                     </div>
                                 </div>
                             </div>
@@ -204,49 +215,37 @@
                             {% endfor %}
                         </div>
                     </div>
-                  </div>
+                </div>
 
-                  <div id="App" class="tabcontent">
+                <div id="App" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 ">
                             <h2 class="card-header">
-                            {% trans "Applications" %}
+                                {% trans "Applications" %}
                             </h2>
                             <div class="card-body">
-                            <h4 class="card-title">{% trans "Ongoing Applications" %}</h4>
-                            <p class="card-text">{% trans "Click on the link below to resume to your application." %}</p>
-                            {% if user.application %}
-                                {% if user.application.stage == 'step_four' %}
+                                <h4 class="card-title">{% trans "Ongoing Competitions" %}</h4>
+                                {% if user.application %}
+
                                 <h4><b>Application Closed</b></h4>
-                                {% else %}
-                                <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}" class="btn btn-primary">{% trans "Continue" %}</a>
+                                <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}"
+                                    class="btn btn-primary">{% trans "View Results" %}</a>
                                 {% endif %}
-                            {% else %}
-                            {% with user.email|get_application_url as application %}
-                            {% if application %}
-                                {% if application.stage == 'step_four' %}
-                                <h4><b>Application Closed</b></h4>
-                                {% else %}
-                                <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}" class="btn btn-primary">{% trans "Continue" %}</a>
-                                {% endif %}
-                            {% else %}
-                            <a href="{% url 'application:index' %}" class="btn btn-primary">{% trans "Start Application" %}</a>
-                            {% endif %}
-                            {% endwith %}
-                            {% endif %}
                             </div>
                         </div>
                     </div>
-                        <div class="row pt-5">
-                            <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                                <h4 class="card-header">
+                    <div class="row pt-5">
+                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
+                            <h4 class="card-header">
                                 {% trans "Upload Further Documents" %}
-                                </h4>
-                                <div class="card-body">
-                                <form action="{% url 'application:extra_documents' %}" method="post" enctype="multipart/form-data">
+                            </h4>
+                            <div class="card-body">
+                                <form action="{% url 'application:extra_documents' %}" method="post"
+                                    enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <input name="document_name" type="text" required style="color:black" placeholder="{% trans 'Document name' %}">
+                                        <input name="document_name" type="text" required style="color:black"
+                                            placeholder="{% trans 'Document name' %}">
                                         {% for error in form.document_name.errors %}
                                         <div class="error">{{ error|escape }}</div>
                                         {% endfor %}
@@ -257,17 +256,25 @@
                                         <div class="error">{{ error|escape }}</div>
                                         {% endfor %}
                                     </div>
-                                    <input name="application" type="hidden"  value="{{application.pk}}" class="btn">
+                                    <input name="application" type="hidden" value="{{user.application.pk}}" class="btn">
                                     <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
                                 </form>
-                                </div>
+                                <ul class="p-4">
+                                    {% for document in user.application.documents.all %}
+                                    <li>
+                                        <a href="{{document.document.url}}" target="_blank">Click to Open:
+                                            {{document}}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
-                  </div>
-                  <div id="Team" class="tabcontent">
+                    </div>
+                </div>
+                <div id="Team" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                        <button class="btn btn-primary" id="show-form">{% trans "Invite" %}</button>
+                            <button class="btn btn-primary" id="show-form">{% trans "Invite" %}</button>
                         </div>
                     </div>
                     <div class="row">
@@ -297,18 +304,19 @@
                         </div>
 
                     </div>
-                  </div>
+                </div>
 
-            {% endblock %}
+                {% endblock %}
             </div>
         </div>
 
     </div>
-    </div>
+</div>
 
-    <div class="popup">
-        <div class="close-btn">&times;</div>
-        <div><form class="form" action="/organization-subscription/initiate/" method="post">
+<div class="popup">
+    <div class="close-btn">&times;</div>
+    <div>
+        <form class="form" action="/organization-subscription/initiate/" method="post">
             {% csrf_token %}
             <h2>{% trans "Invite Collaborator" %}</h2>
             <div class="form-element">
@@ -321,11 +329,12 @@
                 {% endfor %}
             </div>
 
-        <div class="form-element">
-            <button type="submit">{% trans "Send" %}</button>
-        </div>
-    </form></div>
+            <div class="form-element">
+                <button type="submit">{% trans "Send" %}</button>
+            </div>
+        </form>
     </div>
+</div>
 
 {% endblock %}
 {% block scripts %}
