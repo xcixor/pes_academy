@@ -57,7 +57,6 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
                 print(de)
         if step.has_bonus:
             bonus += step.bonus_to_award
-        # total_marks = sum(mark.score for mark in self.object.marks.all())
         if step.group == 'step_one':
             if total_marks >= 2:
                 self.object.stage = 'step_four'
@@ -66,7 +65,6 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
             else:
                 self.object.disqualified = True
                 self.object.save()
-        total_marks += bonus
         if step.group == 'step_two':
             question_object = get_sub_criteria_item_by_label('Entity Type *')
             application_response = get_sub_criteria_item_response_if_exist(
