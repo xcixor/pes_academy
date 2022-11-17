@@ -25,3 +25,6 @@ class ApplicationDocument(models.Model):
 
     def __str__(self) -> str:
         return self.document_name
+
+    class Meta:
+        ordering = ['application__application_creator_id']

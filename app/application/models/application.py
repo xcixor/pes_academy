@@ -85,4 +85,4 @@ class Application(models.Model):
         return f'{self.call_to_action} - {self.application_creator}'
 
     class Meta:
-        ordering = ['id']
+        ordering = ['application_creator__id']
