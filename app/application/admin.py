@@ -60,7 +60,7 @@ class ApplicationCommentInline(admin.TabularInline):
 class ApplicationAdmin(admin.ModelAdmin):
 
     list_display = ['special_id', 'application_creator', 'created']
-    list_filter = ['stage', 'is_in_review']
+    list_filter = ['stage', 'is_in_review', 'disqualified']
     search_fields = ['application_creator__email',
                      'application_creator__id', 'application_creator__pk']
 

@@ -246,13 +246,13 @@
                                 <form action="{% url 'application:extra_documents' %}" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <input name="document_name" type="text" required style="color:black" placeholder="{% trans "Document name" %}">
+                                        <input name="document_name" type="text" required style="color:black" placeholder="{% trans 'Document name' %}">
                                         {% for error in form.document_name.errors %}
                                         <div class="error">{{ error|escape }}</div>
                                         {% endfor %}
                                     </div>
                                     <div class="form-group">
-                                        <input name="document" type="file" required>
+                                        <input name="document" accept="application/pdf" type="file" required>
                                         {% for error in form.document.errors %}
                                         <div class="error">{{ error|escape }}</div>
                                         {% endfor %}
