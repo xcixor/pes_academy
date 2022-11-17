@@ -2,7 +2,8 @@ from django.urls import path
 from eligibility.presentation.views import (
     EligibilityView, ReviewCompleteView, ScoreView, UpdateScoreView,
     DisqualifyView, EvaluationStepView, StepCompleteView,
-    BonusPointsView, DeleteBonusView, RollBackApplicationView)
+    BonusPointsView, DeleteBonusView, RollBackApplicationView,
+    ExtraDocumentsView)
 
 
 app_name = 'eligibility'
@@ -26,4 +27,6 @@ urlpatterns = [
          name='update_score'),
     path('application/<slug:step_slug>/bonus/', BonusPointsView.as_view(),
          name='bonus'),
+    path('application/review/docs/<slug:slug>/',
+         ExtraDocumentsView.as_view(), name='extra_docs'),
 ]

@@ -30,10 +30,17 @@
             <h4>{% trans "Created By" %}</h4>
         </b>
     </div>
-    <div class="col-md-3"><b>
-        <h4>{% trans "Review" %}</h4>
-    </b>
-</div>
+    <div class="col-md-2"><b>
+            <h4>{% trans "Review" %}</h4>
+        </b>
+    </div>
+    <div class="col-md-2"><b>
+            <h4>{% trans "Action" %}</h4>
+        </b>
+    </div>
+    <div class="col-md-2">
+        <p style="font-weight: bold;" title="Documents you might have asked for">Extra Documents Uploaded</p>
+    </div>
 </div>
 {% for review in user.reviews.all %}
 {% if review.application.disqualified %}
@@ -45,13 +52,13 @@
     <div class="col-md-3"><b>
             <p>{{review.application.application_creator.email}}</p>
         </b></div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <p style="font-weight: bold;">
             Disqualified
             <i class="fa-regular fa-circle-xmark"></i>
         </p>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <p style="font-weight: bold;">
             {% if review.application.stage == 'step_three' %}
             <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_one' step='step_three' %}"
@@ -67,6 +74,10 @@
         {% endif %}
         </p>
     </div>
+    <div class="col-md-2">
+        <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
+            class="btn btn-primary">{% trans "Extra Docs" %}</a>
+    </div>
 </div>
 {% else %}
 <div class="row">
@@ -76,7 +87,7 @@
     <div class="col-md-3"><b>
             <p>{{review.application.application_creator.email}}</p>
         </b></div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         {% if review.application.stage == 'step_three' %}
         <a href="{% url 'eligibility:step' slug=review.application.slug step_slug='step_one'|get_group_slug %}"
             class="btn btn-primary">{% trans "Start Review" %}</a>
@@ -91,7 +102,7 @@
         <p>Review Complete</p>
         {% endif %}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <p style="font-weight: bold;">
             {% if review.application.stage == 'step_three' %}
             <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_one' step='step_three' %}"
@@ -106,6 +117,10 @@
         <p><b>Cant Roll Back</b></p>
         {% endif %}
         </p>
+    </div>
+    <div class="col-md-2">
+        <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
+            class="btn btn-primary">{% trans "Extra Docs" %}</a>
     </div>
 </div>
 {% endif %}
