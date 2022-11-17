@@ -18,3 +18,4 @@ from .clear_filters import ClearSortView, ClearSearchView
 from .export_emails_without_applications import export_emails_without_applications
 from .export_by_country import export_applications_by_country
 from .reassign_applications import ReassignApplicationView, ReassignApplicationHomeView
+from .floating import FloatingCompletedApplications

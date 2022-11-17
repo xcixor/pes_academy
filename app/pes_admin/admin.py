@@ -9,7 +9,8 @@ from pes_admin.presentation.views import (
     export_inactive_user_emails_to_xls, AdminApplicationView,
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
     export_emails_without_applications, export_applications_by_country,
-    ReassignApplicationHomeView, ReassignApplicationView)
+    ReassignApplicationHomeView, ReassignApplicationView,
+    FloatingCompletedApplications)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -37,6 +38,10 @@ class CustomAdmin(admin.AdminSite):
             path('applications/unassigned/',
                  admin.site.admin_view(UnassignedApplicationsView.as_view()),
                  name='unassigned_applications'),
+            path('applications/floating/',
+                 admin.site.admin_view(
+                     FloatingCompletedApplications.as_view()),
+                 name='floating'),
             path('applications/in-review/',
                  admin.site.admin_view(InReviewApplicationsView.as_view()),
                  name='applications_in_review'),
