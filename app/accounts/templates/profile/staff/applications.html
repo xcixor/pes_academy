@@ -1,6 +1,11 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
 {% load account_extras %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/accounts/applications.css' %}">
+{% endblock %}
 {% block admin_content %}
 {% if user.reviews.all %}
 <style>
@@ -75,8 +80,12 @@
         </p>
     </div>
     <div class="col-md-2">
-        <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
+        <div class="d-flex align-items-center align-content-center">
+            <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
             class="btn btn-primary">{% trans "Extra Docs" %}</a>
+            <p class="circle">{{review.application.documents.count}}</p>
+        </div>
+
     </div>
 </div>
 {% else %}
@@ -119,8 +128,11 @@
         </p>
     </div>
     <div class="col-md-2">
-        <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
+        <div class="d-flex align-items-center align-content-center">
+            <a href="{% url 'eligibility:extra_docs' slug=review.application.slug %}"
             class="btn btn-primary">{% trans "Extra Docs" %}</a>
+            <p class="circle">{{review.application.documents.count}}</p>
+        </div>
     </div>
 </div>
 {% endif %}
