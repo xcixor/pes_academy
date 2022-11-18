@@ -27,7 +27,7 @@
                             <div
                                 class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
                                 <p>My Score:
-                                    {{ application|get_marks }}
+                                    {{ application.overall_score }}
                                 </p>
                                 <p>Questions Rated:
                                     {{ application.marks.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}
