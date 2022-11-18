@@ -8,7 +8,7 @@ from pes_admin.presentation.views import (
     AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
     export_inactive_user_emails_to_xls, AdminApplicationView,
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
-    export_emails_without_applications, export_applications_by_country,
+    export_emails_without_applications, export_applications_by_country,export_reviewers_and_reviewees,export_final_applicants,
     ReassignApplicationHomeView, ReassignApplicationView,
     FloatingCompletedApplications)
 from pes_admin.presentation.views.export_form_questions import (
@@ -94,6 +94,12 @@ class CustomAdmin(admin.AdminSite):
             path('export/countries/csv/',
                  export_applications_by_country,
                  name='export_applications_by_country'),
+            path('export/reviewers/csv/',
+                 export_reviewers_and_reviewees,
+                 name='export_reviewers_and_reviewees'),
+            path('export/applicants/csv/',
+                 export_final_applicants,
+                 name='export_final_applicants'),
         ] + urls
         return custom_urls
 

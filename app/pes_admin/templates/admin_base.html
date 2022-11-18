@@ -139,6 +139,16 @@
                   <i class="fa-solid fa-file-csv"></i>
                   <span class="ml-2">{% trans "Export Countries" %}</span>
                 </a>
+                <a href="{% url 'admin:export_reviewers_and_reviewees' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Reviewers" %}</span>
+                </a>
+                <a href="{% url 'admin:export_final_applicants' %}"
+                  class="list-group-item list-group-item-action border-0 align-items-center">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <span class="ml-2">{% trans "Export Applicants" %}</span>
+                </a>
               </div>
             </div>
 
