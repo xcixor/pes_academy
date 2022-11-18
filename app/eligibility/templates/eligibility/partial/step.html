@@ -27,9 +27,16 @@
             <div class="row">
                 <div class="col-md-12 pt-4">
                     <div class="row">
-                        <div class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
-                            <p>My Score:
-                                {{ application|get_marks }}
+                        <div
+                            class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
+                            <p>Overall Score (including bonus if any):
+                                {{ application.overall_score }}
+                            </p>
+                            <p>Bonus:
+                                {{ application.total_bonus }}
+                            </p>
+                            <p>
+                                Current Score: {{ application|get_step_score:criteria.slug }}
                             </p>
                             <p>Questions Rated:
                                 {{ application.marks.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}
@@ -41,7 +48,10 @@
                         <div class="col-md-6 offset-md-1 d-flex flex-column">
                             <a href="{% url 'eligibility:step_done' slug=application.slug step_slug=criteria.slug %}"
                                 class="btn btn-primary py-4 mb-4">{% trans "Submit Rating" %}</a>
-                            <a href="/accounts/dashboard/" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
+                            <a href="/accounts/dashboard/"
+                                class="btn btn-primary py-4 mb-4">{% trans "My Dashboard" %}</a>
+                            <a href="{% url 'eligibility:check_eligibility' slug=application.slug %}"
+                                class="btn btn-primary py-4">{% trans "View All Responses" %}</a>
                         </div>
                     </div>
                 </div>
@@ -193,15 +203,19 @@
     <div class="row">
         <div class="col-md-12">
             {% if criteria.has_bonus %}
-            {% if criteria.bonus %}
+            {% if application.total_bonus %}
+            {% for bonus in application.bonus.all %}
+            {% if bonus|for_step:criteria %}
             <form
-                action="{% url 'eligibility:delete_bonus' pk=criteria.bonus.pk application_slug=application.slug step_slug=criteria.slug %}"
+                action="{% url 'eligibility:delete_bonus' pk=bonus.pk application_slug=application.slug step_slug=criteria.slug %}"
                 method="post" class="d-flex align-items-center bonus-form">
                 {% csrf_token %}
-                <p class="m-0">You have Awarded a bonus of <b>{{criteria.bonus.bonus}}</b> points </p>
+                <p class="m-0">You have Awarded a bonus of <b>{{bonus.bonus}}</b> points </p>
 
                 <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
             </form>
+            {% endif %}
+            {% endfor %}
             {% else %}
             <form action="{% url 'eligibility:bonus' step_slug=criteria.slug %}"
                 hx-post="{% url 'eligibility:bonus' step_slug=criteria.slug %}" method="POST" hx-trigger="change"

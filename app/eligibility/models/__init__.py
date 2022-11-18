@@ -68,7 +68,7 @@ class BonusPoints(models.Model):
     application = models.ForeignKey(
         Application, on_delete=models.CASCADE,
         related_name='bonus')
-    step = models.OneToOneField(
+    step = models.ForeignKey(
         ShortListGroup, on_delete=models.SET_NULL,
         related_name='bonus', null=True)
 

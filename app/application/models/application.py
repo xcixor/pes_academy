@@ -79,7 +79,16 @@ class Application(models.Model):
 
     @property
     def total_score(self):
-        return sum(item.score for item in self.scores.all())
+        print('lol')
+        return sum(item.score for item in self.marks.all())
+
+    @property
+    def total_bonus(self):
+        return sum(item.bonus for item in self.bonus.all())
+
+    @property
+    def overall_score(self):
+        return self.total_bonus + self.total_score
 
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'

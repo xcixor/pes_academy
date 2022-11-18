@@ -5,6 +5,8 @@ from agripitch.models import (
     DynamicForm, get_sub_criteria_item_document_response_if_exist,
     get_sub_criteria_item_response_if_exist, ApplicationMarks)
 from agripitch.presentation.views import get_sub_criteria_item_by_label
+from eligibility.models import ShortListGroup
+
 
 register = template.Library()
 
@@ -71,4 +73,26 @@ def is_scored(scoring, application):
         scoring=scoring, application=application).first()
     if found_marks:
         return found_marks
+    return False
+
+
+@register.filter('get_step_score')
+def get_step_score(application, step_slug):
+    step = ShortListGroup.objects.get(slug=step_slug)
+    total_marks = 0
+    for item in step.questions.all():
+        try:
+            saved_marks = ApplicationMarks.objects.filter(
+                question=item.question, application=application)
+            for mark in saved_marks:
+                total_marks += mark.score
+        except ApplicationMarks.DoesNotExist as de:
+            print(de)
+    return total_marks
+
+
+@register.filter('for_step')
+def for_step(bonus, step):
+    if bonus in step.bonus.all():
+        return True
     return False
