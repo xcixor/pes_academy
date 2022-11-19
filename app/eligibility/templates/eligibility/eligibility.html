@@ -174,14 +174,14 @@
                                                             class="btn btn-primary">{% trans "Send Query" %}</button>
                                                     </form>
                                                 </details>
-                                                {% for scoring in sub_criteria.question.scoring.all %}
+                                                {% for scoring in sub_criteria.scoring.all %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
-                                                    action="{% url 'eligibility:update_score' pk=application.pk step_slug=criteria.slug %}">
+                                                    action="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        hx-post="{% url 'eligibility:update_score' pk=application.pk step_slug=criteria.slug %}"
+                                                        hx-post="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}"
                                                         hx-swap="innerHTML" hx-target="#htmx-parent" required>
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
@@ -190,7 +190,7 @@
                                                             {{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
@@ -199,17 +199,17 @@
                                                 {% endwith %}
                                                 {% else %}
                                                 <form class="d-flex align-items-center" method="post"
-                                                    action="{% url 'eligibility:score' pk=application.pk step_slug=criteria.slug %}">
+                                                    action="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        hx-post="{% url 'eligibility:score' pk=application.pk step_slug=criteria.slug %}"
+                                                        hx-post="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}"
                                                         hx-swap="innerHTML" hx-target="#htmx-parent" required>
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
                                                         <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="application" value="{{application.pk}}">
                                                     <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                     {% for error in form.score.errors %}
@@ -318,14 +318,14 @@
                                                             class="btn btn-primary">{% trans "Send Query" %}</button>
                                                     </form>
                                                 </details>
-                                                {% for scoring in sub_criteria.question.scoring.all %}
+                                                {% for scoring in sub_criteria.scoring.all %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
-                                                    action="{% url 'eligibility:update_score' pk=application.pk step_slug=criteria.slug %}">
+                                                    action="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        hx-post="{% url 'eligibility:update_score' pk=application.pk step_slug=criteria.slug %}"
+                                                        hx-post="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}"
                                                         hx-swap="innerHTML" hx-target="#htmx-parent" required>
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
@@ -334,7 +334,7 @@
                                                             {{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
@@ -343,17 +343,17 @@
                                                 {% endwith %}
                                                 {% else %}
                                                 <form class="d-flex align-items-center" method="post"
-                                                    action="{% url 'eligibility:score' pk=application.pk step_slug=criteria.slug %}">
+                                                    action="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
-                                                        hx-post="{% url 'eligibility:score' pk=application.pk step_slug=criteria.slug %}"
+                                                        hx-post="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}"
                                                         hx-swap="innerHTML" hx-target="#htmx-parent" required>
                                                         <option selected disabled value="">{{scoring.scale}}</option>
                                                         {% for item in scoring.scale.items.all %}
                                                         <option value="{{item.item.score}}">{{item.item.label}}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    <input type="hidden" name="question" value="{{sub_criteria.question.pk}}">
+                                                    <input type="hidden" name="question" value="{{sub_criteria.pk}}">
                                                     <input type="hidden" name="application" value="{{application.pk}}">
                                                     <input type="hidden" name="scoring" value="{{scoring.pk}}">
                                                     {% for error in form.score.errors %}

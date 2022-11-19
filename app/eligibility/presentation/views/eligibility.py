@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 from django.utils.translation import gettext_lazy as _
 from application.models import Application
 from agripitch.models import CriteriaItem
+from eligibility.models import ShortListGroup
 
 
 User = get_user_model()
@@ -23,6 +24,8 @@ class EligibilityView(PermissionRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({'criteria': CriteriaItem.objects.all()})
+        step = ShortListGroup.objects.get(group='step_three')
+        context.update({'step': step})
         return context
 
     def get_template_names(self):
