@@ -218,7 +218,12 @@
                                                     {% endfor %}
                                                 </form>
                                                 {% endif %}
-                                                <form method="post"
+                                                <div class="mt-2">
+                                                    {% for comment in sub_criteria.comments.all %}
+                                                    <p>{{comment.comment}}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                <form method="post" class="mt-4"
                                                     action="{% url 'application:question_comment' slug=application.slug %}">
                                                     {% csrf_token %}
                                                     <textarea class="form-control" name="comment" rows="3"
@@ -374,7 +379,12 @@
                                                     {% endfor %}
                                                 </form>
                                                 {% endif %}
-                                                <form method="post"
+                                                <div class="mt-2">
+                                                    {% for comment in sub_criteria.comments.all %}
+                                                    <p>{{comment.comment}}</p>
+                                                    {% endfor %}
+                                                </div>
+                                                <form method="post" class="mt-4"
                                                     action="{% url 'application:question_comment' slug=application.slug %}">
                                                     {% csrf_token %}
                                                     <textarea class="form-control" name="comment" rows="3"
