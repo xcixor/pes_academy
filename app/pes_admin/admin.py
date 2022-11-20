@@ -10,7 +10,8 @@ from pes_admin.presentation.views import (
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
     export_emails_without_applications, export_applications_by_country,export_reviewers_and_reviewees,export_final_applicants,
     ReassignApplicationHomeView, ReassignApplicationView,
-    FloatingCompletedApplications, LongListEvaluation, AssignEvaluatorView)
+    FloatingCompletedApplications, LongListEvaluation,
+    AssignEvaluatorView, CreateEvaluation)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -42,10 +43,14 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(
                      FloatingCompletedApplications.as_view()),
                  name='floating'),
-            path('applications/long/list/evaluation',
+            path('applications/long/list/evaluation/',
                  admin.site.admin_view(
                      LongListEvaluation.as_view()),
                  name='long_list'),
+            path('applications/long/list/evaluator/',
+                 admin.site.admin_view(
+                     CreateEvaluation.as_view()),
+                 name='assign_evaluator'),
             path('applications/in-review/',
                  admin.site.admin_view(InReviewApplicationsView.as_view()),
                  name='applications_in_review'),

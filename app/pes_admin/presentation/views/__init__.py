@@ -22,4 +22,4 @@ from .export_final_applicants import export_final_applicants
 from .reassign_applications import ReassignApplicationView, ReassignApplicationHomeView
 from .floating import FloatingCompletedApplications
 from .long_list import LongListEvaluation
-from .assign_evaluator import AssignEvaluatorView
+from .assign_evaluator import AssignEvaluatorView, CreateEvaluation

@@ -15,7 +15,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 offset-md-2">
-        <form action="#" method="post">
+        <form action="{% url 'admin:assign_evaluator' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
                 {% for evaluator in evaluators %}
@@ -30,7 +30,8 @@
                 <p class="error">{{ error|escape }}</p>
                 {% endfor %}
             </div>
-            <button type="submit" class="btn btn-primary">{% trans "Re-Assign" %}</button>
+            <input type="hidden" name="application" value="{{application.pk}}">
+            <button type="submit" class="btn btn-primary">{% trans "Assign" %}</button>
         </form>
     </div>
 </div>

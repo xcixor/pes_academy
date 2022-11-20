@@ -1,15 +1,13 @@
-from django.views.generic import DetailView, FormView, View
-from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import DetailView, CreateView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
-from application.models import Application
-from application.models import ApplicationEvaluator
+from application.models import ApplicationEvaluator, Application
 
 User = get_user_model()
 
 
-class GetAssignEvaluator(DetailView):
+class AssignEvaluatorView(DetailView):
 
     template_name = 'pes_admin/assign_evaluator.html'
     model = Application
@@ -22,38 +20,16 @@ class GetAssignEvaluator(DetailView):
         return context
 
 
-# class PostAssignEvaluator(SingleObjectMixin, FormView):
+class CreateEvaluation(CreateView):
 
-#     template_name = 'pes_admin/assign_evaluator.html'
-#     form_class = AssignEvaluatorForm
-#     success_url = '/CgDX4znLdQDLFw/advanced/applications/unassigned/'
-#     model = Application
+    template_name = 'pes_admin/assign_evaluator.html'
+    fields = ['application', 'evaluator']
+    success_url = '/CgDX4znLdQDLFw/advanced/applications/long/list/evaluation/'
+    model = ApplicationEvaluator
 
-#     def post(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         return super().post(request, *args, **kwargs)
-
-#     def form_valid(self, form):
-#         self.object.is_in_review = True
-#         self.object.stage = 'step_three'
-#         self.object.save()
-#         form.assign_evaluator(self.object)
-#         return super().form_valid(form)
-
-#     def get_success_url(self):
-#         success_message = _('Great, application ') + \
-#             str(self.object) + _(' is now in review.')
-#         messages.add_message(
-#             self.request, messages.SUCCESS, success_message)
-#         return super().get_success_url()
-
-
-class AssignEvaluatorView(View):
-
-    def get(self, request, *args, **kwargs):
-        view = GetAssignEvaluator.as_view()
-        return view(request, *args, **kwargs)
-
-    # def post(self, request, *args, **kwargs):
-    #     view = PostAssignEvaluator.as_view()
-    #     return view(request, *args, **kwargs)
+    def get_success_url(self):
+        success_message = _('Great, application ') + \
+            str(self.object) + _(' is now in evaluation.')
+        messages.add_message(
+            self.request, messages.SUCCESS, success_message)
+        return super().get_success_url()
