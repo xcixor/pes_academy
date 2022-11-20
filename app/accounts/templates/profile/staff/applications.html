@@ -7,8 +7,6 @@
 <link rel="stylesheet" href="{% static 'css/accounts/applications.css' %}">
 {% endblock %}
 {% block admin_content %}
-{% if user.is_evaluator %}
-{% if user.evaluations.all %}
 <style>
     p {
         font-size: 1.6rem !important;
@@ -27,7 +25,8 @@
         color: #DCDCDC;
     }
 </style>
-
+{% if user.is_evaluator %}
+{% if user.evaluations.all %}
 <div class="row">
     <div class="col-md-3"><b>
             <h4>{% trans "Application ID" %}</h4>
@@ -66,7 +65,7 @@
     </div>
     <div class="col-md-2">
         <p style="font-weight: bold;">
-            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_four' %}"
+            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_six' %}"
                 class="btn btn-primary">Rollback</a>
         </p>
     </div>
@@ -87,12 +86,19 @@
             <p>{{review.application.application_creator.email}}</p>
         </b></div>
     <div class="col-md-2">
+        {% if review.application.to_advance %}
+        <p><b>
+        ShortListed
+        <i class="fas fa-check" style="color:#14a562"></i>
+        </b></p>
+        {% else %}
         <a href="{% url 'eligibility:check_eligibility' slug=review.application.slug %}"
             class="btn btn-primary">{% trans "Long List" %}</a>
+        {% endif %}
     </div>
     <div class="col-md-2">
         <p style="font-weight: bold;">
-            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_four' %}"
+            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_six' %}"
                 class="btn btn-primary">Rollback</a>
         </p>
     </div>
@@ -116,24 +122,6 @@
 
 {% else %}
 {% if user.reviews.all %}
-<style>
-    p {
-        font-size: 1.6rem !important;
-        font-weight: 600;
-    }
-
-    h4 {
-        font-weight: bold;
-    }
-
-    a.btn {
-        font-weight: 600;
-    }
-
-    a.btn:hover {
-        color: #DCDCDC;
-    }
-</style>
 
 <div class="row">
     <div class="col-md-3"><b>

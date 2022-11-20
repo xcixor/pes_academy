@@ -15,15 +15,13 @@ class RollBackApplicationView(DetailView):
         step = kwargs.get('step')
         application.stage = step
         application.disqualified = False
+        application.to_advance = False
         application.save()
         current_step_slug = kwargs.get('current_step')
         current_step = None
         try:
-            if current_step_slug == 'step_three':
-                current_step = ShortListGroup.objects.get(group='step_two')
-            else:
-                current_step = ShortListGroup.objects.get(
-                    group=current_step_slug)
+            current_step = ShortListGroup.objects.get(
+                group=current_step_slug)
             bonuses = BonusPoints.objects.filter(
                 application=application, step=current_step)
             for bonus in bonuses:

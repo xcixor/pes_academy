@@ -99,6 +99,12 @@
               {% endif %}
               <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
               <p>Applications reviewed: {{ user.applications.count }}</p>
+              {% elif user.is_evaluator %}
+              <h3>Quick Stats</h3>
+              <p>Total Applications: <b>{{user.evaluations.count}}</b></p>
+              <p>Total Applications Qualified {% with user|get_by_qualified_status:'qualified' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
+              <p>Total Applications Disqualified {% with user|get_by_qualified_status:'disqualified' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
+              <p>Total Applications Remaining : <b>{{user|get_remaining_evaluations}}</b></p>
               {% else %}
               <h3>Quick Stats</h3>
               <p>Total Applications: <b>{{user.reviews.count}}</b></p>

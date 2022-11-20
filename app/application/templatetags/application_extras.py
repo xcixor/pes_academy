@@ -149,3 +149,26 @@ def get_remaining_reviews(reviewer):
         application__stage='step_five').count()
     remaining_reviews = total_reviews.count() - reviews_in_step_five
     return remaining_reviews
+
+
+@register.filter('get_by_qualified_status')
+def get_by_qualified_status(reviewer, status):
+    total_reviews = reviewer.evaluations.all()
+    if status == 'qualified':
+        return total_reviews.filter(
+            application__disqualified=False,
+            application__stage='step_six').count()
+    elif status == 'disqualified':
+        return total_reviews.filter(
+            application__disqualified=True,
+            application__stage='step_five').count()
+    return 0
+
+
+@register.filter('get_remaining_evaluations')
+def get_remaining_evaluations(reviewer):
+    total_reviews = reviewer.reviews.all()
+    remaining = total_reviews.filter(
+        application__stage='step_five',
+        application__disqualified=False).count()
+    return remaining

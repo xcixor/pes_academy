@@ -1,4 +1,5 @@
-from django.views.generic import View, CreateView, DeleteView
+from django.views.generic import (
+    View, CreateView, DeleteView, DetailView)
 from django.views.generic.detail import SingleObjectMixin
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -107,6 +108,18 @@ class StepCompleteView(SingleObjectMixin, View, HtmlEmailMixin):
             _('Review Completed'), None, from_email, to_email,
             template='eligibility/email/review_done.html',
             context=context)
+        return redirect('/accounts/reviewer/applications/')
+
+
+class QualifyApplicationView(DetailView):
+
+    model = Application
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.disqualified = False
+        self.object.stage = 'step_six'
+        self.object.save()
         return redirect('/accounts/reviewer/applications/')
 
 
