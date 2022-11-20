@@ -26,6 +26,8 @@ class ScoreView(CreateView):
         success_message = _('Great, your score has been saved.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
+        if step.group == 'step_three':
+            return f'/eligibility/{self.object.application.slug}/'
         return f'/eligibility/{self.object.application.slug}/{step.slug}/'
 
     def form_invalid(self, form):
@@ -36,6 +38,8 @@ class ScoreView(CreateView):
         context = self.get_context_data()
         context['form'] = form
         application = Application.objects.get(pk=self.kwargs.get('pk'))
+        if step.group == 'step_three':
+            return f'/eligibility/{application.slug}/'
         return redirect(f'/eligibility/{application.slug}/{step.slug}/')
 
 
@@ -65,6 +69,8 @@ class UpdateScoreView(SingleObjectMixin, FormView):
         success_message = _('Great, your score has been updated.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
+        if step.group == 'step_three':
+            return f'/eligibility/{self.object.slug}/'
         return f'/eligibility/{self.object.slug}/{step.slug}/'
 
     def form_invalid(self, form):
@@ -74,4 +80,6 @@ class UpdateScoreView(SingleObjectMixin, FormView):
         messages.add_message(self.request, messages.ERROR, message)
         context = self.get_context_data()
         context['form'] = form
+        if step.group == 'step_three':
+            return f'/eligibility/{self.object.slug}/'
         return redirect(f'/eligibility/{self.object.slug}/{step.slug}/')

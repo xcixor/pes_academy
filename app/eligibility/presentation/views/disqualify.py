@@ -14,9 +14,9 @@ class DisqualifyView(SingleObjectMixin, View, HtmlEmailMixin):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        print(self.object, 'disqualify')
         self.object.is_in_review = False
         self.object.eligibility = False
+        self.object.disqualified = True
         self.object.save()
         from_email = settings.VERIFIED_EMAIL_USER
         to_email = settings.ADMIN_EMAILS

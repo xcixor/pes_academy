@@ -79,7 +79,6 @@ class Application(models.Model):
 
     @property
     def total_score(self):
-        print('lol')
         return sum(item.score for item in self.marks.all())
 
     @property

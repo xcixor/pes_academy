@@ -37,9 +37,9 @@
                                 </p>
                             </div>
                             <div class="col-md-6 offset-md-1 d-flex flex-column">
-                                <a href="#"
+                                <a href="{% url 'eligibility:step_done' slug=application.slug step_slug=step.slug %}"
                                     class="btn btn-primary py-4 mb-4">{% trans "Qualify" %}</a>
-                                <a href="#"
+                                <a href="{% url 'eligibility:disqualify' slug=application.slug %}"
                                     class="btn btn-primary py-4 mb-4">{% trans "Disqualify" %}</a>
                                 <a href="/accounts/dashboard/"
                                     class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
@@ -175,6 +175,7 @@
                                                     </form>
                                                 </details>
                                                 {% for scoring in sub_criteria.scoring.all %}
+                                                {% if sub_criteria|in_step_three %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
@@ -216,6 +217,7 @@
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
                                                 </form>
+                                                {% endif %}
                                                 {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -319,6 +321,7 @@
                                                     </form>
                                                 </details>
                                                 {% for scoring in sub_criteria.scoring.all %}
+                                                {% if sub_criteria|in_step_three %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
                                                 <form class="d-flex align-items-center" method="post"
@@ -360,6 +363,7 @@
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
                                                 </form>
+                                                {% endif %}
                                                 {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -413,63 +417,63 @@
 <script src="{% static 'js/eligibility/eligibility.js' %}"></script>
 <script src="{% static 'js/agripitch/application_form.js' %}"></script>
 <script>
-    htmx.onLoad(function(content) {
+    htmx.onLoad(function (content) {
         const navigateToFormStep = (stepNumber) => {
-        	localStorage.setItem("stepNumber", JSON.stringify(stepNumber));
-        document.querySelectorAll(".form-step").forEach((formStepElement) => {
-            formStepElement.classList.add("d-none");
-        });
-        document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
-            formStepHeader.classList.add("form-stepper-unfinished");
-            formStepHeader.classList.remove(
-                "form-stepper-active",
+            localStorage.setItem("stepNumber", JSON.stringify(stepNumber));
+            document.querySelectorAll(".form-step").forEach((formStepElement) => {
+                formStepElement.classList.add("d-none");
+            });
+            document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+                formStepHeader.classList.add("form-stepper-unfinished");
+                formStepHeader.classList.remove(
+                    "form-stepper-active",
+                    "form-stepper-completed"
+                );
+            });
+            document.querySelector("#step-" + stepNumber).classList.remove("d-none");
+            const formStepCircle = document.querySelector(
+                'li[step="' + stepNumber + '"]'
+            );
+            formStepCircle.classList.remove(
+                "form-stepper-unfinished",
                 "form-stepper-completed"
             );
-        });
-        document.querySelector("#step-" + stepNumber).classList.remove("d-none");
-        const formStepCircle = document.querySelector(
-            'li[step="' + stepNumber + '"]'
-        );
-        formStepCircle.classList.remove(
-            "form-stepper-unfinished",
-            "form-stepper-completed"
-        );
-        formStepCircle.classList.add("form-stepper-active");
-        for (let index = 0; index < stepNumber; index++) {
-            const formStepCircle = document.querySelector('li[step="' + index + '"]');
-            if (formStepCircle) {
-                formStepCircle.classList.remove(
-                    "form-stepper-unfinished",
-                    "form-stepper-active"
-                );
-                formStepCircle.classList.add("form-stepper-completed");
+            formStepCircle.classList.add("form-stepper-active");
+            for (let index = 0; index < stepNumber; index++) {
+                const formStepCircle = document.querySelector('li[step="' + index + '"]');
+                if (formStepCircle) {
+                    formStepCircle.classList.remove(
+                        "form-stepper-unfinished",
+                        "form-stepper-active"
+                    );
+                    formStepCircle.classList.add("form-stepper-completed");
+                }
             }
-        }
-    };
+        };
 
-    document
-        .querySelectorAll(".top-navigate-form-step")
-        .forEach((formNavigationBtn) => {
-            formNavigationBtn.addEventListener("click", () => {
-                const stepNumber = parseInt(
-                    formNavigationBtn.getAttribute("step_number")
-                );
-                navigateToFormStep(stepNumber);
+        document
+            .querySelectorAll(".top-navigate-form-step")
+            .forEach((formNavigationBtn) => {
+                formNavigationBtn.addEventListener("click", () => {
+                    const stepNumber = parseInt(
+                        formNavigationBtn.getAttribute("step_number")
+                    );
+                    navigateToFormStep(stepNumber);
+                });
             });
-        });
 
-    document
-        .querySelectorAll(".btn-navigate-form-step")
-        .forEach((formNavigationBtn) => {
-            formNavigationBtn.addEventListener("click", () => {
-                var formSection = $(formNavigationBtn).parent().parent();
-                const stepNumber = parseInt(
-                    formNavigationBtn.getAttribute("step_number")
-                );
-                navigateToFormStep(stepNumber);
+        document
+            .querySelectorAll(".btn-navigate-form-step")
+            .forEach((formNavigationBtn) => {
+                formNavigationBtn.addEventListener("click", () => {
+                    var formSection = $(formNavigationBtn).parent().parent();
+                    const stepNumber = parseInt(
+                        formNavigationBtn.getAttribute("step_number")
+                    );
+                    navigateToFormStep(stepNumber);
+                });
             });
-        });
 
     });
-    </script>
+</script>
 {% endblock %}

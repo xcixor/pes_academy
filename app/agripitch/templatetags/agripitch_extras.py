@@ -96,3 +96,12 @@ def for_step(bonus, step):
     if bonus in step.bonus.all():
         return True
     return False
+
+
+@register.filter('in_step_three')
+def in_step_three(question):
+    step = ShortListGroup.objects.get(group='step_three')
+    questions_in_step = step.questions.all().values_list('question__pk', flat=True)
+    if question.pk in questions_in_step:
+        return True
+    return False
