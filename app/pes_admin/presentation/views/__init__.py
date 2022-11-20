@@ -21,3 +21,4 @@ from .export_reviewers import export_reviewers_and_reviewees
 from .export_final_applicants import export_final_applicants
 from .reassign_applications import ReassignApplicationView, ReassignApplicationHomeView
 from .floating import FloatingCompletedApplications
+from .long_list import LongListEvaluation
