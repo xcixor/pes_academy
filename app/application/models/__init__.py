@@ -9,3 +9,4 @@ from .application_prompt import ApplicationPrompt
 from .application_score import ApplicationScore
 from .comment import ApplicationComment
 from .carousel_images import CarouselImage
+from .application_evaluator import ApplicationEvaluator

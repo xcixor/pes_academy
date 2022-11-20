@@ -10,7 +10,7 @@ from pes_admin.presentation.views import (
     export_remaining_steps_for_users, ClearSortView, ClearSearchView,
     export_emails_without_applications, export_applications_by_country,export_reviewers_and_reviewees,export_final_applicants,
     ReassignApplicationHomeView, ReassignApplicationView,
-    FloatingCompletedApplications, LongListEvaluation)
+    FloatingCompletedApplications, LongListEvaluation, AssignEvaluatorView)
 from pes_admin.presentation.views.export_form_questions import (
     export_agripitch_questions_xls)
 from pes_admin.presentation.views.export_key_stats_to_csv import (
@@ -59,6 +59,9 @@ class CustomAdmin(admin.AdminSite):
                  admin.site.admin_view(AssignCoachesView.as_view())),
             path('assign/<int:pk>/reviewers/',
                  admin.site.admin_view(AssignReviewersView.as_view())),
+            path('assign/<int:pk>/evaluator/',
+                 admin.site.admin_view(AssignEvaluatorView.as_view()),
+                 name='assign_evaluator'),
             path('application/<slug:slug>/view/',
                  admin.site.admin_view(AdminApplicationView.as_view()),
                  name='admin_application_view'),

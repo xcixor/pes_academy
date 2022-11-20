@@ -64,6 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_moderator = models.BooleanField(default=False)
     is_reviewer = models.BooleanField(default=False)
+    is_evaluator = models.BooleanField(default=False)
     is_coach = models.BooleanField(default=False)
     is_applying_for_a_call_to_action = models.BooleanField(default=False)
     age = models.CharField(null=True, blank=True, max_length=20)
