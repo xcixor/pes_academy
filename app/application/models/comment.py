@@ -30,5 +30,5 @@ class QuestionComment(models.Model):
         SubCriteriaItem, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self) -> str:
-        return _('Comment for ') + self.question + \
-            _(' by') + self.evaluator.email
+        return _('Comment for ') + self.question.label + \
+            _('; by') + self.evaluator.email

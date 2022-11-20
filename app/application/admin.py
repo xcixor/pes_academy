@@ -3,11 +3,12 @@ from translations.admin import TranslatableAdmin, TranslationInline
 from application.models import (
     CallToAction, Application, ApplicationDocument, ApplicationReview,
     ApplicationScore, ApplicationPrompt, ApplicationComment,
-    CarouselImage)
+    CarouselImage, QuestionComment)
 from application.forms import CallToActionAdminForm
 
 
 admin.site.register(CarouselImage)
+admin.site.register(QuestionComment)
 
 
 @admin.register(CallToAction)

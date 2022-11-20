@@ -218,6 +218,16 @@
                                                     {% endfor %}
                                                 </form>
                                                 {% endif %}
+                                                <form method="post"
+                                                    action="{% url 'application:question_comment' slug=application.slug %}">
+                                                    {% csrf_token %}
+                                                    <textarea class="form-control" name="comment" rows="3"
+                                                                required placeholder="{% trans 'Comment' %}"></textarea>
+                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
+                                                    <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
+                                                    <button type="submit"
+                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                                </form>
                                                 {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -364,6 +374,16 @@
                                                     {% endfor %}
                                                 </form>
                                                 {% endif %}
+                                                <form method="post"
+                                                    action="{% url 'application:question_comment' slug=application.slug %}">
+                                                    {% csrf_token %}
+                                                    <textarea class="form-control" name="comment" rows="3"
+                                                                required placeholder="{% trans 'Comment' %}"></textarea>
+                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
+                                                    <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
+                                                    <button type="submit"
+                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                                </form>
                                                 {% endif %}
                                                 {% endfor %}
                                             </div>
