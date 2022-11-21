@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_countries',
     'googlecharts',
     'rosetta',
+    'django_extensions',
     'common',
     'translations',
     'accounts',
