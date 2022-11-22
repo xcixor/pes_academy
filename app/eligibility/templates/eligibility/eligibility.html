@@ -223,15 +223,15 @@
                                                     <p>{{comment.comment}}</p>
                                                     {% endfor %}
                                                 </div>
-                                                <form method="post" class="mt-4"
+                                                <form method="POST" class="mt-4"
                                                     action="{% url 'application:question_comment' slug=application.slug %}">
                                                     {% csrf_token %}
-                                                    <textarea class="form-control" name="comment" rows="3"
-                                                                required placeholder="{% trans 'Comment' %}"></textarea>
-                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
+                                                    <textarea class="form-control" name="comment" rows="3" required
+                                                        placeholder="{% trans 'Comment' %}"></textarea>
                                                     <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
+                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
                                                     <button type="submit"
-                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                                        class="btn btn-primary">{% trans "Save Comment" %}</button>
                                                 </form>
                                                 {% endif %}
                                                 {% endfor %}
@@ -387,12 +387,12 @@
                                                 <form method="post" class="mt-4"
                                                     action="{% url 'application:question_comment' slug=application.slug %}">
                                                     {% csrf_token %}
-                                                    <textarea class="form-control" name="comment" rows="3"
-                                                                required placeholder="{% trans 'Comment' %}"></textarea>
+                                                    <textarea class="form-control" name="comment" rows="3" required
+                                                        placeholder="{% trans 'Comment' %}"></textarea>
                                                     <input type="hidden" value="{{sub_criteria.pk}}" name="question">
                                                     <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
                                                     <button type="submit"
-                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                                        class="btn btn-primary">{% trans "Save Comment" %}</button>
                                                 </form>
                                                 {% endif %}
                                                 {% endfor %}
@@ -445,7 +445,7 @@
 {% block scripts %}
 {{ block.super }}
 <script src="{% static 'js/eligibility/eligibility.js' %}"></script>
-<script src="{% static 'js/agripitch/application_form.js' %}"></script>
+<script src="{% static 'js/agripitch/navigation.js' %}"></script>
 <script>
     htmx.onLoad(function (content) {
         const navigateToFormStep = (stepNumber) => {

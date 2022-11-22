@@ -33,7 +33,8 @@
                                 class="btn btn-primary py-4 mb-4">{% trans "Qualify" %}</a>
                             <a href="{% url 'eligibility:disqualify' slug=application.slug %}"
                                 class="btn btn-primary py-4 mb-4">{% trans "Disqualify" %}</a>
-                            <a href="{% url 'accounts:applications_to_review' %}" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
+                            <a href="{% url 'accounts:applications_to_review' %}"
+                                class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
                     </div>
                 </div>
@@ -229,15 +230,15 @@
                                                 {% endfor %}
                                             </div>
                                             <form method="post" class="mt-4"
-                                                    action="{% url 'application:question_comment' slug=application.slug %}">
-                                                    {% csrf_token %}
-                                                    <textarea class="form-control" name="comment" rows="3"
-                                                                required placeholder="{% trans 'Comment' %}"></textarea>
-                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
-                                                    <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
-                                                    <button type="submit"
-                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
-                                                </form>
+                                                action="{% url 'application:question_comment' slug=application.slug %}">
+                                                {% csrf_token %}
+                                                <textarea class="form-control" name="comment" rows="3" required
+                                                    placeholder="{% trans 'Comment' %}"></textarea>
+                                                <input type="hidden" value="{{sub_criteria.pk}}" name="question">
+                                                <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                            </form>
                                             {% endif %}
                                             {% endfor %}
                                         </div>
@@ -388,15 +389,15 @@
                                                 {% endfor %}
                                             </div>
                                             <form method="post" class="mt-4"
-                                                    action="{% url 'application:question_comment' slug=application.slug %}">
-                                                    {% csrf_token %}
-                                                    <textarea class="form-control" name="comment" rows="3"
-                                                                required placeholder="{% trans 'Comment' %}"></textarea>
-                                                    <input type="hidden" value="{{sub_criteria.pk}}" name="question">
-                                                    <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
-                                                    <button type="submit"
-                                                            class="btn btn-primary">{% trans "Save Comment" %}</button>
-                                                </form>
+                                                action="{% url 'application:question_comment' slug=application.slug %}">
+                                                {% csrf_token %}
+                                                <textarea class="form-control" name="comment" rows="3" required
+                                                    placeholder="{% trans 'Comment' %}"></textarea>
+                                                <input type="hidden" value="{{sub_criteria.pk}}" name="question">
+                                                <input type="hidden" value="{{user.pk}}" name="evaluator"> <br>
+                                                <button type="submit"
+                                                    class="btn btn-primary">{% trans "Save Comment" %}</button>
+                                            </form>
                                             {% endif %}
                                             {% endfor %}
                                         </div>
