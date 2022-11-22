@@ -210,6 +210,27 @@
 
                     <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
                 </form>
+                {% else %}
+                <form
+                    action="{% url 'eligibility:delete_bonus' pk=bonus.pk application_slug=application.slug step_slug=criteria.slug %}"
+                    method="post" class="d-flex align-items-center bonus-form">
+                    {% csrf_token %}
+                    <p class="m-0">You have previously awarded a bonus of <b>{{bonus.bonus}}</b> points for {{bonus.step}}</p>
+
+                    <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
+                </form>
+                <form action="{% url 'eligibility:bonus' step_slug=criteria.slug %}"
+                    hx-post="{% url 'eligibility:bonus' step_slug=criteria.slug %}" method="POST" hx-trigger="change"
+                    hx-swap="innerHTML" hx-target="#htmx-parent">
+                    {% csrf_token %}
+                    <label class="checkbox-container">Give Bonus for {{criteria}}?
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input type="hidden" name="bonus" value="{{criteria.bonus_to_award}}">
+                    <input type="hidden" name="application" value="{{application.pk}}">
+                    <input type="hidden" name="step" value="{{criteria.pk}}">
+                </form>
                 {% endif %}
                 {% endfor %}
                 {% else %}
@@ -217,7 +238,7 @@
                     hx-post="{% url 'eligibility:bonus' step_slug=criteria.slug %}" method="POST" hx-trigger="change"
                     hx-swap="innerHTML" hx-target="#htmx-parent">
                     {% csrf_token %}
-                    <label class="checkbox-container">Give Bonus?
+                    <label class="checkbox-container">Give Bonus {{criteria}}?
                         <input type="checkbox">
                         <span class="checkmark"></span>
                     </label>
