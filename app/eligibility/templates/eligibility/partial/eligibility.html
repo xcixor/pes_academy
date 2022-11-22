@@ -33,7 +33,7 @@
                                 class="btn btn-primary py-4 mb-4">{% trans "Qualify" %}</a>
                             <a href="{% url 'eligibility:disqualify' slug=application.slug %}"
                                 class="btn btn-primary py-4 mb-4">{% trans "Disqualify" %}</a>
-                            <a href="/accounts/dashboard/" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
+                            <a href="{% url 'accounts:applications_to_review' %}" class="btn btn-primary py-4">{% trans "My Dashboard" %}</a>
                         </div>
                     </div>
                 </div>

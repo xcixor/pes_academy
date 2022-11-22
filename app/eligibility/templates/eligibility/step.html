@@ -45,7 +45,7 @@
                             <div class="col-md-6 offset-md-1 d-flex flex-column">
                                 <a href="{% url 'eligibility:step_done' slug=application.slug step_slug=criteria.slug %}"
                                     class="btn btn-primary py-4 mb-4">{% trans "Submit Rating" %}</a>
-                                <a href="/accounts/dashboard/"
+                                <a href="{% url 'accounts:applications_to_review' %}"
                                     class="btn btn-primary py-4 mb-4">{% trans "My Dashboard" %}</a>
                                 <a href="{% url 'eligibility:check_eligibility' slug=application.slug %}"
                                     class="btn btn-primary py-4">{% trans "View All Responses" %}</a>
