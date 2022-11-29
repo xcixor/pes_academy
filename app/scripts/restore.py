@@ -42,7 +42,11 @@ def get_model_data(model):
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
     with open('nov_29_12_41.json') as data:
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
         parsed_data = json.load(data)
         for item in parsed_data:
             if item['model'] == model:
@@ -111,7 +115,11 @@ def restore_shortlist():
 =======
         print(ShortList.objects.create(
             pk=pk, competition=call_to_action, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_users():
@@ -163,7 +171,11 @@ def restore_criteriaitems():
 =======
         print(CriteriaItem.objects.create(
             pk=pk, shortlist=shortlist, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_questions():
@@ -187,7 +199,11 @@ def restore_questions():
 =======
         print(SubCriteriaItem.objects.create(
             pk=pk, criteria=criteria, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_questions_choices():
@@ -212,7 +228,11 @@ def restore_questions_choices():
 =======
         print(SubCriteriaItemChoice.objects.create(
             pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def clean_list_value(value):
@@ -248,7 +268,11 @@ def restore_textual_responses():
                 try:
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
     application_data_from_csv = get_application_slugs_from_csv()
     for application in application_data_from_csv:
         application_object = Application.objects.get(slug=application['slug'])
@@ -266,6 +290,11 @@ def restore_textual_responses():
                         json.loads(field_data['list_value']))
                     field_data.pop('list_value')
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
@@ -308,7 +337,11 @@ def restore_document_responses():
                 print("File already exists")
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
                 else:
                     print(SubCriteriaItemResponse.objects.create(
                         pk=pk, sub_criteria_item=sub_criteria_item,
@@ -333,6 +366,11 @@ def restore_document_responses():
                         pk=pk, sub_criteria_item=sub_criteria_item,
                         application=application_object, **field_data))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
@@ -357,7 +395,11 @@ def restore_scales():
 =======
         print(Scale.objects.create(
             pk=pk, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_scale_items():
@@ -379,7 +421,11 @@ def restore_scale_items():
 =======
         print(ScaleItem.objects.create(
             pk=pk, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_scoring_items():
@@ -403,7 +449,11 @@ def restore_scoring_items():
 =======
         print(ScoringItems.objects.create(
             pk=pk, scale=scale, item=item))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_scoring():
@@ -502,7 +552,11 @@ def restore_application_comment():
             print('Comment already exists')
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
         print(Scoring.objects.create(
             pk=pk, scale=scale, question=question, **field_data))
 
@@ -587,6 +641,11 @@ def restore_application_comment():
                 except:
                     print('Comment already exists')
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
@@ -611,7 +670,11 @@ def restore_shortlistgroup():
 =======
         print(ShortListGroup.objects.create(
             pk=pk, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 
 
 def restore_shortlistgroupitem():
@@ -665,7 +728,11 @@ def restore_reviews():
             print('Review exists')
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
         print(ShortListGroupItems.objects.create(
             pk=pk, group=group, question=question))
 
@@ -686,6 +753,11 @@ def restore_bonus():
                     pk=pk, application=application_object,
                     step=step, **field_data))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
@@ -726,4 +798,8 @@ def run():
 >>>>>>> 4ab385c (chore(scripts): update scripts)
 =======
     restore_applications()
+<<<<<<< HEAD
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c (chore(scripts): update scripts)
+>>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
