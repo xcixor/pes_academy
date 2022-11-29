@@ -14,3 +14,9 @@ keys/cal.json
 *.zip
 logs
 csvs
+application.json
+data.json
+dump.json
+for_google_form.csv
+lost.csv
+nov_29_12_41.json
