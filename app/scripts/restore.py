@@ -35,10 +35,14 @@ def get_application_by_slug(model, slug):
 def get_model_data(model):
     questions = []
 <<<<<<< HEAD
+<<<<<<< HEAD
     with open('nov_29_17_41.json') as data:
 =======
     with open('nov_29_12_41.json') as data:
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+    with open('nov_29_12_41.json') as data:
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
         parsed_data = json.load(data)
         for item in parsed_data:
             if item['model'] == model:
@@ -94,6 +98,7 @@ def restore_shortlist():
         field_data = item['fields']
         field_data.pop('competition')
 <<<<<<< HEAD
+<<<<<<< HEAD
         try:
             print(ShortList.objects.create(
                 pk=pk, competition=call_to_action, **field_data))
@@ -103,6 +108,10 @@ def restore_shortlist():
         print(ShortList.objects.create(
             pk=pk, competition=call_to_action, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(ShortList.objects.create(
+            pk=pk, competition=call_to_action, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_users():
@@ -141,6 +150,7 @@ def restore_criteriaitems():
         field_data = item['fields']
         field_data.pop('shortlist')
 <<<<<<< HEAD
+<<<<<<< HEAD
         try:
             print(CriteriaItem.objects.create(
                 pk=pk, shortlist=shortlist, **field_data))
@@ -150,6 +160,10 @@ def restore_criteriaitems():
         print(CriteriaItem.objects.create(
             pk=pk, shortlist=shortlist, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(CriteriaItem.objects.create(
+            pk=pk, shortlist=shortlist, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_questions():
@@ -160,6 +174,7 @@ def restore_questions():
         pk = item['pk']
         field_data.pop('criteria')
 <<<<<<< HEAD
+<<<<<<< HEAD
         try:
             print(SubCriteriaItem.objects.create(
                 pk=pk, criteria=criteria, **field_data))
@@ -169,6 +184,10 @@ def restore_questions():
         print(SubCriteriaItem.objects.create(
             pk=pk, criteria=criteria, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(SubCriteriaItem.objects.create(
+            pk=pk, criteria=criteria, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_questions_choices():
@@ -180,6 +199,7 @@ def restore_questions_choices():
         pk = item['pk']
         field_data.pop('sub_criteria_item')
 <<<<<<< HEAD
+<<<<<<< HEAD
         try:
             print(SubCriteriaItemChoice.objects.create(
                 pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
@@ -189,6 +209,10 @@ def restore_questions_choices():
         print(SubCriteriaItemChoice.objects.create(
             pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(SubCriteriaItemChoice.objects.create(
+            pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def clean_list_value(value):
@@ -204,6 +228,7 @@ def clean_list_value(value):
 
 
 def restore_textual_responses():
+<<<<<<< HEAD
 <<<<<<< HEAD
     data = get_model_data("agripitch.subcriteriaitemresponse")
     for item in data:
@@ -222,6 +247,8 @@ def restore_textual_responses():
                 field_data.pop('list_value')
                 try:
 =======
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
     application_data_from_csv = get_application_slugs_from_csv()
     for application in application_data_from_csv:
         application_object = Application.objects.get(slug=application['slug'])
@@ -238,13 +265,17 @@ def restore_textual_responses():
                     list_value = clean_list_value(
                         json.loads(field_data['list_value']))
                     field_data.pop('list_value')
+<<<<<<< HEAD
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
                     print(SubCriteriaItemResponse.objects.create(
                         pk=pk,
                         sub_criteria_item=sub_criteria_item,
                         application=application_object,
                         list_value=list_value,
                         **field_data))
+<<<<<<< HEAD
 <<<<<<< HEAD
                 except:
                     print("response already exist")
@@ -276,6 +307,8 @@ def restore_document_responses():
             except:
                 print("File already exists")
 =======
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
                 else:
                     print(SubCriteriaItemResponse.objects.create(
                         pk=pk, sub_criteria_item=sub_criteria_item,
@@ -299,7 +332,10 @@ def restore_document_responses():
                     print(SubCriteriaItemDocumentResponse.objects.create(
                         pk=pk, sub_criteria_item=sub_criteria_item,
                         application=application_object, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_scales():
@@ -307,6 +343,7 @@ def restore_scales():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
+<<<<<<< HEAD
 <<<<<<< HEAD
         try:
             print(Scale.objects.create(
@@ -317,6 +354,10 @@ def restore_scales():
         print(Scale.objects.create(
             pk=pk, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(Scale.objects.create(
+            pk=pk, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_scale_items():
@@ -324,6 +365,7 @@ def restore_scale_items():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
+<<<<<<< HEAD
 <<<<<<< HEAD
         try:
             print(ScaleItem.objects.create(
@@ -334,6 +376,10 @@ def restore_scale_items():
         print(ScaleItem.objects.create(
             pk=pk, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(ScaleItem.objects.create(
+            pk=pk, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_scoring_items():
@@ -344,6 +390,7 @@ def restore_scoring_items():
         scale = Scale.objects.get(pk=field_data['scale'])
         item = ScaleItem.objects.get(pk=field_data['item'])
 <<<<<<< HEAD
+<<<<<<< HEAD
         try:
             print(ScoringItems.objects.create(
                 pk=pk, scale=scale, item=item))
@@ -353,6 +400,10 @@ def restore_scoring_items():
         print(ScoringItems.objects.create(
             pk=pk, scale=scale, item=item))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(ScoringItems.objects.create(
+            pk=pk, scale=scale, item=item))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_scoring():
@@ -363,6 +414,7 @@ def restore_scoring():
         scale = Scale.objects.get(pk=field_data['scale'])
         question = SubCriteriaItem.objects.get(
             pk=field_data['question'])
+<<<<<<< HEAD
 <<<<<<< HEAD
         field_data.pop('question')
         field_data.pop('scale')
@@ -449,6 +501,8 @@ def restore_application_comment():
         except:
             print('Comment already exists')
 =======
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
         print(Scoring.objects.create(
             pk=pk, scale=scale, question=question, **field_data))
 
@@ -532,7 +586,10 @@ def restore_application_comment():
                         reviewer=reviewer, **field_data))
                 except:
                     print('Comment already exists')
+<<<<<<< HEAD
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_shortlistgroup():
@@ -540,6 +597,7 @@ def restore_shortlistgroup():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
+<<<<<<< HEAD
 <<<<<<< HEAD
         try:
             print(ShortListGroup.objects.create(
@@ -550,6 +608,10 @@ def restore_shortlistgroup():
         print(ShortListGroup.objects.create(
             pk=pk, **field_data))
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+        print(ShortListGroup.objects.create(
+            pk=pk, **field_data))
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def restore_shortlistgroupitem():
@@ -560,6 +622,7 @@ def restore_shortlistgroupitem():
         group = ShortListGroup.objects.get(pk=field_data['group'])
         question = SubCriteriaItem.objects.get(
             pk=field_data['question'])
+<<<<<<< HEAD
 <<<<<<< HEAD
         try:
             print(ShortListGroupItems.objects.create(
@@ -601,6 +664,8 @@ def restore_reviews():
         except:
             print('Review exists')
 =======
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
         print(ShortListGroupItems.objects.create(
             pk=pk, group=group, question=question))
 
@@ -620,12 +685,16 @@ def restore_bonus():
                 print(BonusPoints.objects.create(
                     pk=pk, application=application_object,
                     step=step, **field_data))
+<<<<<<< HEAD
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
 
 
 def run():
     # restore_users()
     # restore_call_to_action()
+<<<<<<< HEAD
 <<<<<<< HEAD
     # restore_applications()
 
@@ -655,3 +724,6 @@ def run():
 =======
     restore_applications()
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+=======
+    restore_applications()
+>>>>>>> 4ab385c8 (chore(scripts): update scripts)
