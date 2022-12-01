@@ -25,7 +25,7 @@
                                 {{ application.total_bonus }}
                             </p>
                             <p>
-                                Current Score: {{ application|get_step_score:criteria.slug }}
+                                Current Score: {{ application|get_step_score:step.slug }}
                             </p>
                             <p>Questions Rated:
                                 {{ application.marks.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}

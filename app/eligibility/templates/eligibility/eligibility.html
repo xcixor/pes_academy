@@ -26,14 +26,14 @@
                         <div class="row">
                             <div
                                 class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
-                                <p>Overall Score (including bonus if any):
+                                 <p>Overall Score (including bonus if any):
                                     {{ application.overall_score }}
                                 </p>
                                 <p>Bonus:
                                     {{ application.total_bonus }}
                                 </p>
                                 <p>
-                                    Current Score: {{ application|get_step_score:criteria.slug }}
+                                    Current Score: {{ application|get_step_score:step.slug }}
                                 </p>
                                 <p>Questions Rated:
                                     {{ application.marks.count }}/{% with ''|get_total_questions as total_questions %}{{ total_questions }}{% endwith %}
