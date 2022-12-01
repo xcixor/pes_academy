@@ -34,7 +34,7 @@ def get_application_by_slug(model, slug):
 
 def get_model_data(model):
     questions = []
-    with open('nov_29_12_41.json') as data:
+    with open('nov_29_17_41.json') as data:
         parsed_data = json.load(data)
         for item in parsed_data:
             if item['model'] == model:
@@ -89,8 +89,11 @@ def restore_shortlist():
         pk = item['pk']
         field_data = item['fields']
         field_data.pop('competition')
-        print(ShortList.objects.create(
-            pk=pk, competition=call_to_action, **field_data))
+        try:
+            print(ShortList.objects.create(
+                pk=pk, competition=call_to_action, **field_data))
+        except:
+            print("Shorty might already exist")
 
 
 def restore_users():
@@ -128,8 +131,11 @@ def restore_criteriaitems():
         pk = item['pk']
         field_data = item['fields']
         field_data.pop('shortlist')
-        print(CriteriaItem.objects.create(
-            pk=pk, shortlist=shortlist, **field_data))
+        try:
+            print(CriteriaItem.objects.create(
+                pk=pk, shortlist=shortlist, **field_data))
+        except:
+            print('Criteria item exists')
 
 
 def restore_questions():
@@ -139,8 +145,11 @@ def restore_questions():
         criteria = CriteriaItem.objects.get(pk=field_data['criteria'])
         pk = item['pk']
         field_data.pop('criteria')
-        print(SubCriteriaItem.objects.create(
-            pk=pk, criteria=criteria, **field_data))
+        try:
+            print(SubCriteriaItem.objects.create(
+                pk=pk, criteria=criteria, **field_data))
+        except:
+            print("Question might already exist")
 
 
 def restore_questions_choices():
@@ -151,8 +160,11 @@ def restore_questions_choices():
             pk=field_data['sub_criteria_item'])
         pk = item['pk']
         field_data.pop('sub_criteria_item')
-        print(SubCriteriaItemChoice.objects.create(
-            pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
+        try:
+            print(SubCriteriaItemChoice.objects.create(
+                pk=pk, sub_criteria_item=sub_criteria_item, **field_data))
+        except:
+            print("Choice might already exist")
 
 
 def clean_list_value(value):
@@ -168,51 +180,57 @@ def clean_list_value(value):
 
 
 def restore_textual_responses():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("agripitch.subcriteriaitemresponse")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                sub_criteria_item = SubCriteriaItem.objects.get(
-                    pk=field_data['sub_criteria_item'])
-                pk = item['pk']
-                field_data.pop('application')
-                field_data.pop('sub_criteria_item')
-                if sub_criteria_item.type == 'multiplechoicefield':
-                    list_value = clean_list_value(
-                        json.loads(field_data['list_value']))
-                    field_data.pop('list_value')
+    data = get_model_data("agripitch.subcriteriaitemresponse")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        if application_object.pk == field_data['application']:
+            sub_criteria_item = SubCriteriaItem.objects.get(
+                pk=field_data['sub_criteria_item'])
+            pk = item['pk']
+            field_data.pop('application')
+            field_data.pop('sub_criteria_item')
+            if sub_criteria_item.type == 'multiplechoicefield':
+                list_value = clean_list_value(
+                    json.loads(field_data['list_value']))
+                field_data.pop('list_value')
+                try:
                     print(SubCriteriaItemResponse.objects.create(
                         pk=pk,
                         sub_criteria_item=sub_criteria_item,
                         application=application_object,
                         list_value=list_value,
                         **field_data))
-                else:
+                except:
+                    print("response already exist")
+            else:
+                try:
                     print(SubCriteriaItemResponse.objects.create(
                         pk=pk, sub_criteria_item=sub_criteria_item,
                         application=application_object, **field_data))
+                except:
+                    print("response already exist")
 
 
 def restore_document_responses():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("agripitch.subcriteriaitemdocumentresponse")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                sub_criteria_item = SubCriteriaItem.objects.get(
-                    pk=field_data['sub_criteria_item'])
-                pk = item['pk']
-                field_data.pop('application')
-                field_data.pop('sub_criteria_item')
-                if sub_criteria_item.type == 'file':
-                    print(SubCriteriaItemDocumentResponse.objects.create(
-                        pk=pk, sub_criteria_item=sub_criteria_item,
-                        application=application_object, **field_data))
+    data = get_model_data("agripitch.subcriteriaitemdocumentresponse")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        sub_criteria_item = SubCriteriaItem.objects.get(
+            pk=field_data['sub_criteria_item'])
+        pk = item['pk']
+        field_data.pop('application')
+        field_data.pop('sub_criteria_item')
+        if sub_criteria_item.type == 'file':
+            try:
+                print(SubCriteriaItemDocumentResponse.objects.create(
+                    pk=pk, sub_criteria_item=sub_criteria_item,
+                    application=application_object, **field_data))
+            except:
+                print("File already exists")
 
 
 def restore_scales():
@@ -220,8 +238,11 @@ def restore_scales():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
-        print(Scale.objects.create(
-            pk=pk, **field_data))
+        try:
+            print(Scale.objects.create(
+                pk=pk, **field_data))
+        except:
+            print("Scale already exists")
 
 
 def restore_scale_items():
@@ -229,8 +250,11 @@ def restore_scale_items():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
-        print(ScaleItem.objects.create(
-            pk=pk, **field_data))
+        try:
+            print(ScaleItem.objects.create(
+                pk=pk, **field_data))
+        except:
+            print("Scale Item already exists")
 
 
 def restore_scoring_items():
@@ -240,8 +264,11 @@ def restore_scoring_items():
         pk = item['pk']
         scale = Scale.objects.get(pk=field_data['scale'])
         item = ScaleItem.objects.get(pk=field_data['item'])
-        print(ScoringItems.objects.create(
-            pk=pk, scale=scale, item=item))
+        try:
+            print(ScoringItems.objects.create(
+                pk=pk, scale=scale, item=item))
+        except:
+            print("Scoring item exists")
 
 
 def restore_scoring():
@@ -252,89 +279,91 @@ def restore_scoring():
         scale = Scale.objects.get(pk=field_data['scale'])
         question = SubCriteriaItem.objects.get(
             pk=field_data['question'])
-        print(Scoring.objects.create(
-            pk=pk, scale=scale, question=question, **field_data))
+        field_data.pop('question')
+        field_data.pop('scale')
+        try:
+            print(Scoring.objects.create(
+                pk=pk, scale=scale, question=question, **field_data))
+        except:
+            print('Scoring exists')
 
 
 def restore_application_marks():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("agripitch.applicationmarks")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                sub_criteria_item = SubCriteriaItem.objects.get(
-                    pk=field_data['question'])
-                scoring = Scoring.objects.get(
-                    pk=field_data['scoring'])
-                pk = item['pk']
-                field_data.pop('application')
-                field_data.pop('question')
-                field_data.pop('scoring')
+    data = get_model_data("agripitch.applicationmarks")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        if application_object.pk == field_data['application']:
+            sub_criteria_item = SubCriteriaItem.objects.get(
+                pk=field_data['question'])
+            scoring = Scoring.objects.get(
+                pk=field_data['scoring'])
+            pk = item['pk']
+            field_data.pop('application')
+            field_data.pop('question')
+            field_data.pop('scoring')
+            try:
                 print(ApplicationMarks.objects.create(
                     pk=pk, question=sub_criteria_item,
                     application=application_object,
                     scoring=scoring, **field_data))
+            except:
+                print("Marks already exist")
 
 
 def restore_application_documents():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("application.applicationdocument")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                pk = item['pk']
-                field_data.pop('application')
-                print(ApplicationDocument.objects.create(
-                    pk=pk, application=application_object, **field_data))
+    data = get_model_data("application.applicationdocument")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        pk = item['pk']
+        field_data.pop('application')
+        try:
+            print(ApplicationDocument.objects.create(
+                pk=pk, application=application_object, **field_data))
+        except:
+            print("Document exists")
 
 
 def restore_application_prompt():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("application.applicationdocument")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                pk = item['pk']
-                field_data.pop('application')
-                prompt = SubCriteriaItem.objects.get(
-                    pk=field_data['prompt'])
-                field_data.pop('prompt')
-                reviewer = User.objects.get(
-                    pk=field_data['reviewer'])
-                field_data.pop('prompt')
-                field_data.pop('reviewer')
-                print(ApplicationPrompt.objects.create(
-                    pk=pk, application=application_object,
-                    prompt=prompt,
-                    reviewer=reviewer, **field_data))
+    data = get_model_data("application.applicationprompt")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        pk = item['pk']
+        field_data.pop('application')
+        prompt = SubCriteriaItem.objects.get(
+            pk=field_data['prompt'])
+        field_data.pop('prompt')
+        reviewer = User.objects.get(
+            pk=field_data['reviewer'])
+        field_data.pop('reviewer')
+        print(ApplicationPrompt.objects.create(
+            pk=pk, application=application_object,
+            prompt=prompt,
+            reviewer=reviewer, **field_data))
 
 
 def restore_application_comment():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("application.applicationcomment")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                pk = item['pk']
-                field_data.pop('application')
-                reviewer = User.objects.get(
-                    pk=field_data['reviewer'])
-                field_data.pop('prompt')
-                field_data.pop('reviewer')
-                try:
-                    print(ApplicationComment.objects.create(
-                        pk=pk, application=application_object,
-                        reviewer=reviewer, **field_data))
-                except:
-                    print('Comment already exists')
+    data = get_model_data("application.applicationcomment")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        pk = item['pk']
+        field_data.pop('application')
+        reviewer = User.objects.get(
+            pk=field_data['reviewer'])
+        field_data.pop('reviewer')
+        try:
+            print(ApplicationComment.objects.create(
+                pk=pk, application=application_object,
+                reviewer=reviewer, **field_data))
+        except:
+            print('Comment already exists')
 
 
 def restore_shortlistgroup():
@@ -342,8 +371,11 @@ def restore_shortlistgroup():
     for item in data:
         field_data = item['fields']
         pk = item['pk']
-        print(ShortListGroup.objects.create(
-            pk=pk, **field_data))
+        try:
+            print(ShortListGroup.objects.create(
+                pk=pk, **field_data))
+        except:
+            print('Group already exists')
 
 
 def restore_shortlistgroupitem():
@@ -354,28 +386,54 @@ def restore_shortlistgroupitem():
         group = ShortListGroup.objects.get(pk=field_data['group'])
         question = SubCriteriaItem.objects.get(
             pk=field_data['question'])
-        print(ShortListGroupItems.objects.create(
-            pk=pk, group=group, question=question))
+        try:
+            print(ShortListGroupItems.objects.create(
+                pk=pk, group=group, question=question))
+        except:
+            print("Group Item already exists")
 
 
 def restore_bonus():
-    application_data_from_csv = get_application_slugs_from_csv()
-    for application in application_data_from_csv:
-        application_object = Application.objects.get(slug=application['slug'])
-        data = get_model_data("eligibility.bonuspoints")
-        for item in data:
-            field_data = item['fields']
-            if application_object.pk == field_data['application']:
-                pk = item['pk']
-                step = ShortListGroup.objects.get(pk=field_data['step'])
-                field_data.pop('application')
-                field_data.pop('step')
-                print(BonusPoints.objects.create(
-                    pk=pk, application=application_object,
-                    step=step, **field_data))
+    data = get_model_data("eligibility.bonuspoints")
+    for item in data:
+        field_data = item['fields']
+        application_object = Application.objects.get(
+            pk=field_data['application'])
+        pk = item['pk']
+        step = ShortListGroup.objects.get(pk=field_data['step'])
+        field_data.pop('application')
+        field_data.pop('step')
+        try:
+            print(BonusPoints.objects.create(
+                pk=pk, application=application_object, step=step, **field_data))
+        except:
+            print("Bonus already exists")
 
 
 def run():
     # restore_users()
     # restore_call_to_action()
-    restore_applications()
+    # restore_applications()
+
+    # restore_shortlist()
+    # restore_criteriaitems()
+    # restore_questions()
+    # restore_questions_choices()
+    # restore_textual_responses()
+
+    # restore_scales()
+    # restore_scale_items()
+    # restore_scoring_items()
+    # restore_scoring()
+    # restore_application_marks()
+
+    # restore_application_comment()
+    # restore_application_prompt()
+
+    # restore_shortlistgroup()
+    # restore_shortlistgroupitem()
+    # restore_bonus()
+
+    # restore_document_responses()
+    # restore_application_documents()
+    pass
