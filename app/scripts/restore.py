@@ -410,6 +410,23 @@ def restore_bonus():
             print("Bonus already exists")
 
 
+def restore_reviews():
+    data = get_model_data("application.applicationreview")
+    for item in data:
+        field_data = item['fields']
+        pk = item['pk']
+        application = Application.objects.get(pk=field_data['application'])
+        reviewer = User.objects.get(
+            pk=field_data['reviewer'])
+        field_data.pop('application')
+        field_data.pop('reviewer')
+        try:
+            print(ApplicationReview.objects.create(
+                pk=pk, application=application, reviewer=reviewer, **field_data))
+        except:
+            print('Review exists')
+
+
 def run():
     # restore_users()
     # restore_call_to_action()
@@ -436,4 +453,4 @@ def run():
 
     # restore_document_responses()
     # restore_application_documents()
-    pass
+    restore_reviews()
