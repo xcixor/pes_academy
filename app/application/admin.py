@@ -30,7 +30,8 @@ class ApplicationReviewAdmin(admin.ModelAdmin):
 class ApplicationDocumentAdmin(admin.ModelAdmin):
 
     list_display = ['application', 'creator', 'reviewer', 'document_name', ]
-    search_fields = ['application__application_creator__id', 'application__application_creator__email', 'application__slug']
+    search_fields = ['application__application_creator__id',
+                     'application__application_creator__email', 'application__slug']
 
 
 class ApplicationPromptInline(admin.TabularInline):

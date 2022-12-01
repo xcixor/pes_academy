@@ -294,22 +294,21 @@ def restore_application_marks():
         field_data = item['fields']
         application_object = Application.objects.get(
             pk=field_data['application'])
-        if application_object.pk == field_data['application']:
-            sub_criteria_item = SubCriteriaItem.objects.get(
-                pk=field_data['question'])
-            scoring = Scoring.objects.get(
-                pk=field_data['scoring'])
-            pk = item['pk']
-            field_data.pop('application')
-            field_data.pop('question')
-            field_data.pop('scoring')
-            try:
-                print(ApplicationMarks.objects.create(
-                    pk=pk, question=sub_criteria_item,
-                    application=application_object,
-                    scoring=scoring, **field_data))
-            except:
-                print("Marks already exist")
+        sub_criteria_item = SubCriteriaItem.objects.get(
+            pk=field_data['question'])
+        scoring = Scoring.objects.get(
+            pk=field_data['scoring'])
+        pk = item['pk']
+        field_data.pop('application')
+        field_data.pop('question')
+        field_data.pop('scoring')
+        try:
+            print(ApplicationMarks.objects.create(
+                pk=pk, question=sub_criteria_item,
+                application=application_object,
+                scoring=scoring, **field_data))
+        except:
+            print("Marks already exist")
 
 
 def restore_application_documents():
@@ -453,4 +452,5 @@ def run():
 
     # restore_document_responses()
     # restore_application_documents()
-    restore_reviews()
+    # restore_reviews()
+    pass

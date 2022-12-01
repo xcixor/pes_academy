@@ -12,8 +12,12 @@ from agripitch.models import (
 
 
 admin.site.register(Scoring)
-admin.site.register(ApplicationMarks)
 admin.site.register(ScoringItems)
+
+
+@admin.register(ApplicationMarks)
+class ApplicationMarksAdmin(admin.ModelAdmin):
+    search_fields = ['application__application_creator__email']
 
 
 class ScaleItemInline(admin.TabularInline):
