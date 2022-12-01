@@ -184,7 +184,7 @@
                                                 {% if sub_criteria|in_step_three %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
-                                                <form class="d-flex align-items-center" method="post"
+                                                <!-- <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
@@ -202,10 +202,10 @@
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
-                                                </form>
+                                                </form> -->
                                                 {% endwith %}
                                                 {% else %}
-                                                <form class="d-flex align-items-center" method="post"
+                                                <!-- <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
@@ -222,7 +222,7 @@
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
-                                                </form>
+                                                </form> -->
                                                 {% endif %}
                                                 <div class="mt-2">
                                                     {% for comment in sub_criteria.comments.all %}
@@ -345,7 +345,7 @@
                                                 {% if sub_criteria|in_step_three %}
                                                 {% if scoring|is_scored:application %}
                                                 {% with scoring|is_scored:application as old_marks %}
-                                                <form class="d-flex align-items-center" method="post"
+                                                <!-- <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:update_score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
@@ -363,10 +363,10 @@
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
-                                                </form>
+                                                </form> -->
                                                 {% endwith %}
                                                 {% else %}
-                                                <form class="d-flex align-items-center" method="post"
+                                                <!-- <form class="d-flex align-items-center" method="post"
                                                     action="{% url 'eligibility:score' pk=application.pk step_slug=step.slug %}">
                                                     {% csrf_token %}
                                                     <select name="score" class="custom-select custom-select-lg mr-4"
@@ -383,7 +383,7 @@
                                                     {% for error in form.score.errors %}
                                                     <p class="error">{{ error | escape }} </p>
                                                     {% endfor %}
-                                                </form>
+                                                </form> -->
                                                 {% endif %}
                                                 <div class="mt-2">
                                                     {% for comment in sub_criteria.comments.all %}
