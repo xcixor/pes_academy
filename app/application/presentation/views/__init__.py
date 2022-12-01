@@ -6,5 +6,5 @@ from .application_prompt import ApplicationPromptView
 from .application_score import ApplicationScoreView
 from .application_comment import ApplicationCommentView
 from .privacy import PrivacyPolicyView
-from .step_comment import StepApplicationCommentView
+from .step_comment import StepApplicationCommentView, DeleteStepComment
 from .question_comment import QuestionCommentView

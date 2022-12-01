@@ -27,8 +27,7 @@
             <div class="row">
                 <div class="col-md-12 pt-4">
                     <div class="row">
-                        <div
-                            class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
+                        <div class="col-md-5 d-flex flex-column justify-content-center align-items-start score-font">
                             <p>Overall Score (including bonus if any):
                                 {{ application.overall_score }}
                             </p>
@@ -116,12 +115,12 @@
                                                     <b><i>{{sub_criteria.question}}</i></b>
                                                 </summary>
                                                 <h5><b>{% trans "Previous prompts for this response" %}</b></h5>
-                                                <form action="{% url 'application:prompt' step_slug=criteria.slug %}" method="post">
+                                                <form action="{% url 'application:prompt' step_slug=criteria.slug %}"
+                                                    method="post">
                                                     {% csrf_token %}
                                                     <div class="form-group">
                                                         <label for="id_subject">{% trans "Subject" %}</label>
-                                                        <input type="text" class="form-control" name="subject"
-                                                            required>
+                                                        <input type="text" class="form-control" name="subject" required>
                                                         {% for error in form.subject.errors %}
                                                         <p class="error">{{ error|escape }}</p>
                                                         {% endfor %}
@@ -134,8 +133,7 @@
                                                         <p class="error">{{ error|escape }}</p>
                                                         {% endfor %}
                                                     </div>
-                                                    <input type="hidden" name="application"
-                                                        value="{{application.pk}}">
+                                                    <input type="hidden" name="application" value="{{application.pk}}">
                                                     <input type="hidden" name="prompt"
                                                         value="{{sub_criteria.question.pk}}">
                                                     <button type="submit"
@@ -219,7 +217,8 @@
                 action="{% url 'eligibility:delete_bonus' pk=bonus.pk application_slug=application.slug step_slug=criteria.slug %}"
                 method="post" class="d-flex align-items-center bonus-form">
                 {% csrf_token %}
-                <p class="m-0">You have previously awarded a bonus of <b>{{bonus.bonus}}</b> points for {{bonus.step}}</p>
+                <p class="m-0">You have previously awarded a bonus of <b>{{bonus.bonus}}</b> points for {{bonus.step}}
+                </p>
 
                 <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
             </form>
@@ -259,7 +258,14 @@
             {% if application.comments.all %}
             <h4>Previous Comments</h4>
             {% for comment in application.comments.all %}
-            <p>{{comment.comment}}</p>
+            <div class="d-flex">
+                <form action="{% url 'application:delete_step_comment' pk=comment.pk step_slug=criteria.slug %}"
+                    method="post" class="d-flex align-items-center bonus-form">
+                    {% csrf_token %}
+                    <p class="m-0">{{comment.comment}}</p>
+                    <button type="submit" class="btn bonus-btn ml-2">Delete?</button>
+                </form>
+            </div>
             {% endfor %}
             {% endif %}
         </div>
