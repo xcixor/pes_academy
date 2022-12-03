@@ -168,7 +168,7 @@
             <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_two' step='step_three' %}"
                 class="btn btn-primary">Rollback</a>
             {% elif review.application.stage == 'step_five' %}
-            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_four' %}"
+            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_five' %}"
                 class="btn btn-primary">Rollback</a>
             {% else %}
         <p><b>Cant Roll Back</b></p>
@@ -216,6 +216,9 @@
                 class="btn btn-primary">Rollback</a>
             {% elif review.application.stage == 'step_five' %}
             <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_three' step='step_four' %}"
+                class="btn btn-primary">Rollback</a>
+            {% elif review.application.stage == 'step_six' %}
+            <a href="{% url 'eligibility:rollback' slug=review.application.slug current_step='step_four' step='step_five' %}"
                 class="btn btn-primary">Rollback</a>
             {% else %}
         <p><b>Cant Roll Back</b></p>
