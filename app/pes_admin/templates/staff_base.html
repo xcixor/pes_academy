@@ -108,8 +108,8 @@
               {% else %}
               <h3>Quick Stats</h3>
               <p>Total Applications: <b>{{user.reviews.count}}</b></p>
-              <p>Total Applications in Stage Eligibility Criteria {% with user|get_step_reviews:'step_three' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications in Stage Document verification {% with user|get_step_reviews:'step_four' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
+              <p>Total Applications in Stage Eligibility Criteria {% with user|get_stage_reviews:'step_three' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
+              <p>Total Applications in Stage Document verification {% with user|get_stage_reviews:'step_four' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
               <p>Total Applications Remaining : <b>{{user|get_remaining_reviews}}</b></p>
               {% endif %}
             </div>

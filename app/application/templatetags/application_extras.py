@@ -135,8 +135,8 @@ def get_unrated_questions(application):
     return SubCriteriaItem.objects.count() - application.marks.count()
 
 
-@register.filter('get_step_reviews')
-def get_step_reviews(reviewer, stage):
+@register.filter('get_stage_reviews')
+def get_stage_reviews(reviewer, stage):
     total_reviews = reviewer.reviews.all()
     reviews_in_step = total_reviews.filter(application__stage=stage).count()
     return reviews_in_step
