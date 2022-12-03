@@ -357,6 +357,9 @@ class ApplicationMarks(models.Model):
         Scoring, on_delete=models.CASCADE,
         related_name='marks')
     score = models.IntegerField(null=True, blank=True)
+    reviewer = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True,
+        related_name='marks')
 
     class Meta:
         verbose_name_plural = "11. Applications Marks"
