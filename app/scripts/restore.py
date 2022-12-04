@@ -792,6 +792,7 @@ def run():
     # restore_document_responses()
     # restore_application_documents()
     # restore_reviews()
+<<<<<<< HEAD
     pass
 =======
     restore_applications()
@@ -802,4 +803,10 @@ def run():
 >>>>>>> 4ab385c8 (chore(scripts): update scripts)
 =======
 >>>>>>> 4ab385c (chore(scripts): update scripts)
+<<<<<<< HEAD
 >>>>>>> 9ef1a1e7 (chore(scripts): update scripts)
+=======
+=======
+    print('done')
+>>>>>>> e2bf5cc (chore(scripts): add a script to read Phase 2 Googel doc responses and save to db)
+>>>>>>> 2af7fa2a (chore(scripts): add a script to read Phase 2 Googel doc responses and save to db)
