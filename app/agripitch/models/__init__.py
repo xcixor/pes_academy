@@ -358,7 +358,7 @@ class ApplicationMarks(models.Model):
         related_name='marks')
     score = models.IntegerField(null=True, blank=True)
     reviewer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True,
+        User, on_delete=models.SET_NULL, null=True, blank=True,
         related_name='marks')
 
     class Meta:
