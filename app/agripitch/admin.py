@@ -18,6 +18,7 @@ admin.site.register(ScoringItems)
 @admin.register(ApplicationMarks)
 class ApplicationMarksAdmin(admin.ModelAdmin):
     search_fields = ['application__application_creator__email']
+    list_display = ['application', 'reviewer_email']
 
 
 class ScaleItemInline(admin.TabularInline):

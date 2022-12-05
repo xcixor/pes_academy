@@ -368,6 +368,12 @@ class ApplicationMarks(models.Model):
     def __str__(self) -> str:
         return str(self.application)
 
+    @property
+    def reviewer_email(self):
+        if self.reviewer:
+            return self.reviewer.email
+        return 'None'
+
 
 class SubCriteriaItemFieldProperties(models.Model):
 

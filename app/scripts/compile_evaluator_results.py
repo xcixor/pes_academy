@@ -85,4 +85,5 @@ def compile(file):
 def run():
     # file = input()
     compile('phase_2.csv')
+    # ApplicationMarks.objects.all().delete()
     print('done')
