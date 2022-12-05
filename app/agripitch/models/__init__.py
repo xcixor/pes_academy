@@ -375,6 +375,30 @@ class ApplicationMarks(models.Model):
         return 'None'
 
 
+class PhaseTwoApplicationMarks(models.Model):
+
+    application = models.ForeignKey(
+        Application, on_delete=models.CASCADE,
+        related_name='phase_two_marks')
+    total_marks = models.IntegerField(null=True, blank=True)
+    reviewer = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name='phase_two_marks')
+
+    @property
+    def reviewer_email(self):
+        if self.reviewer:
+            return self.reviewer.email
+        return 'None'
+
+    def __str__(self) -> str:
+        return str(self.application.application_creator)
+
+    class Meta:
+        verbose_name_plural = "12. Applications Marks"
+        unique_together = ['application', 'reviewer']
+
+
 class SubCriteriaItemFieldProperties(models.Model):
 
     sub_criteria_item = models.ForeignKey(

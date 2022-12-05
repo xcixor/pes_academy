@@ -8,7 +8,8 @@ from agripitch.models import (
     ShortList, CriteriaItem,
     SubCriteriaItem, SubCriteriaItemChoice, SubCriteriaItemResponse,
     SubCriteriaItemFieldProperties, SubCriteriaItemDocumentResponse,
-    PartnerLogo, Scale, ScaleItem, Scoring, ApplicationMarks, ScoringItems)
+    PartnerLogo, Scale, ScaleItem, Scoring, ApplicationMarks, ScoringItems,
+    PhaseTwoApplicationMarks)
 
 
 admin.site.register(Scoring)
@@ -17,6 +18,11 @@ admin.site.register(ScoringItems)
 
 @admin.register(ApplicationMarks)
 class ApplicationMarksAdmin(admin.ModelAdmin):
+    search_fields = ['application__application_creator__email']
+    list_display = ['application', 'reviewer_email']
+
+@admin.register(PhaseTwoApplicationMarks)
+class PhaseTwoApplicationMarksAdmin(admin.ModelAdmin):
     search_fields = ['application__application_creator__email']
     list_display = ['application', 'reviewer_email']
 
