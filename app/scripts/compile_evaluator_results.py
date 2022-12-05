@@ -2,7 +2,8 @@
 import csv
 from accounts.models import User
 from application.models import Application
-from agripitch.models import SubCriteriaItem, ApplicationMarks
+from agripitch.models import (
+    SubCriteriaItem, ApplicationMarks, PhaseTwoApplicationMarks)
 
 
 def can_convert_to_int(string):
@@ -82,8 +83,29 @@ def compile(file):
                     row_data, reviewer, application, questions)
 
 
+def compile_phase_two_marks(file):
+    with open(file, 'r') as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+        # headers = rows.pop(0)
+        # questions = get_questions_from_headers(headers)
+        rows.pop(0)
+        # print(rows[0])
+        for row in rows:
+            application = get_application(row[3])
+            reviewer = get_reviewer(row[33])
+            marks = row[40]
+            if application and reviewer and marks:
+                print(f'{application} {reviewer} {marks}')
+                print(PhaseTwoApplicationMarks.objects.create(
+                    application=application,
+                    reviewer=reviewer,
+                    marks=marks
+                ))
+
+
 def run():
     # file = input()
-    compile('phase_2.csv')
+    compile_phase_two_marks('phase_2.csv')
     # ApplicationMarks.objects.all().delete()
     print('done')

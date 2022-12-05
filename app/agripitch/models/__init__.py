@@ -395,7 +395,7 @@ class PhaseTwoApplicationMarks(models.Model):
         return str(self.application.application_creator)
 
     class Meta:
-        verbose_name_plural = "12. Applications Marks"
+        verbose_name_plural = "12. Phase 2 Applications Marks"
         unique_together = ['application', 'reviewer']
 
 
