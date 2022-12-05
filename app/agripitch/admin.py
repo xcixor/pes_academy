@@ -21,9 +21,12 @@ class ApplicationMarksAdmin(admin.ModelAdmin):
     search_fields = ['application__application_creator__email']
     list_display = ['application', 'reviewer_email']
 
+
 @admin.register(PhaseTwoApplicationMarks)
 class PhaseTwoApplicationMarksAdmin(admin.ModelAdmin):
-    search_fields = ['application__application_creator__email']
+    search_fields = [
+        'application__application_creator__email',
+        'application__application_creator__pk']
     list_display = ['application', 'reviewer_email']
 
 

@@ -100,7 +100,7 @@ def compile_phase_two_marks(file):
                 print(PhaseTwoApplicationMarks.objects.create(
                     application=application,
                     reviewer=reviewer,
-                    marks=marks
+                    total_marks=marks
                 ))
 
 
