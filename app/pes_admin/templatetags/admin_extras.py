@@ -27,6 +27,19 @@ def get_user_language(application):
         return response.value
 
 
+@register.filter('get_entity_type')
+def get_entity_type(application):
+    sub_criteria_item = None
+    try:
+        sub_criteria_item = SubCriteriaItem.objects.get(label='Entity Type *')
+    except SubCriteriaItem.DoesNotExist as e:
+        print(e)
+    if sub_criteria_item:
+        response = SubCriteriaItemResponse.objects.filter(
+            sub_criteria_item=sub_criteria_item, application=application).first()
+        return response.value
+
+
 @register.filter('get_total_applications_by_criteria')
 def get_total_applications_by_criteria(criteria):
     sub_criteria_item = None

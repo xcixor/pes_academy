@@ -89,6 +89,14 @@ class Application(models.Model):
     def overall_score(self):
         return self.total_bonus + self.total_score
 
+    @property
+    def average_marks(self):
+        phase_two_marks = sum(
+            item.total_marks for item in self.phase_two_marks.all())
+        if phase_two_marks > 0:
+            return phase_two_marks / self.phase_two_marks.count()
+        return 0
+
     def __str__(self) -> str:
         return f'{self.call_to_action} - {self.application_creator}'
 

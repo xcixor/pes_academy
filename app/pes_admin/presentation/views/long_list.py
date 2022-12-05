@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from application.models import Application, ApplicationEvaluator
+from application.models import Application
 
 
 class LongListEvaluation(ListView):
@@ -11,10 +11,6 @@ class LongListEvaluation(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(stage='step_five')
-        unassigned_applications = []
-        applications_in_evaluation = ApplicationEvaluator.objects.all(
-        ).values_list('application__id', flat=True)
-        for application in queryset:
-            if application.id not in applications_in_evaluation:
-                unassigned_applications.append(application)
-        return unassigned_applications
+        sorted_queryset = sorted(
+            queryset.all(), key=lambda t: t.average_marks, reverse=True)
+        return sorted_queryset

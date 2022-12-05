@@ -55,24 +55,24 @@
         <table id="admin-dashboard" class="table table-striped text-white">
           <thead>
             <tr>
-              <th scope="col">{% trans "ID" %}</th>
+              <th scope="col">{% trans "Short ID" %}</th>
               <th scope="col">{% trans "Owner" %}</th>
               <th scope="col">{% trans "Stage" %}</th>
               <th scope="col">{% trans "Language" %}</th>
-              <th scope="col">{% trans "Action" %}</th>
+              <th scope="col">{% trans "Entity Type" %}</th>
+              <th scope="col">{% trans "Average Marks" %}</th>
+              <!-- <th scope="col">{% trans "Action" %}</th> -->
             </tr>
           </thead>
           <tbody>
             {% for application in applications %}
             <tr>
-              <th scope="row">{{application.special_id}}</th>
+              <th scope="row">{{application.application_creator}}</th>
               <td>{{application.application_creator.email}}</td>
               <td>{{application.get_stage_display}}</td>
               <td>{{application|get_user_language}}</td>
-              <td>
-                <a href="{% url 'admin:assign_evaluator' pk=application.pk %}"
-                  class="btn btn-primary">{% trans "Assign Evaluator" %}</a>
-              </td>
+              <td>{{application|get_entity_type}}</td>
+              <td>{{application.average_marks}}</td>
             </tr>
             {% endfor %}
           </tbody>
