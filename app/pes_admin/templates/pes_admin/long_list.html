@@ -18,7 +18,7 @@
       <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
       <p class="small">
         {% with page_obj|length as records %}
-        {{records}} record{{ records|pluralize }}
+        {{records}} record{{ records|pluralize }} of {{paginator.count}}
         {% endwith %}
       </p>
     </div>

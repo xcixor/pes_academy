@@ -94,7 +94,7 @@ class Application(models.Model):
         phase_two_marks = sum(
             item.total_marks for item in self.phase_two_marks.all())
         if phase_two_marks > 0:
-            return phase_two_marks / self.phase_two_marks.count()
+            return (phase_two_marks / self.phase_two_marks.count())
         return 0
 
     def __str__(self) -> str:
