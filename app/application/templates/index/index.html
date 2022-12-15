@@ -59,6 +59,7 @@
           <li><a href="/">{% trans "Home" %}</a></li>
           <li><a href="#partners">{% trans "Partners" %}</a></li>
           <li><a href="/agripitch/gallery/">{% trans "Gallery" %}</a></li>
+          <li><a href="/agripitch/shortlist/">{% trans "Shortlisted Applicants" %}</a></li>
           {% for call in calls_to_action %}
           <li><a href="{% url 'agripitch:application' slug=call.slug %}">{% trans "Apply" %}</a></li>
           {% endfor %}

@@ -1,0 +1,1285 @@
+{% extends 'new-base.html' %}
+
+{% load i18n %}
+{% block styles %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/agripitch/shortlist_page.css' %}">
+{% endblock %}
+{% block content %}
+
+<h3 class="main-secondary-title text-center">Top 25 Agripreneurs</h3> <br>
+
+<div class="row wrap d-flex justify-content-between p-2">
+
+  <!-- card / Modal - 1 -->
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/faso.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Faso Elevage</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Cote d'ivoire</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal3">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/bilanga.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Bilanga Solutions</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Congo - DRC</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal4">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/africeal.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">AfriCereal Group</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Benin</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal5">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/duketrah.jpg' %}"
+      class="card-img-top" alt="Duketrah Fisheries">
+    <div class="card-body">
+      <h5 class="card-title">Duketrah Fisheries</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Nigeria</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal6">
+        View More
+      </button>
+    </div>
+  </div>
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/tic.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">TIC Agrobusiness</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Benin</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal22">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/miagro.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">MiAgro Shoppers Limited</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Uganda</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal18">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/worldjolly.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">World Jolly Generation Engineering and Trading ( WJGET SARL)</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Benin</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal13">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/minagro.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Minagro Group</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Togo</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal10">
+        View More
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/farmerlifeline.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Farmer Lifeline Technologies</h5>
+      <p class="card-text">Entity Type: Mature Start-up</p>
+      <p class="card-text">Country: Kenya</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal8">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/tomave.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">TOMAVè AgriTech</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Gabon</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal1">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <!-- card / Modal - 2 -->
+  <div class="card mb-3" style="width: 18rem;">
+    <img src="{% static 'images/shortlist-logos/mvutu.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Mvutu</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Congo</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal2">
+        View More
+      </button>
+    </div>
+  </div>
+
+  
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/fulltech.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">FulltechCongo</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Congo</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal11">
+        View More
+      </button>
+    </div>
+  </div>
+  
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/agrisiti.jpg' %}" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Agrisiti (Maatalous Nasah)</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Nigeria</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal14">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/eco-protein.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Eco-Protein</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Malawi</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal15">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/sediba.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Sediba</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Botswana</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal16">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/solaristique.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Solaristique Nigeria Limited</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Nigeria</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal20">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/osomo.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Osomobegbe Global Ventures Limited</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Nigeria</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal21">
+        View More
+      </button>
+    </div>
+  </div>
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/farmhut.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Farmhut Africa Private Limited</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Zimbabwe</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal23">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/etoduma.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Etoduma SARL</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Côte d'Ivoire</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal24">
+        View More
+      </button>
+    </div>
+  </div>
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/farmwallet.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">FarmWallet Limited</h5>
+      <p class="card-text">Entity Type: Start-up</p>
+      <p class="card-text">Country: Ghana</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal25">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/chem.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">ChemChemAgro</h5>
+      <p class="card-text">Entity Type: Women-owned</p>
+      <p class="card-text">Country: Congo</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal12">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/cotanna.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Contanna</h5>
+      <p class="card-text">Entity Type: Women-owned</p>
+      <p class="card-text">Country: Senegal</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal9">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/vet-info.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Amra Suarl ( vet info)</h5>
+      <p class="card-text">Entity Type: Women-Owned</p>
+      <p class="card-text">Country: Senegal</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal7">
+        View More
+      </button>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/mgomera.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Mgom'mera Seed investments</h5>
+      <p class="card-text">Entity Type: Women-owned</p>
+      <p class="card-text">Country: Malawi</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal17">
+        View More
+      </button>
+    </div>
+  </div>
+  
+  <div class="card mb-3" style="width: 18rem;">
+    <img
+      src="{% static 'images/shortlist-logos/legendary.jpg' %}"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Legendary Foods Ltd</h5>
+      <p class="card-text">Entity Type: Women-owned</p>
+      <p class="card-text">Country: Ghana</p>
+      <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal19">
+        View More
+      </button>
+    </div>
+  </div>
+  
+
+  <!-- Modal - 1 -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">TOMAVè AgriTech</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/283763692_382198693953559_8748386968598688780_n.png?_nc_cat=110&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHHXrfIT7fAbXGQSjw7nqs1kJfdLvU2pLyQl90u9TakvEXlHeAF0hhp24R3zzYr0HFnty8E_7rwvQpEIPSkMKe1&_nc_ohc=7QWae2LYzMIAX_O8p95&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfA_WAkKdfzuj4xx26ENB0MbZFT6sJVKt-_YGCwPdM61zA&oe=639C1BEB" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Designing digital solutions for agriculture, producing and marketing agricultural products, setting up projects and providing services.</p>
+              <ul class="social-icons">
+                <li><a class="facebook" href="https://www.facebook.com/ptofile.php?id=100065121488532"><i
+                      class="fab fa-facebook"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/tomave_agritech_sarl/"><i
+                      class="fab fa-instagram"></i></a></li>
+    
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal - 2-->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Mvutu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://uplink.weforum.org/uplink/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_jpg&versionId=0682o00000JOdkOAAT" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Mvutu is a Congolese platform that connects farmers and vendors to ensure a fair and reliable food supply
+                network. Leveraging its network and extensive industry experience, Mvutu buys from farmers and suppliers at
+                fair market prices and ships the produce to thousands of street vendors in the cities of Congo and Kinshasa.
+                To further strengthen the ecosystem, Mvutu offers microloans and technical assistance to farmers,
+                distributors.</p>
+                <ul class="social-icons">
+                  <li><a class="website" href="https://mvutu.com/"><i class="fas fa-globe"></i></a></li>
+                  <li><a class="facebook" href="https://www.facebook.com/mvutupage"><i class="fab fa-facebook"></i></a></li>
+                  <li><a class="dribbble" href="https://www.youtube.com/channel/UCctAhnBvAtwFrmL1hDByfXQ/videos"><i
+                        class="fab fa-youtube"></i></a></li>
+                  <li><a class="linkedin" href="https://www.linkedin.com/company/mvutu/mycompany/?viewAsMember=true"><i
+                        class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">FASO ELEVAGE</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/36793111_403619830127422_776218311145816064_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeEx6TBlkNgozdjCEXTEQdovZXNubTzDEv9lc25tPMMS_70HQ0wz0BqbzP64gkoDPKwfJmpoSQXO2UhbBMPlG7R3&_nc_ohc=euwRJviUr60AX9ZHwe2&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfC3OEW8aFQQgzJDjJBR_a7_cBgkJhP5_Y82vPaBwBgvRA&oe=63BE7B71" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Faso Elevage is a limited liability company (SARL) created by Burkinabé engineers in animal production. 
+
+                The primary objective is to modernize and professionalize the agricultural sector in Burkina Faso and Africa, promote local breeding materials and promote organic breeding.</p>
+                <ul class="p-2 social-icons">
+                  <li><a class="facebook" href="https://www.facebook.com/FasoElevagesarl"><i class="fab fa-facebook"></i></a></li>
+                </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bilanga Solutions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/37390632_1031604697004599_5954194831247933440_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEL0j9vhNP8PQdT_C7U4qd0lxtkg6vhdAiXG2SDq-F0CCjM01KXIY2Ai1x19h0nwj8IH9INeLVa7gMAwdy3N-J8&_nc_ohc=fu-MrApjbs8AX8_dRpi&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfCd5bEogznzLzsvikphlK0YX7G9EZmUo5f-bKzEKB1-NA&oe=63BE8E83" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Bilanga is a digital platform allowing small farmers to have access to markets and to better sell their products, from organic and sustainable agriculture, to agri-food companies and urban consumers who benefit from the best prices and a transparent procurement process.
+
+                Our end-to-end process connects farmers to commercial fresh produce retailers in Kinshasa and across the DR Congo. The BILANGA platform facilitates transactions and protects payments on behalf of farmers, resulting in increased transparency and improved cash flow.</p>
+
+                <ul class="p-2 social-icons">
+                  <li><a class="website" href="https://bilanga.pro/"><i class="fas fa-globe"></i></a></li>
+                  <li><a class="facebook" href="https://facebook.com/BilangaApp"><i class="fab fa-facebook"></i></a></li>
+                  <li><a class="twitter" href="https://twitter.com/BilangaApp"><i class="fab fa-twitter"></i></a></li>
+                  <li><a class="dribbble" href="https://youtu.be/vJWDHZcdyoE"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+          </div>
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">AfriCereal Group</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/249842521_417774683090247_8962957689367464055_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeF99hIsYHECYsi0GTB9J8WdpL6C4WL6-G-kvoLhYvr4b5vSf1pybCWVEbexUfHG8Zl8ulYnGyk-25OkZf52qaDe&_nc_ohc=4gDdAjplgaEAX_OxAZi&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfDIAaPjHfGWnOC0t2kqLMhfg-7bRwGmVZKnSbwnoJGJnw&oe=639B0A88" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>AfriCereal Group is a technology company that offers mechanization of agricultural operations, bringing together players in the value chains and management of agricultural equipment and infrastructure. Through its services, the company simplifies agricultural operations, contributes to the reduction of post-harvest losses and improves the production and income of small producers. Thus, small producers have access to affordable agricultural machinery to increase their productivity.</p>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Duketrah Fisheries</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://lh3.googleusercontent.com/p/AF1QipMqGCDyEoGYU6vXPw2le2P3gMZgVRh-2und8QvQ=w960-h960-n-o-v1" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Duketrah Fisheries is an Agribusiness that is into fish production and value addition (through processing and packaging). With the goal of providing safe, healthy and nutritious fish products to a large population of people, we sustainably produce and process fish using better aquaculture practices and improved processing methods as well as packaging materials which are of reduced hazard to the consumer and processors health as well as the safety of the environment.</p>
+              <ul class="social-icons">
+                <li><a class="facebook" href="https://www.facebook.com/Duketrahconsults"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li><a class="instagram" href="https://www.instagram.com/Duketrah"><i class="fab fa-instagram"></i></a></li>
+    
+              </ul>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">AMRA SUARL ( vet info)</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/193355286_527907988573244_4514453260457067005_n.png?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGU4MeGAA3zlvWMux0W0rhW_wI96HimT5__Aj3oeKZPnw1xlV09vFg4n5aPVzaSX6mbA-_8pfCP-rlZEJrkNoDU&_nc_ohc=ZPbfRhzMijsAX_o6T1E&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfC8DQybNrUAyuebiSQU7K3lppCv_Bke5kCJqY-8uyTEsA&oe=63BE7FE2" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>VET INFO GROUP is a start-up specialized in agro-business. We support breeders to produce healthy milk, meat and eggs. We transform livestock waste into agricultural biofertilizer. VET INFO GROUP is the first Agro-business market place in West Africa.</p>
+
+              <ul class="social-icons">
+                <li><a class="website" href="https://vetinfogroup-africa.com/"><i class="fas fa-globe"></i></a>
+                </li>
+                <li><a class="facebook" href="https://www.facebook.com/VetInfoGroup"><i class="fab fa-facebook"></i></a>
+                </li>
+    
+              </ul>
+            </div>
+          </div>
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Farmer Lifeline Technologies</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/308630869_144198754978064_1813374903671183342_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeFI9J7bencnqjh3frsymvPQfTmlmq8DOzJ9OaWarwM7Ml9FY9dTxX3PMgnIrZukOxhCfTm4iT7cGoA0Kio4aTS-&_nc_ohc=ZfL0HOiaBr8AX8gaGNE&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfCtguhNgKHBODv02p4ANPWjGpmC29vpA0Pke5NgFjcVrQ&oe=639B5184" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Farmer LifeLine Technologies is an Kenya startup that helps farmers to get ahead of pests and pathogens with a proprietary disease detection device.</p>
+              <ul class="social-icons">
+                <li><a class="website" href="https://www.farmerlifeline.co.ke/"><i class="fas fa-globe"></i></a></li>
+                <li><a class="facebook" href="https://m.facebook.com/Farmer-Lifeline-Technologies-108072918590648/"><i
+                      class="fab fa-facebook"></i></a></li>
+                <li><a class="dribbble" href="https://www.youtube.com/watch?v=Y5uWDvh81Y4"><i
+                      class="fab fa-youtube"></i></a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contanna</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/286199871_1071484607055691_1503590762746981351_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeFOrnitcxT0FqH0_vuMfLf1AaXGKj1-hFQBpcYqPX6EVL5QyhU3x6tTTanGw_s274qwUMMGUKmIlBHcugYHj4-S&_nc_ohc=koU5hEYtu9oAX97MUxu&_nc_oc=AQmkis3yyTmIX4OpefcmpEJarY_aSNAD38mP1Z2xC9jPa9BY_1y5PKxUzKWTNo9Z-BI&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfAP2ELit2CT2d-uK5HCpHH18TkXcSJtZYJyGhyHUow58A&oe=639C1B3E" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Contanna is a fair trade tea bar chain that promotes African roots by offering hot and iced drinks made from plantations from our lands.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Minagro Group</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/277675858_365709795573342_7700913470819228798_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHUokzHAdxRrtxqAQoKL4-JFhwVlcEHyLgWHBWVwQfIuNlKzp-b1quQS70UNola5HbOFejhIK4N1BW4c2eBAHAy&_nc_ohc=PF_1zUbJwogAX-HYBrr&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfDFdUXLc0CU1tIgJzzP-pabk-fXmF9sBolfcFhY7Rtryw&oe=639B9848" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>
+                Minagro supports agribusinesses by proposing greener solutions to improve the global impact of the agricultural sector. Minagro develops innovative products and solutions for crop care applications based on sustainable raw materials leveraging the strengths of the MINAFIN Group in green and fine chemicals. <br>
+              
+                
+                Minagro is a supplier of ingredients and innovative solutions with a specific focus on agricultural input markets.  We develop products and provide application support.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">FulltechCongo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/98367458_857448391408967_5893503653410504704_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a26aad&_nc_eui2=AeEOoKHSMBdyYwRv8Hd13AMSbMlfRmZJD8BsyV9GZkkPwDE_psA7unqnlPmPgJA0x5ZWyuVcHQokM9OfWqW-wIvF&_nc_ohc=a78sIIRrBKoAX8OoATs&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfAwzUu-HosQHBKx92CNk_dtHMlo5la3qm20pK9UZIu2og&oe=63BE861B" alt="">
+
+              <ul class="social-icons">
+                <li><a class="website" href="https://www.linkedin.com/company/nacha-spices/"><i
+                      class="fas fa-globe"></i></a></li>
+                <li><a class="facebook" href="https://fb.watch/gB5pj5g8Oi/"><i class="fab fa-facebook"></i></a></li>
+                <li><a class="twitter" href="https://twitter.com/nacha_spices/"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/nacha_spices/"><i class="fab fa-instagram"></i></a>
+                </li>
+    
+              </ul>
+
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>FulltechCongo, Full Technologies is a Congolese company specialized in: </p>
+                1. Electrical installation and repair<br>
+
+                2. Renewable energy : <br>
+                * Installation of photovoltaic solar panels<br>
+                * Design of solar energy storage and optimization systems <br>
+                3. Planning and maintenance of green spaces <br>
+                4. Car & property cleaning<br>
+                * Fixed car cleaning (our station)<br>
+                * Mobile car cleaning (at your home)<br>
+                * Cleaning building, public spaces, stained glass, pavement, tiles.
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ChemChemAgro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://applications.privateequity-support.com/media/agri_pitch_2022/African%20Development%20Bank%20AgriPitch%20Competition%202022%20-%20AfDB-4038/ChemChem_rNyimir.JPG" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>ChemChemAgro has as its activity: <br>
+                 manufacturing of hives, aid for the harvesting and raising of bees (already operational), production, processing, marketing of honey and honey by-products (in the development yard).</p>
+                
+               <p>ChemChemAgro also trains young people and farmers in beekeeping.  <br>
+                Product: High quality table honey and honey jams. 
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal13" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">World Jolly Generation Engineering and Trading ( WJGET SARL)
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t31.18172-8/17240535_286343601786723_8036386715953830257_o.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9267fe&_nc_eui2=AeG6iOK9YKQcZtXL4okpOkoj_nBDuKvAmrz-cEO4q8CavKC36nkSJFpo2-wOwSwJ3YPjRlwz_nrriuxbede0LtNK&_nc_ohc=yccKSvB5FD4AX9K_hUN&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfDJdlWKi1cpurzce4GZaCjEtUEkZE2Qp_sjj4tIaLTJhA&oe=63BEAABC" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>The World Jolly Generation Engineering and Trading Society trains in the field of renewable energy. <br>
+                 Three months theoretical and practical training of photovoltaic technician and 3 months practical internship in the company and partner companies in the field. <br>
+                 It also gives opportunity to prepare for ECOWA certification and get recognized certification in all 16 ECOWA countries.</p>
+
+                 <ul class="social-icons">
+                  <li><a class="website" href="https://www.wjgetafrique.asso-web.com"><i class="fas fa-globe"></i></a></li>
+      
+                </ul>
+            </div>
+          </div>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal14" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agrisiti (Maatalous Nasah)</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://www.f6s.com/content-resource/media/1436934_large.jpg" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Maatalous Nasah is an agritech startup based in Nigeria
+                focused on promoting urban Agriculture and facilitating
+                Agri-Marketing using digital technology. We achieve this via
+                our Agri-Marketing Arm called Farmisphere, which is a
+                web-based application to provide farmers with timely market
+                access.</p>
+
+                <ul class="social-icons">
+                  <li><a class="website" href="https://www.agrisiti.com/"><i class="fas fa-globe"></i></a></li>
+                  <li><a class="facebook" href="https://www.facebook.com/profile.php?id=100070014078829"><i
+                        class="fab fa-facebook"></i></a></li>
+                  <li><a class="twitter" href="https://twitter.com/PrivateEquityAF"><i class="fab fa-twitter"></i></a></li>
+                  <li><a class="instagram" href="https://instagram.com/agrisiti/"><i class="fab fa-instagram"></i></a></li>
+      
+                </ul>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal15" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eco-Protein</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://www.privateequity-support.com/wp-content/uploads/2022/12/eco-protein.jpg" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Eco-Protein is an insect technology
+                startup that transforms organic food
+                waste into high value insect protein for
+                the animal feed industry by using the
+                black soldier fly insect as a recycling
+                agent.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal16" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sediba</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://www.privateequity-support.com/wp-content/uploads/2022/12/sediba.jpg" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Sediba is a virtual farmers' market that connects buyers, small holder and emerging farmers to a
+                reliable and fair market .</p>
+
+                <ul class="social-icons">
+                  <li><a class="website" href="https://sediba.co.bw/"><i class="fas fa-globe"></i></a></li>
+                  
+      
+                </ul>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal17" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Mgom'mera Seed investments</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t31.18172-8/18588888_1473700289390666_8451537676982490530_o.jpg?_nc_cat=107&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeF3rBcPXH_a-5I7P0RwjPLhtHafhpMtmL-0dp-Gky2Yv_DzdpFy8F-U7ecsDS0eCgubGmFzdhidEJb5iHG6vzSE&_nc_ohc=wjyFpvRHj6oAX-qrfWN&tn=lwwOpD-eB3k_emqp&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfBEA-H0o1d96JZhKkQcGErcbPjExnnmVCMY1s_F__N97g&oe=63BE94B8" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Mgom’mera produces drought tolerant, high yielding and nutrient dense varieties of maize and legumes. <br>
+                 As the Malawian agricultural sector seeks to combat effects of climate change and drought, Mgom’mera aims to tackle this issue from seed technology and modern innovations in irrigation farming.</p>
+              
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal18" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">MiAgro Shoppers Limited</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/106556664_101331544983250_7264577552251434252_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeFekRyC1i0LlmAafIn-uGf-hpd6EbJruPWGl3oRsmu49Vtq93BBZbfjKCjVp5kymunU_AMVqfj86Gc2EsLaYf5O&_nc_ohc=Wty-fKLU5bEAX-pat1x&tn=lwwOpD-eB3k_emqp&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfCmgSrXoumprhtTRkpUr8Z3hDrMoyliX6OnTViwIsCljA&oe=63BEA1AA" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>MiAgro Shoppers enterprise is an e-commerce digital shopping platform based in Kampala, Uganda,  with supporting electronnic tools (Android application 'MiAgro App' on Playstore/Applestore and e-commerce website 'MiAgro Shoppers') offering a range of products from agricultural groceries, gas accessories, supermarket items, wines & spirits & kitchenware delivered to your doorstep.</p>
+
+              <ul class="social-icons">
+                <li><a class="website" href="https://www.miagroshoppers.com/"><i class="fas fa-globe"></i></a></li>
+                <li><a class="twitter" href="https://twitter.com/MiAgro_Ug/"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/p/Cb_4Os-orxK/"><i
+                      class="fab fa-instagram"></i></a></li>
+    
+              </ul>
+              
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Legendary Foods Ltd</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://img1.wsimg.com/isteam/ip/9e500bea-8055-434f-b440-f1ff9b9bf3cc/blob-0014.png/:/cr=t:0%25,l:12.5%25,w:75%25,h:100%25/rs=w:388,h:388,cg:true" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>We are a food tech business in Ghana on a mission to produce West & Central Africa's most cost-effective, nutritious, resource-efficient and accessible form of protein, palm larvae, with technology and farming systems proudly built in Ghana. </p>
+              
+              <ul class="social-icons">
+                <li><a class="website" href="https://legendaryfoodsafrica.com/"><i class="fas fa-globe"></i></a></li>
+                <li><a class="facebook" href="ttps://web.facebook.com/akokonohouse/"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li><a class="twitter" href="https://mobile.twitter.com/akokonohouse"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li><a class="instagram" href="https://www.instagram.com/akokono_house/"><i
+                      class="fab fa-instagram"></i></a></li>
+    
+              </ul>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal20" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Solaristique Nigeria Limited</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="http://www.solaristique.com.ng/assets/img/wc.jpg" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Solaristique Nigeria is a recycling company that is focused on making sustainable clean energy and environment-friendly solutions targeted at BoP households, clinics, and farmers in rural and peri-urban communities to SMEs , Hospitals, Big corporations and Households in urban areas. We aim to make the greatest possible global impact in addressing the environmental issues associated wastes. <br>
+              Our Core sectors are WASTE COLLECTION, COLD STORAGE, and ALTERNATIVE BUILDING MATERIALS.</p>
+              <ul class="social-icons">
+                <li><a class="website" href="https://www.solaristique.com.ng/"><i class="fas fa-globe"></i></a></li>
+    
+              </ul>
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal21" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Osomobegbe Global Ventures Limited</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/147220250_2778580109050531_8020618376588876749_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH4N65Lf6zyfHlvGoU5gFQ0KcuPbP6iju0py49s_qKO7W4gz3SLxcvs01LOCFzAnHnPI-ZZqxD1DgOYE_GrAGmj&_nc_ohc=8sfYUSPKuk0AX8qbamx&tn=lwwOpD-eB3k_emqp&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfA6KyCChPFmxzej9xLxMVBAjrbp4vqtOnDyGzZAuDBb4g&oe=63BEA8B7" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Osomobegbe Global Ventures Limited is a company that is into sales of solar dryers and rendering of solar drying services to smallholder farmers of eprishable vegetable products so as to enable them mitigate post harvest losses on their products. We are also into women empowerment in entrepreneurship and agriculture. We are into biofuel production and solar PV systems installation across  Nigeria</p>
+              
+            </div>
+          </div>
+
+          <ul class="social-icons">
+            <li><a class="website" href="https://ogvlimited.com/"><i class="fas fa-globe"></i></a></li>
+            <li><a class="facebook" href="https://web.facebook.com/profile.php?id=100071198434306"><i
+                  class="fab fa-facebook"></i></a></li>
+            <li><a class="dribbble" href="https://www.youtube.com/channel/UCEZf8V8ZF_euncmwa7HZOow"><i
+                  class="fab fa-youtube"></i></a></li>
+
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">TIC AGROBUSINESS</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/317529831_625769482677409_8554976163838326863_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGztqqc0M3YIqoC2MMikmmnfpx-7VGiDQd-nH7tUaINB_aDDgVSoROJsrRcSLqHYfF7lYiBD6lyVOt1wxvdBSU6&_nc_ohc=5q6zDgoJBNoAX8DOjY2&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfCDu_2c0CyKHiP0ANQQgCtMTi4uGxJulPxIui-6YeKcbg&oe=639EFC94" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>We offer digital solutions to facilitate the sharing of knowledge and information at the producer level. <br> 
+                We provide Agricultural Advice Using Agricultural Messaging Application </p>
+              
+            </div>
+          </div>
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="3"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal23" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Farmhut Africa Private Limited</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t39.30808-6/317838266_524517866358059_3167115137182553134_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeHo8JIKxqmNaYKsuRQU_ZjbBX0SwnieU48FfRLCeJ5Tj2RA3MWrD8z7NGYQNkzJxpXxCaNoGSdxra-eMyuXMMgI&_nc_ohc=yEWcX8V4oi8AX9fg-Py&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfBxD2XgDvVIi7n8Pf7aMnS0_D6OFRtnqwBs1axXT-Ug6g&oe=63A073E8" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Farmhut shortens the agro supply value chan by aggregating markets, connecting farmers, restaurants, retailers and vendors together. The food-system is improved due to improved operations of smallholder farmers in the form of lower post-harvest losses, informed decisions, and greater farmer resilience to climate and financial shocks. </p>
+              
+            </div>
+          </div>
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="3"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal24" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Etoduma SARL</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://scontent.fnbo11-1.fna.fbcdn.net/v/t1.6435-9/107321272_106522484465042_2043306458966018228_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeF2HxfwLGLcP-G1Z21_VyMBkruOQ2i-e0GSu45DaL57QVBjJ1jcJWtzU0rSJucZ-0jbNAdvFDupbTRfBIgAerqC&_nc_ohc=djKdEtm78lIAX9Oq7go&tn=lwwOpD-eB3k_emqp&_nc_ht=scontent.fnbo11-1.fna&oh=00_AfCkOeQQ9vXv6zRxiHbR1lbsVgE_ayy5YdNxN1RFLnD6Cw&oe=63C2303F" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>Etoduma SARL is an agri-food company specialises in the processing of plantain, sweet potato into chips. It also ensures the distribution of these chips in the shelves of supermarkets and large partner shops, university campuses primary and secondary schools and bus stations. </p>
+              
+            </div>
+          </div>
+
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="3"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal25" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">FarmWallet Limited</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="https://cdn1.vc4a.com/media/2020/02/105543639_597338850922619_354093974389452426_o-900x322.jpg" alt="">
+            </div>
+            <div class="col">
+              <h5>Company overview</h5>
+              <p>FarmWallet has a system that strengthens the weak linkages among agri-value chain players, by linking and facilitating transactions among them; farmers can access inputs, information, and markets.</p>
+              
+            </div>
+          </div>
+          <ul class="social-icons">
+            <li><a class="website" href="https://www.farmwallet.org/"><i class="fas fa-globe"></i></a></li>
+            <li><a class="facebook" href="https://www.facebook.com/farmwallet"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="https://twitter.com/farmwallet"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="https://www.youtube.com/watch?v=V7jk_wOJzjE&t=280s"><i class="fab fa-youtube"></i></a></li>
+            
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script src="{% static 'js/agripitch/shortlist_page.js' %}"></script>
+
+{% endblock %}
