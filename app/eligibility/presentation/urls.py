@@ -3,13 +3,16 @@ from eligibility.presentation.views import (
     EligibilityView, ReviewCompleteView, ScoreView, UpdateScoreView,
     DisqualifyView, EvaluationStepView, StepCompleteView,
     BonusPointsView, DeleteBonusView, RollBackApplicationView,
-    ExtraDocumentsView, QualifyApplicationView)
+    ExtraDocumentsView, QualifyApplicationView, MoveToShortList,
+    move_application_to_shortlist)
 
 
 app_name = 'eligibility'
 
 urlpatterns = [
     path('<slug:slug>/', EligibilityView.as_view(), name='check_eligibility'),
+    path('<slug:slug>/shortlist/', move_application_to_shortlist,
+         name='move_to_shortlist'),
     path('<slug:slug>/qualify/', QualifyApplicationView.as_view(), name='qualify'),
     path('<slug:slug>/disqualify/', DisqualifyView.as_view(), name='disqualify'),
     path('<slug:slug>/<slug:step_slug>/',

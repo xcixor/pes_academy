@@ -8,3 +8,4 @@ from .done import (
     QualifyApplicationView)
 from .roll_back import RollBackApplicationView
 from .extra_docs import ExtraDocumentsView
+from .move_to_shortlist import MoveToShortList, move_application_to_shortlist

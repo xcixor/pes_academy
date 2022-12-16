@@ -26,7 +26,7 @@
     }
 </style>
 {% if user.is_evaluator %}
-{% if user.evaluations.all %}
+{% if user.reviews.all %}
 <div class="row">
     <div class="col-md-3"><b>
             <h4>{% trans "Application ID" %}</h4>
@@ -47,11 +47,11 @@
         <p style="font-weight: bold;" title="Documents you might have asked for">Extra Documents Uploaded</p>
     </div>
 </div>
-{% for review in user.evaluations.all %}
+{% for review in user.reviews.all %}
 {% if review.application.disqualified %}
 <div class="row">
     <div class="col-md-3"><b>
-            <p>{{review.application.special_id}}</p>
+            <p>{{review.application.application_creator}}</p>
         </b>
     </div>
     <div class="col-md-3"><b>
@@ -80,13 +80,18 @@
 {% else %}
 <div class="row">
     <div class="col-md-3"><b>
-            <p>{{review.application.special_id}}</p>
+            <p>{{review.application.application_creator}}</p>
         </b></div>
     <div class="col-md-3"><b>
             <p>{{review.application.application_creator.email}}</p>
         </b></div>
     <div class="col-md-2">
-        {% if review.application.stage == 'step_six' %}
+        {% if review.application.stage == 'step_five' %}
+        <a href="{% url 'eligibility:check_eligibility' slug=review.application.slug %}"
+            class="btn btn-primary">{% trans "View Details" %}</a>
+        <a href="{% url 'eligibility:move_to_shortlist' slug=review.application.slug %}"
+            class="btn btn-primary">{% trans "Move to ShortList" %}</a>
+        {% elif review.application.stage == 'step_six' %}
         <p><b>
         ShortListed
         <i class="fas fa-check" style="color:#14a562"></i>
@@ -147,7 +152,7 @@
 {% if review.application.disqualified %}
 <div class="row">
     <div class="col-md-3"><b>
-            <p>{{review.application.special_id}}</p>
+            <p>{{review.application.application_creator}}</p>
         </b>
     </div>
     <div class="col-md-3"><b>
@@ -186,7 +191,7 @@
 {% else %}
 <div class="row">
     <div class="col-md-3"><b>
-            <p>{{review.application.special_id}}</p>
+            <p>{{review.application.application_creator}}</p>
         </b></div>
     <div class="col-md-3"><b>
             <p>{{review.application.application_creator.email}}</p>
