@@ -9,46 +9,57 @@
 {% load application_extras %}
 {% load agripitch_extras %}
 {% block content %}
-<!-- 'eligibility:move_to_shortlist' slug=application.slug -->
 <div class="container">
-    <form method="POST">
-        <h4>
-            {% if formset.errors %}
-            {% for form in formset %}
-                {% for error in form.non_field_errors %}
-                    <div class="error">
-                        <strong>{{ error|escape }}</strong>
+    <div class="row py-4">
+        <div class="col-sm-12">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>
+                            {% if formset.errors %}
+                            {% for form in formset %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="error">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                             {% endfor %}
+                            {% endif %}
+                        </h4>
+                    </div>
+                </div>
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form.id }}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{ form.reviewer.label_tag }}
+                            {{ form.reviewer }}
+                            {% for error in form.reviewer.errors %}
+                            <div class="error">{{ error|escape }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {{ form.total_marks.label_tag }}
+                            {{ form.total_marks }}
+                            {% for error in form.total_marks.errors %}
+                            <div class="error">{{ error|escape }}</div>
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
-             {% endfor %}
+                <div class="row">
+                    <div class="col-sm-12 py-2">
+                        <input type="submit" value="Submit" class="btn">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            {% endif %}
-        </h4>
-        {% csrf_token %}
-        {{ formset.management_form }}
-        {% for form in formset %}
-            {{ form.id }}
-            <div class="row">
-                <div class="col-sm-12">
-                    {{ form.reviewer.label_tag }}
-                    {{ form.reviewer }}
-                    {% for error in form.reviewer.errors %}
-                    <div class="error">{{ error|escape }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    {{ form.total_marks.label_tag }}
-                    {{ form.total_marks }}
-                    {% for error in form.total_marks.errors %}
-                    <div class="error">{{ error|escape }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
 </div>
 {% endblock %}
 {% block scripts %}

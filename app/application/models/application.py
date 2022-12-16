@@ -86,7 +86,13 @@ class Application(models.Model):
         return sum(item.bonus for item in self.bonus.all())
 
     @property
+    def aggregated_phase_two_marks(self):
+        return sum(item.total_marks for item in self.phase_two_marks.all())
+
+    @property
     def overall_score(self):
+        if self.aggregated_phase_two_marks is not None:
+            return self.total_bonus + self.total_score + self.aggregated_phase_two_marks
         return self.total_bonus + self.total_score
 
     @property

@@ -89,32 +89,32 @@ class MoveToShortList(View):
 
 def move_application_to_shortlist(request, slug):
     application = Application.objects.get(slug=slug)
-
     PhaseTwoApplicationMarksFormSet = inlineformset_factory(
         Application, PhaseTwoApplicationMarks,
         fields=['reviewer', 'total_marks'],
         max_num=application.reviewers.count())
+    reviewer_ids = application.reviewers.all().values_list('reviewer__pk', flat=True)
+    reviewer_queryset = User.objects.filter(pk__in=reviewer_ids)
+    PhaseTwoApplicationMarksFormSet.form.base_fields['reviewer'].queryset = reviewer_queryset
     if request.method == "POST":
         formset = PhaseTwoApplicationMarksFormSet(
             request.POST, instance=application)
         if formset.is_valid():
             formset.save()
+            application.stage = 'step_six'
+            application.save()
             return HttpResponseRedirect(
-                f'/eligibility/{application.slug}/shortlist/')
+                f'/eligibility/{application.slug}/shortlist/detail/')
         message = _(
             'Something went wrong, please check your form below.')
-        print(formset.errors)
         messages.add_message(request, messages.ERROR, message)
         return render(
             request,
             'eligibility/move_to_shortlist.html',
             {'formset': formset})
     else:
-        data = [{'reviewer': reviewer}
-                for reviewer in application.reviewers.all()]
-        reviewer_ids = application.reviewers.all().values_list('pk', flat=True)
-        reviewer_queryset = User.objects.filter(pk__in=reviewer_ids)
-        PhaseTwoApplicationMarksFormSet.form.base_fields['reviewer'].queryset = reviewer_queryset
+        data = [{'reviewer': review.reviewer}
+                for review in application.reviewers.all()]
         formset = PhaseTwoApplicationMarksFormSet(
             initial=data,
             instance=application)
