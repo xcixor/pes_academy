@@ -10,7 +10,7 @@
 <section>
 
   <section class="hero">
-    <div class="dropdown corner-guide" style="z-index:2000 ;">
+    <!-- <div class="dropdown corner-guide" style="z-index:2000 ;">
       <button class="btn dropdown-toggle download-resources" type="button" id="dropdownMenuButton"
         data-mdb-toggle="dropdown" aria-expanded="false" role="button" data-toggle="dropdown" aria-haspopup="true">
         {% trans "Download Application Guide" %}
@@ -51,7 +51,7 @@
           </ul>
         </li>
       </ul>
-    </div>
+    </div> -->
 
     <div class="sidecontainer">
       <div class="sidenav">
@@ -59,7 +59,7 @@
           <li><a href="/">{% trans "Home" %}</a></li>
           <li><a href="#partners">{% trans "Partners" %}</a></li>
           <li><a href="/agripitch/gallery/">{% trans "Gallery" %}</a></li>
-          <li><a href="/agripitch/shortlist/">{% trans "Shortlisted Applicants" %}</a></li>
+          <li><a href="/agripitch/shortlist/">{% trans "Top 25 finalists" %}</a></li>
           {% for call in calls_to_action %}
           <li><a href="{% url 'agripitch:application' slug=call.slug %}">{% trans "Apply" %}</a></li>
           {% endfor %}
@@ -92,12 +92,12 @@
             <div class="countdown"></div>
           </div>
         </section>
-        <a href="/agripitch" class="cta-button">{% trans "Find Out More" %}</a>
+        <a href="/agripitch/shortlist/" class="cta-button">{% trans "Top 25 Finalists" %}</a>
         {% for call in calls_to_action %}
                   <a href="{% url 'agripitch:application' slug=call.slug %}" class="cta-button">{% trans "Apply Now" %} &raquo;</a>
           {% endfor %}
 
-          <div class="dropdown corner-guide show mt-3" style="z-index:2000 ;">
+          <!-- <div class="dropdown corner-guide show mt-3" style="z-index:2000 ;">
             <button class="btn dropdown-toggle download-resources" type="button" id="dropdownMenuButton"
               data-mdb-toggle="dropdown" aria-expanded="false" role="button" data-toggle="dropdown" aria-haspopup="true">
               {% trans "Download Application Guide" %}
@@ -138,7 +138,7 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </div> -->
 
       </div>
     </div>
