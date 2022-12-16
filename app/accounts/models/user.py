@@ -87,6 +87,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def __str__(self) -> str:
+        if self.is_reviewer:
+            return self.email
         if self.is_applying_for_a_call_to_action:
             return 'AfDB-' + str(self.id).zfill(3)
         return str(self.id).zfill(3)

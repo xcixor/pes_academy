@@ -89,9 +89,7 @@ class MoveToShortList(View):
 
 def move_application_to_shortlist(request, slug):
     application = Application.objects.get(slug=slug)
-    data = {}
-    for review in application.reviewers.all():
-        data['reviewer'] = review.reviewer
+
     PhaseTwoApplicationMarksFormSet = inlineformset_factory(
         Application, PhaseTwoApplicationMarks,
         fields=['reviewer', 'total_marks'],
@@ -112,11 +110,14 @@ def move_application_to_shortlist(request, slug):
             'eligibility/move_to_shortlist.html',
             {'formset': formset})
     else:
+        data = [{'reviewer': reviewer}
+                for reviewer in application.reviewers.all()]
         reviewer_ids = application.reviewers.all().values_list('pk', flat=True)
         reviewer_queryset = User.objects.filter(pk__in=reviewer_ids)
         PhaseTwoApplicationMarksFormSet.form.base_fields['reviewer'].queryset = reviewer_queryset
         formset = PhaseTwoApplicationMarksFormSet(
-            initial=[data], instance=application)
+            initial=data,
+            instance=application)
     return render(
         request,
         'eligibility/move_to_shortlist.html',

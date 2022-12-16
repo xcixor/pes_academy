@@ -16,3 +16,6 @@ class ApplicationReview(models.Model):
 
     def __str__(self):
         return f'{self.reviewer.username} - {self.application.special_id}'
+
+    class Meta:
+        ordering = ['application']
