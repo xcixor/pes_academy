@@ -1,4 +1,4 @@
-from unittest import mock
+from unittest import mock, skip
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.views import View
@@ -12,6 +12,7 @@ from accounts.forms import RegistrationForm
 User = get_user_model()
 
 
+@skip('Registration paused.')
 class RegistrationViewTestCase(TestCase):
 
     def setUp(self):

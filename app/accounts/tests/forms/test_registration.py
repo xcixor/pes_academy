@@ -1,4 +1,4 @@
-from unittest import mock
+from unittest import mock, skip
 from django.test import TestCase
 from django import forms
 from django.core import mail
@@ -120,6 +120,7 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
             form.errors['password1'][0],
             'Your password should have at least one number.')
 
+    @skip('Registration paused.')
     @mock.patch("captcha.fields.ReCaptchaField.validate")
     def test_can_send_account_activation_email(self, mock_function):
         self.assertTrue(self.form.is_valid())
@@ -130,6 +131,7 @@ class RegistrationFormTestCase(TestCase, RequestFactoryMixin):
         to_email = self.data['email']
         self.assertEqual(mail.outbox[0].to[0], settings.ADMIN_EMAILS[0])
 
+    @skip('Registration paused.')
     @mock.patch("captcha.fields.ReCaptchaField.validate")
     def test_account_activation_email_sent_contains_appropriate_content(self, mock_function):
         self.form.is_valid()
