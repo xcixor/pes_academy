@@ -10,3 +10,10 @@
   color: white;
   background-color: #14A562;
 }
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+  .modal-content {
+    width: 50%;
+  }
+ }
