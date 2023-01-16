@@ -1,6 +1,6 @@
 .card {
   transition: box-shadow .3s;
-  
+  width: 18rem; 
 }
 .card:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
@@ -13,7 +13,17 @@
 
  /* Extra small devices (phones, 600px and down) */
  @media only screen and (max-width: 600px) {
+  .card {
+    transition: box-shadow .3s;
+    width: 24rem; 
+  }
   .modal-content {
-    width: 50%;
+    width: 100%;
+  }
+  .main-secondary-title {
+    font-size: 3em;
+  }
+  div > div > div.modal-body > div {
+    flex-direction:column;
   }
  }
