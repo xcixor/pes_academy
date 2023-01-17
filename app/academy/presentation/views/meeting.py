@@ -1,24 +1,24 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
-from staff.models import Session, SessionMaterial
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from academy.models import Meeting, Session
 from common.utils.email import HtmlEmailMixin
 
 
-class GetMaterialPageView(DetailView):
+class GetSetupMeetingPageView(DetailView):
 
-    template_name = 'staff/material.html'
+    template_name = 'staff/meeting_setup.html'
     model = Session
     context_object_name: str = 'session'
 
 
-class UploadMaterialView(CreateView, HtmlEmailMixin):
+class SetupMeetingView(CreateView, HtmlEmailMixin):
 
-    template_name = 'staff/material.html'
-    model = SessionMaterial
-    fields = ['material_name', 'material', 'session']
+    template_name = 'staff/meeting_setup.html'
+    model = Meeting
+    fields = ['session', 'link']
 
     def post(self, request, *args, **kwargs):
         self.session = Session.objects.get(pk=kwargs['pk'])
@@ -26,23 +26,24 @@ class UploadMaterialView(CreateView, HtmlEmailMixin):
 
     def get_success_url(self) -> str:
         success_message = _(
-            'Great! the material has been saved.')
+            'Great! a meeting has been added to your event')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         to_email = self.object.session.coachee.email
         from_email = settings.VERIFIED_EMAIL_USER
-        message_piece_one = _('Hi, your coach uploaded a new material: ')
-        message_piece_two = _(
-            ' Please login to your account to view it, thank you.')
-        email_message = message_piece_one + \
-            {self.object.material_name} + message_piece_two
-        subject = _('Session Material')
+        email_message = _(
+            'Hi, your coach has set up a new meeting.'
+            'Please click the link to book and select your availability, '
+            'thank you.'
+        )
+        subject = _('Event Booking')
         context = {
             'message': email_message,
+            'link': self.object.link
         }
         super().send_email(
             subject, None, from_email, [to_email],
-            template='staff/email/material.html', context=context)
+            template='staff/email/event.html', context=context)
         return f'/staff/session/{self.object.session.pk}/'
 
     def form_invalid(self, form):

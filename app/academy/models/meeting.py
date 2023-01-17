@@ -1,5 +1,5 @@
 from django.db import models
-from staff.models import Session
+from academy.models import Session
 
 
 class Meeting(models.Model):

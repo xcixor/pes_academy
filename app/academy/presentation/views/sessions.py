@@ -2,7 +2,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from staff.models import Session
+from academy.models import Session
 
 
 class SessionsView(TemplateView):

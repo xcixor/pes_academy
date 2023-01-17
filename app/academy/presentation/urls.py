@@ -1,5 +1,5 @@
 from django.urls import path
-from staff.presentation.views import (
+from academy.presentation.views import (
     CoacheesView, SessionsView, SessionView, SessionDetails,
     SessionUpdate, SetupMeetingView, GetSetupMeetingPageView,
     GetMaterialPageView, UploadMaterialView)
@@ -20,5 +20,4 @@ urlpatterns = [
     path('<int:pk>/material/', GetMaterialPageView.as_view(), name='material'),
     path('<int:pk>/material/upload/',
          UploadMaterialView.as_view(), name='material_upload'),
-
 ]

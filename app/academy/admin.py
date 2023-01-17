@@ -1,5 +1,5 @@
 from django.contrib import admin
-from staff.models import Session, SessionMaterial, Meeting
+from academy.models import Session, SessionMaterial, Meeting
 
 admin.site.register(Session)
 admin.site.register(SessionMaterial)

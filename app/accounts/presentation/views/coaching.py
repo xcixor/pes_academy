@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from accounts.models import Coach
-from staff.models import Session
+from academy.models import Session
 from common.utils.email import HtmlEmailMixin
 
 
