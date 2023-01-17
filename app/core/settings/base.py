@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'googlecharts',
     'rosetta',
     'django_extensions',
+    'django_rename_app',
     'common',
     'translations',
     'accounts',
@@ -56,7 +57,7 @@ INSTALLED_APPS = [
     'organization_subscription',
     'eligibility',
     'pes_admin',
-    'staff',
+    'academy',
     'agripitch',
     'captcha',
 ]
