@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.urls import reverse
 from academy.models import Meeting, Session
 from common.utils.email import HtmlEmailMixin
 
@@ -44,7 +45,7 @@ class SetupMeetingView(CreateView, HtmlEmailMixin):
         super().send_email(
             subject, None, from_email, [to_email],
             template='staff/email/event.html', context=context)
-        return f'/staff/session/{self.object.session.pk}/'
+        return reverse('academy:session_details', kwargs={'pk': self.object.session.pk})
 
     def form_invalid(self, form):
         message = _(

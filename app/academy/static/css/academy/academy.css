@@ -1,0 +1,59 @@
+.title {
+    text-transform: capitalize;
+    overflow: hidden;
+    font-weight: 600;
+}
+
+.card-inset {
+    border-radius: 2px;
+    box-shadow: inset 0 0 4px #D0D0D0;
+}
+
+.info-card {
+    padding: 40px 20px;
+}
+
+.btn-enhanced {
+    font-weight: 600 !important;
+    font-size: 1.6rem;
+}
+
+.form-control {
+    padding: 24px 16px !important;
+}
+
+p {
+    font-size: 1.6rem !important;
+}
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.file-input label {
+    display: block;
+    position: relative;
+    width: 100px;
+    border-radius: 5px;
+    background: #14A562;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+    color: white;
+}
+
+input:hover+label,
+input:focus+label {
+    transform: scale(1.02);
+}
+

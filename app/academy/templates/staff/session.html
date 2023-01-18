@@ -2,10 +2,10 @@
 {% load i18n %}
 {% block admin_content %}
 <div class="row">
-    <div class="col">
+    <div class="col-sm-12">
         <h2 class="text-center">Create Session</h2>
         <div class="card p-5">
-            <form action="{% url 'staff:session_create' %}" method="post" style="color: black;">
+            <form action="{% url 'academy:session_create' %}" method="post" style="color: black;">
                 {% csrf_token %}
                 <input type="hidden" name="coach" value="{{user.pk}}">
                 <div class="col mt-2">

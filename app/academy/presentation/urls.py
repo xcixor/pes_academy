@@ -5,7 +5,7 @@ from academy.presentation.views import (
     GetMaterialPageView, UploadMaterialView)
 
 
-app_name = 'staff'
+app_name = 'academy'
 
 urlpatterns = [
     path('coachees/', CoacheesView.as_view(), name='coachees'),

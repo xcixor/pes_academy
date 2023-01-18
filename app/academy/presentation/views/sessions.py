@@ -2,6 +2,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse
 from academy.models import Session
 
 
@@ -20,7 +21,9 @@ class PostSessionView(CreateView):
     template_name = 'staff/session.html'
     fields = ['coach', 'coachee', 'title', 'description']
     model = Session
-    success_url = '/staff/sessions/'
+
+    def get_success_url(self) -> str:
+        return reverse('academy:sessions')
 
 
 class SessionView(View):
@@ -48,4 +51,4 @@ class SessionUpdate(UpdateView):
     fields = ['description']
 
     def get_success_url(self) -> str:
-        return f'/staff/session/{self.object.pk}/'
+        return reverse('academy:session_details', kwargs={'pk': self.object.pk})

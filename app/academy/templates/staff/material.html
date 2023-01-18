@@ -1,31 +1,54 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/academy/academy.css' %}">
+{% endblock %}
 {% block admin_content %}
 <div class="row">
-    <div class="col-md-6">
-        <div class="row">
-        <h2>Set up a meeting</h2>
+    <div class="col-sm-12">
+        <div class="site-bg-primary p-4 text-white mb-4">
+            <h2 class="title">Upload Material</h2>
         </div>
-        <form action="{% url 'staff:material_upload' pk=session.pk %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="session" value="{{session.pk}}">
-            <div class="row">
-                <input type="text" name="material_name" placeholder="Document Name" required>
-                    <div>
-                    {% for error in form.material_name.errors %}
-                    <p class="error">{{ error|escape }}</p>
-                    {% endfor %}
-                </div>
-                <input class="input-field" type="file" name="material" required>
-                <div>
-                    {% for error in form.material.errors %}
-                    <p class="error">{{ error|escape }}</p>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="row my-5">
-            <button type="submit" class="btn">Save</button>
-            </div>
-        </form>
+    </div>
 </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-inset info-card">
+            <form action="{% url 'academy:material_upload' pk=session.pk %}" method="post"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="session" value="{{session.pk}}">
+                <div class="mb-4">
+                    <input type="text" name="material_name" placeholder="Material Name" required class="form-control">
+                    <div>
+                        {% for error in form.material_name.errors %}
+                        <p class="error">{{ error|escape }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="file-input">
+                        <input type="file" id="file" class="file" name="material" required>
+                        <label for="file">Select file</label>
+                        <p class="file-name"></p>
+                    </div>
+                    <div>
+                        {% for error in form.material.errors %}
+                        <p class="error">{{ error|escape }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary" style="width: 100px;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/academy/file.js' %}"></script>
 {% endblock %}

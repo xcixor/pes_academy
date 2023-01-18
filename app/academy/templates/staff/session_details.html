@@ -1,38 +1,51 @@
 {% extends 'staff_base.html' %}
 {% load i18n %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/academy/academy.css' %}">
+{% endblock %}
 {% block admin_content %}
 <div class="row">
-    <div class="col">
-        <h2 class="text-center">{{session}}</h2>
-        <div>
+    <div class="col-sm-12">
+        <div class="site-bg-primary p-4 text-white mb-4">
+            <h2 class="title">{{session}}</h2>
+            <p><b>Client: </b>{{session.coachee.email}}</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-inset info-card">
+            <h4><b>Details</b></h4>
             {% if session.description %}
             <p>{{session.description}}</p>
             {% else %}
-            <form action="{% url 'staff:session_update' pk=session.pk %}" method="post">
+            <form action="{% url 'academy:session_update' pk=session.pk %}" method="post">
                 {% csrf_token %}
-                <textarea name="description" id="id_description" rows="5" placeholder="Please provide a description for this session"></textarea>
+                <textarea name="description" id="id_description" rows="5"
+                    placeholder="Please provide a description for this session" required></textarea>
                 <button type="submit" class="btn btn-primary">Save Description</button>
             </form>
             {% endif %}
-            <p><b>Client: </b>{{session.coachee.email}}</p>
         </div>
-        <div class="mt-5">
-            <h4><b>Session Meetings</b></h4>
 
+        <div class="card-inset info-card mt-5">
+            <h4><b>Session Meetings</b></h4>
             {% for meeting in session.meetings.all %}
-            <div class="row">
-                <div class="col">
-                    <a href="{{meeting.link}}" target="_blank">{{meeting}}</a>
-                </div>
-            </div>
+            <ul>
+
+                <li>
+                    <a href="{{meeting.link}}" target="_blank">{{meeting}}</a> <br>
+                </li>
+            </ul>
             {% empty %}
             <p>This session has no meetings</p>
             {% endfor %}
+            <a class="btn btn-primary" href="{% url 'academy:meeting_setup' pk=session.pk %}">Set up a meeting</a>
         </div>
-        <div>
-            <a class="btn" href="{% url 'staff:meeting_setup' pk=session.pk %}" style="display: inline-block;">Set up a meeting</a>
-        </div>
-        <div class="mt-5">
+
+        <div class="card-inset info-card mt-5 mt-5">
             <h4><b>Session Materials</b></h4>
             {% for material in session.materials.all %}
             <div class="row">
@@ -43,10 +56,13 @@
             {% empty %}
             <p>You have not uploaded any materials for this session</p>
             {% endfor %}
+            <div>
+                <a class="btn btn-primary" href="{% url 'academy:material' pk=session.pk %}"
+                    style="display: inline-block;">Upload
+                    Material</a>
+            </div>
         </div>
-        <div>
-            <a class="btn" href="{% url 'staff:material' pk=session.pk %}" style="display: inline-block;">Upload Material</a>
-        </div>
+
     </div>
 </div>
 {% endblock %}
