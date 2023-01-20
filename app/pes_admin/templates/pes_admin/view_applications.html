@@ -21,13 +21,19 @@
             <select class="custom-select" id="id_stage" name="stage" hx-get="{% url 'admin:all_applications' %}"
               hx-swap="innerHTML" hx-target="#htmx-parent" hx-indicator="#spinner">
               <option selected>Filter by Stage</option>
-              <option value="step_one" {% if request.session.sort == 'step_one' %}selected{% endif %}>In Progress
+              <option value="step_one" {% if request.session.sort == 'step_one' %}selected{% endif %}>Application Data Not Submitted
               </option>
               <option value="step_two" {% if request.session.sort == 'step_two' %}selected{% endif %}>Data Submitted
               </option>
-              <option value="step_three" {% if request.session.sort == 'step_three' %}selected{% endif %}>In Review
+              <option value="step_three" {% if request.session.sort == 'step_three' %}selected{% endif %}>Eligibility Verification
               </option>
-              <option value="step_four" {% if request.session.sort == 'step_four' %}selected{% endif %}>Verdict Passed
+              <option value="step_four" {% if request.session.sort == 'step_four' %}selected{% endif %}>Document Verification
+              </option>
+              <option value="step_five" {% if request.session.sort == 'step_five' %}selected{% endif %}>Long List
+              </option>
+              <option value="step_six" {% if request.session.sort == 'step_six' %}selected{% endif %}>Short List
+              </option>
+              <option value="step_seven" {% if request.session.sort == 'step_seven' %}selected{% endif %}>Verdict Passed
               </option>
             </select>
           </form>

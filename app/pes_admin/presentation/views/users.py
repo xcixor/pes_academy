@@ -38,6 +38,9 @@ class CallToActionUsers(ListView):
     paginate_by = 50
 
     def get(self, request, *args, **kwargs):
+        sort_term = self.request.GET.get('stage')
+        if sort_term:
+            self.request.session['sort'] = sort_term
         search_term = self.request.GET.get('search')
         if search_term:
             self.request.session['search'] = search_term
@@ -46,6 +49,12 @@ class CallToActionUsers(ListView):
     def get_queryset(self):
         queryset = super().get_queryset().filter(
             is_applying_for_a_call_to_action=True)
+        sort_term = self.request.session.get('sort', None)
+        stages = [
+            'step_one', 'step_two', 'step_three', 'step_four',
+            'step_five', 'step_six', 'step_seven']
+        if sort_term in stages:
+            queryset = queryset.filter(application__stage=sort_term)
         search_fields = SearchVector('username') \
             + SearchVector('email') \
             + SearchVector('full_name')

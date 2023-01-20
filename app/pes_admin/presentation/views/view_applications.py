@@ -24,7 +24,9 @@ class ApplicationsView(ListView):
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         sort_term = self.request.session.get('sort', None)
-        stages = ['step_one', 'step_two', 'step_three', 'step_four']
+        stages = [
+            'step_one', 'step_two', 'step_three', 'step_four',
+            'step_five', 'step_six', 'step_seven']
         if sort_term in stages:
             queryset = queryset.filter(stage=sort_term)
         search_fields = SearchVector('application_creator__email') \

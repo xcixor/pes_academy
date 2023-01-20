@@ -13,14 +13,27 @@
                             hx-get="{% url 'admin:all_applications' %}" hx-swap="innerHTML" hx-target="#htmx-parent"
                             hx-indicator="#spinner">
                             <option selected>Filter by Stage</option>
-                            <option value="step_one" {% if request.session.sort == 'step_one' %}selected{% endif %}>In
-                                Progress</option>
+                            <option value="step_one" {% if request.session.sort == 'step_one' %}selected{% endif %}>
+                                Application Data Not Submitted
+                            </option>
                             <option value="step_two" {% if request.session.sort == 'step_two' %}selected{% endif %}>Data
-                                Submitted</option>
+                                Submitted
+                            </option>
                             <option value="step_three" {% if request.session.sort == 'step_three' %}selected{% endif %}>
-                                In Review</option>
+                                Eligibility Verification
+                            </option>
                             <option value="step_four" {% if request.session.sort == 'step_four' %}selected{% endif %}>
-                                Verdict Passed</option>
+                                Document Verification
+                            </option>
+                            <option value="step_five" {% if request.session.sort == 'step_five' %}selected{% endif %}>
+                                Long List
+                            </option>
+                            <option value="step_six" {% if request.session.sort == 'step_six' %}selected{% endif %}>
+                                Short List
+                            </option>
+                            <option value="step_seven" {% if request.session.sort == 'step_seven' %}selected{% endif %}>
+                                Verdict Passed
+                            </option>
                         </select>
                     </form>
                     {% if request.session.sort %}
@@ -50,10 +63,10 @@
             <form action="{% url 'admin:all_applications' %}" method="get">
                 {% csrf_token %}
                 <div class="d-flex align-items-center search">
-                    <input value="{% if request.session.search %}{{request.session.search}}{% endif %}" type="text" id="id_search" class="form-control"
-                        placeholder="{% trans 'Search' %}" name="search" required hx-post="{% url 'admin:all_applications' %}"
-                        hx-trigger="keyup changed delay:1s" hx-swap="innerHTML" hx-target="#htmx-parent"
-                        hx-indicator="#spinner">
+                    <input value="{% if request.session.search %}{{request.session.search}}{% endif %}" type="text"
+                        id="id_search" class="form-control" placeholder="{% trans 'Search' %}" name="search" required
+                        hx-post="{% url 'admin:all_applications' %}" hx-trigger="keyup changed delay:1s"
+                        hx-swap="innerHTML" hx-target="#htmx-parent" hx-indicator="#spinner">
                     <button type="submit" class="btn btn-default"><i class="fa-solid fa-magnifying-glass"></i></button>
                     {% if request.session.search %}
                     <form method="get">

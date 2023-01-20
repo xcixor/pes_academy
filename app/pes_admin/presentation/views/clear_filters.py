@@ -9,6 +9,10 @@ class ClearSortView(View):
 
     def get(self, request, *args, **kwargs):
         self.request.session.pop('sort', None)
+        url_origin = request.META.get("HTTP_REFERER")
+        if '/users/call-to-action/' in url_origin:
+            return HttpResponseClientRedirect(
+                '/CgDX4znLdQDLFw/advanced/users/call-to-action/')
         return HttpResponseClientRedirect(
             '/CgDX4znLdQDLFw/advanced/applications/all/')
 
