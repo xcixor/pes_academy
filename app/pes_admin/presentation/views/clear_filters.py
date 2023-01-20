@@ -23,5 +23,8 @@ class ClearSearchView(View):
         if '/applications/unassigned/' in url_origin:
             return HttpResponseClientRedirect(
                 '/CgDX4znLdQDLFw/advanced/applications/unassigned/')
+        if '/users/call-to-action/' in url_origin:
+            return HttpResponseClientRedirect(
+                '/CgDX4znLdQDLFw/advanced/users/call-to-action/')
         return HttpResponseClientRedirect(
-                '/CgDX4znLdQDLFw/advanced/applications/all/')
+            '/CgDX4znLdQDLFw/advanced/applications/all/')
