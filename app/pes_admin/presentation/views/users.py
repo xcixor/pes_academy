@@ -57,7 +57,8 @@ class CallToActionUsers(ListView):
             queryset = queryset.filter(application__stage=sort_term)
         search_fields = SearchVector('username') \
             + SearchVector('email') \
-            + SearchVector('full_name')
+            + SearchVector('full_name') \
+            + SearchVector('id')
         search_query = self.request.session.get('search', None)
         if search_query:
             full_search = queryset.annotate(
