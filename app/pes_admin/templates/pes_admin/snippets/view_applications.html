@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load admin_extras %}
 
 <div class="container htmx-parent" id="htmx-parent">
     <div class="row">
@@ -87,32 +88,59 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="table-responsive card-admin">
+                {% if request.session.sort == 'step_six' %}
                 <table id="admin-dashboard" class="table table-striped text-white">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Creator</th>
-                            <th scope="col">Stage</th>
-                            <th scope="col">View</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for application in applications %}
-                        <tr>
-                            <th scope="row">{{application.special_id}}</th>
-                            <td>{{application.application_creator.email}}</td>
-                            <td>{{application.get_stage_display}}</td>
-
-                            <td>
-                                <a href="{% url 'admin:admin_application_view' slug=application.slug %}"
-                                    class="text-white link flex align-items-center" target="_blank">Open <i
-                                        class="fa-solid fa-angles-right"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+                  <thead>
+                    <tr>
+                      <th scope="col">{% trans "Short ID" %}</th>
+                      <th scope="col">{% trans "Owner" %}</th>
+                      <th scope="col">{% trans "Stage" %}</th>
+                      <th scope="col">{% trans "Language" %}</th>
+                      <th scope="col">{% trans "Entity Type" %}</th>
+                      <th scope="col">{% trans "Average Marks" %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for application in applications %}
+                    <tr>
+                      <th scope="row">{{application.application_creator}}</th>
+                      <td>{{application.application_creator.email}}</td>
+                      <td>{{application.get_stage_display}}</td>
+                      <td>{{application|get_user_language}}</td>
+                      <td>{{application|get_entity_type}}</td>
+                      <td>{{application.average_marks}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
                 </table>
+                {% else %}
+                <table id="admin-dashboard" class="table table-striped text-white">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Creator</th>
+                      <th scope="col">Stage</th>
+                      <th scope="col">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for application in applications %}
+                    <tr>
+                      <th scope="row">{{application.special_id}}</th>
+                      <td>{{application.application_creator.email}}</td>
+                      <td>{{application.get_stage_display}}</td>
+
+                      <td>
+                        <a href="{% url 'admin:admin_application_view' slug=application.slug %}"
+                          class="text-white link flex align-items-center" target="_blank">Open <i
+                            class="fa-solid fa-angles-right"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% endif %}
                 <div class="htmx-indicator" id="spinner">
                     <img src="{% static 'common/images/puff.svg' %}" height="80" width="80" alt="loader" />
                 </div>
