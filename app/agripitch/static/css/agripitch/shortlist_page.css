@@ -11,6 +11,13 @@
   background-color: #14A562;
 }
 
+.faq-page {
+  color: #455D8D;
+}
+
+.table-hover {
+  background-color: #14A562;
+}
  /* Extra small devices (phones, 600px and down) */
  @media only screen and (max-width: 600px) {
   .card {
