@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'rosetta',
     'django_extensions',
     'django_rename_app',
+    'captcha',
+    'channels',
     'common',
     'translations',
     'accounts',
@@ -59,7 +61,7 @@ INSTALLED_APPS = [
     'pes_admin',
     'academy',
     'agripitch',
-    'captcha',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -95,6 +97,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.routing.application'
 
 
 # Database
@@ -236,3 +239,14 @@ if 'test' in sys.argv:
 else:
     RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
     RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+
+REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
+REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(REDIS_HOST, REDIS_PORT)],
+        },
+    },
+}

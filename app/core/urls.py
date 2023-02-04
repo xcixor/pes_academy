@@ -39,6 +39,7 @@ urlpatterns = [
     path('rosetta/', include('rosetta.urls')),
     path('academy/', include('academy.presentation.urls', namespace='academy')),
     path('agripitch/', include('agripitch.presentation.urls', namespace='agripitch')),
+    path('chat/', include('chat.presentation.urls', namespace='chat')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.CPANEL_HOSTING:

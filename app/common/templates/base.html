@@ -134,6 +134,12 @@
     {% endif %}
     <script src="https://unpkg.com/htmx.org@1.8.0"></script>
     {% endblock %}
+    <script>
+      $(document).ready(function(){
+            {% block domready %}
+            {% endblock %}
+        });
+    </script>
     {% block footer %}
     {% include 'footer.html' %}
     {% endblock %}

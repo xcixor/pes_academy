@@ -57,3 +57,11 @@ input:focus+label {
     transform: scale(1.02);
 }
 
+.btn-default {
+    border-left: none !important;
+    border-color: #ccc !important;
+}
+
+#chat-message-input{
+    border-right: none;
+}
