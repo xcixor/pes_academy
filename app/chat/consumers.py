@@ -2,8 +2,8 @@ import json
 from django.utils import timezone
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-# from chat.models import OrderChatHistory
-# from order.models import Order
+from chat.models import SessionChatHistory
+from academy.models import Session
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -47,24 +47,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'sudo_identity': self.user.username
             }
         )
-        # order = await self._get_order()
-        # await self._create_chat(order, message, now)
+        session = await self._get_session()
+        await self._create_chat(session, message, now)
 
-    # @database_sync_to_async
-    # def _get_order(self):
-    #     return Order.objects.get(id=self.id)
+    @database_sync_to_async
+    def _get_session(self):
+        return Session.objects.get(id=self.id)
 
     # receive message from room group
     async def chat_message(self, event):
         # Send message to WebSocket
         await self.send(text_data=json.dumps(event))
 
-    # @database_sync_to_async
-    # def _create_chat(self, order, message, timestamp):
-    #     chat = OrderChatHistory.objects.create(
-    #         order=order,
-    #         user=self.user,
-    #         message=message,
-    #         timestamp=timestamp
-    #     )
-    #     chat.save()
+    @database_sync_to_async
+    def _create_chat(self, session, message, timestamp):
+        chat = SessionChatHistory.objects.create(
+            session=session,
+            user=self.user,
+            message=message,
+            timestamp=timestamp
+        )
+        chat.save()

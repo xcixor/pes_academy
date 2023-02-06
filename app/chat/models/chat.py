@@ -8,12 +8,12 @@ class SessionChatHistory(models.Model):
     session = models.ForeignKey(
         Session,
         on_delete=models.CASCADE,
-        related_name='session_history'
+        related_name='chat_history'
     )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='session_history'
+        related_name='chat_history'
     )
     message = models.TextField(blank=True)
     timestamp = models.DateTimeField()

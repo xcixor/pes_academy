@@ -19,6 +19,35 @@
         <div class="card-inset info-card">
             <h4><b><i class="fa-solid fa-comments"></i></b></h4>
             <div id="chat">
+              {% for chat in session.chat_history.all %}
+                {% if chat.user == user %}
+                  <div class="message me">
+                    <span class="identity">
+                      {% if chat.user.avatar %}
+                      <img src="{{ MEDIA_URL }}{{ user.avatar.url }}" alt="Avatar" class="user-img">
+                      {% else %}
+                      <img src="{% static 'images/common/avatar.svg.png' %}" alt="Avatar" class="user-img">
+                      {% endif %}
+                      <strong>Me</strong> &nbsp;
+                      <span class="date">{{ chat.timestamp|date:"g:i A" }}</span>
+                    </span>
+                    <p>{{ chat.message }}</p>
+                  </div>
+                {% else %}
+                <div class="message other">
+                  <span class="identity">
+                    {% if chat.user.avatar %}
+                    <img src="{{ MEDIA_URL }}{{ user.avatar.url }}" alt="Avatar" class="user-img">
+                    {% else %}
+                    <img src="{% static 'images/common/avatar.svg.png' %}" alt="Avatar" class="user-img">
+                    {% endif %}
+                    <strong>{% if chat.user.username %}{{chat.user.username}}{% else %}{{chat.user.user_id}}{% endif %}</strong> &nbsp;
+                    <span class="date">{{ chat.timestamp|date:"g:i A" }}</span>
+                  </span>
+                  <p>{{ chat.message }}</p>
+                </div>
+                {% endif %}
+              {% endfor %}
             </div>
             <div id="chat-input" class="d-flex">
                 <input id="chat-message-input" type="text">
