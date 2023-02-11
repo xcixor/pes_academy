@@ -20,7 +20,7 @@ class Coaching(CreateView, HtmlEmailMixin):
     template_name = 'coach/coach_bio.html'
 
     def get_success_url(self) -> str:
-        success_message = self.object.coach.full_name + \
+        success_message = str(self.object.coach) + \
             _(' Has been added as your coach.')
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
@@ -29,7 +29,7 @@ class Coaching(CreateView, HtmlEmailMixin):
         message_piece_one = _("Hi, ")
         message_piece_two = _(" has added you as their coach.")
         email_message = message_piece_one + \
-            self.object.mentee.full_name + message_piece_two
+            str(self.object.mentee) + message_piece_two
         subject = _('PSA Student')
         context = {
             'message': email_message,

@@ -177,11 +177,22 @@
                                 {% for mentor in mentors %}
                                 <div class="g-col">
                                     <div class="card">
-                                        <div class="card-body d-flex justify-content-between">
+                                        <div class="card-body d-flex flex-column justify-content-between">
+                                            {% if mentor.avatar %}
                                             <img src="{% if mentor.avatar %}{{mentor.avatar.url}}{% endif %}"
                                                 class="img-rounded" alt="No Avatar">
+                                            {% else %}
+                                            <img src="{% static 'images/common/avatar.png' %}"
+                                                class="img-fluid img-profile" alt="Avatar" height="250px">
+                                            {% endif %}
                                             <div class="d-flex flex-column card-action">
-                                                <h4>{{ mentor.full_name }}</h4>
+                                                <h4>
+                                                    {% if mentor.full_name %}
+                                                    {{ mentor.full_name }}
+                                                    {% else %}
+                                                    {{ mentor }}
+                                                    {% endif %}
+                                                </h4>
                                                 <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}"
                                                     class="btn btn-primary">{% trans "View Bio" %}</a>
                                             </div>
@@ -199,10 +210,18 @@
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
                             <h2 class="card-header">{% trans "My Coaches" %}</h2>
                             {% for coaching in user.coaches.all|distinct %}
-                            <div class="card">
-                                <div class="card-body d-flex justify-content-between">
-                                    <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}"
-                                        class="img-rounded" alt="No Image">
+                            <div class="card" style="width: 20rem;">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    {% if coaching.coach.avatar %}
+                                    <div class="profile-image">
+                                        <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}"
+                                            class="img-rounded" alt="No Image">
+                                    </div>
+                                    {% else %}
+                                    <img src="{% static 'images/common/avatar.png' %}" class="img-profile"
+                                        alt="Avatar" height="200px" width="auto">
+
+                                    {% endif %}
                                     <div class="d-flex flex-column card-action">
                                         <h4>{{ coaching.coach.full_name }}</h4>
                                         <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}"

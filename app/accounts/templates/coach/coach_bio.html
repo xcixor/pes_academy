@@ -8,44 +8,57 @@
 {% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="container d-flex justify-content-center p-5" style="background: rgba(75, 99, 134, 0.9); border-radius: 5%;">
+<div class="container d-flex justify-content-center p-5" style="background: rgba(75, 99, 134, 0.9); border-radius: 5px;">
     <figure class="snip1515">
-        <div class="profile-image">
-            <img src="{% if coach.avatar %}{{coach.avatar.url}}{% endif %}" class="img" alt="No Avatar" height="200px">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="bg-white" style="padding: 0 !important">
+                    {% if mentor.avatar %}
+                    <div class="profile-image">
+                        <img src="{% if coach.avatar %}{{coach.avatar.url}}{% endif %}" class="img" alt="No Avatar" height="150px" style="height:150px">
+                    </div>
+                    {% else %}
+                    <img src="{% static 'images/common/avatar.png' %}" class="img-fluid img-profile" alt="Avatar" height="150px" style="height:150px">
+                    {% endif %}
+                    <h3>
+                    {% if mentor.full_name %}
+                    {{ mentor.full_name }}
+
+                    {% endif %}
+                    </h3>
+                  <h4>{{coach.email}}</h4>
+                  <h4>Bio</h4>
+                  <p>
+                      {{coach.bio}}
+                  </p>
+                  <div class="icons">
+                    <a href="{{coach.linked_in}}" target="_blank">
+                        <i class="fa-brands fa-linkedin fa-lg"></i>
+                    </a>
+                    <div class="icons">
+                        <span class="align-items-center mt-4">
+                            <i class="fa-solid fa-user fa-lg"></i>
+                            {{coach.get_gender_display}}
+                        </span>
+                    </div>
+                  </div>
+                  <div class="card-buttons">
+                    <div class="actions">
+                        {% if not coach|is_user_coach:user %}
+                        <form action="{% url 'accounts:coaching' %}" method="post" class=" d-flex justify-content-center">
+                            {% csrf_token %}
+                            <button class="btn btn-primary m-4" type="submit">{% trans "Add Coach" %}</button>
+                            <input type="hidden" name="coach" value="{{coach.pk}}">
+                            <input type="hidden" name="mentee" value="{{user.pk}}">
+                        </form>
+                        {% endif %}
+                        <a href="{% url 'accounts:dashboard' %}" class="btn btn-primary mb-2">{% trans "Back" %}</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
-        <figcaption>
-          <h3>{{ coach.full_name }}</h3>
-          <h4 class="mt-2">{{coach.email}}</h4>
-          <h4>Bio</h4>
-          <p>
-              {{coach.bio}}
-          </p>
-          <div class="icons">
-            <a href="{{coach.linked_in}}" target="_blank">
-                <i class="fa fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <div class="icons">
-                <span class="align-items-center mt-4">
-                    <i class="fa-solid fa-user mr-3"></i>
-                    {{coach.get_gender_display}}
-                </span>
-            </div>
-          </div>
-          <div class="card-buttons">
-            <div class="actions">
-                {% if not coach|is_user_coach:user %}
-                <form action="{% url 'accounts:coaching' %}" method="post" class=" d-flex justify-content-center">
-                    {% csrf_token %}
-                    <button class="btn m-4" type="submit">{% trans "Add Coach" %}</button>
-                    <input type="hidden" name="coach" value="{{coach.pk}}">
-                    <input type="hidden" name="mentee" value="{{user.pk}}">
-                </form>
-                {% endif %}
-                <a href="{% url 'accounts:dashboard' %}" class="btn">{% trans "Back" %}</a>
-            </div>
-          </div>
-        </figcaption>
-      </figure>
+    </figure>
 
 </div>
 
