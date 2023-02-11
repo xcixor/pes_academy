@@ -70,6 +70,14 @@
             </div>
         </div>
 
+        <div class="card-inset info-card mt-5 mt-5">
+            <form class="row" method="post" action="{% url 'academy:delete_session' pk=session.pk %}">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit"
+                    style="display: inline-block; background:#b71c1c; border: none;">Delete Session</button>
+            </form>
+        </div>
+
     </div>
 </div>
 {% endblock %}
