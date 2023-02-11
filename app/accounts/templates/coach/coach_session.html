@@ -14,7 +14,7 @@
         </div>
         <div class="card-body m-4">
             <ol style="list-style-type:decimal;" class="list-group list-group-flush">
-                {% for session in coach.events.all %}
+                {% for session in user.sessions.all %}
                     <li  class="list-group-item list-group-item-action">
                         <span class="text-dark">{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
                     </li>
