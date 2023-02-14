@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'academy',
     'agripitch',
     'chat',
+    'home',
 ]
 
 MIDDLEWARE = [
