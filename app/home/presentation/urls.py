@@ -1,8 +1,8 @@
 from django.urls import path
-from application.presentation.views import (
+from home.presentation.views import (
     IndexView, PrivacyPolicyView)
 
-app_name = 'application'
+app_name = 'home'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
