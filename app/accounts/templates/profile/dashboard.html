@@ -51,19 +51,6 @@
                             </a>
                         </li>
 
-                        <li class="tablink" onclick="openPage('App')">
-                            <a href="#">
-                                <i class="fa fa-tasks" aria-hidden="true"></i>
-                                <span class="tablink" onclick="openPage('App')">{% trans "Applications" %}</span>
-                            </a>
-                        </li>
-
-                        <!-- <li class="tablink" onclick="openPage('Team')">
-                            <a href="#">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="tablink" onclick="openPage('Team')" >{% trans "Team" %}</span>
-                            </a>
-                        </li> -->
                         <li>
                             <a href="{% url 'accounts:profile_view' %}">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
@@ -119,34 +106,6 @@
                             </div>
                         </div>
                     </div>
-                    {% if user.is_applying_for_a_call_to_action %}
-                    <div class="row">
-                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12 col-xs-12">
-                            <div class=" row sales ">
-                                <div class="col-md-12">
-                                    <h2>{% trans "Ongoing Applications" %}</h2>
-                                    <div>
-                                        {% if user.application %}
-                                        <button class="btn btn-primary mt-4"><a class="text-light"
-                                                href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}">{% trans "Your Application" %}</a></button>
-                                        {% else %}
-                                        {% with user.email|get_application_url as url %}
-                                        {% if url %}
-                                        <button class="btn btn-primary mt-4"><a class="text-light"
-                                                href="{{url}}">{% trans "Your Application" %}</a></button>
-                                        {% else %}
-                                        <a href="{% url 'application:index' %}"
-                                            class="btn btn-primary mt-2">{% trans "Start Application" %}</a>
-                                        {% endif %}
-                                        {% endwith %}
-                                        {% endif %}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
                 </div>
                 <div id="Academy" class="tabcontent">
                     <div class="row">
@@ -232,61 +191,6 @@
                             {% empty %}
                             <p>{% trans "You do not have coaches at the moment" %}</p>
                             {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
-                <div id="App" class="tabcontent">
-                    <div class="row">
-                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12 ">
-                            <h2 class="card-header">
-                                {% trans "Applications" %}
-                            </h2>
-                            <div class="card-body">
-                                <h4 class="card-title">{% trans "Ongoing Competitions" %}</h4>
-                                {% if user.application %}
-
-                                <h4><b>Application Closed</b></h4>
-                                <a href="{% url 'agripitch:application' slug=user.application.call_to_action.slug %}"
-                                    class="btn btn-primary">{% trans "View Results" %}</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt-5">
-                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h4 class="card-header">
-                                {% trans "Upload Further Documents" %}
-                            </h4>
-                            <div class="card-body">
-                                <form action="{% url 'application:extra_documents' %}" method="post"
-                                    enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <input name="document_name" type="text" required style="color:black"
-                                            placeholder="{% trans 'Document name' %}">
-                                        {% for error in form.document_name.errors %}
-                                        <div class="error">{{ error|escape }}</div>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="document" accept="application/pdf" type="file" required>
-                                        {% for error in form.document.errors %}
-                                        <div class="error">{{ error|escape }}</div>
-                                        {% endfor %}
-                                    </div>
-                                    <input name="application" type="hidden" value="{{user.application.pk}}" class="btn">
-                                    <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
-                                </form>
-                                <ul class="p-4">
-                                    {% for document in user.application.documents.all %}
-                                    <li>
-                                        <a href="{{document.document.url}}" target="_blank">Click to Open:
-                                            {{document}}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
