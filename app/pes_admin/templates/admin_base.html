@@ -35,40 +35,11 @@
               <span class="bi bi-border-all"></span>
               <span class="ml-2">{% trans "Dashboard" %}</span>
             </a>
-            <a href="/CgDX4znLdQDLFw/advanced/invite/reviewer/"
-              class="list-group-item list-group-item-action border-0 align-items-center">
-              <span class="bi bi-person-plus"></span>
-              <span class="ml-2">{% trans "Invite Application Reviewers" %}</span>
-            </a>
             <a href="/CgDX4znLdQDLFw/advanced/view/staff/"
               class="list-group-item list-group-item-action border-0 align-items-center">
               <span class="bi bi-people"></span>
               <span class="ml-2">{% trans "View Staff" %}</span>
             </a>
-
-            <button
-              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
-              data-toggle="collapse" data-target="#sale-collapse">
-              <div>
-                <span class="bi bi-app"></span>
-                <span class="ml-2">{% trans "Applications" %}</span>
-              </div>
-              <span class="bi bi-chevron-down small"></span>
-            </button>
-            <div class="collapse" id="sale-collapse" data-parent="#sidebar">
-              <div class="list-group">
-                <a href="{% url 'admin:all_applications' %}"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
-                <a href="/CgDX4znLdQDLFw/advanced/applications/in-review/"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "In Review" %}</a>
-                <a href="/CgDX4znLdQDLFw/advanced/applications/unassigned/"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Unassigned" %}</a>
-                <a href="{% url 'admin:floating' %}"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Floating" %}</a>
-                <a href="{% url 'admin:long_list' %}"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Long List Evalution" %}</a>
-              </div>
-            </div>
 
             <button
               class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
@@ -85,8 +56,6 @@
                   class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
                 <a href="/CgDX4znLdQDLFw/advanced/users/regular/"
                   class="list-group-item list-group-item-action border-0 pl-5">{% trans "Regular User" %}</a>
-                <a href="/CgDX4znLdQDLFw/advanced/users/call-to-action/"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Applying for Calls" %}</a>
               </div>
             </div>
 
@@ -97,63 +66,6 @@
             {% else %}
             <p class="pl-5">{% trans "None available" %}</p>
             {% endif %}
-
-
-
-            <button
-              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
-              data-toggle="collapse" data-target="#reporting">
-              <div>
-                <span class="bi bi-app"></span>
-                <span class="ml-2">{% trans "Reporting" %}</span>
-              </div>
-              <span class="bi bi-chevron-down small"></span>
-            </button>
-            <div class="collapse" id="reporting" data-parent="#sidebar">
-              <div class="list-group">
-                <a href="{% url 'admin:export_agripitch_questions_xls' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-excel"></i>
-                  <span class="ml-2">{% trans "Export AgriPitch Questions" %}</span>
-                </a>
-                <a href="{% url 'admin:export_inactive_user_emails_to_xls' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-excel"></i>
-                  <span class="ml-2">{% trans "Export Dormant Accounts" %}</span>
-                </a>
-                <a href="{% url 'admin:export_key_stats_to_csv' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Key Stats" %}</span>
-                </a>
-                <a href="{% url 'admin:export_remaining_steps_for_users' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Remaining Steps" %}</span>
-                </a>
-                <a href="{% url 'admin:export_emails_without_applications' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Emails without Applications" %}</span>
-                </a>
-                <a href="{% url 'admin:export_applications_by_country' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Countries" %}</span>
-                </a>
-                <a href="{% url 'admin:export_reviewers_and_reviewees' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Reviewers" %}</span>
-                </a>
-                <a href="{% url 'admin:export_final_applicants' %}"
-                  class="list-group-item list-group-item-action border-0 align-items-center">
-                  <i class="fa-solid fa-file-csv"></i>
-                  <span class="ml-2">{% trans "Export Applicants" %}</span>
-                </a>
-              </div>
-            </div>
-
 
 
 
