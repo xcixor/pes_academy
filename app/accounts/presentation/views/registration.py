@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import TemplateView, FormView
-from django.contrib.auth import login
 from django_htmx.http import HttpResponseClientRedirect
 from accounts.forms import RegistrationForm
 

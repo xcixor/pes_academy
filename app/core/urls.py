@@ -27,17 +27,9 @@ urlpatterns = [
     path('CgDX4znLdQDLFw/', admin.site.urls),
     path('accounts/', include('accounts.presentation.urls', namespace='accounts')),
     path('', include('home.presentation.urls', namespace='home')),
-    path('organization-subscription/',
-         include(
-             'organization_subscription.presentation.urls',
-             namespace='organization_subscription')),
-    path(
-        'eligibility/',
-        include('eligibility.presentation.urls', namespace='eligibility')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('rosetta/', include('rosetta.urls')),
     path('academy/', include('academy.presentation.urls', namespace='academy')),
-    path('agripitch/', include('agripitch.presentation.urls', namespace='agripitch')),
     path('chat/', include('chat.presentation.urls', namespace='chat')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -8,7 +8,6 @@
 {% endblock %}
 {% load i18n %}
 {% load account_extras %}
-
 {% block content %}
 
 <div class="home">
@@ -84,24 +83,7 @@
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 col-xs-12 mb-5">
                             <div class=" row sales">
                                 <div class="col-md-12">
-                                    <h2>{% trans "Your Team Members" %}</h2>
-                                    {% if user.organization_admin %}
-                                    {% for member in user.organization_admin.subscriptions.all %}
-                                    <p>{{member}}</p>
-                                    {% empty %}
-                                    {% trans "You have not invited your team yet" %}
-                                    {% endfor %}
-                                    {% else %}
-                                    {% with members=user.email|get_organization_members %}
-                                    {% for member in members %}
-                                    <p>
-                                        {{member}}
-                                    </p>
-                                    {% empty %}
-                                    {% trans "There is not team yet" %}
-                                    {% endfor %}
-                                    {% endwith %}
-                                    {% endif %}
+
                                 </div>
                             </div>
                         </div>
@@ -194,41 +176,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="Team" class="tabcontent">
-                    <div class="row">
-                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <button class="btn btn-primary" id="show-form">{% trans "Invite" %}</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h2 class="card-header">{% trans "Your Team Members" %}</h2>
-                            {% if user.organization_admin %}
-                            {% for member in user.organization_admin.subscriptions.all %}
-                            <p>
-                                {% with user=member|get_profile %}
-                                {{user.full_name}}
-                                {% endwith %}
-                            </p>
-                            {% endfor %}
-                            {% else %}
-                            {% with members=user.email|get_organization_members %}
-                            {% for member in members %}
-                            <p>
-                                {% with user=member|get_profile %}
-                                {{user.full_name}}
-                                {% endwith %}
-                            </p>
-                            {% empty %}
-                            <p class="mt-5">{% trans "You don't have a team yet" %}</p>
-                            {% endfor %}
-                            {% endwith %}
-                            {% endif %}
-                        </div>
-
-                    </div>
-                </div>
-
                 {% endblock %}
             </div>
         </div>

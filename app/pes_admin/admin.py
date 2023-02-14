@@ -1,22 +1,9 @@
 from django.urls import path
 from django.contrib import admin
 from pes_admin.presentation.views import (
-    AdvancedAdminDashboardView, InviteReviewerView, DisplayStaffView,
-    MakeStaffReviewerView, ApplicationsView, AssignReviewersView,
-    ApplicationDetails, UnassignedApplicationsView,
-    InReviewApplicationsView, CreateModerator, MakeStaffCoachView,
-    AllUsersView, RegularUsers, CallToActionUsers, AssignCoachesView,
-    export_inactive_user_emails_to_xls, AdminApplicationView,
-    export_remaining_steps_for_users, ClearSortView, ClearSearchView,
-    export_emails_without_applications, export_applications_by_country,
-    export_reviewers_and_reviewees, export_final_applicants,
-    ReassignApplicationHomeView, ReassignApplicationView,
-    FloatingCompletedApplications, LongListEvaluation,
-    AssignEvaluatorView, CreateEvaluation)
-from pes_admin.presentation.views.export_form_questions import (
-    export_agripitch_questions_xls)
-from pes_admin.presentation.views.export_key_stats_to_csv import (
-    export_key_stats_to_csv)
+    AdvancedAdminDashboardView, DisplayStaffView,
+    MakeStaffCoachView,
+    AllUsersView, RegularUsers, AssignCoachesView)
 
 
 class CustomAdmin(admin.AdminSite):
@@ -27,93 +14,16 @@ class CustomAdmin(admin.AdminSite):
             path('',
                  admin.site.admin_view(AdvancedAdminDashboardView.as_view()),
                  name='advanced_index'),
-            path('invite/reviewer/',
-                 admin.site.admin_view(InviteReviewerView.as_view())),
             path('view/staff/',
                  admin.site.admin_view(DisplayStaffView.as_view())),
-            path('make/<int:pk>/reviewer/',
-                 admin.site.admin_view(MakeStaffReviewerView.as_view())),
-            path(
-                'applications/all/',
-                admin.site.admin_view(ApplicationsView.as_view()),
-                name='all_applications'),
-            path('applications/unassigned/',
-                 admin.site.admin_view(UnassignedApplicationsView.as_view()),
-                 name='unassigned_applications'),
-            path('applications/floating/',
-                 admin.site.admin_view(
-                     FloatingCompletedApplications.as_view()),
-                 name='floating'),
-            path('applications/long/list/evaluation/',
-                 admin.site.admin_view(
-                     LongListEvaluation.as_view()),
-                 name='long_list'),
-            path('applications/long/list/evaluator/',
-                 admin.site.admin_view(
-                     CreateEvaluation.as_view()),
-                 name='assign_evaluator'),
-            path('applications/in-review/',
-                 admin.site.admin_view(InReviewApplicationsView.as_view()),
-                 name='applications_in_review'),
             path('users/all/',
                  admin.site.admin_view(AllUsersView.as_view())),
             path('users/regular/',
                  admin.site.admin_view(RegularUsers.as_view())),
-            path('users/call-to-action/',
-                 admin.site.admin_view(CallToActionUsers.as_view()),
-                 name='call_to_action_users'),
             path('assign/<int:pk>/coaches/',
                  admin.site.admin_view(AssignCoachesView.as_view())),
-            path('assign/<int:pk>/reviewers/',
-                 admin.site.admin_view(AssignReviewersView.as_view())),
-            path('assign/<int:pk>/evaluator/',
-                 admin.site.admin_view(AssignEvaluatorView.as_view()),
-                 name='assign_evaluator'),
-            path('application/<slug:slug>/view/',
-                 admin.site.admin_view(AdminApplicationView.as_view()),
-                 name='admin_application_view'),
-            path('view/<slug:slug>/',
-                 admin.site.admin_view(ApplicationDetails.as_view())),
-            path('reassign/home/<slug:slug>/',
-                 admin.site.admin_view(ReassignApplicationHomeView.as_view()),
-                 name='reassign_home'),
-
-            path('reassign/reviewer/<int:pk>/',
-                 admin.site.admin_view(ReassignApplicationView.as_view()),
-                 name='reassign'),
-
-            path('make/<int:pk>/moderator/',
-                 admin.site.admin_view(CreateModerator.as_view())),
             path('make/<int:pk>/coach/',
                  admin.site.admin_view(MakeStaffCoachView.as_view())),
-            path('export/agripitch/xls/', export_agripitch_questions_xls,
-                 name='export_agripitch_questions_xls'),
-            path(
-                'export/users/dormant/xls/',
-                export_inactive_user_emails_to_xls,
-                name='export_inactive_user_emails_to_xls'),
-            path('export/stats/csv/', export_key_stats_to_csv,
-                 name='export_key_stats_to_csv'),
-            path('export/user/steps/csv/', export_remaining_steps_for_users,
-                 name='export_remaining_steps_for_users'),
-            path('sort/clear/',
-                 admin.site.admin_view(ClearSortView.as_view()),
-                 name='clear_sort'),
-            path('search/clear/',
-                 admin.site.admin_view(ClearSearchView.as_view()),
-                 name='clear_search'),
-            path('export/user/emails/no/applications/csv/',
-                 export_emails_without_applications,
-                 name='export_emails_without_applications'),
-            path('export/countries/csv/',
-                 export_applications_by_country,
-                 name='export_applications_by_country'),
-            path('export/reviewers/csv/',
-                 export_reviewers_and_reviewees,
-                 name='export_reviewers_and_reviewees'),
-            path('export/applicants/csv/',
-                 export_final_applicants,
-                 name='export_final_applicants'),
         ] + urls
         return custom_urls
 
