@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="{% static 'css/pes_admin/admin_base.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 {% endblock %}
-{% load application_extras %}
 {% block content %}
 <div class="container-fluid d-flex justify-content-between align-items-start">
   <!-- sidebar -->
@@ -75,44 +74,13 @@
               <h2 class="card-title">{% trans "Hello" %} {{user.username}}</h2>
             </div>
             <div class="card-body">
-              {% if user.is_coach %}
+
               <h3>Quick Stats</h3>
 
               <p>No of clients: {{user.mentees.count}}</p>
-              <p>Total Applications: {{ user.applications.count }}</p>
-              {% if user.applications.count > 0 %}
-              <div>
-                <p>Applications in Progress</p>
-                {% for application in user.applications.all|in_progress %}
-                <a href="/eligibility/{{application.application.slug}}/"
-                  style="font-size: 1.5rem;color: green;">{{application}}: {% trans "Click to Review" %}</a><br>
-                {% empty %}
-                <p>You do not have applications in progress at the moment</p>
-                {% endfor %}
-                <h4><b>Applications Reviewed</b></h4>
-                {% for application in user.applications.all|review_finished %}
-                <p>{{application}}: <i class="fas fa-check"></i></p>
-                {% empty %}
-                <p>You have not reviewed any applications</p>
-                {% endfor %}
-              </div>
-              {% endif %}
+
               <p>Other roles: {% if user.is_reviewer %}Reviewer{% else %}None{% endif %}</p>
-              <p>Applications reviewed: {{ user.applications.count }}</p>
-              {% elif user.is_evaluator %}
-              <h3>Quick Stats</h3>
-              <p>Total Applications: <b>{{user.evaluations.count}}</b></p>
-              <p>Total Applications Qualified {% with user|get_by_qualified_status:'qualified' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications Disqualified {% with user|get_by_qualified_status:'disqualified' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications Remaining : <b>{{user|get_remaining_evaluations}}</b></p>
-              {% else %}
-              <h3>Quick Stats</h3>
-              <p>Total Applications: <b>{{user.reviews.count}}</b></p>
-              <p>Total Applications in Stage Eligibility Criteria {% with user|get_stage_reviews:'step_three' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications in Stage Document verification {% with user|get_stage_reviews:'step_four' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications in Stage Long List {% with user|get_stage_reviews:'step_five' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              <p>Total Applications in Stage Short List {% with user|get_stage_reviews:'step_six' as reviews %}<b>{{reviews}}</b>{% endwith %}</p>
-              {% endif %}
+
             </div>
           </div>
           {% endblock %}
