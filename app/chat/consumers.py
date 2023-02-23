@@ -2,8 +2,9 @@ import json
 from django.utils import timezone
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-from chat.models import SessionChatHistory
+from chat.models import SessionChatHistory, CoachChatHistory
 from academy.models import Session
+from accounts.models import Coach
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -63,6 +64,70 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def _create_chat(self, session, message, timestamp):
         chat = SessionChatHistory.objects.create(
             session=session,
+            user=self.user,
+            message=message,
+            timestamp=timestamp
+        )
+        chat.save()
+
+
+class CoachChatConsumer(AsyncWebsocketConsumer):
+
+    async def connect(self):
+        self.user = self.scope['user']
+        self.id = self.scope['url_route']['kwargs']['coach_id']
+        self.room_group_name = 'coach_chat_{}'.format(self.id)
+        # join room group
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+        # accept connection
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        # leave room group
+        await self.channel_layer.group_discard(
+            self.room_group_name,
+            self.channel_name
+        )
+
+    # receive message from WebSocket
+    async def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        now = timezone.now()
+        avatar_url = '/static/images/common/avatar.svg.png'
+        if self.user.avatar:
+            avatar_url = self.user.avatar.url
+        # send message to room group
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': message,
+                'user': self.user.username,
+                'avatar_url': avatar_url,
+                'datetime': now.isoformat(),
+                'sudo_identity': self.user.username
+            }
+        )
+        session = await self._get_coach()
+        await self._create_chat(session, message, now)
+
+    @database_sync_to_async
+    def _get_coach(self):
+        return Coach.objects.get(id=self.id)
+
+    # receive message from room group
+    async def chat_message(self, event):
+        # Send message to WebSocket
+        await self.send(text_data=json.dumps(event))
+
+    @database_sync_to_async
+    def _create_chat(self, coach, message, timestamp):
+        chat = CoachChatHistory.objects.create(
+            coach=coach,
             user=self.user,
             message=message,
             timestamp=timestamp

@@ -1,8 +1,13 @@
 from django.urls import path
-from chat.presentation.views import ChatRoomView
+from chat.presentation.views import (
+    ChatRoomView, CoachingChatRoomView)
 
 app_name = 'chat'
 
 urlpatterns = [
-    path('room/<int:pk>/', ChatRoomView.as_view(), name='room')
+    path('room/<int:pk>/', ChatRoomView.as_view(), name='room'),
+    path(
+        'coach/room/<int:pk>/',
+        CoachingChatRoomView.as_view(),
+        name='coaching_chat_room')
 ]

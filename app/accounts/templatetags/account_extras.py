@@ -1,5 +1,5 @@
 from django import template
-from accounts.models import User
+from accounts.models import User, Coach
 
 
 register = template.Library()
@@ -38,3 +38,10 @@ def is_user_coach(coach, user):
 @register.filter('distinct')
 def distinct(queryset):
     return queryset.distinct('coach_id')
+
+
+@register.filter('get_coach_type')
+def get_coach_type(coach, mentee):
+    type_of_coach = Coach.objects.get(
+        coach=coach, mentee=mentee).get_type_display()
+    return type_of_coach
