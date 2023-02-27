@@ -5,52 +5,68 @@
 {{ block.super }}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/coach_bio.css' %}" />
+<link rel="stylesheet" href="{% static 'css/academy/academy.css' %}">
 {% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="bio container">
-    <h3 class="text-center">{{session}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="site-bg-secondary p-4 text-white mb-4">
+        <h2 class="title">{{session}}</h2>
+        <p><b>Client: </b>{{session.coachee.email}}</p>
+      </div>
+    </div>
+  </div>
 
-<div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-center">{% trans "Meetings" %}</h3>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-inset info-card" style="background-color: #fff;">
+        <div class="card">
+          <div class="card-header">
+            <h4><b>{% trans "Meetings" %}</b></h4>
           </div>
-        <div class="card-body m-4">
-          {% for meeting in session.meetings.all %}
-                <li class="list-group-item"><a href="{{meeting.link}}" target="_blank" class="list-group-item list-group-item-action">{{meeting}}</a></li>
+          <div class="card-body">
+            {% for meeting in session.meetings.all %}
+            <li class="list-group-item"><a href="{{meeting.link}}" target="_blank"
+                class="list-group-item list-group-item-action">{{meeting}}</a></li>
             {% empty %}
             <p class="card-text">{% trans "Your coach has not created any meetings yet" %}</p>
             {% endfor %}
 
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-center">{% trans "Materials" %}</h3>
           </div>
-        <div class="card-body m-4">
-            {% for material in session.materials.all %}
-            <li class="list-group-item"><a href="{{material.material.url}}" target="_blank" class="list-group-item list-group-item-action">{{material}}</a></li>
-        {% empty %}
-        <p class="card-text">{% trans "Your coach has not created any meetings yet" %}</p>
-        {% endfor %}
-
         </div>
       </div>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <a class="btn btn-primary" href="{% url 'chat:room' pk=session.pk %}"
-                    style="display: inline-block;">View Discussions</a>
+    <div class="col-sm-12">
+      <div class="card-inset info-card" style="background-color: #fff;">
+        <div class="card">
+          <div class="card-header">
+            <h4><b>{% trans "Materials" %}</b></h4>
+          </div>
+          <div class="card-body">
+            {% for material in session.materials.all %}
+            <li class="list-group-item"><a href="{{material.material.url}}" target="_blank"
+                class="list-group-item list-group-item-action">{{material}}</a></li>
+            {% empty %}
+            <p class="card-text">{% trans "Your coach has not created any meetings yet" %}</p>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-12 mt-2">
+      <div class="card-inset info-card" style="background-color: #fff;">
+        <a class="btn btn-primary" href="{% url 'chat:room' pk=session.pk %}" style="display: inline-block;"><b>View
+            {{session}} Discussions</b></a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

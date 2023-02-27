@@ -1,1 +1,1 @@
-from .chat import SessionChatHistory
+from .chat import SessionChatHistory, CoachChatHistory

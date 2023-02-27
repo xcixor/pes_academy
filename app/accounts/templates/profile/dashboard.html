@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load account_extras %}
 {% load static %}
 {% block styles %}
 {{ block.super }}
@@ -9,7 +8,6 @@
 {% load i18n %}
 {% load account_extras %}
 {% block content %}
-
 <div class="home">
     <div class="container-fluid p-0">
         <div class="row">
@@ -31,7 +29,6 @@
                                 <span class="tablink" onclick="openPage('Academy')">{% trans "Academy" %}</span>
                             </a>
                         </li>
-                        {% if not user.is_applying_for_a_call_to_action %}
                         <li class="tablink" onclick="openPage('Mentors')">
                             <a href="#">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -40,7 +37,6 @@
                                 </span>
                             </a>
                         </li>
-                        {% endif %}
                         <li class="tablink" onclick="openPage('MyCoaches')">
                             <a href="#">
                                 <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
@@ -76,14 +72,14 @@
                 <div class="user-dashboard tabcontent" id="Home">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 mb-5">
-                            <h2 class="card-header">{% trans "Hello" %}, {{user}}</h2>
+                            <h2 class="card-header mb-2">{% trans "Hello" %}, {{user}}</h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 col-xs-12 mb-5">
                             <div class=" row sales">
                                 <div class="col-md-12">
-
+                                    <p>This is your dashboard to interact with your coaches and more.</p>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +89,7 @@
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
                             <div class="card border-0">
-                                <h2 class="card-header">{% trans "PES Academy" %}</h2>
+                                <h2 class="card-header mb-2">{% trans "PES Academy" %}</h2>
                                 <div class="card-body">
                                     <p class="card-text">
                                         {% trans "Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business." %}
@@ -110,30 +106,32 @@
                 <div id="Mentors" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h4 class="card-header ml-3">{% trans "Coaches" %}</h4>
+                            <h4 class="card-header mb-2">{% trans "Coaches" %}</h4>
                             {% if not mentors %}
                             <h4 class="ml-3">{% trans "We do not have mentors at the moment" %}</h4>
                             {% endif %}
                             <div class="grid">
                                 {% for mentor in mentors %}
                                 <div class="g-col">
-                                    <div class="card">
+                                    <div class="card" style="min-height: 100%">
                                         <div class="card-body d-flex flex-column justify-content-between">
                                             {% if mentor.avatar %}
                                             <img src="{% if mentor.avatar %}{{mentor.avatar.url}}{% endif %}"
                                                 class="img-rounded" alt="No Avatar">
                                             {% else %}
                                             <img src="{% static 'images/common/avatar.png' %}"
-                                                class="img-fluid img-profile" alt="Avatar" height="250px">
+                                                class="img-profile" alt="Avatar" height="200px">
                                             {% endif %}
                                             <div class="d-flex flex-column card-action">
-                                                <h4>
-                                                    {% if mentor.full_name %}
-                                                    {{ mentor.full_name }}
-                                                    {% else %}
-                                                    {{ mentor }}
-                                                    {% endif %}
-                                                </h4>
+                                                <p>
+                                                    <b>
+                                                        {% if mentor.full_name %}
+                                                        {{ mentor.full_name }}
+                                                        {% else %}
+                                                        {{ mentor }}
+                                                        {% endif %}
+                                                    </b>
+                                                </p>
                                                 <a href="{% url 'accounts:mentor_bio' pk=mentor.pk %}"
                                                     class="btn btn-primary">{% trans "View Bio" %}</a>
                                             </div>
@@ -149,30 +147,42 @@
                 <div id="MyCoaches" class="tabcontent">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h2 class="card-header">{% trans "My Coaches" %}</h2>
-                            {% for coaching in user.coaches.all|distinct %}
-                            <div class="card" style="width: 20rem;">
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    {% if coaching.coach.avatar %}
-                                    <div class="profile-image">
-                                        <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}"
-                                            class="img-rounded" alt="No Image">
-                                    </div>
-                                    {% else %}
-                                    <img src="{% static 'images/common/avatar.png' %}" class="img-profile"
-                                        alt="Avatar" height="200px" width="auto">
+                            <h2 class="card-header mb-2">{% trans "My Coaches" %}</h2>
+                            <div class="grid">
+                                {% for coaching in user.coaches.all|distinct %}
+                                <div class="g-col">
+                                    <div class="card">
+                                        <div class="card-body d-flex flex-column justify-content-between">
+                                            {% if coaching.coach.avatar %}
+                                            <div class="profile-image">
+                                                <img src="{% if coaching.coach.avatar %}{{coaching.coach.avatar.url}}{% endif %}"
+                                                    class="img-rounded" alt="No Image" height="200px">
+                                            </div>
+                                            {% else %}
+                                            <img src="{% static 'images/common/avatar.png' %}" class="img-profile"
+                                                alt="Avatar" height="200px" width="auto">
 
-                                    {% endif %}
-                                    <div class="d-flex flex-column card-action">
-                                        <h4>{{ coaching.coach.full_name }}</h4>
-                                        <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}"
-                                            class="btn btn-primary">{% trans "View Sessions" %}</a>
+                                            {% endif %}
+                                            <div class="d-flex flex-column card-action">
+                                                <h5><b>Role:</b> {{ coaching.coach|get_coach_type:user }}</h5>
+                                                <h5>{{ coaching.coach.email }}</h5>
+                                                <div class="d-flex justify-content-between gap-2" style="gap:2%">
+                                                    <a href="{% url 'accounts:sessions' pk=coaching.coach.pk %}"
+                                                        class="btn btn-primary flex-grow-1">{% trans "View Sessions" %}</a>
+                                                    <a href="{% url 'chat:coaching_chat_room' pk=coaching.pk %}"
+                                                        class="btn btn-primary flex-grow-1">Chat
+                                                        with
+                                                        {{ coaching.coach|get_coach_type:user }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                {% empty %}
+                                <p>{% trans "You do not have coaches at the moment" %}</p>
+                                {% endfor %}
                             </div>
-                            {% empty %}
-                            <p>{% trans "You do not have coaches at the moment" %}</p>
-                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
