@@ -15,15 +15,17 @@
         <div class="card-body m-4">
             <ol style="list-style-type:decimal;" class="list-group list-group-flush">
                 {% for session in user.sessions.all %}
-                    <li  class="list-group-item list-group-item-action">
-                        <span class="text-dark">{{session}} <a href="{% url 'accounts:session' pk=session.pk %}">View More</a></span>
-                    </li>
+                <li class="list-group-item list-group-item-action">
+                    <span class="text-dark">{{session}} <a href="{% url 'accounts:session' pk=session.pk %}"><b>View
+                                More <i class="fa-solid fa-angle-right"></i></b></a></span>
+                </li>
                 {% empty %}
                 <p class="card-text"><b>{% trans "Your coach has not created any sessions yet" %}</b></p>
                 {% endfor %}
             </ol>
             <div class="col mt-5">
-                <a href="{% url 'accounts:dashboard' %}" class="btn">{% trans "Back" %}</a>
+                <a href="{% url 'accounts:dashboard' %}" class="btn btn-primary"
+                    style="min-width: 100px;">{% trans "Back" %}</a>
             </div>
         </div>
     </div>

@@ -28,31 +28,25 @@
                     </h3>
                   <h4>{{coach.email}}</h4>
                   <h4>Bio</h4>
-                  <p>
+                  <p class="px-4">
                       {{coach.bio}}
                   </p>
-                  <div class="icons">
+                  <div class="icons d-flex align-items-center justify-content-center py-4">
                     <a href="{{coach.linked_in}}" target="_blank">
-                        <i class="fa-brands fa-linkedin fa-lg"></i>
+                        <i class="fa-brands fa-linkedin fa-2x"></i>
                     </a>
-                    <div class="icons">
-                        <span class="align-items-center mt-4">
-                            <i class="fa-solid fa-user fa-lg"></i>
-                            {{coach.get_gender_display}}
-                        </span>
-                    </div>
                   </div>
                   <div class="card-buttons">
-                    <div class="actions">
+                    <div class="actions d-flex align-items-center justify-content-center">
                         {% if not coach|is_user_coach:user %}
                         <form action="{% url 'accounts:coaching' %}" method="post" class=" d-flex justify-content-center">
                             {% csrf_token %}
-                            <button class="btn btn-primary m-4" type="submit">{% trans "Add Coach" %}</button>
+                            <button class="btn btn-primary m-4" style="width:100px" type="submit">{% trans "Add Coach" %}</button>
                             <input type="hidden" name="coach" value="{{coach.pk}}">
                             <input type="hidden" name="mentee" value="{{user.pk}}">
                         </form>
                         {% endif %}
-                        <a href="{% url 'accounts:dashboard' %}" class="btn btn-primary mb-2">{% trans "Back" %}</a>
+                        <a href="{% url 'accounts:dashboard' %}" class="btn btn-primary" style="width:100px">{% trans "Back" %}</a>
                     </div>
                   </div>
                 </div>
@@ -61,6 +55,5 @@
     </figure>
 
 </div>
-
 
 {% endblock %}

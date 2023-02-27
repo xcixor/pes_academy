@@ -1,0 +1,61 @@
+.input-wrapper {
+  /* display:inline-block;
+  position: relative; */
+    /* display: flex; */
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+.input-wrapper::before {
+    /* font-family: 'FontAwesome'; */
+    font: var(--fa-font-solid);
+    content: '\f093';
+    position: absolute;
+    font-size: 3rem;
+    /* right: 6px; */
+}
+
+.custom-file-input {
+  /* color: transparent; */
+  /* margin-bottom: 10px; */
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+/* .custom-file-input-normal::after{
+  content: 'UPLOAD FILE';
+} */
+
+/* .custom-file-input-normal::before{
+  content: 'UPLOAD FILE';
+}
+
+.custom-file-input-plural::before{
+  content: 'UPLOAD MORE FILES';
+} */
+
+.custom-file-input::before {
+  color: #1B75BB;
+  display: inline-block;
+  border: 0.2em solid #8CC63E;
+  border-radius: 5px;
+  padding: 12px 16px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  text-align: center;
+  /* width: 240px; */
+}
+
+.custom-file-input:hover::before {
+  border-color: #1B75BB;
+  color: #8CC63E;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}

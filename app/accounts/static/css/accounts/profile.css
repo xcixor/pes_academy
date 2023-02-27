@@ -1,7 +1,14 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(200px, 45%));
     gap: 5%;
+    grid-auto-rows: 1fr;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.g-col {
+    height: 100%;
 }
 
 .img-rounded {
@@ -25,4 +32,8 @@
 
 #profileContainer {
     height: 100%;
+}
+
+.card-header {
+    font-weight: bold;
 }
