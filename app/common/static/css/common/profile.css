@@ -3,8 +3,8 @@
   /* font-family: 'Open Sans', Arial, sans-serif; */
   position: relative;
   margin: 10px;
-  min-width: 250px;
-  max-width: 350px;
+  /* min-width: 250px;
+  max-width: 350px; */
   width: 100%;
   color: #000000;
   text-align: center;
@@ -67,16 +67,15 @@
 
 .snip1515 .icons {
   text-align: center;
-  width: 100%;
 }
 
 .snip1515 i {
-  padding: 10px 2px;
+  /* padding: 10px 2px;
   display: inline-block;
   font-size: 18px;
   font-weight: normal;
-  color: #a91917;
-  opacity: 0.75;
+  color: #a91917; */
+  /* opacity: 0.75; */
 }
 
 .snip1515 i:hover {
