@@ -58,11 +58,11 @@ tear-prod:
 
 ## create superuser in container
 createsuperuser:
-	docker exec -it privateequity-support_pes_1 python manage.py createsuperuser
+	docker exec -it pes_academy_pes_1 python manage.py createsuperuser
 
 ## run script in django context
 runscript:
-	docker exec -it privateequity-support_pes_1 python manage.py runscript $(script)
+	docker exec -it pes_academy_pes_1 python manage.py runscript $(script)
 
 ifeq (test,$(firstword $(MAKECMDGOALS)))
   TAG_ARGS := $(word 2, $(MAKECMDGOALS))

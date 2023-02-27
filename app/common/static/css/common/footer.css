@@ -1,7 +1,4 @@
-.row {
-    margin: 0 !important;
-}
-
-.col {
-    flex: 1 1 0px
-}
+footer.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }

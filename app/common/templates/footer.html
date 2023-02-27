@@ -4,60 +4,41 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/common/footer.css' %}">
 {% endblock %}
-  <!-- Site footer -->
-  <footer class="site-footer">
-    <div class="container">
+ <!-- Footer-->
+<footer class="footer bg-light text-white">
+  <div class="container">
       <div class="row">
-        <div class="col d-flex justify-content-center-sm-12 col d-flex justify-content-center-md-6">
-          <!-- <h6>About</h6> -->
-          <p class="text-justify">
-            <img src="{% static 'images/for green bg.png' %}" alt="agripitch logo" class="img-fluid"> <br>
-
-            </p>
-
-
-        </div>
-        <div class="col justify-content-center-xs-6 justify-content-center-md-3">
-          <h6>{% trans "Quick Links" %}</h6>
-          <ul class="footer-links">
-            <li><a href="https://www.privateequity-support.com/our-services/our-services/">{% trans "About Us" %}</a></li>
-            <li><a href="{% url 'accounts:help' %}">{% trans "FAQ" %}</a></li>
-            <li><a href="#">{% trans "Eligibility" %}</a></li>
-            <li><a href="{% url 'home:privacy' %}">{% trans "Privacy Policy" %}</a></li>
-          </ul>
-        </div>
-        <div class="col justify-content-center-xs-6 justify-content-center-md-3">
-          <h6>{% trans "Contact us" %}</h6>
-          <p class="p-0 mb-0 ">{% trans "Email:" %} agri2022@privateequity-support.com</p>
-        </div>
-
-        <div class="col justify-content-center-xs-6 justify-content-center-md-3">
-          <h6 class="text-center">{% trans "Follow us" %}</h6>
-          <ul class="social-icons">
-            <li><a class="facebook" href="https://www.facebook.com/privateequityea"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="twitter" href="https://twitter.com/PrivateEquityAF"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://www.youtube.com/channel/UCpcbpFeuHEMXofYasRYTzLQ"><i class="fab fa-youtube"></i></a></li>
-            <li><a class="linkedin" href="https://www.linkedin.com/company/privateequityaf/"><i class="fab fa-linkedin"></i></a></li>
-          </ul>
-        </div>
+          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+              <ul class="list-inline mb-2">
+                  <li class="list-inline-item"><a class="text-white" href="https://www.privateequity-support.com/our-services/our-services/">{% trans "About Us" %}</a></li>
+                  <li class="list-inline-item text-white">⋅</li>
+                  <li class="list-inline-item"><a class="text-white" href="#!">{% trans "Contact" %}</a></li>
+                  <li class="list-inline-item text-white">⋅</li>
+                  <li class="list-inline-item"><a class="text-white" href="#!">{% trans "Terms of Use" %}</a></li>
+                  <li class="list-inline-item text-white">⋅</li>
+                  <li class="list-inline-item"><a class="text-white" href="#!">{% trans "Privacy Policy" %}</a></li>
+              </ul>
+              <p class="text-white small mb-4 mb-lg-0">&copy; PES Academy 2023. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+              <ul class="list-inline mb-0">
+                  <li class="list-inline-item me-4">
+                      <a href="https://www.facebook.com/privateequityea"><i class="fab fa-facebook text-white"></i></a>
+                  </li>
+                  <li class="list-inline-item me-4">
+                      <a href="https://twitter.com/PrivateEquityAF"><i class="fab fa-twitter text-white"></i></a>
+                  </li>
+                  <li class="list-inline-item me-4">
+                      <a href="https://www.instagram.com/privateequityaf/"><i class="fab fa-instagram text-white"></i></a>
+                  </li>
+                  <li class="list-inline-item me-4">
+                      <a href="https://www.youtube.com/channel/UCpcbpFeuHEMXofYasRYTzLQhttps://www.youtube.com/channel/UCpcbpFeuHEMXofYasRYTzLQ"><i class="fab fa-youtube text-white"></i></a>
+                  </li>
+                  <li class="list-inline-item me-4">
+                      <a href="https://www.linkedin.com/company/privateequityaf/"><i class="fab fa-linkedin text-white"></i></a>
+                  </li>
+              </ul>
+          </div>
       </div>
-      <hr>
-    </div>
-
-    <div class="container bg-light p-4">
-      <div class="row d-flex align-items-center">
-        <div class="col d-flex justify-content-center">
-            <img class="img-fluid" src="{% static 'images/AFDB_Logo.png' %}" style="width: 150px;">
-        </div>
-        <div class="col d-flex justify-content-center">
-            <img class="img-fluid" src="{% static 'images/PES logo.png' %}" style="width: 150px;">
-        </div>
-        <div class="col d-flex justify-content-center">
-            <img class="img-fluid float-left" src="{% static 'images/pfan-logo.png' %}" style="width: 150px;">
-        </div>
-        <div class="col d-flex justify-content-center">
-            <img class="img-fluid float-right" src="{% static 'images/eldohub-logo.png' %}" style="width: 150px">
-        </div>
-      </div>
-    </div>
+  </div>
 </footer>

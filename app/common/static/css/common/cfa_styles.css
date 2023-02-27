@@ -63,19 +63,19 @@ nav #contacts {
 }
 
 #staff {
-  background-image: url("../../common/images/Logo_background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+  background-image: url("../../common/images/backdrop.jpg") no-repeat center;
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+} 
 
 #login {
-  background-image: url("../../common/images/agri-robot.jpg");
+  background-image: url("../../common/images/login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #register {
-  background-image: url("../../common/images/drone.jpg");
+  background-image: url("../../common/images/login.jpg");
   background-repeat: no-repeat;
   /* background-size: cover; */
 }
@@ -86,16 +86,11 @@ nav #contacts {
 }
 
 #err #login {
-  background-image: url("../../common/images/agri-robot.jpg");
+  background-image: url("../../common/images/login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-#register {
-  background-image: url("../../common/images/drone.jpg");
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-}
 
 .login {
   background-color: rgba(255, 255, 255, 0.9);
@@ -756,7 +751,7 @@ nav #contacts {
 .header {
   padding: 1.5em 2.5em;
   border-bottom: 1px solid #ccc;
-  background: url(../../common/images/header.jpg) left -80px;
+  background-color: #455D8D;
   color: #fff;
 }
 
