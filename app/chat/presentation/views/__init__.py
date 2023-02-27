@@ -1,2 +1,3 @@
 from .chat_room import ChatRoomView
 from .coaching_chat_room import CoachingChatRoomView
+from .upload_session_chat_document import PostSessionFileView
