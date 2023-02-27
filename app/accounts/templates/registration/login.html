@@ -11,10 +11,10 @@
 
 <form action="/accounts/login/?next={{request.GET.next}}" method="post" class="mt-5">
   {% csrf_token %}
-  <div class="container login">
+  <div class="container login mb-4">
     <div class="row header">
       <div class="col-sm-12">
-        <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="img-fluid">
+        <img src="{% static 'common/images/pes_academy.png' %}" width="250" alt="PES Academy logo" class="img-fluid">
       </div>
     </div>
     <div class="row">
