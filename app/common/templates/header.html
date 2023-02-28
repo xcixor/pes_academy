@@ -1,111 +1,106 @@
 {% load static %}
 {% load i18n %}
+<nav class="navbar navbar-expand-lg bg-light navbar-light m-0 p-0">
+  <div class="row m-0 p-0 flex-column">
+    <div class="upper wrapper d-flex justify-content-between align-items-center py-4">
+      <div class="links-wrapper d-flex justify-content-between align-items-center">
+        <a class="navbar-brand m-0 p-0" href="/">
+          <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
+        </a>
+        <div class="links">
+          <ul class="navbar-nav flex-row align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="/agripitch/gallery/">{% trans "Gallery" %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/agripitch/shortlist/">{% trans "Winners" %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
+            </li>
+            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/CgDX4znLdQDLFw/advanced/">{% trans "Account" %}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
+            </li>
+            {% else %}
+            <li class="mr-5">
+              <a href="{% url 'accounts:login' %}" class="btn site-bg-primary text-white">{% trans "Sign in" %}</a>
+            </li>
+            {% endif %}
 
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <img src="{% static 'images/common/pes_logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row align-items-center p-3">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
-        </li>
-        {% if user.is_authenticated %}
-        {% if user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link" href="/CgDX4znLdQDLFw/advanced/">{% trans "Account" %}</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
-        </li>
-        {% else %}
-        <li class="nav-item me-5">
-          <a class="nav-link" href="{% url 'accounts:login' %}" class="btn site-bg-primary text-white">{% trans "Sign in" %}</a>
-        </li>
-        {% endif %}
-      </ul>
 
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-        {% if user and user.is_superuser %}
-        <h6 class="font-weight-bold m-0 p-2 border-bottom text-site-secondary">{% trans "Welcome Admin" %}</h6>
-        {% else %}
-        <h6 class="font-weight-bold m-0 p-2 border-bottom text-site-secondary">{% trans "Welcome " %}{{user.username}}
-        </h6>
-        {% endif %}
-        <li>
-          <a class="dropdown-item" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
-        </li>
-        {% else %}
-        <li>
-          <a class="dropdown-item" href="{% url 'accounts:login' %}">{% trans "Sign in" %}</a>
-        </li>
-        {% endif %}
-        <li><a class="dropdown-item" href="{% url 'accounts:help' %}">{% trans "Help" %}</a></li>
-      </ul>
-
-      <div class="user-container">
-        {% if user.is_authenticated %}
-        {% if user and user.is_superuser %}
-        <h4 class="font-weight-bold m-0 p-2 text-site-secondary">{% trans "Welcome Admin" %}</h4>
-        {% else %}
-        <h4 class="font-weight-bold m-0 p-2 text-site-secondary">{% trans "Welcome " %}{{user.username}}</h4>
-        {% endif %}
-        {% endif %}
+          </ul>
+        </div>
+        <div class="dropdown">
+          <i class="fas fa-bars fa-2x mx-4 menu-dropdown" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {% if user.is_authenticated %}
+            {% if user and user.is_superuser %}
+            <h6 class="font-weight-bold m-0 pl-3 pb-2 border-bottom text-site-secondary">{% trans "Welcome Admin" %}
+            </h6>
+            {% else %}
+            <h6 class="font-weight-bold m-0 pl-3 pb-2 border-bottom text-site-secondary">
+              {% trans "Welcome " %}{{user.username}}</h6>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'accounts:dashboard' %}">{% trans "Account" %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'accounts:login' %}" class="nav-link">{% trans "Sign in" %}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
+            </li>
+          </ul>
+        </div>
       </div>
-</div>
-
-  </div>
-</nav>
-
-<nav class="navbar navbar-expand-lg site-bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <img src="{% static 'common/images/pes_academy.png' %}" height="40" class="d-inline-block align-top mr-5"
-        alt="PES Academy logo">
-    </a>
-
-    <ul class="navbar-nav mx-auto">
-
-      <li class="nav-item">
-          <p class="nav-link text-white">{% trans "Call:" %} +254 20 36 73711</p>
-      </li>
-      <li class="nav-item">
-          <p class="nav-link text-white">{% trans "Email:" %} info@privateequity-support</p>
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-      <div class="d-flex language-div pl-5">
-          <form action="{% url 'set_language' %}" method="post" id="languageForm">
-              {% csrf_token %}
-              <select name="language" id="languageSelect" class="form-control">
-                  {% get_current_language as LANGUAGE_CODE %}
-                  {% get_available_languages as LANGUAGES %}
-                  {% get_language_info_list for LANGUAGES as languages %}
-                  {% for language in languages %}
-                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                      {{ language.name_local }} ({{ language.code }})
-                  </option>
-                  {% endfor %}
-              </select>
-          </form>
+      <div class="language d-flex justify-content-end align-items-center">
+        <div class="user-container">
+          {% if user.is_authenticated %}
+          {% if user and user.is_superuser %}
+          <h4 class="font-weight-bold m-0 p-0 text-site-secondary">{% trans "Welcome Admin" %}</h4>
+          {% else %}
+          <h4 class="font-weight-bold m-0 p-0 text-site-secondary">{% trans "Welcome " %}{{user.username}}</h4>
+          {% endif %}
+          {% endif %}
+        </div>
+        <form class="ml-5" action="{% url 'set_language' %}" method="post" id="languageForm">
+          {% csrf_token %}
+          <select name="language" id="languageSelect" class="form-control">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+              {{ language.name_local }} ({{ language.code }})
+            </option>
+            {% endfor %}
+          </select>
+        </form>
       </div>
-    </ul>
+    </div>
+
+    <div class="lower wrapper d-flex justify-content-between py-4 site-bg-primary">
+      <a class="navbar-brand m-0 p-0" href="/">
+        <img src="{% static 'images/for blue bg.png' %}" height="40" class="d-inline-block align-top mr-5"
+          alt="PES logo">
+      </a>
+
+    </div>
   </div>
 </nav>
