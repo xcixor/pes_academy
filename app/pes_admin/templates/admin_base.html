@@ -23,160 +23,159 @@
 
   <body id="admin">
     {% include 'admin-header.html' %}
+
     <div class="container-fluid">
-      <div class="row">
+      <div class="row flex-nowrap">
         <!-- sidebar -->
-        <div class="col-md-3 col-lg-2 px-0 position-fixed h-100 shadow-sm sidebar bg-white" id="sidebar">
-          <!-- <h1 class="bi bi-person-fill text-site-secondary d-flex my-4 justify-content-center"> Admin</h1> -->
-          <div class="list-group rounded-0">
-            {% if user.is_superuser %}
-            <a href="/CgDX4znLdQDLFw/advanced/"
-              class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
-              <span class="bi bi-border-all"></span>
-              <span class="ml-2">{% trans "Dashboard" %}</span>
-            </a>
-            <a href="/CgDX4znLdQDLFw/advanced/view/staff/"
-              class="list-group-item list-group-item-action border-0 align-items-center">
-              <span class="bi bi-people"></span>
-              <span class="ml-2">{% trans "View Staff" %}</span>
-            </a>
-
-            <button
-              class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center"
-              data-bs-toggle="collapse" data-bs-target="#applicants">
-              <div>
-                <span class="bi bi-app"></span>
-                <span class="ml-2">{% trans "Applicants" %}</span>
-              </div>
-              <span class="bi bi-chevron-down small"></span>
-            </button>
-            <div class="collapse" id="applicants" data-parent="#sidebar">
-              <div class="list-group">
-                <a href="/CgDX4znLdQDLFw/advanced/users/all/"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "All" %}</a>
-                <a href="/CgDX4znLdQDLFw/advanced/users/regular/"
-                  class="list-group-item list-group-item-action border-0 pl-5">{% trans "Regular User" %}</a>
-              </div>
-            </div>
-
-            <a href="/CgDX4znLdQDLFw/" class="list-group-item list-group-item-action border-0 align-items-center">
-              <span class="bi bi-person"></span>
-              <span class="ml-2">{% trans "Basic Admin" %}</span>
-            </a>
-            {% else %}
-            <p class="pl-5">{% trans "None available" %}</p>
-            {% endif %}
-
-
-
-
-          </div>
-        </div>
-        <!-- overlay to close sidebar on small screens -->
-        <div class="w-100 vh-100 position-fixed overlay d-none" id="sidebar-overlay"></div>
-        <!-- note: in the layout margin auto is the key as sidebar is fixed -->
-        <div class="col-md-9 col-lg-10 ml-md-auto px-0">
-          <!-- top nav -->
-          <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
-            <!-- close sidebar -->
-            <button class="btn py-0 d-lg-none" id="open-sidebar">
-              <span class="bi bi-list text-primary h3"></span>
-            </button>
-            <div class="dropdown ml-auto">
-              <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <span class="bi bi-person text-site-secondary h4"></span>
-                <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-                <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
-                <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
-              </div>
-            </div>
-          </nav>
-          <!-- main content -->
-          <main class="container-fluid">
-            <div class="jumbotron jumbotron-admin rounded border-0 shadow-sm border-left px-1">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 site-bg-primary">
+              <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <h1 class="bi bi-person-fill text-white d-flex my-4 justify-content-center">Admin</h1>
+                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     {% if user.is_superuser %}
-                    <section class="content p-md-5">
-                      {% block admin_content %}
-                      <div class="table-responsive card-admin">
-                        <h4 class="card-title text-center">{% trans "Application Summary" %}</h4>
-                        <table id="admin-dashboard" class="table table-striped text-white">
-                          <thead>
-                            <tr>
-                              <th scope="col">{% trans "Stage" %}</th>
-                              <th scope="col">{% trans "ID" %}</th>
-                              <th scope="col">{% trans "Reviewers" %}</th>
-                              <th scope="col">{% trans "Total Score" %}</th>
-                              <th scope="col">{% trans "Will Advance" %}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row"></th>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <li class="nav-item p-3">
+                          <a href="/CgDX4znLdQDLFw/advanced/" class="nav-link align-middle px-0">
+                              <i class="fs-4 bi-house text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Dashboard" %}</span>
+                          </a>
+                      </li>
+                      <li class="nav-item p-3">
+                          <a href="/CgDX4znLdQDLFw/advanced/view/staff/" class="nav-link align-middle px-0">
+                              <i class="fs-4 bi-people text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "View staff" %}</span>
+                          </a>
+                      </li>
+                      <li class="nav-item p-3">
+                          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                              <i class="fs-4 bi-person-plus text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Users" %}</span> <span class="bi bi-chevron-down small text-white"></span></a>
+                              
+                          <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                              <li class="w-100">
+                                  <a href="/CgDX4znLdQDLFw/advanced/users/all/" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "All Users" %}</span></a>
+                              </li>
+                              <li>
+                                  <a href="/CgDX4znLdQDLFw/advanced/users/regular/" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "Regular User" %}</span></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item p-3">
+                          <a href="/CgDX4znLdQDLFw/" class="nav-link px-0 align-middle">
+                              <i class="fs-4 bi-people text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Basic Admin" %}</span></a>
+                      </li>
+                      {% else %}
+                      <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-dash-circle text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "None available" %}</span></a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  <hr>
+                  <div class="dropdown pb-4">
+                      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="https://github.com/mdo.png" alt="{{user.username}}" width="30" height="30" class="rounded-circle">
+                          <span class="d-none d-sm-inline mx-1">{{user.username}}</span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                          <li><a class="dropdown-item" href="{% url 'accounts:profile_edit' pk=user.pk %}">{% trans "Edit Profile" %}</a></li>
+                          <li><a class="dropdown-item" href="{% url 'accounts:profile_view' %}">{% trans "Profile" %}</a></li>
+                          <li>
+                              <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="/accounts/logout/">{% trans "Sign out" %}</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col py-3">
+              <!-- main content -->
+            <main class="container-fluid">
+              {% if user.is_superuser %}
+              {% block admin_content %}
+                <div class="row d-flex justify-content-center align-items-center h-100 p-5">
+                  <div class="col col-md-9 col-lg-8 col-xl-9">
+                    
+                    <div class="card text-center" style="border-radius: 15px;">
+                      <div class="card-header">
+                        <h5 class="card-title">{% trans "Application Summary" %}</h5>
                       </div>
-                      <div class="row my-4">
-                        <div class="col-md-12">
-                          <div class="table-responsive card-admin">
-                            <h4 class="card-title text-center">{% trans "Review Breakdown" %}</h4>
-                            <table id="admin-dashboard" class="table table-striped text-white">
-                              <thead>
-                                <tr>
-                                  <th scope="col">{% trans "Reviewer" %}</th>
-                                  <th scope="col">{% trans "Reviewer Total Score" %}</th>
-                                  <th scope="col">{% trans "Reviewers" %}</th>
-                                  <th scope="col">{% trans "Total Score" %}</th>
-                                  <th scope="col">{% trans "Will Advance" %}</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th scope="row"></th>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
-                            </table>
+                      <div class="card-body p-4 table-responsive">
+                        
+                        <!-- <div class="table-responsive"></div> -->
+                          <table class="table table-striped table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">{% trans "Stage" %}</th>
+                                <th scope="col">{% trans "ID" %}</th>
+                                <th scope="col">{% trans "Reviewers" %}</th>
+                                <th scope="col">{% trans "Total Score" %}</th>
+                                <th scope="col">{% trans "Will advance?" %}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        <!-- </div> -->
+                        <div class="row my-4">
+                          <div class="col-md-12">
+                            <div class="table-responsive card-admin">
+                              <h4 class="card-title text-center">{% trans "Review Breakdown" %}</h4>
+                              <table id="admin-dashboard" class="table table-striped text-white">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">{% trans "Reviewer" %}</th>
+                                    <th scope="col">{% trans "Reviewer Total Score" %}</th>
+                                    <th scope="col">{% trans "Reviewers" %}</th>
+                                    <th scope="col">{% trans "Total Score" %}</th>
+                                    <th scope="col">{% trans "Will Advance" %}</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="card card-admin">
-                            <div class="card-header ">
-                              <div class="nav text-center">
-                                <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a>
-                                <a href="#" class="btn btn-primary mx-auto nav-link">{% trans "Quit" %}</a>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="card card-admin">
+                              <div class="card-header ">
+                                <div class="nav text-center">
+                                  <a href="#" class="btn btn-success mx-auto nav-link">{% trans "Advance" %}</a>
+                                  <a href="#" class="btn btn-primary mx-auto nav-link">{% trans "Quit" %}</a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      {% endblock %}
-                    </section>
-                    {% else %}
-                    <section class="content p-md-5">
-                      <p>{% trans "You don't have permission to view or edit anything" %}.</p>
-                    </section>
-                    {% endif %}
+                    </div>
+                    
                   </div>
                 </div>
-              </div>
-            </div>
-          </main>
+                {% endblock %}
+                {% else %}
+                <section class="content p-md-5">
+                  <p>{% trans "You don't have permission to view or edit anything" %}.</p>
+                </section>
+                {% endif %}
+            </main>
+          </div>
+      </div>
+    </div>
+
+         
           {% block content %}
 
           {% endblock %}

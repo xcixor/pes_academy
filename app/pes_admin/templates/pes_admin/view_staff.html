@@ -3,51 +3,60 @@
 {% load i18n %}
 {% block admin_content %}
 
-
-<div class="table-responsive card-admin">
-    <table id="admin-dashboard" class="table table-striped text-white">
-      <thead>
-        <tr>
-          <th scope="col">{% trans "Full Name" %}</th>
-          <th scope="col">{% trans "Email" %}</th>
-          <th scope="col">{% trans "Is Coach" %}</th>
-          <th scope="col">{% trans "Is Reviewer" %}</th>
-          <th scope="col">{% trans "Is Moderator" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for employee in staff %}
-        <tr>
-          <th scope="row">{{employee.full_name}}</th>
-          <td>{{employee.email}}</td>
-          <td>
-            {% if employee.is_coach %}
-                <i class="fa-solid fa-circle-check"></i>
-            {% else %}
-                <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/coach/" class="btn btn-primary">{% trans "Make Coach" %}</a>
-            {% endif %}
-          </td>
-          <td>
-            {% if employee.is_reviewer %}
-                <i class="fa-solid fa-circle-check"></i>
-            {% else %}
-                <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/reviewer/" class="btn btn-primary">{% trans "Make Reviewer" %}</a>
-            {% endif %}
-          </td>
-          <td>
-            {% if employee.is_moderator %}
-            <i class="fa-solid fa-circle-check"></i>
-            {% else %}
-            <form action="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/moderator/" method="post">
-                {% csrf_token %}
-                <input type="checkbox" name="is_moderator" checked hidden>
-                <button type="submit" class="btn btn-primary">{% trans "Make Moderator" %}</button>
-            </form>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-        {% endblock %}
-      </tbody>
-    </table>
+<div class="row d-flex  align-items-center h-100 p-5">
+  <div class="col col-md-9 col-lg-10 col-xl-12">
+    
+    <div class="card text-center" style="border-radius: 15px;">
+      <div class="card-body p-4">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">{% trans "Full Name" %}</th>
+                <th scope="col">{% trans "Email" %}</th>
+                <th scope="col">{% trans "Is Coach" %}</th>
+                <th scope="col">{% trans "Is Reviewer" %}</th>
+                <th scope="col">{% trans "Is Moderator" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for employee in staff %}
+              <tr>
+                <th scope="row">{{employee.full_name}}</th>
+                <td>{{employee.email}}</td>
+                <td>
+                  {% if employee.is_coach %}
+                      <i class="fa-solid fa-circle-check"></i>
+                  {% else %}
+                      <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/coach/" class="btn btn-primary">{% trans "Make Coach" %}</a>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if employee.is_reviewer %}
+                      <i class="fa-solid fa-circle-check"></i>
+                  {% else %}
+                      <a href="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/reviewer/" class="btn btn-primary">{% trans "Make Reviewer" %}</a>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if employee.is_moderator %}
+                  <i class="fa-solid fa-circle-check"></i>
+                  {% else %}
+                  <form action="/CgDX4znLdQDLFw/advanced/make/{{employee.pk}}/moderator/" method="post">
+                      {% csrf_token %}
+                      <input type="checkbox" name="is_moderator" checked hidden>
+                      <button type="submit" class="btn btn-primary">{% trans "Make Moderator" %}</button>
+                  </form>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+              {% endblock %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
