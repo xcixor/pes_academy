@@ -8,37 +8,46 @@
 {% load i18n %}
 {% block body_id %}staff{% endblock %}
 {% block content %}
-<div class="container site-bg-secondary py-5 text-light" id="profileContainer">
-  <div class="row">
-    <div class="col-md-4">
-      {% if user.avatar %}
-      <img src="{{user.avatar.url}}" class="img-fluid img-profile" alt="No Avatar" height="200px">
-      {% else %}
-      <img src="{% static 'images/common/avatar.png' %}" class="img-fluid img-profile" alt="Avatar" height="250px">
-      <p class="text-light">{% trans "Change your photo" %}</p>
-      {% endif %}
-    </div>
-    <div class="col-md-6 d-flex flex-column justify-content-center">
-      <h2>{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your names" %}{% endif %}</h2>
-      <h4>{{user.email}}</h4>
-      <h4>{% trans "Preferred Language" %}: {% if user.preferred_language %}{{user.get_preferred_language_display}}{% else %}{% trans "Please set your preferred Language" %}{% endif %}</h4>
-      <div class="icons">
-        {% if user.linked_in %}
-        <a href="{{user.linked_in}}" target="_blank" class="text-light">
-           <i class="fa-brands fa-linkedin fa-2x"></i> LinkedIn
-        </a>
-        {% else %}
-        {% trans "Please set your LinkedIn profile" %}
-        {% endif %}
-      </div>
-      <p>
-        {% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}
-      </p>
-      <div class="d-flex">
-          <button class="btn btn-primary mr-2"><a class="text-light" href="{% url 'accounts:profile_edit' pk=user.pk %}"><b>{% trans "Edit Profile" %}>></b></a></button>
-          <button class="btn btn-primary"><a class="text-light" href="{% url 'accounts:dashboard' %}"><b>{% trans "Back" %}</b></a></button>
+<section class="container p-5" style="background-color: #9de2ff;">
+  <!-- <div class="container py-5 h-100"> -->
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-md-9 col-lg-8 col-xl-9">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-4">
+            <div class="d-flex text-black">
+              <div class="flex-shrink-0">
+                {% if user.avatar %}
+                <img src="{{user.avatar.url}}"
+                  alt="No avatar" class="img-fluid"
+                  style="width: 180px; border-radius: 10px;">
+                {% else %}
+                <img src="{% static 'images/common/avatar.png' %}"
+                alt="User avatar" class="img-fluid"
+                style="width: 180px; border-radius: 10px;">
+                <p>{% trans "Update your photo" %}</p>
+                {% endif %}
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h5 class="mb-1">{% if user.full_name %}{{user.full_name}}{% else %}{% trans "Please add your name" %}{% endif %}</h5>
+                <p class="mb-2 pb-1" style="color: #2b2a2a;">{{user.email}}</p>
+                <p class="mb-2 pb-1" style="color: #2b2a2a;">{% if user.preferred_language %}{{user.get_preferred_language_display}}{% else %}{% trans "Please set your preferred Language" %}{% endif %}</p>
+                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                  style="background-color: #efefef;">
+                  <div>
+                    <p class="small text-muted mb-1">{% if user.bio %}{{user.bio}}{% else %}{% trans "Please add a bio" %}{% endif %}</p>
+                  </div>
+                </div>
+                <div class="d-flex pt-1">
+                  <a class="btn btn-outline-primary me-1 flex-grow-1" href="{% url 'accounts:profile_edit' pk=user.pk %}">{% trans "Edit Profile" %}</a>
+                  <a class="btn btn-primary flex-grow-1" href="{% url 'accounts:dashboard' %}">{% trans "Back" %}</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>
+  <!-- </div> -->
+</section>
+
 {% endblock %}

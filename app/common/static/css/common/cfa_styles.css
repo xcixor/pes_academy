@@ -63,9 +63,13 @@ nav #contacts {
 }
 
 #staff {
-  background-image: url("../../common/images/backdrop.jpg") no-repeat center;
-  /* background-repeat: no-repeat;
-  background-size: cover; */
+  background-image: url("../../common/images/Logo_background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-blend-mode: soft-light;
 } 
 
 #login {
@@ -106,8 +110,12 @@ nav #contacts {
 }
 
 .btn-primary {
-  background-color: #4b6386;
+  /* background-color: #4b6386; */
+  background: linear-gradient(to right, #005c97, #4b6386);
   border-radius: 10px;
+}
+.btn-primary:hover {
+  background: #9de2ff;
 }
 
 .jumbotron-alert {
