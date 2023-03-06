@@ -193,28 +193,6 @@
     </div>
 </div>
 
-<div class="popup">
-    <div class="close-btn">&times;</div>
-    <div>
-        <form class="form" action="/organization-subscription/initiate/" method="post">
-            {% csrf_token %}
-            <h2>{% trans "Invite Collaborator" %}</h2>
-            <div class="form-element">
-                <label for="email">{% trans "Email" %}</label>
-                <input type="email" id="email" placeholder="Enter email" name="subscriber_email">
-            </div>
-            <div class="row col">
-                {% for error in form.subscriber_email.errors %}
-                <div class="error">{{ error|escape }}</div>
-                {% endfor %}
-            </div>
-
-            <div class="form-element">
-                <button type="submit">{% trans "Send" %}</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 {% endblock %}
 {% block scripts %}

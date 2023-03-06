@@ -9,63 +9,51 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 site-bg-primary">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <h1 class="bi bi-person-fill text-white d-flex my-4 justify-content-center">Staff</h1>
-              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                  <li class="nav-item">
-                      <a href="/accounts/dashboard/" class="nav-link align-middle px-0">
-                          <i class="fs-4 bi-house text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Dashboard" %}</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-person-plus text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Applications " %}</span><span class="bi bi-chevron-down small text-white"></span> </a>
-                      <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "All Applications" %}</span></a>
-                          </li>
-                          <li>
-                              <a href="/accounts/reviewer/applications/" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "Applications to review" %}</span></a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="{% url 'academy:coachees' %}" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-people text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "My Clients" %}</span></a>
-                  </li>
-                  <li>
-                      <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                          <i class="fs-4 bi-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">{% trans "Sessions " %}</span><span class="bi bi-chevron-down small text-white"></span></a>
-                      <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="{% url 'academy:sessions' %}" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "All Sessions" %}</span></a>
-                          </li>
-                          <li>
-                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-white">{% trans "Setup a Session" %}</span></a>
-                          </li>
-                      </ul>
-                  </li>
-                  
-              </ul>
-              <hr>
-              <div class="dropdown pb-4">
-                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                      <span class="d-none d-sm-inline mx-1">{{user.username}}</span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                      <li><a class="dropdown-item" href="{% url 'accounts:profile_edit' pk=user.pk %}">{% trans "Edit Profile" %}</a></li>
-                      <li><a class="dropdown-item" href="{% url 'accounts:profile_view' %}">{% trans "Profile" %}</a></li>
-                      <li>
-                          <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="/accounts/logout/">{% trans "Sign out" %}</a></li>
-                  </ul>
-              </div>
-          </div>
+      <a href="/accounts/dashboard/"
+        class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
+        <span class="bi bi-border-all text-white"></span>
+        <span class="ml-2  text-white">{% trans "Home" %}</span>
+      </a>
+      <!-- <a href="/accounts/reviewer/applications/"
+        class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-person-plus"></span>
+        <span class="ml-2">{% trans "Applications to Review" %}</span>
+      </a> -->
+      <a href="{% url 'academy:coachees' %}" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-people"></span>
+        <span class="ml-2">{% trans "My Clients" %}</span>
+      </a>
+      <a href="{% url 'academy:sessions' %}" class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-app"></span>
+        <span class="ml-2">{% trans "Sessions" %}</span>
+      </a>
+      <a href="{% url 'accounts:profile_view' %}"
+        class="list-group-item list-group-item-action border-0 align-items-center text-white">
+        <span class="bi bi-person"></span>
+        <span class="ml-2">{% trans "Profile" %}</span>
+      </a>
+    </div>
+  </div>
+  <!-- overlay to close sidebar on small screens -->
+  <div class="w-100 vh-100 overlay d-none" id="sidebar-overlay"></div>
+  <!-- note: in the layout margin auto is the key as sidebar is fixed -->
+  <div class="col-md-9 col-lg-10 ml-md-auto px-0">
+    <!-- top nav -->
+    <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
+      <!-- close sidebar -->
+      <button class="btn py-0 d-lg-none" id="open-sidebar">
+        <span class="bi bi-list text-primary h3"></span>
+      </button>
+      <div class="dropdown ml-auto">
+        <button class="py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown"
+          aria-expanded="false">
+          <span class="bi bi-person text-primary h4"></span>
+          <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
+          <a class="dropdown-item" href="/accounts/logout/">{% trans "Logout" %}</a>
+          <a class="dropdown-item" href="#">{% trans "Settings" %}</a>
+        </div>
       </div>
       <div class="col py-3">
           <!-- main content -->
