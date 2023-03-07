@@ -7,7 +7,6 @@ class LoginTestCase(AccountsBaseTestCase):
 
     def setUp(self):
         super(LoginTestCase, self).setUp()
-        self.create_application()
         self.form = {
             'username': 'normal_user',
             'password': 'socrates123@'
@@ -19,14 +18,14 @@ class LoginTestCase(AccountsBaseTestCase):
                          'registration/login.html')
 
     def test_login_redirects_to_the_next_page(self):
-        next_url = f'/agripitch/{self.user.application.call_to_action.slug}/application/'
+        next_url = '/accounts/help/'
         response = self.client.post(
             f'/accounts/login/?next={next_url}', self.form, follow=True)
         self.assertRedirects(
             response, next_url, 302)
 
     def test_adds_success_message(self):
-        url = f'/agripitch/{self.user.application.call_to_action.slug}/application/'
+        url = '/accounts/help/'
         response = self.client.post(
             f'/accounts/login/?next={url}', self.form, follow=True)
         message = list(response.context.get('messages'))[0]
@@ -34,10 +33,3 @@ class LoginTestCase(AccountsBaseTestCase):
             'Welcome back normal_user')
         self.assertEqual(message.tags, 'success')
         self.assertEqual(message.message, expected_message)
-
-    def test_redirects_to_next_if_no_application(self):
-        self.user.application.delete()
-        response = self.client.post(
-            '/accounts/login/?next=/', self.form, follow=True)
-        self.assertRedirects(
-            response, '/', 302)
