@@ -23,4 +23,4 @@ RUN chmod u+x /usr/local/bin/postgres-healthcheck
 # copy project
 COPY ./app .
 
-CMD python manage.py makemigrations; python manage.py migrate; python manage.py runscript; python manage.py runserver 0.0.0.0:8000
+CMD python manage.py makemigrations; python manage.py migrate; python manage.py runscript loaddb; python manage.py runserver 0.0.0.0:8000
