@@ -11,7 +11,7 @@ from accounts.models import User
 
 def get_model_data(model):
     questions = []
-    with open('nov_29_12_41.json') as data:
+    with open('data.json') as data:
         parsed_data = json.load(data)
         for item in parsed_data:
             if item['model'] == model:
