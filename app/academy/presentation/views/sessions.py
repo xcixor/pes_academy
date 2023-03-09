@@ -51,7 +51,7 @@ class SessionUpdate(UpdateView):
 
     template_name = 'staff/session_details.html'
     model = Session
-    fields = ['description']
+    fields = ['title', 'description']
 
     def get_success_url(self) -> str:
         return reverse('academy:session_details', kwargs={'pk': self.object.pk})
