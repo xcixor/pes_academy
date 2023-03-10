@@ -43,7 +43,9 @@ class UploadMaterialView(CreateView, HtmlEmailMixin):
         super().send_email(
             subject, None, from_email, [to_email],
             template='staff/email/material.html', context=context)
-        return reverse('academy:session_details', kwargs={'pk': self.object.session.pk})
+        return reverse(
+            'academy:session_details',
+            kwargs={'pk': self.object.session.pk})
 
     def form_invalid(self, form):
         message = _(

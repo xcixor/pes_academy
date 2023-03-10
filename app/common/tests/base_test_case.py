@@ -41,4 +41,6 @@ class BaseTestCase(TestCase):
     def create_normal_user(self):
         user = get_user_model().objects._create_user(
             'normal_user', 'socrates123@')
+        user.email = 'socrates@ymail.com'
+        user.save()
         return user
