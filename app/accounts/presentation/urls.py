@@ -8,16 +8,16 @@ from accounts.presentation.views import (
     AccountActivationView, DashboardView,
     GetRegistrationView, ApplicationsToReviewView, CoachBio, Coaching,
     CoachSessions, SessionView, ViewProfile, EditProfile, PasswordChangeView,
-    PasswordResetView, ResendActivationEmailView)
+    PasswordResetView, ResendActivationEmailView, RegistrationView, ReviewerRegistrationView)
 
 app_name = 'accounts'
 
 urlpatterns = [
     path('help/', HelpView.as_view(), name='help'),
-    path('register/', GetRegistrationView.as_view(), name='register'),
+    path('register/', RegistrationView.as_view(), name='register'),
     path('register/resend_activation_email/',
          ResendActivationEmailView.as_view(), name='resend_activation_email'),
-    path('register/staff/reviewer/', GetRegistrationView.as_view(),
+    path('register/staff/reviewer/', ReviewerRegistrationView.as_view(),
          name='reviewer_registration'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
