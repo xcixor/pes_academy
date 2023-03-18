@@ -15,29 +15,17 @@ from accounts.tokens import account_activation_token
 
 User = get_user_model()
 
-USER_TYPE_CHOICES = (
-    (True, _('Applying for call to action')),
-    (False, _('Other'))
-)
-
 
 class RegistrationForm(forms.ModelForm, HtmlEmailMixin):
 
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
     terms = forms.BooleanField(initial=False, required=True)
-    is_applying_for_a_call_to_action = forms.ChoiceField(
-        choices=USER_TYPE_CHOICES,
-        label=_("Reason for Application"),
-        widget=forms.Select(
-            attrs={
-                'class': 'input-field'}),
-        required=True)
     captcha = ReCaptchaField(required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'is_applying_for_a_call_to_action']
+        fields = ['username', 'email']
 
     def clean_password1(self):
         password = self.cleaned_data['password1']

@@ -38,7 +38,7 @@ class PostRegistrationView(FormView):
         if not settings.DEBUG:
             form.send_account_activation_email(new_user, self.request)
         login(self.request, new_user)
-        success_message = _("Registration successful, start your application!")
+        success_message = _("Registration successful!")
         messages.add_message(
             self.request, messages.SUCCESS, success_message)
         if self.request.htmx:
