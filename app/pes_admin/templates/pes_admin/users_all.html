@@ -28,32 +28,32 @@
       <div class="card text-center" style="border-radius: 15px;">
         <div class="card-body p-4">
           <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col">{% trans "Name" %}</th>
-              <th scope="col">{% trans "Email" %}</th>
-              <th scope="col">{% trans "Applying for call to action" %}</th>
-              <th scope="col">{% trans "Action" %}</th>
-            </tr>
-          </thead>
-          <tbody>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">{% trans "Name" %}</th>
+                  <th scope="col">{% trans "Email" %}</th>
+                  <th scope="col">{% trans "Applying for call to action" %}</th>
+                  <th scope="col">{% trans "Action" %}</th>
+                </tr>
+              </thead>
+              <tbody>
             {% for user in users %}
-            <tr>
-              <th scope="row">{{user.full_name}}</th>
-              <td>{{user.email}}</td>
-              <td>
-                {% if user.is_applying_for_a_call_to_action %}
-                <i class="fa-solid fa-circle-check"></i>
-                {% else %}
-                <i class="fa-solid fa-xmark"></i>
-                {% endif %}
-               </td>
-                <td>
-                  <a href="/CgDX4znLdQDLFw/accounts/user/{{user.pk}}/change/"
-                  class="btn btn-primary">{% trans "View More" %}</a>
-                </td>
-              </tr>
+                <tr>
+                  <th scope="row">{{user.full_name}}</th>
+                  <td>{{user.email}}</td>
+                  <td>
+                    {% if user.is_applying_for_a_call_to_action %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% else %}
+                    <i class="fa-solid fa-xmark"></i>
+                    {% endif %}
+                  </td>
+                    <td>
+                      <a href="/CgDX4znLdQDLFw/accounts/user/{{user.pk}}/change/"
+                      class="btn" style="background-color: #a6c2d0; color: #ffffff;">{% trans "View More" %}</a>
+                    </td>
+                  </tr>
             {% endfor %}
             </tbody>
           </table>

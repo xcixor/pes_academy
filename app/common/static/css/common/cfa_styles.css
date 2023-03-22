@@ -46,11 +46,14 @@ nav #contacts {
 }
 
 #cfa {
-  background-image: url("../../common/images/crops.jpg");
+  background-image: url("../../common/images/Logo_background_long.jpg");
+}
+.homee {
+  background-image: url("../../common/images/Logo_background_long.jpg");
 }
 
 #error-page {
-  background-image: url("../../common/images/agri3.jpg");
+  background-image: url("../../common/images/Logo_background_long.jpg");
 
 }
 
@@ -73,7 +76,7 @@ nav #contacts {
 } 
 
 #login {
-  background-image: url("../../common/images/login.jpg");
+  background-image: url("../../common/images/backdrop.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -115,7 +118,7 @@ nav #contacts {
   border-radius: 10px;
 }
 .btn-primary:hover {
-  background: #9de2ff;
+  background: #a6c2d0;
 }
 
 .jumbotron-alert {
@@ -148,7 +151,7 @@ nav #contacts {
 
 #faq-links {
   padding: 10px 20px;
-  background: #14A562;
+  background: var(--bg-secondary);
   color: #ffffff;
 }
 
@@ -208,7 +211,7 @@ nav #contacts {
   padding: 1.125em;
 }
 .faq-accordion li div p a {
-  color: #14A562;
+  color: var(--bg-secondary);
 
 }
 
@@ -257,7 +260,7 @@ nav #contacts {
 
 .faq-content p:before {
   content: 'A.';
-  color: #14A562;
+  color: var(--bg-secondary);
   float: left;
   font-weight: 700;
   margin-right: .5em
@@ -425,7 +428,7 @@ nav #contacts {
 
 #faq-links {
   padding: 10px 20px;
-  background: #14A562;
+  background: var(--bg-secondary);
   color: #ffffff;
 }
 
@@ -484,7 +487,7 @@ nav #contacts {
   padding: 1.125em;
 }
 .faq-accordion li div p a {
-  color: #14A562;
+  color: var(--bg-secondary);
 
 }
 
@@ -530,7 +533,7 @@ nav #contacts {
 
 .faq-content p:before {
   content: 'A.';
-  color: #14A562;
+  color: var(--bg-secondary);
   float: left;
   font-weight: 700;
   margin-right: .5em

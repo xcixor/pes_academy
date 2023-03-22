@@ -3,7 +3,7 @@ body {
 }
 
 main {
-  background-color: #9de2ff;
+  background-color: #a6c2d0;
 }
 
 #admin {
@@ -31,7 +31,7 @@ main {
 }
 
 ul#menu > li:hover {
- border: 2px solid #9de2ff;
+ border: 2px solid #a6c2d0;
  border-radius: 5px;
  transition: all .4s ease-in-out;
  transform: scale(1.2); 

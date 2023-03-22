@@ -33,7 +33,7 @@
                             <a href="#">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
                                 <span class="tablink" onclick="openPage('Mentors')">
-                                    {% trans "Coaches" %}
+                                    {% trans "Mentors" %}
                                 </span>
                             </a>
                         </li>
@@ -69,10 +69,10 @@
                     </div>
                 </div>
                 {% block tabcontent %}
-                <div class="user-dashboard tabcontent" id="Home">
+                <div class="user-dashboard tabcontent site-bg-midtone p-5" id="Home">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12 mb-5">
-                            <h2 class="card-header mb-2">{% trans "Hello" %}, {{user}}</h2>
+                            <h2 class="card-header mb-2 text-site-secondary">{% trans "Hello" %}, {{user}}</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -85,11 +85,11 @@
                         </div>
                     </div>
                 </div>
-                <div id="Academy" class="tabcontent">
+                <div id="Academy" class="tabcontent site-bg-midtone p-5">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
                             <div class="card border-0">
-                                <h2 class="card-header mb-2">{% trans "PES Academy" %}</h2>
+                                <h2 class="card-header mb-2 text-site-secondary">{% trans "PES Academy" %}</h2>
                                 <div class="card-body">
                                     <p class="card-text">
                                         {% trans "Joining the PES academy will give you access to the videos and presentations Featured by PES where you get to learn more and get more advisory about your business." %}
@@ -103,12 +103,12 @@
 
                 </div>
 
-                <div id="Mentors" class="tabcontent">
+                <div id="Mentors" class="tabcontent site-bg-midtone p-5">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h4 class="card-header mb-2">{% trans "Coaches" %}</h4>
+                            <h4 class="card-header mb-2 text-site-secondary">{% trans "Mentors" %}</h4>
                             {% if not mentors %}
-                            <h4 class="ml-3">{% trans "We do not have mentors at the moment" %}</h4>
+                            <h4 class="ml-3 p-2" style="background-color: #ffffff;">{% trans "We do not have mentors at the moment" %}</h4>
                             {% endif %}
                             <div class="grid">
                                 {% for mentor in mentors %}
@@ -144,10 +144,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="MyCoaches" class="tabcontent">
+                <div id="MyCoaches" class="tabcontent site-bg-midtone p-5">
                     <div class="row">
                         <div class="col-md-8 offset-lg-2 p-0 col-sm-12">
-                            <h2 class="card-header mb-2">{% trans "My Coaches" %}</h2>
+                            <h2 class="card-header mb-2 text-site-secondary">{% trans "My Coaches" %}</h2>
                             <div class="grid">
                                 {% for coaching in user.coaches.all|distinct %}
                                 <div class="g-col">
@@ -179,7 +179,7 @@
                                     </div>
                                 </div>
                                 {% empty %}
-                                <p>{% trans "You do not have coaches at the moment" %}</p>
+                                <p class="p-2"style="background-color: #ffffff">{% trans "You do not have coaches at the moment" %}</p>
                                 {% endfor %}
                             </div>
 

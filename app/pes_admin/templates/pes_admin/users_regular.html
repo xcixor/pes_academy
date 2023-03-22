@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="d-flex justify-content-between">
-        <h4 class="font-weight-bold">Regular Users</h4>
+        <h4 class="font-weight-bold p-3">Regular Users</h4>
       </div>
       <p class="m-0">Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
       <p class="small">
@@ -22,38 +22,42 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="table-responsive card-admin">
-        <table id="admin-dashboard" class="table table-striped text-white">
-          <thead>
-            <tr>
-              <th scope="col">{% trans "Name" %}</th>
-              <th scope="col">{% trans "Email" %}</th>
-              <th scope="col">{% trans "Has Coaches" %}</th>
-              <th scope="col">{% trans "Action" %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for user in users %}
-            <tr>
-              <th scope="row">{{user.full_name}}</th>
-              <td>{{user.email}}</td>
-              <td>
-                {% if user.coaches.all %}
-                <i class="fa-solid fa-circle-check"></i>
-                {% else %}
-                <i class="fa-solid fa-xmark"></i>
-                {% endif %}
-              </td>
-              <td>
-                <a href="/CgDX4znLdQDLFw/accounts/user/{{user.pk}}/change/"
-                  class="btn btn-primary">{% trans "View More" %}</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+  <div class="row d-flex  align-items-center h-100 p-5">
+    <div class="col-sm-10 col-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="card text-center" style="border-radius: 15px;">
+        <div class="card-body p-4">
+          <div class="table-responsive">
+            <table id="admin-dashboard" class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">{% trans "Name" %}</th>
+                  <th scope="col">{% trans "Email" %}</th>
+                  <th scope="col">{% trans "Has Coaches" %}</th>
+                  <th scope="col">{% trans "Action" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                  <th scope="row">{{user.full_name}}</th>
+                  <td>{{user.email}}</td>
+                  <td>
+                    {% if user.coaches.all %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% else %}
+                    <i class="fa-solid fa-xmark"></i>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <a href="/CgDX4znLdQDLFw/accounts/user/{{user.pk}}/change/"
+                      class="btn" style="background-color: #a6c2d0; color: #ffffff;">{% trans "View More" %}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
