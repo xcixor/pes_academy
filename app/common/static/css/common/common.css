@@ -1,6 +1,7 @@
 :root {
     --bg-primary: #455D8D;
-    --bg-secondary: #14A562;
+    --bg-secondary: #a31a2a;
+    --bg-midtone: #a6c2d0;
 }
 
 .site-bg-primary {
@@ -10,9 +11,12 @@
 .site-bg-secondary {
     background-color: var(--bg-secondary);
 }
+.site-bg-midtone {
+    background-color: var(--bg-midtone);
+}
 
 .text-site-primary {
-    color: var(--bg-primary)
+    color: var(--bg-primary);
 }
 
 .header-site-primary {

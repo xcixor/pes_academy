@@ -16,5 +16,5 @@
 
 .styled-header {
     font-weight: 600;
-    color: #14A562;
+    color: var(--bg-secondary);
 }

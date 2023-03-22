@@ -2,7 +2,7 @@
     font-weight: 600;
 }
 .link:hover {
-    color: #14A562 !important;
+    color: var(--bg-secondary) !important;
 }
 
 .pagination {

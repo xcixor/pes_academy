@@ -5,16 +5,16 @@
     <div class="upper wrapper d-flex justify-content-between align-items-center py-4">
       <div class="links-wrapper d-flex justify-content-between align-items-center">
         <a class="navbar-brand m-0 p-0" href="/">
-          <img src="{% static 'images/PES logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
+          <img src="{% static 'common/images/pes_logo.png' %}" height="40" class="d-inline-block align-top" alt="PES logo">
         </a>
         <div class="links">
           <ul class="navbar-nav flex-row align-items-center">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="/agripitch/gallery/">{% trans "Gallery" %}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/agripitch/shortlist/">{% trans "Winners" %}</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="{% url 'accounts:help' %}">{% trans "Help" %}</a>
             </li>
@@ -42,7 +42,7 @@
         </div>
         <div class="dropdown">
           <i class="fas fa-bars fa-2x mx-4 menu-dropdown" href="#" role="button" id="dropdownMenuLink"
-            data-toggle="dropdown" aria-expanded="false"></i>
+            data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             {% if user.is_authenticated %}
             {% if user and user.is_superuser %}
@@ -73,9 +73,9 @@
         <div class="user-container">
           {% if user.is_authenticated %}
           {% if user and user.is_superuser %}
-          <h4 class="font-weight-bold m-0 p-0 text-site-secondary">{% trans "Welcome Admin" %}</h4>
+          <h4 class="font-weight-bold m-0 p-2 text-site-secondary">{% trans "Welcome Admin" %}</h4>
           {% else %}
-          <h4 class="font-weight-bold m-0 p-0 text-site-secondary">{% trans "Welcome " %}{{user.username}}</h4>
+          <h4 class="font-weight-bold m-0 p-2 text-site-secondary">{% trans "Welcome " %}{{user.username}}</h4>
           {% endif %}
           {% endif %}
         </div>
@@ -97,7 +97,7 @@
 
     <div class="lower wrapper d-flex justify-content-between py-4 site-bg-primary">
       <a class="navbar-brand m-0 p-0" href="/">
-        <img src="{% static 'images/for blue bg.png' %}" height="40" class="d-inline-block align-top mr-5"
+        <img src="{% static 'common/images/pes_academy.png' %}" height="60" class="d-inline-block align-top mr-5"
           alt="PES logo">
       </a>
 

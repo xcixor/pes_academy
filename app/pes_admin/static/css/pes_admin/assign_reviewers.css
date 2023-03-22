@@ -55,7 +55,7 @@ label {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #14A562;
+    background-color: var(--bg-secondary);
 }
 
 /* On mouse-over, add a grey background color */

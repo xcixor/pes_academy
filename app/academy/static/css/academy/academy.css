@@ -42,7 +42,7 @@ p {
     position: relative;
     width: 100px;
     border-radius: 5px;
-    background: #14A562;
+    background: var(--bg-secondary);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -8,5 +8,5 @@
 	width: 20px;
 	text-align: center;
 	color: white;
-	background-color: #14a562;
+	background-color: var(--bg-secondary);
 }
