@@ -83,7 +83,7 @@ nav #contacts {
 
 #register {
   background-image: url("../../common/images/login.jpg");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   /* background-size: cover; */
 }
 

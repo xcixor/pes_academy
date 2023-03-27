@@ -3,145 +3,147 @@
 <form action="{% url 'accounts:register' %}" method="post" class="auth-form" hx-post="{% url 'accounts:register' %}"
   hx-swap="innerHTML" id="registrationForm" hx-target="#htmx-parent" hx-indicator="#spinner">
   {% csrf_token %}
-
-  <div class="container container-wrapper mb-2">
+  <div class="container login mb-4">
     <div class="row header">
-      <img src="{% static 'images/agripitch-logo.png' %}" width="250" alt="Agripitch logo" class="img-fluid">
+      <div class="col-sm-12">
+        <img src="{% static 'common/images/pes_academy.png' %}" width="250" alt="PES Academy logo" class="img-fluid">
+      </div>
     </div>
-    <div class="d-flex align-items-center justify-content-center">
-      <h2 class="font-weight-bold mb-5 mt-5 mr-2 text-center h1 login-header">
-        {% trans "Registration" %}</h2>
-      <i class="fa fa-user-plus fa-2x ml-4 postfix" style="color: #a31a2a;"></i>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="d-flex align-items-center justify-content-center">
+          <h2 class="font-weight-bold mb-5 mt-5 mr-2 text-center h1 login-header">
+            {% trans "Registration" %}</h2>
+          <i class="fa fa-user-plus fa-2x ml-4 postfix" style="color: #a91917;"></i>
+        </div>
 
+      </div>
     </div>
-
-    <!--Body-->
-    <div class="error-container">
-      {% if form.errors %}
-      <div class="row ">
-        <div class="col-sm-12 d-inline-flex align-items-center">
-          <i class="fas fa-info error mr-2"></i>
-          <p class="error m-0">{% trans "Please correct the errors in the form below" %}</p>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="error-container">
+          {% if form.errors %}
+          <p class="error"><strong>{% trans "Please correct the errors in the form below." %}</strong></p>
+          {% endif %}
+          {% for error in form.non_field_errors %}
+          <p class="error">{{ error|escape }}</p>
+          {% endfor %}
         </div>
       </div>
-      {% endif %}
     </div>
-
-    <div class="md-form row">
+    <div class="row">
       <div class="col-sm-12">
-        <i class="fa fa-user prefix white-text mr-2"></i> <label for="username">{% trans "Username" %}</label>
-        {% if request.session.registration_details.email %}
-        <input value="{{request.session.registration_details.username}}" type="text" id="username" class="form-control"
-          placeholder="{% trans 'Username' %}" name="username" required>
-        {% else %}
-        <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username"
+        <div class="md-form">
+          <i class="fa fa-user prefix mr-2"></i>
+          <label for="username">{% trans "Username" %}</label>
+          {% if request.session.registration_details.email %}
+          <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username" value="{{request.session.registration_details.username}}"
+            required>
+          {% else %}
+          <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username"
           required>
+          {% endif %}
 
-        {% endif %}
+          <div class="error-container">
+            {% for error in form.username.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+        </div>
 
+        <div class="md-form">
+          <i class="fa fa-envelope prefix mr-2"></i>
+          <label
+            for="email">{% trans "Email" %}</label>
+            {% if request.session.registration_details.email %}
+          <input type="email" id="email" name="email" placeholder="{% trans 'Enter Email' %}"
+            class="form-control" value="{{request.session.registration_details.email}}">
+          {% else %}
+          <input type="email" id="email" class="form-control" placeholder="{% trans 'Email' %}" name="email" required>
+          {% endif %}
+          <div class="error-container">
+            {% for error in form.email.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+        </div>
 
-        <div class="error-container">
-          {% for error in form.username.errors %}
+        <div class="md-form">
+          <i class="fa fa-lock prefix mr-2"></i>
+          <label
+            for="id_password">{% trans "Enter Password" %}</label>
+          <input type="password" id="id_password" name="password1" placeholder="{% trans 'Enter Password' %}"
+            class="form-control">
+
+          <div class="error-container">
+            {% for error in form.password.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          <details class="my-4">
+            <summary id="detailsIconWrapper">
+              <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
+            </summary>
+            <ul>
+              <li> {% trans "password must contain at least 8 characters." %}</li>
+              <li> {% trans "password should not be entirely numeric." %}</li>
+              <li> {% trans "password should have a special character." %}</li>
+              <li> {% trans "password should have at least one number." %}</li>
+              <li> {% trans "password should not be too similar to your personal details eg username." %}</li>
+              <li> {% trans "passwords should match." %}</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix mr-2"></i>
+          <label
+            for="id_password_two">{% trans "Repeat Password" %}</label>
+          <input type="password" id="id_password_two" name="password2" placeholder="{% trans 'Repeat Password' %}"
+            class="form-control">
+
+          <div class="error-container">
+            {% for error in form.password2.errors %}
+            <p class="error">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
+          <hr>
+        </div>
+
+        <div class="md-form">
+          <label>
+            <input type="checkbox" required name="terms"> {% trans "By creating an account you agree to our" %}<a
+              href="{% url 'home:privacy' %}" style="color: #455D8D;">
+              {% trans "Terms & Privacy" %}</a>.
+          </label>
+          {% for error in form.terms.errors %}
           <p class="error e">{{ error|escape }}</p>
           {% endfor %}
         </div>
-      </div>
-    </div>
-    <div class="md-form row">
-      <div class="col-sm-12">
-        <i class="fa fa-envelope prefix white-text mr-2"></i> <label for="email">{% trans "Email" %}</label>
-        {% if request.session.registration_details.email %}
-        <input type="email" id="email" class="form-control" placeholder="{% trans 'Email' %}" name="email" required
-          value="{{request.session.registration_details.email}}">
-        {% else %}
-        <input type="email" id="email" class="form-control" placeholder="{% trans 'Email' %}" name="email" required>
-        {% endif %}
-        <div class="error-container">
-          {% for error in form.email.errors %}
-          <p class="error">{{ error|escape }}</p>
-          {% endfor %}
+
+        <div class="md-form">
+          <div class="col-sm-12">
+            {{form.captcha}}
+            {% for error in form.captcha.errors %}
+            <p class="error e">{{ error|escape }}</p>
+            {% endfor %}
+          </div>
         </div>
-      </div>
-    </div>
-    <br>
-    <div class="md-form row">
-      <div class="col-sm-12">
-        <i class="fa fa-lock prefix white-text mr-2"></i><label for="id_password">{% trans "Password" %}</label>
-        <input type="password" id="id_password" name="password1" placeholder="{% trans 'Enter Password' %}"
-          class="form-control">
 
-        <div class="error-container">
-          {% for error in form.password1.errors %}
-          <p class="error">{{ error|escape }}</p>
-          {% endfor %}
-        </div>
-        <details class="my-4">
-          <summary id="detailsIconWrapper">
-            <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
-          </summary>
-          <ul>
-            <li> {% trans "password must contain at least 8 characters." %}</li>
-            <li> {% trans "password should not be entirely numeric." %}</li>
-            <li> {% trans "password should have a special character." %}</li>
-            <li> {% trans "password should have at least one number." %}</li>
-            <li> {% trans "password should not be too similar to your personal details eg username." %}</li>
-            <li> {% trans "passwords should match." %}</li>
-          </ul>
-        </details>
-      </div>
-
-    </div>
-    <div class="md-form row mt-4">
-      <div class="col-sm-12">
-        <i class="fa fa-lock prefix white-text mr-2"></i><label
-          for="id_password_two">{% trans "Repeat Password" %}</label>
-        <input type="password" id="id_password_two" name="password2" placeholder="{% trans 'Repeat Password' %}"
-          class="form-control">
-
-        <div class="error-container">
-          {% for error in form.password2.errors %}
-          <p class="error">{{ error|escape }}</p>
-          {% endfor %}
-        </div>
-        <hr>
-
-      </div>
-
-    </div>
-    <div class="md-form row mt-4">
-      <div class="col-sm-12">
-        <label>
-          <input type="checkbox" required name="terms"> {% trans "By creating an account you agree to our" %}<a
-            href="{% url 'home:privacy' %}" style="color: #455D8D;">
-            {% trans "Terms & Privacy" %}</a>.
-        </label>
-        {% for error in form.terms.errors %}
-        <p class="error e">{{ error|escape }}</p>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="md-form row mt-4">
-      <div class="col-sm-12">
-        {{form.captcha}}
-        {% for error in form.captcha.errors %}
-        <p class="error e">{{ error|escape }}</p>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="md-form row mt-4">
-      <div class="col-sm-12">
         <div class="text-center">
           <button type="submit" class="btn registerbtn">{% trans "Register" %}</button>
         </div>
       </div>
     </div>
-
-    <div class="signin">
-      <p>{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}"
-          style="color: #455D8D;">{% trans "Sign in" %}</a>.</p>
+    <div class="row">
+      <div class="col-sm-12">
+        <p>{% trans "Already have an account" %}? <a href="{% url 'accounts:login' %}"
+            style="color: #455D8D; font-weight: 600;">{% trans "Sign In" %}</a>.</p>
+      </div>
     </div>
   </div>
 </form>
+
 <div class="htmx-indicator" id="spinner">
   <img src="{% static 'common/images/puff.svg' %}" height="80" width="80" alt="loader" />
 </div>
