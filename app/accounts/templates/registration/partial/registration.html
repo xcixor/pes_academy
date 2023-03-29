@@ -33,9 +33,10 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <div class="md-form">
-          <i class="fa fa-user prefix mr-2"></i>
-          <label for="username">{% trans "Username" %}</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          
+          
           {% if request.session.registration_details.email %}
           <input type="text" id="username" class="form-control" placeholder="{% trans 'Username' %}" name="username" value="{{request.session.registration_details.username}}"
             required>
@@ -51,10 +52,10 @@
           </div>
         </div>
 
-        <div class="md-form">
-          <i class="fa fa-envelope prefix mr-2"></i>
-          <label
-            for="email">{% trans "Email" %}</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fa fa-envelope prefix mr-2"></i></span>
+          
+          
             {% if request.session.registration_details.email %}
           <input type="email" id="email" name="email" placeholder="{% trans 'Enter Email' %}"
             class="form-control" value="{{request.session.registration_details.email}}">
@@ -68,10 +69,9 @@
           </div>
         </div>
 
-        <div class="md-form">
-          <i class="fa fa-lock prefix mr-2"></i>
-          <label
-            for="id_password">{% trans "Enter Password" %}</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+          
           <input type="password" id="id_password" name="password1" placeholder="{% trans 'Enter Password' %}"
             class="form-control">
 
@@ -80,25 +80,25 @@
             <p class="error">{{ error|escape }}</p>
             {% endfor %}
           </div>
-          <details class="my-4">
-            <summary id="detailsIconWrapper">
-              <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
-            </summary>
-            <ul>
-              <li> {% trans "password must contain at least 8 characters." %}</li>
-              <li> {% trans "password should not be entirely numeric." %}</li>
-              <li> {% trans "password should have a special character." %}</li>
-              <li> {% trans "password should have at least one number." %}</li>
-              <li> {% trans "password should not be too similar to your personal details eg username." %}</li>
-              <li> {% trans "passwords should match." %}</li>
-            </ul>
-          </details>
         </div>
 
-        <div class="md-form">
-          <i class="fa fa-lock prefix mr-2"></i>
-          <label
-            for="id_password_two">{% trans "Repeat Password" %}</label>
+        <details class="my-4">
+          <summary id="detailsIconWrapper">
+            <strong><i class="fa-solid fa-angle-right" id="detailsIcon"></i>{% trans "Password Requirements" %}</strong>
+          </summary>
+          <ul>
+            <li> {% trans "password must contain at least 8 characters." %}</li>
+            <li> {% trans "password should not be entirely numeric." %}</li>
+            <li> {% trans "password should have a special character." %}</li>
+            <li> {% trans "password should have at least one number." %}</li>
+            <li> {% trans "password should not be too similar to your personal details eg username." %}</li>
+            <li> {% trans "passwords should match." %}</li>
+          </ul>
+        </details>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+          
           <input type="password" id="id_password_two" name="password2" placeholder="{% trans 'Repeat Password' %}"
             class="form-control">
 
