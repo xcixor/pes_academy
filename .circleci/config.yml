@@ -77,7 +77,25 @@ jobs:
           args: --service-account=<< parameters.service-account-name >>
 
 workflows:
-  version: 2
-  # pes:
-  #   jobs:
-  #     - test_pes
+  pes:
+    jobs:
+      - test_pes
+      - push_service_image:
+          requires:
+            - test_pes
+          filters:
+            branches:
+              only:
+                - main
+      - deploy_service_cloud_run:
+          requires:
+            - push_service_image
+      - production_deploy_hold:
+          type: approval
+          requires:
+            - push_service_image
+      - deploy_service_cloud_run:
+          environment: production
+          service-account-name: pes-production@pes-online-2.iam.gserviceaccount.com
+          requires:
+            - production_deploy_hold
