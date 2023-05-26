@@ -4,43 +4,53 @@
 {% block styles %}
 {{ block.super }}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 {% block content %}
 <section>
   <div class="carousel slide" data-bs-ride="carousel" id="carouselExampleIndicators">
-		<div class="carousel-indicators">
-			<button aria-label="Slide 1" class="active" data-bs-slide-to="0" data-bs-target="#carouselExampleIndicators" type="button"></button> <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carouselExampleIndicators" type="button"></button> <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carouselExampleIndicators" type="button"></button>
-		</div>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img alt="..." class="d-block w-100" src="{% static 'images/common/slide1.jpg' %}">
-				<div class="carousel-caption">
-					<h5>{% trans "Learn without limits" %}</h5>
-					<p>Propel your business higher by turning our expertise to revenue</p>
-					<p><a class="btn site-bg-primary mt-3 text-white" href="https://privateequity-support.thinkific.com/collections">{% trans "Explore Courses" %}</a></p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img alt="..." class="d-block w-100" src="{% static 'images/common/slide2.jpg' %}">
-				<div class="carousel-caption">
-					<h5>{% trans "Always Dedicated" %}</h5>
-					<p>We have a solid track record across various sectors including consumer industries, financial services, agro-processing, technology and media.</p>
-					<p><a class="btn site-bg-primary mt-3 text-white" href="https://privateequity-support.thinkific.com/users/sign_in">Sign up</a></p>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img alt="..." class="d-block w-100" src="{% static 'images/common/slide3.jpg' %}">
-				<div class="carousel-caption">
-					<h5>{% trans "Experienced Team" %}</h5>
-					<p>We have an experienced team of instructors</p>
-					<p><a class="btn site-bg-primary mt-3 text-white" href="#instructors">Learn More</a></p>
-				</div>
-			</div>
-		</div><button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleIndicators" type="button"><span aria-hidden="true" class="carousel-control-prev-icon"></span> <span class="visually-hidden">Previous</span></button> <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleIndicators" type="button"><span aria-hidden="true" class="carousel-control-next-icon"></span> <span class="visually-hidden">Next</span></button>
-	</div>
-  
-	<!-- courses Showcases-->
+    <div class="carousel-indicators">
+      <button aria-label="Slide 1" class="active" data-bs-slide-to="0" data-bs-target="#carouselExampleIndicators"
+        type="button"></button> <button aria-label="Slide 2" data-bs-slide-to="1"
+        data-bs-target="#carouselExampleIndicators" type="button"></button> <button aria-label="Slide 3"
+        data-bs-slide-to="2" data-bs-target="#carouselExampleIndicators" type="button"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img alt="..." class="d-block w-100" src="{% static 'images/common/slide1.jpg' %}">
+        <div class="carousel-caption">
+          <h5>{% trans "Learn without limits" %}</h5>
+          <p>Propel your business higher by turning our expertise to revenue</p>
+          <p><a class="btn site-bg-primary mt-3 text-white"
+              href="https://privateequity-support.thinkific.com/collections">{% trans "Explore Courses" %}</a></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img alt="..." class="d-block w-100" src="{% static 'images/common/slide2.jpg' %}">
+        <div class="carousel-caption">
+          <h5>{% trans "Always Dedicated" %}</h5>
+          <p>We have a solid track record across various sectors including consumer industries, financial services,
+            agro-processing, technology and media.</p>
+          <p><a class="btn site-bg-primary mt-3 text-white"
+              href="https://privateequity-support.thinkific.com/users/sign_in">Sign up</a></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img alt="..." class="d-block w-100" src="{% static 'images/common/slide3.jpg' %}">
+        <div class="carousel-caption">
+          <h5>{% trans "Experienced Team" %}</h5>
+          <p>We have an experienced team of instructors</p>
+          <p><a class="btn site-bg-primary mt-3 text-white" href="#instructors">Learn More</a></p>
+        </div>
+      </div>
+    </div><button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleIndicators"
+      type="button"><span aria-hidden="true" class="carousel-control-prev-icon"></span> <span
+        class="visually-hidden">Previous</span></button> <button class="carousel-control-next" data-bs-slide="next"
+      data-bs-target="#carouselExampleIndicators" type="button"><span aria-hidden="true"
+        class="carousel-control-next-icon"></span> <span class="visually-hidden">Next</span></button>
+  </div>
+
+  <!-- courses Showcases-->
   <h2 class="text-center mt-3 text-site-secondary">{% trans "Topics" %}</h2>
 
   <!--Course Card-->
@@ -51,18 +61,23 @@
           <img src="{% static 'images/common/courses/financial.jpg' %}" class="card-img-top" alt="Financial management">
           <div class="card-body">
             <h5 class="card-title text-site-primary">Financial management</h5>
-            <p class="card-text text-site-primary">This Course covers the fundamentals of financial management, including financial accounting, investments, and corporate finance.</p>
-            <a href="https://privateequity-support.thinkific.com/enroll/1695912?et=free" class="btn btn-primary">Start Course</a>
+            <p class="card-text text-site-primary">This Course covers the fundamentals of financial management,
+              including financial accounting, investments, and corporate finance.</p>
+            <a href="https://privateequity-support.thinkific.com/enroll/1695912?et=free" class="btn btn-primary">Start
+              Course</a>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card">
-          <img src="{% static 'images/common/courses/investment.png' %}" class="card-img-top" alt="Investment Readiness">
+          <img src="{% static 'images/common/courses/investment.png' %}" class="card-img-top"
+            alt="Investment Readiness">
           <div class="card-body">
             <h5 class="card-title text-site-primary">Investment Readiness</h5>
-            <p class="card-text text-site-primary">This course helps you communicate effectively with any investor, and to understand their language. We also aid you in building  investor pitch decks that inspire awe.</p>
-            <a href="https://privateequity-support.thinkific.com/enroll/2014437?et=free" class="btn btn-primary">Start Course</a>
+            <p class="card-text text-site-primary">This course helps you communicate effectively with any investor, and
+              to understand their language. We also aid you in building investor pitch decks that inspire awe.</p>
+            <a href="https://privateequity-support.thinkific.com/enroll/2014437?et=free" class="btn btn-primary">Start
+              Course</a>
           </div>
         </div>
       </div>
@@ -71,34 +86,160 @@
   </section>
 
 
-	<!-- Instructors-->
-  <section id="instructors" class="testimonials text-center bg-light p-3">
+  <!-- Instructors-->
+  <section id="instructors" class="testimonials bg-light p-3 mb-5">
     <div class="container">
-        <h2 class="mb-5 text-site-secondary">{% trans "Our Instructors" %}</h2>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-circle mb-3 w-25" src="{% static 'images/common/instructors/Diana.png' %}" alt="Diana Gichaga photo" />
-                    <h5 class="text-site-primary">Diana Gichaga</h5>
-                    <!-- <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p> -->
-                </div>
+      <h2 class="mb-5 text-site-secondary">{% trans "Our Instructors" %}</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="bio-grid">
+            <div class="bio-item">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0 d-flex flex-column align-items-center">
+                <img height="200px" class="rounded-circle mb-3" src="{% static 'images/common/instructors/Diana.png' %}"
+                  alt="Diana Gichaga photo" />
+                <h5 class="text-site-primary">Diana Gichaga</h5>
+              </div>
+              <div class="bio">
+                <p>
+                  Diana is a frontier markets professional with <strong>
+                    over 17 years’ experience providing business and transaction advisory
+                    services to start-ups & SMEs across 17 countries in Sub Saharan Africa
+                  </strong> in various sectors such as the agriculture
+                  sector, education sector, WASH sector, renewable energy [recycling, biomass, e mobility and solar
+                  energy] among
+                  others.
+                </p>
+                <p>
+                  Diana has <strong>board experience</strong> in regulated entity as Chairperson of the Human Resource
+                  and Nominations
+                  Committee (BHRAN)
+                  responsible for instituting and monitoring performance management of the institution
+                  She is the Founder and Managing Partner of Private Equity Support (PES). Diana holds a Master’s degree
+                  in
+                  Entrepreneurship from the University of Cambridge and is an Advocate of the high court of Kenya. She
+                  also passed the
+                  Chartered Financial Analyst [CFA] Level I exams.
+                </p>
+                <p>
+                  <strong>Expertise:</strong> SME Deal Origination, Investor Readiness, Deal Structuring, Capital
+                  Raising, Investor
+                  Relations, Due
+                  Diligence, Portfolio Company Support for SMEs, Fund Structuring and set up for local and regional
+                  Venture Capital,
+                  Private Equity and Real Estate Funds in Africa as well as Challenge Fund Development and Execution
+                </p>
+                <p>
+                  <strong>Languages:</strong> English, Kiswahili, Intermediate French
+                </p>
+              </div>
             </div>
-            <div class="col-lg-4">
-                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-circle mb-3 w-25" src="{% static 'images/common/instructors/Esther.png' %}" alt="Esther Kahuko photo" />
-                    <h5 class="text-site-primary">Esther Kahuko</h5>
-                    <!-- <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p> -->
+            <div class="bio-item">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0 d-flex flex-column align-items-center">
+                <img height="200px" class="rounded-circle mb-3"
+                  src="{% static 'images/common/instructors/Esther.png' %}" alt="Esther Kahuko photo" />
+                <h5 class="text-site-primary">Esther Kahuko</h5>
+                <div class="bio">
+                  <p>
+                    Esther has <strong>over 10 years working with SMEs, agribusinesses, and start-ups</strong> in the
+                    analysis of past and current financial
+                    data, variance analysis and identification, development of financial models for forecasting and
+                    decision support in
+                    areas of restructuring, mergers, financing, budgeting and cost analysis of trends and evaluation of
+                    investment
+                    opportunities by analyzing the best portfolio mix through investment appraisal.
+                    Esther holds Master’s degree in Finance from the University of Nairobi, Bachelor of Commerce in
+                    Finance from Catholic
+                    University of Eastern Africa and is a Certified Public Accountant (Kenya) as well as a Certified
+                    Investment and
+                    Financial Analyst (CIFA).
+                  </p>
+                  <p>
+                    <strong>Expertise:</strong> Financial and Investment Analysis, Financial Modelling, Due diligence,
+                    Strategy and Strategic Management and
+                    Financial Advisory Experience, Tax Analysis and Consultancy; Performing Market Research by studying
+                    economic and
+                    business trends, establishing patterns, & making reports & recommendations.
+                  </p>
+                  <p>
+                    <strong>Languages:</strong> English, Kiswahili
+                  </p>
                 </div>
+              </div>
             </div>
-            <div class="col-lg-4">
-                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-circle mb-3 w-25" src="{% static 'images/common/instructors/Charity.png' %}" alt="Charity Kirima Photo" />
-                    <h5 class="text-site-primary">Charity Kirima</h5>
-                    <!-- <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p> -->
-                </div>
+            <div class="bio-item">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0 d-flex flex-column align-items-center">
+                <img height="200px" class="rounded-circle mb-3"
+                  src="{% static 'images/common/instructors/Charity.png' %}" alt="Charity Kirima Photo" />
+                <h5 class="text-site-primary">Charity Kirima</h5>
+              </div>
+              <div class="bio">
+                <p>
+                  Charity has over 10 years working experience in investment banking, Private Equity working with SMEs
+                  in renewable energy
+                  and Agribusiness, Real estate, Financial and Investment analysis, stocks and currencies analysis and
+                  trading, Fund
+                  management. She has used her expertise to lead negotiations and transactions that help build a
+                  pipeline of investment
+                  opportunities.
+                </p>
+                <p>
+                  Charity holds a Master of Business Administration (Finance) from The University of Nairobi,Bachelor of
+                  Education (Arts),
+                  Mathematics and Business - Kenyatta University,Certified Public Accountant of Kenya and Certificate in
+                  Wealth and
+                  Investment Management- Chartered Institute of Securities and Investments.
+                </p>
+                <p>
+                  <strong>Expertise:</strong> Investment banking, financial and investment analysis, Private Equity deal
+                  structuring, Due diligence,
+                  Strategy and strategic management and financial advisory experience.
+                </p>
+                <p>
+                  <strong>Languages:</strong> English and Kiswahili
+                </p>
+              </div>
             </div>
+            <div class="bio-item">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0 d-flex flex-column align-items-center">
+                <img height="200px" class="rounded-circle mb-3"
+                  src="{% static 'images/common/instructors/urbain.webp' %}" alt="Charity Kirima Photo" />
+                <h5 class="text-site-primary">Urbain AMOUSSOU</h5>
+              </div>
+              <div class="bio">
+                <p>
+                  Urbain AMOUSSOU has more than 12 years of experience as an entrepreneur and 10 years in working with
+                  entrepreneurs and
+                  businesses. His skills range from the formulation and testing of economic models, to the analysis of
+                  the company's
+                  ecosystem in order to develop efficient innovation and positioning strategies.
+                </p>
+                <p>
+                  Since 2017, Urbain AMOUSSOU is the founder and Executive Director of CUBE business incubator in Togo,
+                  which supports
+                  African SMEs and startups in the fields of agriculture, agri-food, financial technologies, art, health
+                  and energy. He
+                  was also responsible for state support structures and helped several national and international
+                  partners in setting up
+                  support programs for SMEs and startups.
+                </p>
+                <p>
+                  <strong>Expertise:</strong> Urbain AMOUSSOU has a Master's degree in Applied Biotechnology (Biomedical
+                  Analysis, Genetic Engineering, Molecular
+                  Biology, Bioinformatics, Immunology) and has launched and co-founded, from 2009 to now, several
+                  start-ups and projects
+                  in biotechnology (Global Biotek), in publishing books (AGAU EDITIONS), in energy (VTech), in Health
+                  (LABORATOIRE LE
+                  SAFRAN), a scientific magazine (SCIENT MAG) and a holding company (CUBE HOLDING).
+                </p>
+                <p>
+                  <strong>Languages:</strong> French, English, Mina
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </section>
 </section>
-  {% endblock %}
+{% endblock %}

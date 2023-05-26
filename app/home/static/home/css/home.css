@@ -74,8 +74,8 @@
     min-height: 30rem;
     background-size: cover;
   }
-  .testimonials {   
-    
+  .testimonials {
+
     padding-top: 7rem;
     padding-bottom: 7rem;
   }
@@ -104,7 +104,7 @@
     left: 0;
     opacity: 0.5;
   }
-  
+
 }
 @media only screen and (max-width: 767px) {
 	.carousel-caption {
@@ -194,6 +194,15 @@ input:focus {
   }
 }
 
+.bio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(30%, 1fr));
+      gap: 3%;
+}
+.bio{
+  font-size: 0.9rem;
+}
+
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
   .imgHero {
@@ -214,5 +223,20 @@ input:focus {
   }
   .card {
     width: 100% !important;
+  }
+}
+
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  .bio-grid {
+      grid-template-columns: repeat(2, minmax(48%, 1fr));
+      gap: 2%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .bio-grid {
+      grid-template-columns: repeat(1, minmax(48%, 1fr));
+      gap: 2%;
   }
 }
